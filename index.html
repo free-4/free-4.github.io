@@ -2,200 +2,205 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>位佳宝欢乐发生器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>位佳宝魔性生成器</title>
     <style>
+        :root {
+            --main-color: #ff0066;
+            --bg-color: #ffe6f2;
+        }
+
         body {
-            background: #ffe6f2;
             margin: 0;
+            background: var(--bg-color);
+            touch-action: manipulation;
             overflow: hidden;
             font-family: 'Comic Sans MS', cursive;
         }
 
         #avatar {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 5px solid #ff0066;
+            width: 60vw;
+            height: 60vw;
+            max-width: 200px;
+            max-height: 200px;
             position: absolute;
+            border-radius: 50%;
+            border: 5px solid var(--main-color);
             cursor: pointer;
-            transition: 0.3s;
+            transition: 
+                transform 0.2s,
+                filter 0.3s;
+            touch-action: none;
         }
 
-        .crazy-mode {
-            animation: rainbowBG 2s infinite;
+        .shake {
+            animation: shake 0.5s infinite;
         }
 
         #counter {
             position: fixed;
-            top: 20px;
-            left: 20px;
-            font-size: 24px;
-            color: #ff0066;
-            background: white;
+            top: 10px;
+            left: 10px;
+            background: rgba(255,255,255,0.9);
             padding: 10px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 100;
         }
 
-        .bomb {
+        .effect {
             position: absolute;
             pointer-events: none;
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDIvMDEvMjTEs1KGAAAAY0lEQVQ4jWP4//8/A7UxEwONABMDjUBVdRUDh4DHfwYqAqYH7A8YqAkePHjwn4HKgAkIMDAwMDAwvHnz5v/v379JBkxMTMyMjIwMDAwMDH/+/AEACqU3Y3Cg9GoAAAAASUVORK5CYII=');
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTnU1rJkAAAAW0lEQVQ4T2NkoDJgJEP9f5jC/2QYgLQJ/////4+Ug4mhAkQNkEIJiRqQGsDAwPD/P1oNqBQgNQCTJqQGYNKE1ABMmpAagEkTUgMwaUJqACZNSA3ApAmpAZg0AQBk4Q0mHyqk0QAAAABJRU5ErkJggg==');
             width: 50px;
             height: 50px;
-            animation: explode 1s forwards;
+            animation: sparkle 1s forwards;
         }
 
-        @keyframes rainbowBG {
-            0% { background: #ff99cc; }
-            20% { background: #ffff99; }
-            40% { background: #99ff99; }
-            60% { background: #9999ff; }
-            80% { background: #ff99ff; }
-            100% { background: #ff99cc; }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
 
-        @keyframes explode {
-            to {
-                transform: scale(3);
-                opacity: 0;
-            }
+        @keyframes sparkle {
+            0% { opacity: 1; transform: scale(0); }
+            100% { opacity: 0; transform: scale(2); }
         }
 
-        .achievement {
+        .dialog {
             position: fixed;
-            right: 20px;
             bottom: 20px;
-            background: gold;
-            padding: 10px;
-            border-radius: 10px;
-            animation: slideIn 0.5s;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: floatUp 2s forwards;
         }
 
-        @keyframes slideIn {
-            from { transform: translateX(100%); }
+        @keyframes floatUp {
+            100% { bottom: 100%; opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div id="counter">功德值：<span>0</span></div>
     <img id="avatar" src="zR.png" alt="欢乐源泉">
-    
+
     <script>
-        // 初始化配置
+        // 移动端优化版
         const avatar = document.getElementById('avatar');
         let count = localStorage.getItem('crazyCount') || 0;
+        let sound = new Audio('fA.mp3');
         let isCrazy = false;
-        const sound = new Audio('fA.mp3');
-        
-        // 随机初始位置
-        moveAvatar();
 
-        // 主点击事件
-        avatar.addEventListener('click', () => {
+        // 初始化位置
+        moveToCenter();
+
+        // 通用点击事件
+        avatar.addEventListener('click', handleTap);
+        avatar.addEventListener('touchstart', handleTap);
+
+        function handleTap(e) {
+            e.preventDefault();
             count++;
             updateDisplay();
             
             // 基础效果
-            playSound();
-            createExplosion();
-            avatar.style.transform = `scale(${1 + count*0.01})`;
+            playRandomSound();
+            createSparkle(e);
+            avatar.classList.add('shake');
             
-            // 特殊事件触发
-            if(count == 10) showAchievement('初级信徒');
-            if(count == 50) document.body.classList.add('crazy-mode');
-            if(count == 100) avatar.src = 'zR_crazy.png'; // 准备疯狂版图片
-        });
-
-        // 新增功能1: 自动逃跑
-        setInterval(() => {
-            if(count > 30 && Math.random() < 0.3) {
-                moveAvatar();
-                createBombEffect();
-            }
-        }, 1000);
-
-        // 新增功能2: 连击系统
-        let combo = 0;
-        let lastClickTime = 0;
-        setInterval(() => {
-            if(Date.now() - lastClickTime > 1000) {
-                if(combo > 3) {
-                    showAchievement(`连击x${combo}！`);
-                }
-                combo = 0;
-            }
-        }, 100);
-
-        // 功能函数
-        function moveAvatar() {
-            avatar.style.left = Math.random()*(window.innerWidth-200) + 'px';
-            avatar.style.top = Math.random()*(window.innerHeight-200) + 'px';
+            // 进阶效果
+            if(count > 10) avatar.style.filter = `hue-rotate(${count*5}deg)`;
+            if(count % 15 === 0) showRandomDialog();
+            if(count > 30) randomTeleport();
         }
 
-        function createExplosion() {
-            const bomb = document.createElement('div');
-            bomb.className = 'bomb';
-            bomb.style.left = `${event.pageX-25}px`;
-            bomb.style.top = `${event.pageY-25}px`;
-            document.body.appendChild(bomb);
-            setTimeout(() => bomb.remove(), 1000);
+        // 新增手机端特效
+        function createSparkle(e) {
+            const effect = document.createElement('div');
+            effect.className = 'effect';
+            const pos = getEventPosition(e);
+            effect.style.left = pos.x + 'px';
+            effect.style.top = pos.y + 'px';
+            document.body.appendChild(effect);
+            setTimeout(() => effect.remove(), 1000);
         }
 
-        function playSound() {
+        function getEventPosition(e) {
+            return {
+                x: e.clientX || e.touches[0].clientX,
+                y: e.clientY || e.touches[0].clientY
+            };
+        }
+
+        function playRandomSound() {
             sound.currentTime = 0;
-            sound.playbackRate = Math.random() * 1.5 + 0.5;
+            sound.playbackRate = Math.random() * 2 + 0.5;
             sound.play();
-        }
-
-        function showAchievement(text) {
-            const div = document.createElement('div');
-            div.className = 'achievement';
-            div.textContent = '🎉 成就解锁：' + text;
-            document.body.appendChild(div);
-            setTimeout(() => div.remove(), 2000);
+            if(count % 5 === 0) sound.currentTime = 0.3; // 随机彩蛋
         }
 
         function updateDisplay() {
             document.querySelector('#counter span').textContent = count;
             localStorage.setItem('crazyCount', count);
-            combo++;
-            lastClickTime = Date.now();
+            avatar.style.transform = `scale(${1 + count*0.02})`;
         }
 
-        // 隐藏秘籍：按空格键开启弹幕模式
-        document.addEventListener('keydown', (e) => {
-            if(e.code === 'Space') {
-                startBulletChat();
+        function moveToCenter() {
+            avatar.style.left = '50%';
+            avatar.style.top = '50%';
+            avatar.style.transform = 'translate(-50%, -50%)';
+        }
+
+        function randomTeleport() {
+            if(Math.random() < 0.3) {
+                avatar.style.left = Math.random()*80 + '%';
+                avatar.style.top = Math.random()*80 + '%';
+                setTimeout(() => avatar.style.transform += ' rotate(360deg)', 50);
             }
+        }
+
+        function showRandomDialog() {
+            const texts = [
+                '功德+1！',
+                '老板看了直呼内行！',
+                '医学奇迹出现了！',
+                '建议申遗！',
+                '这合理吗？',
+                '检测到新型病毒！'
+            ];
+            const dialog = document.createElement('div');
+            dialog.className = 'dialog';
+            dialog.textContent = texts[Math.floor(Math.random()*texts.length)];
+            document.body.appendChild(dialog);
+            setTimeout(() => dialog.remove(), 2000);
+        }
+
+        // 手机长按彩蛋
+        let pressTimer;
+        avatar.addEventListener('touchstart', () => {
+            pressTimer = setTimeout(() => {
+                avatar.style.filter = 'blur(10px)';
+                showRandomDialog();
+            }, 1000);
         });
 
-        function startBulletChat() {
-            const comments = [
-                '老板看了都点赞！', 
-                '这是新型病毒吗？',
-                '建议申报非物质文化遗产',
-                '医学奇迹！',
-                '功德+1'
-            ];
-            
-            setInterval(() => {
-                const div = document.createElement('div');
-                div.style = `
-                    position: fixed;
-                    color: #ff0066;
-                    font-size: 24px;
-                    white-space: nowrap;
-                    top: ${Math.random()*100}%;
-                    animation: moveRight 10s linear;
-                `;
-                
-                div.textContent = comments[Math.floor(Math.random()*comments.length)];
-                document.body.appendChild(div);
-                
-                setTimeout(() => div.remove(), 10000);
-            }, 1000);
-        }
+        avatar.addEventListener('touchend', () => {
+            clearTimeout(pressTimer);
+            avatar.style.filter = '';
+        });
     </script>
 </body>
 </html>
