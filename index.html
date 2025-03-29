@@ -2,204 +2,189 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>位佳宝魔性生成器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>位佳宝异常研究中心</title>
     <style>
         :root {
             --main-color: #ff0066;
-            --bg-color: #ffe6f2;
+            --bg-color: #fff0f5;
         }
 
         body {
             margin: 0;
+            padding: 20px;
             background: var(--bg-color);
+            min-height: 100vh;
+            font-family: "Microsoft YaHei", sans-serif;
             touch-action: manipulation;
-            overflow: hidden;
-            font-family: 'Comic Sans MS', cursive;
         }
 
-        #avatar {
-            width: 60vw;
-            height: 60vw;
-            max-width: 200px;
-            max-height: 200px;
-            position: absolute;
-            border-radius: 50%;
-            border: 5px solid var(--main-color);
-            cursor: pointer;
-            transition: 
-                transform 0.2s,
-                filter 0.3s;
-            touch-action: none;
-        }
-
-        .shake {
-            animation: shake 0.5s infinite;
-        }
-
-        #counter {
-            position: fixed;
-            top: 10px;
-            left: 10px;
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
             background: rgba(255,255,255,0.9);
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            z-index: 100;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
         }
 
-        .effect {
-            position: absolute;
-            pointer-events: none;
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTnU1rJkAAAAW0lEQVQ4T2NkoDJgJEP9f5jC/2QYgLQJ/////4+Ug4mhAkQNkEIJiRqQGsDAwPD/P1oNqBQgNQCTJqQGYNKE1ABMmpAagEkTUgMwaUJqACZNSA3ApAmpAZg0AQBk4Q0mHyqk0QAAAABJRU5ErkJggg==');
-            width: 50px;
-            height: 50px;
-            animation: sparkle 1s forwards;
+        h1 {
+            color: var(--main-color);
+            text-align: center;
+            margin: 0 0 20px;
+            transform: rotate(-2deg);
+            text-shadow: 2px 2px #fff;
         }
 
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
-        }
-
-        @keyframes sparkle {
-            0% { opacity: 1; transform: scale(0); }
-            100% { opacity: 0; transform: scale(2); }
-        }
-
-        .dialog {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 15px;
+        .target-img {
+            width: 200px;
+            height: 200px;
+            max-width: 60vw;
+            max-height: 60vw;
+            margin: 20px auto;
+            border: 5px solid var(--main-color);
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            animation: floatUp 2s forwards;
+            cursor: pointer;
+            transition: 0.3s;
+            background-size: cover;
         }
 
-        @keyframes floatUp {
-            100% { bottom: 100%; opacity: 0; }
+        .counter {
+            font-size: 24px;
+            color: var(--main-color);
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .warning {
+            color: red;
+            padding: 15px;
+            border: 2px dashed red;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .warning {
+                font-size: 0.9em;
+            }
+        }
+
+        /* 新增动画 */
+        @keyframes vibrate {
+            0% { transform: translate(0); }
+            25% { transform: translate(2px, -2px); }
+            50% { transform: translate(-2px, 2px); }
+            75% { transform: translate(1px, -1px); }
         }
     </style>
 </head>
 <body>
-    <div id="counter">功德值：<span>0</span></div>
-    <img id="avatar" src="zR.png" alt="欢乐源泉">
+    <div class="container">
+        <h1>位佳宝行为观察装置</h1>
+        
+        <div class="warning">
+            【重要警告】<br>
+            持续接触可能导致：<br>
+            1. 无法控制的嘴角上扬<br>
+            2. 突然想拍桌子的冲动<br>
+            3. 时间感知障碍（怎么又过去一小时？）
+        </div>
+
+        <div class="target-img" id="target" 
+             style="background-image: url(zR.png)"
+             onclick="playSound()"
+             ontouchstart="handleTouch(event)">
+        </div>
+
+        <div class="counter">
+            已观测次数：<span id="count">0</span>
+        </div>
+    </div>
 
     <script>
-        // 移动端优化版
-        const avatar = document.getElementById('avatar');
-        let count = localStorage.getItem('crazyCount') || 0;
-        let sound = new Audio('fA.mp3');
-        let isCrazy = false;
-
-        // 初始化位置
-        moveToCenter();
-
-        // 通用点击事件
-        avatar.addEventListener('click', handleTap);
-        avatar.addEventListener('touchstart', handleTap);
-
-        function handleTap(e) {
-            e.preventDefault();
+        // 移动端优化版功能
+        const target = document.getElementById('target');
+        let count = 0;
+        const sound = new Audio('fA.mp3');
+        
+        // 核心点击/触摸逻辑
+        function playSound() {
+            // 更新计数器
             count++;
-            updateDisplay();
+            document.getElementById('count').textContent = count;
             
-            // 基础效果
-            playRandomSound();
-            createSparkle(e);
-            avatar.classList.add('shake');
-            
-            // 进阶效果
-            if(count > 10) avatar.style.filter = `hue-rotate(${count*5}deg)`;
-            if(count % 15 === 0) showRandomDialog();
-            if(count > 30) randomTeleport();
-        }
-
-        // 新增手机端特效
-        function createSparkle(e) {
-            const effect = document.createElement('div');
-            effect.className = 'effect';
-            const pos = getEventPosition(e);
-            effect.style.left = pos.x + 'px';
-            effect.style.top = pos.y + 'px';
-            document.body.appendChild(effect);
-            setTimeout(() => effect.remove(), 1000);
-        }
-
-        function getEventPosition(e) {
-            return {
-                x: e.clientX || e.touches[0].clientX,
-                y: e.clientY || e.touches[0].clientY
-            };
-        }
-
-        function playRandomSound() {
+            // 播放音效
             sound.currentTime = 0;
-            sound.playbackRate = Math.random() * 2 + 0.5;
+            sound.playbackRate = Math.random() * 1.2 + 0.8;
             sound.play();
-            if(count % 5 === 0) sound.currentTime = 0.3; // 随机彩蛋
+            
+            // 触发动效
+            target.style.transform = `scale(0.95) rotate(${Math.random()*10-5}deg)`;
+            setTimeout(() => {
+                target.style.transform = '';
+            }, 200);
+
+            // 特殊事件
+            if(count % 10 === 0) showSpecialEffect();
         }
 
-        function updateDisplay() {
-            document.querySelector('#counter span').textContent = count;
-            localStorage.setItem('crazyCount', count);
-            avatar.style.transform = `scale(${1 + count*0.02})`;
+        // 移动端触摸处理
+        function handleTouch(e) {
+            e.preventDefault();
+            createTouchEffect(e.touches[0]);
+            playSound();
         }
 
-        function moveToCenter() {
-            avatar.style.left = '50%';
-            avatar.style.top = '50%';
-            avatar.style.transform = 'translate(-50%, -50%)';
+        // 触摸特效
+        function createTouchEffect(touch) {
+            const effect = document.createElement('div');
+            effect.style = `
+                position: fixed;
+                left: ${touch.clientX-15}px;
+                top: ${touch.clientY-15}px;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: rgba(255,0,102,0.3);
+                animation: ripple 0.5s linear;
+                pointer-events: none;
+            `;
+            document.body.appendChild(effect);
+            setTimeout(() => effect.remove(), 500);
         }
 
-        function randomTeleport() {
-            if(Math.random() < 0.3) {
-                avatar.style.left = Math.random()*80 + '%';
-                avatar.style.top = Math.random()*80 + '%';
-                setTimeout(() => avatar.style.transform += ' rotate(360deg)', 50);
-            }
-        }
-
-        function showRandomDialog() {
-            const texts = [
-                '功德+1！',
-                '老板看了直呼内行！',
-                '医学奇迹出现了！',
-                '建议申遗！',
-                '这合理吗？',
-                '检测到新型病毒！'
-            ];
-            const dialog = document.createElement('div');
-            dialog.className = 'dialog';
-            dialog.textContent = texts[Math.floor(Math.random()*texts.length)];
-            document.body.appendChild(dialog);
-            setTimeout(() => dialog.remove(), 2000);
-        }
-
-        // 手机长按彩蛋
-        let pressTimer;
-        avatar.addEventListener('touchstart', () => {
-            pressTimer = setTimeout(() => {
-                avatar.style.filter = 'blur(10px)';
-                showRandomDialog();
+        // 新增特效
+        function showSpecialEffect() {
+            // 随机颜色变化
+            document.body.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 90%)`;
+            
+            // 添加抖动动画
+            target.style.animation = 'vibrate 0.3s linear 3';
+            setTimeout(() => {
+                target.style.animation = '';
             }, 1000);
+        }
+
+        // 防止移动端缩放
+        document.addEventListener('gesturestart', (e) => {
+            e.preventDefault();
         });
 
-        avatar.addEventListener('touchend', () => {
-            clearTimeout(pressTimer);
-            avatar.style.filter = '';
+        // 新增键盘支持
+        document.addEventListener('keydown', (e) => {
+            if(e.code === 'Space') playSound();
         });
     </script>
 </body>
