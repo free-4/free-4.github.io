@@ -1,30 +1,166 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>不管了，佳娜！</title>
+    <title>紧急通知：位佳宝研究计划</title>
     <style>
+        :root {
+            --main-color: #ff0066;
+            --secondary-color: #ff99cc;
+        }
+
         body {
+            background: linear-gradient(45deg, var(--secondary-color), #ffff99);
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: "Microsoft YaHei", sans-serif;
+            padding: 20px;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="10" fill="%23ff0066"/></svg>'), auto;
         }
-        .content-img {
-            max-width: 80%;
-            height: auto;
-            margin-top: 20px;
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.9);
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0 0 50px var(--main-color);
+            position: relative;
+            overflow: hidden;
         }
-        .email {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #555;
+
+        h1 {
+            color: var(--main-color);
+            font-size: 2.5em;
+            text-shadow: 2px 2px #ffffff;
+            margin: 20px 0;
+            transform: rotate(-3deg);
+            animation: titleShake 0.5s ease-in-out infinite alternate;
+        }
+
+        .warning-box {
+            border: 3px dashed var(--main-color);
+            padding: 15px;
+            margin: 20px;
+            background: #fff;
+            position: relative;
+            transform: rotate(2deg);
+        }
+
+        .secret-document {
+            text-align: left;
+            padding: 20px;
+            background: repeating-linear-gradient(
+                -45deg,
+                #fff,
+                #fff 10px,
+                #ffcccc 10px,
+                #ffcccc 20px
+            );
+            margin: 20px 0;
+        }
+
+        .floating-image {
+            max-width: 250px;
+            border: 5px solid var(--main-color);
+            border-radius: 50%;
+            margin: 20px;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .counter {
+            font-size: 2em;
+            color: var(--main-color);
+            padding: 10px;
+            background: black;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes titleShake {
+            from { transform: rotate(-3deg); }
+            to { transform: rotate(3deg); }
+        }
+
+        .emergency-button {
+            background: var(--main-color);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .emergency-button:hover {
+            transform: scale(1.2) rotate(10deg);
         }
     </style>
 </head>
 <body>
-    <h1>不管了，佳娜！</h1>
-    <p>这个网站是恶搞位佳宝的！</p>
-    <img class="content-img" src="zR.png" alt="用户上传的图片">
-    <div class="email">shuo15655736069@outlook.com</div>
+    <div class="container">
+        <h1>位佳宝异常现象研究中心</h1>
+        
+        <div class="warning-box">
+            <h2 style="color:red">[最高机密]</h2>
+            <p>警告：该个体具有认知污染特性<br>
+                暴露时间超过3秒可能导致：<br>
+                • 无法停止的傻笑<br>
+                • 表情包依赖症<br>
+                • 突然想打call的冲动</p>
+        </div>
+
+        <div class="secret-document">
+            <h3>研究记录 #9527：</h3>
+            <p>■ 首次发现日期：42年前（但看起来像昨天）<br>
+               ■ 危险等级：SSS（Super Silly Status）<br>
+               ■ 已知弱点：尚未发现（但据说怕正经）<br>
+               ■ 应对措施：建议配合大量氧气和糖分观察</p>
+        </div>
+
+        <img src="zR.png" class="floating-image" alt="位佳宝观测样本" 
+             onclick="alert('警告：直接接触可能引发不可预知的欢脱反应！')">
+
+        <div class="counter">
+            今日受影响人数：<span id="victimCount">0</span>
+        </div>
+
+        <button class="emergency-button" onclick="startEmergencyProtocol()">
+            启动紧急应对程序
+        </button>
+
+        <div style="margin:20px; font-size:0.8em; color:#666;">
+            * 本页面已通过ISO-恶搞认证<br>
+            * 最终解释权既不归我也不归你<br>
+            * 关闭本页面的唯一方式是笑到断电
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        setInterval(() => {
+            document.getElementById('victimCount').textContent = 
+                Math.floor(count += Math.random() * 3);
+        }, 500);
+
+        function startEmergencyProtocol() {
+            document.body.style.background = `hsl(${Math.random()*360}, 100%, 80%)`;
+            alert("应急方案启动失败！\n因为根本就没准备方案 (*^_^*)");
+        }
+
+        // 随机旋转页面元素
+        document.querySelectorAll('.warning-box, .secret-document').forEach(el => {
+            el.style.transform = `rotate(${Math.random()*6-3}deg)`;
+        });
+    </script>
 </body>
 </html>
