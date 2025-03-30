@@ -17,6 +17,7 @@
             margin: 0;
             padding: 20px;
             min-height: 100vh;
+            position: relative;
         }
 
         .container {
@@ -54,8 +55,9 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .avatar:hover {
-            transform: scale(1.05) rotate(5deg);
+        .crazy-mode .avatar {
+            border-color: #00ff00;
+            filter: hue-rotate(90deg);
         }
 
         .counter {
@@ -78,12 +80,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        button:hover {
-            background: #e6005c;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
         .donate-section {
             margin-top: 50px;
             padding: 30px;
@@ -92,45 +88,23 @@
             border: 3px dashed var(--primary);
         }
 
-        .donate-title {
-            font-size: 24px;
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .donate-image {
-            width: 300px;
-            height: auto;
-            border-radius: 15px;
-            border: 4px solid var(--primary);
-            margin: 20px auto;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .donate-text {
-            font-size: 18px;
-            color: var(--text);
-            margin: 20px 0;
-            line-height: 1.6;
+        .beian {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
         }
 
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
             }
-            
             h1 {
                 font-size: 1.8em;
             }
-            
             .avatar {
                 width: 200px;
                 height: 200px;
-            }
-            
-            .donate-image {
-                width: 80%;
             }
         }
     </style>
@@ -146,59 +120,67 @@
         </div>
 
         <button id="crazyBtn">开启疯狂模式</button>
-        <button id="resetBtn">重置计数器</button>
+        <button id="resetBtn">重置系统</button>
 
         <div class="donate-section">
             <div class="donate-title">❤️ 求打赏支持 ❤️</div>
             <img src="c3.png" class="donate-image" alt="打赏二维码" style="width: 300px; height: auto;">
             <div class="donate-text">
-                您的支持是我持续恶搞的动力！<br>
-                扫码打赏可获得位佳宝专属表情包一套~
+                扫码支持获取位佳宝专属福利！
             </div>
+        </div>
+
+        <div class="beian">
+            皖ic-114514jiabao | 位佳宝娱乐集团荣誉出品
         </div>
     </div>
 
     <script>
-        // 点击计数器
-        let count = 0;
+        // 初始化配置
         const avatar = document.getElementById('avatar');
         const counter = document.getElementById('count');
         const crazyBtn = document.getElementById('crazyBtn');
         const resetBtn = document.getElementById('resetBtn');
-        
+        let count = 0;
+        const clickSound = new Audio('fA.mp3');
+
         // 点击事件
         avatar.addEventListener('click', function() {
             count++;
             counter.textContent = count;
             
-            // 动画效果
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 200);
+            // 播放音效
+            clickSound.currentTime = 0;
+            clickSound.play();
             
-            // 特殊效果
-            if(count > 10) {
-                document.body.style.background = `hsl(${Math.random()*360}, 70%, 90%)`;
-            }
+            // 点击动画
+            this.style.transform = 'scale(0.95) rotate(' + (Math.random()*20-10) + 'deg)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            }, 200);
         });
 
         // 疯狂模式
         crazyBtn.addEventListener('click', function() {
-            avatar.style.animation = 'shake 0.2s infinite';
+            avatar.src = 'zR_crazy.png';
+            document.body.classList.add('crazy-mode');
+            avatar.style.animation = 'shake 0.1s infinite';
             document.body.style.background = 'linear-gradient(45deg, #ff99cc, #ffff99)';
-            alert('疯狂模式已启动！准备迎接位佳宝的暴击吧~');
+            clickSound.playbackRate = 2.0;
         });
 
-        // 重置按钮
+        // 重置系统
         resetBtn.addEventListener('click', function() {
             count = 0;
             counter.textContent = count;
+            avatar.src = 'zR.png';
+            document.body.classList.remove('crazy-mode');
             avatar.style.animation = '';
             document.body.style.background = 'linear-gradient(45deg, #ffe6f2, #fff0f5)';
+            clickSound.playbackRate = 1.0;
         });
 
-        // 移动端触摸支持
+        // 移动端适配
         avatar.addEventListener('touchstart', function(e) {
             e.preventDefault();
             this.click();
