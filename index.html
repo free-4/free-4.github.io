@@ -1,211 +1,27 @@
-<!DOCTYPE html> 
-<html lang="zh-CN"> 
- 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>位佳宝欢乐研究所</title> 
-    <style> 
-        :root { 
---primary: #ff0066; 
---secondary: #ff99cc; 
---text: #333; 
-        } 
- 
-        body { 
-            font-family: 'Comic Sans MS', cursive, sans-serif; 
-            background: linear-gradient(45deg, #ffe6f2, #fff0f5); 
-            margin: 0; 
-            padding: 20px; 
-            min-height: 100vh; 
-            position: relative; 
-        } 
- 
-        .container { 
-            max-width: 800px; 
-            margin: 0 auto; 
-            background: rgba(255, 255, 255, 0.9); 
-            padding: 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
-            text-align: center; 
-        } 
- 
-        h1 { 
-            color: var(--primary); 
-            font-size: 2.5em; 
-            text-shadow: 2px 2px #fff; 
-            margin-bottom: 30px; 
-            animation: shake 0.5s infinite; 
-        } 
- 
-        @keyframes shake { 
-            0%, 
-            100% { 
-                transform: rotate(-2deg); 
-            } 
- 
-            50% { 
-                transform: rotate(2deg); 
-            } 
-        } 
- 
-        .avatar { 
-            width: 300px; 
-            height: 300px; 
-            border-radius: 50%; 
-            border: 8px solid var(--primary); 
-            object-fit: cover; 
-            margin: 20px auto; 
-            cursor: pointer; 
-            transition: all 0.3s; 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
-        } 
- 
-        .crazy-mode .avatar { 
-            border-color: #00ff00; 
-            filter: hue-rotate(90deg); 
-        } 
- 
-        .counter { 
-            font-size: 28px; 
-            color: var(--primary); 
-            margin: 20px; 
-            font-weight: bold; 
-        } 
- 
-        button { 
-            background: var(--primary); 
-            color: white; 
-            border: none; 
-            padding: 12px 25px; 
-            border-radius: 30px; 
-            font-size: 18px; 
-            cursor: pointer; 
-            margin: 15px; 
-            transition: all 0.3s; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
-        } 
- 
-        .donate-section { 
-            margin-top: 50px; 
-            padding: 30px; 
-            background: linear-gradient(135deg, #fff, #fff8f8); 
-            border-radius: 20px; 
-            border: 3px dashed var(--primary); 
-            box-sizing: border-box; 
-        } 
- 
-        /* 确保打赏图片以 1:1 比例显示 */ 
-        .donate-image { 
-            width: 100%; 
-            max-width: 300px; 
-            height: auto; 
-            aspect-ratio: 1/1; 
-            object-fit: contain; 
-        } 
- 
-        .beian { 
-            margin-top: 30px; 
-            font-size: 14px; 
-            color: #666; 
-            text-align: center; 
-        } 
- 
-        @media (max-width: 600px) { 
-            .container { 
-                padding: 20px; 
-            } 
- 
-            h1 { 
-                font-size: 1.8em; 
-            } 
- 
-            .avatar { 
-                width: 200px; 
-                height: 200px; 
-            } 
-        } 
-    </style> 
-</head> 
- 
-<body> 
-    <div class="container"> 
-        <h1>位佳宝欢乐研究所</h1> 
- 
-        <img src="zR.png" class="avatar" id="avatar" alt="位佳宝"> 
- 
-        <div class="counter"> 
-            今日欢乐值: <span id="count">0</span> 
-        </div> 
- 
-        <button id="crazyBtn">开启疯狂模式</button> 
-        <button id="resetBtn">重置系统</button> 
- 
-        <div class="donate-section"> 
-            <div class="donate-title">❤️ 求打赏支持 ❤️</div> 
-            <img src="c3.png" class="donate-image" alt="打赏二维码"> 
-            <div class="donate-text"> 
-                扫码支持获取位佳宝专属福利！ 
-            </div> 
-        </div> 
- 
-        <div class="beian"> 
-            皖ic-114514jiabao | 位佳宝娱乐集团荣誉出品 
-        </div> 
-    </div> 
- 
-    <script> 
-        // 初始化配置 
-        const avatar = document.getElementById('avatar'); 
-        const counter = document.getElementById('count'); 
-        const crazyBtn = document.getElementById('crazyBtn'); 
-        const resetBtn = document.getElementById('resetBtn'); 
-        let count = 0; 
-        const clickSound = new Audio('fA.mp3'); 
- 
-        // 点击事件 
-        avatar.addEventListener('click', function () { 
-            count++; 
-            counter.textContent = count; 
- 
-            // 播放音效 
-            clickSound.currentTime = 0; 
-            clickSound.play(); 
- 
-            // 点击动画 
-            this.style.transform = 'scale(0.95) rotate(' + (Math.random() * 20 - 10) + 'deg)'; 
-            setTimeout(() => { 
-                this.style.transform = 'scale(1) rotate(0deg)'; 
-            }, 200); 
-        }); 
- 
-        // 疯狂模式 
-        crazyBtn.addEventListener('click', function () { 
-            avatar.src = 'zR_crazy.png'; 
-            document.body.classList.add('crazy-mode'); 
-            avatar.style.animation = 'shake 0.1s infinite'; 
-            document.body.style.background = 'linear-gradient(45deg, #ff99cc, #ffff99)'; 
-            clickSound.playbackRate = 2.0; 
-        }); 
- 
-        // 重置系统 
-        resetBtn.addEventListener('click', function () { 
-            count = 0; 
-            counter.textContent = count; 
-            avatar.src = 'zR.png'; 
-            document.body.classList.remove('crazy-mode'); 
-            avatar.style.animation = ''; 
-            document.body.style.background = 'linear-gradient(45deg, #ffe6f2, #fff0f5)'; 
-            clickSound.playbackRate = 1.0; 
-        }); 
- 
-        // 移动端适配 
-        avatar.addEventListener('touchstart', function (e) { 
-            e.preventDefault(); 
-            this.click(); 
-        }); 
-    </script> 
-</body> 
- 
-</html>​
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>位佳宝的魔法世界</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="total-clicks">总点击次数: <span id="total-count">0</span></div>
+    <div class="container">
+        <h1>欢迎进入位佳宝的魔法世界！</h1>
+        <img id="weijiabao" src="assets/zR.png" alt="位佳宝">
+        <p>本设备点击次数: <span id="local-count">0</span></p>
+        <p>历史最高点击: <span id="high-score">0</span></p>
+        <p id="combo" class="combo-hidden">连击！</p>
+        <button id="crazy-mode">进入疯狂模式</button>
+        <button id="save-count">保存点击次数</button>
+        <button id="share">分享给朋友</button>
+        <img id="qrcode" src="assets/c3.png" alt="收款码">
+        <canvas id="particle-canvas"></canvas>
+    </div>
+    <audio id="sound" src="assets/fA.mp3"></audio>
+    <audio id="crazy-sound" src="assets/fA_crazy.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
