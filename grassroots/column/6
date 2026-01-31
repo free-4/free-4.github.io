@@ -11,13 +11,15 @@
   <meta content="萧县人民政府" name="SiteName"/>
   <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
   <meta content="3413220004" name="SiteIDCode"/>
-  <meta content="食品药品监管领域" name="ColumnName"/>
+  <meta content="医疗机构使用药品质量安全监督检查" name="ColumnName"/>
   <meta content="基层政务公开目录" name="ColumnType"/>
-  <meta content="食品药品监管领域" name="ColumnDescription"/>
-  <meta content="食品药品监管领域" name="ColumnKeywords"/>
+  <meta content="1.检查制度
+2.检查标准
+3.检查结果等" name="ColumnDescription"/>
+  <meta content="医疗机构使用药品质量安全监督检查" name="ColumnKeywords"/>
   <meta content="萧县人民政府" name="Keywords"/>
   <meta content="萧县人民政府" name="Description"/>
-  <meta content="2026-01-31 23:30:34" name="HtmlGenerateTime"/>
+  <meta content="2026-01-31 23:31:18" name="HtmlGenerateTime"/>
   <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/assets/css/core.min.css" rel="stylesheet"/>
   <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -143,6 +145,18 @@
       </i>
       <a href="/grassroots/column/6" target="_self">
        食品药品监管领域
+      </a>
+      <i>
+       &gt;
+      </i>
+      <a href="/grassroots/column/6" target="_self">
+       监督检查
+      </a>
+      <i>
+       &gt;
+      </i>
+      <a href="/grassroots/column/6" target="_self">
+       医疗机构使用药品质量安全监督检查
       </a>
      </div>
     </div>
@@ -362,90 +376,9 @@
        <div id="grassrootsContentPageList">
         <ul class="clearfix xxgk_nav_list">
          <li class="clearfix">
-          <a class="title" href="/grassroots/6/160475011.html" target="_blank" title="【食品安全应急处置】应急组织机构及职责、应急保障、监测预警、应急响应">
-           <img src="/_res/images/zding.png"/>
-           【食品安全应急处置】应急组织机构及职责、应急保障、监测预警、应急响应
-          </a>
-          <span class="date">
-           2024-01-19
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/151531081.html" target="_blank" title="化妆品经营企业监督检查（检查制度、检查标准、检查结果）">
-           <img src="/_res/images/zding.png"/>
-           化妆品经营企业监督检查（检查制度、检查标准、检查结果）
-          </a>
-          <span class="date">
-           2024-01-12
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/161049551.html" target="_blank" title="安徽省医疗器械监督检查标准">
-           <img src="/_res/images/zding.png"/>
-           安徽省医疗器械监督检查标准
-          </a>
-          <span class="date">
-           2024-01-12
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/161049461.html" target="_blank" title="安徽省药品监督检查标准">
-           <img src="/_res/images/zding.png"/>
-           安徽省药品监督检查标准
-          </a>
-          <span class="date">
-           2024-01-12
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/151530321.html" target="_blank" title="食品生产经营监督检查（检查制度、检查标准、检查结果）">
-           <img src="/_res/images/zding.png"/>
-           食品生产经营监督检查（检查制度、检查标准、检查结果）
-          </a>
-          <span class="date">
-           2024-01-12
-          </span>
-         </li>
-         <li class="clearfix">
           <a class="title" href="/grassroots/6/151531171.html" target="_blank" title="医疗机构使用药品质量安全监督检查（检查制度、检查标准、检查结果）">
            <img src="/_res/images/zding.png"/>
            医疗机构使用药品质量安全监督检查（检查制度、检查标准、检查结果）
-          </a>
-          <span class="date">
-           2024-01-12
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/161046081.html" target="_blank" title="药品经营质量管理规范">
-           <img src="/_res/images/zding.png"/>
-           药品经营质量管理规范
-          </a>
-          <span class="date">
-           2024-01-12
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/158100191.html" target="_blank" title="【检验依据】国家行业标准">
-           <img src="/_res/images/zding.png"/>
-           【检验依据】国家行业标准
-          </a>
-          <span class="date">
-           2024-01-12
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/161045781.html" target="_blank" title="化妆品经营企业监督检验标准">
-           <img src="/_res/images/zding.png"/>
-           化妆品经营企业监督检验标准
-          </a>
-          <span class="date">
-           2024-01-12
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/158099871.html" target="_blank" title="【检验依据】《中华人民共和国食品安全法》">
-           <img src="/_res/images/zding.png"/>
-           【检验依据】《中华人民共和国食品安全法》
           </a>
           <span class="date">
            2024-01-12
@@ -461,60 +394,6 @@
           </span>
          </li>
          <li class="clearfix">
-          <a class="title" href="/grassroots/6/161041661.html" target="_blank" title="食品生产经营监督检查标准">
-           <img src="/_res/images/zding.png"/>
-           食品生产经营监督检查标准
-          </a>
-          <span class="date">
-           2024-01-09
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/154851441.html" target="_blank" title="化妆品经营企业检查制度——《化妆品监督管理条例》">
-           <img src="/_res/images/zding.png"/>
-           化妆品经营企业检查制度——《化妆品监督管理条例》
-          </a>
-          <span class="date">
-           2024-01-12
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/158251221.html" target="_blank" title="萧县食品药品监管机构、投诉举报电话">
-           <img src="/_res/images/zding.png"/>
-           萧县食品药品监管机构、投诉举报电话
-          </a>
-          <span class="date">
-           2023-02-09
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/158251211.html" target="_blank" title="萧县食品药品监管机构、投诉举报电话">
-           <img src="/_res/images/zding.png"/>
-           萧县食品药品监管机构、投诉举报电话
-          </a>
-          <span class="date">
-           2023-02-09
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="/grassroots/6/151530641.html" target="_blank" title="特殊食品生产经营监督检查（检查制度、检查标准、检查结果）">
-           <img src="/_res/images/zding.png"/>
-           特殊食品生产经营监督检查（检查制度、检查标准、检查结果）
-          </a>
-          <span class="date">
-           2023-01-12
-          </span>
-         </li>
-         <li class="clearfix">
-          <a class="title" href="https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/fgs/art/2023/art_2c192a66cf4f46218d3356e63522e4d4.html" target="_blank" title="食品生产经营监督检查管理办法">
-           <img src="/_res/images/zding.png"/>
-           食品生产经营监督检查管理办法
-          </a>
-          <span class="date">
-           2021-12-31
-          </span>
-         </li>
-         <li class="clearfix">
           <a class="title" href="/grassroots/6/163357961.html" target="_blank" title="萧县2025年12月医疗机构使用药品质量安全监督检查情况">
            萧县2025年12月医疗机构使用药品质量安全监督检查情况
           </a>
@@ -523,19 +402,139 @@
           </span>
          </li>
          <li class="clearfix">
-          <a class="title" href="/grassroots/6/163357951.html" target="_blank" title="萧县2025年12月化妆品生产经营监督检查情况">
-           萧县2025年12月化妆品生产经营监督检查情况
+          <a class="title" href="/grassroots/6/163247691.html" target="_blank" title="萧县2025年11月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年11月医疗机构使用药品质量安全监督检查情况
           </a>
           <span class="date">
-           2026-01-08
+           2025-12-04
           </span>
          </li>
          <li class="clearfix">
-          <a class="title" href="/grassroots/6/163357931.html" target="_blank" title="萧县2025年12月药品零售/医疗器械经营单位监督检查情况">
-           萧县2025年12月药品零售/医疗器械经营单位监督检查情况
+          <a class="title" href="/grassroots/6/163151241.html" target="_blank" title="萧县2025年10月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年10月医疗机构使用药品质量安全监督检查情况
           </a>
           <span class="date">
-           2026-01-08
+           2025-11-05
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/163039011.html" target="_blank" title="萧县2025年9月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年9月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-10-04
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/162910661.html" target="_blank" title="萧县2025年8月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年8月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-09-01
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/162779121.html" target="_blank" title="萧县2025年7月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年7月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-08-01
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/162686391.html" target="_blank" title="萧县2025年6月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年6月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-07-04
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/162569241.html" target="_blank" title="萧县2025年5月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年5月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-06-06
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/162458221.html" target="_blank" title="萧县2025年4月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年4月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-05-08
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/162367071.html" target="_blank" title="萧县2025年3月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年3月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-04-05
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/162251681.html" target="_blank" title="萧县2025年2月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年2月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-03-04
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/162154591.html" target="_blank" title="萧县2025年1月医疗机构使用药品质量安全监督检查情况">
+           萧县2025年1月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-02-05
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/162064271.html" target="_blank" title="萧县2024年12月医疗机构使用药品质量安全监督检查情况">
+           萧县2024年12月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2025-01-02
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/161884331.html" target="_blank" title="萧县2024年11月医疗机构使用药品质量安全监督检查情况">
+           萧县2024年11月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2024-12-02
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/161764261.html" target="_blank" title="萧县2024年10月医疗机构使用药品质量安全监督检查情况">
+           萧县2024年10月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2024-11-01
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/161653001.html" target="_blank" title="萧县2024年9月医疗机构使用药品质量安全监督检查情况">
+           萧县2024年9月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2024-10-08
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/161535921.html" target="_blank" title="萧县2024年8月医疗机构使用药品质量安全监督检查情况">
+           萧县2024年8月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2024-09-02
+          </span>
+         </li>
+         <li class="clearfix">
+          <a class="title" href="/grassroots/6/161433471.html" target="_blank" title="萧县2024年7月医疗机构使用药品质量安全监督检查情况">
+           萧县2024年7月医疗机构使用药品质量安全监督检查情况
+          </a>
+          <span class="date">
+           2024-08-07
           </span>
          </li>
          <script>
@@ -585,7 +584,7 @@
 
           }, {
             currPage: (0+1),
-            pageCount:51,
+            pageCount:3,
             param: "pageSize=20"
           });
         </script>
@@ -617,7 +616,7 @@
       url: "/site/label/8888",
       data: {
         labelName: 'grassrootsCatalogDescription',
-        catId: 1027901,
+        catId: 1028061,
               organId: organId,
         siteId: 4697420,
         isJson: true,
@@ -668,7 +667,7 @@
     var fuzzySearch = "";
     var keyWords = "";
 
-    var catId = "1027901";
+    var catId = "1028061";
     var fileNum = Ls.url.get("fileNum");
     var filterFileNum = Ls.url.get("filterFileNum");
     if($("#search-keywords").val()){
