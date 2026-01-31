@@ -1,0 +1,2842 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+  <title>
+   全民网络安全知识调查问卷_萧县人民政府
+  </title>
+  <meta content="萧县人民政府" name="SiteName"/>
+  <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
+  <meta content="3413220004" name="SiteIDCode"/>
+  <meta content="在线调查" name="ColumnName"/>
+  <meta content="征集调查" name="ColumnType"/>
+  <meta content="征集调查" name="ColumnDescription"/>
+  <meta content="征集调查" name="ColumnKeywords"/>
+  <meta content="全民网络安全知识调查问卷" name="ArticleTitle"/>
+  <meta content="2023-08-02 14:59" name="PubDate"/>
+  <meta content="县数据资源管理局" name="ContentSource"/>
+  <meta content="萧县人民政府" name="Keywords"/>
+  <meta content="全民网络安全知识调查问卷" name="Description"/>
+  <meta content="2026-01-31 23:40:35" name="HtmlGenerateTime"/>
+  <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/assets/css/core.min.css" rel="stylesheet"/>
+  <link href="/_res/css/public.css" rel="stylesheet"/>
+  <link href="/_res/css/lonsun.css" rel="stylesheet">
+   <script src="/assets/js/common.min.js?h5=true">
+   </script>
+   <script src="/_res/js/customize.min.js">
+   </script>
+   <!--[if lt IE 9]>
+<script src="/assets/js/patch.min.js"></script>
+<![endif]-->
+  </link>
+ </head>
+ <body>
+  <div class="ind_body">
+   <!--/***头部***/-->
+   <!--顶部end-->
+   <div class="topcon">
+    <div class="container clearfix">
+     <div class="fl top_l">
+      <ul class="clearfix">
+       <!--StartLabelHtml_linkList_c044053c4d59952ad54f103a3b09594d-->
+       <script>
+        var ll_4697460 = 3;
+       </script>
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tbzfwlj/4697460.js?num=3&amp;ect=1769874035172">
+       </script>
+       <!--EndLabelHtml_linkList_c044053c4d59952ad54f103a3b09594d-->
+      </ul>
+     </div>
+     <div class="fr top_r">
+      <ul class="clearfix">
+       <li class="num1 hidden-sm hidden-xs">
+        <a class="j-jft" data-setting="{type:'jf',jtText:'简体中文',ftText:'繁体中文'}" href="javascript:void(0);">
+        </a>
+       </li>
+       <li class="num-old">
+        <a href="javascript:void(0)" onclick="aria.oldFixedStart()">
+         <span class="ico">
+         </span>
+         长辈版
+        </a>
+       </li>
+       <li class="num-wza">
+        <a href="javascript:void(0)" onclick="aria.start()">
+         <span class="ico">
+         </span>
+         无障碍
+        </a>
+       </li>
+       <li class="sc">
+        <a class="j-favorites" data-setting="{siteId:4697420}" href="javascript:void(0)">
+         加入收藏
+        </a>
+       </li>
+       <li class="hy">
+        <span class="sylogin" data-setting="{siteId:4697420,platformCode:'gov_b'}" id="member_info">
+        </span>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <!--顶部end-->
+   <div class="header">
+    <div class="container banner">
+     <div class="flash hidden-xs">
+      <div id="flash01">
+       <div class="pic">
+        <ul>
+         <!--StartLabelHtml_linkList_195e6d7916419c611596a13f0d81419c-->
+         <script>
+          var ll_4697461 = 5;
+         </script>
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-bjtp/4697461.js?num=5&amp;ect=1769874035173">
+         </script>
+         <!--EndLabelHtml_linkList_195e6d7916419c611596a13f0d81419c-->
+        </ul>
+       </div>
+      </div>
+      <script>
+       myFocus.set({id: 'flash01', pattern: 'mF_ladyQ', thumbShowNum: 5, width: 1200, height: 160})
+      </script>
+     </div>
+     <div class="logo">
+      <ul class="clearfix">
+       <!--StartLabelHtml_linkList_1102d5976d2edcbee07daf1f7db54b0e-->
+       <script>
+        var ll_4697462 = 1;
+       </script>
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-logo/4697462.js?num=1&amp;ect=1769874035174">
+       </script>
+       <!--EndLabelHtml_linkList_1102d5976d2edcbee07daf1f7db54b0e-->
+      </ul>
+     </div>
+     <div class="searchbox">
+      <form action="https://www.ahsz.gov.cn/site/search/11708048" data-validator-option="{msgClass:'n-top'}" method="get" target="_blank">
+       <input name="siteId" type="hidden" value="4697420"/>
+       <input name="platformCode" type="hidden" value="sz_govb">
+        <input name="isAllSite" type="hidden" value="true"/>
+        <input name="fuzzySearch" type="hidden" value="false"/>
+        <input name="sort" type="hidden" value="desc"/>
+        <input name="orderType" type="hidden" value="0"/>
+        <!--<input type="hidden" name="typeCode" value="articleNews,pictureNews,videoNews,policyDoc,explainDoc"/>-->
+        <input name="typeCode" type="hidden" value="all">
+         <ul>
+          <li class="sea_an">
+           <input class="topsearchbtn" name="input" type="submit" value="搜索"/>
+          </li>
+          <li class="se_box">
+           <input class="search-keywords srkcss" data-rule="关键词:required;required2" data-rule-required2="[/^[0-9a-zA-z\u0391-\uFFE5\s\[\]\(\),.《》]+$/, '关键词不允许含有特殊字符']" maxlength="30" name="keywords" placeholder="请输入需要搜索的关键词" size="24" type="text" value=""/>
+          </li>
+         </ul>
+        </input>
+       </input>
+      </form>
+     </div>
+     <div class="reci_box hidden-sm hidden-xs">
+      <span class="tit">
+       热词：
+      </span>
+      <ul>
+      </ul>
+     </div>
+    </div>
+    <div class="navbar navbar-default">
+     <div class="container">
+      <div class="container-fluid">
+       <div class="navbar-header">
+        <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+         <span class="icon-bar">
+         </span>
+         <span class="icon-bar">
+         </span>
+         <span class="icon-bar">
+         </span>
+        </button>
+        <a class="navbar-brand visible-phone hidden-lg hidden-md hidden-sm" href="/index.html">
+         首页
+        </a>
+       </div>
+       <div class="navbar-collapse collapse" id="navbar">
+        <ul class="nav navbar-nav">
+         <li class="num1 hidden-xs off">
+          <a class="mn" href="/index.html">
+           <img src="/_res/images/mu1.png"/>
+           首页
+          </a>
+         </li>
+         <li class="num2 zlm off">
+          <a class="mn" href="/mlxx/index.html">
+           <img src="/_res/images/mu2.png"/>
+           魅力萧县
+          </a>
+         </li>
+         <li class="num3 zlm off">
+          <a class="mn" href="/xxdt/index.html">
+           <img src="/_res/images/mu3.png"/>
+           政务资讯
+          </a>
+         </li>
+         <li class="num4 zlm off">
+          <a class="mn" href="/public/column/6629711?type=2&amp;nav=1">
+           <img src="/_res/images/mu4.png"/>
+           政府信息公开
+          </a>
+          <div class="menulist clearfix">
+           <ul>
+            <!--StartLabelHtml_linkList_c0e3484b822c6e13e8916f6fb2e49310-->
+            <script>
+             var ll_22966781 = 20;
+            </script>
+            <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/lmlj/tbdh-ejlm/xxgk/22966781.js?num=20&amp;ect=1769874035178">
+            </script>
+            <!--EndLabelHtml_linkList_c0e3484b822c6e13e8916f6fb2e49310-->
+           </ul>
+          </div>
+         </li>
+         <li class="num5 zlm off">
+          <a class="mn" href="http://sz.ahzwfw.gov.cn/?cityCode=341322000000&amp;cityName=%25E8%2590%25A7%25E5%258E%25BF">
+           <img src="/_res/images/mu5.png"/>
+           办事服务
+          </a>
+         </li>
+         <li class="num6 zlm on">
+          <a class="mn" href="/hdjl/index.html">
+           <img src="/_res/images/mu6.png"/>
+           互动交流
+          </a>
+         </li>
+         <li class="num7 zlm off">
+          <a class="mn" href="/jdhy/index.html">
+           <img src="/_res/images/mu7.png"/>
+           综合服务信息
+          </a>
+         </li>
+         <li class="num8 zlm off">
+          <a class="mn" href="/sjfb/index.html">
+           <img src="/_res/images/mu8.png"/>
+           数据发布
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <script>
+    $(document).ready(function () {
+        //处理热搜
+        var hots = $('.reci_box>ul');
+        Ls.ajax({
+            type: "post",
+            dataType: "html",
+            url: "/site/label/8888",
+            data: {
+                topCount: 3,
+                sort: 1,
+                siteId:4697420,
+                labelName:'keyWordsHeatRank',
+                file: '/c2/xiaoxian/keyWordsHeatRank-sz'
+            }
+        }).done(function (html) {
+            hots.html(html);
+        });
+    });
+   </script>
+   <div class="container mt20">
+    <div class="bg-p20">
+     <div class="position">
+      当前位置：
+      <a href="/index.html">
+       首页
+      </a>
+      &gt;
+      <!--StartLabelHtml_nav_012de32d0c32e1795f3ef94b0bfc1097-->
+      <a href="https://www.ahxx.gov.cn/hdjl/index.html" title="互动交流">
+       互动交流
+      </a>
+      <i>
+       &gt;
+      </i>
+      <a href="https://www.ahxx.gov.cn/hdjl/zxdc/index.html" title="在线调查">
+       在线调查
+      </a>
+      <!--EndLabelHtml_nav_012de32d0c32e1795f3ef94b0bfc1097-->
+     </div>
+     <div class="secnr mt20">
+      <div id="wenzhang">
+       <div class="vote_result">
+        <span id="res_none" style="display:none">
+         信息来源：县数据资源管理局
+        </span>
+        <!--StartLabelHtml_surveyInfo_71ea7c5808881967c286d0012cd9c796-->
+        <h1 class="newstitle">
+         全民网络安全知识调查问卷
+        </h1>
+        <div class="newsinfo myinfo voteinfo">
+         <span>
+          调查时间：
+          <u>
+           [ 2023-08-01 00:00 ]
+          </u>
+          至
+          <u>
+           [ 2023-09-01 00:00 ]
+          </u>
+         </span>
+         <span id="info_res">
+         </span>
+         <span>
+          状态：
+          <i class="over">
+           已结束
+          </i>
+         </span>
+        </div>
+        <div class="vote-info">
+         <p align="" style="margin-top: 0px; text-indent: 2em; text-align: justify;">
+          网络安全是指保护计算机网络及其相关设备和信息不受未经授权的访问、使用、泄漏、破坏和修改的技术和管理措施。在今天的信息化社会，网络安全不仅成为保障国家安全和社会稳定的重要问题也也直接关系到个人的隐私安全，在社交网络、电子商务等应用中，个人信息和资金往来被广泛应用。如果这些信息遭到不法分子攻击，个人的财产和隐私将受到威胁。所以维护网络安全是全社会的共同责任，需要政府、企业、社会组织、广大网民共同参与。希望通过您的认真作答，对网络安全有更多的了解，感谢您的参与!
+         </p>
+        </div>
+        <table class="vote-show">
+         <tbody>
+          <tr>
+           <th>
+            1、您的性别：
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              男
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:100%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               3
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              女
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            2、年龄
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              0岁-10岁
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              10对-20岁
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              20岁-30岁
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:100%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               3
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              30岁-40岁
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              40岁-50岁
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              50岁-60岁
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              60岁-70岁
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              70岁-80岁
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              80岁-90岁
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              90岁以上
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            3、网龄（接触网络的时间）
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              0-2年
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              2年-5年
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              5年-8年
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              8年-10年
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              10年以上
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            4、您平日上网的途径有哪些？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              电脑
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:42%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               3
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              手机
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:28%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              平板
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:28%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              平日基本不上网
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            5、您每天上网时长大约多少？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              一小时以内
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              1-3小时
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              3-5小时
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              5-7小时
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              7-9小时
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              9小时以上
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            6、您一般上网用于？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              浏览网页、新闻
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:18%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              聊天交友
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:18%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              网上购物
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:9%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              看电影视频
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:18%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              打游戏
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:9%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              工作
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:27%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               3
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              其他
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            7、您平时上网注意网络安全问题吗？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              非常注意
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              注意
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              知道，但感觉不会有危险
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              完全不关心
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            8、您曾经遇到过哪些网络安全问题？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              个人信息泄露，经常收到垃圾电话短信
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:50%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               3
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              手机或者电脑受过病毒攻击
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:16%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              账号被盗
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:16%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              被网上陌生人骗过钱
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:16%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              不曾经历过网络安全问题
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            9、设置密码时，您一般采用以下什么方法？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              电话号码
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              生日
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              英文单词
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              数字、字母、符号混合用
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              为防止忘记，多种密码一样
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              各种密码都不相同
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              定期更换密码
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              密码从来不换
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            10、在网站上填写个人信息时，您的真实度是？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              完全真实
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              部分真实
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              完全不真实
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              视网站而定
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            11、您在上网时QQ弹出某个好友的对话窗，邀请您帮他投票并附上网址，这时您会
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              朋友之间这点小忙肯定帮，立即登录投票
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              通过其他方式联系好友，确认投票事实
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              先打开网页看看再说
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              需要登录投票的一定是钓鱼网站，不理会
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            12、上网时您是否有过下列行为？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              打开陌生人发送或网页中的链接或文件随意下载手机应用
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              随意连接无线网络
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              随意填写个人信息
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              没有过以上行为
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            13、您通常通过以下哪些方式下载APP或客户端？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              通过正规网站或手机自带的应用商店
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:50%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              利用第三方安全软件提供的下载平台
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:25%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              利用百度等搜索引擎进行搜索
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:25%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              通过他人推荐的链接
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            14、在公共电脑后，你有退出或注销账号的习惯吗？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              每次都会
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:100%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               3
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              偶尔会
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              从不检查
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              检不检查无所谓
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            15、在注册一个不熟悉的网站或下载软件前，您是否会阅读用户信息保护和责任条款？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              仔细阅读，合理则继续注册或下载
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              大致阅读，合理则继续注册或下载
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              内容太多，从来不看，直接同意
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            16、收到垃圾邮件如何处理？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              删除邮件
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:100%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               3
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              举报邮件发送者
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              忽略这件事
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              打开邮件看看
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            17、您搜索到无密码的网络会连接吗？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              会，免费的网络不蹭白不蹭
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              不会，自己流量够用或有其他网络可以连接
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              不会，怕不安全
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            18、上网时出现弹窗，称点击链接可以将积分兑换成现金，您的反应是
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              立即点击
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              关闭忽略
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              立即查杀电脑病毒，提升浏览器安全等级
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            19、看到广告宣传中有二维码时，您会怎么做？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              从来不扫描
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              不轻易扫描
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              对自己有用的就扫描，不考虑是否安全
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            20、您使用WiFi的习惯是？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              常年打开
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              只在使用时打开
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              很少用WiFi
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            21、您是否了解一些网络安全知识和我国网络安全相关法律？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              比较了解
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              了解一些
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              不了解但是会在意
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              不了解也不在意
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            22、请您对网络安全现状作出评价
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              非常差，网络安全得不到保障
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              一般，网络安全问题可以避免
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              还不错，网络安全稍有欠缺
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              非常好，网络安全能够得到保障
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            23、基于现状，您认为怎样才能有效的加强个人网络安全意识？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              新闻报道
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:50%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               3
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              网络宣传
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              专家讲座
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:16%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              其他
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+        <!--EndLabelHtml_surveyInfo_71ea7c5808881967c286d0012cd9c796-->
+       </div>
+       <div class="wz_share mt20 j-share-info hidden-sm hidden-xs">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!--/***底部***/-->
+   <div class="footer">
+    <div class="container">
+     <!--友情链接-->
+     <div class="is-select j-links clearfix hidden-sm hidden-xs">
+      <dl class="select first">
+       <dt>
+        国家部委网站
+       </dt>
+       <dd>
+        <ul>
+         <!--StartLabelHtml_linkList_cfde037b4d98927cfb2214b1d9e48a75-->
+         <script>
+          var ll_4697457 = 100;
+         </script>
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/gjbwwz/4697457.js?num=100&amp;ect=1769874035225">
+         </script>
+         <!--EndLabelHtml_linkList_cfde037b4d98927cfb2214b1d9e48a75-->
+        </ul>
+       </dd>
+      </dl>
+      <dl class="select">
+       <dt>
+        省内地市级网站
+       </dt>
+       <dd>
+        <ul>
+         <!--StartLabelHtml_linkList_6e9b9ae73b8490ff69f18adf2b641b28-->
+         <script>
+          var ll_4697458 = 100;
+         </script>
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/sndsjwz/4697458.js?num=100&amp;ect=1769874035226">
+         </script>
+         <!--EndLabelHtml_linkList_6e9b9ae73b8490ff69f18adf2b641b28-->
+        </ul>
+       </dd>
+      </dl>
+      <dl class="select last">
+       <dt>
+        其他机构网站
+       </dt>
+       <dd>
+        <ul>
+         <!--StartLabelHtml_linkList_210841a1da100f461443e2a111889d60-->
+         <script>
+          var ll_4697459 = 100;
+         </script>
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/qtjgwz/4697459.js?num=100&amp;ect=1769874035226">
+         </script>
+         <!--EndLabelHtml_linkList_210841a1da100f461443e2a111889d60-->
+        </ul>
+       </dd>
+      </dl>
+     </div>
+     <!--底部导航-->
+     <div class="fotnav">
+      <a class="num1" href="/wzgl/lxwm/index.html">
+       联系我们
+      </a>
+      <a href="/wzgl/sybz/index.html">
+       使用帮助
+      </a>
+      <a href="/wzgl/zddt/index.html">
+       站点地图
+      </a>
+      <a href="/wzgl/yszc/index.html">
+       隐私声明
+      </a>
+     </div>
+     <div class="fotcon">
+      <span>
+       主办：萧县人民政府
+      </span>
+      <span>
+       承办：萧县数据资源管理局
+      </span>
+      <br/>
+      <span>
+       地址：安徽省宿州市萧县凤城街道复兴路18号
+      </span>
+      <span>
+       运维电话：0557-5066181
+      </span>
+      <br/>
+      <span>
+       <a href="http://beian.miit.gov.cn/" target="_blank">
+        皖ICP备05004981号-1
+       </a>
+      </span>
+      <span>
+       <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34132202000128" target="_blank">
+        <img class="gaw" src="/_res/images/ghs.png"/>
+        皖公网安备 34132202000128
+       </a>
+      </span>
+      <span>
+       网站标识码：3413220004
+      </span>
+      <span>
+       本站支持ipv6访问
+      </span>
+      <br/>
+      <div>
+       <span>
+        <a href="http://www.12377.cn/" target="_blank">
+         <img src="/_res/images/jbzxtu.jpg" style="margin-top:5px;"/>
+        </a>
+       </span>
+       <span>
+        违法与不良信息举报电话：12377
+       </span>
+       <a href="/xxdt/ztzl/wzptwfyblxxjb/index.html" target="_blank">
+        网站平台违法与不良信息举报
+       </a>
+       <span>
+        <a href="/xxswcnrzyjbqd/index.html" target="_blank">
+         <img src="/_res/images/wcnrjb-pic-01.jpg" style="margin-top:5px;"/>
+        </a>
+       </span>
+       <span class="wzaico">
+        <img alt="适老化无障碍服务" src="/_res/images/img-oldage.gif"/>
+       </span>
+      </div>
+      <script type="text/javascript">
+       document.write(unescape("%3Cspan id='cnzz_stat_icon_1279631758'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1279631758%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <div class="dzjg j-gov" data-setting="{sitecode:'0B54EBC0B0426D52E053012819AC8069'}">
+      </div>
+      <div class="dzjg jiucuo j-jiucuo" data-setting="{sitecode:3413220004}">
+      </div>
+     </div>
+    </div>
+   </div>
+   <span class="j-sitestats" data-setting="{siteId:4697420,isTimes:false}">
+   </span>
+   <!--/***右侧悬浮***/-->
+   <!--右侧悬浮-->
+   <div class="slide hidden-sm hidden-xs j-couplet">
+    <div class="couplet-close">
+     <img src="/_res/images/close.gif"/>
+    </div>
+    <ul class="icon clearfix">
+     <li class="wb">
+      <a href="https://weibo.com/p/1001063215052832/home?from=page_100106&amp;mod=TAB#place" target="_blank">
+       <span class="ico">
+       </span>
+       <span class="bt">
+        政务微博
+       </span>
+      </a>
+     </li>
+     <li class="wx">
+      <span class="ico">
+      </span>
+      <span class="bt">
+       政务微信
+      </span>
+     </li>
+     <li class="znwd">
+      <a href="https://www.ahsz.gov.cn/site/tpl/150904621" target="_blank">
+       <span class="ico">
+       </span>
+       <span class="bt">
+        智能问答
+       </span>
+      </a>
+     </li>
+     <li class="fx">
+      <a href="javascript:void(0);">
+       <span class="ico">
+       </span>
+       <span class="bt">
+        分 享
+       </span>
+      </a>
+     </li>
+     <li class="gototop">
+      <a class="j-gotoTop" href="javascript:void(0);">
+       <span class="ico">
+       </span>
+       <span class="bt">
+        返回顶部
+       </span>
+      </a>
+     </li>
+    </ul>
+    <ul class="info">
+     <li class="wb">
+      <div class="slide_ewm">
+       <ul class="active">
+        <!--StartLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
+        <script>
+         var ll_4697466 = 1;
+        </script>
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wbewm/4697466.js?num=1&amp;ect=1769874035229">
+        </script>
+        <!--EndLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
+       </ul>
+      </div>
+     </li>
+     <li class="wx">
+      <div class="slide_ewm">
+       <ul class="active">
+        <!--StartLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
+        <script>
+         var ll_4697467 = 1;
+        </script>
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wxewm/4697467.js?num=1&amp;ect=1769874035230">
+        </script>
+        <!--EndLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
+       </ul>
+      </div>
+     </li>
+     <li class="fx">
+      <div class="slide_fx">
+       <div class="j-share-info">
+       </div>
+      </div>
+     </li>
+    </ul>
+   </div>
+   <script type="text/javascript">
+    $(function(){
+        $('.slide .icon li').mouseenter(function(){
+            $('.slide .info').addClass('hover');
+            $('.slide .info>li').hide();
+            $('.slide .info>li.'+$(this).attr('class')).show();
+            $('.slide .icon>li').removeClass('active');
+            $(this).addClass('active');
+        });
+        $('.slide').mouseleave(function(){
+            $('.slide .info').removeClass('hover');
+            $('.slide .icon li').removeClass('active');
+        });
+    });
+   </script>
+   <!--右侧悬浮end-->
+   <!--/***右侧悬浮end***/-->
+   <script async="" charset="utf-8" defer="" src=" //gov.govwza.cn/dist/aria.js?appid=73dc4b48858d22842897e74ff8aa42c3" type="text/javascript">
+   </script>
+   <script>
+    (function() {
+    var serMgr = document.createElement("script");
+    serMgr.src = "https://service.lonsun.cn/assets/cloud/boot.min.js?sid=549363";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(serMgr, s);
+  })();
+   </script>
+   <!--技术支持：龙讯科技-->
+   <script>
+    var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?83bc455256858028cca96bd0b6ffd35b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+   </script>
+  </div>
+ </body>
+ <script>
+  $(function () {
+		var values = $("#res_none").html();
+	  console.log(values);
+		$("#info_res").html(values);
+	})
+ </script>
+</html>
