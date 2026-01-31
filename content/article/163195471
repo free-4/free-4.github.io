@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <meta charset="utf-8"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
   <title>
-   在线调查_萧县人民政府
+   萧县人民政府网站用户体验调查问卷_萧县人民政府
   </title>
   <meta content="萧县人民政府" name="SiteName"/>
   <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
@@ -14,9 +14,12 @@
   <meta content="征集调查" name="ColumnType"/>
   <meta content="征集调查" name="ColumnDescription"/>
   <meta content="征集调查" name="ColumnKeywords"/>
+  <meta content="萧县人民政府网站用户体验调查问卷" name="ArticleTitle"/>
+  <meta content="2025-11-21 10:14" name="PubDate"/>
+  <meta content="萧县数据资源管理局" name="ContentSource"/>
   <meta content="萧县人民政府" name="Keywords"/>
-  <meta content="萧县人民政府" name="Description"/>
-  <meta content="2025-12-15 15:54:11" name="HtmlGenerateTime"/>
+  <meta content="萧县人民政府网站用户体验调查问卷" name="Description"/>
+  <meta content="2026-01-31 22:59:23" name="HtmlGenerateTime"/>
   <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/assets/css/core.min.css" rel="stylesheet"/>
   <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -28,9 +31,6 @@
    <!--[if lt IE 9]>
 <script src="/assets/js/patch.min.js"></script>
 <![endif]-->
-   <style>
-    .navjz{overflow:initial}
-   </style>
   </link>
  </head>
  <body>
@@ -267,371 +267,518 @@
        在线调查
       </a>
       <!--EndLabelHtml_nav_012de32d0c32e1795f3ef94b0bfc1097-->
-      <div class="hidden-sm hidden-xs lmsearbox">
-       <form action="/content/column/4697430" data-validator-option="{msgClass:'n-top'}" method="get">
-        <ul>
-         <li class="ss1">
-          <input class="search-keywords srkcss" data-rule="关键词:required;required2" data-rule-required2="[/^[0-9a-zA-z\u0391-\uFFE5\s\[\]\(\),.《》]+$/, '关键词不允许含有特殊字符']" maxlength="30" name="SearchWords" placeholder="输入搜索关键词" size="24" type="text" value=""/>
-         </li>
-         <li class="ss2">
-          <input class="topsearchbtn" name="input" type="submit" value=""/>
-         </li>
-         <li class="ss3">
-          搜索本栏
-         </li>
-        </ul>
-       </form>
-      </div>
      </div>
-     <div class="column_name">
-      <span class="nav_name">
-       在线调查
-      </span>
-      <div class="btn-group">
-       <button aria-expanded="false" aria-haspopup="true" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" type="button">
-        更多栏目
-       </button>
-       <ul class="dropdown-menu">
-        <!--StartLabelHtml_peerOrChildList_f91348794f0bea661755ac82755cd61a-->
-        <li>
-         <a href="/hdjl/sjxx/index.html" title="书记信箱">
-          书记信箱
-         </a>
-        </li>
-        <li>
-         <a href="/hdjl/xzxx/index.html" title="县长信箱">
-          县长信箱
-         </a>
-        </li>
-        <li>
-         <a href="/hdjl/myzj/index.html" title="民意征集">
-          民意征集
-         </a>
-        </li>
-        <li class="active">
-         <a href="/hdjl/zxdc/index.html" title="在线调查">
-          在线调查
-         </a>
-        </li>
-        <li>
-         <a href="/hdjl/hdzd/index.html" title="互动制度">
-          互动制度
-         </a>
-        </li>
-        <li>
-         <a href="/hdjl/zxft/index.html" title="在线访谈">
-          在线访谈
-         </a>
-        </li>
-        <li>
-         <a href="/hdjl/ftgg/index.html" title="访谈公告">
-          访谈公告
-         </a>
-        </li>
-        <!--EndLabelHtml_peerOrChildList_f91348794f0bea661755ac82755cd61a-->
-       </ul>
-      </div>
-     </div>
-     <!--内容-->
-     <div class="lmy_nrcontain">
-      <div class="navjz clearfix">
-       <!--StartLabelHtml_surveyPageList_673cdf641e724e044da2ee170dd81fe4-->
-       <!--2025-11-21 10:24:08-->
-       <ul class="survey-list list-4697430">
-        <li>
-         <span class="right date">
-          2025-11-21 至 2025-12-21
+     <div class="secnr mt20">
+      <div id="wenzhang">
+       <div class="vote_result">
+        <span id="res_none" style="display:none">
+         信息来源：萧县数据资源管理局
+        </span>
+        <!--StartLabelHtml_surveyInfo_71ea7c5808881967c286d0012cd9c796-->
+        <h1 class="newstitle">
+         萧县人民政府网站用户体验调查问卷
+        </h1>
+        <div class="newsinfo myinfo voteinfo">
+         <span>
+          调查时间：
+          <u>
+           [ 2025-11-21 00:00 ]
+          </u>
+          至
+          <u>
+           [ 2025-12-21 00:00 ]
+          </u>
          </span>
-         <span class="starting">
-          进行中
+         <span id="info_res">
          </span>
-         <a class="left" href="/content/article/163195471" target="" title="萧县人民政府网站用户体验调查问卷">
-          萧县人民政府网站用户体验调查问卷
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2025-03-17 至 2025-04-17
+         <span>
+          状态：
+          <i class="over">
+           已结束
+          </i>
          </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/162310371" target="" title="关于电信网络诈骗了解及防范情况调查问卷">
-          关于电信网络诈骗了解及防范情况调查问卷
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2025-01-22 至 2025-02-22
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/162129871" target="" title="环境空气质量问卷调查">
-          环境空气质量问卷调查
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2024-11-29 至 2024-12-29
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/161874731" target="" title="居民节水意识问卷调查">
-          居民节水意识问卷调查
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2024-08-27 至 2024-09-27
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/161500171" target="" title="居民安全用电常识调查">
-          居民安全用电常识调查
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2024-06-03 至 2024-07-03
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/161126031" target="" title="居民环保意识问卷调查">
-          居民环保意识问卷调查
-         </a>
-        </li>
-        <li class="lm_line">
-        </li>
-        <li>
-         <span class="right date">
-          2024-02-18 至 2024-02-24
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/160559741" target="" title="政府网站适老化与无障碍改造问卷调查">
-          政府网站适老化与无障碍改造问卷调查
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2023-11-13 至 2023-12-13
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/159981421" target="" title="网络安全意识调查">
-          网络安全意识调查
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2023-09-26 至 2023-10-26
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/159679561" target="" title="全民健身情况问卷调查">
-          全民健身情况问卷调查
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2023-08-29 至 2023-09-29
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/159541511" target="" title="优待证办理使用知晓度调查">
-          优待证办理使用知晓度调查
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2023-08-22 至 2023-09-22
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/159498321" target="" title="互联网应用适老化及无障碍改造调查问卷">
-          互联网应用适老化及无障碍改造调查问卷
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2023-08-17 至 2023-09-17
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/159478711" target="" title="关于养老服务的调查问卷">
-          关于养老服务的调查问卷
-         </a>
-        </li>
-        <li class="lm_line">
-        </li>
-        <li>
-         <span class="right date">
-          2023-08-01 至 2023-09-01
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/159336371" target="" title="全民网络安全知识调查问卷">
-          全民网络安全知识调查问卷
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2023-07-19 至 2023-08-19
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/159251011" target="" title="萧县食品安全调查问卷 ">
-          萧县食品安全调查问卷
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2023-07-17 至 2023-09-17
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/159242251" target="" title="萧县暖民心行动问卷调查及意见征求 ">
-          萧县暖民心行动问卷调查及意见征求
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2023-06-12 至 2023-09-12
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/158967971" target="" title="调查问卷">
-          调查问卷
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2022-04-23 至 2022-04-30
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/156594961" target="" title="萧县2021年民调问卷">
-          萧县2021年民调问卷
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2021-02-18 至 2021-03-18
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/152776011" target="" title="“安康码”意见建议调查问卷">
-          “安康码”意见建议调查问卷
-         </a>
-        </li>
-        <li class="lm_line">
-        </li>
-        <li>
-         <span class="right date">
-          2020-07-17 至 2020-10-17
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/653881" target="" title="网站服务水平调查">
-          网站服务水平调查
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2019-12-23 至 2019-12-27
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/694591" target="" title="您最关注的政府信息有哪些">
-          您最关注的政府信息有哪些
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2019-10-30 至 2019-11-04
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/686711" target="" title="萧县群众安全感、满意度测评调查问卷">
-          萧县群众安全感、满意度测评调查问卷
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2018-12-27 至 2019-01-05
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/639261" target="" title="《蓝城·水墨圣泉小镇概念性总体规划》公开征求意见">
-          《蓝城·水墨圣泉小镇概念性总体规划》公开征求意见
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2018-09-04 至 2018-09-26
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/52188" target="" title="您认为我们身边当前面临的环境污染的主要问题有哪些？">
-          您认为我们身边当前面临的环境污染的主要问题有哪些？
-         </a>
-        </li>
-        <li>
-         <span class="right date">
-          2018-06-25 至 2018-07-25
-         </span>
-         <span class="over">
-          已结束
-         </span>
-         <a class="left" href="/content/article/52187" target="" title="依法行政调查问卷：您认为本地区行政机关及其工作人员服务公众的意识如何?">
-          依法行政调查问卷：您认为本地区行政机关及其工作人员服务公众的意识如何?
-         </a>
-        </li>
-        <li class="lm_line">
-        </li>
-       </ul>
-       <div class="pagination" id="surveyPage">
+        </div>
+        <div class="vote-info">
+         <p style="text-indent: 2em; text-align: justify;">
+          为进一步提升萧县人民政府网站服务能力和用户体验，现开展政府网站内容设置和服务体验问卷调研。本调查为匿名，诚挚邀请您参与，感谢支持！
+         </p>
+        </div>
+        <table class="vote-show">
+         <tbody>
+          <tr>
+           <th>
+            1、您浏览或登录政府网站的目的是？（可多选）
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              查看政府工作热点信息
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:20%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              查看政府工作热点信息查询社保、住房、医疗等民生方面的信息
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:20%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              查找政策文件和相关解读
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:10%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              向有关部门进行投诉、建议或咨询
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:10%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              了解本地历史、概括、旅游等相关信息
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:10%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              办事或查看办事记录
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:10%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              查询企业开办、经营纳税、资质证定、招商引资等企业服务相关信息
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:10%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              查询获取公共数据
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:10%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            2、您通常从什么渠道获取政府信息（政府新闻资讯、政策文件）？（可多选）
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              政府部门开设的微信、微博等新媒体账号
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:33%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              政府网站
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:66%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              报纸、电视等媒体
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            3、您在政府网站上能否容易找到所需信息？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              非常容易
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:50%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              比较容易
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:50%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              比较难
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            4、您需要查找的政府相关信息能否都在本网站找到？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              能找到
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:50%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              不能，需要访问多个政府网站
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:50%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            5、您对政府网站还有哪些意见或建议？（可多选）
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              内容提供
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:40%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               2
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              搜索
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:20%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              智能问答
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:20%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              咨询投诉
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:20%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              其他
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+        <!--EndLabelHtml_surveyInfo_71ea7c5808881967c286d0012cd9c796-->
        </div>
-       <script>
-        Ls.pagination("#surveyPage", function (pageIndex) {
-            location.href = "https://www.ahxx.gov.cn/content/column/4697430?pageIndex=" + pageIndex;
-        }, {
-            currPage: (0+1),
-            pageCount:2
-        })
-       </script>
-       <!--EndLabelHtml_surveyPageList_673cdf641e724e044da2ee170dd81fe4-->
+       <div class="wz_share mt20 j-share-info hidden-sm hidden-xs">
+       </div>
       </div>
-      <style>
-       .init {
-                                    background: url();
-        width: 297px;
-        height: 297px;
-    }
-      </style>
      </div>
-     <!--内容end-->
     </div>
    </div>
    <!--/***底部***/-->
@@ -894,4 +1041,11 @@
    </script>
   </div>
  </body>
+ <script>
+  $(function () {
+		var values = $("#res_none").html();
+	  console.log(values);
+		$("#info_res").html(values);
+	})
+ </script>
 </html>
