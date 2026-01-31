@@ -17,7 +17,7 @@
   <meta content="食品药品监管领域" name="ColumnKeywords"/>
   <meta content="萧县人民政府" name="Keywords"/>
   <meta content="萧县人民政府" name="Description"/>
-  <meta content="2026-01-31 23:27:46" name="HtmlGenerateTime"/>
+  <meta content="2026-01-31 23:30:34" name="HtmlGenerateTime"/>
   <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/assets/css/core.min.css" rel="stylesheet"/>
   <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -479,7 +479,7 @@
           </span>
          </li>
          <li class="clearfix">
-          <a class="title" href="/grassroots/6/158251211.html" target="_blank" title="萧县食品药品监管机构、投诉举报电话">
+          <a class="title" href="/grassroots/6/158251221.html" target="_blank" title="萧县食品药品监管机构、投诉举报电话">
            <img src="/_res/images/zding.png"/>
            萧县食品药品监管机构、投诉举报电话
           </a>
@@ -488,7 +488,7 @@
           </span>
          </li>
          <li class="clearfix">
-          <a class="title" href="/grassroots/6/158251221.html" target="_blank" title="萧县食品药品监管机构、投诉举报电话">
+          <a class="title" href="/grassroots/6/158251211.html" target="_blank" title="萧县食品药品监管机构、投诉举报电话">
            <img src="/_res/images/zding.png"/>
            萧县食品药品监管机构、投诉举报电话
           </a>
@@ -662,7 +662,7 @@
 
 
 
-    var type = "4";
+    var type = "";
     var fromCode = "";
     var sortType = "";
     var fuzzySearch = "";
