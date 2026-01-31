@@ -11,13 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="解读渠道" name="ColumnName"/>
+   <meta content="重大决策、重要政策及重点工作执行情况" name="ColumnName"/>
    <meta content="信息公开目录" name="ColumnType"/>
-   <meta content="解读渠道" name="ColumnDescription"/>
-   <meta content="解读渠道" name="ColumnKeywords"/>
+   <meta content="重大决策、重要政策及重点工作执行情况" name="ColumnDescription"/>
+   <meta content="重大决策、重要政策及重点工作执行情况" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:45:57" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:54:28" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -52,7 +52,7 @@
        <script>
         var ll_4697460 = 3;
        </script>
-       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tbzfwlj/4697460.js?num=3&amp;ect=1769874357795">
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tbzfwlj/4697460.js?num=3&amp;ect=1769874868145">
        </script>
        <!--EndLabelHtml_linkList_c044053c4d59952ad54f103a3b09594d-->
       </ul>
@@ -101,7 +101,7 @@
          <script>
           var ll_4697461 = 5;
          </script>
-         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-bjtp/4697461.js?num=5&amp;ect=1769874357795">
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-bjtp/4697461.js?num=5&amp;ect=1769874868146">
          </script>
          <!--EndLabelHtml_linkList_195e6d7916419c611596a13f0d81419c-->
         </ul>
@@ -117,7 +117,7 @@
        <script>
         var ll_4697462 = 1;
        </script>
-       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-logo/4697462.js?num=1&amp;ect=1769874357796">
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-logo/4697462.js?num=1&amp;ect=1769874868146">
        </script>
        <!--EndLabelHtml_linkList_1102d5976d2edcbee07daf1f7db54b0e-->
       </ul>
@@ -198,7 +198,7 @@
             <script>
              var ll_22966781 = 20;
             </script>
-            <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/lmlj/tbdh-ejlm/xxgk/22966781.js?num=20&amp;ect=1769874357799">
+            <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/lmlj/tbdh-ejlm/xxgk/22966781.js?num=20&amp;ect=1769874868149">
             </script>
             <!--EndLabelHtml_linkList_c0e3484b822c6e13e8916f6fb2e49310-->
            </ul>
@@ -271,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60775581"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60776671"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2122,21 +2122,21 @@
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733591" data-organid="6629711" href="/public/column/6629711?type=4&amp;catId=60733591&amp;action=list" target="_self">
-          政策解读咨询
+         <a class="publicNavPos" data-catid="60776641" data-organid="6629711" href="/public/column/6629711?type=4&amp;catId=60776641&amp;action=list" target="_self">
+          其他法定信息
          </a>
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60775581" data-organid="6629711" href="/public/column/6629711?type=4&amp;catId=60775581&amp;action=list" target="_self">
-          解读渠道
+         <a class="publicNavPos" data-catid="60776671" data-organid="6629711" href="/public/column/6629711?type=4&amp;catId=60776671&amp;action=list" target="_self">
+          重大决策、重要政策及重点工作执行情况
          </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
          <div class="gktit">
-          <a href="/public/column/6629711?type=4&amp;action=list&amp;nav=&amp;sub=&amp;catId=60775581" title="解读渠道">
-           解读渠道
+          <a href="/public/column/6629711?type=4&amp;action=list&amp;nav=&amp;sub=&amp;catId=60776671" title="重大决策、重要政策及重点工作执行情况">
+           重大决策、重要政策及重点工作执行情况
           </a>
           <div class="gklm_search hidden-xs hidden-sm">
            <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
@@ -2154,102 +2154,138 @@
          <div class="xxgk_nav_con">
           <ul class="clearfix xxgk_nav_list">
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163357771.html" target="_blank" title="宪法宣传进乡村法治暖阳润民心">
+            <a class="title" href="/public/6629711/163234161.html" target="_blank" title="全县12月份重点工作部署会召开">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             宪法宣传进乡村法治暖阳润民心
+             全县12月份重点工作部署会召开
             </a>
             <span class="date">
-             2025-12-09
+             2025-12-02
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163357781.html" target="_blank" title="萧县法律援助中心开展普法宣传活动">
+            <a class="title" href="/public/6629711/163233951.html" target="_blank" title="萧县下好应急“先手棋”打好防灾减灾“主动仗”">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县法律援助中心开展普法宣传活动
+             萧县下好应急“先手棋”打好防灾减灾“主动仗”
             </a>
             <span class="date">
-             2025-11-14
+             2025-12-02
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163156821.html" target="_blank" title="萧县司法局开展“萧法有约与企同行”普法宣传活动">
+            <a class="title" href="/public/6629711/163233961.html" target="_blank" title="萧县一项目入选长三角人文经济典型案例">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县司法局开展“萧法有约与企同行”普法宣传活动
+             萧县一项目入选长三角人文经济典型案例
             </a>
             <span class="date">
-             2025-10-31
+             2025-11-25
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163156831.html" target="_blank" title="法援惠民生送法进乡村">
+            <a class="title" href="/public/6629711/163233971.html" target="_blank" title="结对合作结硕果共建共享惠民生">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             法援惠民生送法进乡村
+             结对合作结硕果共建共享惠民生
             </a>
             <span class="date">
-             2025-09-30
+             2025-11-18
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163156841.html" target="_blank" title="萧县以法治督察为契机助推法治建设提质增效">
+            <a class="title" href="/public/6629711/163233981.html" target="_blank" title="“二次创业”为园区发展蓄势聚能">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县以法治督察为契机助推法治建设提质增效
+             “二次创业”为园区发展蓄势聚能
+            </a>
+            <span class="date">
+             2025-11-11
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163233991.html" target="_blank" title="萧县精准施策扎实办好残疾人民生实事">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县精准施策扎实办好残疾人民生实事
+            </a>
+            <span class="date">
+             2025-11-04
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163234001.html" target="_blank" title="“三维发力”激发基层治理新动能">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             “三维发力”激发基层治理新动能
+            </a>
+            <span class="date">
+             2025-10-28
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163073081.html" target="_blank" title="工业经济跑出“加速度”">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             工业经济跑出“加速度”
+            </a>
+            <span class="date">
+             2025-10-09
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="https://www.ahxx.gov.cn/content/article/163054921" target="_blank" title="萧县“微‘萧’服务，在‘县’办理”政务服务品牌推进情况">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县“微‘萧’服务，在‘县’办理”政务服务品牌推进情况
             </a>
             <span class="date">
              2025-09-26
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163156851.html" target="_blank" title="县委网信办：以网络普法护航科普月活动开展">
+            <a class="title" href="/public/6629711/163073101.html" target="_blank" title="《安徽经济报》整版报道！萧县：聚力制造强县引擎驱动高质量发展新跨越">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             县委网信办：以网络普法护航科普月活动开展
+             《安徽经济报》整版报道！萧县：聚力制造强县引擎驱动高质量发展新跨越
             </a>
             <span class="date">
-             2025-09-04
+             2025-09-23
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163156861.html" target="_blank" title="萧县司法局开展《社区矫正法》实施五周年宣传活动">
+            <a class="title" href="https://www.ahxx.gov.cn/content/article/163054851" target="_blank" title="2025年上半年萧县财政收支情况">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县司法局开展《社区矫正法》实施五周年宣传活动
+             2025年上半年萧县财政收支情况
             </a>
             <span class="date">
-             2025-07-22
+             2025-08-21
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163156901.html" target="_blank" title="萧县司法局开展民法典系列普法宣传活动">
+            <a class="title" href="https://www.ahxx.gov.cn/content/article/163054831" target="_blank" title="全县2025年上半年重点项目开工及推进情况">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县司法局开展民法典系列普法宣传活动
+             全县2025年上半年重点项目开工及推进情况
             </a>
             <span class="date">
-             2025-06-03
+             2025-08-20
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163156911.html" target="_blank" title="民法典宣传进企业优化营商环境靠大家">
+            <a class="title" href="https://www.ahxx.gov.cn/content/article/163054871" target="_blank" title="萧县2025年上半年促消费工作情况">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             民法典宣传进企业优化营商环境靠大家
+             萧县2025年上半年促消费工作情况
             </a>
             <span class="date">
-             2025-05-09
+             2025-08-15
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163156951.html" target="_blank" title="国家安全你我有责">
+            <a class="title" href="/public/6629711/163234171.html" target="_blank" title="县委理论学习中心组学习（扩大）会暨八月份重点工作部署会召开">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             国家安全你我有责
+             县委理论学习中心组学习（扩大）会暨八月份重点工作部署会召开
             </a>
             <span class="date">
-             2025-04-16
+             2025-08-05
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163156961.html" target="_blank" title="萧县司法局举办乡镇（街道）综合行政执法业务培训会">
+            <a class="title" href="https://www.ahxx.gov.cn/content/article/163054801" target="_blank" title="2025年1-5月份全县水污染防治工作开展情况">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县司法局举办乡镇（街道）综合行政执法业务培训会
+             2025年1-5月份全县水污染防治工作开展情况
             </a>
             <span class="date">
-             2025-03-17
+             2025-07-17
             </span>
            </li>
            <script>
@@ -2284,7 +2320,7 @@
                                     length : "50",
                                     organId: "",
                                     type: 4,
-                                    catId: "60775581",
+                                    catId: "60776671",
                                     action:"list",
                                     keyWords: keyWords,
                                     result : "暂无相关信息",
@@ -2298,15 +2334,48 @@
            </script>
           </ul>
          </div>
+         <div class="pagination" id="page_public_info">
+          分页
+         </div>
+         <script>
+          Ls.pagination("#page_public_info", function(pageIndex){
+                                                                                            Ls.ajax({
+                            dataType: "html",
+                            url: "/site/label/8888",
+                            data : {
+                                labelName: 'publicInfoList',
+                                siteId : "4697420",
+                                pageSize : "15",
+                                pageIndex: pageIndex,
+                                action : "list",
+                                isDate : "true",
+                                dateFormat : "yyyy-MM-dd",
+                                length : "80",
+                                organId: "6629711",
+                                type: "4",
+                                catId: "60776671",
+                                cId : "",
+                                result : "暂无相关信息",
+                                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
+                            }
+                        }).done(function(html) {
+                            $("#xxgk_lmcon").html(html);
+                        });
+                                    }, {
+                    currPage: (0+1),
+                    pageCount:3,
+                    param: "pageSize=15"
+                });
+         </script>
          <div class="clear">
          </div>
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?sub=&catId=60775581&nav=&action=list&type=4&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?sub=&catId=60776671&nav=&action=list&type=4&pageIndex=" + pageIndex;
             }, {
         currPage: (0+1),
-        pageCount:(1 + 0),
+        pageCount:(3 + 0),
         param: "pageSize=15"
     });
 
@@ -2319,7 +2388,7 @@
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60775581";
+        var catId = "60776671";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
@@ -2570,7 +2639,7 @@
         <script>
          var ll_4697466 = 1;
         </script>
-        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wbewm/4697466.js?num=1&amp;ect=1769874357873">
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wbewm/4697466.js?num=1&amp;ect=1769874868234">
         </script>
         <!--EndLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
        </ul>
@@ -2583,7 +2652,7 @@
         <script>
          var ll_4697467 = 1;
         </script>
-        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wxewm/4697467.js?num=1&amp;ect=1769874357874">
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wxewm/4697467.js?num=1&amp;ect=1769874868235">
         </script>
         <!--EndLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
        </ul>
