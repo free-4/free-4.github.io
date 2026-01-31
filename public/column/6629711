@@ -11,15 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="负责人、专家及媒体解读" name="ColumnName"/>
-   <meta content="政策解读，信息公开" name="ColumnType"/>
-   <meta content="1、发布县（市、区）政府和相关部门负责人通过参加新闻发布会、发表署名文章或接受媒体采访等形式对政策文件的解读信息；
-2、发布专家对政策文件解读信息；
-3、转载媒体对政策文件解读信息。" name="ColumnDescription"/>
-   <meta content="政策解读，信息公开" name="ColumnKeywords"/>
+   <meta content="政府工作报告" name="ColumnName"/>
+   <meta content="信息公开目录" name="ColumnType"/>
+   <meta content="政府工作报告" name="ColumnDescription"/>
+   <meta content="政府工作报告" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:04:17" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:04:55" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -273,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60733611"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60776651"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2124,21 +2122,21 @@
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733591" data-organid="6629711" href="/public/column/6629711" target="_self">
-          政策解读咨询
+         <a class="publicNavPos" data-catid="60776641" data-organid="6629711" href="/public/column/6629711" target="_self">
+          其他法定信息
          </a>
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733611" data-organid="6629711" href="/public/column/6629711" target="_self">
-          负责人、专家及媒体解读
+         <a class="publicNavPos" data-catid="60776651" data-organid="6629711" href="/public/column/6629711" target="_self">
+          政府工作报告
          </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
          <div class="gktit">
-          <a href="/public/column/6629711" title="负责人、专家及媒体解读">
-           负责人、专家及媒体解读
+          <a href="/public/column/6629711" title="政府工作报告">
+           政府工作报告
           </a>
           <div class="gklm_search hidden-xs hidden-sm">
            <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
@@ -2156,186 +2154,138 @@
          <div class="xxgk_nav_con">
           <ul class="clearfix xxgk_nav_list">
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163073001.html" target="_blank" title="【新闻发布会解读】县委教育工委委员、县教体局副局长李龙解读《萧县2025年小学毕业生升入初中工作实施方案》">
+            <a class="title" href="https://mp.weixin.qq.com/s/2qD4kdeJCCPm_VOH-F8n4w" target="_blank" title="2025年政府工作报告（图解版）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【新闻发布会解读】县委教育工委委员、县教体局副局长李龙解读《萧县2025年小学毕业生升入初中工作实施方案》
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/35/162883471.html" target="_blank">
-             文件
+             2025年政府工作报告（图解版）
             </a>
             <span class="date">
-             2025-08-12
+             2025-01-17
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163072921.html" target="_blank" title="【新闻发布会解读】县委教育工委委员、县教体局副局长李龙解读《萧县2025年城区小学招生工作实施方案》">
+            <a class="title" href="/public/6629711/162175941.html" target="_blank" title="2025年政府工作报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【新闻发布会解读】县委教育工委委员、县教体局副局长李龙解读《萧县2025年城区小学招生工作实施方案》
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/35/162883461.html" target="_blank">
-             文件
+             2025年政府工作报告
             </a>
             <span class="date">
-             2025-08-12
+             2025-01-17
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160018371.html" target="_blank" title="【媒体解读】《萧县多举措推进国家创新型县建设打造皖北创新发展示范区》（来源：《人民网—安徽频道》）">
+            <a class="title" href="/public/6629711/161377151.html" target="_blank" title="2024年政府工作报告（图解版）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【媒体解读】《萧县多举措推进国家创新型县建设打造皖北创新发展示范区》（来源：《人民网—安徽频道》）
+             2024年政府工作报告（图解版）
             </a>
             <span class="date">
-             2024-06-28
+             2024-07-25
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160018051.html" target="_blank" title="【媒体解读】《凝聚强大动力强化责任担当安徽萧县多措并举创建质量强县推动区域经济发展》（来源《中国质量报》）">
+            <a class="title" href="/public/6629711/161320391.html" target="_blank" title="2024年政府工作报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【媒体解读】《凝聚强大动力强化责任担当安徽萧县多措并举创建质量强县推动区域经济发展》（来源《中国质量报》）
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/162282021.html" target="_blank">
-             文件
+             2024年政府工作报告
             </a>
             <span class="date">
-             2024-06-14
+             2024-07-10
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160018061.html" target="_blank" title="【媒体解读】《探究萧县创建质量强县的“强”密码》（来源《人民网》）">
+            <a class="title" href="/public/6629711/158272061.html" target="_blank" title="2023年政府工作报告（图解版）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【媒体解读】《探究萧县创建质量强县的“强”密码》（来源《人民网》）
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/162282021.html" target="_blank">
-             文件
+             2023年政府工作报告（图解版）
             </a>
             <span class="date">
-             2024-06-14
+             2023-01-13
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/161118431.html" target="_blank" title="【新闻发布会解读】县审计局党组成员、副局长苏爱丽解读《关于印发萧县2024年度审计项目计划的通知》">
+            <a class="title" href="/public/6629711/158198841.html" target="_blank" title="2023年政府工作报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【新闻发布会解读】县审计局党组成员、副局长苏爱丽解读《关于印发萧县2024年度审计项目计划的通知》
+             2023年政府工作报告
             </a>
             <span class="date">
-             2024-05-06
+             2023-01-03
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160013761.html" target="_blank" title="【新闻发布会解读】县经信局党委委员、副局长闫明解读《萧县2022年度工业企业亩均效益评价办法》">
+            <a class="title" href="/public/6629711/155958441.html" target="_blank" title="2022年政府工作报告（图解版）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【新闻发布会解读】县经信局党委委员、副局长闫明解读《萧县2022年度工业企业亩均效益评价办法》
+             2022年政府工作报告（图解版）
             </a>
             <span class="date">
-             2023-11-07
+             2022-01-04
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="https://mp.weixin.qq.com/s/s9OJJ4X_Ps1f-vhDtALhbw" target="_blank" title="【媒体解读】150万元萧县消费券来啦！7月11日开抢">
+            <a class="title" href="/public/6629711/155992141.html" target="_blank" title="2022年政府工作报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【媒体解读】150万元萧县消费券来啦！7月11日开抢
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/159319541.html" target="_blank">
-             文件
+             2022年政府工作报告
             </a>
             <span class="date">
-             2023-07-07
+             2022-01-04
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/158606421.html" target="_blank" title="【署名文章】《深耕产业做强实体》（来源：《安徽经济报》）">
+            <a class="title" href="/public/6629711/152507851.html" target="_blank" title="2021年政府工作报告（图解版）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【署名文章】《深耕产业做强实体》（来源：《安徽经济报》）
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/158198831.html" target="_blank">
-             文件
+             2021年政府工作报告（图解版）
             </a>
             <span class="date">
-             2023-04-12
+             2021-01-15
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/158512251.html" target="_blank" title="【负责人解读】《萧县妇女发展纲要（2021-2030年）》《萧县儿童发展纲要（2021-2030年）》政策解读">
+            <a class="title" href="/public/6629711/152507711.html" target="_blank" title="2021年政府工作报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【负责人解读】《萧县妇女发展纲要（2021-2030年）》《萧县儿童发展纲要（2021-2030年）》政策解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/158511171.html" target="_blank">
-             文件
+             2021年政府工作报告
             </a>
             <span class="date">
-             2023-03-31
+             2021-01-15
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/158504511.html" target="_blank" title="【新闻发布会】《烈士安葬办法》政策解读">
+            <a class="title" href="/public/6629711/152142011.html" target="_blank" title="2020年政府工作报告（图解版）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【新闻发布会】《烈士安葬办法》政策解读
+             2020年政府工作报告（图解版）
             </a>
             <span class="date">
-             2023-03-31
+             2020-01-13
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160013981.html" target="_blank" title="【新闻发布会解读】《中共萧县县委审计委员会办公室萧县审计局关于印发萧县审计局2023年度审计项目计划的通知》政策解读">
+            <a class="title" href="/public/6629711/152142021.html" target="_blank" title="2020年政府工作报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【新闻发布会解读】《中共萧县县委审计委员会办公室萧县审计局关于印发萧县审计局2023年度审计项目计划的通知》政策解读
+             2020年政府工作报告
             </a>
             <span class="date">
-             2023-03-29
+             2019-12-31
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160826281.html" target="_blank" title="【负责人解读】《萧县粮食储备管理办法》政策解读">
+            <a class="title" href="/public/6629711/152142031.html" target="_blank" title="2019年政府工作报告（图解版）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【负责人解读】《萧县粮食储备管理办法》政策解读
+             2019年政府工作报告（图解版）
             </a>
             <span class="date">
-             2023-01-12
+             2019-01-07
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/156942121.html" target="_blank" title="【负责人解读】《萧县行政机关合同管理办法》政策解读">
+            <a class="title" href="/public/6629711/152142041.html" target="_blank" title="2019年政府工作报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【负责人解读】《萧县行政机关合同管理办法》政策解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156942081.html" target="_blank">
-             文件
+             2019年政府工作报告
             </a>
             <span class="date">
-             2022-06-29
+             2019-01-07
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/156875591.html" target="_blank" title="【负责人解读】《支持工业互联网发展若干政策》《萧县工业互联网创新发展行动计划（2022－2023年）》政策解读">
+            <a class="title" href="/public/6629711/152142051.html" target="_blank" title="2018年政府工作报告辅读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【负责人解读】《支持工业互联网发展若干政策》《萧县工业互联网创新发展行动计划（2022－2023年）》政策解读
+             2018年政府工作报告辅读
             </a>
             <span class="date">
-             2022-06-13
+             2017-12-19
             </span>
            </li>
            <script>
@@ -2370,7 +2320,7 @@
                                     length : "50",
                                     organId: "",
                                     type: 4,
-                                    catId: "60733611",
+                                    catId: "60776651",
                                     action:"list",
                                     keyWords: keyWords,
                                     result : "暂无相关信息",
@@ -2403,7 +2353,7 @@
                                 length : "80",
                                 organId: "6629711",
                                 type: "4",
-                                catId: "60733611",
+                                catId: "60776651",
                                 cId : "",
                                 result : "暂无相关信息",
                                 file:"/c2/jh/xxgk/publicInfoList_newest_xx"
@@ -2413,7 +2363,7 @@
                         });
                                     }, {
                     currPage: (0+1),
-                    pageCount:8,
+                    pageCount:2,
                     param: "pageSize=15"
                 });
          </script>
@@ -2422,10 +2372,10 @@
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?catId=60733611&action=list&type=4&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?catId=60776651&action=list&type=4&pageIndex=" + pageIndex;
             }, {
         currPage: (0+1),
-        pageCount:(8 + 0),
+        pageCount:(2 + 0),
         param: "pageSize=15"
     });
 
@@ -2438,7 +2388,7 @@
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60733611";
+        var catId = "60776651";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
