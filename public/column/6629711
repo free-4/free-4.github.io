@@ -11,11 +11,10 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="规范性文件发布" name="ColumnName"/>
-   <meta content="信息公开目录" name="ColumnType"/>
-   <meta content="1、县（市、区）政府印发的规范性文件；
-2、县（市、区）政府办公室印发的规范性文件。" name="ColumnDescription"/>
-   <meta content="规范性文件发布" name="ColumnKeywords"/>
+   <meta content="部门解读" name="ColumnName"/>
+   <meta content="政策解读，信息公开" name="ColumnType"/>
+   <meta content="发布部门关于政策文件出台的决策背景和依据、制定意义和总体考虑、研判和起草过程、工作目标、主要任务、创新举措、保障措施等作出的相关解释说明。" name="ColumnDescription"/>
+   <meta content="政策解读，信息公开" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
    <meta content="2026-01-31 23:01:46" name="HtmlGenerateTime"/>
@@ -272,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60733431"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60733601"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2123,21 +2122,21 @@
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733421" data-organid="6629711" href="/public/column/6629711" target="_self">
-          政策文件
+         <a class="publicNavPos" data-catid="60733591" data-organid="6629711" href="/public/column/6629711" target="_self">
+          政策解读咨询
          </a>
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733431" data-organid="6629711" href="/public/column/6629711" target="_self">
-          规范性文件发布
+         <a class="publicNavPos" data-catid="60733601" data-organid="6629711" href="/public/column/6629711" target="_self">
+          部门解读
          </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
          <div class="gktit">
-          <a href="/public/column/6629711" title="规范性文件发布">
-           规范性文件发布
+          <a href="/public/column/6629711" title="部门解读">
+           部门解读
           </a>
           <div class="gklm_search hidden-xs hidden-sm">
            <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
@@ -2155,322 +2154,223 @@
          <div class="xxgk_nav_con">
           <ul class="clearfix xxgk_nav_list">
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府办公室关于印发安徽萧县经济开发区标准化厂房入驻办法的通知">
+            <a class="title" href="/public/6629711/162345481.html" target="_blank" title="《萧县人民政府办公室关于印发萧县县属国有企业重大事项决策暂行办法的通知》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发安徽萧县经济开发区标准化厂房入驻办法的通知
+             《萧县人民政府办公室关于印发萧县县属国有企业重大事项决策暂行办法的通知》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/162448301.html" target="_blank">
-             意见征集
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/163110241.html" target="_blank">
-             图片解读
+            <a class="a" href="/public/6629711/162345131.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2025-06-05
+             2025-03-03
             </span>
-            <a onclick="downloadWord(163054741)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府关于进一步加强房屋征收补偿安置工作的实施意见（试行）的通知（修订版）">
+            <a class="title" href="/public/6629711/161183881.html" target="_blank" title="《萧县建设质量强县促进高质量发展扶持奖励办法》简明问答">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于进一步加强房屋征收补偿安置工作的实施意见（试行）的通知（修订版）
+             《萧县建设质量强县促进高质量发展扶持奖励办法》简明问答
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/161331781.html" target="_blank">
-             意见征集
-            </a>
-            <span class="date">
-             2025-03-28
-            </span>
-            <a onclick="downloadWord(163041251)" target="_blank">
-             【下载】
-            </a>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/161220311.html" target="_blank">
-             视频解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/159977431.html" target="_blank">
-             图片解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/160018051.html" target="_blank">
-             媒体解读1
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/160018061.html" target="_blank">
-             媒体解读2
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/content/158753011" target="_blank">
-             征求意见
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/161183881.html" target="_blank">
-             部门解读
+            <a class="a" href="/public/6629711/162282021.html" target="_blank">
+             文件
             </a>
             <span class="date">
              2024-06-14
             </span>
-            <a onclick="downloadWord(162282021)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府办公室关于印发《萧县粮食储备管理办法》的通知">
+            <a class="title" href="/public/6629711/161117621.html" target="_blank" title="《萧县防汛抗旱应急预案》的简明问答">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发《萧县粮食储备管理办法》的通知
+             《萧县防汛抗旱应急预案》的简明问答
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/157961281.html" target="_blank">
-             常务会议
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/158587911.html" target="_blank">
-             图片解读
+            <a class="a" href="/public/6629711/161117441.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2023-01-11
+             2024-05-30
             </span>
-            <a onclick="downloadWord(158510701)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府办公室关于印发萧县行政机关合同管理办法的通知">
+            <a class="title" href="/public/6629711/161117601.html" target="_blank" title="【文字解读】《萧县防汛抗旱应急预案》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县行政机关合同管理办法的通知
+             【文字解读】《萧县防汛抗旱应急预案》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/156942121.html" target="_blank">
-             负责人解读
+            <a class="a" href="/public/6629711/161117441.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2022-06-29
+             2024-05-30
             </span>
-            <a onclick="downloadWord(156942081)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府办公室关于印发萧县企业上市挂牌和直接融资奖励办法的通知">
+            <a class="title" href="/public/6629711/158708681.html" target="_blank" title="《萧县计量发展规划（2021-2035年）实施方案》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县企业上市挂牌和直接融资奖励办法的通知
+             《萧县计量发展规划（2021-2035年）实施方案》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/156258771.html" target="_blank">
-             常务会议
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156060301.html" target="_blank">
-             意见征集和反馈
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156323021.html" target="_blank">
-             部门解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156370141.html" target="_blank">
-             图片解读
+            <a class="a" href="/public/6629711/158708621.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2022-03-08
+             2023-04-21
             </span>
-            <a onclick="downloadWord(156315941)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府办公室关于印发萧县专利资助办法的通知">
+            <a class="title" href="/public/6629711/157276421.html" target="_blank" title="《萧县进一步加强统计基层基础建设实施方案》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县专利资助办法的通知
+             《萧县进一步加强统计基层基础建设实施方案》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/152127691.html" target="_blank">
-             部门解读
+            <a class="a" href="/public/6629711/157276311.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2020-11-09
+             2022-09-01
             </span>
-            <a onclick="downloadWord(152119271)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府关于公布国家级和省级重点文物保护单位保护范围及建控地带的通知">
+            <a class="title" href="/public/6629711/156929421.html" target="_blank" title="《萧县全面推行“宿事速办”优化12345政务服务便民热线实施方案》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于公布国家级和省级重点文物保护单位保护范围及建控地带的通知
-            </a>
-            <span class="date">
-             2020-10-21
-            </span>
-            <a onclick="downloadWord(158292231)" target="_blank">
-             【下载】
-            </a>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府关于印发萧县人民政府质量奖管理办法的通知">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于印发萧县人民政府质量奖管理办法的通知
+             《萧县全面推行“宿事速办”优化12345政务服务便民热线实施方案》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/152128411.html" target="_blank">
-             负责人解读
+            <a class="a" href="/public/6629711/156929451.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2020-09-29
+             2022-06-27
             </span>
-            <a onclick="downloadWord(152119291)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府办公室关于印发萧县公办养老机构公建民营实施方案的通知">
+            <a class="title" href="/public/6629711/156928211.html" target="_blank" title="《萧县行政机关合同管理办法》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县公办养老机构公建民营实施方案的通知
+             《萧县行政机关合同管理办法》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/152127701.html" target="_blank">
-             部门解读
+            <a class="a" href="/public/6629711/156928201.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2020-09-03
+             2022-06-27
             </span>
-            <a onclick="downloadWord(152119301)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府办公室关于印发萧县紧密型县域医共体建设实施方案的通知">
+            <a class="title" href="/public/6629711/156842121.html" target="_blank" title="《进一步深化紧密型县域医共体建设若干举措》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县紧密型县域医共体建设实施方案的通知
+             《进一步深化紧密型县域医共体建设若干举措》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/152127731.html" target="_blank">
-             部门解读
+            <a class="a" href="/public/6629711/156842111.html" target="_blank">
+             文件
+            </a>
+            <span class="date">
+             2022-06-06
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/156842101.html" target="_blank" title="《萧县2022年犬类管理专项整治行动工作实施方案》政策解读">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             《萧县2022年犬类管理专项整治行动工作实施方案》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/152129691.html" target="_blank">
-             图片解读
+            <a class="a" href="/public/6629711/156842091.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2020-06-10
+             2022-06-06
             </span>
-            <a onclick="downloadWord(152119341)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府关于印发萧县推动商务经济高质量发展的若干政策的通知">
+            <a class="title" href="/public/6629711/156372301.html" target="_blank" title="《萧县粮食产业经济高质量发展三年行动计划(2021-2023年)》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于印发萧县推动商务经济高质量发展的若干政策的通知
+             《萧县粮食产业经济高质量发展三年行动计划(2021-2023年)》政策解读
+            </a>
+            <span class="date">
+             2022-03-22
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/156323021.html" target="_blank" title="《萧县人民政府办公室关于印发萧县企业上市挂牌和直接融资奖励办法的通知》政策解读">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             《萧县人民政府办公室关于印发萧县企业上市挂牌和直接融资奖励办法的通知》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/152127781.html" target="_blank">
-             负责人解读
+            <a class="a" href="/public/6629711/156315941.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2020-03-18
+             2022-03-10
             </span>
-            <a onclick="downloadWord(152119371)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府办公室关于印发萧县地名管理暂行办法通知">
+            <a class="title" href="/public/6629711/156037931.html" target="_blank" title="《萧县人民政府办公室关于印发萧县“食安安徽”品牌培育工作实施方案的通知》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县地名管理暂行办法通知
+             《萧县人民政府办公室关于印发萧县“食安安徽”品牌培育工作实施方案的通知》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/152127821.html" target="_blank">
-             部门解读
+            <a class="a" href="/public/6629711/156037881.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2020-01-21
+             2022-01-13
             </span>
-            <a onclick="downloadWord(152119411)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府关于推行国有资本经营预算的意见">
+            <a class="title" href="/public/6629711/155440151.html" target="_blank" title="《萧县人民政府印发关于深化企业首席质量官制度落实企业质量治理主体责任的实施意见的通知》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于推行国有资本经营预算的意见
+             《萧县人民政府印发关于深化企业首席质量官制度落实企业质量治理主体责任的实施意见的通知》政策解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/155439931.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2018-12-25
+             2021-10-20
             </span>
-            <a onclick="downloadWord(158296021)" target="_blank">
-             【下载】
-            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/site/tpl/2106787501" target="_blank" title="萧县人民政府关于印发萧县葡萄地理标志产品保护管理办法(试行)的通知">
+            <a class="title" href="/public/6629711/155391141.html" target="_blank" title="《萧县人民政府办公室关于印发萧县居民服务“一卡通”工作方案的通知》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于印发萧县葡萄地理标志产品保护管理办法(试行)的通知
+             《萧县人民政府办公室关于印发萧县居民服务“一卡通”工作方案的通知》政策解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/155391061.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2018-12-18
+             2021-10-13
             </span>
-            <a onclick="downloadWord(158293571)" target="_blank">
-             【下载】
-            </a>
            </li>
            <script>
             function downloadWord(id) {
@@ -2504,7 +2404,7 @@
                                     length : "50",
                                     organId: "",
                                     type: 4,
-                                    catId: "60733431",
+                                    catId: "60733601",
                                     action:"list",
                                     keyWords: keyWords,
                                     result : "暂无相关信息",
@@ -2537,7 +2437,7 @@
                                 length : "80",
                                 organId: "6629711",
                                 type: "4",
-                                catId: "60733431",
+                                catId: "60733601",
                                 cId : "",
                                 result : "暂无相关信息",
                                 file:"/c2/jh/xxgk/publicInfoList_newest_xx"
@@ -2547,7 +2447,7 @@
                         });
                                     }, {
                     currPage: (0+1),
-                    pageCount:5,
+                    pageCount:6,
                     param: "pageSize=15"
                 });
          </script>
@@ -2556,10 +2456,10 @@
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?catId=60733431&action=list&type=4&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?catId=60733601&action=list&type=4&pageIndex=" + pageIndex;
             }, {
         currPage: (0+1),
-        pageCount:(5 + 0),
+        pageCount:(6 + 0),
         param: "pageSize=15"
     });
 
@@ -2572,7 +2472,7 @@
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60733431";
+        var catId = "60733601";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
