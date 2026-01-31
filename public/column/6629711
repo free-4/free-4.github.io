@@ -11,13 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="依申请公开" name="ColumnName"/>
-   <meta content="依申请公开" name="ColumnType"/>
-   <meta content="政府信息公开依申请公开" name="ColumnDescription"/>
-   <meta content="政府信息公开申请、依申请公开" name="ColumnKeywords"/>
+   <meta content="重大决策、重要政策及重点工作执行情况" name="ColumnName"/>
+   <meta content="信息公开目录" name="ColumnType"/>
+   <meta content="重大决策、重要政策及重点工作执行情况" name="ColumnDescription"/>
+   <meta content="重大决策、重要政策及重点工作执行情况" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:20:15" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -271,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="$catId"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60776671"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -348,9 +348,1767 @@
       </script>
       <div class="xxgk_lmbox clearfix">
        <!--左侧-->
+       <style>
+        .gklm_search.tree_search {position: relative;width: 90% !important;float: none;margin: 0 auto;top: -5px;right: 0;padding: 0;}
+       </style>
+       <div class="fl xxgk_left">
+        <div class="xxgk_lmlink">
+         <dl class="num0 lmzc-tab lmlink-tab subNav" data-index="0" id="tczc">
+          <a href="javascript:void(0)">
+           <span class="ico">
+           </span>
+           <span class="tit">
+            政  策
+           </span>
+          </a>
+         </dl>
+         <div class="xxgktreeconlm navContent childcont">
+          <h3 class="addheight">
+           <em>
+           </em>
+           <a href="http://xzfg.moj.gov.cn/search2.html" target="_blank">
+            行政法规
+           </a>
+          </h3>
+          <h3 class="addheight addh active addheight3">
+           <em>
+           </em>
+           按公文种类分类
+          </h3>
+          <div class="xxgk_zclist gwzl" style="display:block;">
+           <ul>
+            <li>
+             <a href="javascript:void(0)" id="typeSeven" onclick="fp(7, this)">
+              规范性文件
+             </a>
+            </li>
+            <li>
+             <a href="javascript:void(0)" id="typeSix" onclick="fp(6, this)">
+              其他文件
+             </a>
+            </li>
+           </ul>
+          </div>
+          <h3 class="addheight">
+           <em>
+           </em>
+           <a href="javascript:void(0)" onclick="fn4('60733431',this)">
+            行政规范性文件
+           </a>
+          </h3>
+         </div>
+         <!--乡镇-->
+         <dl class="num1 subNav" data-index="1">
+          <a href="/public/column/6629711">
+           <span class="ico">
+           </span>
+           <span class="tit">
+            政府信息
+            <br/>
+            公开指南
+           </span>
+          </a>
+         </dl>
+         <dl class="num2 subNav" data-index="2">
+          <a href="/public/column/6629711">
+           <span class="ico">
+           </span>
+           <span class="tit">
+            政府信息
+            <br/>
+            公开制度
+           </span>
+          </a>
+         </dl>
+         <dl class="num3 lmlink-tab subNav" data-index="3">
+          <a href="javascript:void(0)">
+           <span class="ico">
+           </span>
+           <span class="tit">
+            法定主动
+            <br/>
+            公开内容
+           </span>
+          </a>
+         </dl>
+         <div class="xxgktreecon childcont">
+          <div class="gklm_search tree_search wza-dn">
+           <ul class="clearfix">
+            <li class="ss2">
+             <input id="catalogName" maxlength="20" name="catalogName" placeholder="目录搜索" type="text"/>
+            </li>
+            <li class="ss1">
+             <input class="cxbtn" onclick="searchTree();" type="button" value="检索"/>
+            </li>
+           </ul>
+          </div>
+          <div class="wgk_xxknr">
+           <ul class="hide ztree" id="organ_catalog_tree2">
+           </ul>
+           <ul class="ztree" id="organ_catalog_tree">
+           </ul>
+           <p class="nb_pic dn" id="noData">
+            未查询到目录，请重新搜索
+           </p>
+          </div>
+         </div>
+         <dl class="num4 lmlink-tab subNav" data-index="4">
+          <a href="javascript:void(0)">
+           <span class="ico">
+           </span>
+           <span class="tit">
+            政府信息
+            <br/>
+            公开年报
+           </span>
+          </a>
+         </dl>
+         <div class="xxgktreeconlm navContent childcont" id="nianbao_div">
+          <ul id="report_year_ul">
+          </ul>
+         </div>
+         <dl class="num5 subNav" data-index="5">
+          <a href="/public/column/6629711">
+           <span class="ico">
+           </span>
+           <span class="tit">
+            依申请公开
+           </span>
+          </a>
+         </dl>
+         <!--<dl class="num6 subNav" data-index="7">
+                <a href="/public/6/151237071.html"><span class="ico"></span><span class="tit">政府公报</span></a>
+            </dl>-->
+         <dl class="num9 subNav" data-index="8">
+          <a href="/content/column/22964151">
+           <span class="ico">
+           </span>
+           <span class="tit">
+            专题专栏
+           </span>
+          </a>
+         </dl>
+         <dl class="num7 subNav" data-index="6">
+          <a href="/public/column/6629711">
+           <span class="ico">
+           </span>
+           <span class="tit">
+            部门乡镇
+            <br/>
+            平台链接
+           </span>
+          </a>
+         </dl>
+        </div>
+       </div>
+       <script id="ruleTpl" type="template">
+        <div class="gzk_con wza-region_list" role="list" aria-label="行政规范性文件库">
+        <div class="gzk_tel2">
+            <ul class="clearfix">
+                <li class="num1 active" data-toggle="tab" data-id="#tab_0_0" tabindex="0">现行有效文件<i>（<span class="allNum"></span>）</i>件
+                    <span class="bgline"></span>
+                </li>
+                <li data-toggle="tab" data-id="#tab_0_1" tabindex="0">废止失效文件<i>（<span class="sxNum"></span>）</i>件
+                    <span class="bgline"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="pageTPList">
+            <div class="page-list hide active" id="tab_0_0">
+            </div>
+            <div class="page-list hide" id="tab_0_1">
+            </div>
+        </div>
+    </div>
+       </script>
+       <script>
+        $(document).ready(function () {
+        //加载政策下拉
+        var organId = '6629711';
+        //初始化政策
+        //不同单位展示的内容不同
+        var organPolicyMap = {
+            6629711:{organId: 6629711, organName: '萧县人民政府', policykeys: '萧政、萧政秘、萧政办、萧政办秘', catIds:'39260305,39260348,39260397'}
+        };
+
+        if (organPolicyMap[organId]) {
+            var currentPolicyKeys = organPolicyMap[organId].policykeys.split('、');
+            var currentCatIds = organPolicyMap[organId].catIds;
+            var htmlStr = '';
+            var fileNum = Ls.url.get('fileNum') || '';
+            for (var i in currentPolicyKeys) {
+                var currentClass = '';
+                var key = currentPolicyKeys[i];
+                if (key == fileNum) {
+                    currentClass = ' style="color: #2c66a5;" ';
+                }
+                var filterKey = key + '办,' + key + '秘';
+                htmlStr += '<li><a href="/public/column/' + organId + '?type=6&action=list&fileNum=' + encodeURIComponent(key) + '&filterFileNum=' + encodeURIComponent(filterKey) +
+                        '&catIds=' + currentCatIds + '" ' + currentClass + '>' + key + '</a></li>';
+            }
+            //$('.xxgktreeconlm>ul').html(htmlStr);
+        }
+        var catId = Ls.url.get('catId');
+        $('#navIndex' + catId).addClass('active');
+
+        $('#search_keywords').val(Ls.url.get('keyWords') || '');
+        $('.addh').click(function() {
+            $(this).toggleClass('active');
+            $(this).next('.xxgk_zclist').slideToggle();
+            $(this).siblings('.addh').removeClass('active');
+            $(this).siblings('.addh').next('.xxgk_zclist').slideUp();
+        });
+        fNum(1);
+        fNum(2);
+        fNum(3);
+        fNum(4);
+        fNum(5);
+        fNum(6);
+        fNum(7);
+        fNum(8);
+    });
+
+    function setSelectNode() {
+        var id = Ls.url.get('catId'),
+                node = _organTree.getNodeByParam('id', id, null);
+        if (!node) {
+            return
+        }
+        _organTree.selectNode(node);
+        if (node.isParent) {
+            _organTree.expandNode(node, true, true, true);
+        } else {
+            _organTree.expandNode(node.getParentNode(), true, true, true);
+        }
+        setTimeout(function () {
+            var data = [];
+            if (node.isParent) {
+                data = node.children;
+            } else {
+                // data = node.getParentNode().children;
+            }
+            $.each(data, function (i, el) {
+                $('#xxgk_lmcon .gkbox[data-id="'+ el.id +'"]').show();
+            });
+        }, 500)
+    }
+       </script>
+       <script>
+        // 左侧菜单定位
+    function setActiveClass() {
+        var navIndex = Ls.url.get('nav') || '3',
+                subNav = $('.subNav[data-index="'+ navIndex +'"]');
+
+        $('.subNav').removeClass('active');
+        subNav.addClass('active');
+
+        if (navIndex === '0' || navIndex === '3' || navIndex === '4') {
+            subNav.next().show();
+        }
+    }
+
+    $(function () {
+        setActiveClass();
+
+        //加载政府信息公开目录的uri地址
+        $("#searchNew").click(function () {
+            var str = $("#search").val();
+            var node = document.getElementById("ftr0");
+            var nodes = node.getElementsByClassName("node_name");
+            var arr = Array.prototype.slice.call(nodes);
+            for(var i = 0;i<arr.length;i++){
+                if(arr[i].innerText.startsWith(str) || arr[i].innerText.endsWith(str)){
+                    nodes[i].click();
+                    return false;
+                }
+            }
+        });
+
+        $('.subNav').click(function () {
+            $('.childcont').hide();
+            $('.subNav').not($(this)).removeClass('active');
+            if (!$(this).hasClass('active')) {
+                $(this).next('.childcont').slideToggle();
+            }
+            $(this).toggleClass('active');
+        });
+    })
+
+
+    function fp(type, self) {
+        $(".xxgk-search-box").show();
+        var catIds = "";
+        var fileNum = "";
+        var filterFileNum = "";
+        var keyWords = "";
+        var fromCode = "";
+        if(1 == type){
+            catIds = "60733431,60733441,60733451";
+            fileNum = "萧政发";
+        }else if(2 ==type){
+            catIds = "60733431,60733441,60733451";
+            fileNum = "萧政秘";
+            filterFileNum = "萧政秘办%2C萧政秘秘";
+        }else if(3 ==type){
+            catIds = "60733431,60733441,60733451";
+            fileNum = "萧政办发";
+        }else if(4 ==type){
+            catIds = "360733431,60733441,60733451";
+            fileNum = "萧政办秘";
+            filterFileNum = "萧政办秘办%2C萧政办秘秘";
+        }else if(5 ==type){
+            catIds = "60733431,60733441,60733451";
+            fileNum = "萧政办明电";
+        }else if(6 == type){
+            catIds = "60733451";
+            <!--fileNum = "其他文件";-->
+        }else if(7==type){
+            catIds="60733431";
+        }
+        $(self).parent().addClass('active').siblings().removeClass('active');
+        var organId = "6629711";
+        Ls.ajax({
+            dataType: 'html',
+            data: {
+                labelName: 'publicInfoList',
+                siteId: 4697420,
+                catIds: catIds,
+                fileNum: fileNum,
+                filterFileNum: filterFileNum,
+                organId: 6629711,
+                pageSize: 15,
+                type: 6,
+                keyWords:keyWords,
+                fromCode:fromCode,
+                length:23,
+                action: 'list',
+                dateFormat: 'yyyy年MM月dd日',
+                file: '/c2/jh/xxgk/publicInfoList_newest_xx'
+            },
+            url: '/site/label/8888'
+        }).done(function(html) {
+            $('#xxgk_lmcon').html(html);
+        });
+    }
+
+    function fn(cId, self) {
+        $(".xxgk-search-box").show();
+        $(self).parent().addClass('active').siblings().removeClass('active');
+        var organId = "6629711";
+        Ls.ajax({
+            dataType: 'html',
+            data: {
+                labelName: 'publicInfoList',
+                siteId: 4697420,
+                organId: 6629711,
+                pageSize: 15,
+                cId: cId,
+                type: 4,
+                dateFormat: 'yyyy年MM月dd日',
+                length:23,
+                file: '/c2/jh/xxgk/publicInfoList_newest_xx_zc'
+            },
+            url: '/site/label/8888'
+        }).done(function(html) {
+            $('#xxgk_lmcon').html(html);
+        });
+    }
+
+    function fn4(catIds, self) {
+        $('#xxgk_lmcon').html(Ls.template('ruleTpl'));
+        Ls.ajax({
+            dataType: "html",
+            async: false,
+            data: {
+                labelName: 'publicInfoList',
+                siteId: 4697420,
+                catId: catIds,
+                organId: 6629711,
+                pageSize: 15,
+                type: 4,
+                action : 'list',
+                dateFormat: "yyyy年MM月dd日",
+                file: "/c2/jh/regulatingDocumentLibrary_list_xx",
+                publicDivIds: "tab_0_0",
+            },
+            url: '/site/label/8888'
+        }).done(function (html) {
+            $('#tab_0_0').html(html);
+        })
+
+        Ls.ajax({
+            dataType: "html",
+            async: false,
+            data: {
+                labelName: 'publicInfoList',
+                siteId: 4697420,
+                catId: 60754541,
+                organId: 6629711,
+                pageSize: 15,
+                type: 4,
+                action : 'list',
+                dateFormat: "yyyy年MM月dd日",
+                file: "/c2/jh/regulatingDocumentLibrary_list_xx",
+                publicDivIds: "tab_0_1",
+            },
+            url: '/site/label/8888'
+        }).done(function (html) {
+            $('#tab_0_1').html(html);
+        })
+    }
+
+    function fNum(type) {
+        $(".xxgk-search-box").show();
+        var catIds = "";
+        var fileNum = "";
+        var filterFileNum = "";
+        var keyWords = "";
+        var fromCode = "";
+        if(1 == type){
+            catIds = "60733431,60733441,60733451";
+            fileNum = "萧政发";
+        }else if(2 ==type){
+            catIds = "60733431,60733441,60733451";
+            fileNum = "萧政秘";
+            filterFileNum = "萧政秘办%2C萧政秘秘";
+        }else if(3 ==type){
+            catIds = "60733431,60733441,60733451";
+            fileNum = "萧政办发";
+        }else if(4 ==type){
+            catIds = "60733431,60733441,60733451";
+            fileNum = "萧政办秘";
+            filterFileNum = "萧政办秘办%2C萧政办秘秘";
+        }else if(5 ==type){
+            catIds = "60733431,60733441,60733451";
+            fileNum = "萧政办明电";
+        }else if(6 == type){
+            catIds = "60733451";
+        }else if(7==type){
+            catIds="60733431";
+        }
+
+        var organId = "6629711";
+        Ls.ajax({
+            dataType: 'html',
+            data: {
+                labelName: 'publicInfoList',
+                siteId: 4697420,
+                catIds: catIds,
+                fileNum: fileNum,
+                filterFileNum: filterFileNum,
+                organId: 6629711,
+                pageSize: 15,
+                type: 6,
+                keyWords:keyWords,
+                fromCode:fromCode,
+                length:23,
+                action: 'list',
+                dateFormat: 'yyyy年MM月dd日',
+                file: '/c2/jh/xxgk/publicInfoList_newest_count'
+            },
+            url: '/site/label/8888'
+        }).done(function(html) {
+            if(type==1){
+                $('#typeOne').html('萧政发'+'('+html+')')
+            }
+            if(type==2){
+                $('#typeTwo').html('萧政秘'+'('+html+')')
+            }
+            if(type==3){
+                $('#typeThree').html('萧政办发'+'('+html+')')
+            }
+            if(type==4){
+                $('#typeFour').html('萧政办秘'+'('+html+')')
+            }
+            if(type==5){
+                $('#typeFive').html('萧政办明电'+'('+html+')')
+            }
+            if(type==6){
+                $('#typeSix').html('其他文件'+'('+html+')')
+            }
+            if(type==7){
+                $('#typeSeven').html('规范性文件'+'('+html+')')
+            }
+        });
+    }
+
+
+    function fbm(catId, self) {
+        $(".xxgk-search-box").show();
+        $(self).parent().addClass('active').siblings().removeClass('active');
+        var organId = "6629711";
+        Ls.ajax({
+            dataType: 'html',
+            data: {
+                labelName: 'publicInfoList',
+                siteId: 4697420,
+                organId: organId,
+                pageSize: 15,
+                catId: catId,
+                type: 4,
+                dateFormat: 'yyyy年MM月dd日',
+                length:23,
+                file: '/c2/jh/xxgk/publicInfoList_newest_xx_zc'
+            },
+            url: '/site/label/8888'
+        }).done(function(html) {
+            $('#xxgk_lmcon').html(html);
+        });
+    }
+       </script>
+       <script id="xxgk_list_tpl" type="template">
+        <div class="gklm_search_wrap" role="navigation" aria-label="目录检索">
+        <div class="gklm_name"><?=Ls.filterHTMLTag(name)?></div>
+        <div class="gklm_search" id="keywordInCatalog_div">
+            <ul class="clearfix">
+                <li class="ss2">
+                    <input name="text" type="text" maxlength="50" placeholder="本目录内容检索">
+                </li>
+                <li class="ss1">
+                    <input class="cxbtn directory-search2" value="检索" type="button">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="inner-list">
+        <div class="page-list">
+            <div class="xxgk_nav_con">
+                <ul class="clearfix xxgk_nav_list">
+                    <? include('child_list_tpl', {data: data}) ?>
+                </ul>
+            </div>
+            <div id="page_public_info" class="pagination"></div>
+        </div>
+        <div class="xxgk-tab-content page-search-list hide"></div>
+    </div>
+       </script>
+       <script id="child_list_tpl" type="template">
+        <? for(var i=0,l=data.length; i<l; i++){ ?>
+    <?
+        var el = data[i];
+        var cls = i%2==0 ? 'even' : 'odd';
+        var index = el.index || (i + 1);
+    ?>
+    <li class="clearfix">
+        <span class="xh-td"><?=index?></span>
+        <a href="<?=el.link?>" class="title" target="_blank" title="<?=Ls.filterHTMLTag(el.title)?>">
+            <?if(el.isTop == 1){?>
+                        <?}?>
+            <?==el.title?>
+        </a>
+        <?==el.relInfo?>
+        <? include('filePathTpl', {el: el}) ?>
+        <span class="date"><?=Ls.dateFormat(el.publishDate, 'yyyy-MM-dd')?></span>
+    </li>
+    <?}?>
+       </script>
+       <script id="filePathTpl" type="template">
+        <?
+        var catalogType = '解读';
+        var filePath = el.filePath ? el.filePath.split(',') : [];
+        if(el.attribute == "ATTRIBUTE_FEEDBACK") {
+            catalogType = '征集';
+        }else if(el.attribute == "ATTRIBUTE_COLLECT") {
+            catalogType = '反馈';
+        }
+    ?>
+    <?if(filePath.length){?>
+    <? for(var i=0,l=filePath.length; i<l; i++){ ?>
+    <?
+        var url = filePath[i];
+        var index = l > 1  ? (i + 1) : '';
+    var name = catalogType + index;
+    ?>
+    <span class="split">|</span>
+    <a class="a" href="<?=url?>" target="_blank"><?=name?></a>
+    <?}?>
+    <?}?>
+       </script>
+       <script id="xxgk_list_tpl_2025" type="template">
+        <div class="xxgknew-lmlist clearfix ">
+        <div class="xxgk-one-title"><span class="xxgk-tit"><?=name?></span></div>
+
+        <? for(var i=0,l=data.length; i<l; i++){ ?>
+        <?
+            var el = data[i];
+        ?>
+
+        <?if(el.redirectLink){?>
+
+        <div class="xxgk-mlbox">
+            <div class="xxgk-two-tab xxgk-two-tab-all clearfix">
+                <ul class="tab">
+                    <li class="active">
+                        <a href="<?=el.link?>" class="xxgk-tit" target="_blank"><?=el.name?></a><span class="ico ico-link"></span>
+                    </li>
+                </ul>
+                <span class="tips-font"><?=el.name?>为跳转链接</span>
+            </div>
+        </div>
+
+        <?}else{?>
+
+        <? include('notLinkTpl', el) ?>
+
+        <?}?>
+
+        <?}?>
+    </div>
+       </script>
+       <script id="notLinkTpl" type="template">
+        <?
+        var url = '/public/column/6629711?type=4&action=list&catId=' + catId + '&nav=3';
+    ?>
+    <?if(childDataList){?>
+        <div class="xxgk-mlbox">
+        <div class="xxgk-two-pos">
+            <div class="xxgk-two-tab clearfix">
+                <ul class="tab">
+                    <li class="active">
+                        <a href="<?=url?>" data-id="<?=catId?>" class="xxgk-tit xxgk-tit-cat"><?=name?></a><span class="ico ico-up"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="gklm_search tree_search wza-dn">
+                <ul class="clearfix">
+                    <li class="ss2">
+                        <input name="text" type="text" maxlength="50" placeholder="本目录内容检索">
+                    </li>
+                    <li class="ss1"><input class="cxbtn directory-search" data-id="<?=catId?>" value="检索" type="button"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="xxgk-tab-content list-box" data-id="<?=catId?>">
+            <div class="page-list">
+                <div class="m-scroll xxgk-three-tab" data-setting="{ autoScroll:false}">
+                    <span class="prev"></span>
+                    <div class="scroll-wrap">
+                        <ul class="scroll-body">
+                            <? include('xxgk-three-tab-nav-tpl', {data: childDataList}) ?>
+                        </ul>
+                    </div>
+                    <span class="next"></span>
+                </div>
+                <div class="xxgk-tab-content">
+                    <? include('xxgk-three-tab-content-tpl', {data: childDataList}) ?>
+                </div>
+            </div>
+            <div class="page-search-list hide"></div>
+        </div>
+    </div>
+
+    <?}else{?>
+
+    <div class="xxgk-mlbox">
+        <div class="xxgk-two-pos">
+            <div class="xxgk-two-tab clearfix">
+                <ul class="tab">
+                    <li class="active">
+                        <a href="<?=url?>" data-id="<?=catId?>" class="xxgk-tit xxgk-tit-cat"><?=name?></a><span class="ico ico-up"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="gklm_search tree_search wza-dn">
+                <ul class="clearfix">
+                    <li class="ss2">
+                        <input name="text" type="text" maxlength="50" placeholder="本目录内容检索">
+                    </li>
+                    <li class="ss1"><input class="cxbtn directory-search" data-id="<?=catId?>" value="检索" type="button"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="xxgk-tab-content list-box" data-id="<?=catId?>">
+            <div class="page-list">
+                <? include('xxgk_table_list_tpl', {data: childPublicContentList}) ?>
+                <div class="xxgk-more"><a href="javascript:void(0)" data-id="<?=catId?>">更多</a></div>
+            </div>
+            <div class="page-search-list hide"></div>
+        </div>
+    </div>
+
+    <?}?>
+       </script>
+       <script id="xxgk_table_list_tpl" type="template">
+        <table class="xxgk-table-list">
+        <tbody>
+        <? for(var i=0,l=data.length; i<l; i++){ ?>
+        <?
+            var el = data[i];
+            var cls = i%2==0 ? 'even' : 'odd';
+            var index = el.index || (i + 1);
+        ?>
+        <tr class="<?=cls?> mc clearfix">
+            <td class="xh-td"><?=index?></td>
+            <td class="title-td">
+                <a href="<?=el.link?>" class="title"
+                   title="<?=Ls.filterHTMLTag(el.title)?>"
+                   target="_blank"><?==el.title?></a>
+
+                <p class="gl">
+                    <?==el.relInfo?>
+                    <? include('filePathTpl', {el: el}) ?>
+                </p>
+            </td>
+            <td class="date-td"><?=Ls.dateFormat(el.publishDate, 'yyyy-MM-dd')?></td>
+        </tr>
+
+        <?}?>
+        </tbody>
+    </table>
+       </script>
+       <script id="xxgk-three-tab-nav-tpl" type="template">
+        <? for(var i=0,l=data.length; i<l; i++){ ?>
+    <?
+        var el = data[i];
+        var cls = i==0 ? 'active' : '';
+        var id = 'three_tab_' + el.catId;
+        var url = '/public/column/6629711?type=4&action=list&catId=' + el.catId + '&nav=3';
+    ?>
+    <li class="<?=cls?>">
+        <?if(el.redirectLink){?>
+        <a data-id="#<?=id?>" data-toggle="mouse" href="<?=el.link?>" target="_blank" title="<?=el.name?>"><?=el.name?></a>
+        <?}else{?>
+        <a href="javascript:void(0)"
+           class="three-nav-a"
+           data-id="#<?=id?>"
+           data-catid="<?=el.catId?>"
+           data-url="<?=url?>"
+           data-toggle="mouse"><?=el.name?></a>
+        <?}?>
+    </li>
+    <?}?>
+       </script>
+       <script id="xxgk-three-tab-content-tpl" type="template">
+        <? for(var i=0,l=data.length; i<l; i++){ ?>
+    <?
+        var el = data[i];
+        var cls = i==0 ? 'active' : '';
+        var id = 'three_tab_' + el.catId;
+        var url = '/public/column/6629711?type=4&action=list&catId=' + el.catId + '&nav=3';
+    ?>
+    <div id="<?=id?>" class="hide <?=cls?> list-box" data-id="<?=el.catId?>">
+        <?if(el.redirectLink){?>
+        <span class="tips-font"><?=el.name?>为跳转链接</span>
+        <?}else{?>
+        <div class="page-list">
+            <? include('xxgk_table_list_tpl', {data: el.childPublicContentList}) ?>
+            <div class="xxgk-more"><a href="javascript:void(0)" data-id="<?=el.catId?>">更多</a></div>
+        </div>
+        <?}?>
+    </div>
+
+    <?}?>
+       </script>
+       <script id="xxgk_table_list_tpl2" type="template">
+        <?if(data && data.length){?>
+
+    <table class="xxgk-table-list">
+        <tbody>
+        <? for(var i=0,l=data.length; i<l; i++){ ?>
+        <?
+            var el = data[i];
+            var cls = i%2==0 ? 'even' : 'odd';
+            var index = el.index || (i + 1);
+        ?>
+        <tr class="<?=cls?> mc clearfix">
+            <td class="xh-td"><?=index?></td>
+            <td class="title-td">
+                <a href="<?=el.link?>" class="title"
+                   title="<?=Ls.filterHTMLTag(el.title)?>"
+                   target="_blank"><?==el.title?></a>
+
+                <p class="gl">
+                    <?==el.relInfo?>
+                    <? include('filePathTpl', {el: el}) ?>
+                </p>
+            </td>
+            <td class="date-td"><?=Ls.dateFormat(el.publishDate, 'yyyy-MM-dd')?></td>
+        </tr>
+
+        <?}?>
+        </tbody>
+    </table>
+
+    <div id="page_<?=catId?>" class="pagination"></div>
+
+    <?}else{?>
+
+    <div class="ui-empty-skin1"></div>
+
+    <?}?>
+       </script>
+       <script id="xxgk_table_list_tpl3" type="template">
+        <div class="tabqh">本栏目下为您找到：“<span style="color: #ff0000;"><?=keyWords?></span>”相关结果<?=total?>条。<a href="javascript:void(0)" class="danhui">点此返回</a></div>
+    <?if(data && data.length){?>
+
+    <table class="xxgk-table-list">
+        <tbody>
+        <? for(var i=0,l=data.length; i<l; i++){ ?>
+        <?
+            var el = data[i];
+            var cls = i%2==0 ? 'even' : 'odd';
+            var index = el.index || (i + 1);
+        ?>
+        <tr class="<?=cls?> mc clearfix">
+            <td class="xh-td"><?=index?></td>
+            <td class="title-td">
+                <a href="<?=el.link?>" class="title"
+                   title="<?=Ls.filterHTMLTag(el.title)?>"
+                   target="_blank"><?==el.title?></a>
+
+                <p class="gl">
+                    <?==el.relInfo?>
+                    <? include('filePathTpl', {el: el}) ?>
+                </p>
+            </td>
+            <td class="date-td"><?=Ls.dateFormat(el.publishDate, 'yyyy-MM-dd')?></td>
+        </tr>
+
+        <?}?>
+        </tbody>
+    </table>
+
+    <div id="search_page_<?=catIds?>" class="pagination"></div>
+
+    <?}else{?>
+
+    <div class="ui-empty-skin1"></div>
+
+    <?}?>
+       </script>
+       <script id="xxgk_table_list_tpl4" type="template">
+        <div class="tabqh">本栏目下为您找到：“<span style="color: #ff0000;"><?=keyWords?></span>”相关结果<?=total?>条。<a href="javascript:void(0)" class="danhui">点此返回</a></div>
+    <?if(data && data.length){?>
+
+    <table class="xxgk-table-list">
+        <tbody>
+        <? for(var i=0,l=data.length; i<l; i++){ ?>
+        <?
+            var el = data[i];
+            var cls = i%2==0 ? 'even' : 'odd';
+            var index = el.index || (i + 1);
+        ?>
+        <tr class="<?=cls?> mc clearfix">
+            <td class="xh-td"><?=index?></td>
+            <td class="title-td">
+                <a href="<?=el.link?>" class="title"
+                   title="<?=Ls.filterHTMLTag(el.title)?>"
+                   target="_blank"><?==el.title?></a>
+
+                <p class="gl">
+                    <?==el.relInfo?>
+                    <? include('filePathTpl', {el: el}) ?>
+                </p>
+            </td>
+            <td class="date-td"><?=Ls.dateFormat(el.publishDate, 'yyyy-MM-dd')?></td>
+        </tr>
+
+        <?}?>
+        </tbody>
+    </table>
+
+    <div id="search_page_<?=catIds?>" class="pagination"></div>
+
+    <?}else{?>
+
+    <div class="ui-empty-skin1"></div>
+
+    <?}?>
+       </script>
+       <script id="zDTpl" type="template">
+        <div class="clearfix xxgk-zdly-box">
+        <div class="xxgk-zdly-title">
+            <span class="tit"><i class="il"></i>重点领域信息公开<i class="ir"></i></span>
+        </div>
+        <div class="xxgk-zdly-list">
+            <ul class="clearfix">
+                <? for(var i=0,l=data.length; i<l; i++){ ?>
+                <?
+                var el = data[i];
+                var url = el.link || el.uri;
+            ?>
+                <li><a href="<?=url?>" title="<?=el.name?>" target="_blank"><?=el.name?></a></li>
+                <?}?>
+            </ul>
+        </div>
+    </div>
+       </script>
+       <script>
+        var _organTree = null;
+    var _organTree2 = null;
+
+    function PublicTree() {
+        var me = this;
+        me.organId = '6629711';
+        me.prefix = '';
+        me.actions = {
+            label: me.prefix + '/site/label/8888',
+        };
+
+        me.dom = {
+            xxgk_lmright: $('.xxgk_lmright')
+        };
+
+        me.ztreeData = catalogs[me.organId];
+        me.ztreeData2 = catalogs[me.organId];
+        me.refresh = true;
+        me.hideIds = [];
+        me.currNode = null;
+        me.currCatId = Ls.url.get('catId');
+        me.query = Ls.url.parseQuery();
+        me.moreParams = {
+            labelName: "publicInfoList",
+            siteId: '4697420',
+            organId: me.organId,
+            pageSize: "10",
+            pageIndex: "1",
+            isDate: "true",
+            dateFormat: "yyyy-MM-dd",
+            length: "50",
+            type: "4",
+            action: "list",
+            result: "",
+            isJson: "true",
+            isSetValue: "true",
+            queryDetail: "true",
+            catId: ""
+        };
+        me.listParams = {
+            labelName: "publicInfoList",
+            siteId: '4697420',
+            organId: me.organId,
+            pageSize: "20",
+            pageIndex: "1",
+            isDate: "true",
+            dateFormat: "yyyy-MM-dd",
+            length: "50",
+            type: "4",
+            action: "list",
+            result: "",
+            isJson: "true",
+            keyWords: "",
+            isSetValue: "true",
+            queryDetail: "true",
+            catIds: ""
+        };
+        me.searchParams = {
+            labelName: "publicInfoList",
+            siteId: '4697420',
+            organId: me.organId,
+            pageSize: "10",
+            pageIndex: "1",
+            isDate: "true",
+            dateFormat: "yyyy-MM-dd",
+            length: "50",
+            type: "4",
+            action: "list",
+            result: "",
+            isJson: "true",
+            keyWords: "",
+            isSetValue: "true",
+            queryDetail: "true",
+            catIds: ""
+        };
+
+        me.init();
+    }
+
+    $.extend(PublicTree.prototype, {
+        bindEvt: function () {
+            var me = this;
+            $(document).on('click', '#gk-navigation a', function (e) {
+                // 位置
+                e.preventDefault();
+                var id = $(this).data('catid');
+                var href = $(this).attr('href');
+
+                var node = _organTree2.getNodeByParam('id', id, null);
+                if (node) {
+                    if (node.link) {
+                        window.open(node.link);
+                    } else {
+                        me.currNode = node;
+                        me.open();
+                    }
+                } else if (href) {
+                    location.href = href;
+                }
+            }).on('click', '.xxgk-mlbox .ico-link', function (e) {
+                // 二级栏目链接图标
+                var url = $(this).prev().attr('href');
+                if (url) {
+                    window.open(url);
+                }
+            }).on('click', '.xxgk-mlbox .ico:not(".ico-link")', function (e) {
+                // 二级栏目箭头
+                var mlbox = $(this).closest('.xxgk-mlbox');
+                var content = mlbox.find('.xxgk-tab-content');
+
+                if ($(this).hasClass('ico-up')) {
+                    $(this).removeClass('ico-up').addClass('ico-down');
+                } else {
+                    $(this).removeClass('ico-down').addClass('ico-up');
+                }
+
+                content.slideToggle();
+            }).on('click', '.xxgk-tit-cat, .three-nav-a', function (e) {
+                // 二级栏目名称
+                if (!me.refresh) {
+                    e.preventDefault();
+                    var id = $(this).data('id');
+                    var href = $(this).attr('href');
+
+                    //定制转链走
+                    // if (id === 20931966) {
+                    //     window.open('https://www.sixian.gov.cn/site/tpl/2106787551');
+                    //     return
+                    // }
+
+                    if ($(this).hasClass('three-nav-a')) {
+                        id = $(this).data('catid');
+                        href = $(this).data('url');
+                    }
+
+                    var node = _organTree2.getNodeByParam('id', id, null);
+                    if (node) {
+                        if (node.link) {
+                            window.open(node.link);
+                        } else {
+                            me.currNode = node;
+                            me.open();
+                        }
+                    } else if (href) {
+                        location.href = href;
+                    }
+                }
+            }).on('click', '.xxgk-more a', function (e) {
+                // 查看更多显示分页
+                var id = $(this).data('id');
+                //定制转链走
+                // if (id === 20931966) {
+                //     window.open('https://www.lingbi.gov.cn/site/tpl/2106787551');
+                //     return
+                // }
+                me.moreParams.catId = id;
+                me.moreParams.pageIndex = 1;
+                me.getMoreList();
+            }).on("shown.ls.tab", '.xxgk-mlbox [data-toggle]', function (e) {
+                var data = $(this).data();
+                // console.log('data', data);
+                me.moreParams.catId = data.catid;
+            }).on('click', '.directory-search', function (e) {
+                // 本目录内容检索
+                var keyWords = $.trim($(this).closest('.gklm_search').find('[name="text"]').val());
+                var res = /^[0-9a-zA-z\u0391-\uFFE5\s\[\]\(\),.《》]+$/;
+
+                if (!keyWords) {
+                    Ls.tipsInfo('请输入搜索关键字');
+                    return;
+                }
+                if (!res.test(keyWords)) {
+                    Ls.tipsInfo('关键字不允许含有特殊字符');
+                    return;
+                }
+
+                var catId = $(this).data('id');
+                var catIds = [];
+                var node = _organTree2.getNodeByParam('id', catId, null);
+                if (node) {
+                    $.each(_organTree2.transformToArray(node), function (i, v) {
+                        catIds.push(v.id);
+                    })
+                }
+
+                me.searchParams._list = 0;
+                me.searchParams.catIds = catId;
+                me.searchParams.keyWords = keyWords;
+                me.searchParams.pageIndex = 1;
+                me.getSearchList();
+            }).on('click', '.directory-search2', function (e) {
+                // 内页本目录内容检索
+                var keyWords = $.trim($(this).closest('.gklm_search_wrap').find('[name="text"]').val());
+                var res = /^[0-9a-zA-z\u0391-\uFFE5\s\[\]\(\),.《》]+$/;
+
+                if (!keyWords) {
+                    Ls.tipsInfo('请输入搜索关键字');
+                    return;
+                }
+                if (!res.test(keyWords)) {
+                    Ls.tipsInfo('关键字不允许含有特殊字符');
+                    return;
+                }
+
+                var catId = me.currNode ? me.currNode.id : me.currCatId;
+                var catIds = [];
+                var node = _organTree2.getNodeByParam('id', catId, null);
+                if (node) {
+                    $.each(_organTree2.transformToArray(node), function (i, v) {
+                        catIds.push(v.id);
+                    })
+                }
+
+                me.searchParams._list = 1;
+                me.searchParams.catIds = catId;
+                me.searchParams.keyWords = keyWords;
+                me.searchParams.pageIndex = 1;
+                me.getSearchList();
+            }).on('click', '.danhui', function (e) {
+                $(this).closest('.page-search-list').addClass('hide').siblings().removeClass('hide');
+            }).on('click', '.m-scroll .prev, .m-scroll .next', function (e) {
+                var wrap = $(this).closest('.m-scroll');
+                wrap.find('a[data-toggle]:first').trigger('mouseover');
+            }).on('click', '#qtzcwj', function (e) {
+                // 其他政策文件
+                var id = $(this).data('catid');
+
+                var node = _organTree2.getNodeByParam('id', id, null);
+                if (node) {
+                    if (node.link) {
+                        window.open(node.link);
+                    } else {
+                        me.currNode = node;
+                        me.open();
+                    }
+                }
+            });
+        },
+        validator: function () {
+            var me = this;
+            window.using('validator', function () {
+                me.Form$.validator({
+                    valid: function (form) {
+                        var params = me.Form$.serializeObject();
+                        me.params = $.extend({}, me.params, params);
+
+                        me.getList();
+                    }
+                });
+            });
+        },
+        // 目录树数据处理：过滤、隐藏操作等
+        preprocessData: function () {
+            var me = this;
+
+            // 隐藏的栏目
+            var ids = [];
+            $.each(me.ztreeData, function (i, el) {
+                if (el.isWebShow == false || el.isShow == false || el.staticTreeHide == 1) {
+                    el.isHidden = true;
+                    // ids.push(el.id);
+                }
+            });
+            me.hideIds = ids;
+
+            me.ztreeData = $.grep(me.ztreeData, function (el) {
+                return ids.indexOf(el.id) === -1;
+            })
+        },
+        // 渲染目录树
+        initTree: function () {
+            var me = this;
+
+            var ztree_settings =  { // 树的默认属性
+                data: {
+                    simpleData: {
+                        idKey: 'id',
+                        pIdKey: 'parentId'
+                    },
+                    key: {
+                        title: 'name'
+                    }
+                },
+                view: {
+                    nameIsHTML: true,
+                    fontCss: function setFontCss(treeId, node) {
+                        var ids = [];
+                        if (ids.indexOf(node.id) > -1 || node.link || (node.isTreeShow === 0 && node.treeLink)) {
+                            var color = '#0e76cd';
+                            var organIds = [];
+                            if (organIds.indexOf(me.organId) > -1) {
+                                color = '#ff0000';
+                            }
+                            return {color:color};
+                        } else {
+                            return {};
+                        }
+                    },
+                    addDiyDom:  function addDiyDom(treeId, node) {
+                        var ids = [];
+                        if (ids.indexOf(node.id) > -1 || node.link || (node.isTreeShow === 0 && node.treeLink)) {
+                            var cls = ''
+                            var organIds = [];
+                            if (organIds.indexOf(me.organId) > -1) {
+                                cls = 'link-icon2';
+                            }
+                            var aObj = $("#" + node.tId + "_a");
+                            aObj.append('<span class="link-icon '+ cls +'"></span>').addClass('is-link');
+                        }
+                    }
+                },
+                callback: {
+                    onClick: function (event, treeId, node) {
+                        $('.gk_container > .xxgk-search-box').removeClass('hide');
+                        me.currNode = _organTree2.getNodeByParam('id', node.id, null);
+                        if (node.link) {
+                            window.open(node.link);
+                            return false;
+                        } else {
+                            me.open();
+                        }
+                    }
+                }
+            };
+
+            _organTree = $.fn.zTree.init($('#organ_catalog_tree'), ztree_settings, me.ztreeData);
+            _organTree2 = $.fn.zTree.init($('#organ_catalog_tree2'), ztree_settings, me.ztreeData2);
+
+
+            $.each(_organTree.getNodes(), function (i, node) {
+                delete node.children;
+                node.isParent = false;
+                _organTree.updateNode(node);
+            })
+
+            me.setSelect();
+            me.fuzzySearch(_organTree);
+        },
+        // 目录树选中
+        setSelect: function () {
+            var me = this;
+            var currCatId = me.currCatId;
+            if (currCatId) {
+                var nodeCat = _organTree.getNodeByParam('id', currCatId, null);
+                if (!nodeCat) {
+                    var pNode = me.findTopLevelParentNode(+currCatId, catalogs[me.organId]);
+                    if (pNode) {
+                        nodeCat = _organTree.getNodeByParam('id', pNode.id, null);
+                    }
+                }
+
+                if (nodeCat) {
+                    _organTree.selectNode(nodeCat, false, true);
+                    setTimeout(function () {
+                        $('html').animate({
+                            scrollTop: ($('.wzy_position').offset().top - 100) + 'px'
+                        }, 800);
+                        if (nodeCat.isParent) {
+                            _organTree.expandNode(nodeCat, true, true, true);
+                        } else {
+                            _organTree.expandNode(nodeCat.getParentNode(), true, true, true);
+                        }
+                        me.setScroll(nodeCat);
+                    }, 500);
+                }
+            }
+
+        },
+        findParentId: function () {
+            var me = this;
+            // 获取所有 id
+            var idMap = {};
+            $.each(me.ztreeData2, function(i, item) {
+                idMap[item.id] = true;
+            });
+
+            // 过滤出一级节点（它们的 parentId 不在 idMap 中且不为 null）
+            var topLevelParentIds = [];
+            $.each(me.ztreeData2, function(i, item) {
+                if (item.parentId != null && !idMap[item.parentId]) {
+                    topLevelParentIds.push(item.parentId);
+                }
+            });
+
+            me.topLevelParentId = topLevelParentIds[0];
+        },
+        // 递归查找父节点
+        findTopLevelParentNode: function (nodeId, nodes) {
+            var me = this;
+            var currentNode = $.grep(nodes, function(node) {
+                return node.id == nodeId;
+            })[0];
+
+            // 循环遍历，直到找到parentId
+            while (currentNode.parentId !== me.topLevelParentId) {
+                currentNode = $.grep(nodes, function(node) {
+                    return node.id === currentNode.parentId;
+                })[0];
+            }
+
+            return currentNode;
+        },
+        // 目录树定位
+        setScroll: function (treeNode) {
+            var treeNodeElement = $("#" + treeNode.tId);
+            var treeContainer = $(".wgk_xxknr");
+            var containerScrollTop = treeContainer.scrollTop();
+            var offsetTop = treeNodeElement.offset().top - treeContainer.offset().top;
+            var scrollDistance = offsetTop + containerScrollTop - 100;
+            treeContainer.animate({ scrollTop: scrollDistance }, 500);
+        },
+        // 目录树搜索
+        fuzzySearch: function (zTreeObj) {
+            var nameKey = zTreeObj.setting.data.key.name;
+            var isHighLight = true;
+            var isExpand = true;
+            zTreeObj.setting.view.nameIsHTML = isHighLight;
+
+            var metaChar = '[\\[\\]\\\\\^\\.\\|\\?\\*\\+\\(\\)]';
+            var rexMeta = new RegExp(metaChar, 'gi');
+
+            function ztreeFilter(zTreeObj, _keywords, callBackFunc) {
+                if (!_keywords) {
+                    _keywords = ''; //default blank for _keywords
+                }
+
+                // function to find the matching node
+                function filterFunc(node) {
+                    if (node && node.oldname && node.oldname.length > 0) {
+                        node[nameKey] = node.oldname; //recover oldname of the node if exist
+                    }
+                    zTreeObj.updateNode(node); //update node to for modifications take effect
+                    if (_keywords.length == 0) {
+                        //return true to show all nodes if the keyword is blank
+                        zTreeObj.showNode(node);
+                        zTreeObj.expandNode(node, isExpand);
+                        return true;
+                    }
+                    //transform node name and keywords to lowercase
+                    if (node[nameKey] && node[nameKey].toLowerCase().indexOf(_keywords.toLowerCase()) != -1) {
+                        if (isHighLight) { //highlight process
+                            var newKeywords = _keywords.replace(rexMeta, function (matchStr) {
+                                //add escape character before meta characters
+                                return '\\' + matchStr;
+                            });
+                            node.oldname = node[nameKey]; //store the old name
+                            var rexGlobal = new RegExp(newKeywords, 'gi');//'g' for global,'i' for ignore case
+                            //use replace(RegExp,replacement) since replace(/substr/g,replacement) cannot be used here
+                            node[nameKey] = node.oldname.replace(rexGlobal, function (originalText) {
+                                //highlight the matching words in node name
+                                var highLightText =
+                                    '<span style="color: whitesmoke;background-color: #cd2527;">'
+                                    + originalText
+                                    + '</span>';
+                                return highLightText;
+                            });
+                            zTreeObj.updateNode(node); //update node for modifications take effect
+                        }
+                        zTreeObj.showNode(node);//show node with matching keywords
+                        return true; //return true and show this node
+                    }
+
+                    zTreeObj.hideNode(node); // hide node that not matched
+                    return false; //return false for node not matched
+                }
+
+                var nodesShow = zTreeObj.getNodesByFilter(filterFunc); //get all nodes that would be shown
+
+                processShowNodes(nodesShow, _keywords);//nodes should be reprocessed to show correctly
+            }
+
+
+            function processShowNodes(nodesShow, _keywords) {
+                var noData$ = $('#noData');
+                noData$.addClass('dn');
+                if (nodesShow && nodesShow.length > 0) {
+                    //process the ancient nodes if _keywords is not blank
+                    if (_keywords.length > 0) {
+                        $.each(nodesShow, function (n, obj) {
+                            var pathOfOne = obj.getPath();//get all the ancient nodes including current node
+                            if (pathOfOne && pathOfOne.length > 0) {
+                                //i < pathOfOne.length-1 process every node in path except self
+                                for (var i = 0; i < pathOfOne.length - 1; i++) {
+                                    zTreeObj.showNode(pathOfOne[i]); //show node
+                                    zTreeObj.expandNode(pathOfOne[i], true); //expand node
+                                }
+                            }
+                        });
+                    } else { //show all nodes when _keywords is blank and expand the root nodes
+                        var rootNodes = zTreeObj.getNodesByParam('level', '0');//get all root nodes
+                        $.each(rootNodes, function (n, obj) {
+                            zTreeObj.expandNode(obj, true); //expand all root nodes
+                        });
+                    }
+                    $('.wgk_xxknr').scrollTop(0);
+                } else {
+                    // console.log('no data')
+                    noData$.removeClass('dn');
+                }
+            }
+
+            var timeoutId = null;
+            var lastKeyword = '';
+
+            function searchNodeLazy(_keywords) {
+                if (timeoutId) {
+                    //clear pending task
+                    clearTimeout(timeoutId);
+                }
+                timeoutId = setTimeout(function () {
+                    if (lastKeyword === _keywords) {
+                        return;
+                    }
+                    ztreeFilter(zTreeObj, _keywords); //lazy load ztreeFilter function
+                    lastKeyword = _keywords;
+                }, 500);
+            }
+
+            zTreeObj.searchNodeLazy = searchNodeLazy;
+        },
+        // 跳转方式
+        open: function () {
+            var me = this;
+            var url = '' + me.currNode.uri + '&nav=3';
+            if (me.refresh) {
+                window.location.href = url;
+                return;
+            } else {
+                window.history.pushState(null, null, url);
+            }
+            me.setMeta();
+            me.getNav();
+            if (me.currNode.id === 60776091) {
+                // 重点领域信息公开
+                me.zdList();
+            } else if (me.currNode.children) {
+                me.getNewList();
+            } else {
+                me.listParams.pageIndex = 1;
+                me.listParams.catId = me.currNode.id;
+                me.getList();
+            }
+        },
+        // 左侧导航
+        getNav: function () {
+            var me = this;
+            Ls.ajaxGet({
+                url: me.actions.label,
+                dataType: 'HTML',
+                data: {
+                    labelName: 'publicNav',
+                    organId: me.organId,
+                    catId: me.currNode.id,
+                    type: 4,
+                },
+            }).done(function (str) {
+                $('.wzy_position').html('<span class="hidden-xs hidden-sm">当前位置：</span><a href="/index.html">首页</a> &gt; ' + str);
+            })
+        },
+        // 归档
+        getGd: function () {
+            var me = this;
+            Ls.ajaxGet({
+                url: me.actions.label,
+                dataType: 'HTML',
+                data: {
+                    labelName: 'publicGuiDangPic',
+                    organId: me.organId,
+                    catId: me.currNode.id,
+                    isJson: true
+                },
+            }).done(function (res) {
+                if (typeof res === 'string') {
+                    res = JSON.parse(res);
+                }
+                if (res.istofile === '1') {
+                    $('.xxgk_lmright').append('<style>.init {background: url('+ res.fileurl +');width: '+ res.width +';height: '+ res.height +';}</style><div class="guidang init"></div>');
+                }
+            });
+        },
+        // 左侧列表
+        getList: function () {
+            var me = this;
+            var tipsLoading = Ls.tipsLoading('加载中...', {times: 999999});
+            Ls.ajaxGet({
+                url: me.actions.label,
+                data: me.listParams,
+            }).done(function (res) {
+                console.log('res', res)
+                var data = res.data;
+                $.each(data, function (i, item) {
+                    item.index = (me.listParams.pageIndex - 1) * me.listParams.pageSize + i + 1;
+                })
+                $('.xxgk_lmright #xxgk_lmcon').html(Ls.template('xxgk_list_tpl', {
+                    name: me.currNode.name,
+                    data: data
+                }));
+
+                me.setPagination(res);
+            }).always(function () {
+                // me.getGd();
+                tipsLoading.hide();
+            });
+        },
+        setPagination: function (res) {
+            var me = this;
+            var total = res.total;
+            var pageCount = res.pageCount;
+            var pageIndex = res.pageIndex;
+            var page_search = $('#page_public_info');
+
+            if (pageCount > 1) {
+                page_search.show();
+                Ls.pagination('#page_public_info', function (pageIndex) {
+                    me.listParams.pageIndex = pageIndex;
+                    me.getList();
+                }, {
+                    total: total,
+                    isTotal: true,
+                    tpl: {
+                        last: '\u672B\u9875',
+                        links: 'javascript:void(0)',
+                        inputInfo: '跳转到{input}页{gobtn}<span class="page-total">共{sumPage}条</span>',
+                        numText: '共{pageCount}页',
+                    },
+                    currPage: (pageIndex + 1),
+                    pageCount: pageCount
+                });
+            } else {
+                page_search.hide();
+            }
+        },
+        // new列表
+        getNewList: function () {
+            var me = this;
+            var tipsLoading = Ls.tipsLoading('加载中...', {times: 999999});
+            Ls.ajaxGet({
+                url: me.actions.label,
+                data: {
+                    labelName: 'publicInfoList',
+                    siteId: '4697420',
+                    organId: me.organId,
+                    catId: me.currNode.id,
+                    num: 5,
+                    pageIndex: 1,
+                    pageSize: 15,
+                    action: 'city_page',
+                    type: 4,
+                    isJson: true,
+                },
+            }).done(function (res) {
+                // console.log('res', res)
+                var isLink = [];
+
+                var data = $.grep(res, function (item) {
+                    return me.hideIds.indexOf(item.catId) === -1;
+                })
+
+                $.each(data, function (i, item) {
+                    if (isLink.indexOf(item.catId) > -1) {
+                        item.redirectLink = true;
+                    }
+                })
+
+
+                $('.xxgk_lmright #xxgk_lmcon').html(Ls.template('xxgk_list_tpl_2025', {
+                    name: me.currNode.name,
+                    data: data,
+                }));
+
+                Ls.www.scroll('.m-scroll');
+            }).always(function () {
+                // me.getGd();
+                tipsLoading.hide();
+            });
+        },
+        // 更多列表
+        getMoreList: function () {
+            var me = this;
+            var tipsLoading = Ls.tipsLoading('加载中...', {times: 999999});
+            Ls.ajaxGet({
+                url: me.actions.label,
+                data: me.moreParams
+            }).done(function (res) {
+                // console.log('res', res)
+                var data = res.data;
+                res.catId = me.moreParams.catId;
+                // 设置序号
+                $.each(data, function (i, item) {
+                    item.index = (me.moreParams.pageIndex - 1) * me.moreParams.pageSize + i + 1;
+                })
+
+                $('.list-box[data-id="'+ me.moreParams.catId +'"] .page-list').html(Ls.template('xxgk_table_list_tpl2', {
+                    catId: me.moreParams.catId,
+                    data: data
+                }));
+
+                me.setMorePagination(res);
+            }).always(function () {
+                tipsLoading.hide();
+            });
+        },
+        setMorePagination: function (res) {
+            var me = this;
+            var catId = res.catId;
+            var total = res.total;
+            var pageCount = res.pageCount;
+            var pageIndex = res.pageIndex;
+            var page_search = $('#page_' + res.catId);
+
+            if (pageCount > 1) {
+                page_search.show();
+                Ls.pagination('#page_' + res.catId, function (pageIndex) {
+                    me.moreParams.catId = catId;
+                    me.moreParams.pageIndex = pageIndex;
+                    me.getMoreList();
+                }, {
+                    total: total,
+                    isTotal: true,
+                    tpl: {
+                        last: '\u672B\u9875',
+                        links: 'javascript:void(0)',
+                        inputInfo: '跳转到{input}页{gobtn}<span class="page-total">共{sumPage}条</span>',
+                        numText: '共{pageCount}页',
+                    },
+                    currPage: (pageIndex + 1),
+                    pageCount: pageCount
+                });
+            } else {
+                page_search.hide();
+            }
+        },
+        // 搜索列表
+        getSearchList: function () {
+            var me = this;
+            var tipsLoading = Ls.tipsLoading('加载中...', {times: 999999});
+            Ls.ajaxGet({
+                url: me.actions.label,
+                data: me.searchParams
+            }).done(function (res) {
+                console.log('res', res)
+                var wrap$;
+                var tpl = 'xxgk_table_list_tpl3';
+                var data = res.data;
+                res.keyWords = me.searchParams.keyWords;
+                res.catIds = me.searchParams.catIds;
+                // 设置序号
+                $.each(data, function (i, item) {
+                    item.index = (me.searchParams.pageIndex - 1) * me.searchParams.pageSize + i + 1;
+                })
+
+                if (me.searchParams._list === 0) {
+                    wrap$ = $('.list-box[data-id="'+ me.searchParams.catIds +'"]');
+                    tpl = 'xxgk_table_list_tpl3';
+                } else {
+                    wrap$ = $('.inner-list');
+                    tpl = 'xxgk_table_list_tpl4';
+                }
+
+                wrap$.find('>.page-list').addClass('hide').siblings().removeClass('hide');
+                wrap$.find('>.page-search-list').html(Ls.template(tpl, res));
+
+
+                me.setSearchPagination(res);
+            }).always(function () {
+                tipsLoading.hide();
+            });
+        },
+        setSearchPagination: function (res) {
+            var me = this;
+            var keyWords = res.keyWords;
+            var catIds = res.catIds;
+            var total = res.total;
+            var pageCount = res.pageCount;
+            var pageIndex = res.pageIndex;
+            var page_search = $('#search_page_' + catIds);
+
+            if (pageCount > 1) {
+                page_search.show();
+                Ls.pagination('#search_page_' + catIds, function (pageIndex) {
+                    me.searchParams.keyWords = keyWords;
+                    me.searchParams.catIds = catIds;
+                    me.searchParams.pageIndex = pageIndex;
+                    me.getSearchList();
+                }, {
+                    total: total,
+                    isTotal: true,
+                    tpl: {
+                        last: '\u672B\u9875',
+                        links: 'javascript:void(0)',
+                        inputInfo: '跳转到{input}页{gobtn}<span class="page-total">共{sumPage}条</span>',
+                        numText: '共{pageCount}页',
+                    },
+                    currPage: (pageIndex + 1),
+                    pageCount: pageCount
+                });
+            } else {
+                page_search.hide();
+            }
+        },
+        zdList: function () {
+            var me = this;
+            var data = _organTree2.getNodeByParam('id', me.currNode.id, null).children;
+
+            $('.xxgk_lmright #xxgk_lmcon').html(Ls.template('zDTpl', {
+                data: data,
+            }));
+            $('.xxgk-zdly-list li a').each(function() {
+                if ($(this).text().length > 9) {
+                    $(this).addClass('long');
+                }
+            });
+
+        },
+        // meta信息修改
+        setMeta: function () {
+            var me = this;
+            $('meta[name="ColumnType"],meta[name="ColumnDescription"],meta[name="ColumnKeywords"]').attr('content', me.currNode.name);
+            $('meta[name="Attribute"]').attr('content', me.currNode.attribute);
+        },
+        // 判断是否兼容改变url
+        isRefresh: function () {
+            var me = this;
+            if ('pushState' in history) {
+                me.refresh = false;
+            }
+        },
+        getData: function () {
+            var me = this;
+            var node = _organTree2.getNodeByParam('id', me.currCatId, null);
+            if (node && me.query.type === '4' && me.query.action === 'list') {
+                me.currNode = node;
+                me.open();
+            }
+        },
+        getReportyear: function () {
+            var me = this;
+            Ls.ajaxGet({
+                url: '/public/content/getPublicOrganReportYears?organId=6629711',
+            }).done(function (res) {
+                var data = res.data ? res.data.split(',') : [];
+                var str = '';
+                var action = me.organId === '6629711' ? 'list' : 'detail';
+                $.each(data, function (i, item) {
+                    str += '<li><a href="/public/column/6629711?type=3&nav=4&action='+ action +'&title='+ item +'">'+ item +'年</a></li>';
+                })
+
+                $('#report_year_ul').html(str);
+            })
+        },
+        init: function () {
+            var me = this;
+            me.bindEvt();
+            me.isRefresh();
+            me.preprocessData();
+            me.findParentId();
+            me.initTree();
+            me.getData();
+            me.getReportyear();
+        }
+    });
+
+    $(function () {
+        new PublicTree();
+    })
+
+    function searchTree() {
+        var name = $.trim($('#catalogName').val());
+        _organTree.searchNodeLazy(name);
+    }
+       </script>
        <!--左侧end-->
        <!--左侧 end-->
-       <div class="xxgk_lmright fr xxgk_ysq_content">
+       <div class="xxgk_lmright fr">
         <div class="position wzy_position">
          当前位置：
          <a href="/index.html">
@@ -360,2188 +2118,359 @@
          <a href="/public/column/6629711">
           政府信息公开
          </a>
-         &gt; 萧县人民政府信息公开依申请公开
+         &gt; 萧县人民政府信息公开
+         <i>
+          &gt;
+         </i>
+         <a class="publicNavPos" data-catid="60776641" data-organid="6629711" href="/public/column/6629711" target="_self">
+          其他法定信息
+         </a>
+         <i>
+          &gt;
+         </i>
+         <a class="publicNavPos" data-catid="60776671" data-organid="6629711" href="/public/column/6629711" target="_self">
+          重大决策、重要政策及重点工作执行情况
+         </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <style>
-          .public_apply .xxgk_sqcon_sq{ display : none}
-    .public_apply .xxgk_sqcon_sq.active{ display : block}
-         </style>
-         <div class="xxgk_sqxxktop" id="public_apply_manage">
-          <ul class="clearfix">
-           <li class="reload" id="ysqmn4">
-            <a href="/public/column/6629711">
-             <span>
-              在线申请
-             </span>
+         <div class="gktit">
+          <a href="/public/column/6629711" title="重大决策、重要政策及重点工作执行情况">
+           重大决策、重要政策及重点工作执行情况
+          </a>
+          <div class="gklm_search hidden-xs hidden-sm">
+           <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
+            <ul class="clearfix">
+             <li class="ss2">
+              <input class="search-keywords srkcss" data-rule="关键字:required2" data-rule-required2="[/^[0-9a-zA-z\u0391-\uFFE5\s\[\]\(\),.《》]+$/, '查询关键字不允许含有特殊字符']" id="SearchWords" maxlength="30" name="SearchWords" placeholder="--当前目录检索--" size="24" type="text" value=""/>
+             </li>
+             <li class="ss1">
+              <input class="topsearchbtn" name="input" onclick="columnSearch()" type="button" value=""/>
+             </li>
+            </ul>
+           </form>
+          </div>
+         </div>
+         <div class="xxgk_nav_con">
+          <ul class="clearfix xxgk_nav_list">
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163234161.html" target="_blank" title="全县12月份重点工作部署会召开">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             全县12月份重点工作部署会召开
             </a>
+            <span class="date">
+             2025-12-02
+            </span>
            </li>
-           <li id="ysqmn3">
-            <a data-toggle="tab" href="/public/column/6629711">
-             <span>
-              申请信息流程图
-             </span>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163233951.html" target="_blank" title="萧县下好应急“先手棋”打好防灾减灾“主动仗”">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县下好应急“先手棋”打好防灾减灾“主动仗”
             </a>
+            <span class="date">
+             2025-12-02
+            </span>
            </li>
-           <li id="ysqmn2">
-            <a href="/_res/Application form.docx" target="_blank">
-             <span>
-              申请表下载
-             </span>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163233961.html" target="_blank" title="萧县一项目入选长三角人文经济典型案例">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县一项目入选长三角人文经济典型案例
             </a>
+            <span class="date">
+             2025-11-25
+            </span>
            </li>
-           <li id="ysqmn5">
-            <a data-toggle="tab" href="/public/column/6629711">
-             <span>
-              依申请公开查询
-             </span>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163233971.html" target="_blank" title="结对合作结硕果共建共享惠民生">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             结对合作结硕果共建共享惠民生
             </a>
+            <span class="date">
+             2025-11-18
+            </span>
            </li>
-           <li id="ysqmn6">
-            <a data-toggle="tab" href="/public/column/6629711">
-             <span>
-              依申请公开统计
-             </span>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163233981.html" target="_blank" title="“二次创业”为园区发展蓄势聚能">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             “二次创业”为园区发展蓄势聚能
             </a>
+            <span class="date">
+             2025-11-11
+            </span>
            </li>
-           <li id="ysqmn7">
-            <a data-toggle="tab" href="/public/column/6629711">
-             <span>
-              收费标准
-             </span>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163233991.html" target="_blank" title="萧县精准施策扎实办好残疾人民生实事">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县精准施策扎实办好残疾人民生实事
             </a>
+            <span class="date">
+             2025-11-04
+            </span>
            </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163234001.html" target="_blank" title="“三维发力”激发基层治理新动能">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             “三维发力”激发基层治理新动能
+            </a>
+            <span class="date">
+             2025-10-28
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163073081.html" target="_blank" title="工业经济跑出“加速度”">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             工业经济跑出“加速度”
+            </a>
+            <span class="date">
+             2025-10-09
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/content/article/163054921" target="_blank" title="萧县“微‘萧’服务，在‘县’办理”政务服务品牌推进情况">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县“微‘萧’服务，在‘县’办理”政务服务品牌推进情况
+            </a>
+            <span class="date">
+             2025-09-26
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163073101.html" target="_blank" title="《安徽经济报》整版报道！萧县：聚力制造强县引擎驱动高质量发展新跨越">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             《安徽经济报》整版报道！萧县：聚力制造强县引擎驱动高质量发展新跨越
+            </a>
+            <span class="date">
+             2025-09-23
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/content/article/163054851" target="_blank" title="2025年上半年萧县财政收支情况">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             2025年上半年萧县财政收支情况
+            </a>
+            <span class="date">
+             2025-08-21
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/content/article/163054831" target="_blank" title="全县2025年上半年重点项目开工及推进情况">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             全县2025年上半年重点项目开工及推进情况
+            </a>
+            <span class="date">
+             2025-08-20
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/content/article/163054871" target="_blank" title="萧县2025年上半年促消费工作情况">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县2025年上半年促消费工作情况
+            </a>
+            <span class="date">
+             2025-08-15
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163234171.html" target="_blank" title="县委理论学习中心组学习（扩大）会暨八月份重点工作部署会召开">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             县委理论学习中心组学习（扩大）会暨八月份重点工作部署会召开
+            </a>
+            <span class="date">
+             2025-08-05
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/content/article/163054801" target="_blank" title="2025年1-5月份全县水污染防治工作开展情况">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             2025年1-5月份全县水污染防治工作开展情况
+            </a>
+            <span class="date">
+             2025-07-17
+            </span>
+           </li>
+           <script>
+            function downloadWord(id) {
+                            window.location.href = '/download/htmlExportPdf?id='+id;
+                        }
+                        $(".wh_fileName").each(function (i, el) {
+                            var name = $(this).text(),
+                                    arr = name.split(','),
+                                    str = '';
+                            $.each(arr, function (i2, el2) {
+                                if (i2 == 1 && el2.length > 0) {
+                                    el2 = '〔'+ el2 +'〕';
+                                }
+                                str += el2;
+                            })
+                            str += '';
+                            $(this).text(str);
+                        })
+                        function columnSearch() {
+                            var keyWords = $("#SearchWords").val();
+                            Ls.ajax({
+                                dataType: "html",
+                                url: "/site/label/8888",
+                                data : {
+                                    labelName: 'publicInfoList',
+                                    siteId : "",
+                                    pageSize : "20",
+                                    pageIndex: 1,
+                                    isDate : "true",
+                                    dateFormat : "yyyy-MM-dd",
+                                    length : "50",
+                                    organId: "",
+                                    type: 4,
+                                    catId: "60776671",
+                                    action:"list",
+                                    keyWords: keyWords,
+                                    result : "暂无相关信息",
+                                    file : "/c2/jh/xxgk/publicInfoList_newest_xx"
+                                }
+                            }).done(function(html) {
+                                $("#xxgk_lmcon").html(html);
+                                $("#SearchWords").val(keyWords);
+                            });
+                        }
+           </script>
           </ul>
          </div>
-         <div class="public_apply">
-          <div class="xxgk_sqcon_sq active" id="public_apply_catalog_query">
-           <div class="ysqtitle">
-            依申请公开目录
-           </div>
-           <div class="xxgk_jstable">
-            <form id="publicApplyCatalogQueryForm" method="post">
-             <ul class="clearfix">
-              <li class="bt">
-               <p class="tit">
-                关
-                <span style="padding-right:0.5em;">
-                </span>
-                键
-                <span style="padding-right:0.5em;">
-                </span>
-                词：
-               </p>
-               <p class="srk">
-                <span>
-                 <input class="ysq_input" data-rule="关键词:required;" name="searchWords" type="text"/>
-                </span>
-               </p>
-              </li>
-              <li class="sel">
-               <p>
-                <select name="query_type">
-                 <option value="1">
-                  标题
-                 </option>
-                 <option value="2">
-                  发布文号
-                 </option>
-                 <option value="3">
-                  索引号
-                 </option>
-                </select>
-               </p>
-              </li>
-              <li class="bt">
-               <p class="tit">
-                起始日期：
-               </p>
-               <p class="srk">
-                <span>
-                 <input class="ysq_input datePicker" data-setting="{dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'endTime\')||\'%y-%M-%d %H:%m:%s\'}'}" id="startTime" name="startDate" readonly=""/>
-                </span>
-               </p>
-              </li>
-              <li class="bt">
-               <p class="tit">
-                结束日期：
-               </p>
-               <p class="srk">
-                <span>
-                 <input class="ysq_input datePicker" data-setting="{dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'startTime\')}',maxDate:'%y-%M-%d %H:%m:%s'}" id="endTime" name="endDate" readonly=""/>
-                </span>
-               </p>
-              </li>
-              <li class="ydqbtn">
-               <input class="ysq_btn" type="submit" value="查询"/>
-              </li>
-             </ul>
-            </form>
-           </div>
-           <div class="xxgk_sqcon">
-            <div class="nav_tit">
-             <ul class="tit">
-              <li class="xh">
-               序 号
-              </li>
-              <li class="rq">
-               发文日期
-              </li>
-              <li class="yh">
-               索引号
-              </li>
-              <li class="mc">
-               信息名称
-              </li>
-             </ul>
-             <div class="clear">
-             </div>
-            </div>
-            <div class="xxgk_nav_con" id="public_apply_catalog_query_result">
-            </div>
-            <div class="pagination" id="public_apply_catalog_pageination">
-            </div>
-           </div>
-           <script id="public_apply_catalog_query_tpl" type="text/html">
-            <? for(var i=0,l=data.length; i<l; i++){ ?>
-    <? var el = data[i]; var elIndex = pageSize*pageIndex + i+1; ?>
-    <div class="xxgk_navli">
-        <ul>
-            <li class="xh"><?=elIndex?></li>
-            <li class="rq"><?=Ls.dateFormat(el.publishDate,"yyyy-MM-dd") ?></li>
-            <li class="yh"><?=el.indexNum ?></li>
-            <li class="mc">
-                <a class="title" href="<?=el.link ?>" target="_blank" onmouseover="showViewTitle('<?=el.id ?>');" onMouseOut="showViewTitle('<?=el.id ?>');"><?=el.title?></a>
-            </li>
-            <div class="clear"></div>
-        </ul>
-        <div id="lvt_<?=el.id ?>" class="listviewboxt <? if(i>=15){ ?>listviewup<? } ?>" style="z-index:99999999;">
-            <div class="listviewbox clearfix">
-                <div class="vitem">
-                    <div class="vname">索 引 号：</div>
-                    <p><?=el.indexNum ?></p>
-                </div>
-                <div class="vitem">
-                    <div class="vname">信息分类：</div>
-                    <p><?=el.catName ?></p>
-                </div>
-                <div class="vitem">
-                    <div class="vname">发文机构：</div>
-                    <p></p>
-                </div>
-                <div class="vitem">
-                    <div class="vname">成文日期：</div>
-                    <p><?=Ls.dateFormat(el.writtenDate,"yyyy-MM-dd") ?></p>
-                </div>
-                <div class="vitem">
-                   <div class="vname">是否有效：</div>
-                   <p>有效</p>
-                </div>
-                <div class="vitem">
-                    <div class="vname">发文日期：</div>
-                    <p><?=Ls.dateFormat(el.publishDate,"yyyy-MM-dd") ?></p>
-                </div>
-                <div class="vitem">
-                    <div class="vname">生效日期：</div>
-                    <p><?=el.effectiveDate ?></p>
-                </div>
-                <div class="vitem">
-                    <div class="vname">废止日期：</div>
-                    <p><?=el.repealDate ?></p>
-                </div>
-                <div class="vitem vitem2">
-                    <div class="vname">名<span style="padding-left:20px;"></span>称：</div>
-                    <p><?=el.title ?></p>
-                </div>
-                <div class="vitem">
-                    <div class="vname">文<span style="padding-left:20px;"></span>号：</div>
-                    <p><?=el.fileNum ?></p>
-                </div>
-                <div class="vitem">
-                    <div class="vname">关 键 词：</div>
-                    <p><?=el.keyWords ?></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <? } ?>
-           </script>
-           <script>
-            function setPublicApplyPage(pageIndex){
-        var data = {
-            siteId : "4697420",
-            organId: "6629711",
-            pageSize: "15",
-            pageIndex: pageIndex
-        };
-        var fromData = $("#publicApplyCatalogQueryForm").serializeObject();
-        if(fromData.query_type == "1"){//名称
-            data.title = fromData.searchWords;
-        }else if(fromData.query_type == "2"){//文号
-            data.fileNum = fromData.searchWords;
-        }else if(fromData.query_type == "3"){//索引号
-            data.indexNum = fromData.searchWords;
-        }
-        if(fromData.startDate != ""){
-            data.startDate = fromData.startDate;
-        }
-        if(fromData.endDate != ""){
-            data.endDate = fromData.endDate;
-        }
-        return Ls.ajax({
-            url: "/public/applyCatalogQuery",
-            data: data
-        }).done(function(d) {
-            if (d.status == 1) {
-                var pageCount = d.data.pageCount;
-                var pageIndex = d.data.pageIndex;
-                if (pageCount == 0) {
-                    $("#public_apply_catalog_query_result").html("未查询到结果");
-                    $("#public_apply_catalog_pageination").html("");
-                } else {
-                    var content = Ls.template("public_apply_catalog_query_tpl", d.data);
-                    $("#public_apply_catalog_query_result").html(content);
-                    if (pageCount > 1) {
-                        $("#public_apply_catalog_pageination").show();
-                        setPagination(pageIndex, pageCount);
-                    }else{
-                        $("#public_apply_catalog_pageination").html("");
-                    }
-                }
-            } else {
-                Ls.tipsErr(d.desc);
-            }
-        });
-    }
-
-    function setPagination(pageIndex, pageCount){
-        Ls.pagination("#public_apply_catalog_pageination", function (pageIndex) {
-            setPublicApplyPage(pageIndex-1);
-        }, {
-            currPage: (pageIndex+1),
-            pageCount : pageCount,
-            param: "pageSize=15"
-        });
-    }
-
-    function queryByCondition(){
-        setPublicApplyPage(0);
-        return false;
-    }
-    $(document).ready(function(){
-        //查询
-        setPublicApplyPage(0);
-
-        // 验证
-        using("validator", function () {
-            $('#publicApplyCatalogQueryForm').validator({
-                valid: function (form) {
-                    var me = this;
-                    // 提交表单之前，hold住表单
-                    me.holdSubmit();
-                    // 查询
-                    setPublicApplyPage(0).always(function () {
-                        me.holdSubmit(false);
-                    });
-
-                }
-            });
-        });
-    });
-           </script>
-          </div>
-          <div class="xxgk_sqcon_sq" id="public_apply_sfbz">
-           <div class="ysqtitle">
-            收费标准
-           </div>
-           <div class="xxgk_sq_lmtop">
-            <span>
-             国务院办公厅关于印发《政府信息公开信息处理费管理办法》的通知
-            </span>
-           </div>
-           <div class="xxgk_sq_lmcon">
-            <!--StartLabelHtml_ordinaryPage_21c5e130ac6b8eb8e837d25a984354da-->
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-align: center;">
-             <font face="楷体,楷体_GB2312" style="margin: 0px; padding: 0px; list-style: none;">
-              国办函〔2020〕109号
-             </font>
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <br style="margin: 0px; padding: 0px; list-style: none;"/>
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255);">
-             各省、自治区、直辖市人民政府，国务院各部委、各直属机构：
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             现将《政府信息公开信息处理费管理办法》印发给你们，请认真贯彻执行。
-            </p>
-            <p style="margin: 0px auto; padding: 0px 91px 0px 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-align: right;">
-             国务院办公厅
-            </p>
-            <p style="margin: 0px auto; padding: 0px 84.5px 0px 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-align: right;">
-             2020年11月17日
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             （此件公开发布）
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <br style="margin: 0px; padding: 0px; list-style: none;"/>
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <br style="margin: 0px; padding: 0px; list-style: none;"/>
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-align: center;">
-             <strong style="margin: 0px; padding: 0px; list-style: none; font-weight: 700;">
-              <span style="margin: 0px; padding: 0px; list-style: none; font-size: 18pt;">
-               政府信息公开信息处理费管理办法
-              </span>
-             </strong>
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <br style="margin: 0px; padding: 0px; list-style: none;"/>
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第一条
-             </span>
-             为了进一步规范政府信息公开法律关系，维护政府信息公开工作秩序，更好保障公众知情权，根据《中华人民共和国政府信息公开条例》有关规定，制定本办法。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第二条
-             </span>
-             本办法所称信息处理费，是指为了有效调节政府信息公开申请行为、引导申请人合理行使权利，向申请公开政府信息超出一定数量或者频次范围的申请人收取的费用。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第三条
-             </span>
-             信息处理费可以按件计收，也可以按量计收，均按照超额累进方式计算收费金额。行政机关对每件申请可以根据实际情况选择适用其中一种标准，但不得同时按照两种标准重复计算。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第四条
-             </span>
-             按件计收适用于所有政府信息公开申请处理决定类型。申请人的一份政府信息公开申请包含多项内容的，行政机关可以按照“一事一申请”原则，以合理的最小单位拆分计算件数。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             按件计收执行下列收费标准：
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             （一）同一申请人一个自然月内累计申请10件以下（含10件）的，不收费。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             （二）同一申请人一个自然月内累计申请11—30件（含30件）的部分：100元/件。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             （三）同一申请人一个自然月内累计申请31件以上的部分：以10件为一档，每增加一档，收费标准提高100元/件。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第五条
-             </span>
-             按量计收适用于申请人要求以提供纸质件、发送电子邮件、复制电子数据等方式获取政府信息的情形。相关政府信息已经主动对外公开，行政机关依据《中华人民共和国政府信息公开条例》第三十六条第（一）项、第（二）项的规定告知申请人获取方式、途径等的，不适用按量计收。按量计收以单件政府信息公开申请为单位分别计算页数（A4及以下幅面纸张的单面为1页），对同一申请人提交的多件政府信息公开申请不累加计算页数。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             按量计收执行下列收费标准：
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             （一）30页以下（含30页）的，不收费。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             （二）31—100页（含100页）的部分：10元/页。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             （三）101—200页（含200页）的部分：20元/页。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             （四）201页以上的部分：40元/页。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第六条
-             </span>
-             行政机关依法决定收取信息处理费的，应当在政府信息公开申请处理期限内，按照申请人获取信息的途径向申请人发出收费通知，说明收费的依据、标准、数额、缴纳方式等。申请人应当在收到收费通知次日起20个工作日内缴纳费用，逾期未缴纳的视为放弃申请，行政机关不再处理该政府信息公开申请。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             政府信息公开申请处理期限从申请人完成缴费次日起重新计算。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第七条
-             </span>
-             申请人对收取信息处理费的决定有异议的，不能单独就该决定申请行政复议或者提起行政诉讼，可以在缴费期满后，就行政机关不再处理其政府信息公开申请的行为，依据《中华人民共和国政府信息公开条例》第五十一条的规定，向上一级行政机关或者政府信息公开工作主管部门投诉、举报，或者依法申请行政复议、提起行政诉讼。法律、行政法规另有规定的，从其规定。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第八条
-             </span>
-             行政机关收取的信息处理费属于行政事业性收费，按照政府非税收入和国库集中收缴管理有关规定纳入一般公共预算管理，及时足额缴入同级国库。具体收缴方式按照同级政府财政部门有关规定执行。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第九条
-             </span>
-             行政机关收取信息处理费，应当按照财务隶属关系分别使用财政部或者省、自治区、直辖市财政部门统一监（印）制的财政票据。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第十条
-             </span>
-             价格、财政、审计部门依据各自职责，加强对信息处理费收取行为的监管。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第十一条
-             </span>
-             政府信息公开工作主管部门应当加强监督指导，及时处理申请人提出的投诉、举报，严肃纠正违法或者不当行为。信息处理费收取情况，要按照全国政府信息公开工作主管部门规定的格式统计汇总，并纳入政府信息公开工作年度报告，接受社会监督。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第十二条
-             </span>
-             本办法由全国政府信息公开工作主管部门、国务院价格主管部门、国务院财政部门依据各自职责负责解释。
-            </p>
-            <p style="margin: 0px auto; padding: 0px; list-style: none; color: rgb(51, 51, 51); font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; font-family: 宋体; background-color: rgb(255, 255, 255); text-indent: 2em;">
-             <span style="margin: 0px; padding: 0px; list-style: none; font-weight: bold;">
-              第十三条
-             </span>
-             本办法自2021年1月1日起施行。
-            </p>
-            <!--EndLabelHtml_ordinaryPage_21c5e130ac6b8eb8e837d25a984354da-->
-           </div>
-          </div>
-          <div class="xxgk_sqcon_sq" id="public_apply_lct">
-           <!--<div class="xxgk_sq_lmtop"><span>申请信息流程图</span></div>-->
-           <div class="ysqtitle">
-            申请信息流程图
-           </div>
-           <div class="xxgk_sq_lmcon">
-            <!--StartLabelHtml_ordinaryPage_ec9e64c2ba9237ea4dfe28316db3678e-->
-            <p style="text-align: center;">
-             <img align="center" src="/group1/M00/10/C7/Cpc8VmEbgRiAJ_-aAAODrYAcj_k058.png" style="max-width: 100%;"/>
-            </p>
-            <!--EndLabelHtml_ordinaryPage_ec9e64c2ba9237ea4dfe28316db3678e-->
-           </div>
-          </div>
-          <div class="xxgk_sqcon_sq" id="public_apply_submit">
-           <div class="ysqtitle">
-            在线申请
-           </div>
-           <div aria-label="依申请公开办理提示" class="ysq_box" role="region">
-            <div class="ysq_blts wza-ignore-bg ysq_blts2">
-             <h2 class="ysq_t">
-              依申请公开办理提示
-             </h2>
-             <div class="ysq_info">
-              <div class="ysq_infocon">
-               <p>
-                1. 行政机关向申请人提供的政府信息，
-                <b>
-                 应当是现有政府信息
-                </b>
-                ，一般
-                <b>
-                 不承担
-                </b>
-                为申请人汇总、加工或重新制作政府信息，以及向其他行政机关和公民、法人或者其他组织搜集信息的义务。
-               </p>
-               <p>
-                2. 公民、法人或者其他组织向行政机关申请获取政府信息，应当采取"
-                <b>
-                 一事一申请
-                </b>
-                "方式向制作或保存该政府信息的行政机关申请公开，即一个政府信息公开申请只对应一个政府信息项目。
-               </p>
-               <p>
-                3. 申请人以政府信息公开申请的形式进行
-                <b>
-                 信访、投诉、举报等活动
-                </b>
-                ，行政机关应当告知申请人不作为政府信息公开申请处理。
-               </p>
-               <p>
-                4.本机关依申请提供政府信息的收费严格按照国务院办公厅《政府信息公开信息处理费管理办法》及本省有关规定执行。
-               </p>
-              </div>
-              <p style="line-height:50px; text-align:center;">
-               <span class="hide2" id="Agree">
-                <a aria-label="我已知晓" href="javascript:void(0);" role="button">
-                 <span class="btn">
-                  我已知晓
-                 </span>
-                </a>
-               </span>
-               <span class="" id="Refused">
-                <a href="javascript:void(0);" style="cursor: not-allowed;">
-                 <span aria-label="请仔细阅读依申请公开办理提示" class="btn1" role="button">
-                  我已知晓
-                 </span>
-                 （
-                 <span id="box1">
-                  15
-                 </span>
-                 秒后可执行）
-                </a>
-               </span>
-              </p>
-             </div>
-            </div>
-           </div>
-           <div class="ysq_tu">
-            <h2>
-             依申请公开申请表
-            </h2>
-            <div class="ysq_tips">
-             （注：公民、法人选择其一填写即可；
-             <font color="#e70000">
-              *
-             </font>
-             为必填项）
-            </div>
-            <form action="/content/apply/saveMultiApplyNew" enctype="multipart/form-data" id="publicApplyForm" method="post" name="publicApplyForm" target="formIframe">
-             <div class="form-type">
-              <label>
-               <input checked="" class="from-radio-type" name="ptype" type="radio" value="0"/>
-               自然人
-              </label>
-              <label>
-               <input class="from-radio-type" name="ptype" type="radio" value="1"/>
-               法人或其他组织
-              </label>
-             </div>
-             <div class="xxgk_sqnrbox clearfix">
-              <div class="xxgk_sqr">
-               申请人信息
-              </div>
-              <div class="xxgk_sqrxx">
-               <div class="xxgk_cate" id="pub_type0">
-                <div class="xxgk_gm">
-                 自然人
-                </div>
-                <div class="xxgk_gmr">
-                 <ul class="clearfix">
-                  <li>
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    姓
-                    <span style="padding-left:2em;">
-                    </span>
-                    名
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="name" maxlength="8" name="name"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li>
-                   <p class="bor1">
-                    工作单位
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="employer" maxlength="80" name="employer"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li>
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    证件名称
-                   </p>
-                   <p class="bor2">
-                    <select id="cardType" name="cardType">
-                     <option value="idCard">
-                      身份证
-                     </option>
-                     <option value="driverCard">
-                      驾驶证
-                     </option>
-                     <option value="officerCard">
-                      军官证
-                     </option>
-                     <option value="eldersCard">
-                      老年证
-                     </option>
-                     <option value="otherCard">
-                      其他
-                     </option>
-                    </select>
-                   </p>
-                  </li>
-                  <li>
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    证件号码
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="cardNum" maxlength="20" name="cardNum"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li class="gm1">
-                   <p class="bor3">
-                    <span>
-                     *
-                    </span>
-                    身份证等
-                    <br/>
-                    有效身份
-                    <br/>
-                    证件扫描
-                    <br/>
-                    件或照片
-                   </p>
-                   <div class="bor4">
-                    <div class="sc sc1">
-                     <span>
-                      <input accept="image/*" acceptext="jpg|png|gif" class="w200" id="linkfile" name="linkfile" type="file"/>
-                     </span>
-                     <span>
-                      请上传证件正面文件
-                     </span>
-                    </div>
-                    <div class="sc">
-                     <span>
-                      <input accept="image/*" acceptext="jpg|png|gif" class="w200" id="linkfile1" name="linkfile1" type="file"/>
-                     </span>
-                     <span>
-                      请上传证件背面文件
-                     </span>
-                    </div>
-                   </div>
-                  </li>
-                  <li>
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    邮政编码
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="postalNum" maxlength="6" name="postalNum"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li>
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    联系电话
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="phone" maxlength="12" name="phone"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li class="gm2">
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    通信地址
-                   </p>
-                   <p class="bor4">
-                    <span>
-                     <input class="dizhi" id="address" maxlength="60" name="address"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li class="gm2" style="border-bottom: none;">
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    电子信箱
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input class="mail" id="mail" maxlength="80" name="mail"/>
-                    </span>
-                   </p>
-                  </li>
-                 </ul>
-                </div>
-                <div class="clear">
-                </div>
-               </div>
-               <div class="xxgk_cate hide xxgk_cate_fr" id="pub_type1">
-                <div class="xxgk_gm">
-                 法人
-                 <span class="hidden-xx">
-                  <br/>
-                 </span>
-                 /
-                 <span class="hidden-xx">
-                  <br/>
-                 </span>
-                 其他组织
-                </div>
-                <div class="xxgk_gmr">
-                 <ul class="clearfix">
-                  <li class="gm2">
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    名
-                    <span style="padding-left:2em;">
-                    </span>
-                    称
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="frName" maxlength="50" name="frName"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li class="gm3">
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    统一社会
-                    <br/>
-                    信用代码
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="frjgCode" maxlength="30" name="frjgCode" size="20"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li class="gm3">
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    证件扫描
-                    <br/>
-                    件或照片
-                   </p>
-                   <div class="bor5">
-                    <div class="sc">
-                     <span>
-                      <input accept="image/*" acceptext="jpg|png|gif" id="frLinkFile" name="frLinkFile" type="file"/>
-                     </span>
-                    </div>
-                    <span style="color:#ff6600">
-                     注：上传法人统一社会信用代码证等有效证件扫描件或照片
-                    </span>
-                   </div>
-                  </li>
-                  <li>
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    法定代表人
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="frdb" maxlength="10" name="frdb" size="20"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li>
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    联系人姓名
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="frLinkName" maxlength="10" name="frLinkName" size="20"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li>
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    联系电话
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="frLinkTel" maxlength="12" name="frLinkTel" size="20"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li>
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    邮政编码
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input id="frPostalNum" maxlength="6" name="frPostalNum"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li class="gm2">
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    通信地址
-                   </p>
-                   <p class="bor4">
-                    <span>
-                     <input class="dizhi" id="frLinkAddr" maxlength="60" name="frLinkAddr"/>
-                    </span>
-                   </p>
-                  </li>
-                  <li class="gm2" style="border-bottom: none;">
-                   <p class="bor1">
-                    <span>
-                     *
-                    </span>
-                    电子信箱
-                   </p>
-                   <p class="bor2">
-                    <span>
-                     <input class="frlinkmail" id="frLinkMail" maxlength="20" name="frLinkMail"/>
-                    </span>
-                   </p>
-                  </li>
-                 </ul>
-                </div>
-               </div>
-              </div>
-             </div>
-             <div class="xxgk_slmc">
-              <p class="xxgk_slmc_tit">
-               <label for="organId">
-                <span>
-                 *
-                </span>
-                受理机关名称
-               </label>
-              </p>
-              <p class="bor2">
-               <select id="organId" name="organId">
-                <option value="6629711">
-                 萧县政府办公室
-                </option>
-                <option value="23">
-                 萧县发展和改革委员会（粮食和物资储备局）
-                </option>
-                <option value="35">
-                 萧县教育体育局
-                </option>
-                <option value="39">
-                 萧县科学技术局
-                </option>
-                <option value="37">
-                 萧县工业和信息化局
-                </option>
-                <option value="27">
-                 萧县公安局
-                </option>
-                <option value="41">
-                 萧县民政局
-                </option>
-                <option value="47">
-                 萧县司法局
-                </option>
-                <option value="21">
-                 萧县财政局（地方金融监督管理局）
-                </option>
-                <option value="51">
-                 萧县人力资源和社会保障局
-                </option>
-                <option value="171">
-                 萧县城市管理局（城市管理行政执法局）
-                </option>
-                <option value="25">
-                 萧县住房和城乡建设局（人民防空办公室）
-                </option>
-                <option value="33">
-                 萧县交通运输局
-                </option>
-                <option value="49">
-                 萧县农业农村局
-                </option>
-                <option value="57">
-                 萧县水利局
-                </option>
-                <option value="95">
-                 萧县商务局
-                </option>
-                <option value="1461">
-                 萧县文化和旅游局（广播电视出版局）
-                </option>
-                <option value="131">
-                 萧县卫生健康委员会
-                </option>
-                <option value="1401">
-                 萧县退役军人事务局
-                </option>
-                <option value="19">
-                 萧县应急管理局
-                </option>
-                <option value="53">
-                 萧县审计局
-                </option>
-                <option value="55">
-                 萧县市场监督管理局
-                </option>
-                <option value="59">
-                 萧县统计局
-                </option>
-                <option value="103">
-                 萧县信访局
-                </option>
-                <option value="29">
-                 萧县自然资源和规划局（林业局）
-                </option>
-                <option value="1441">
-                 萧县医疗保障局
-                </option>
-                <option value="169">
-                 萧县数据资源管理局（政务服务管理局）
-                </option>
-                <option value="6629521">
-                 市生态环境局萧县分局
-                </option>
-                <option value="179">
-                 国家税务局萧县税务局
-                </option>
-                <option value="239">
-                 萧县经济开发区管理委员会
-                </option>
-                <option value="251">
-                 黄口镇人民政府
-                </option>
-                <option value="241">
-                 白土镇人民政府
-                </option>
-                <option value="243">
-                 大屯镇人民政府
-                </option>
-                <option value="245">
-                 丁里镇人民政府
-                </option>
-                <option value="247">
-                 杜楼镇人民政府
-                </option>
-                <option value="249">
-                 官桥镇人民政府
-                </option>
-                <option value="253">
-                 酒店镇人民政府
-                </option>
-                <option value="255">
-                 刘套镇人民政府
-                </option>
-                <option value="257">
-                 龙城镇人民政府
-                </option>
-                <option value="259">
-                 马井镇人民政府
-                </option>
-                <option value="261">
-                 青龙集镇人民政府
-                </option>
-                <option value="263">
-                 圣泉镇人民政府
-                </option>
-                <option value="265">
-                 石林乡人民政府
-                </option>
-                <option value="267">
-                 孙圩子镇人民政府
-                </option>
-                <option value="269">
-                 王寨镇人民政府
-                </option>
-                <option value="271">
-                 新庄镇人民政府
-                </option>
-                <option value="273">
-                 闫集镇人民政府
-                </option>
-                <option value="275">
-                 杨楼镇人民政府
-                </option>
-                <option value="277">
-                 永堌镇人民政府
-                </option>
-                <option value="279">
-                 张庄寨镇人民政府
-                </option>
-                <option value="281">
-                 赵庄镇人民政府
-                </option>
-                <option value="283">
-                 庄里镇人民政府
-                </option>
-                <option value="285">
-                 祖楼镇人民政府
-                </option>
-                <option value="6630291">
-                 龙河街道办事处
-                </option>
-                <option value="6630311">
-                 凤城街道办事处
-                </option>
-                <option value="6630301">
-                 锦屏街道办事处
-                </option>
-               </select>
-              </p>
-              <div class="clear">
-              </div>
-             </div>
-             <div class="xxgk_sqnrbox xxgk_sqnrbox_zf">
-              <div class="xxgk_sqr">
-               申请公开的政府信息
-              </div>
-              <div class="xxgk_sqrxx">
-               <div class="sqgk_con clearfix">
-                <div class="sqgk_tit">
-                 <span>
-                  *
-                 </span>
-                 申请公开的政府信息的内容描述
-                </div>
-                <div class="sqgk_desr clearfix">
-                 <div class="sqgk_zfxx clearfix">
-                  <div class="sqgk_wj">
-                   <p class="bt">
-                    文件名称
-                   </p>
-                   <p class="ipt">
-                    <span>
-                     <input id="applyNewstitle" maxlength="50" name="applyNewstitle"/>
-                    </span>
-                   </p>
-                   <div class="clear">
-                   </div>
-                  </div>
-                  <div class="sqgk_wj sqgk_wh">
-                   <p class="bt">
-                    文号
-                   </p>
-                   <p class="ipt">
-                    <span>
-                     <input id="applyNewsxxcode" maxlength="50" name="applyNewsxxcode"/>
-                    </span>
-                   </p>
-                   <div class="clear">
-                   </div>
-                  </div>
-                 </div>
-                 <div class="sqgk_descon">
-                  <p>
-                   便于受理机关检索查询的其他特征描述：
-                  </p>
-                  <textarea class="sqgk_dectext" cols="50" id="applyNote" maxlength="500" name="applyNote" rows="9"></textarea>
-                 </div>
-                </div>
-               </div>
-               <div class="sqgk_con sqgk_con2 clearfix">
-                <div class="sqgk_tit">
-                 <span>
-                  *
-                 </span>
-                 政府信息的载体形式（限选一项）
-                </div>
-                <div class="bor6">
-                 <span>
-                  <label>
-                   <input class="radio" name="IOA_offerModel" size="20" type="radio" value="1"/>
-                   纸质文本
-                  </label>
-                  <label>
-                   <input class="radio" name="IOA_offerModel" size="20" type="radio" value="2"/>
-                   电子数据
-                  </label>
-                 </span>
-                </div>
-               </div>
-               <div class="sqgk_con sqgk_con3 clearfix">
-                <div class="sqgk_tit">
-                 <span>
-                  *
-                 </span>
-                 获取政府信息的方式（限选一项）
-                </div>
-                <div class="bor6">
-                 <span>
-                  <label>
-                   <input class="radio" name="IOA_getInfoModel" size="20" type="radio" value="1"/>
-                   电子邮件
-                  </label>
-                  <label>
-                   <input class="radio" name="IOA_getInfoModel" size="20" type="radio" value="2"/>
-                   信函邮寄
-                  </label>
-                  <label>
-                   <input class="radio" name="IOA_getInfoModel" size="20" type="radio" value="3"/>
-                   自行领取
-                  </label>
-                 </span>
-                </div>
-               </div>
-              </div>
-              <div class="clear">
-              </div>
-             </div>
-             <div class="xxgk_slmc xxgk_sfgk">
-              <p class="xxgk_slmc_tit">
-               <span>
-                *
-               </span>
-               是否公开信息
-              </p>
-              <div class="bor6">
-               <span>
-                <label>
-                 <input checked="checked" class="radio" name="isPublic" type="radio" value="true"/>
-                 是
-                </label>
-                <label>
-                 <input class="radio" name="isPublic" type="radio" value="false"/>
-                 否
-                </label>
-               </span>
-              </div>
-              <div class="clear">
-              </div>
-             </div>
-             <div class="xxgk_slmc">
-              <p class="xxgk_slmc_tit">
-               <span>
-                *
-               </span>
-               申请时间
-              </p>
-              <p class="bor2">
-               <span>
-                <input id="applytime" name="applytime" readonly="" value="2026-01-31 23:14:21"/>
-               </span>
-              </p>
-              <div class="clear">
-              </div>
-             </div>
-             <div class="ysq_yzm">
-              <p class="ysq_yzmt">
-               <span>
-                *
-               </span>
-               验证码
-              </p>
-              <p class="yzm">
-               <input aria-invalid="true" class="verification n-invalid" maxlength="4" name="imgCode" size="6" type="text"/>
-               <img align="absmiddle" class="imgcode" height="31" id="img_code" src="/member/getCode" title="看不清楚，换个图片" width="82"/>
-              </p>
-              <div class="clear">
-              </div>
-             </div>
-             <div class="xxgk_slmc xxgk_sfgk">
-              <p class="xxgk_slmc_tit">
-               <span>
-                *
-               </span>
-              </p>
-              <div class="bor6">
-               <span>
-                <label>
-                 <input class="j-privacy-statement" name="privacyStatement" type="checkbox"/>
-                 我已阅读隐私声明
-                </label>
-               </span>
-              </div>
-              <div class="clear">
-              </div>
-             </div>
-             <div class="xxgk_sq_btn">
-              <p>
-               备注：公民、法人或其他组织申请时，必须提交有效身份证明（如身份证复印件、统一社会信用代码证复印件等），否则不予受理。
-              </p>
-              <div class="ysq_btns">
-               <input alt="S" name="button" type="submit" value="提 交">
-                <input alt="R" name="reset" type="reset" value="重 置">
-                </input>
-               </input>
-              </div>
-             </div>
-             <input id="unitName" name="unitName" type="hidden" value=""/>
-             <input name="siteId" type="hidden" value="4697420">
-             </input>
-            </form>
-           </div>
-           <iframe name="formIframe" style="display: none">
-           </iframe>
-           <script>
-            //判断提示信息
-    $(function () {
-        fn1('#box1');
-       /* Ls.www.memberLoginCheck(function () {
-            var data = this.data;
-            if (data.isLogin) {
-                $(".ysqopen").trigger("click");
-            } else {
-                // fn1("#box1");
-                showAgree();
-            }
-        });*/
-    });
-    function fn1(selector) {
-        var num = 15;
-        timer = setInterval(function () {
-            num--;
-            $("#box1").text(num);
-            if (num == 0) {
-                clearInterval(timer);   //定时器清除；
-                showAgree();
-            }
-        }, 1000);
-    }
-    function showAgree() {
-        $("#Agree").removeClass("hide2");
-        $("#Refused").addClass("hide2");
-    }
-
-    $("#Agree").click(function () {
-        $('.ysq_box').hide();
-    });
-           </script>
-           <script type="text/javascript">
-            $(function () {
-        var queryOrganId = "6629711";
-        var m_option = document.getElementById("organId");
-        for(var i=0;i<m_option.length;i++){
-            if(m_option[i].value==queryOrganId){
-                m_option[i].selected = true;
-            }
-        }
-    });
-
-    var pageFn = function () {
-
-        var cur = {};
-
-        var _pageFn = function (el, options) {
-            var me = this;
-            me.form$ = $(el);
-            me.cfg = $.extend(true, {
-                // 遮罩层ID
-                maskId: '',
-                // 弹层ID
-                openId: '',
-                // 倒计时显示区ID
-                timerId: '#timerNum',
-                // 合计时秒数
-                sec: 20
-            }, options);
-            me.timer$ = $(me.cfg.timerId);
-            me.init();
-        }
-
-        _pageFn.prototype.validator = function () {
-            var me = this;
-            using("validator", function () {
-                me.form$.validator({
-                    rules: {
-                        citizen: function (ele) {
-                            return $('input[name="ptype"]:checked').val() == 0;
-                        },
-                        lp: function (ele) {
-                            return $('input[name="ptype"]:checked').val() == 1;
-                        },
-                        cardRules: function (ele) {
-                            var this$ = this,
-                                    rules = this$.validator.rules,
-                                    cardType = $('select[name="cardType"]').val();
-
-                            if (cardType == "idCard") {
-                                return rules.IDcard(ele) || '身份证不合法';
-                            }
-                            if (cardType == "officerCard") {
-                                var reg = /^[\u4E00-\u9FA5](字第)([0-9a-zA-Z]{4,8})(号?)$/;
-                                return reg.test(ele.value) || "军官证号不合法";
-                            }
-                            if (cardType == "driverCard") {
-                                return rules.IDcard(ele) || '驾驶证不合法';
-                            }
-                            if (cardType == "eldersCard") {
-                                var reg = /^\d{12}$/;
-                                return reg.test(ele.value) || '老年证证号不合法';
-                            }
-                        }
-                    },
-                    fields: {
-                        // 公民
-                        'name': '姓名:required(citizen);',
-                        'cardType': '证件名称:required(citizen);',
-                        'cardNum': '证件号码:required(citizen);cardRules;',
-                        'linkfile': '证件正面照片:required(citizen);',
-                        'linkfile1': '证件背面照片:required(citizen);',
-                        'postalNum': '邮政编码:required(citizen);zipcode',
-                        'phone': '联系电话:required(citizen);tel|tel_1|mobile;',
-                        'address': '通信地址:required(citizen);',
-                        'mail': '电子邮箱:required(citizen);email;',
-                        // 法人
-                        'frName': '名称:required(lp);',
-                        'frjgCode': '统一社会信用代码:required(lp);',
-                        'frLinkFile': '证件扫描件或照片:required(lp);',
-                        'frdb': '法定代表人:required(lp);',
-                        'frLinkName': '联系人姓名:required(lp);',
-                        'frLinkTel': '联系电话:required(lp);tel|tel_1|mobile;',
-                        'frPostalNum': '邮政编码:required(lp);zipcode;',
-                        'frLinkAddr': '通信地址:required(lp);',
-                        'frLinkMail': '电子邮箱:required(lp);email;',
-                        // 公共
-                        'organId': '受理机关名称:required;',
-                        'applyNewstitle': '文件名称:required;',
-                        'applyNewsxxcode': '文号:required;',
-                        'applyNote': '特征描述:required;',
-                        'IOA_offerModel': '政府信息的载体形式:required;checked;',
-                        'IOA_getInfoModel': '获取信息方式:required;checked;',
-                        'applytime': '申请时间:required;',
-                        'imgCode': '验证码:required;',
-                        'privacyStatement': {
-                            'rule': 'checked',
-                            'messages': {
-                                'required': '请勾选我已阅读隐私声明'
-                            }
-                        }
-                    },
-                    valid: function (form) {
-                        form.submit();
-                    }
-                });
-            });
-            return me;
-        }
-
-        _pageFn.prototype.bind = function () {
-            var me = this;
-            $(document).on('click', '.from-radio-type', function () {
-                var this$ = $(this),
-                        val = this$.val();
-                if (val == 0) {
-                    $('#pub_type0').removeClass('hide');
-                    $('#pub_type1').addClass('hide');
-                } else {
-                    $('#pub_type0').addClass('hide');
-                    $('#pub_type1').removeClass('hide');
-                }
-            }).on('change', 'select[name="organId"]', function () {
-                var this$ = $(this),
-                        text = this$.find('option:selected').text();
-                $('#unitName').val(text);
-            }).on('click', '#img_code', function () {
-                var this$ = $(this);
-                this$.attr("src", "/member/getCode?s=" + Math.random());
-            }).on('change', 'input[type="file"]', function () {
-                var this$ = $(this),
-                        val = this$.val(),
-                        ext = this$.attr('acceptext'),
-                        fileExt = val.match(/\.\w+$/),
-                        reg = new RegExp('\.(' + ext + ')$', 'i');
-
-                if (!Ls.isEmpty(val) && !reg.test(fileExt && fileExt[0])) {
-                    this$.after(this$.clone().val(""));
-                    this$.remove();
-                    alert('类型必须是 ' + ext + ' 中的一种');
-                    return false;
-                }
-            });
-
-            $('select[name="organId"]').trigger('change');
-            return me;
-        }
-
-        _pageFn.prototype.countdown = function () {
-            var me = this;
-            me.timer = setInterval(function () {
-                me.cfg.sec--;
-                me.timer$.text(me.cfg.sec);
-                if (me.cfg.sec == 0) {
-                    clearInterval(me.cfg.sec);
-                }
-            }, 1000);
-            return me;
-        }
-
-        _pageFn.prototype.init = function () {
-            var me = this;
-            me.bind().validator();
-        }
-
-        function formCallback(d) {
-            if (d.status == 1) {
-                alert("您的信息已提交，请等待审核！\n请牢记查询编号：" + d.data + " 方便查询。");
-                location.href = location.href;
-            } else {
-                Ls.tipsErr(d.desc);
-            }
-            $("#img_code").click();
-        }
-
-        $(function () {
-            cur.page = new _pageFn('#publicApplyForm');
-        });
-
-        return {
-            formCallback: formCallback
-        }
-
-    }();
-           </script>
-          </div>
-          <div class="xxgk_sqcon_sq" id="public_apply_query">
-           <div class="ysqtitle">
-            依申请公开查询
-           </div>
-           <div class="ysq_cxmain public-apply-type" id="public_apply_query_list">
-            <div class="xxgk_chaxun ysq_cxbox">
-             <div class="ysq_cxtit">
-              查询信息
-             </div>
-             <form id="apply_query_form" method="get" name="apply_query_form">
-              <ul class="ysq_chaxun clearfix">
-               <li>
-                <p class="txt">
-                 申请人/单位名称
-                </p>
-                <p class="input">
-                 <input id="queryName" maxlength="10" name="queryName" type="text"/>
-                </p>
-               </li>
-               <li>
-                <p class="txt">
-                 申请单编号
-                </p>
-                <p class="input">
-                 <input id="queryCode" maxlength="10" name="queryCode" type="text"/>
-                </p>
-               </li>
-               <li class="btn">
-                <input id="query" type="submit" value="查询">
-                </input>
-               </li>
-              </ul>
-             </form>
-            </div>
-            <!--<div class="ysqcx_box">
-        <div class="ysqcx_tit">
-            <p class="p1">序号</p>
-            <p class="p3">申请人</p>
-            <p class="p6">当前状态</p>
-            <p class="p5">申请时间</p>
-            <p class="p2">申请内容</p>
-        </div>
-        <ul id="public_apply_query_content_ul"></ul>
-    </div>
-    <div id="public_apply_query_pageination" class="pagination"></div> -->
-           </div>
-           <div class="ysq_tu public-apply-type" id="public_apply_query_detail">
-           </div>
-           <script id="public_apply_query_tpl" type="text/html">
-            <? for(var i=0,l=data.length; i<l; i++){ ?>
-    <? var el = data[i] ?>
-    <li>
-        <p class="p1"><?=pageSize*pageIndex+i+1?></p>
-        <p class="p3">
-            <? if(el.type == "person"){ ?>
-            <?=el.name?>
-            <?} else if(el.type == "organ"){ ?>
-            <?=el.organName?>
-            <?}?>
-        </p>
-        <p class="p6" title="<?=el.replyStatusName?>"><?=el.replyStatusName?></p>
-        <p class="p5"><?=Ls.dateFormat(el.applyDate,"yyyy-MM-dd")?></p>
-        <p class="p2"><a class="show-apply-detail" href="javascript:void(0)" title="<?=el.content?>" data-id="<?=el.id?>"><?=el.content?></a></p>
-    </li>
-    <? } ?>
-           </script>
-           <script id="public_apply_query_detail_tpl" type="text/html">
-            <div class="xxgk_sqnrbox clearfix">
-        <div class="xxgk_sqr">申请人信息</div>
-        <div class="xxgk_sqrxx">
-            <? if(type == "person"){ ?>
-            <div class="xxgk_cate" style="border-bottom:0 none;">
-                <div class="xxgk_gm">自然人</div>
-                <div class="xxgk_gmr">
-                    <ul class="clearfix">
-                        <li>
-                            <p class="bor1"><span>*</span>姓<span style="padding-left:2em;"></span>名</p>
-                            <p class="bor2"><span><?=name?></span></p>
-                        </li>
-                        <li>
-                            <p class="bor1">工作单位</p>
-                            <p class="bor2"><span><?=organName?></span></p>
-                        </li>
-                        <li>
-                            <p class="bor1"><span>*</span>证件名称</p>
-                            <p class="bor2"><?=cardTypeName?></p>
-                        </li>
-                        <li>
-                            <p class="bor1"><span>*</span>证件号码</p>
-                            <p class="bor2"><?=cardNum?></p>
-                        </li>
-                        <li>
-                            <p class="bor1"><span>*</span>邮政编码</p>
-                            <p class="bor2"><?=postalNum?></p>
-                        </li>
-                        <li>
-                            <p class="bor1"><span>*</span>联系电话</p>
-                            <p class="bor2"><?=phone?></p>
-                        </li>
-                        <li class="gm2">
-                            <p class="bor1"><span>*</span>通信地址</p>
-                            <p class="bor4"><?=address?></p>
-                        </li>
-                        <li class="gm2" style="border-bottom: none;">
-                            <p class="bor1">电子信箱</p>
-                            <p class="bor2"><?=mail?></p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <?} else if(type == "organ"){ ?>
-            <div class="xxgk_cate xxgk_cate_fr">
-                <div class="xxgk_gm">法人<span class="hidden-xx"><br></span>/<span class="hidden-xx"><br></span>其他组织</div>
-                <div class="xxgk_gmr">
-                    <ul class="clearfix">
-                        <li class="gm2">
-                            <p class="bor1"><span>*</span>名<span style="padding-left:2em;"></span>称</p>
-                            <p class="bor2"><?=organName?></p>
-                        </li>
-                        <li class="gm3">
-                            <p class="bor1"><span>*</span>统一社会<br>信用代码</p>
-                            <p class="bor2"><?=organCode?></p>
-                        </li>
-                        <li>
-                            <p class="bor1"><span>*</span>法定代表人</p>
-                            <p class="bor2"><?=legalName?></p>
-                        </li>
-                        <li>
-                            <p class="bor1"><span>*</span>联系人姓名 </p>
-                            <p class="bor2"><?=contactName?></p>
-                        </li>
-                        <li>
-                            <p class="bor1"><span>*</span>联系电话</p>
-                            <p class="bor2"><?=contactPhone?></p>
-                        </li>
-                        <li>
-                            <p class="bor1"><span>*</span>邮政编码</p>
-                            <p class="bor2"><?=postalNum?></p>
-                        </li>
-                        <li class="gm2">
-                            <p class="bor1"><span>*</span>通信地址</p>
-                            <p class="bor4"><?=address?></p>
-                        </li>
-                        <li class="gm2" style="border-bottom: none;">
-                            <p class="bor1">电子信箱</p>
-                            <p class="bor2"><?=mail?></p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <?}?>
-        </div>
-    </div>
-    <div class="xxgk_slmc">
-        <p class="xxgk_slmc_tit"><span>*</span>受理机关名称</p>
-        <p class="bor2"><?=unitName?></p>
-        <div class="clear"></div>
-    </div>
-    <div class="xxgk_sqnrbox xxgk_sqnrbox_zf">
-        <div class="xxgk_sqr">申请公开的政府信息</div>
-        <div class="xxgk_sqrxx">
-            <div class="sqgk_con clearfix">
-                <div class="sqgk_tit">
-                    <span>*</span>申请公开的政府信息的内容描述
-                </div>
-                <div class="sqgk_desr clearfix">
-                    <div class="sqgk_zfxx clearfix">
-                        <div class="sqgk_wj">
-                            <p class="bt">文件名称</p>
-                            <p class="ipt"><?=fileName?></p>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="sqgk_wj sqgk_wh">
-                            <p class="bt">文号</p>
-                            <p class="ipt"><?=indexNum?></p>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="sqgk_descon"><?==content?></div>
-                </div>
-            </div>
-            <div class="sqgk_con sqgk_con2 clearfix">
-                <div class="sqgk_tit"><span>*</span>政府信息的载体形式（限选一项）</div>
-                <div class="bor6">
-                    <?=provideType?>
-                </div>
-            </div>
-            <div class="sqgk_con sqgk_con3 clearfix">
-                <div class="sqgk_tit"><span>*</span>获取政府信息的方式（限选一项）</div>
-                <div class="bor6">
-                    <?=receiveType?>
-                </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="xxgk_slmc">
-        <p class="xxgk_slmc_tit"><span>*</span>申请时间</p>
-        <p class="bor2"><?=applyDate?></p>
-        <div class="clear"></div>
-    </div>
-    <div class="xxgk_sqnrbox xxgk_sqnrbox_jg">
-        <div class="xxgk_sqr">办理情况</div>
-        <div class="xxgk_sqrxx">
-            <div class="sqgk_con clearfix">
-                <div class="sqgk_tit">办理结果</div>
-                <div class="bor6">
-                    <? if(state == 0){ ?>
-                    <span>尚未受理</span>
-                    <? } else if(state == 1 || state == 2){ ?>
-                    <span>办理中</span>
-                    <? } else if(state == 3){ ?>
-                    <span>已办结</span>
-                    <? } ?>
-                </div>
-            </div>
-            <? if(flagHandle == "2"){ ?>
-            <div class="sqgk_con clearfix">
-                <div class="sqgk_tit">
-                    <?=handleTypeName?>
-                </div>
-                <div class="sqgk_desr clearfix">
-                    <div class="sqgk_zfxx clearfix">
-                        <div class="sqgk_wj">
-                            <p class="bt">延期天数</p>
-                            <p class="ipt"><?=dayAmount?>个工作日</p>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="sqgk_wj sqgk_wh">
-                            <p class="bt">理由</p>
-                            <p class="ipt"><?=reason?></p>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <?}?>
-            <div class="sqgk_con no-bottom clearfix">
-                <div class="sqgk_tit">备注</div>
-                <div class="bor6">
-                    <div class="clearfix"><?==replyContent?></div>
-                </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="ysq_closeico">
-        <a title="返回" class="back-public-query-list">返回</a>
-    </div>
-           </script>
-           <script>
-            var urlQueryName = Ls.url.get("queryName");
-    var urlQueryCode = Ls.url.get("queryCode");
-    if (urlQueryCode !='' && urlQueryCode!=''){
-        $("#queryName").val(urlQueryName)
-        $("#queryCode").val(urlQueryCode)
-    }
-    var pagePublicApply = function () {
-        var cur = {
-            params: {
-                siteId: "4697420",
-                organId: "6629711",
-                pageIndex: 0,
-                pageSize: "15"
-            },
-            queryParams: function () {
-                return {
-                    queryNameVal: $.trim($("#queryName").val()),
-                    queryCodeVal: $.trim($("#queryCode").val())
-                }
-            }
-        }
-
-        var _fn = function () {
-            var me = this;
-            me.siteId = '4697420';
-            me.form$ = $('#apply_query_form');
-            me.applyType$ = $('.public-apply-type');
-            me.queryList$ = $("#public_apply_query_list");
-            me.queryDetail$ = $("#public_apply_query_detail");
-            me.init();
-        }
-
-        _fn.prototype.bind = function () {
-            var me = this;
-            $(document).on('click', '.show-apply-detail', function () {
-                var this$ = $(this),
-                    data = this$.data();
-                if (data && data.id) {
-                    cur.showType = 0;
-                    me.queryId(data.id);
-                }
-            }).on('click', '.back-public-query-list', function () {
-                cur.showType = 1;
-                me.changeShowType();
-            });
-            return me;
-        }
-
-        _fn.prototype.changeShowType = function () {
-            var me = this;
-            me.applyType$.addClass('hide');
-            if (cur.showType == 1) {
-                me.queryList$.removeClass('hide');
-            } else {
-                me.queryDetail$.removeClass('hide');
-            }
-            return me;
-        }
-
-        _fn.prototype.validator = function () {
-            var me = this;
-            using("validator", function () {
-                me.form$.validator({
-                    fields: {
-                        'queryName': '申请人/单位名称:required;',
-                        'queryCode': '申请单编号:required;',
-                    },
-                    valid: function (form) {
-                        me.queryByCode();
-                    }
-                });
-            });
-            return me;
-        }
-
-        _fn.prototype.queryId = function (queryId) {
-            var me = this;
-            Ls.ajax({
-                url: "/public/applyDetail?id=" + queryId
-            }).done(function (d) {
-                me.changeShowType();
-                me.queryDetail$.html(Ls.template("public_apply_query_detail_tpl", d.data));
-            });
-            return me;
-        }
-
-        _fn.prototype.applyQueryPagination = function (pageIndex, pageCount) {
-            var me = this;
-            Ls.pagination("#public_apply_query_pageination", function (pageIndex) {
-                cur.params.queryCode = "";
-                cur.params.queryPassword = "";
-                cur.params.pageIndex = pageIndex - 1;
-                me.applyQuery(cur.params);
-            }, {
-                currPage: (pageIndex + 1),
-                pageCount: pageCount,
-                param: "pageSize=15"
-            });
-            return me;
-        }
-
-        _fn.prototype.applyQuery = function () {
-            var me = this;
-            // 提交
-            Ls.ajax({
-                url: "/public/applyQuery",
-                data: cur.params
-            }).done(function (d) {
-                if (d.status == 1) {
-                    var pageCount = d.data.pageCount;
-                    var pageIndex = d.data.pageIndex;
-                    if (pageCount == 0) {
-                        $("#public_apply_query_content_ul").html("");
-                    } else {
-                        var content = Ls.template("public_apply_query_tpl", d.data);
-                        $("#public_apply_query_content_ul").html(content);
-                        if (pageCount > 1) {
-                            $("#public_apply_query_pageination").show();
-                            me.applyQueryPagination(pageIndex, pageCount);
-                        }
-                    }
-                } else {
-                    // 返回错误信息
-                    Ls.tipsErr(d.desc);
-                }
-            });
-            return me;
-        }
-
-        _fn.prototype.queryByCode = function () {
-            var me = this,
-                p = cur.queryParams();
-
-            if (p.queryNameVal == "") {
-                Ls.tipsErr("名称不能为空!");
-                return;
-            }
-
-            if (p.queryCodeVal == "") {
-                Ls.tipsErr("申请单号不能为空!");
-                return;
-            }
-
-            Ls.ajax({
-                dataType: "html",
-                url: "/site/label/8888",
-                type: "post",
-                data: {
-                    labelName: "publicNewApplyDetail",
-                    name: p.queryNameVal,
-                    code: p.queryCodeVal,
-                    siteId: me.siteId,
-                    isJson: true
-                }
-            }).done(function (res) {
-                debugger;
-                res = Ls.parseEval(res);
-                if (res && res.publicApplyEO) {
-                    var publicApplyEO = res.publicApplyEO,
-                            companyEO = res.companyEO,
-                            nationalEO = res.nationalEO,
-                            cardTypeList = res.cardTypeList;
-
-                    var handleList = null;
-                    if(res.handleList){
-                        handleList = res.handleList;
-                    }
-                    var data = $.extend({}, publicApplyEO, companyEO, nationalEO,handleList);
-                    data.provideType = data.offerModel == 1 ? '纸质文本' : '电子数据';
-                    data.receiveType = data.infoModel == 1 ? '电子邮件' : data.infoModel == 2 ? '信函邮寄' : '自行领取';
-                    data.cardTypeName = '';
-                    for (var i = 0, l = cardTypeList.length; i < l; i++) {
-                        var item = cardTypeList[i];
-                        if (item.code == data.cardType) {
-                            data.cardTypeName = item.name;
-                        }
-                    }
-                    var flagHandle = '1';
-                    if(handleList != null && handleList.length != 0){
-                        var handleTypeName = '';
-                        if(handleList[0].type == '1'){
-                            handleTypeName = '延期';
-                        }else if(handleList[0].type == '2'){
-                            handleTypeName = '补正';
-                        }else if(handleList[0].type == '3'){
-                            handleTypeName = '征求意见';
-                        }
-                        data.handleTypeName = handleTypeName;
-                        data.dayAmount = handleList[0].dayAmount;
-                        data.reason = handleList[0].reason;
-
-                        flagHandle = '2';
-                    }
-                    data.flagHandle = flagHandle;
-
-                    var html = Ls.template("public_apply_query_detail_tpl", data);
-
-                    cur.showType = 0;
-                    me.changeShowType();
-                    me.queryDetail$.html(html);
-                    if (res.publicApplyEO.state =='3' && res.publicApplyEO.unitName =='宿州市政府办公室' ){
-                        publicApplyOfficalConfig();
-                    }
-                } else {
-                    Ls.tipsErr("您输入的信息有误，请重新输入!");
-                }
-            });
-
-            return me
-        }
-
-        _fn.prototype.init = function () {
-            var me = this;
-            me.applyQuery().bind().validator();
-            return me
-        }
-
-        $(function () {
-            cur.fn = new _fn();
-        });
-
-    }();
-           </script>
-          </div>
-          <div class="xxgk_sqcon_sq" id="public_apply_statistics">
-           <div class="ysqtitle">
-            依申请公开统计
-           </div>
-           <div class="ysq_tjcx">
-            <div class="xxgk_chaxun">
-             <form id="public_apply_statistics_form">
-              <p class="txt1">
-               请选择查询时间段
-              </p>
-              <p class="date">
-               <input class="datePicker" data-setting="{dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'endDate\')||\'%y-%M-%d %H:%m:%s\'}'}" id="startDate" name="startDate" readonly="" type="text">
-               </input>
-              </p>
-              <p class="txt1">
-               至
-              </p>
-              <p class="date">
-               <input class="datePicker" data-setting="{dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'startDate\')}',maxDate:'%y-%M-%d %H:%m:%s'}" id="endDate" name="endDate" readonly="" type="text">
-               </input>
-              </p>
-              <p class="btn01">
-               <input type="submit" value="查询">
-               </input>
-              </p>
-             </form>
-            </div>
-            <table bgcolor="#dddddd" border="0" cellpadding="0" cellspacing="1" class="ysq_tjtable" style="margin:auto; margin-top:10px; font-size:14px;" width="100%">
-             <tbody id="public_applyType_statistics_tbody">
-             </tbody>
-            </table>
-            <script id="public_applyType_statistics_tpl" type="text/html">
-             <? if(Ls.isArray(typeData)){ ?>
-        <tr>
-            <td width="180" height="40" align="center" bgcolor="#f7f7f7"><strong>共受理申请</strong></td>
-            <td colspan="3" align="center" bgcolor="#FFFFFF"><span><?=typeApplyCount?></span>件</td>
-        </tr>
-        <tr>
-            <td height="35" align="center" bgcolor="#f7f7f7"><strong>已办结</strong></td>
-            <td align="center" bgcolor="#FFFFFF"><span><?=typeReplyCount?></span>件</td>
-            <td width="180" align="center" bgcolor="#f7f7f7"><strong>正在办理</strong></td>
-            <td align="center" bgcolor="#FFFFFF"><span><?=drivingCount?></span>件</td>
-        </tr>
-
-        <tr>
-            <td height="35" align="center" bgcolor="#f7f7f7"><strong>办理分类</strong></td>
-            <td colspan="3" align="center" bgcolor="#FFFFFF">&nbsp;</td>
-        </tr>
-        <? for(var i=0,l=typeData.length-1; i<l; i+=2){ ?>
-        <? var el = typeData[i];
-
-				var el2 = typeData[i+1];
-
-
-			?>
-        <? if(el.replyStatusValue!='其他'){ ?>
-
-        <tr>
-
-            <td align="center" bgcolor="#ffffff" height="42"><?=el.replyStatusValue?></td>
-            <td align="center" bgcolor="#ffffff"><?=el.applyCount?>件</td>
-
-        
-            <td align="center" bgcolor="#ffffff" height="42"><?=el2.replyStatusValue?></td>
-            <td align="center" bgcolor="#ffffff"><?=el2.applyCount?>件 </td>
-        
-        </tr>
-
-        <? } ?>
-        <? } ?>
-
-        <? } ?>
-            </script>
-            <div class="ysq_tu" id="ysq1">
-            </div>
-            <table bgcolor="#dddddd" border="0" cellpadding="0" cellspacing="1" class="ysq_tjtable" style="margin:auto; margin-top:10px; font-size:14px;" width="100%">
-             <tbody id="public_apply_statistics_tbody">
-             </tbody>
-            </table>
-            <script id="public_apply_statistics_tpl" type="text/html">
-             <tr class="td_bg01">
-            <td align="center" bgcolor="#f7f7f7" height="42"><strong>单位名称</strong></td>
-            <td align="center" bgcolor="#f7f7f7" width="180"><strong>收到申请公开数</strong></td>
-            <td align="center" bgcolor="#f7f7f7" width="180"><strong>已回复数</strong></td>
-        </tr>
-        <? if(Ls.isArray(data)){ ?>
-        <? for(var i=0,l=data.length; i<l; i++){ ?>
-        <? var el = data[i] ?>
-        <tr>
-            <td align="center" bgcolor="#ffffff" height="34"><?=el.organName?></td>
-            <td align="center" bgcolor="#ffffff"><?=el.applyCount?></td>
-            <td align="center" bgcolor="#ffffff"><?=el.replyCount?></td>
-        </tr>
-        <? } ?>
-        <tr>
-            <td align="center" bgcolor="#f7f7f7" height="32"><span class="STYLE2"><strong>单位合计：<?=organCount?></strong></span></td>
-            <td align="center" bgcolor="#f7f7f7"><span class="STYLE2"><strong>收到申请公开数总数：<?=applyCount?></strong></span></td>
-            <td align="center" bgcolor="#f7f7f7"><span class="STYLE2"><strong>已回复数总数：<?=replyCount?></strong></span></td>
-        </tr>
-        <? } ?>
-            </script>
-            <script>
-             var colors=["#D9B295","#81A0D7","#EFB935","#8DD0BE","#DE7531","#BAB387","#A4ABBE","#81A0D7","#81A0D7","#81A0D7","#D9B295","#81A0D7"]
-        function publicApplyStatistics(form,callback){
-            var data = $(form).serializeObject();
-            data.siteId = "4697420";
-            if(data.siteId =="11465616"){
-                data.exceptOrganIds = "23803,23715,23693,23684"
-            }else {
-                data.exceptOrganIds = "31";
-            }
-            Ls.ajax({
-                url: "/public/applyNewTj",
-                data: data
-            }).done(function(d) {
-                if (callback) {callback();};
-                if (d.status == 1) {
-                    var content = Ls.template("public_apply_statistics_tpl", d.data);
-                    $("#public_apply_statistics_tbody").html(content);
-
-                    $("#public_applyType_statistics_tbody").html( Ls.template("public_applyType_statistics_tpl", d.data));
-                    if(d.data.typeData){
-                        if (d.data.typeData.length % 2 == 0) {
-                            /*$("#public_applyType_statistics_tbody").append('<tr>\n' +
-                                    '<td height="35" align="center" bgcolor="#f7f7f7">'+ d.data.typeData[d.data.typeData.length - 1].replyStatusValue +'</td>\n' +
-                                    '<td colspan="3" align="left" bgcolor="#FFFFFF">'+ d.data.typeData[d.data.typeData.length - 1].applyCount+'件' +'</td>\n' +
-                                    '</tr>')*/
-                        }
-                    }
-                    var data=new Array();
-                    $.each(d.data.typeData,function(index,value){
-                        if(this.replyStatusValue!='其他') {
-                            data.push({
-                                name: this.replyStatusValue,
-                                y: this.applyCount,
-                                color: colors[index]
-                            });
-                        }
-                    });
-                    // showcharts(data);
-                } else {
-                    Ls.tipsErr(d.desc);
-                }
-            });
-        }
-
-        function showcharts(data){
-            $('#ysq1').highcharts({
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: ' '
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}件'
-                        }
-                    }
-                },
-                tooltip: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: ' ',
-                    colorByPoint: true,
-                    data: data
-                }]
-            });
-            $(".highcharts-credits").css("display","none");
-        }
-
-        function showData(callback){
-            if (callback) {callback();};
-            var data = $("#public_apply_statistics_form").serializeObject();
-            data.siteId = "4697420";
-            if(data.siteId =="11465616"){
-                data.exceptOrganIds = "23803,23715,23693,23684"
-            }else {
-                data.exceptOrganIds = "31";
-            }
-
-            return Ls.ajax({
-                url: "/public/applyNewTj",
-                data: data
-            }).done(function(d) {
-
-                if (d.status == 1) {
-                    var content = Ls.template("public_apply_statistics_tpl", d.data);
-                    $("#public_apply_statistics_tbody").html(content);
-
-                    $("#public_applyType_statistics_tbody").html( Ls.template("public_applyType_statistics_tpl", d.data));
-                    if(d.data.typeData){
-                        if (d.data.typeData.length % 2 == 0) {
-                            /*$("#public_applyType_statistics_tbody").append('<tr>\n' +
-                                    '<td height="35" align="center" bgcolor="#f7f7f7">'+ d.data.typeData[d.data.typeData.length - 1].replyStatusValue +'</td>\n' +
-                                    '<td colspan="3" align="left" bgcolor="#FFFFFF">'+ d.data.typeData[d.data.typeData.length - 1].applyCount+'件' +'</td>\n' +
-                                    '</tr>')*/
-                        }
-                    }
-                    var data=new Array();
-                    $.each(d.data.typeData,function(index,value){
-                        if(this.replyStatusValue!='其他') {
-                            data.push({
-                                name: this.replyStatusValue,
-                                y: this.applyCount,
-                                color: colors[index]
-                            });
-                        }
-                    });
-                    // showcharts(data);
-                } else {
-                    Ls.tipsErr(d.desc);
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            //publicApplyStatistics($('#public_apply_statistics_form'));
-            showData();
-            // 验证
-            using("validator", function () {
-                $('#public_apply_statistics_form').validator({
-                    valid: function (form) {
-                        var me = this;
-                        // 提交表单之前，hold住表单
-                        me.holdSubmit();
-                        showData().always(function () {
-                            me.holdSubmit(false);
-                        });
-
-                    }
-                });
-            });
-        });
-            </script>
-           </div>
-          </div>
+         <div class="pagination" id="page_public_info">
+          分页
          </div>
          <script>
+          Ls.pagination("#page_public_info", function(pageIndex){
+                                                                                            Ls.ajax({
+                            dataType: "html",
+                            url: "/site/label/8888",
+                            data : {
+                                labelName: 'publicInfoList',
+                                siteId : "4697420",
+                                pageSize : "15",
+                                pageIndex: pageIndex,
+                                action : "list",
+                                isDate : "true",
+                                dateFormat : "yyyy-MM-dd",
+                                length : "80",
+                                organId: "6629711",
+                                type: "4",
+                                catId: "60776671",
+                                cId : "",
+                                result : "暂无相关信息",
+                                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
+                            }
+                        }).done(function(html) {
+                            $("#xxgk_lmcon").html(html);
+                        });
+                                    }, {
+                    currPage: (0+1),
+                    pageCount:3,
+                    param: "pageSize=15"
+                });
+         </script>
+         <div class="clear">
+         </div>
+         <script>
+          Ls.pagination("#page_public_info", function(pageIndex){
+
+                    location.href = "/public/column/6629711?sub=&catId=60776671&nav=&action=list&type=4&pageIndex=" + pageIndex;
+            }, {
+        currPage: (0+1),
+        pageCount:(3 + 0),
+        param: "pageSize=15"
+    });
+
+
+    var changeSearch = function(pageIndex){
+
+        var type = "4";
+        var fromCode = "";
+        var sortType = "";
+        var fuzzySearch = "";
+        var keyWords = "";
+
+        var catId = "60776671";
+        var fileNum = Ls.url.get("fileNum");
+        var filterFileNum = Ls.url.get("filterFileNum");
+        if($("#search_keywords").val()){
+            keyWords  = $("#search_keywords").val();
+        }
+
+        if($("input[name='fromCode']:checked").val()){
+            fromCode  = $("input[name='fromCode']:checked").val();
+        }
+
+        if($("input[name='fuzzySearch']:checked").val()){
+            fuzzySearch  = $("input[name='fuzzySearch']:checked").val();
+        }
+
+        if($("input[name='orderType']:checked").val()){
+            sortType  = $("input[name='orderType']:checked").val();
+        }
+
+        if($("#type").val()){
+            type  = $("#type").val();
+        }
+        if(!Ls.isEmpty(keyWords)){
+            type="6";
+        }
+
+        if($("#catId").val()){
+            catId  = $("#catId").val();
+        }
+        if(Ls.url.get("catId")){
+            catId  = Ls.url.get("catId")
+        }
+
+        Ls.ajax({
+            dataType: "html",
+            url: "/site/label/8888",
+            data : {
+                labelName: 'publicInfoList',
+                siteId : "4697420",
+                pageSize : "15",
+                pageIndex: pageIndex,
+                action : "list",
+                fileNum: fileNum,
+                filterFileNum: filterFileNum,
+                fuzzySearch : fuzzySearch,
+                fromCode : fromCode,
+                keyWords : keyWords,
+                sortType : sortType,
+                isDate : "true",
+                dateFormat : "yyyy-MM-dd",
+                length : "80",
+                organId: "6629711",
+                type: type,
+
+                //catId: catId,
+                cId : "",
+                result : "暂无相关信息",
+                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
+            }
+        }).done(function(html) {
+            console.log('fksjdkfjkdjfkdjfkjkdsf........');
+            $("#xxgk_lmcon").html(html);
+
+        });
+    }
+         </script>
+         <script>
           $(function () {
+        if ($('div .xxgk_lmlink').length > 0) {
+                        //企事业单位 只保留 公开目录
+            if ("${catIdMap.get($!{context.columnId})}" == "6738851") {                                 $('dl.num3').siblings('dl').hide();
+                //左侧树恢复正常
+                /*$(".wgk_xxknr").html('<div class=""><ul id="organ_catalog_tree" class="ztree"></ul></div>');
+                cur.organCatalogTree = $.fn.zTree.init($("#organ_catalog_tree"),
+                        cur.ztree_settings, cur.ztreeData);
+                // 根据地址栏的catId操作树
+                if (catId && catId > 0) {
+                    var nodeCat = cur.organCatalogTree.getNodeByParam("id", catId, null);
+                    cur.organCatalogTree.selectNode(nodeCat,false,true);
+                }*/
+            }
+        }
+
         //加载各单位的年份
                     var reportYears = "2021,2022,2023,2024,2025";
             var organId = "6629711";
@@ -2554,7 +2483,7 @@
             //console.log(reportYearsArr.length);
             reportYearsArr.sort();
             var nianbaoType = "detail";
-            if (organId == "6" ) {
+            if (organId == "6629711" ) {
                 nianbaoType = "list";
             }
 
@@ -2566,7 +2495,8 @@
             }
             //console.log(htmlStr)
             $('#report_year_ul').html(htmlStr);
-            })
+                                                                                                        
+    })
          </script>
          <!--EndLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
         </div>
