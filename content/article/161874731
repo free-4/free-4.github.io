@@ -5,7 +5,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
   <title>
-   萧县人民政府网站用户体验调查问卷_萧县人民政府
+   居民节水意识问卷调查_萧县人民政府
   </title>
   <meta content="萧县人民政府" name="SiteName"/>
   <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
@@ -14,11 +14,11 @@
   <meta content="征集调查" name="ColumnType"/>
   <meta content="征集调查" name="ColumnDescription"/>
   <meta content="征集调查" name="ColumnKeywords"/>
-  <meta content="萧县人民政府网站用户体验调查问卷" name="ArticleTitle"/>
-  <meta content="2025-11-21 10:14" name="PubDate"/>
+  <meta content="居民节水意识问卷调查" name="ArticleTitle"/>
+  <meta content="2024-11-29 16:05" name="PubDate"/>
   <meta content="萧县数据资源管理局" name="ContentSource"/>
   <meta content="萧县人民政府" name="Keywords"/>
-  <meta content="萧县人民政府网站用户体验调查问卷" name="Description"/>
+  <meta content="居民节水意识问卷调查" name="Description"/>
   <meta content="2026-01-31 22:59:46" name="HtmlGenerateTime"/>
   <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/assets/css/core.min.css" rel="stylesheet"/>
@@ -276,17 +276,17 @@
         </span>
         <!--StartLabelHtml_surveyInfo_71ea7c5808881967c286d0012cd9c796-->
         <h1 class="newstitle">
-         萧县人民政府网站用户体验调查问卷
+         居民节水意识问卷调查
         </h1>
         <div class="newsinfo myinfo voteinfo">
          <span>
           调查时间：
           <u>
-           2025-11-21 00:00
+           [ 2024-11-29 00:00 ]
           </u>
           至
           <u>
-           2025-12-21 00:00
+           [ 2024-12-29 15:57 ]
           </u>
          </span>
          <span id="info_res">
@@ -299,260 +299,551 @@
          </span>
         </div>
         <div class="vote-info">
-         <p style="text-indent: 2em; text-align: justify;">
-          为进一步提升萧县人民政府网站服务能力和用户体验，现开展政府网站内容设置和服务体验问卷调研。本调查为匿名，诚挚邀请您参与，感谢支持！
+         <p>
+          <span style='color: rgb(51, 51, 51); font-family: "Microsoft YaHei", 微软雅黑, "PingFang SC", AliPuHui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 32px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;'>
+           为充分了解居民节水用水情况，引领公民践行节约用水责任，开展此次问卷调查。本调查为匿名，诚挚邀请您参与，感谢支持！
+          </span>
+          <br/>
          </p>
         </div>
-        <script>
-         var questionIds = [];
-    var questionType = [];
-    var velocityCounts = [];
-        </script>
-        <div class="vote-main">
-         <script>
-          questionIds.push("33891");
-            questionType.push("2");
-            velocityCounts.push("1")
-         </script>
-         <div class="vote-lsit">
-          <div class="title">
-           1、您浏览或登录政府网站的目的是？（可多选）
-          </div>
-          <ul>
-           <li>
-            <input id="op_103061" name="option_33891" onclick="checkParams(33891,103061,2,'1000')" type="checkbox" value="103061"/>
-            查看政府工作热点信息
-           </li>
-           <li>
-            <input id="op_103071" name="option_33891" onclick="checkParams(33891,103071,2,'1000')" type="checkbox" value="103071"/>
-            查看政府工作热点信息查询社保、住房、医疗等民生方面的信息
-           </li>
-           <li>
-            <input id="op_103081" name="option_33891" onclick="checkParams(33891,103081,2,'1000')" type="checkbox" value="103081"/>
-            查找政策文件和相关解读
-           </li>
-           <li>
-            <input id="op_103091" name="option_33891" onclick="checkParams(33891,103091,2,'1000')" type="checkbox" value="103091"/>
-            向有关部门进行投诉、建议或咨询
-           </li>
-           <li>
-            <input id="op_103101" name="option_33891" onclick="checkParams(33891,103101,2,'1000')" type="checkbox" value="103101"/>
-            了解本地历史、概括、旅游等相关信息
-           </li>
-           <li>
-            <input id="op_103111" name="option_33891" onclick="checkParams(33891,103111,2,'1000')" type="checkbox" value="103111"/>
-            办事或查看办事记录
-           </li>
-           <li>
-            <input id="op_103121" name="option_33891" onclick="checkParams(33891,103121,2,'1000')" type="checkbox" value="103121"/>
-            查询企业开办、经营纳税、资质证定、招商引资等企业服务相关信息
-           </li>
-           <li>
-            <input id="op_103131" name="option_33891" onclick="checkParams(33891,103131,2,'1000')" type="checkbox" value="103131"/>
-            查询获取公共数据
-           </li>
-          </ul>
-         </div>
-         <script>
-          questionIds.push("33901");
-            questionType.push("2");
-            velocityCounts.push("2")
-         </script>
-         <div class="vote-lsit">
-          <div class="title">
-           2、您通常从什么渠道获取政府信息（政府新闻资讯、政策文件）？（可多选）
-          </div>
-          <ul>
-           <li>
-            <input id="op_103141" name="option_33901" onclick="checkParams(33901,103141,2,'1000')" type="checkbox" value="103141"/>
-            政府部门开设的微信、微博等新媒体账号
-           </li>
-           <li>
-            <input id="op_103151" name="option_33901" onclick="checkParams(33901,103151,2,'1000')" type="checkbox" value="103151"/>
-            政府网站
-           </li>
-           <li>
-            <input id="op_103161" name="option_33901" onclick="checkParams(33901,103161,2,'1000')" type="checkbox" value="103161"/>
-            报纸、电视等媒体
-           </li>
-          </ul>
-         </div>
-         <script>
-          questionIds.push("33911");
-            questionType.push("1");
-            velocityCounts.push("3")
-         </script>
-         <div class="vote-lsit">
-          <div class="title">
-           3、您在政府网站上能否容易找到所需信息？
-          </div>
-          <ul>
-           <li>
-            <input id="op_103171" name="option_33911" onclick="checkParams(33911,103171,1,'')" type="radio" value="103171"/>
-            非常容易
-           </li>
-           <li>
-            <input id="op_103181" name="option_33911" onclick="checkParams(33911,103181,1,'')" type="radio" value="103181"/>
-            比较容易
-           </li>
-           <li>
-            <input id="op_103191" name="option_33911" onclick="checkParams(33911,103191,1,'')" type="radio" value="103191"/>
-            比较难
-           </li>
-          </ul>
-         </div>
-         <script>
-          questionIds.push("33921");
-            questionType.push("1");
-            velocityCounts.push("4")
-         </script>
-         <div class="vote-lsit">
-          <div class="title">
-           4、您需要查找的政府相关信息能否都在本网站找到？
-          </div>
-          <ul>
-           <li>
-            <input id="op_103201" name="option_33921" onclick="checkParams(33921,103201,1,'')" type="radio" value="103201"/>
-            能找到
-           </li>
-           <li>
-            <input id="op_103211" name="option_33921" onclick="checkParams(33921,103211,1,'')" type="radio" value="103211"/>
-            不能，需要访问多个政府网站
-           </li>
-          </ul>
-         </div>
-         <script>
-          questionIds.push("33931");
-            questionType.push("2");
-            velocityCounts.push("5")
-         </script>
-         <div class="vote-lsit">
-          <div class="title">
-           5、您对政府网站还有哪些意见或建议？（可多选）
-          </div>
-          <ul>
-           <li>
-            <input id="op_103221" name="option_33931" onclick="checkParams(33931,103221,2,'1000')" type="checkbox" value="103221"/>
-            内容提供
-           </li>
-           <li>
-            <input id="op_103231" name="option_33931" onclick="checkParams(33931,103231,2,'1000')" type="checkbox" value="103231"/>
-            搜索
-           </li>
-           <li>
-            <input id="op_103241" name="option_33931" onclick="checkParams(33931,103241,2,'1000')" type="checkbox" value="103241"/>
-            智能问答
-           </li>
-           <li>
-            <input id="op_103251" name="option_33931" onclick="checkParams(33931,103251,2,'1000')" type="checkbox" value="103251"/>
-            咨询投诉
-           </li>
-           <li>
-            <input id="op_103261" name="option_33931" onclick="checkParams(33931,103261,2,'1000')" type="checkbox" value="103261"/>
-            其他
-           </li>
-          </ul>
-         </div>
-        </div>
-        <div class="vote-code">
-         <span class="text-code">
-          <span style="color:#f00; padding-right:5px;">
-           *
-          </span>
-          验
-          <span class="s01">
-          </span>
-          证
-          <span class="s02">
-          </span>
-          码：
-         </span>
-         <input class="verification" id="checkimg" maxlength="4" size="6" type="text"/>
-         <img align="absmiddle" class="img-code" height="31" id="imgCode" src="/member/getCode" title="看不清楚，换个图片" width="82"/>
-        </div>
-        <div class="vote-btn">
-         <button class="btn-review" onclick="location.href='https://www.ahxx.gov.cn/content/article/163195471?type=0'" type="button">
-          查看
-         </button>
-        </div>
-        <script>
-         $(document).ready(function (e) {
-
-        $("#imgCode").on('click', function () {
-            var _this = $(this);
-            _this.attr("src", "/member/getCode?s=" + Math.random());
-        })
-
-    });
-
-    function checkParams(questionId, optionId, options, optionsCount) {
-        if (options == 2) {
-            if ($("input[name=option_" + questionId + "]:checked").length > optionsCount) {
-                $("#op_" + optionId).attr("checked", false);
-                alert("最多可选" + optionsCount + "项!");
-            }
-        }
-    }
-
-    function save() {
-        var dataParams = [];
-        for (var oi = 0; oi < questionType.length; oi++) {
-            var dataQuestion = {themeId: '22891', questionId: '', optionType: '', optionIds: '', content: ''};
-            var qt = questionType[oi];
-            var vc = velocityCounts[oi];
-            var qids = questionIds[oi];
-            dataQuestion.questionId = qids;
-            dataQuestion.optionType = qt;
-            if (qt == '1') {
-                var optionRadio = $("input[name=option_" + qids + "]:checked");
-                if (optionRadio.length == 0) {
-                    alert("第" + vc + "题未选择选项");
-                    return;
-                } else {
-                    dataQuestion.optionIds = optionRadio.val();
-                }
-            } else if (qt == '2') {
-                var optioncheckBox = $("input[name=option_" + qids + "]:checked");
-                if (optioncheckBox.length == 0) {
-                    alert("第" + vc + "题未选择选项");
-                    return;
-                } else {
-                    var seloptionids = '';
-                    $("input[name=option_" + qids + "]:checked").each(function (i, optionObj) {
-                        seloptionids = (seloptionids == '' ? seloptionids : seloptionids + ",") + optionObj.value;
-                    });
-                    dataQuestion.optionIds = seloptionids;
-                }
-            } else if (qt == '3') {
-                dataQuestion.content = $("#content_" + qids).val();
-                if (dataQuestion.content != '' && dataQuestion.content.length > 1000) {
-                    alert("第" + vc + "题评议内容过长！");
-                    return;
-                }
-            }
-            dataParams.push(dataQuestion)
-        }
-        var checkCode = $("#checkimg").val();
-        if (checkCode == '') {
-            alert("验证码不能为空！");
-            return;
-        }
-        Ls.ajax({
-            url: "/content/saveSurveyWeb",
-            data: {resultList: JSON.stringify(dataParams), checkCode: checkCode}
-        }).done(function (d) {
-            if (d.status == 1) {
-                alert("提交成功");
-                location.href = "https://www.ahxx.gov.cn/content/article/163195471?type=0";
-            } else {
-                alert(d.desc);
-                $("#imgCode").click();
-            }
-        }).fail(function () {
-            alert('失败!');
-        });
-    }
-        </script>
+        <table class="vote-show">
+         <tbody>
+          <tr>
+           <th>
+            1、您家每月水费支出大概是多少?
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              0-20元
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:100%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              20-50元
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              50-100元
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              100元以上
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              不太清楚
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            2、您是从哪些途径了解节水知识的？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              互联网
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              电视
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:50%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              报纸、书籍
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:50%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              道路周边广告牌
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              社区、小区宣传栏
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              所在单位组织宣传
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            3、您在日常用水过程中不需要的情况下会随时关闭水龙头吗？（如刷牙、洗脸、洗澡时）
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              总是会
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              偶尔会
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:100%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              不太会
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            4、您家里有使用节水器具吗（如节水型马桶、水龙头等）？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              全部使用
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:100%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              有一些
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              没有
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            5、关于节约用水，您更赞同以下哪一个观点？
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              节水是每个人的义务，要时刻节约用水
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              居民用水占比很低，企业更应该节水
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:100%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              节水很有必要，但我不知道怎样算节水
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              应该把节水的精力花在节约用电上
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <th>
+            6、您认为目前您家庭的用水量是否合理?
+           </th>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              合理
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:100%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               1
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              偏多
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <div class="vote_con clearfix">
+             <span class="c1">
+              偏少
+             </span>
+             <span class="c2">
+              <span class="progress-bar">
+               <span class="progress" style="width:0%">
+               </span>
+              </span>
+             </span>
+             <span class="c3">
+              <i>
+               0
+              </i>
+              票
+             </span>
+            </div>
+           </td>
+          </tr>
+         </tbody>
+        </table>
         <!--EndLabelHtml_surveyInfo_71ea7c5808881967c286d0012cd9c796-->
        </div>
        <div class="wz_share mt20 j-share-info hidden-sm hidden-xs">
