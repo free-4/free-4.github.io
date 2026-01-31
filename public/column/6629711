@@ -11,13 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="政府信息公开制度" name="ColumnName"/>
-   <meta content="信息公开制度" name="ColumnType"/>
-   <meta content="政府信息公开专栏、人民政府信息公开制度、指南" name="ColumnDescription"/>
-   <meta content="信息公开制度" name="ColumnKeywords"/>
+   <meta content="政策图解" name="ColumnName"/>
+   <meta content="政策解读，信息公开" name="ColumnType"/>
+   <meta content="发布采用图片图表、音频视频、卡通动漫等群众喜闻乐见的展现形式对政策文件解读信息。" name="ColumnDescription"/>
+   <meta content="政策解读，信息公开" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:29:09" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -271,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="$catId"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60733621"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2118,357 +2118,349 @@
          <a href="/public/column/6629711">
           政府信息公开
          </a>
-         &gt; 萧县人民政府信息公开信息公开制度规定
+         &gt; 萧县人民政府信息公开
+         <i>
+          &gt;
+         </i>
+         <a class="publicNavPos" data-catid="60733591" data-organid="6629711" href="/public/column/6629711" target="_self">
+          政策解读咨询
+         </a>
+         <i>
+          &gt;
+         </i>
+         <a class="publicNavPos" data-catid="60733621" data-organid="6629711" href="/public/column/6629711" target="_self">
+          政策图解
+         </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <div class="gkzd-title">
-          <span>
-           政府信息公开制度
-          </span>
+         <div class="gktit">
+          <a href="/public/column/6629711" title="政策图解">
+           政策图解
+          </a>
+          <div class="gklm_search hidden-xs hidden-sm">
+           <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
+            <ul class="clearfix">
+             <li class="ss2">
+              <input class="search-keywords srkcss" data-rule="关键字:required2" data-rule-required2="[/^[0-9a-zA-z\u0391-\uFFE5\s\[\]\(\),.《》]+$/, '查询关键字不允许含有特殊字符']" id="SearchWords" maxlength="30" name="SearchWords" placeholder="--当前目录检索--" size="24" type="text" value=""/>
+             </li>
+             <li class="ss1">
+              <input class="topsearchbtn" name="input" onclick="columnSearch()" type="button" value=""/>
+             </li>
+            </ul>
+           </form>
+          </div>
          </div>
-         <div class="xxgklistb">
-          <ul class="doc_list list-2657783">
-           <li class="even">
-            <a href="/public/6629711/155489311.html" target="_blank" title="《中华人民共和国个人信息保护法》">
-             《中华人民共和国个人信息保护法》
+         <div class="xxgk_nav_con">
+          <ul class="clearfix xxgk_nav_list">
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/163110241.html" target="_blank" title="《萧县人民政府办公室关于印发安徽萧县经济开发区标准化厂房入驻办法的通知》政策图解">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             《萧县人民政府办公室关于印发安徽萧县经济开发区标准化厂房入驻办法的通知》政策图解
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/163054741.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2021-10-29
+             2025-06-06
             </span>
            </li>
-           <li class="even">
-            <a href="/public/6629711/154454731.html" target="_blank" title="《中华人民共和国政府信息公开条例》">
-             《中华人民共和国政府信息公开条例》
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/162343881.html" target="_blank" title="2025年政府工作报告（图解版）">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             2025年政府工作报告（图解版）
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/content/162175941" target="_blank">
+             文件
             </a>
             <span class="date">
-             2019-05-08
+             2025-01-17
             </span>
            </li>
-           <li class="line">
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/156877481.html" target="_blank" title="国务院办公厅关于印发2022年政务公开工作要点的通知">
-             国务院办公厅关于印发2022年政务公开工作要点的通知
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/161220311.html" target="_blank" title="【视频动漫解读】《萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知》（动漫解读）">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             【视频动漫解读】《萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知》（动漫解读）
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/162282021.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2022-04-26
+             2024-06-21
             </span>
            </li>
-           <li class="even">
-            <a href="/public/6629711/155959881.html" target="_blank" title="国务院办公厅转发司法部关于审理政府信息公开行政复议案件若干问题指导意见的通知">
-             国务院办公厅转发司法部关于审理政府信息公开行政复议案件若干问题指导意见的通知
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/159977431.html" target="_blank" title="【图解】萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             【图解】萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/162282021.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2022-01-04
+             2024-06-14
             </span>
            </li>
-           <li class="odd">
-            <a href="/public/6629711/155493881.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于做好规章集中公开并动态更新工作的通知">
-             国务院办公厅政府信息与政务公开办公室关于做好规章集中公开并动态更新工作的通知
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/158587911.html" target="_blank" title="【图解】萧县粮食储备管理办法">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             【图解】萧县粮食储备管理办法
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/158510701.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2021-10-29
+             2023-01-16
             </span>
            </li>
-           <li class="even">
-            <a href="/public/6629711/155327311.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于印发《中华人民共和国政府信息公开工作年度报告格式》的通知">
-             国务院办公厅政府信息与政务公开办公室关于印发《中华人民共和国政府信息公开工作年度报告格式》的通知
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/158554731.html" target="_blank" title="2023年政府工作报告（图解版）">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             2023年政府工作报告（图解版）
             </a>
             <span class="date">
-             2021-09-29
+             2023-01-13
             </span>
            </li>
-           <li class="odd">
-            <a href="/public/6629711/154536691.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于明确政府信息公开与业务查询事项界限的解释">
-             国务院办公厅政府信息与政务公开办公室关于明确政府信息公开与业务查询事项界限的解释
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/156942131.html" target="_blank" title="【动漫宣传】防范电信诈骗">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             【动漫宣传】防范电信诈骗
             </a>
             <span class="date">
-             2021-06-04
+             2022-05-16
             </span>
            </li>
-           <li class="even">
-            <a href="/public/6629711/154536641.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于机构改革后政府信息公开申请办理问题的解释">
-             国务院办公厅政府信息与政务公开办公室关于机构改革后政府信息公开申请办理问题的解释
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/156370141.html" target="_blank" title="一图读懂《萧县企业上市挂牌和直接融资奖励办法》">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             一图读懂《萧县企业上市挂牌和直接融资奖励办法》
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/156315941.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2021-06-04
+             2022-03-10
             </span>
            </li>
-           <li class="odd">
-            <a href="/public/6629711/154536621.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于政府信息公开申请接收渠道问题的解释">
-             国务院办公厅政府信息与政务公开办公室关于政府信息公开申请接收渠道问题的解释
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/156142171.html" target="_blank" title="图解：《萧县农村宅基地承包地纠纷排查化解专项行动工作方案》政策解读">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：《萧县农村宅基地承包地纠纷排查化解专项行动工作方案》政策解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/156117881.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2021-06-04
+             2022-02-07
             </span>
            </li>
-           <li class="even">
-            <a href="/public/6629711/154536511.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于转发《江苏省政府信息公开申请办理答复规范》的函">
-             国务院办公厅政府信息与政务公开办公室关于转发《江苏省政府信息公开申请办理答复规范》的函
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/156001821.html" target="_blank" title="图解：《萧县促进现代服务业企业发展激励办法》">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：《萧县促进现代服务业企业发展激励办法》
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/155932981.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2021-06-04
+             2022-01-10
             </span>
            </li>
-           <li class="odd">
-            <a href="/public/6629711/154453361.html" target="_blank" title="国务院办公厅关于印发2021年政务公开工作要点的通知">
-             国务院办公厅关于印发2021年政务公开工作要点的通知
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/155463841.html" target="_blank" title="图解：萧县人民政府办公室关于印发萧县公交成本规制实施办法的通知">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：萧县人民政府办公室关于印发萧县公交成本规制实施办法的通知
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/155440311.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2021-04-24
+             2021-10-25
             </span>
            </li>
-           <li class="even">
-            <a href="/public/6629711/154454461.html" target="_blank" title="国务院办公厅关于印发《政府信息公开信息处理费管理办法》的通知">
-             国务院办公厅关于印发《政府信息公开信息处理费管理办法》的通知
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/154964011.html" target="_blank" title="图解：萧县人民政府办公室印发关于贯彻落实政府“过紧日子”要求厉行节约力保重点支出十条措施的通知">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：萧县人民政府办公室印发关于贯彻落实政府“过紧日子”要求厉行节约力保重点支出十条措施的通知
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/154964031.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2021-02-09
+             2021-08-02
             </span>
            </li>
-           <li class="odd">
-            <a href="/public/6629711/154454491.html" target="_blank" title="国务院办公厅关于进一步优化地方政务服务便民热线的指导意见">
-             国务院办公厅关于进一步优化地方政务服务便民热线的指导意见
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/154865921.html" target="_blank" title="图解：《萧县人民政府办公室关于印发2021年政务公开重点工作任务分工方案的通知》政策解读">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：《萧县人民政府办公室关于印发2021年政务公开重点工作任务分工方案的通知》政策解读
             </a>
             <span class="date">
-             2021-01-07
+             2021-07-09
             </span>
            </li>
-           <li class="even">
-            <a href="/public/6629711/154454501.html" target="_blank" title="国务院办公厅关于印发《公共企事业单位信息公开规定制定办法》的通知">
-             国务院办公厅关于印发《公共企事业单位信息公开规定制定办法》的通知
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/154458581.html" target="_blank" title="图解：《萧县政府投资建设项目工程变更管理办法》政策解读">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：《萧县政府投资建设项目工程变更管理办法》政策解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/154351401.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2020-12-21
+             2021-05-07
             </span>
            </li>
-           <li class="odd">
-            <a href="/public/6629711/154454621.html" target="_blank" title="国务院办公厅关于在制定行政法规规章行政规范性文件过程中充分听取企业和行业协会商会意见的通知">
-             国务院办公厅关于在制定行政法规规章行政规范性文件过程中充分听取企业和行业协会商会意见的通知
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/154458511.html" target="_blank" title="图解：《萧县政府投资建设工程实施阶段全过程造价管理办法》政策解读">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：《萧县政府投资建设工程实施阶段全过程造价管理办法》政策解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/154350431.html" target="_blank">
+             文件
             </a>
             <span class="date">
-             2020-12-14
+             2021-05-07
             </span>
            </li>
-           <li class="even">
-            <a href="/public/6629711/154454641.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于规范政府信息公开平台有关事项的通知">
-             国务院办公厅政府信息与政务公开办公室关于规范政府信息公开平台有关事项的通知
-            </a>
-            <span class="date">
-             2020-12-14
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154453401.html" target="_blank" title="国务院办公厅关于进一步做好政府信息公开保密审查工作的通知">
-             国务院办公厅关于进一步做好政府信息公开保密审查工作的通知
-            </a>
-            <span class="date">
-             2020-08-17
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/154454071.html" target="_blank" title="国务院办公厅关于印发2020年政务公开工作要点的通知">
-             国务院办公厅关于印发2020年政务公开工作要点的通知
-            </a>
-            <span class="date">
-             2020-07-08
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154453471.html" target="_blank" title="国务院办公厅关于印发2019年政务公开工作要点的通知">
-             国务院办公厅关于印发2019年政务公开工作要点的通知
-            </a>
-            <span class="date">
-             2019-05-08
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/154453571.html" target="_blank" title="国务院办公厅关于印发2018年政务公开工作要点的通知">
-             国务院办公厅关于印发2018年政务公开工作要点的通知
-            </a>
-            <span class="date">
-             2018-04-25
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154453581.html" target="_blank" title="国务院办公厅关于做好政府公报工作的通知">
-             国务院办公厅关于做好政府公报工作的通知
-            </a>
-            <span class="date">
-             2018-04-24
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/154453631.html" target="_blank" title="国务院办公厅关于推进社会公益事业建设领域政府信息公开的意见">
-             国务院办公厅关于推进社会公益事业建设领域政府信息公开的意见
-            </a>
-            <span class="date">
-             2018-02-26
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154453661.html" target="_blank" title="国务院办公厅关于推进公共资源配置领域政府信息公开的意见">
-             国务院办公厅关于推进公共资源配置领域政府信息公开的意见
-            </a>
-            <span class="date">
-             2017-12-29
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/154453831.html" target="_blank" title="国务院办公厅关于印发2017年政务公开工作要点的通知">
-             国务院办公厅关于印发2017年政务公开工作要点的通知
-            </a>
-            <span class="date">
-             2017-04-06
-            </span>
-           </li>
-           <li class="line">
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/162513061.html" target="_blank" title="《最高人民法院关于审理政府信息公开行政案件适用法律若干问题的解释》（法释〔2025〕8号）">
-             《最高人民法院关于审理政府信息公开行政案件适用法律若干问题的解释》（法释〔2025〕8号）
-            </a>
-            <span class="date">
-             2025-05-21
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/157611371.html" target="_blank" title="安徽省人民政府关于县级以上人民政府统一行使行政复议职责有关事项的通告">
-             安徽省人民政府关于县级以上人民政府统一行使行政复议职责有关事项的通告
-            </a>
-            <span class="date">
-             2022-10-27
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/155396041.html" target="_blank" title="最高人民法院关于正确确定县级以上地方人民政府行政诉讼被告资格若干问题的规定">
-             最高人民法院关于正确确定县级以上地方人民政府行政诉讼被告资格若干问题的规定
-            </a>
-            <span class="date">
-             2021-10-13
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154454471.html" target="_blank" title="《安徽省财政厅安徽省发展和改革委员会关于政府信息公开信息处理费有关事项的通知》">
-             《安徽省财政厅安徽省发展和改革委员会关于政府信息公开信息处理费有关事项的通知》
-            </a>
-            <span class="date">
-             2021-02-09
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/154453951.html" target="_blank" title="《安徽省重大行政决策程序规定》">
-             《安徽省重大行政决策程序规定》
-            </a>
-            <span class="date">
-             2021-01-25
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/154453431.html" target="_blank" title="安徽省人民政府办公厅关于印发2020年政务公开重点工作任务分工的通知">
-             安徽省人民政府办公厅关于印发2020年政务公开重点工作任务分工的通知
-            </a>
-            <span class="date">
-             2020-08-05
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154453441.html" target="_blank" title="安徽省人民政府办公厅关于印发安徽省全面推进基层政务公开标准化规范化工作实施方案的通知">
-             安徽省人民政府办公厅关于印发安徽省全面推进基层政务公开标准化规范化工作实施方案的通知
-            </a>
-            <span class="date">
-             2020-07-10
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154454081.html" target="_blank" title="安徽省人民政府办公厅关于印发安徽省全面推进基层政务公开标准化规范化工作实施方案的通知">
-             安徽省人民政府办公厅关于印发安徽省全面推进基层政务公开标准化规范化工作实施方案的通知
-            </a>
-            <span class="date">
-             2020-07-08
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/154454741.html" target="_blank" title="《重大行政决策程序暂行条例》">
-             《重大行政决策程序暂行条例》
-            </a>
-            <span class="date">
-             2019-05-08
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154453531.html" target="_blank" title="安徽省政务公开办公室关于印发2018年政务公开、政务服务重点工作任务分工和“群众办事百项堵点疏解行动”推广活动方案的通知">
-             安徽省政务公开办公室关于印发2018年政务公开、政务服务重点工作任务分工和“群众办事百项堵点疏解行动”推广活动方案的通知
-            </a>
-            <span class="date">
-             2018-05-28
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/154453551.html" target="_blank" title="安徽省人民政府办公厅关于推进公共资源配置领域政府信息公开的实施意见">
-             安徽省人民政府办公厅关于推进公共资源配置领域政府信息公开的实施意见
-            </a>
-            <span class="date">
-             2018-05-14
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154453561.html" target="_blank" title="安徽省人民政府办公厅关于推进社会公益事业建设领域政府信息公开有关事项的通知">
-             安徽省人民政府办公厅关于推进社会公益事业建设领域政府信息公开有关事项的通知
-            </a>
-            <span class="date">
-             2018-04-30
-            </span>
-           </li>
-           <li class="even">
-            <a href="/public/6629711/154453791.html" target="_blank" title="安徽省人民政府关于印发安徽省加强政务诚信建设实施方案的通知">
-             安徽省人民政府关于印发安徽省加强政务诚信建设实施方案的通知
-            </a>
-            <span class="date">
-             2017-08-23
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/154453821.html" target="_blank" title="安徽省人民政府办公厅关于印发2017年全省政务公开政务服务工作要点的通知">
-             安徽省人民政府办公厅关于印发2017年全省政务公开政务服务工作要点的通知
-            </a>
-            <span class="date">
-             2017-06-02
-            </span>
-           </li>
-           <li class="odd">
-            <a href="/public/6629711/156295401.html" target="_blank" title="中共安徽省委办公厅安徽省人民政府办公厅关于全面推进政务公开工作的实施意见">
-             中共安徽省委办公厅安徽省人民政府办公厅关于全面推进政务公开工作的实施意见
-            </a>
-            <span class="date">
-             2016-12-30
-            </span>
-           </li>
+           <script>
+            function downloadWord(id) {
+                            window.location.href = '/download/htmlExportPdf?id='+id;
+                        }
+                        $(".wh_fileName").each(function (i, el) {
+                            var name = $(this).text(),
+                                    arr = name.split(','),
+                                    str = '';
+                            $.each(arr, function (i2, el2) {
+                                if (i2 == 1 && el2.length > 0) {
+                                    el2 = '〔'+ el2 +'〕';
+                                }
+                                str += el2;
+                            })
+                            str += '';
+                            $(this).text(str);
+                        })
+                        function columnSearch() {
+                            var keyWords = $("#SearchWords").val();
+                            Ls.ajax({
+                                dataType: "html",
+                                url: "/site/label/8888",
+                                data : {
+                                    labelName: 'publicInfoList',
+                                    siteId : "",
+                                    pageSize : "20",
+                                    pageIndex: 1,
+                                    isDate : "true",
+                                    dateFormat : "yyyy-MM-dd",
+                                    length : "50",
+                                    organId: "",
+                                    type: 4,
+                                    catId: "60733621",
+                                    action:"list",
+                                    keyWords: keyWords,
+                                    result : "暂无相关信息",
+                                    file : "/c2/jh/xxgk/publicInfoList_newest_xx"
+                                }
+                            }).done(function(html) {
+                                $("#xxgk_lmcon").html(html);
+                                $("#SearchWords").val(keyWords);
+                            });
+                        }
+           </script>
           </ul>
          </div>
+         <div class="pagination" id="page_public_info">
+          分页
+         </div>
+         <script>
+          Ls.pagination("#page_public_info", function(pageIndex){
+                                                                                            Ls.ajax({
+                            dataType: "html",
+                            url: "/site/label/8888",
+                            data : {
+                                labelName: 'publicInfoList',
+                                siteId : "4697420",
+                                pageSize : "15",
+                                pageIndex: pageIndex,
+                                action : "list",
+                                isDate : "true",
+                                dateFormat : "yyyy-MM-dd",
+                                length : "80",
+                                organId: "6629711",
+                                type: "4",
+                                catId: "60733621",
+                                cId : "",
+                                result : "暂无相关信息",
+                                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
+                            }
+                        }).done(function(html) {
+                            $("#xxgk_lmcon").html(html);
+                        });
+                                    }, {
+                    currPage: (0+1),
+                    pageCount:5,
+                    param: "pageSize=15"
+                });
+         </script>
          <div class="clear">
          </div>
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?nav=2&action=list&type=1&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?sub=&catId=60733621&nav=&action=list&type=4&pageIndex=" + pageIndex;
             }, {
         currPage: (0+1),
-        pageCount:(1 + 0),
+        pageCount:(5 + 0),
         param: "pageSize=15"
     });
 
 
     var changeSearch = function(pageIndex){
 
-        var type = "1";
+        var type = "4";
         var fromCode = "";
         var sortType = "";
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "";
+        var catId = "60733621";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
