@@ -16,12 +16,12 @@
    <meta content="3413220004" name="SiteIDCode"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:08:02" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:46:04" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
-   <link href="/_res/css/zt_xxgk_gktl.css" rel="stylesheet"/>
-   <script src="/assets/js/common.min.js">
+   <link href="/_res/css/zt_xxgk_gktl.css?v=2" rel="stylesheet"/>
+   <script src="/assets/js/common.min.js?h5=true">
    </script>
    <script src="/_res/js/customize.min.js">
    </script>
@@ -42,7 +42,7 @@
      <script>
       var ll_22965891 = 1;
      </script>
-     <script charset="utf-8" src="/ljgl-x/ztlj/czzjzt/tb-banner/22965891.js">
+     <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/ztlj/czzjzt/tb-banner/22965891.js?num=1&amp;ect=1769874364307">
      </script>
      <!--EndLabelHtml_linkList_64ac4fcfc07861ba0a44b3d9d39eb0e8-->
     </ul>
@@ -85,7 +85,7 @@
       <script>
        var ll_22965901 = 1;
       </script>
-      <script charset="utf-8" src="/ljgl-x/ztlj/czzjzt/czzjt/22965901.js">
+      <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/ztlj/czzjzt/czzjt/22965901.js?num=1&amp;ect=1769874364308">
       </script>
       <!--EndLabelHtml_linkList_e7a49a88bfa331aa09054cac703e149e-->
      </ul>
@@ -96,7 +96,7 @@
       <script>
        var ll_22965911 = 2;
       </script>
-      <script charset="utf-8" src="/ljgl-x/ztlj/czzjzt/czzjlm/22965911.js">
+      <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/ztlj/czzjzt/czzjlm/22965911.js?num=2&amp;ect=1769874364308">
       </script>
       <!--EndLabelHtml_linkList_88d782cde367ed47932a66a030b3e823-->
      </ul>
@@ -270,7 +270,7 @@
         <script>
          var ll_4697457 = 100;
         </script>
-        <script charset="utf-8" src="/ljgl/sylj/gjbwwz/4697457.js">
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/gjbwwz/4697457.js?num=100&amp;ect=1769874364311">
         </script>
         <!--EndLabelHtml_linkList_cfde037b4d98927cfb2214b1d9e48a75-->
        </ul>
@@ -286,7 +286,7 @@
         <script>
          var ll_4697458 = 100;
         </script>
-        <script charset="utf-8" src="/ljgl/sylj/sndsjwz/4697458.js">
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/sndsjwz/4697458.js?num=100&amp;ect=1769874364312">
         </script>
         <!--EndLabelHtml_linkList_6e9b9ae73b8490ff69f18adf2b641b28-->
        </ul>
@@ -302,7 +302,7 @@
         <script>
          var ll_4697459 = 100;
         </script>
-        <script charset="utf-8" src="/ljgl/sylj/qtjgwz/4697459.js">
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/qtjgwz/4697459.js?num=100&amp;ect=1769874364312">
         </script>
         <!--EndLabelHtml_linkList_210841a1da100f461443e2a111889d60-->
        </ul>
@@ -449,7 +449,7 @@
        <script>
         var ll_4697466 = 1;
        </script>
-       <script charset="utf-8" src="/ljgl/sylj/ycxf-wbewm/4697466.js">
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wbewm/4697466.js?num=1&amp;ect=1769874364314">
        </script>
        <!--EndLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
       </ul>
@@ -462,7 +462,7 @@
        <script>
         var ll_4697467 = 1;
        </script>
-       <script charset="utf-8" src="/ljgl/sylj/ycxf-wxewm/4697467.js">
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wxewm/4697467.js?num=1&amp;ect=1769874364315">
        </script>
        <!--EndLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
       </ul>
