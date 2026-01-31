@@ -16,7 +16,7 @@
   <meta content="咨询投诉" name="ColumnKeywords"/>
   <meta content="萧县人民政府" name="Keywords"/>
   <meta content="萧县人民政府" name="Description"/>
-  <meta content="2026-01-31 22:59:20" name="HtmlGenerateTime"/>
+  <meta content="2026-01-31 23:02:07" name="HtmlGenerateTime"/>
   <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/assets/css/core.min.css" rel="stylesheet"/>
   <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -332,322 +332,735 @@
      <!--内容-->
      <div class="lmy_nrcontain">
       <div class="messagecon clearfix">
-       <div class="message_lmtitle clearfix pt0">
-        <a class="liuyan_liebiao" href="/content/column/4697445">
-         信件列表
-        </a>
-        <h3>
-         我要写信
-        </h3>
-       </div>
-       <div class="liuyan_xzbox">
-        <b>
-         写信须知：
-        </b>
-        <p>
-         1、写信时应遵守宪法、法律、法规、规章以及社会公德，如实反映情况，不得捏造、歪曲事实，不得诽谤、诬告陷害他人。
-        </p>
-        <p>
-         2、写信须署本人的真实姓名，不能隐瞒姓名或采用化名、笔名；要注明本人的具体联系方式，如手机号、电子邮箱等，以便于国家机关及其信访工作人员同来信人保持联系，使信访事项及时得以妥善解决。
-        </p>
-        <p>
-         3、来信字数不超过400个字符。
-        </p>
-        <p>
-         4、收到网民信件后，一般性问题将在7个工作日内反馈处理意见，情况较为复杂的将在15个工作日内反馈处理意见。
-        </p>
+       <div class="clearfix" id="searchDiv">
+        <!--快速查询-->
+        <div class="message_cxbox">
+         <h3>
+          <span class="tit">
+           快速查询
+          </span>
+          <span class="zs">
+           （以下任意一种方式均可查询）
+          </span>
+         </h3>
+         <div class="lyy_cxbox">
+          <form action="" autocomplete="off" class="formValidator" id="guestbook_search_bar" method="post">
+           <ul class="lyy_conline clearfix">
+            <li class="bh">
+             <p class="tit">
+              信件编号
+             </p>
+             <p class="srk">
+              <input class="defaultVal srkcss" id="docNum" maxlength="20" name="docNum" type="text"/>
+             </p>
+            </li>
+            <li class="cxm">
+             <p class="tit">
+              查询码
+             </p>
+             <p class="srk">
+              <input class="defaultVal srkcss" id="randomCode" maxlength="20" name="randomCode" type="password"/>
+             </p>
+            </li>
+           </ul>
+           <ul class="clearfix">
+            <li class="tit">
+             按手机号查询
+            </li>
+            <li class="srk">
+             <input class="srkcss" id="personPhone" maxlength="20" name="personPhone" type="text" value=""/>
+            </li>
+            <li class="hide">
+             <input maxlength="20" name="opt" type="text" value="1"/>
+            </li>
+            <li class="cxbtn">
+             <input name="" onclick="actionSearch();" type="button" value="查询">
+             </input>
+            </li>
+           </ul>
+          </form>
+         </div>
+        </div>
+        <!--快速查询 end-->
+        <div class="message_cxbox message_cxbox1">
+         <h3>
+          <span class="tit">
+           留言查询
+          </span>
+         </h3>
+         <div class="lyy_cxbox">
+          <form action="/content/column/4697445" id="searchForm" method="post">
+           <ul class="lyy_conline clearfix">
+            <li class="lx">
+             <p class="tit">
+              按类型
+             </p>
+             <p class="sel">
+              <select id="classCode_1" name="classCode">
+              </select>
+             </p>
+            </li>
+            <li class="words">
+             <p class="tit">
+              关键字
+             </p>
+             <p class="srk">
+              <input class="srkcss" id="title" maxlength="20" name="title" type="text" value=""/>
+             </p>
+            </li>
+           </ul>
+           <ul class="clearfix">
+            <li class="lx">
+             <p class="tit">
+              按时间
+             </p>
+             <p class="srk date">
+              <input aria-required="true" class="cxtm datePicker defaultVal" id="startDate" name="startDate" readonly="" type="text" value=""/>
+             </p>
+            </li>
+            <li class="words">
+             <p class="fg">
+              至
+             </p>
+             <p class="srk date">
+              <input aria-required="true" class="cxtm datePicker defaultVal" id="endDate" name="endDate" readonly="" type="text" value=""/>
+             </p>
+            </li>
+            <li class="hide">
+             <input name="opt" value="1"/>
+            </li>
+            <li class="cxbtn">
+             <input name="" onclick="check();" type="button" value="查询"/>
+            </li>
+           </ul>
+          </form>
+         </div>
+        </div>
+        <!--留言查询 end-->
        </div>
        <!--StartLabelHtml_messageBoardPageList_6f93e32655e661bd56498807088ddc06-->
-       <div class="guestbook-form">
-        <form id="guestbook_form" name="guestbook_form" role="form">
-         <div class="guestbook-table-form">
-          <ul class="clearfix">
-           <li class="srk sel2">
-            <p class="bt">
-             受理单位
-            </p>
-            <p class="inpt">
-             <select id="receiveUnitId" name="receiveUnitId">
-              <option value="">
-               请选择受理单位（必填）
-              </option>
-              <option selected="selected" value="6">
-               萧县人民政府
-              </option>
-             </select>
-            </p>
-           </li>
-           <li class="srk1 sel1">
-            <p class="bt">
-             信件类型：
-            </p>
-            <p class="inpt">
-             <label>
-              <input checked="checked" name="classCode" type="radio" value="do_consult"/>
-              我要咨询
-             </label>
-             <label>
-              <input name="classCode" type="radio" value="do_complain"/>
-              我要投诉
-             </label>
-             <label>
-              <input name="classCode" type="radio" value="do_suggest"/>
-              我要建议
-             </label>
-             <label>
-              <input name="classCode" type="radio" value="do_report"/>
-              我要举报
-             </label>
-            </p>
-           </li>
-           <div class="clear">
-           </div>
-           <li class="srk">
-            <p class="bt">
-             标题
-            </p>
-            <p class="inpt">
-             <input id="title" maxlength="150" name="title" placeholder="请输入信件标题（必填，5~20个字符）" type="text"/>
-            </p>
-           </li>
-           <li class="srk1">
-            <p class="bt">
-             是否公开
-            </p>
-            <p class="inpt">
-             <label>
-              <input class="isPublic" name="isPublic" type="radio" value="1"/>
-              是
-             </label>
-             <label>
-              <input checked="checked" class="isPublic" name="isPublic" type="radio" value="0"/>
-              否
-             </label>
-            </p>
-           </li>
-           <li class="srk">
-            <p class="bt">
-             姓名
-            </p>
-            <p class="inpt">
-             <input id="personName" maxlength="10" name="personName" placeholder="请输入您的姓名" type="text"/>
-            </p>
-           </li>
-           <li class="srk1">
-            <p class="bt">
-             电子邮箱
-            </p>
-            <p class="inpt">
-             <input class="email" id="email" maxlength="32" name="email" placeholder="请输入您的电子邮箱" type="text"/>
-            </p>
-           </li>
-           <li class="srk">
-            <p class="bt">
-             手机号码
-            </p>
-            <p class="inpt">
-             <input id="personPhone" maxlength="13" name="personPhone" placeholder="请输入您的手机号码（必填）" type="text"/>
-            </p>
-           </li>
-           <li class="srk1 yzm">
-            <p class="bt">
-             验证码
-            </p>
-            <p class="inpt">
-             <input class="verification" id="checkCode" maxlength="4" name="checkCode" placeholder="请输入验证码（必填）" size="6" type="text"/>
-             <img align="absmiddle" class="imgcode" height="31" id="imgCode" src="/member/getCode" title="看不清楚，换个图片" width="82"/>
-            </p>
-           </li>
-           <li class="tex">
-            <p class="bt">
-             内容
-            </p>
-            <p class="inpt">
-             <textarea id="messageBoardContent" name="messageBoardContent" placeholder="请输入信件内容（必填，5~400个字符）" rows="5"></textarea>
-            </p>
-           </li>
-           <li class="srk isprivacy" style="height: 36px;line-height: 36px;font-size: 14px;">
-            <p class="inpt">
-             <span style="color: #f00;">
-              *
-             </span>
-             <label style="font-size:14px;">
-              <input class="j-privacy-statement" name="privacyStatement" style="width: auto;margin:4px 5px 0;" type="checkbox"/>
-              我已阅读隐私声明
-             </label>
-            </p>
-           </li>
-           <li class="btn_group">
-            <input accesskey="S" class="btn btn-submit" id="btn_submit" type="button" value="提 交"/>
-            <input class="btn btn-reset" type="reset" value="重 置"/>
-            <input name="columnId" type="hidden" value="4697445"/>
-            <input name="siteId" type="hidden" value="4697420"/>
-            <input name="recType" type="hidden" value="0"/>
-            <input id="receiveUnitName" name="receiveUnitName" type="hidden"/>
-            <input id="receiveUserName" name="receiveUserName" type="hidden"/>
-           </li>
-          </ul>
-         </div>
-        </form>
+       <div class="message_lmtitle clearfix">
+        <a class="j-login liuyan_xiexin" href="/content/column/4697445">
+         我要写信
+        </a>
+        <h3>
+         信件列表
+        </h3>
        </div>
-       <script id="guestbook_tips_tpl" type="text/html">
-        <div class="guestbook-tips">
-        <ul class="guestbook-text">
-            <h2 class="font_01">您的留言提交成功！</h2>
-            <div class="tishi_con">感谢您的留言,我们会及时审核并回复。<br>
-                请记录您的查询编号和密码,以便于查询您的本次留言。
-            </div>
-        </ul>
-        <ul>
-            <li>查询编号：<span><?=docNum?></span></li>
-            <li>查询密码：<span><?=randomCode?></span></li>
-            <li>请您耐心等待相关单位的处理，也可以点击查看来自智能机器人的<a class="detail" style="color: #0a84ff" target="_blank"
-                                                                            href="https://www.ahxx.gov.cn/content/article/<?=baseContentId?>">预答复</a>。</li>
-            <li class="tips" style="color: #d00;"><span id="time">15</span>秒后为您自动跳转到信件预答复页面</li>
-        </ul>
-    </div>
-       </script>
-       <script id="guestbook_search_tpl" type="text/html">
-        <form name="guestbook_search_bar" id="guestbook_search_bar" method="post" action="" autocomplete="off">
-        <div class="guestbook-search">
-            <ul>
-                <li>查询编号：<span><input name="docNum" type="text" maxlength="20"></span></li>
-                <li>查询密码：<span><input name="randomCode" type="password" maxlength="20"></li>
-            </ul>
+       <div class="liuyan_cxcon">
+        <div style="display: none">
+         111
         </div>
-    </form>
-       </script>
-       <script>
-        var recType = '0';
-    var codeType = "1";
-    var timer = null;
-    $(document).ready(function () {
-	    
-		// 检测是否登录，填充留言表单；
-		Ls.www.memberLoginCheck(function(data, options){
-			if (data && data.isLogin) {
-				// 已登录
-				var member = data.curMember;
-				$('#personName').val(member.name).attr('readonly', true).addClass('readonly');
-				//$('#personPhone').val(member.phone).attr('readonly', true).addClass('readonly');
-				if (!Ls.isEmpty(member.email)) {
-					$('#email').val(member.email).attr('readonly', true).addClass('readonly');
-				}
-			} else {
-				// 未登录
-				alert(options.text);
-				location.href = data.redirectUrl;
-			}
-		})
-
-        function fn1() {
-            var num = 15;
-            timer = setInterval(function () {
-                num--;
-                $("#time").text(num);
-                if (num == 0) {
-                    clearInterval(timer);   //定时器清除；
-                    window.open($('.detail').attr('href'));
-                    dialogWin.close();
-                }
-            }, 1000);
-        };
-
-
-        $("#searchDiv").hide();
-        var isOpen = Ls.url.get("isOpen");
-        //弹窗留言影响查询按扭
-        if (isOpen) {
-            $("#btn_search").hide()
-        }
-
-        using("validator", function () {
-
-            $("#guestbook_form").validator({
-                fields: {
-                                            classCode: "留言类型:required;",
-                    					                             receiveUnitId: "受理单位:required;",
-                                                             personName: "您的姓名:length[0~32];",
-                    email:"电子邮箱:email",
-                    personPhone: "手机号码:required;mobile;",
-                    title: "标题:required;length[5~20];",
-                    messageBoardContent: "内容:required;length[5~400];",
-                    checkCode: "验证码:required;",
-                    privacyStatement: {
-                        rule: 'checked',
-                        messages: {
-                            required: '请勾选我已阅读隐私声明'
-                        }
-                    }
-                },
-                valid: function () {
-                    var me = this;
-                    me.holdSubmit();
-                    saveData().always(function () {
-                        me.holdSubmit(false);
-                    });
-                },
-                msgClass: 'n-top',
-                timely: 1
+        <p class="tj j-messageBoard-count" data-setting="{siteId:4697420,columnIds:'4697445',type:'amount,replyNum,yearAmount,yearReplyNum,curMonthAmount,curMonthReplyNum,todayAmount,todayReplyNum'}">
+         （来信总数：
+         <span class="sz" id="amount_0">
+          0
+         </span>
+         件
+         <span class="jg">
+         </span>
+         回复总数：
+         <span class="sz" id="replyNum_0">
+          0
+         </span>
+         件
+         <span class="jg">
+         </span>
+         年度总数：
+         <span class="sz" id="yearAmount_0">
+          0
+         </span>
+         件
+         <span class="jg">
+         </span>
+         年度回复：
+         <span class="sz" id="yearReplyNum_0">
+          0
+         </span>
+         件
+         <span class="jg">
+         </span>
+         月度总数：
+         <span class="sz" id="curMonthAmount_0">
+          0
+         </span>
+         件
+         <span class="jg">
+         </span>
+         月度回复：
+         <span class="sz" id="curMonthReplyNum_0">
+          0
+         </span>
+         件
+         <span class="jg">
+         </span>
+         今日来信：
+         <span class="sz" id="todayAmount_0">
+          0
+         </span>
+         件
+         <span class="jg">
+         </span>
+         今日回复：
+         <span class="sz" id="todayReplyNum_0">
+          0
+         </span>
+         件）
+        </p>
+       </div>
+       <div class="guestbook-table guestbook-table4697445" id="message_list">
+        <ul class="guestbook_title">
+         <li class="t0">
+          留言时间
+         </li>
+         <li class="t5">
+          办理状态
+         </li>
+         <li class="t1">
+          信件类型
+         </li>
+         <li class="t2">
+          信件编号
+         </li>
+         <li class="t3">
+          信件标题
+         </li>
+         <li class="t4">
+          受理单位
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2025-12-21
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20251221001
+         </li>
+         <li class="t3">
+          <a href="/content/article/163301251" target="_blank" title="萧县雨露计划补助">
+           <font>
+            萧县雨露计划补助
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县农业农村局（乡村振兴局）
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2025-11-20
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20251120001
+         </li>
+         <li class="t3">
+          <a href="/content/article/163193181" target="_blank" title="独生子女父母政府代缴农村医疗保险问题">
+           <font>
+            独生子女父母政府代缴农村医疗保险问题
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县卫生健康委员会（疾病预防控制局、中医药管理局）
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2025-10-20
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20251020001
+         </li>
+         <li class="t3">
+          <a href="/content/article/163088551" target="_blank" title="徐萧快速路（下穿符夹铁路段）何时通车？">
+           <font>
+            徐萧快速路（下穿符夹铁路段）何时通车？
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          交投公司
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2025-10-01
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20251001001
+         </li>
+         <li class="t3">
+          <a href="/content/article/163038771" target="_blank" title="张庄寨镇邝庄村土路什么时候能够修？">
+           <font>
+            张庄寨镇邝庄村土路什么时候能够修？
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          张庄寨镇人民政府
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2025-09-09
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20250909002
+         </li>
+         <li class="t3">
+          <a href="/content/article/162942601" target="_blank" title="萧县韩井佳苑交房问题">
+           <font>
+            萧县韩井佳苑交房问题
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          建投公司
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2025-08-12
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20250812002
+         </li>
+         <li class="t3">
+          <a href="/content/article/162832401" target="_blank" title="葡萄酒厂什么时间交房">
+           <font>
+            葡萄酒厂什么时间交房
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          建投公司
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2025-07-26
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要投诉
+         </li>
+         <li class="t2">
+          20250726001
+         </li>
+         <li class="t3">
+          <a href="/content/article/162753321" target="_blank" title="半夜用水问题">
+           <font>
+            半夜用水问题
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县水利局
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2025-06-13
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20250613001
+         </li>
+         <li class="t3">
+          <a href="/content/article/162612331" target="_blank" title="农村宅基地确权证书">
+           <font>
+            农村宅基地确权证书
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          赵庄镇人民政府
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2025-04-08
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要投诉
+         </li>
+         <li class="t2">
+          20250408002
+         </li>
+         <li class="t3">
+          <a href="/content/article/162375621" target="_blank" title="投诉萧县云水水务公司">
+           <font>
+            投诉萧县云水水务公司
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县城市管理局（城市管理行政执法局）
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2025-03-26
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20250326001
+         </li>
+         <li class="t3">
+          <a href="/content/article/162338731" target="_blank" title="二胎补助申请问题">
+           <font>
+            二胎补助申请问题
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县卫生健康委员会（疾病预防控制局、中医药管理局）
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2025-03-07
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要投诉
+         </li>
+         <li class="t2">
+          20250307002
+         </li>
+         <li class="t3">
+          <a href="/content/article/162271391" target="_blank" title="水表多计费">
+           <font>
+            水表多计费
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县城市管理局（城市管理行政执法局）
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2025-02-11
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20250211005
+         </li>
+         <li class="t3">
+          <a href="/content/article/162184181" target="_blank" title="2025年幼儿教师招聘">
+           <font>
+            2025年幼儿教师招聘
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县教育体育局
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2024-12-06
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20241206002
+         </li>
+         <li class="t3">
+          <a href="/content/article/161938791" target="_blank" title="雁归计划咨询">
+           <font>
+            雁归计划咨询
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          中共萧县县委组织部（县委人才工作局、县直属机关工作委员会、县委老干部局）
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2024-11-03
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要建议
+         </li>
+         <li class="t2">
+          20241103001
+         </li>
+         <li class="t3">
+          <a href="/content/article/161765941" target="_blank" title="增加县城共享单车">
+           <font>
+            增加县城共享单车
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县城市管理局（城市管理行政执法局）
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2024-09-30
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20240930001
+         </li>
+         <li class="t3">
+          <a href="/content/article/161643011" target="_blank" title="萧县卫生系统招聘考试科目咨询">
+           <font>
+            萧县卫生系统招聘考试科目咨询
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县人力资源和社会保障局
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2024-08-12
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20240812004
+         </li>
+         <li class="t3">
+          <a href="/content/article/161457601" target="_blank" title="2024事业单位雁归计划">
+           <font>
+            2024事业单位雁归计划
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          中共萧县县委组织部（县委人才工作局、县直属机关工作委员会、县委老干部局）
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2024-07-17
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20240717001
+         </li>
+         <li class="t3">
+          <a href="/content/article/161346991" target="_blank" title="低保家庭中大一新生资助问题">
+           <font>
+            低保家庭中大一新生资助问题
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县民政局
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2024-07-08
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20240708002
+         </li>
+         <li class="t3">
+          <a href="/content/article/161309051" target="_blank" title="萧县事业单位考试科目问题">
+           <font>
+            萧县事业单位考试科目问题
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县人力资源和社会保障局
+         </li>
+        </ul>
+        <ul class="odd">
+         <li class="t0">
+          2024-06-05
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要建议
+         </li>
+         <li class="t2">
+          20240605001
+         </li>
+         <li class="t3">
+          <a href="/content/article/161135851" target="_blank" title="萧县干旱严重希望能实施人工降雨">
+           <font>
+            萧县干旱严重希望能实施人工降雨
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          县委督查室
+         </li>
+        </ul>
+        <ul class="even">
+         <li class="t0">
+          2024-05-30
+         </li>
+         <li class="t5">
+          <span>
+           已回复
+          </span>
+         </li>
+         <li class="t1">
+          我要咨询
+         </li>
+         <li class="t2">
+          20240530004
+         </li>
+         <li class="t3">
+          <a href="/content/article/161118941" target="_blank" title="是否有教师引进计划">
+           <font>
+            是否有教师引进计划
+           </font>
+          </a>
+         </li>
+         <li class="t4">
+          萧县教育体育局
+         </li>
+        </ul>
+        <div class="pagination" id="page_4697445">
+         分页
+        </div>
+        <script>
+         Ls.pagination("#page_4697445", function (pageIndex) {
+                replaceContent(null,null,null,null,pageIndex-1,null);
+            }, {
+                currPage: (0+1),
+                pageCount:126
             });
-
-            function saveData() {
-                var $guestbook_form =
-                $("#guestbook_form");
-                var receiveUnitName = $("#receiveUnitId option:selected").text();
-                $("#receiveUnitName").val(receiveUnitName);				
-				  var receiveUserName = $("#receiveUserCode option:selected").text();
-                $("#receiveUserName").val(receiveUserName);
-                return Ls.ajax({
-                    type:'POST',
-                    url: "/frontMessageBoard/saveNewMessageBoardVO",
-                    data: $guestbook_form.getFromJSON()
-                }).done(function (d) {
-                    if (d.status == 0) {
-                        Ls.tipsErr(d.desc);
-                    } else {
-                        /* var isPublic = $(".isPublic:checked").val();
-                         if (isPublic == 1) {*/
-
-                        using("dialog", function () {
-                            Ls.openWin({
-                                title: '温馨提示',
-                                width: 420,
-                                height: 292,
-                                content: Ls.template("guestbook_tips_tpl", d.data),
-                                onshow: function () {
-                                    fn1();
-                                },
-                                onclose: function () {
-                                    clearInterval(timer);
-                                },
-                            }).showModal();
-                        });
-
-                            $guestbook_form[0].reset();
-
-                        /*  } else {
-                              Ls.tipsOk("您的留言已提交成功！");
-                                  $guestbook_form[0].reset();
-                        }*/
-                    }
-                }).always(function () {
-                    $("#imgCode").click();
-                });
-            };
-
-        });
-
-        $("#imgCode").on('click', function () {
-            var _this = $(this);
-            _this.attr("src", "/member/getCode?s=" + Math.random());
-        });
-
-        $("#btn_submit").on('click', function () {
-            $("#guestbook_form").trigger("validate");
-        });
-    });
-       </script>
+        </script>
+       </div>
        <script>
        </script>
        <!--EndLabelHtml_messageBoardPageList_6f93e32655e661bd56498807088ddc06-->
