@@ -11,13 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="文件清理结果" name="ColumnName"/>
+   <meta content="文件备案信息" name="ColumnName"/>
    <meta content="信息公开目录" name="ColumnType"/>
-   <meta content="经审查后同意备案的本级出台的规范性文件目录规范性文件；清理结果；修改、失效、废止的规范性文件目录。" name="ColumnDescription"/>
-   <meta content="文件清理结果" name="ColumnKeywords"/>
+   <meta content="规范性文件备案信息。" name="ColumnDescription"/>
+   <meta content="文件备案信息" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:09:08" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:09:21" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -271,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60752701"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60752691"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2134,15 +2134,15 @@
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60752701" data-organid="6629711" href="/public/column/6629711" target="_self">
-          文件清理结果
+         <a class="publicNavPos" data-catid="60752691" data-organid="6629711" href="/public/column/6629711" target="_self">
+          文件备案信息
          </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
          <div class="gktit">
-          <a href="/public/column/6629711" title="文件清理结果">
-           文件清理结果
+          <a href="/public/column/6629711" title="文件备案信息">
+           文件备案信息
           </a>
           <div class="gklm_search hidden-xs hidden-sm">
            <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
@@ -2160,57 +2160,138 @@
          <div class="xxgk_nav_con">
           <ul class="clearfix xxgk_nav_list">
            <li class="clearfix">
-            <a class="title" href="/public/6629711/162123531.html" target="_blank" title="萧县人民政府办公室关于公布2024年行政规范性文件清理结果的通知">
+            <a class="title" href="/public/6629711/161240941.html" target="_blank" title="萧县2024年度予以备案的规范性文件统计（动态更新）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于公布2024年行政规范性文件清理结果的通知
+             萧县2024年度予以备案的规范性文件统计（动态更新）
             </a>
             <span class="date">
-             2024-12-30
+             2024-08-30
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/158239531.html" target="_blank" title="萧县人民政府办公室关于公布2022年行政规范性文件清理结果的通知">
+            <a class="title" href="/public/6629711/160354841.html" target="_blank" title="萧县2023年度予以备案的规范性文件统计">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于公布2022年行政规范性文件清理结果的通知
+             萧县2023年度予以备案的规范性文件统计
             </a>
             <span class="date">
-             2023-01-30
+             2023-12-29
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/155913131.html" target="_blank" title="萧县人民政府办公室关于公布行政规范性文件清理结果的通知">
+            <a class="title" href="/public/6629711/158094341.html" target="_blank" title="萧县2022年度予以备案的规范性文件统计">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于公布行政规范性文件清理结果的通知
+             萧县2022年度予以备案的规范性文件统计
             </a>
             <span class="date">
-             2021-12-27
+             2023-01-05
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/152304961.html" target="_blank" title="【保留、废止、修订】萧县人民政府关于公布行政规范性文件清理结果的通知">
+            <a class="title" href="/public/6629711/155260871.html" target="_blank" title="萧县人民政府关于《萧县政府投资建设工程实施阶段全过程造价管理办法（试行）》的备案报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【保留、废止、修订】萧县人民政府关于公布行政规范性文件清理结果的通知
+             萧县人民政府关于《萧县政府投资建设工程实施阶段全过程造价管理办法（试行）》的备案报告
             </a>
             <span class="date">
-             2020-12-29
+             2021-09-15
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/152120551.html" target="_blank" title="萧县人民政府办公室关于公布涉及机构改革规范性文件清理结果的通知">
+            <a class="title" href="/public/6629711/155260861.html" target="_blank" title="萧县人民政府关于《萧县政府投资建设项目工程变更管理办法（试行）》的备案报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于公布涉及机构改革规范性文件清理结果的通知
+             萧县人民政府关于《萧县政府投资建设项目工程变更管理办法（试行）》的备案报告
             </a>
             <span class="date">
-             2019-12-27
+             2021-09-15
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/152120781.html" target="_blank" title="关于公布政府规范性文件设定证明事项清理结果的通知">
+            <a class="title" href="/public/6629711/152342461.html" target="_blank" title="萧县人民政府关于《萧县大面积停电事件应急预案》的备案报告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于公布政府规范性文件设定证明事项清理结果的通知
+             萧县人民政府关于《萧县大面积停电事件应急预案》的备案报告
             </a>
             <span class="date">
-             2018-09-05
+             2020-12-30
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/152381721.html" target="_blank" title="萧县人民政府关于《萧县品牌战略奖励办法（2020年修订）》的备案报告">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县人民政府关于《萧县品牌战略奖励办法（2020年修订）》的备案报告
+            </a>
+            <span class="date">
+             2020-12-22
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/152120421.html" target="_blank" title="2020年萧县人民政府向宿州市人民政府及萧县人民代表大会常务委员会报备规范性文件目录">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             2020年萧县人民政府向宿州市人民政府及萧县人民代表大会常务委员会报备规范性文件目录
+            </a>
+            <span class="date">
+             2020-12-14
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/152348151.html" target="_blank" title="萧县人民政府关于《萧县人民政府办公室关于进一步规范政府投资建设项目审计工作的通知》的备案报告">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县人民政府关于《萧县人民政府办公室关于进一步规范政府投资建设项目审计工作的通知》的备案报告
+            </a>
+            <span class="date">
+             2020-12-10
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/152381511.html" target="_blank" title="萧县人民政府关于《萧县专利资助办法》的备案报告">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县人民政府关于《萧县专利资助办法》的备案报告
+            </a>
+            <span class="date">
+             2020-11-16
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/152120431.html" target="_blank" title="萧县人民政府关于《萧县人民政府关于2020年实施33项民生工程的通知》的备案报告">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县人民政府关于《萧县人民政府关于2020年实施33项民生工程的通知》的备案报告
+            </a>
+            <span class="date">
+             2020-06-19
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/152120441.html" target="_blank" title="萧县人民政府关于《萧县人民政府关于印发萧县国有土地上房屋征收与补偿办法的通知》的备案报告">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县人民政府关于《萧县人民政府关于印发萧县国有土地上房屋征收与补偿办法的通知》的备案报告
+            </a>
+            <span class="date">
+             2020-06-03
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/152120451.html" target="_blank" title="萧县人民政府关于《萧县人民政府办公室关于印发萧县紧密型县域医共体建设实施方案的通知》的备案报告">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县人民政府关于《萧县人民政府办公室关于印发萧县紧密型县域医共体建设实施方案的通知》的备案报告
+            </a>
+            <span class="date">
+             2020-06-03
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/152120461.html" target="_blank" title="萧县人民政府关于《萧县人民政府办公室关于加强和规范部门统计工作的实施意见》的备案报告">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县人民政府关于《萧县人民政府办公室关于加强和规范部门统计工作的实施意见》的备案报告
+            </a>
+            <span class="date">
+             2020-04-24
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/152120471.html" target="_blank" title="萧县人民政府关于《萧县人民政府关于印发萧县推动商务经济高质量发展的若干政策的通知》的备案报告">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县人民政府关于《萧县人民政府关于印发萧县推动商务经济高质量发展的若干政策的通知》的备案报告
+            </a>
+            <span class="date">
+             2020-03-23
             </span>
            </li>
            <script>
@@ -2245,7 +2326,7 @@
                                     length : "50",
                                     organId: "",
                                     type: 4,
-                                    catId: "60752701",
+                                    catId: "60752691",
                                     action:"list",
                                     keyWords: keyWords,
                                     result : "暂无相关信息",
@@ -2259,15 +2340,48 @@
            </script>
           </ul>
          </div>
+         <div class="pagination" id="page_public_info">
+          分页
+         </div>
+         <script>
+          Ls.pagination("#page_public_info", function(pageIndex){
+                                                                                            Ls.ajax({
+                            dataType: "html",
+                            url: "/site/label/8888",
+                            data : {
+                                labelName: 'publicInfoList',
+                                siteId : "4697420",
+                                pageSize : "15",
+                                pageIndex: pageIndex,
+                                action : "list",
+                                isDate : "true",
+                                dateFormat : "yyyy-MM-dd",
+                                length : "80",
+                                organId: "6629711",
+                                type: "4",
+                                catId: "60752691",
+                                cId : "",
+                                result : "暂无相关信息",
+                                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
+                            }
+                        }).done(function(html) {
+                            $("#xxgk_lmcon").html(html);
+                        });
+                                    }, {
+                    currPage: (0+1),
+                    pageCount:7,
+                    param: "pageSize=15"
+                });
+         </script>
          <div class="clear">
          </div>
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?sub=&catId=60752701&nav=&action=list&type=4&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?catId=60752691&action=list&type=4&pageIndex=" + pageIndex;
             }, {
         currPage: (0+1),
-        pageCount:(1 + 0),
+        pageCount:(7 + 0),
         param: "pageSize=15"
     });
 
@@ -2280,7 +2394,7 @@
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60752701";
+        var catId = "60752691";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
