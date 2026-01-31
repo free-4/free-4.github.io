@@ -11,13 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="政策文件" name="ColumnName"/>
-   <meta content="政策文件" name="ColumnType"/>
-   <meta content="本地区法规、规章、应主动公开的政府文件以及相关法律法规等信息" name="ColumnDescription"/>
-   <meta content="政策文件" name="ColumnKeywords"/>
+   <meta content="政府信息公开制度" name="ColumnName"/>
+   <meta content="信息公开制度" name="ColumnType"/>
+   <meta content="政府信息公开专栏、人民政府信息公开制度、指南" name="ColumnDescription"/>
+   <meta content="信息公开制度" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:27:46" name="HtmlGenerateTime"/>
+   <meta content="" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -271,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60733421"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="$catId"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2118,1036 +2118,357 @@
          <a href="/public/column/6629711">
           政府信息公开
          </a>
-         &gt; 萧县人民政府信息公开
-         <i>
-          &gt;
-         </i>
-         <a class="publicNavPos" data-catid="60733421" data-organid="6629711" href="/public/column/6629711" target="_self">
-          政策文件
-         </a>
+         &gt; 萧县人民政府信息公开信息公开制度规定
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <div class="gkbox" data-id="60733431">
-          <div class="gktit">
-           <a href="/public/column/6629711" title="规范性文件发布">
-            规范性文件发布
-           </a>
-          </div>
-          <div class="gk_list">
-           <ul>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2025-06-05
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/162448301.html" target="_blank">
-                意见征集
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/163110241.html" target="_blank">
-                图片解读
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/163054741.html" target="_blank" title="萧县人民政府办公室关于印发安徽萧县经济开发区标准化厂房入驻办法的通知">
-               萧县人民政府办公室关于印发安徽萧县经济开发区标准化厂房入驻办法的通知
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2025-03-28
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/161331781.html" target="_blank">
-                意见征集
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/163041251.html" target="_blank" title="萧县人民政府关于进一步加强房屋征收补偿安置工作的实施意见（试行）的通知（修订版）">
-               萧县人民政府关于进一步加强房屋征收补偿安置工作的实施意见（试行）的通知（修订版）
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2024-06-14
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/161220311.html" target="_blank">
-                视频解读
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/159977431.html" target="_blank">
-                图片解读
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/160018051.html" target="_blank">
-                媒体解读1
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/160018061.html" target="_blank">
-                媒体解读2
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/content/158753011" target="_blank">
-                征求意见
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/161183881.html" target="_blank">
-                部门解读
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/162282021.html" target="_blank" title="萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知">
-               萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2023-01-11
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/157961281.html" target="_blank">
-                常务会议
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/158587911.html" target="_blank">
-                图片解读
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/158510701.html" target="_blank" title="萧县人民政府办公室关于印发《萧县粮食储备管理办法》的通知">
-               萧县人民政府办公室关于印发《萧县粮食储备管理办法》的通知
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2022-06-29
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/156942121.html" target="_blank">
-                负责人解读
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/156942081.html" target="_blank" title="萧县人民政府办公室关于印发萧县行政机关合同管理办法的通知">
-               萧县人民政府办公室关于印发萧县行政机关合同管理办法的通知
-              </a>
-             </div>
-            </li>
-           </ul>
-          </div>
-          <p class="gkmore">
-           <a href="/public/column/6629711">
-            更多
-           </a>
-          </p>
+         <div class="gkzd-title">
+          <span>
+           政府信息公开制度
+          </span>
+         </div>
+         <div class="xxgklistb">
+          <ul class="doc_list list-2657783">
+           <li class="even">
+            <a href="/public/6629711/155489311.html" target="_blank" title="《中华人民共和国个人信息保护法》">
+             《中华人民共和国个人信息保护法》
+            </a>
+            <span class="date">
+             2021-10-29
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154454731.html" target="_blank" title="《中华人民共和国政府信息公开条例》">
+             《中华人民共和国政府信息公开条例》
+            </a>
+            <span class="date">
+             2019-05-08
+            </span>
+           </li>
+           <li class="line">
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/156877481.html" target="_blank" title="国务院办公厅关于印发2022年政务公开工作要点的通知">
+             国务院办公厅关于印发2022年政务公开工作要点的通知
+            </a>
+            <span class="date">
+             2022-04-26
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/155959881.html" target="_blank" title="国务院办公厅转发司法部关于审理政府信息公开行政复议案件若干问题指导意见的通知">
+             国务院办公厅转发司法部关于审理政府信息公开行政复议案件若干问题指导意见的通知
+            </a>
+            <span class="date">
+             2022-01-04
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/155493881.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于做好规章集中公开并动态更新工作的通知">
+             国务院办公厅政府信息与政务公开办公室关于做好规章集中公开并动态更新工作的通知
+            </a>
+            <span class="date">
+             2021-10-29
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/155327311.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于印发《中华人民共和国政府信息公开工作年度报告格式》的通知">
+             国务院办公厅政府信息与政务公开办公室关于印发《中华人民共和国政府信息公开工作年度报告格式》的通知
+            </a>
+            <span class="date">
+             2021-09-29
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154536691.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于明确政府信息公开与业务查询事项界限的解释">
+             国务院办公厅政府信息与政务公开办公室关于明确政府信息公开与业务查询事项界限的解释
+            </a>
+            <span class="date">
+             2021-06-04
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154536641.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于机构改革后政府信息公开申请办理问题的解释">
+             国务院办公厅政府信息与政务公开办公室关于机构改革后政府信息公开申请办理问题的解释
+            </a>
+            <span class="date">
+             2021-06-04
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154536621.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于政府信息公开申请接收渠道问题的解释">
+             国务院办公厅政府信息与政务公开办公室关于政府信息公开申请接收渠道问题的解释
+            </a>
+            <span class="date">
+             2021-06-04
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154536511.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于转发《江苏省政府信息公开申请办理答复规范》的函">
+             国务院办公厅政府信息与政务公开办公室关于转发《江苏省政府信息公开申请办理答复规范》的函
+            </a>
+            <span class="date">
+             2021-06-04
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154453361.html" target="_blank" title="国务院办公厅关于印发2021年政务公开工作要点的通知">
+             国务院办公厅关于印发2021年政务公开工作要点的通知
+            </a>
+            <span class="date">
+             2021-04-24
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154454461.html" target="_blank" title="国务院办公厅关于印发《政府信息公开信息处理费管理办法》的通知">
+             国务院办公厅关于印发《政府信息公开信息处理费管理办法》的通知
+            </a>
+            <span class="date">
+             2021-02-09
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154454491.html" target="_blank" title="国务院办公厅关于进一步优化地方政务服务便民热线的指导意见">
+             国务院办公厅关于进一步优化地方政务服务便民热线的指导意见
+            </a>
+            <span class="date">
+             2021-01-07
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154454501.html" target="_blank" title="国务院办公厅关于印发《公共企事业单位信息公开规定制定办法》的通知">
+             国务院办公厅关于印发《公共企事业单位信息公开规定制定办法》的通知
+            </a>
+            <span class="date">
+             2020-12-21
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154454621.html" target="_blank" title="国务院办公厅关于在制定行政法规规章行政规范性文件过程中充分听取企业和行业协会商会意见的通知">
+             国务院办公厅关于在制定行政法规规章行政规范性文件过程中充分听取企业和行业协会商会意见的通知
+            </a>
+            <span class="date">
+             2020-12-14
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154454641.html" target="_blank" title="国务院办公厅政府信息与政务公开办公室关于规范政府信息公开平台有关事项的通知">
+             国务院办公厅政府信息与政务公开办公室关于规范政府信息公开平台有关事项的通知
+            </a>
+            <span class="date">
+             2020-12-14
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154453401.html" target="_blank" title="国务院办公厅关于进一步做好政府信息公开保密审查工作的通知">
+             国务院办公厅关于进一步做好政府信息公开保密审查工作的通知
+            </a>
+            <span class="date">
+             2020-08-17
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154454071.html" target="_blank" title="国务院办公厅关于印发2020年政务公开工作要点的通知">
+             国务院办公厅关于印发2020年政务公开工作要点的通知
+            </a>
+            <span class="date">
+             2020-07-08
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154453471.html" target="_blank" title="国务院办公厅关于印发2019年政务公开工作要点的通知">
+             国务院办公厅关于印发2019年政务公开工作要点的通知
+            </a>
+            <span class="date">
+             2019-05-08
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154453571.html" target="_blank" title="国务院办公厅关于印发2018年政务公开工作要点的通知">
+             国务院办公厅关于印发2018年政务公开工作要点的通知
+            </a>
+            <span class="date">
+             2018-04-25
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154453581.html" target="_blank" title="国务院办公厅关于做好政府公报工作的通知">
+             国务院办公厅关于做好政府公报工作的通知
+            </a>
+            <span class="date">
+             2018-04-24
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154453631.html" target="_blank" title="国务院办公厅关于推进社会公益事业建设领域政府信息公开的意见">
+             国务院办公厅关于推进社会公益事业建设领域政府信息公开的意见
+            </a>
+            <span class="date">
+             2018-02-26
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154453661.html" target="_blank" title="国务院办公厅关于推进公共资源配置领域政府信息公开的意见">
+             国务院办公厅关于推进公共资源配置领域政府信息公开的意见
+            </a>
+            <span class="date">
+             2017-12-29
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154453831.html" target="_blank" title="国务院办公厅关于印发2017年政务公开工作要点的通知">
+             国务院办公厅关于印发2017年政务公开工作要点的通知
+            </a>
+            <span class="date">
+             2017-04-06
+            </span>
+           </li>
+           <li class="line">
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/162513061.html" target="_blank" title="《最高人民法院关于审理政府信息公开行政案件适用法律若干问题的解释》（法释〔2025〕8号）">
+             《最高人民法院关于审理政府信息公开行政案件适用法律若干问题的解释》（法释〔2025〕8号）
+            </a>
+            <span class="date">
+             2025-05-21
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/157611371.html" target="_blank" title="安徽省人民政府关于县级以上人民政府统一行使行政复议职责有关事项的通告">
+             安徽省人民政府关于县级以上人民政府统一行使行政复议职责有关事项的通告
+            </a>
+            <span class="date">
+             2022-10-27
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/155396041.html" target="_blank" title="最高人民法院关于正确确定县级以上地方人民政府行政诉讼被告资格若干问题的规定">
+             最高人民法院关于正确确定县级以上地方人民政府行政诉讼被告资格若干问题的规定
+            </a>
+            <span class="date">
+             2021-10-13
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154454471.html" target="_blank" title="《安徽省财政厅安徽省发展和改革委员会关于政府信息公开信息处理费有关事项的通知》">
+             《安徽省财政厅安徽省发展和改革委员会关于政府信息公开信息处理费有关事项的通知》
+            </a>
+            <span class="date">
+             2021-02-09
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154453951.html" target="_blank" title="《安徽省重大行政决策程序规定》">
+             《安徽省重大行政决策程序规定》
+            </a>
+            <span class="date">
+             2021-01-25
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154453431.html" target="_blank" title="安徽省人民政府办公厅关于印发2020年政务公开重点工作任务分工的通知">
+             安徽省人民政府办公厅关于印发2020年政务公开重点工作任务分工的通知
+            </a>
+            <span class="date">
+             2020-08-05
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154453441.html" target="_blank" title="安徽省人民政府办公厅关于印发安徽省全面推进基层政务公开标准化规范化工作实施方案的通知">
+             安徽省人民政府办公厅关于印发安徽省全面推进基层政务公开标准化规范化工作实施方案的通知
+            </a>
+            <span class="date">
+             2020-07-10
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154454081.html" target="_blank" title="安徽省人民政府办公厅关于印发安徽省全面推进基层政务公开标准化规范化工作实施方案的通知">
+             安徽省人民政府办公厅关于印发安徽省全面推进基层政务公开标准化规范化工作实施方案的通知
+            </a>
+            <span class="date">
+             2020-07-08
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154454741.html" target="_blank" title="《重大行政决策程序暂行条例》">
+             《重大行政决策程序暂行条例》
+            </a>
+            <span class="date">
+             2019-05-08
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154453531.html" target="_blank" title="安徽省政务公开办公室关于印发2018年政务公开、政务服务重点工作任务分工和“群众办事百项堵点疏解行动”推广活动方案的通知">
+             安徽省政务公开办公室关于印发2018年政务公开、政务服务重点工作任务分工和“群众办事百项堵点疏解行动”推广活动方案的通知
+            </a>
+            <span class="date">
+             2018-05-28
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154453551.html" target="_blank" title="安徽省人民政府办公厅关于推进公共资源配置领域政府信息公开的实施意见">
+             安徽省人民政府办公厅关于推进公共资源配置领域政府信息公开的实施意见
+            </a>
+            <span class="date">
+             2018-05-14
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154453561.html" target="_blank" title="安徽省人民政府办公厅关于推进社会公益事业建设领域政府信息公开有关事项的通知">
+             安徽省人民政府办公厅关于推进社会公益事业建设领域政府信息公开有关事项的通知
+            </a>
+            <span class="date">
+             2018-04-30
+            </span>
+           </li>
+           <li class="even">
+            <a href="/public/6629711/154453791.html" target="_blank" title="安徽省人民政府关于印发安徽省加强政务诚信建设实施方案的通知">
+             安徽省人民政府关于印发安徽省加强政务诚信建设实施方案的通知
+            </a>
+            <span class="date">
+             2017-08-23
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/154453821.html" target="_blank" title="安徽省人民政府办公厅关于印发2017年全省政务公开政务服务工作要点的通知">
+             安徽省人民政府办公厅关于印发2017年全省政务公开政务服务工作要点的通知
+            </a>
+            <span class="date">
+             2017-06-02
+            </span>
+           </li>
+           <li class="odd">
+            <a href="/public/6629711/156295401.html" target="_blank" title="中共安徽省委办公厅安徽省人民政府办公厅关于全面推进政务公开工作的实施意见">
+             中共安徽省委办公厅安徽省人民政府办公厅关于全面推进政务公开工作的实施意见
+            </a>
+            <span class="date">
+             2016-12-30
+            </span>
+           </li>
+          </ul>
+         </div>
+         <div class="clear">
          </div>
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?nav=2&action=list&type=1&pageIndex=" + pageIndex;
             }, {
-        currPage: (+1),
-        pageCount:( + 0),
+        currPage: (0+1),
+        pageCount:(1 + 0),
         param: "pageSize=15"
     });
 
 
     var changeSearch = function(pageIndex){
 
-        var type = "4";
+        var type = "1";
         var fromCode = "";
         var sortType = "";
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60733431";
-        var fileNum = Ls.url.get("fileNum");
-        var filterFileNum = Ls.url.get("filterFileNum");
-        if($("#search_keywords").val()){
-            keyWords  = $("#search_keywords").val();
-        }
-
-        if($("input[name='fromCode']:checked").val()){
-            fromCode  = $("input[name='fromCode']:checked").val();
-        }
-
-        if($("input[name='fuzzySearch']:checked").val()){
-            fuzzySearch  = $("input[name='fuzzySearch']:checked").val();
-        }
-
-        if($("input[name='orderType']:checked").val()){
-            sortType  = $("input[name='orderType']:checked").val();
-        }
-
-        if($("#type").val()){
-            type  = $("#type").val();
-        }
-        if(!Ls.isEmpty(keyWords)){
-            type="6";
-        }
-
-        if($("#catId").val()){
-            catId  = $("#catId").val();
-        }
-        if(Ls.url.get("catId")){
-            catId  = Ls.url.get("catId")
-        }
-
-        Ls.ajax({
-            dataType: "html",
-            url: "/site/label/8888",
-            data : {
-                labelName: 'publicInfoList',
-                siteId : "4697420",
-                pageSize : "15",
-                pageIndex: pageIndex,
-                action : "list",
-                fileNum: fileNum,
-                filterFileNum: filterFileNum,
-                fuzzySearch : fuzzySearch,
-                fromCode : fromCode,
-                keyWords : keyWords,
-                sortType : sortType,
-                isDate : "true",
-                dateFormat : "yyyy-MM-dd",
-                length : "80",
-                organId: "6629711",
-                type: type,
-
-                //catId: catId,
-                cId : "",
-                result : "暂无相关信息",
-                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
-            }
-        }).done(function(html) {
-            console.log('fksjdkfjkdjfkdjfkjkdsf........');
-            $("#xxgk_lmcon").html(html);
-
-        });
-    }
-         </script>
-         <script>
-          $(function () {
-        if ($('div .xxgk_lmlink').length > 0) {
-                        //企事业单位 只保留 公开目录
-            if ("${catIdMap.get($!{context.columnId})}" == "6738851") {                                 $('dl.num3').siblings('dl').hide();
-                //左侧树恢复正常
-                /*$(".wgk_xxknr").html('<div class=""><ul id="organ_catalog_tree" class="ztree"></ul></div>');
-                cur.organCatalogTree = $.fn.zTree.init($("#organ_catalog_tree"),
-                        cur.ztree_settings, cur.ztreeData);
-                // 根据地址栏的catId操作树
-                if (catId && catId > 0) {
-                    var nodeCat = cur.organCatalogTree.getNodeByParam("id", catId, null);
-                    cur.organCatalogTree.selectNode(nodeCat,false,true);
-                }*/
-            }
-        }
-
-        //加载各单位的年份
-                    var reportYears = "2021,2022,2023,2024,2025";
-            var organId = "6629711";
-            //防止ajax分页调用导致 organId缺失
-            if (Ls.isEmpty(organId)) {
-                organId = "";
-            }
-            var reportYearsArr = reportYears.split(',');
-            //console.log(reportYearsArr);
-            //console.log(reportYearsArr.length);
-            reportYearsArr.sort();
-            var nianbaoType = "detail";
-            if (organId == "6629711" ) {
-                nianbaoType = "list";
-            }
-
-            var htmlStr = "";
-            for (var i = reportYearsArr.length ; i > 0 ; i--) {
-                var tempYear = reportYearsArr[i-1];
-                htmlStr += '<li><a href="/public/column/' + organId + '?type=3&action=' +
-                        nianbaoType + '&nav=4&title=' + tempYear + '">' + tempYear + '年</a></li>';
-            }
-            //console.log(htmlStr)
-            $('#report_year_ul').html(htmlStr);
-                                                                                                        
-    })
-         </script>
-         <!--EndLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <div class="gkbox" data-id="60733441">
-          <div class="gktit">
-           <a href="/public/column/6629711" title="规范性文件立改废">
-            规范性文件立改废
-           </a>
-          </div>
-          <div class="gk_list">
-           <ul>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2024-07-05
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/161132251.html" target="_blank" title="《萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知》公众参与、专家论证、风险评估、合法性审查、集体讨论等程序开展情况">
-               《萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知》公众参与、专家论证、风险评估、合法性审查、集体讨论等程序开展情况
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2024-12-30
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/162123531.html" target="_blank" title="萧县人民政府办公室关于公布2024年行政规范性文件清理结果的通知">
-               萧县人民政府办公室关于公布2024年行政规范性文件清理结果的通知
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2024-08-30
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/161240941.html" target="_blank" title="萧县2024年度予以备案的规范性文件统计（动态更新）">
-               萧县2024年度予以备案的规范性文件统计（动态更新）
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2024-04-17
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/161126941.html" target="_blank" title="【无反馈意见】关于公开征求《萧县水网规划（2020-2035年）（征求意见稿）》反馈意见的说明">
-               【无反馈意见】关于公开征求《萧县水网规划（2020-2035年）（征求意见稿）》反馈意见的说明
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2024-01-25
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/161126951.html" target="_blank" title="【无反馈意见】关于公开征求《萧县现代物流业中长期发展规划（2021-2030年）（征求意见稿）》反馈意见的说明">
-               【无反馈意见】关于公开征求《萧县现代物流业中长期发展规划（2021-2030年）（征求意见稿）》反馈意见的说明
-              </a>
-             </div>
-            </li>
-           </ul>
-          </div>
-          <p class="gkmore">
-           <a href="/public/column/6629711">
-            更多
-           </a>
-          </p>
-         </div>
-         <script>
-          Ls.pagination("#page_public_info", function(pageIndex){
-
-                    location.href = "&pageIndex=" + pageIndex;
-            }, {
-        currPage: (+1),
-        pageCount:( + 0),
-        param: "pageSize=15"
-    });
-
-
-    var changeSearch = function(pageIndex){
-
-        var type = "4";
-        var fromCode = "";
-        var sortType = "";
-        var fuzzySearch = "";
-        var keyWords = "";
-
-        var catId = "60733441";
-        var fileNum = Ls.url.get("fileNum");
-        var filterFileNum = Ls.url.get("filterFileNum");
-        if($("#search_keywords").val()){
-            keyWords  = $("#search_keywords").val();
-        }
-
-        if($("input[name='fromCode']:checked").val()){
-            fromCode  = $("input[name='fromCode']:checked").val();
-        }
-
-        if($("input[name='fuzzySearch']:checked").val()){
-            fuzzySearch  = $("input[name='fuzzySearch']:checked").val();
-        }
-
-        if($("input[name='orderType']:checked").val()){
-            sortType  = $("input[name='orderType']:checked").val();
-        }
-
-        if($("#type").val()){
-            type  = $("#type").val();
-        }
-        if(!Ls.isEmpty(keyWords)){
-            type="6";
-        }
-
-        if($("#catId").val()){
-            catId  = $("#catId").val();
-        }
-        if(Ls.url.get("catId")){
-            catId  = Ls.url.get("catId")
-        }
-
-        Ls.ajax({
-            dataType: "html",
-            url: "/site/label/8888",
-            data : {
-                labelName: 'publicInfoList',
-                siteId : "4697420",
-                pageSize : "15",
-                pageIndex: pageIndex,
-                action : "list",
-                fileNum: fileNum,
-                filterFileNum: filterFileNum,
-                fuzzySearch : fuzzySearch,
-                fromCode : fromCode,
-                keyWords : keyWords,
-                sortType : sortType,
-                isDate : "true",
-                dateFormat : "yyyy-MM-dd",
-                length : "80",
-                organId: "6629711",
-                type: type,
-
-                //catId: catId,
-                cId : "",
-                result : "暂无相关信息",
-                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
-            }
-        }).done(function(html) {
-            console.log('fksjdkfjkdjfkdjfkjkdsf........');
-            $("#xxgk_lmcon").html(html);
-
-        });
-    }
-         </script>
-         <script>
-          $(function () {
-        if ($('div .xxgk_lmlink').length > 0) {
-                        //企事业单位 只保留 公开目录
-            if ("${catIdMap.get($!{context.columnId})}" == "6738851") {                                 $('dl.num3').siblings('dl').hide();
-                //左侧树恢复正常
-                /*$(".wgk_xxknr").html('<div class=""><ul id="organ_catalog_tree" class="ztree"></ul></div>');
-                cur.organCatalogTree = $.fn.zTree.init($("#organ_catalog_tree"),
-                        cur.ztree_settings, cur.ztreeData);
-                // 根据地址栏的catId操作树
-                if (catId && catId > 0) {
-                    var nodeCat = cur.organCatalogTree.getNodeByParam("id", catId, null);
-                    cur.organCatalogTree.selectNode(nodeCat,false,true);
-                }*/
-            }
-        }
-
-        //加载各单位的年份
-                    var reportYears = "2021,2022,2023,2024,2025";
-            var organId = "6629711";
-            //防止ajax分页调用导致 organId缺失
-            if (Ls.isEmpty(organId)) {
-                organId = "";
-            }
-            var reportYearsArr = reportYears.split(',');
-            //console.log(reportYearsArr);
-            //console.log(reportYearsArr.length);
-            reportYearsArr.sort();
-            var nianbaoType = "detail";
-            if (organId == "6629711" ) {
-                nianbaoType = "list";
-            }
-
-            var htmlStr = "";
-            for (var i = reportYearsArr.length ; i > 0 ; i--) {
-                var tempYear = reportYearsArr[i-1];
-                htmlStr += '<li><a href="/public/column/' + organId + '?type=3&action=' +
-                        nianbaoType + '&nav=4&title=' + tempYear + '">' + tempYear + '年</a></li>';
-            }
-            //console.log(htmlStr)
-            $('#report_year_ul').html(htmlStr);
-                                                                                                        
-    })
-         </script>
-         <!--EndLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <div class="gkbox" data-id="60733451">
-          <div class="gktit">
-           <a href="/public/column/6629711" title="其他文件">
-            其他文件
-           </a>
-          </div>
-          <div class="gk_list">
-           <ul>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2025-08-25
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/162895111.html" target="_blank" title="萧县人民政府办公室关于公布萧县2025年传统建筑名录的通知">
-               萧县人民政府办公室关于公布萧县2025年传统建筑名录的通知
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2025-03-03
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/162345481.html" target="_blank">
-                部门解读
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/162345131.html" target="_blank" title="萧县人民政府办公室关于印发萧县县属国有企业重大事项决策暂行办法的通知">
-               萧县人民政府办公室关于印发萧县县属国有企业重大事项决策暂行办法的通知
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2025-02-19
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/162214511.html" target="_blank" title="萧县人民政府关于印发2025年重点工作任务及责任分解方案的通知">
-               萧县人民政府关于印发2025年重点工作任务及责任分解方案的通知
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2024-12-30
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/162123511.html" target="_blank" title="萧县人民政府办公室关于公布2024年行政规范性文件清理结果的通知">
-               萧县人民政府办公室关于公布2024年行政规范性文件清理结果的通知
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2024-10-08
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/161777111.html" target="_blank" title="萧县人民政府办公室关于建立完善耕地保护共同责任机制全面加强耕地保护工作的通知">
-               萧县人民政府办公室关于建立完善耕地保护共同责任机制全面加强耕地保护工作的通知
-              </a>
-             </div>
-            </li>
-           </ul>
-          </div>
-          <p class="gkmore">
-           <a href="/public/column/6629711">
-            更多
-           </a>
-          </p>
-         </div>
-         <script>
-          Ls.pagination("#page_public_info", function(pageIndex){
-
-                    location.href = "&pageIndex=" + pageIndex;
-            }, {
-        currPage: (+1),
-        pageCount:( + 0),
-        param: "pageSize=15"
-    });
-
-
-    var changeSearch = function(pageIndex){
-
-        var type = "4";
-        var fromCode = "";
-        var sortType = "";
-        var fuzzySearch = "";
-        var keyWords = "";
-
-        var catId = "60733451";
-        var fileNum = Ls.url.get("fileNum");
-        var filterFileNum = Ls.url.get("filterFileNum");
-        if($("#search_keywords").val()){
-            keyWords  = $("#search_keywords").val();
-        }
-
-        if($("input[name='fromCode']:checked").val()){
-            fromCode  = $("input[name='fromCode']:checked").val();
-        }
-
-        if($("input[name='fuzzySearch']:checked").val()){
-            fuzzySearch  = $("input[name='fuzzySearch']:checked").val();
-        }
-
-        if($("input[name='orderType']:checked").val()){
-            sortType  = $("input[name='orderType']:checked").val();
-        }
-
-        if($("#type").val()){
-            type  = $("#type").val();
-        }
-        if(!Ls.isEmpty(keyWords)){
-            type="6";
-        }
-
-        if($("#catId").val()){
-            catId  = $("#catId").val();
-        }
-        if(Ls.url.get("catId")){
-            catId  = Ls.url.get("catId")
-        }
-
-        Ls.ajax({
-            dataType: "html",
-            url: "/site/label/8888",
-            data : {
-                labelName: 'publicInfoList',
-                siteId : "4697420",
-                pageSize : "15",
-                pageIndex: pageIndex,
-                action : "list",
-                fileNum: fileNum,
-                filterFileNum: filterFileNum,
-                fuzzySearch : fuzzySearch,
-                fromCode : fromCode,
-                keyWords : keyWords,
-                sortType : sortType,
-                isDate : "true",
-                dateFormat : "yyyy-MM-dd",
-                length : "80",
-                organId: "6629711",
-                type: type,
-
-                //catId: catId,
-                cId : "",
-                result : "暂无相关信息",
-                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
-            }
-        }).done(function(html) {
-            console.log('fksjdkfjkdjfkdjfkjkdsf........');
-            $("#xxgk_lmcon").html(html);
-
-        });
-    }
-         </script>
-         <script>
-          $(function () {
-        if ($('div .xxgk_lmlink').length > 0) {
-                        //企事业单位 只保留 公开目录
-            if ("${catIdMap.get($!{context.columnId})}" == "6738851") {                                 $('dl.num3').siblings('dl').hide();
-                //左侧树恢复正常
-                /*$(".wgk_xxknr").html('<div class=""><ul id="organ_catalog_tree" class="ztree"></ul></div>');
-                cur.organCatalogTree = $.fn.zTree.init($("#organ_catalog_tree"),
-                        cur.ztree_settings, cur.ztreeData);
-                // 根据地址栏的catId操作树
-                if (catId && catId > 0) {
-                    var nodeCat = cur.organCatalogTree.getNodeByParam("id", catId, null);
-                    cur.organCatalogTree.selectNode(nodeCat,false,true);
-                }*/
-            }
-        }
-
-        //加载各单位的年份
-                    var reportYears = "2021,2022,2023,2024,2025";
-            var organId = "6629711";
-            //防止ajax分页调用导致 organId缺失
-            if (Ls.isEmpty(organId)) {
-                organId = "";
-            }
-            var reportYearsArr = reportYears.split(',');
-            //console.log(reportYearsArr);
-            //console.log(reportYearsArr.length);
-            reportYearsArr.sort();
-            var nianbaoType = "detail";
-            if (organId == "6629711" ) {
-                nianbaoType = "list";
-            }
-
-            var htmlStr = "";
-            for (var i = reportYearsArr.length ; i > 0 ; i--) {
-                var tempYear = reportYearsArr[i-1];
-                htmlStr += '<li><a href="/public/column/' + organId + '?type=3&action=' +
-                        nianbaoType + '&nav=4&title=' + tempYear + '">' + tempYear + '年</a></li>';
-            }
-            //console.log(htmlStr)
-            $('#report_year_ul').html(htmlStr);
-                                                                                                        
-    })
-         </script>
-         <!--EndLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <div class="gkbox" data-id="60737731">
-          <div class="gktit">
-           <a href="/public/column/6629711" title="政府公报">
-            政府公报
-           </a>
-          </div>
-          <div class="gk_list">
-           <ul>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2025-11-18
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/163183791.html" target="_blank" title="萧县人民政府公报（第八期）">
-               萧县人民政府公报（第八期）
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2024-12-05
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/161926591.html" target="_blank" title="萧县人民政府公报（第七期）">
-               萧县人民政府公报（第七期）
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2023-11-15
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/159999321.html" target="_blank" title="萧县人民政府公报（第六期）">
-               萧县人民政府公报（第六期）
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2022-11-07
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/157715001.html" target="_blank" title="萧县人民政府公报（第五期）">
-               萧县人民政府公报（第五期）
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2021-12-02
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/155690461.html" target="_blank" title="萧县人民政府公报（第四期）">
-               萧县人民政府公报（第四期）
-              </a>
-             </div>
-            </li>
-           </ul>
-          </div>
-          <p class="gkmore">
-           <a href="/public/column/6629711">
-            更多
-           </a>
-          </p>
-         </div>
-         <script>
-          Ls.pagination("#page_public_info", function(pageIndex){
-
-                    location.href = "&pageIndex=" + pageIndex;
-            }, {
-        currPage: (+1),
-        pageCount:( + 0),
-        param: "pageSize=15"
-    });
-
-
-    var changeSearch = function(pageIndex){
-
-        var type = "4";
-        var fromCode = "";
-        var sortType = "";
-        var fuzzySearch = "";
-        var keyWords = "";
-
-        var catId = "60737731";
-        var fileNum = Ls.url.get("fileNum");
-        var filterFileNum = Ls.url.get("filterFileNum");
-        if($("#search_keywords").val()){
-            keyWords  = $("#search_keywords").val();
-        }
-
-        if($("input[name='fromCode']:checked").val()){
-            fromCode  = $("input[name='fromCode']:checked").val();
-        }
-
-        if($("input[name='fuzzySearch']:checked").val()){
-            fuzzySearch  = $("input[name='fuzzySearch']:checked").val();
-        }
-
-        if($("input[name='orderType']:checked").val()){
-            sortType  = $("input[name='orderType']:checked").val();
-        }
-
-        if($("#type").val()){
-            type  = $("#type").val();
-        }
-        if(!Ls.isEmpty(keyWords)){
-            type="6";
-        }
-
-        if($("#catId").val()){
-            catId  = $("#catId").val();
-        }
-        if(Ls.url.get("catId")){
-            catId  = Ls.url.get("catId")
-        }
-
-        Ls.ajax({
-            dataType: "html",
-            url: "/site/label/8888",
-            data : {
-                labelName: 'publicInfoList',
-                siteId : "4697420",
-                pageSize : "15",
-                pageIndex: pageIndex,
-                action : "list",
-                fileNum: fileNum,
-                filterFileNum: filterFileNum,
-                fuzzySearch : fuzzySearch,
-                fromCode : fromCode,
-                keyWords : keyWords,
-                sortType : sortType,
-                isDate : "true",
-                dateFormat : "yyyy-MM-dd",
-                length : "80",
-                organId: "6629711",
-                type: type,
-
-                //catId: catId,
-                cId : "",
-                result : "暂无相关信息",
-                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
-            }
-        }).done(function(html) {
-            console.log('fksjdkfjkdjfkdjfkjkdsf........');
-            $("#xxgk_lmcon").html(html);
-
-        });
-    }
-         </script>
-         <script>
-          $(function () {
-        if ($('div .xxgk_lmlink').length > 0) {
-                        //企事业单位 只保留 公开目录
-            if ("${catIdMap.get($!{context.columnId})}" == "6738851") {                                 $('dl.num3').siblings('dl').hide();
-                //左侧树恢复正常
-                /*$(".wgk_xxknr").html('<div class=""><ul id="organ_catalog_tree" class="ztree"></ul></div>');
-                cur.organCatalogTree = $.fn.zTree.init($("#organ_catalog_tree"),
-                        cur.ztree_settings, cur.ztreeData);
-                // 根据地址栏的catId操作树
-                if (catId && catId > 0) {
-                    var nodeCat = cur.organCatalogTree.getNodeByParam("id", catId, null);
-                    cur.organCatalogTree.selectNode(nodeCat,false,true);
-                }*/
-            }
-        }
-
-        //加载各单位的年份
-                    var reportYears = "2021,2022,2023,2024,2025";
-            var organId = "6629711";
-            //防止ajax分页调用导致 organId缺失
-            if (Ls.isEmpty(organId)) {
-                organId = "";
-            }
-            var reportYearsArr = reportYears.split(',');
-            //console.log(reportYearsArr);
-            //console.log(reportYearsArr.length);
-            reportYearsArr.sort();
-            var nianbaoType = "detail";
-            if (organId == "6629711" ) {
-                nianbaoType = "list";
-            }
-
-            var htmlStr = "";
-            for (var i = reportYearsArr.length ; i > 0 ; i--) {
-                var tempYear = reportYearsArr[i-1];
-                htmlStr += '<li><a href="/public/column/' + organId + '?type=3&action=' +
-                        nianbaoType + '&nav=4&title=' + tempYear + '">' + tempYear + '年</a></li>';
-            }
-            //console.log(htmlStr)
-            $('#report_year_ul').html(htmlStr);
-                                                                                                        
-    })
-         </script>
-         <!--EndLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <div class="gkbox" data-id="60754541">
-          <div class="gktit">
-           <a href="/public/column/6629711" title="已宣布失效、废止文件">
-            已宣布失效、废止文件
-           </a>
-          </div>
-          <div class="gk_list">
-           <ul>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2023-10-24
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/159751321.html" target="_blank">
-                常务会议
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/159977341.html" target="_blank" title="萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知">
-               萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2022-06-13
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/156875571.html" target="_blank">
-                负责人解读
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/156665151.html" target="_blank">
-                公众征求意见反馈
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/156875541.html" target="_blank" title="萧县人民政府关于印发萧县鼓励投资扶持政策（试行）的通知">
-               萧县人民政府关于印发萧县鼓励投资扶持政策（试行）的通知
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2021-12-29
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/156001821.html" target="_blank">
-                图片解读
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/155933111.html" target="_blank">
-                负责人解读
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/155932981.html" target="_blank" title="萧县人民政府办公室关于印发萧县促进现代服务业企业发展激励办法的通知">
-               萧县人民政府办公室关于印发萧县促进现代服务业企业发展激励办法的通知
-              </a>
-             </div>
-            </li>
-            <li class="even mc clearfix">
-             <span class="right date">
-              2021-08-26
-             </span>
-             <div class="nr">
-              <a class="title" href="/public/6629711/158282441.html" target="_blank" title="萧县人民政府办公室关于印发萧县2021年绿色种养循环农业试点项目实施细则的通知">
-               萧县人民政府办公室关于印发萧县2021年绿色种养循环农业试点项目实施细则的通知
-              </a>
-             </div>
-            </li>
-            <li class="odd mc clearfix">
-             <span class="right date">
-              2021-05-06
-             </span>
-             <div class="nr">
-              <p class="gl">
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/154351431.html" target="_blank">
-                专家解读
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/154458581.html" target="_blank">
-                图片解读
-               </a>
-               <span class="split">
-                |
-               </span>
-               <a class="a" href="/public/6629711/153979671.html" target="_blank">
-                常务会议
-               </a>
-              </p>
-              <a class="title" href="/public/6629711/154351401.html" target="_blank" title="萧县人民政府办公室关于印发萧县政府投资建设项目工程变更管理办法（试行）的通知">
-               萧县人民政府办公室关于印发萧县政府投资建设项目工程变更管理办法（试行）的通知
-              </a>
-             </div>
-            </li>
-           </ul>
-          </div>
-          <p class="gkmore">
-           <a href="/public/column/6629711">
-            更多
-           </a>
-          </p>
-         </div>
-         <script>
-          Ls.pagination("#page_public_info", function(pageIndex){
-
-                    location.href = "&pageIndex=" + pageIndex;
-            }, {
-        currPage: (+1),
-        pageCount:( + 0),
-        param: "pageSize=15"
-    });
-
-
-    var changeSearch = function(pageIndex){
-
-        var type = "4";
-        var fromCode = "";
-        var sortType = "";
-        var fuzzySearch = "";
-        var keyWords = "";
-
-        var catId = "60754541";
+        var catId = "";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
