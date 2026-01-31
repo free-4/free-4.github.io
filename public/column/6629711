@@ -11,13 +11,17 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="重大决策、重要政策及重点工作执行情况" name="ColumnName"/>
-   <meta content="信息公开目录" name="ColumnType"/>
-   <meta content="重大决策、重要政策及重点工作执行情况" name="ColumnDescription"/>
-   <meta content="重大决策、重要政策及重点工作执行情况" name="ColumnKeywords"/>
+   <meta content="政府信息公开指南" name="ColumnName"/>
+   <meta content="萧县人民政府信息公开指南" name="ColumnType"/>
+   <meta content="政府信息公开专栏、人民政府信息公开指南" name="ColumnDescription"/>
+   <meta content="信息公开指南" name="ColumnKeywords"/>
+   <meta content="萧县人民政府信息公开指南" name="ArticleTitle"/>
+   <meta content="2024-06-04 17:16" name="PubDate"/>
+   <meta content="萧县信息公开网" name="ContentSource"/>
+   <meta content="萧县信息公开网" name="Author"/>
    <meta content="萧县人民政府" name="Keywords"/>
-   <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:20:15" name="HtmlGenerateTime"/>
+   <meta content="萧县人民政府信息公开指南" name="Description"/>
+   <meta content="" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -271,7 +275,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60776671"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="$catId"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2118,277 +2122,717 @@
          <a href="/public/column/6629711">
           政府信息公开
          </a>
-         &gt; 萧县人民政府信息公开
-         <i>
-          &gt;
-         </i>
-         <a class="publicNavPos" data-catid="60776641" data-organid="6629711" href="/public/column/6629711" target="_self">
-          其他法定信息
-         </a>
-         <i>
-          &gt;
-         </i>
-         <a class="publicNavPos" data-catid="60776671" data-organid="6629711" href="/public/column/6629711" target="_self">
-          重大决策、重要政策及重点工作执行情况
-         </a>
+         &gt; 萧县人民政府信息公开政府信息公开指南
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
-         <div class="gktit">
-          <a href="/public/column/6629711" title="重大决策、重要政策及重点工作执行情况">
-           重大决策、重要政策及重点工作执行情况
-          </a>
-          <div class="gklm_search hidden-xs hidden-sm">
-           <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
-            <ul class="clearfix">
-             <li class="ss2">
-              <input class="search-keywords srkcss" data-rule="关键字:required2" data-rule-required2="[/^[0-9a-zA-z\u0391-\uFFE5\s\[\]\(\),.《》]+$/, '查询关键字不允许含有特殊字符']" id="SearchWords" maxlength="30" name="SearchWords" placeholder="--当前目录检索--" size="24" type="text" value=""/>
-             </li>
-             <li class="ss1">
-              <input class="topsearchbtn" name="input" onclick="columnSearch()" type="button" value=""/>
-             </li>
-            </ul>
-           </form>
+         <div class="xxgklistb">
+          <h1 class="newstitle">
+           萧县人民政府信息公开指南
+          </h1>
+          <div class="wzfbxx clearfix">
+           <span>
+            发布时间：2024-06-04
+           </span>
+           <span>
+            信息来源： 萧县信息公开网
+           </span>
+           <span class="j-info-hit" data-setting="{infoId:151236241}" style="display:none;">
+           </span>
+           <span class="font">
+            字体：【
+            <a class="j-fontBig" href="javascript:void(0)">
+             大
+            </a>
+            <a class="j-fontNormal" href="javascript:void(0)">
+             中
+            </a>
+            <a class="j-fontSmall" href="javascript:void(0)">
+             小
+            </a>
+            】
+           </span>
+           <span class="wz_share j-share-info">
+           </span>
           </div>
-         </div>
-         <div class="xxgk_nav_con">
-          <ul class="clearfix xxgk_nav_list">
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163234161.html" target="_blank" title="全县12月份重点工作部署会召开">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             全县12月份重点工作部署会召开
-            </a>
-            <span class="date">
-             2025-12-02
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163233951.html" target="_blank" title="萧县下好应急“先手棋”打好防灾减灾“主动仗”">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县下好应急“先手棋”打好防灾减灾“主动仗”
-            </a>
-            <span class="date">
-             2025-12-02
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163233961.html" target="_blank" title="萧县一项目入选长三角人文经济典型案例">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县一项目入选长三角人文经济典型案例
-            </a>
-            <span class="date">
-             2025-11-25
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163233971.html" target="_blank" title="结对合作结硕果共建共享惠民生">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             结对合作结硕果共建共享惠民生
-            </a>
-            <span class="date">
-             2025-11-18
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163233981.html" target="_blank" title="“二次创业”为园区发展蓄势聚能">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             “二次创业”为园区发展蓄势聚能
-            </a>
-            <span class="date">
-             2025-11-11
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163233991.html" target="_blank" title="萧县精准施策扎实办好残疾人民生实事">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县精准施策扎实办好残疾人民生实事
-            </a>
-            <span class="date">
-             2025-11-04
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163234001.html" target="_blank" title="“三维发力”激发基层治理新动能">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             “三维发力”激发基层治理新动能
-            </a>
-            <span class="date">
-             2025-10-28
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163073081.html" target="_blank" title="工业经济跑出“加速度”">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             工业经济跑出“加速度”
-            </a>
-            <span class="date">
-             2025-10-09
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/content/article/163054921" target="_blank" title="萧县“微‘萧’服务，在‘县’办理”政务服务品牌推进情况">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县“微‘萧’服务，在‘县’办理”政务服务品牌推进情况
-            </a>
-            <span class="date">
-             2025-09-26
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163073101.html" target="_blank" title="《安徽经济报》整版报道！萧县：聚力制造强县引擎驱动高质量发展新跨越">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             《安徽经济报》整版报道！萧县：聚力制造强县引擎驱动高质量发展新跨越
-            </a>
-            <span class="date">
-             2025-09-23
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/content/article/163054851" target="_blank" title="2025年上半年萧县财政收支情况">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             2025年上半年萧县财政收支情况
-            </a>
-            <span class="date">
-             2025-08-21
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/content/article/163054831" target="_blank" title="全县2025年上半年重点项目开工及推进情况">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             全县2025年上半年重点项目开工及推进情况
-            </a>
-            <span class="date">
-             2025-08-20
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/content/article/163054871" target="_blank" title="萧县2025年上半年促消费工作情况">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县2025年上半年促消费工作情况
-            </a>
-            <span class="date">
-             2025-08-15
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/163234171.html" target="_blank" title="县委理论学习中心组学习（扩大）会暨八月份重点工作部署会召开">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             县委理论学习中心组学习（扩大）会暨八月份重点工作部署会召开
-            </a>
-            <span class="date">
-             2025-08-05
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/content/article/163054801" target="_blank" title="2025年1-5月份全县水污染防治工作开展情况">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             2025年1-5月份全县水污染防治工作开展情况
-            </a>
-            <span class="date">
-             2025-07-17
-            </span>
-           </li>
-           <script>
-            function downloadWord(id) {
-                            window.location.href = '/download/htmlExportPdf?id='+id;
-                        }
-                        $(".wh_fileName").each(function (i, el) {
-                            var name = $(this).text(),
-                                    arr = name.split(','),
-                                    str = '';
-                            $.each(arr, function (i2, el2) {
-                                if (i2 == 1 && el2.length > 0) {
-                                    el2 = '〔'+ el2 +'〕';
-                                }
-                                str += el2;
-                            })
-                            str += '';
-                            $(this).text(str);
-                        })
-                        function columnSearch() {
-                            var keyWords = $("#SearchWords").val();
-                            Ls.ajax({
-                                dataType: "html",
-                                url: "/site/label/8888",
-                                data : {
-                                    labelName: 'publicInfoList',
-                                    siteId : "",
-                                    pageSize : "20",
-                                    pageIndex: 1,
-                                    isDate : "true",
-                                    dateFormat : "yyyy-MM-dd",
-                                    length : "50",
-                                    organId: "",
-                                    type: 4,
-                                    catId: "60776671",
-                                    action:"list",
-                                    keyWords: keyWords,
-                                    result : "暂无相关信息",
-                                    file : "/c2/jh/xxgk/publicInfoList_newest_xx"
-                                }
-                            }).done(function(html) {
-                                $("#xxgk_lmcon").html(html);
-                                $("#SearchWords").val(keyWords);
-                            });
-                        }
-           </script>
-          </ul>
-         </div>
-         <div class="pagination" id="page_public_info">
-          分页
-         </div>
-         <script>
-          Ls.pagination("#page_public_info", function(pageIndex){
-                                                                                            Ls.ajax({
-                            dataType: "html",
-                            url: "/site/label/8888",
-                            data : {
-                                labelName: 'publicInfoList',
-                                siteId : "4697420",
-                                pageSize : "15",
-                                pageIndex: pageIndex,
-                                action : "list",
-                                isDate : "true",
-                                dateFormat : "yyyy-MM-dd",
-                                length : "80",
-                                organId: "6629711",
-                                type: "4",
-                                catId: "60776671",
-                                cId : "",
-                                result : "暂无相关信息",
-                                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
-                            }
-                        }).done(function(html) {
-                            $("#xxgk_lmcon").html(html);
-                        });
-                                    }, {
-                    currPage: (0+1),
-                    pageCount:3,
-                    param: "pageSize=15"
-                });
-         </script>
-         <div class="clear">
+          <div class="j-fontContent opennesscont">
+           <div align="left" class="j-scrollbar">
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              为更好地提供政府信息公开服务，便于公民、法人或者其他组织依法获取萧县人民政府和萧县人民政府办公室的政府信息，根据《中华人民共和国政府信息公开条例》（国务院令第
+              <span>
+               492
+              </span>
+              号公布，国务院令第
+              <span>
+               711
+              </span>
+              号修订，以下简称《条例》），编制本指南。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              一、主动公开
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （一）公开范围。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              本机关主动向社会公开的信息范围参见本机关编制的萧县人民政府（县政府办公室）信息公开目录（以下简称目录），公民、法人和其他组织可以在本机关网站上查阅目录。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （二）信息分类和编排体系
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              政府信息按照组配分类和政务“五公开”进行编排。其中，组配分类有
+              <span>
+               18
+              </span>
+              类：劳动、人事；科技、教育、体育；城乡建设、环境保护；公安、安全、司法；卫生、体育、医疗；商贸、海关、旅游；国土资源、能源；市场监管、安全生产监管；人口与计划生育、卫生、妇女儿童工作；文化、广电、新闻出版；民政、扶贫；组织机构简介；综合政务；国民经济管理、国有资产监管；财政、金融、审计；工业、交通；农业、林业、水利；其他。信息公开目录以分类导航区、检索区和目录区来展示相关内容。导航区显示政策、政府信息公开指南、政府信息公开制度、法定主动公开内容、政府信息公开年报、依申请公开、专题专栏、部门乡镇平台链接等；检索区提供全站搜索标题、关键字、正文等。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （三）公开形式。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              1
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．萧县人民政府门户网站（
+              <span>
+               www.ahxx.gov.cn
+              </span>
+              ）；
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              2
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．《萧县人民政府公报》（线上：https://www.ahxx.gov.cn/public/column/6629711?type=4&amp;action=list&amp;nav=3&amp;sub=&amp;catId=60737731；线下：
+              <span style="color: rgb(0, 0, 0); font-family: 宋体; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 32px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">
+               萧县政务服务中心
+              </span>
+              ）；
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              3
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．萧县政府新闻发布会；
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              4
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．“萧县发布”微博、微信公众号；
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              5
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．现场查阅点：
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （
+              <span>
+               1
+              </span>
+              ）萧县政务服务中心，办公地址：萧县凤城街道复兴路18号；办公时间：周一至周五
+              <span>
+               9:00-17:00
+              </span>
+              （节假日除外）；联系电话：
+              <span>
+               0557-5066968
+              </span>
+              。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （
+              <span>
+               2
+              </span>
+              ）萧县档案馆，办公地址：安徽省龙城镇大同街138号；办公时间：周一至周五工作时间（上午
+              <span>
+               8:00-12:00
+              </span>
+              ；下午
+              <span>
+               14:30-17:30
+              </span>
+              ，节假日除外）；联系电话：
+              <span>
+               0557-5032854
+              </span>
+              。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              6
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．其他：报刊、广播、电视等。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （四）公开时限。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              属于主动公开范围的政府信息，自该政府信息形成或者变更之日起
+              <span>
+               20
+              </span>
+              个工作日内及时公开。法律、法规对政府信息公开的期限另有规定的，从其规定。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              二、依申请公开
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              公民、法人或者其他组织（以下简称申请人）可申请萧县人民政府或萧县人民政府办公室主动公开以外的政府信息。本机关在公开政府信息前，将依照《中华人民共和国保守国家秘密法》《宿州市政府信息公开审查制度》以及其他法律、法规和国家有关规定对拟公开的政府信息进行审查。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （一）受理机构。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              机构名称：萧县政务公开办公室；办公地址：安徽省宿州市萧县凤城街道政务中心A栋1321室；办公时间：周一至周五工作时间（上午
+              <span>
+               8:00-12:00
+              </span>
+              ；下午
+              <span>
+               14:30-17:30
+              </span>
+              ，节假日除外）；邮政编码：
+              <span>
+               235200
+              </span>
+              ；联系电话：
+              <span>
+               0557-5023706
+              </span>
+              ；传真号码：
+              <span>
+               0557-5022960
+              </span>
+              。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （二）申请内容。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              申请人提出的政府信息公开申请应当真实载明下列内容：
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              1
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．申请人的姓名或者名称、身份证明、联系方式、通信地址；
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              2
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．申请公开的政府信息的名称、文号或者便于行政机关查询的其他特征性描述；
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              3
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．申请公开的政府信息的形式要求，包括获取信息的方式、途径；
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              4
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．受理机关名称。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              申请人向本机关提交政府信息公开申请，应当同时上传或提供身份证明。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （三）申请方式。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              申请人填写《萧县政府信息公开申请表》（以下简称申请表），申请表可以在萧县人民政府门户网站“政府信息公开”专栏的政府信息公开指南或依申请公开栏目下载打印，申请表复印有效。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              申请人可以通过以下方式提出申请：
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              1
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．信函。通过信函提出申请的，应填写申请表，收信人名称请注明“萧县政务公开办公室”，并在信封正面左下角显著位置注明“政府信息公开申请”，本机关只接收中国邮政寄件。通信地址：安徽省宿州市萧县凤城街道政务中心A栋1321室；联系电话：
+              <span>
+               0557-5023706
+              </span>
+              ；邮政编码：
+              <span>
+               235200
+              </span>
+              。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              2
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．当面提交。通过当面提交申请的，请提前电话联系确认。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              地址：安徽省宿州市萧县凤城街道政务中心
+              <span>
+               A
+              </span>
+              栋
+              <span>
+               1321
+              </span>
+              室。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              办公时间：周一至周五工作时间（上午
+              <span>
+               8:00-12:00
+              </span>
+              ；下午
+              <span>
+               14:30-17:30
+              </span>
+              ，节假日除外）。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              联系电话：
+              <span>
+               0557-5023706
+              </span>
+              。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              3
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．传真。通过传真提出申请的，应填写申请表，并在传真第一页正面显著位置注明“政府信息公开申请”和传真总页数，发送传真后应电话联系进行确认。传真号码：
+              <span>
+               0557-5022960
+              </span>
+              。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              4
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．网页申请。请登录萧县人民政府门户网站“政府信息公开”专栏的依申请公开栏目提交申请。
+              <span style="color: rgb(0, 0, 0); font-family: 宋体; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 32px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">
+               手机可扫描下方二维码进入H5版申请页面进行申请。
+              </span>
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              <span style="color: rgb(0, 0, 0); font-family: 宋体; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 32px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">
+               <img border="0" data-originalurl="" src="/group1/M00/39/80/Cpc8VmVSzPGAH0QbAABfHxSIjO0567.png" style="width: 220px; height: 220px;"/>
+              </span>
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （四）申请注意事项。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              1
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．申请人委托代理人提出政府信息公开申请的，应当提供委托代理证明材料；
+              <span>
+               5
+              </span>
+              人以上（含
+              <span>
+               5
+              </span>
+              人）共同申请同一政府信息，可以推选
+              <span>
+               1
+              </span>
+              至
+              <span>
+               5
+              </span>
+              名代表提交申请，并提供推举证明材料。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              2
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．政府信息公开申请内容不明确的，本机关自收到申请之日起
+              <span>
+               7
+              </span>
+              个工作日内一次性告知申请人作出补正，说明需要补正的事项和合理的补正期限。申请人无正当理由逾期不补正的，视为放弃申请，本机关不再处理该政府信息公开申请。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              3
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．申请人申请公开政府信息的数量、频次明显超过合理范围，本机关将要求申请人说明理由。对申请理由不合理的，将告知申请人不予处理。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              4
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．申请人以政府信息公开申请的形式进行信访、投诉、举报等活动，本机关将告知申请人不作为政府信息公开申请处理并告知通过相应渠道提出。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              5
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．本行政机关依申请提供政府信息，不收取费用。但是，申请人申请公开政府信息的数量、频次明显超过合理范围的，本行政机关按照《国务院办公厅关于印发
+              <span>
+               &lt;
+              </span>
+              政府信息公开信息处理费管理办法
+              <span>
+               &gt;
+              </span>
+              的通知》（国办函〔
+              <span>
+               2020
+              </span>
+              〕
+              <span>
+               109
+              </span>
+              号）及《安徽省财政厅
+             </span>
+             <span style="font-size:12.0pt;font-family:'MS Mincho'">
+             </span>
+             <span style="font-size:12.0pt;font-family:宋体">
+              安徽省发展和改革委员会关于政府信息公开信息处理费有关事项的通知》（皖财综〔
+              <span>
+               2021
+              </span>
+              〕
+              <span>
+               28
+              </span>
+              号）规定收取信息处理费。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              （五）答复时限。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              行政机关收到政府信息公开申请，能够当场答复的，应当当场予以答复。行政机关不能当场答复的，应当自收到申请之日起
+              <span>
+               20
+              </span>
+              个工作日内予以答复；需要延长答复期限的，应当经政府信息公开工作机构负责人同意并告知申请人，延长的期限最长不得超过
+              <span>
+               20
+              </span>
+              个工作日。行政机关征求第三方和其他机关意见所需时间不计算在上述规定的期限内。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              三、不予公开
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              1
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．依法确定为国家秘密的政府信息，法律、行政法规禁止公开的政府信息，以及公开后可能危及国家安全、公共安全、经济安全、社会稳定的政府信息，不予公开。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              2
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．涉及商业秘密、个人隐私等公开会对第三方合法权益造成损害的政府信息，本机关不予公开。但是，第三方同意公开或者本机关认为不公开会对公共利益造成重大影响的，予以公开。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              3
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．本机关的内部事务信息，包括人事管理、后勤管理、内部工作流程等方面的信息不予公开。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;font-family:宋体">
+              4
+             </span>
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              ．本机关在履行行政管理职能过程中形成的讨论记录、过程稿、磋商信函、请示报告等过程性信息以及行政执法案卷信息，不予公开。法律、法规、规章规定上述信息应当公开的，从其规定。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              四、政府信息公开工作机构
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              萧县人民政府办公室负责推进、指导、协调、监督全县政府信息公开工作。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              工作机构名称：萧县政务公开办公室。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              办公地址：安徽省宿州市萧县凤城街道政务中心
+              <span>
+               A
+              </span>
+              栋
+              <span>
+               1321
+              </span>
+              室。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              办公时间：上午
+              <span>
+               8:00-12:00
+              </span>
+              ；下午
+              <span>
+               14:30-17:30
+              </span>
+              ，节假日除外。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              联系电话：
+              <span>
+               0557-5023706
+              </span>
+              。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              传真号码：
+              <span>
+               0557-5022960
+              </span>
+              。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              互联网联系方式：
+              <span>
+               xxzwgk@163.com
+              </span>
+              。（仅用于接收政府信息公开工作有关意见建议，不受理依申请公开申请。如需提交政府信息公开申请，请查看第二部分“依申请公开”。）
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              五、监督和救济
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              公民、法人或者其他组织认为行政机关在政府信息公开工作中侵犯其合法权益的，可以向上一级行政机关或者政府信息公开工作主管部门投诉、举报，也可以依法申请行政复议或者提起行政诉讼。
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              <img border="0" src="/assets/images/files2/doc.gif"/>
+              <a data-file-ext="DOCX" href="/group1/M00/1D/31/Cpc8VmJqPKKAexk_AABYaSfpr7g14.docx" target="_blank">
+               附件：萧县政府信息公开申请表.docx
+              </a>
+              <br/>
+             </span>
+            </p>
+            <p style="margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;font-size:10.5pt;font-family:'Calibri','sans-serif';text-indent:24.0pt">
+             <span style="font-size:12.0pt;
+font-family:宋体">
+              <br/>
+             </span>
+            </p>
+           </div>
+          </div>
+          <div class="clear">
+          </div>
          </div>
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?sub=&catId=60776671&nav=&action=list&type=4&pageIndex=" + pageIndex;
+                    location.href = "&pageIndex=" + pageIndex;
             }, {
-        currPage: (0+1),
-        pageCount:(3 + 0),
+        currPage: (+1),
+        pageCount:( + 0),
         param: "pageSize=15"
     });
 
 
     var changeSearch = function(pageIndex){
 
-        var type = "4";
+        var type = "2";
         var fromCode = "";
         var sortType = "";
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60776671";
+        var catId = "";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
