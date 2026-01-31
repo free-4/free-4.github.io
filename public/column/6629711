@@ -11,13 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="公务员及事业单位招录" name="ColumnName"/>
+   <meta content="其他文件" name="ColumnName"/>
    <meta content="信息公开目录" name="ColumnType"/>
-   <meta content="公务员招考及事业单位招聘的职位、名额、报考条件等事项以及录用结果。" name="ColumnDescription"/>
-   <meta content="公务员及事业单位招录" name="ColumnKeywords"/>
+   <meta content="县（市、区）政府或县（市、区）政府办公室印发的除规范性文件以外的其他可以全文公开的文件。" name="ColumnDescription"/>
+   <meta content="其他文件" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:01:17" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:01:30" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -271,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60733911"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60733451"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2122,15 +2122,21 @@
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733911" data-organid="6629711" href="/public/column/6629711" target="_self">
-          公务员及事业单位招录
+         <a class="publicNavPos" data-catid="60733421" data-organid="6629711" href="/public/column/6629711" target="_self">
+          政策文件
+         </a>
+         <i>
+          &gt;
+         </i>
+         <a class="publicNavPos" data-catid="60733451" data-organid="6629711" href="/public/column/6629711" target="_self">
+          其他文件
          </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
          <div class="gktit">
-          <a href="/public/column/6629711" title="公务员及事业单位招录">
-           公务员及事业单位招录
+          <a href="/public/column/6629711" title="其他文件">
+           其他文件
           </a>
           <div class="gklm_search hidden-xs hidden-sm">
            <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
@@ -2148,139 +2154,232 @@
          <div class="xxgk_nav_con">
           <ul class="clearfix xxgk_nav_list">
            <li class="clearfix">
-            <a class="title" href="http://www.szxf.gov.cn/Home/List/420" target="_blank" title="【专题】宿州市公务员招录专题">
-             <img src="/_res/images/zding.png"/>
-             【专题】宿州市公务员招录专题
+            <a class="title" href="/public/6629711/162895111.html" target="_blank" title="萧县人民政府办公室关于公布萧县2025年传统建筑名录的通知">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             萧县人民政府办公室关于公布萧县2025年传统建筑名录的通知
             </a>
             <span class="date">
-             2025-08-11
+             2025-08-25
             </span>
+            <a onclick="downloadWord(162895111)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163428621.html" target="_blank" title="2025年度萧县下半年事业单位公开招聘工作人员拟聘用人员名单公示">
+            <a class="title" href="/public/6629711/162345131.html" target="_blank" title="萧县人民政府办公室关于印发萧县县属国有企业重大事项决策暂行办法的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             2025年度萧县下半年事业单位公开招聘工作人员拟聘用人员名单公示
+             萧县人民政府办公室关于印发萧县县属国有企业重大事项决策暂行办法的通知
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/162345481.html" target="_blank">
+             部门解读
             </a>
             <span class="date">
-             2026-01-26
+             2025-03-03
             </span>
+            <a onclick="downloadWord(162345131)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163323551.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员考察工作的通知">
+            <a class="title" href="/public/6629711/162214511.html" target="_blank" title="萧县人民政府关于印发2025年重点工作任务及责任分解方案的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于2025年度萧县下半年事业单位公开招聘工作人员考察工作的通知
+             萧县人民政府关于印发2025年重点工作任务及责任分解方案的通知
             </a>
             <span class="date">
-             2025-12-29
+             2025-02-19
             </span>
+            <a onclick="downloadWord(162214511)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163319241.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员递补体检结论的通知">
+            <a class="title" href="/public/6629711/162123511.html" target="_blank" title="萧县人民政府办公室关于公布2024年行政规范性文件清理结果的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于2025年度萧县下半年事业单位公开招聘工作人员递补体检结论的通知
+             萧县人民政府办公室关于公布2024年行政规范性文件清理结果的通知
             </a>
             <span class="date">
-             2025-12-26
+             2024-12-30
             </span>
+            <a onclick="downloadWord(162123511)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163307331.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员递补体检工作的通知">
+            <a class="title" href="/public/6629711/161777111.html" target="_blank" title="萧县人民政府办公室关于建立完善耕地保护共同责任机制全面加强耕地保护工作的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于2025年度萧县下半年事业单位公开招聘工作人员递补体检工作的通知
+             萧县人民政府办公室关于建立完善耕地保护共同责任机制全面加强耕地保护工作的通知
             </a>
             <span class="date">
-             2025-12-23
+             2024-10-08
             </span>
+            <a onclick="downloadWord(161777111)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163307321.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员体检结论的通知">
+            <a class="title" href="/public/6629711/161430861.html" target="_blank" title="萧县人民政府关于印发2024年重点工作任务及责任分解方案的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于2025年度萧县下半年事业单位公开招聘工作人员体检结论的通知
+             萧县人民政府关于印发2024年重点工作任务及责任分解方案的通知
             </a>
             <span class="date">
-             2025-12-23
+             2024-07-10
             </span>
+            <a onclick="downloadWord(161430861)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163293541.html" target="_blank" title="2025年度萧县下半年事业单位公开招聘工作人员体检通知">
+            <a class="title" href="/public/6629711/161415581.html" target="_blank" title="萧县人民政府办公室关于公布萧县第一批传统建筑名录的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             2025年度萧县下半年事业单位公开招聘工作人员体检通知
+             萧县人民政府办公室关于公布萧县第一批传统建筑名录的通知
             </a>
             <span class="date">
-             2025-12-18
+             2024-07-10
             </span>
+            <a onclick="downloadWord(161415581)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163278801.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员专业测试成绩及最终成绩的公告">
+            <a class="title" href="/public/6629711/161117441.html" target="_blank" title="萧县人民政府办公室关于印发萧县防汛抗旱应急预案的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于2025年度萧县下半年事业单位公开招聘工作人员专业测试成绩及最终成绩的公告
+             萧县人民政府办公室关于印发萧县防汛抗旱应急预案的通知
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/161117601.html" target="_blank">
+             负责人解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/161117621.html" target="_blank">
+             部门解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/161020661.html" target="_blank">
+             常务会议
             </a>
             <span class="date">
-             2025-12-13
+             2024-05-30
             </span>
+            <a onclick="downloadWord(161117441)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163262701.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员专业测试有关事项的通知">
+            <a class="title" href="/public/6629711/161115951.html" target="_blank" title="萧县人民政府关于明确被征地农民社会保障费用筹集标准的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于2025年度萧县下半年事业单位公开招聘工作人员专业测试有关事项的通知
+             萧县人民政府关于明确被征地农民社会保障费用筹集标准的通知
             </a>
             <span class="date">
-             2025-12-09
+             2024-05-23
             </span>
+            <a onclick="downloadWord(161115951)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163255741.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员资格复审递补工作的通知">
+            <a class="title" href="/public/6629711/160939091.html" target="_blank" title="萧县人民政府关于做好第四次全国文物普查工作的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于2025年度萧县下半年事业单位公开招聘工作人员资格复审递补工作的通知
+             萧县人民政府关于做好第四次全国文物普查工作的通知
             </a>
             <span class="date">
-             2025-12-08
+             2024-02-15
             </span>
+            <a onclick="downloadWord(160939091)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163241601.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员资格复审工作的通知">
+            <a class="title" href="/public/6629711/159933421.html" target="_blank" title="萧县人民政府办公室关于印发萧县行政备案事项清单（2023年版）的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于2025年度萧县下半年事业单位公开招聘工作人员资格复审工作的通知
+             萧县人民政府办公室关于印发萧县行政备案事项清单（2023年版）的通知
             </a>
             <span class="date">
-             2025-12-03
+             2023-10-13
             </span>
+            <a onclick="downloadWord(159933421)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163222341.html" target="_blank" title="2025年度萧县下半年事业单位公开招聘工作人员笔试成绩公告">
+            <a class="title" href="/public/6629711/159736461.html" target="_blank" title="萧县人民政府办公室关于印发补充耕地工作实施方案的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             2025年度萧县下半年事业单位公开招聘工作人员笔试成绩公告
+             萧县人民政府办公室关于印发补充耕地工作实施方案的通知
             </a>
             <span class="date">
-             2025-11-27
+             2023-09-14
             </span>
+            <a onclick="downloadWord(159736461)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163183051.html" target="_blank" title="2025年度萧县乡镇（街道）事业单位公开招聘工作人员拟聘用人员名单公示">
+            <a class="title" href="/public/6629711/159325891.html" target="_blank" title="萧县人民政府关于印发萧县人民政府工作规则的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             2025年度萧县乡镇（街道）事业单位公开招聘工作人员拟聘用人员名单公示
+             萧县人民政府关于印发萧县人民政府工作规则的通知
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/159326441.html" target="_blank">
+             相关会议
             </a>
             <span class="date">
-             2025-11-17
+             2023-07-19
             </span>
+            <a onclick="downloadWord(159325891)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163167551.html" target="_blank" title="关于2025年度萧县乡镇（街道）事业单位公开招聘考察递补人员考察工作的通知">
+            <a class="title" href="/public/6629711/159319541.html" target="_blank" title="萧县人民政府办公室关于印发2023年度萧县“徽动消费乐享萧城”惠民消费券发放活动实施方案的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             关于2025年度萧县乡镇（街道）事业单位公开招聘考察递补人员考察工作的通知
+             萧县人民政府办公室关于印发2023年度萧县“徽动消费乐享萧城”惠民消费券发放活动实施方案的通知
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="https://mp.weixin.qq.com/s/s9OJJ4X_Ps1f-vhDtALhbw" target="_blank">
+             媒体解读
             </a>
             <span class="date">
-             2025-11-11
+             2023-06-29
             </span>
+            <a onclick="downloadWord(159319541)" target="_blank">
+             【下载】
+            </a>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163167331.html" target="_blank" title="2025年萧县大学生乡村医生专项计划招聘拟聘用人员名单公示">
+            <a class="title" href="/public/6629711/158708621.html" target="_blank" title="萧县人民政府办公室关于印发萧县计量发展规划（2021-2035年）实施方案的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             2025年萧县大学生乡村医生专项计划招聘拟聘用人员名单公示
+             萧县人民政府办公室关于印发萧县计量发展规划（2021-2035年）实施方案的通知
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/158708681.html" target="_blank">
+             部门解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/158512321.html" target="_blank">
+             常务会议
             </a>
             <span class="date">
-             2025-11-11
+             2023-04-20
             </span>
+            <a onclick="downloadWord(158708621)" target="_blank">
+             【下载】
+            </a>
            </li>
            <script>
             function downloadWord(id) {
@@ -2314,7 +2413,7 @@
                                     length : "50",
                                     organId: "",
                                     type: 4,
-                                    catId: "60733911",
+                                    catId: "60733451",
                                     action:"list",
                                     keyWords: keyWords,
                                     result : "暂无相关信息",
@@ -2347,7 +2446,7 @@
                                 length : "80",
                                 organId: "6629711",
                                 type: "4",
-                                catId: "60733911",
+                                catId: "60733451",
                                 cId : "",
                                 result : "暂无相关信息",
                                 file:"/c2/jh/xxgk/publicInfoList_newest_xx"
@@ -2357,7 +2456,7 @@
                         });
                                     }, {
                     currPage: (0+1),
-                    pageCount:33,
+                    pageCount:5,
                     param: "pageSize=15"
                 });
          </script>
@@ -2366,10 +2465,10 @@
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?sub=&catId=60733911&nav=3&action=list&type=4&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?catId=60733451&action=list&type=4&pageIndex=" + pageIndex;
             }, {
         currPage: (0+1),
-        pageCount:(33 + 0),
+        pageCount:(5 + 0),
         param: "pageSize=15"
     });
 
@@ -2382,7 +2481,7 @@
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60733911";
+        var catId = "60733451";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
