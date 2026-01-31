@@ -11,13 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="部门解读" name="ColumnName"/>
+   <meta content="政策图解" name="ColumnName"/>
    <meta content="政策解读，信息公开" name="ColumnType"/>
-   <meta content="发布部门关于政策文件出台的决策背景和依据、制定意义和总体考虑、研判和起草过程、工作目标、主要任务、创新举措、保障措施等作出的相关解释说明。" name="ColumnDescription"/>
+   <meta content="发布采用图片图表、音频视频、卡通动漫等群众喜闻乐见的展现形式对政策文件解读信息。" name="ColumnDescription"/>
    <meta content="政策解读，信息公开" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:36:21" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:36:29" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -52,7 +52,7 @@
        <script>
         var ll_4697460 = 3;
        </script>
-       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tbzfwlj/4697460.js?num=3&amp;ect=1769873781216">
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tbzfwlj/4697460.js?num=3&amp;ect=1769873789024">
        </script>
        <!--EndLabelHtml_linkList_c044053c4d59952ad54f103a3b09594d-->
       </ul>
@@ -101,7 +101,7 @@
          <script>
           var ll_4697461 = 5;
          </script>
-         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-bjtp/4697461.js?num=5&amp;ect=1769873781217">
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-bjtp/4697461.js?num=5&amp;ect=1769873789025">
          </script>
          <!--EndLabelHtml_linkList_195e6d7916419c611596a13f0d81419c-->
         </ul>
@@ -117,7 +117,7 @@
        <script>
         var ll_4697462 = 1;
        </script>
-       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-logo/4697462.js?num=1&amp;ect=1769873781218">
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-logo/4697462.js?num=1&amp;ect=1769873789026">
        </script>
        <!--EndLabelHtml_linkList_1102d5976d2edcbee07daf1f7db54b0e-->
       </ul>
@@ -198,7 +198,7 @@
             <script>
              var ll_22966781 = 20;
             </script>
-            <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/lmlj/tbdh-ejlm/xxgk/22966781.js?num=20&amp;ect=1769873781221">
+            <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/lmlj/tbdh-ejlm/xxgk/22966781.js?num=20&amp;ect=1769873789029">
             </script>
             <!--EndLabelHtml_linkList_c0e3484b822c6e13e8916f6fb2e49310-->
            </ul>
@@ -271,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60733601"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60733621"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2128,15 +2128,15 @@
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733601" data-organid="6629711" href="/public/column/6629711?type=4&amp;catId=60733601&amp;action=list" target="_self">
-          部门解读
+         <a class="publicNavPos" data-catid="60733621" data-organid="6629711" href="/public/column/6629711?type=4&amp;catId=60733621&amp;action=list" target="_self">
+          政策图解
          </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
          <div class="gktit">
-          <a href="/public/column/6629711?type=4&amp;action=list&amp;nav=&amp;sub=&amp;catId=60733601" title="部门解读">
-           部门解读
+          <a href="/public/column/6629711?type=4&amp;action=list&amp;nav=&amp;sub=&amp;catId=60733621" title="政策图解">
+           政策图解
           </a>
           <div class="gklm_search hidden-xs hidden-sm">
            <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
@@ -2154,24 +2154,54 @@
          <div class="xxgk_nav_con">
           <ul class="clearfix xxgk_nav_list">
            <li class="clearfix">
-            <a class="title" href="/public/6629711/162345481.html" target="_blank" title="《萧县人民政府办公室关于印发萧县县属国有企业重大事项决策暂行办法的通知》政策解读">
+            <a class="title" href="/public/6629711/163110241.html" target="_blank" title="《萧县人民政府办公室关于印发安徽萧县经济开发区标准化厂房入驻办法的通知》政策图解">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县人民政府办公室关于印发萧县县属国有企业重大事项决策暂行办法的通知》政策解读
+             《萧县人民政府办公室关于印发安徽萧县经济开发区标准化厂房入驻办法的通知》政策图解
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/162345131.html" target="_blank">
+            <a class="a" href="/public/6629711/163054741.html" target="_blank">
              文件
             </a>
             <span class="date">
-             2025-03-03
+             2025-06-06
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/161183881.html" target="_blank" title="《萧县建设质量强县促进高质量发展扶持奖励办法》简明问答">
+            <a class="title" href="/public/6629711/162343881.html" target="_blank" title="2025年政府工作报告（图解版）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县建设质量强县促进高质量发展扶持奖励办法》简明问答
+             2025年政府工作报告（图解版）
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="https://www.ahxx.gov.cn/public/content/162175941" target="_blank">
+             文件
+            </a>
+            <span class="date">
+             2025-01-17
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/161220311.html" target="_blank" title="【视频动漫解读】《萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知》（动漫解读）">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             【视频动漫解读】《萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知》（动漫解读）
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/162282021.html" target="_blank">
+             文件
+            </a>
+            <span class="date">
+             2024-06-21
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/159977431.html" target="_blank" title="【图解】萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             【图解】萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知
             </a>
             <span class="split">
              |
@@ -2184,138 +2214,42 @@
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/161117621.html" target="_blank" title="《萧县防汛抗旱应急预案》的简明问答">
+            <a class="title" href="/public/6629711/158587911.html" target="_blank" title="【图解】萧县粮食储备管理办法">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县防汛抗旱应急预案》的简明问答
+             【图解】萧县粮食储备管理办法
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/161117441.html" target="_blank">
+            <a class="a" href="/public/6629711/158510701.html" target="_blank">
              文件
             </a>
             <span class="date">
-             2024-05-30
+             2023-01-16
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/161117601.html" target="_blank" title="【文字解读】《萧县防汛抗旱应急预案》政策解读">
+            <a class="title" href="/public/6629711/158554731.html" target="_blank" title="2023年政府工作报告（图解版）">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【文字解读】《萧县防汛抗旱应急预案》政策解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/161117441.html" target="_blank">
-             文件
+             2023年政府工作报告（图解版）
             </a>
             <span class="date">
-             2024-05-30
+             2023-01-13
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/158708681.html" target="_blank" title="《萧县计量发展规划（2021-2035年）实施方案》政策解读">
+            <a class="title" href="/public/6629711/156942131.html" target="_blank" title="【动漫宣传】防范电信诈骗">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县计量发展规划（2021-2035年）实施方案》政策解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/158708621.html" target="_blank">
-             文件
+             【动漫宣传】防范电信诈骗
             </a>
             <span class="date">
-             2023-04-21
+             2022-05-16
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/157276421.html" target="_blank" title="《萧县进一步加强统计基层基础建设实施方案》政策解读">
+            <a class="title" href="/public/6629711/156370141.html" target="_blank" title="一图读懂《萧县企业上市挂牌和直接融资奖励办法》">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县进一步加强统计基层基础建设实施方案》政策解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/157276311.html" target="_blank">
-             文件
-            </a>
-            <span class="date">
-             2022-09-01
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/156929421.html" target="_blank" title="《萧县全面推行“宿事速办”优化12345政务服务便民热线实施方案》政策解读">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县全面推行“宿事速办”优化12345政务服务便民热线实施方案》政策解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156929451.html" target="_blank">
-             文件
-            </a>
-            <span class="date">
-             2022-06-27
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/156928211.html" target="_blank" title="《萧县行政机关合同管理办法》政策解读">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县行政机关合同管理办法》政策解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156928201.html" target="_blank">
-             文件
-            </a>
-            <span class="date">
-             2022-06-27
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/156842121.html" target="_blank" title="《进一步深化紧密型县域医共体建设若干举措》政策解读">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             《进一步深化紧密型县域医共体建设若干举措》政策解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156842111.html" target="_blank">
-             文件
-            </a>
-            <span class="date">
-             2022-06-06
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/156842101.html" target="_blank" title="《萧县2022年犬类管理专项整治行动工作实施方案》政策解读">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县2022年犬类管理专项整治行动工作实施方案》政策解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156842091.html" target="_blank">
-             文件
-            </a>
-            <span class="date">
-             2022-06-06
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/156372301.html" target="_blank" title="《萧县粮食产业经济高质量发展三年行动计划(2021-2023年)》政策解读">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县粮食产业经济高质量发展三年行动计划(2021-2023年)》政策解读
-            </a>
-            <span class="date">
-             2022-03-22
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/156323021.html" target="_blank" title="《萧县人民政府办公室关于印发萧县企业上市挂牌和直接融资奖励办法的通知》政策解读">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县人民政府办公室关于印发萧县企业上市挂牌和直接融资奖励办法的通知》政策解读
+             一图读懂《萧县企业上市挂牌和直接融资奖励办法》
             </a>
             <span class="split">
              |
@@ -2328,48 +2262,102 @@
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/156037931.html" target="_blank" title="《萧县人民政府办公室关于印发萧县“食安安徽”品牌培育工作实施方案的通知》政策解读">
+            <a class="title" href="/public/6629711/156142171.html" target="_blank" title="图解：《萧县农村宅基地承包地纠纷排查化解专项行动工作方案》政策解读">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县人民政府办公室关于印发萧县“食安安徽”品牌培育工作实施方案的通知》政策解读
+             图解：《萧县农村宅基地承包地纠纷排查化解专项行动工作方案》政策解读
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/156037881.html" target="_blank">
+            <a class="a" href="/public/6629711/156117881.html" target="_blank">
              文件
             </a>
             <span class="date">
-             2022-01-13
+             2022-02-07
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/155440151.html" target="_blank" title="《萧县人民政府印发关于深化企业首席质量官制度落实企业质量治理主体责任的实施意见的通知》政策解读">
+            <a class="title" href="/public/6629711/156001821.html" target="_blank" title="图解：《萧县促进现代服务业企业发展激励办法》">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县人民政府印发关于深化企业首席质量官制度落实企业质量治理主体责任的实施意见的通知》政策解读
+             图解：《萧县促进现代服务业企业发展激励办法》
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/155439931.html" target="_blank">
+            <a class="a" href="/public/6629711/155932981.html" target="_blank">
              文件
             </a>
             <span class="date">
-             2021-10-20
+             2022-01-10
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/155391141.html" target="_blank" title="《萧县人民政府办公室关于印发萧县居民服务“一卡通”工作方案的通知》政策解读">
+            <a class="title" href="/public/6629711/155463841.html" target="_blank" title="图解：萧县人民政府办公室关于印发萧县公交成本规制实施办法的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             《萧县人民政府办公室关于印发萧县居民服务“一卡通”工作方案的通知》政策解读
+             图解：萧县人民政府办公室关于印发萧县公交成本规制实施办法的通知
             </a>
             <span class="split">
              |
             </span>
-            <a class="a" href="/public/6629711/155391061.html" target="_blank">
+            <a class="a" href="/public/6629711/155440311.html" target="_blank">
              文件
             </a>
             <span class="date">
-             2021-10-13
+             2021-10-25
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/154964011.html" target="_blank" title="图解：萧县人民政府办公室印发关于贯彻落实政府“过紧日子”要求厉行节约力保重点支出十条措施的通知">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：萧县人民政府办公室印发关于贯彻落实政府“过紧日子”要求厉行节约力保重点支出十条措施的通知
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/154964031.html" target="_blank">
+             文件
+            </a>
+            <span class="date">
+             2021-08-02
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/154865921.html" target="_blank" title="图解：《萧县人民政府办公室关于印发2021年政务公开重点工作任务分工方案的通知》政策解读">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：《萧县人民政府办公室关于印发2021年政务公开重点工作任务分工方案的通知》政策解读
+            </a>
+            <span class="date">
+             2021-07-09
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/154458581.html" target="_blank" title="图解：《萧县政府投资建设项目工程变更管理办法》政策解读">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：《萧县政府投资建设项目工程变更管理办法》政策解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/154351401.html" target="_blank">
+             文件
+            </a>
+            <span class="date">
+             2021-05-07
+            </span>
+           </li>
+           <li class="clearfix">
+            <a class="title" href="/public/6629711/154458511.html" target="_blank" title="图解：《萧县政府投资建设工程实施阶段全过程造价管理办法》政策解读">
+             <img src="/_res/images/zding.png" style="display:none;"/>
+             图解：《萧县政府投资建设工程实施阶段全过程造价管理办法》政策解读
+            </a>
+            <span class="split">
+             |
+            </span>
+            <a class="a" href="/public/6629711/154350431.html" target="_blank">
+             文件
+            </a>
+            <span class="date">
+             2021-05-07
             </span>
            </li>
            <script>
@@ -2404,7 +2392,7 @@
                                     length : "50",
                                     organId: "",
                                     type: 4,
-                                    catId: "60733601",
+                                    catId: "60733621",
                                     action:"list",
                                     keyWords: keyWords,
                                     result : "暂无相关信息",
@@ -2437,7 +2425,7 @@
                                 length : "80",
                                 organId: "6629711",
                                 type: "4",
-                                catId: "60733601",
+                                catId: "60733621",
                                 cId : "",
                                 result : "暂无相关信息",
                                 file:"/c2/jh/xxgk/publicInfoList_newest_xx"
@@ -2447,7 +2435,7 @@
                         });
                                     }, {
                     currPage: (0+1),
-                    pageCount:6,
+                    pageCount:5,
                     param: "pageSize=15"
                 });
          </script>
@@ -2456,10 +2444,10 @@
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?sub=&catId=60733601&nav=&action=list&type=4&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?sub=&catId=60733621&nav=&action=list&type=4&pageIndex=" + pageIndex;
             }, {
         currPage: (0+1),
-        pageCount:(6 + 0),
+        pageCount:(5 + 0),
         param: "pageSize=15"
     });
 
@@ -2472,7 +2460,7 @@
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60733601";
+        var catId = "60733621";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
@@ -2723,7 +2711,7 @@
         <script>
          var ll_4697466 = 1;
         </script>
-        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wbewm/4697466.js?num=1&amp;ect=1769873781337">
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wbewm/4697466.js?num=1&amp;ect=1769873789143">
         </script>
         <!--EndLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
        </ul>
@@ -2736,7 +2724,7 @@
         <script>
          var ll_4697467 = 1;
         </script>
-        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wxewm/4697467.js?num=1&amp;ect=1769873781338">
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wxewm/4697467.js?num=1&amp;ect=1769873789144">
         </script>
         <!--EndLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
        </ul>
