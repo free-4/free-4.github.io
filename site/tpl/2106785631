@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="webkit" name="renderer"/>
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+   <title>
+    财政资金信息公开专栏_萧县人民政府
+   </title>
+   <meta content="财政资金信息公开专栏" name="ColumnName"/>
+   <meta content="财政资金信息公开专栏" name="ColumnType"/>
+   <meta content="财政资金信息公开专栏" name="ColumnDescription"/>
+   <meta content="财政资金信息公开专栏" name="ColumnKeywords"/>
+   <meta content="萧县人民政府" name="SiteName"/>
+   <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
+   <meta content="3413220004" name="SiteIDCode"/>
+   <meta content="萧县人民政府" name="Keywords"/>
+   <meta content="萧县人民政府" name="Description"/>
+   <meta content="2026-01-31 23:08:02" name="HtmlGenerateTime"/>
+   <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+   <link href="/assets/css/core.min.css" rel="stylesheet"/>
+   <link href="/_res/css/public.css" rel="stylesheet"/>
+   <link href="/_res/css/zt_xxgk_gktl.css" rel="stylesheet"/>
+   <script src="/assets/js/common.min.js">
+   </script>
+   <script src="/_res/js/customize.min.js">
+   </script>
+   <!--[if lt IE 9]>
+<script src="/assets/js/patch.min.js"></script>
+<![endif]-->
+   <script src="/_res/js/hover.js" type="text/javascript">
+   </script>
+   <script src="/_res/js/xxk.js" type="text/javascript">
+   </script>
+  </meta>
+ </head>
+ <body class="bgf7">
+  <div class="czy_banbox">
+   <div class="czy_banner">
+    <ul class="clearfix">
+     <!--StartLabelHtml_linkList_64ac4fcfc07861ba0a44b3d9d39eb0e8-->
+     <script>
+      var ll_22965891 = 1;
+     </script>
+     <script charset="utf-8" src="/ljgl-x/ztlj/czzjzt/tb-banner/22965891.js">
+     </script>
+     <!--EndLabelHtml_linkList_64ac4fcfc07861ba0a44b3d9d39eb0e8-->
+    </ul>
+    <div class="zt-toplink">
+     <ul class="clearfix">
+      <li>
+       <a class="old" href="javascript:void(0)" onclick="aria.oldFixedStart()">
+        <span class="ico">
+        </span>
+        长辈版
+       </a>
+      </li>
+      <li>
+       <a class="wza" href="javascript:void(0)" onclick="aria.start()">
+        <span class="ico">
+        </span>
+        无障碍
+       </a>
+      </li>
+      <li>
+       <a href="/index.html">
+        返回首页
+       </a>
+      </li>
+      <li class="hy">
+       <span class="sylogin" data-setting="{siteId:4697420,platformCode:'gov_b'}" id="member_info">
+       </span>
+      </li>
+     </ul>
+    </div>
+    <!--<a class="qlback_home" href="/index.html"><span>返回首页</span></a>-->
+   </div>
+  </div>
+  <!--主体-->
+  <div class="czy_container">
+   <div class="czy_linkcon clearfix">
+    <div class="fl czy_llink">
+     <ul class="clearfix">
+      <!--StartLabelHtml_linkList_e7a49a88bfa331aa09054cac703e149e-->
+      <script>
+       var ll_22965901 = 1;
+      </script>
+      <script charset="utf-8" src="/ljgl-x/ztlj/czzjzt/czzjt/22965901.js">
+      </script>
+      <!--EndLabelHtml_linkList_e7a49a88bfa331aa09054cac703e149e-->
+     </ul>
+    </div>
+    <div class="fr czy_rlink">
+     <ul class="clearfix">
+      <!--StartLabelHtml_linkList_88d782cde367ed47932a66a030b3e823-->
+      <script>
+       var ll_22965911 = 2;
+      </script>
+      <script charset="utf-8" src="/ljgl-x/ztlj/czzjzt/czzjlm/22965911.js">
+      </script>
+      <!--EndLabelHtml_linkList_88d782cde367ed47932a66a030b3e823-->
+     </ul>
+    </div>
+   </div>
+   <!--主体-->
+   <div class="czy_nrcontain">
+    <div class="fl czy_lban">
+     <div class="czy_nmcon">
+      <div class="czy_flbox">
+       <div class="czy_fltitle" style="display:none;">
+        <a href="javascript:void(0)" onclick="changeOrganRel(7,6629731)">
+         萧县人民政府
+        </a>
+       </div>
+       <!--纪检委单位ID-->
+       <div class="czy_flcon" style="display:block;">
+        <div class="czy_flhtit">
+         <a href="javascript:void(0)">
+          萧县人民政府
+         </a>
+        </div>
+        <div class="czy_fllb">
+         <div class="czy_flxx">
+          <ul class="clearfix" id="xxList">
+           <!--<li><a  title="宣传部" onclick="" name="units" class="active"><span>萧县人民政府</span></a></li>-->
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="czy_flbox">
+       <div class="czy_fltitle" style="display:none;">
+        <a href="javascript:void(0)" onclick="changeOrganRel(4,3722307)">
+         党委机构
+        </a>
+       </div>
+       <!--纪检委单位ID-->
+       <div class="czy_flcon" style="display:none;">
+        <div class="czy_flhtit">
+         <a href="javascript:void(0)">
+          党委机构
+         </a>
+        </div>
+        <div class="czy_fllb">
+         <div class="czy_flxx">
+          <ul class="clearfix" id="dwList">
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="czy_flbox">
+       <div class="czy_fltitle" style="display:block;">
+        <a href="javascript:void(0)" onclick="changeOrganRel(2,6)">
+         政府机构
+        </a>
+       </div>
+       <div class="czy_flcon" style="display:none;">
+        <div class="czy_flhtit">
+         <a href="javascript:void(0)">
+          政府机构
+         </a>
+        </div>
+        <div class="czy_fllb">
+         <div class="czy_flxx">
+          <ul class="clearfix" id="zfList">
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="czy_flbox">
+       <div class="czy_fltitle" style="display:block;">
+        <a href="javascript:void(0)" onclick="changeOrganRel(5,3722283)">
+         人大政协、法检、群体
+        </a>
+       </div>
+       <!--人大单位ID-->
+       <div class="czy_flcon" style="display:none;">
+        <div class="czy_flhtit">
+         <a href="javascript:void(0)">
+          人大政协、法检、群体
+         </a>
+        </div>
+        <div class="czy_fllb">
+         <div class="czy_flxx">
+          <ul class="clearfix" id="rdList">
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="czy_flbox">
+       <div class="czy_fltitle" style="display:block;">
+        <a href="javascript:void(0)" onclick="changeOrganRel(3,241)">
+         乡镇、街道
+        </a>
+       </div>
+       <div class="czy_flcon" style="display:none;">
+        <div class="czy_flhtit">
+         <a href="javascript:void(0)">
+          乡镇、街道
+         </a>
+        </div>
+        <div class="czy_fllb">
+         <div class="czy_flxx">
+          <ul class="clearfix" id="xzList">
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="czy_flbox">
+       <div class="czy_fltitle" style="display:block;">
+        <a href="javascript:void(0)" onclick="changeOrganRel(6,3722317)">
+         其他
+        </a>
+       </div>
+       <!--县委党校单位ID-->
+       <div class="czy_flcon" style="display:none;">
+        <div class="czy_flhtit">
+         <a href="javascript:void(0)">
+          其他
+         </a>
+        </div>
+        <div class="czy_fllb">
+         <div class="czy_flxx">
+          <ul class="clearfix" id="qtList">
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <script language="javascript">
+      $(document).ready(function () {
+              $(".czy_nmcon").find(".czy_flbox").click(function () {
+                  $(this).find(".czy_fltitle").hide();
+                  $(this).siblings(".czy_flbox").find(".czy_fltitle").show();
+                  $(this).find(".czy_flcon").show();
+                  $(this).siblings(".czy_flbox").find(".czy_flcon").hide();
+              })
+          })
+     </script>
+    </div>
+    <div class="fr czy_rban" id="czy_nrcon">
+     <div class="czy_qkflcon qly_fltop" id="catDiv2">
+      <ul class="clearfix" id="catalogs">
+      </ul>
+     </div>
+     <div class="czy_nrcon" id="publicInfoListDiv">
+     </div>
+    </div>
+    <div class="clear">
+    </div>
+   </div>
+   <!--主体 end-->
+  </div>
+  <div class="footer">
+   <div class="container">
+    <!--友情链接-->
+    <div class="is-select j-links clearfix hidden-sm hidden-xs">
+     <dl class="select first">
+      <dt>
+       国家部委网站
+      </dt>
+      <dd>
+       <ul>
+        <!--StartLabelHtml_linkList_cfde037b4d98927cfb2214b1d9e48a75-->
+        <script>
+         var ll_4697457 = 100;
+        </script>
+        <script charset="utf-8" src="/ljgl/sylj/gjbwwz/4697457.js">
+        </script>
+        <!--EndLabelHtml_linkList_cfde037b4d98927cfb2214b1d9e48a75-->
+       </ul>
+      </dd>
+     </dl>
+     <dl class="select">
+      <dt>
+       省内地市级网站
+      </dt>
+      <dd>
+       <ul>
+        <!--StartLabelHtml_linkList_6e9b9ae73b8490ff69f18adf2b641b28-->
+        <script>
+         var ll_4697458 = 100;
+        </script>
+        <script charset="utf-8" src="/ljgl/sylj/sndsjwz/4697458.js">
+        </script>
+        <!--EndLabelHtml_linkList_6e9b9ae73b8490ff69f18adf2b641b28-->
+       </ul>
+      </dd>
+     </dl>
+     <dl class="select last">
+      <dt>
+       其他机构网站
+      </dt>
+      <dd>
+       <ul>
+        <!--StartLabelHtml_linkList_210841a1da100f461443e2a111889d60-->
+        <script>
+         var ll_4697459 = 100;
+        </script>
+        <script charset="utf-8" src="/ljgl/sylj/qtjgwz/4697459.js">
+        </script>
+        <!--EndLabelHtml_linkList_210841a1da100f461443e2a111889d60-->
+       </ul>
+      </dd>
+     </dl>
+    </div>
+    <!--底部导航-->
+    <div class="fotnav">
+     <a class="num1" href="/wzgl/lxwm/index.html">
+      联系我们
+     </a>
+     <a href="/wzgl/sybz/index.html">
+      使用帮助
+     </a>
+     <a href="/wzgl/zddt/index.html">
+      站点地图
+     </a>
+     <a href="/wzgl/yszc/index.html">
+      隐私声明
+     </a>
+    </div>
+    <div class="fotcon">
+     <span>
+      主办：萧县人民政府
+     </span>
+     <span>
+      承办：萧县数据资源管理局
+     </span>
+     <br/>
+     <span>
+      地址：安徽省宿州市萧县凤城街道复兴路18号
+     </span>
+     <span>
+      运维电话：0557-5066181
+     </span>
+     <br/>
+     <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank">
+       皖ICP备05004981号-1
+      </a>
+     </span>
+     <span>
+      <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34132202000128" target="_blank">
+       <img class="gaw" src="/_res/images/ghs.png"/>
+       皖公网安备 34132202000128
+      </a>
+     </span>
+     <span>
+      网站标识码：3413220004
+     </span>
+     <span>
+      本站支持ipv6访问
+     </span>
+     <br/>
+     <div>
+      <span>
+       <a href="http://www.12377.cn/" target="_blank">
+        <img src="/_res/images/jbzxtu.jpg" style="margin-top:5px;"/>
+       </a>
+      </span>
+      <span>
+       违法与不良信息举报电话：12377
+      </span>
+      <a href="/xxdt/ztzl/wzptwfyblxxjb/index.html" target="_blank">
+       网站平台违法与不良信息举报
+      </a>
+      <span>
+       <a href="/xxswcnrzyjbqd/index.html" target="_blank">
+        <img src="/_res/images/wcnrjb-pic-01.jpg" style="margin-top:5px;"/>
+       </a>
+      </span>
+      <span class="wzaico">
+       <img alt="适老化无障碍服务" src="/_res/images/img-oldage.gif"/>
+      </span>
+     </div>
+     <script type="text/javascript">
+      document.write(unescape("%3Cspan id='cnzz_stat_icon_1279631758'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1279631758%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+     </script>
+     <div class="dzjg j-gov" data-setting="{sitecode:'0B54EBC0B0426D52E053012819AC8069'}">
+     </div>
+     <div class="dzjg jiucuo j-jiucuo" data-setting="{sitecode:3413220004}">
+     </div>
+    </div>
+   </div>
+  </div>
+  <span class="j-sitestats" data-setting="{siteId:4697420,isTimes:false}">
+  </span>
+  <!--/***右侧悬浮***/-->
+  <!--右侧悬浮-->
+  <div class="slide hidden-sm hidden-xs j-couplet">
+   <div class="couplet-close">
+    <img src="/_res/images/close.gif"/>
+   </div>
+   <ul class="icon clearfix">
+    <li class="wb">
+     <a href="https://weibo.com/p/1001063215052832/home?from=page_100106&amp;mod=TAB#place" target="_blank">
+      <span class="ico">
+      </span>
+      <span class="bt">
+       政务微博
+      </span>
+     </a>
+    </li>
+    <li class="wx">
+     <span class="ico">
+     </span>
+     <span class="bt">
+      政务微信
+     </span>
+    </li>
+    <li class="znwd">
+     <a href="https://www.ahsz.gov.cn/site/tpl/150904621" target="_blank">
+      <span class="ico">
+      </span>
+      <span class="bt">
+       智能问答
+      </span>
+     </a>
+    </li>
+    <li class="fx">
+     <a href="javascript:void(0);">
+      <span class="ico">
+      </span>
+      <span class="bt">
+       分 享
+      </span>
+     </a>
+    </li>
+    <li class="gototop">
+     <a class="j-gotoTop" href="javascript:void(0);">
+      <span class="ico">
+      </span>
+      <span class="bt">
+       返回顶部
+      </span>
+     </a>
+    </li>
+   </ul>
+   <ul class="info">
+    <li class="wb">
+     <div class="slide_ewm">
+      <ul class="active">
+       <!--StartLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
+       <script>
+        var ll_4697466 = 1;
+       </script>
+       <script charset="utf-8" src="/ljgl/sylj/ycxf-wbewm/4697466.js">
+       </script>
+       <!--EndLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
+      </ul>
+     </div>
+    </li>
+    <li class="wx">
+     <div class="slide_ewm">
+      <ul class="active">
+       <!--StartLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
+       <script>
+        var ll_4697467 = 1;
+       </script>
+       <script charset="utf-8" src="/ljgl/sylj/ycxf-wxewm/4697467.js">
+       </script>
+       <!--EndLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
+      </ul>
+     </div>
+    </li>
+    <li class="fx">
+     <div class="slide_fx">
+      <div class="j-share-info">
+      </div>
+     </div>
+    </li>
+   </ul>
+  </div>
+  <script type="text/javascript">
+   $(function(){
+        $('.slide .icon li').mouseenter(function(){
+            $('.slide .info').addClass('hover');
+            $('.slide .info>li').hide();
+            $('.slide .info>li.'+$(this).attr('class')).show();
+            $('.slide .icon>li').removeClass('active');
+            $(this).addClass('active');
+        });
+        $('.slide').mouseleave(function(){
+            $('.slide .info').removeClass('hover');
+            $('.slide .icon li').removeClass('active');
+        });
+    });
+  </script>
+  <!--右侧悬浮end-->
+  <!--/***右侧悬浮end***/-->
+  <script async="" charset="utf-8" defer="" src=" //gov.govwza.cn/dist/aria.js?appid=73dc4b48858d22842897e74ff8aa42c3" type="text/javascript">
+  </script>
+  <script>
+   (function() {
+    var serMgr = document.createElement("script");
+    serMgr.src = "https://service.lonsun.cn/assets/cloud/boot.min.js?sid=549363";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(serMgr, s);
+  })();
+  </script>
+  <!--技术支持：龙讯科技-->
+  <script>
+   var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?83bc455256858028cca96bd0b6ffd35b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+  </script>
+  <script type="text/javascript">
+   var globl_organId = '';
+    var global_catId = "";
+    var global_divId = '';
+    var global_page_size = 15;
+
+    $(function(){
+        global_organId = "3722307";
+        global_catId = "3684528";
+        global_divId = "publicInfoListDiv";
+
+        $("#" + global_organId).addClass("active");
+        $("#" + global_catId).addClass("active");
+        $("#" + global_divId).addClass("active");
+        // 加载左侧党委、部门、乡镇、人大、其他列表
+        loadOrganList(4,'dwList');
+        loadOrganList(2,'zfList');
+        loadOrganList(5,'rdList');
+        loadOrganList(3,'xzList');
+        loadOrganList(6,'qtList');
+        loadOrganList(7,'xxList');
+        
+
+    })
+
+    function loadOrganList(type,divId) {
+        Ls.ajax({
+            dataType: "html",
+            data: {
+                types: type,
+                specialCode:'CZZJ_01',
+                siteId: "4697420"
+            },
+            url: "/public/specialCatalog"
+        }).done(function (d) {
+		    if(type == 2){
+               d = d.replaceAll('经信局','工信局');
+			   d = d.replaceAll('退役军人厅','退役军人事务局');
+            }
+            $("#" + divId).html(d);
+            console.log(d);
+            if (type == 7) {
+                // 加载默认目录数据，这里默认加载第一个党委的第一个目录
+                $("#xxList li:first a").trigger('click');
+            }
+            $('#zfList li').each(function (i,el) {
+                if($.trim($(el).text())==='扶贫开发局'){
+                    $(el).remove()
+                }
+            })
+
+        });
+    }
+
+    /**
+     * 改变单位时重新加载右侧目录分类
+     */
+    function changeUnit(organId, configId,obj) {
+        $("a[name='units']").each(function () {
+            $(this).removeClass("active");
+        });
+        $(obj).addClass("active");
+        global_organId = organId;
+
+        Ls.ajax({
+            dataType: "html",
+            data: {
+                id: configId,
+                siteId: "4697420"
+            },
+            url: "/public/specialCatalog/list"
+        }).done(function (d) {
+            console.log("11111111111111111111");
+            console.log(d);
+            $("#catDiv2 ul").html(d);
+
+            // 触发第一个目录
+            $("#catDiv2 ul li:first a").trigger('click');
+            $("#catalogs li").css("width","280px");
+        });
+    }
+
+    function changeCatalog(catId) {
+        loadPublicDatas(global_organId, catId, global_divId);
+    }
+
+    function changeCatalog(catId) {
+        $("#catDiv2 a[name='catalog']").removeClass("active");
+        $("#catDiv2 a[catId='" + catId + "']").addClass("active");
+        loadPublicDatas(global_organId, catId, global_divId);
+    }
+
+    function loadPublicDatas(organId, catId, global_divId) {
+        Ls.ajax({
+            dataType: "html",
+            data: {
+                labelName:"publicInfoList",
+                pageSize: global_page_size,
+                pageIndex: 1,
+                action: "list",
+                isDate: "true",
+                dateFormat: "yyyy-MM-dd",
+                length: "37",
+                organId: organId,
+                catId: catId,
+                type: 4,
+                siteId: "4697420",
+                result: "暂无相关信息",
+                publicDivId: global_divId,
+                file: "/c2/lingbi/publicInfoList-lb-03"
+            },
+            url: "/site/label/8888"
+        }).done(function (d) {
+            $("#" + global_divId).html(d);
+        });
+    }
+
+    function changeCatalog(catId) {
+        $("a[name='catalog']").each(function () {
+            $(this).removeClass("active");
+        });
+        $("#" + catId).addClass("active");
+
+        if (catId == "" && global_catId == "") {
+            catId = 3685264;//行政权力 catId
+            global_catId = catId;
+        } else if (catId == "" && global_catId != "") {
+            catId = global_catId;
+        } else {
+            global_catId = catId;
+        }
+        loadPublicDatas(global_organId, catId,global_divId);
+    }
+
+    function changeOrganRel(type, defaultOrganId) {
+        if (defaultOrganId != null && defaultOrganId != "") {
+            global_organId = defaultOrganId;
+        }
+        $("a[name='units']").each(function () {
+            $(this).removeClass("active");
+        });
+
+        $("#catDiv2").removeAttr("style").addClass("qly_fltop");
+
+        if (type == 4) {//党委及其他部门
+            $("#dwList li:first a").addClass('active').trigger('click');
+        }else if (type == 2) {//政府部门
+            $("#zfList li:first a").addClass('active').trigger('click');
+        }else if (type == 5) {//人大
+            $("#rdList li:first a").addClass('active').trigger('click');
+        } else if (type == 3) {//乡镇
+            $("#xzList li:first a").addClass('active').trigger('click');
+        } else if (type == 6){
+            $("#qtList li:first a").addClass('active').trigger('click');
+        } else if (type == 7){
+            $("#xxList li:first a").addClass('active').trigger('click');
+        }
+    }
+  </script>
+ </body>
+</html>
