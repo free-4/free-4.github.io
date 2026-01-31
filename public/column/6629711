@@ -11,13 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="意见反馈" name="ColumnName"/>
-   <meta content="政策文件" name="ColumnType"/>
-   <meta content="公布意见采纳情况及相对集中的意见未予采纳的原因。" name="ColumnDescription"/>
-   <meta content="政策文件" name="ColumnKeywords"/>
+   <meta content="解读渠道" name="ColumnName"/>
+   <meta content="信息公开目录" name="ColumnType"/>
+   <meta content="解读渠道" name="ColumnDescription"/>
+   <meta content="解读渠道" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:10:33" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:10:44" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -271,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60733571"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60775581"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2122,21 +2122,21 @@
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733551" data-organid="6629711" href="/public/column/6629711" target="_self">
-          重大决策预公开
+         <a class="publicNavPos" data-catid="60733591" data-organid="6629711" href="/public/column/6629711" target="_self">
+          政策解读咨询
          </a>
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733571" data-organid="6629711" href="/public/column/6629711" target="_self">
-          意见反馈
+         <a class="publicNavPos" data-catid="60775581" data-organid="6629711" href="/public/column/6629711" target="_self">
+          解读渠道
          </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
          <div class="gktit">
-          <a href="/public/column/6629711" title="意见反馈">
-           意见反馈
+          <a href="/public/column/6629711" title="解读渠道">
+           解读渠道
           </a>
           <div class="gklm_search hidden-xs hidden-sm">
            <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
@@ -2154,228 +2154,102 @@
          <div class="xxgk_nav_con">
           <ul class="clearfix xxgk_nav_list">
            <li class="clearfix">
-            <a class="title" href="/public/6629711/163207441.html" target="_blank" title="【无反馈意见】关于公开征求《萧县政务信息化项目建设管理办法（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163357771.html" target="_blank" title="宪法宣传进乡村法治暖阳润民心">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县政务信息化项目建设管理办法（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/163110461.html" target="_blank">
-             征集
+             宪法宣传进乡村法治暖阳润民心
             </a>
             <span class="date">
-             2025-11-26
+             2025-12-09
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/162448301.html" target="_blank" title="【无反馈意见】关于公开征求《安徽萧县经济开发区标准化厂房入驻办法（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163357781.html" target="_blank" title="萧县法律援助中心开展普法宣传活动">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《安徽萧县经济开发区标准化厂房入驻办法（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/162361451.html" target="_blank">
-             征集
+             萧县法律援助中心开展普法宣传活动
             </a>
             <span class="date">
-             2025-05-06
+             2025-11-14
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/162285571.html" target="_blank" title="【无反馈意见】关于公开征求《萧县城区自备水源污水处理费征收管理办法（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163156821.html" target="_blank" title="萧县司法局开展“萧法有约与企同行”普法宣传活动">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县城区自备水源污水处理费征收管理办法（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/162160271.html" target="_blank">
-             征集
+             萧县司法局开展“萧法有约与企同行”普法宣传活动
             </a>
             <span class="date">
-             2025-03-07
+             2025-10-31
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/161331781.html" target="_blank" title="【无反馈意见】关于公开征求《房屋征收安置补偿实施细则（征求意见稿）》《房屋征收补偿安置流程（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163156831.html" target="_blank" title="法援惠民生送法进乡村">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《房屋征收安置补偿实施细则（征求意见稿）》《房屋征收补偿安置流程（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/161264861.html" target="_blank">
-             征集
+             法援惠民生送法进乡村
             </a>
             <span class="date">
-             2024-07-10
+             2025-09-30
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/161331771.html" target="_blank" title="【无反馈意见】关于公开征求《萧县药品安全突发事件应急预案（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163156841.html" target="_blank" title="萧县以法治督察为契机助推法治建设提质增效">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县药品安全突发事件应急预案（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/161257131.html" target="_blank">
-             征集
+             萧县以法治督察为契机助推法治建设提质增效
             </a>
             <span class="date">
-             2024-07-10
+             2025-09-26
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160908461.html" target="_blank" title="【无反馈意见】关于公开征求《萧县水网规划（2020-2035年）（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163156851.html" target="_blank" title="县委网信办：以网络普法护航科普月活动开展">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县水网规划（2020-2035年）（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/160700361.html" target="_blank">
-             征集
+             县委网信办：以网络普法护航科普月活动开展
             </a>
             <span class="date">
-             2024-04-17
+             2025-09-04
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/161476921.html" target="_blank" title="【无反馈意见】关于公开征求《萧县政府投资建设项目工程变更管理办法（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163156861.html" target="_blank" title="萧县司法局开展《社区矫正法》实施五周年宣传活动">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县政府投资建设项目工程变更管理办法（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/161476891.html" target="_blank">
-             征集
+             萧县司法局开展《社区矫正法》实施五周年宣传活动
             </a>
             <span class="date">
-             2024-03-11
+             2025-07-22
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160811681.html" target="_blank" title="【无反馈意见】关于公开征求《萧县现代物流业中长期发展规划（2021-2030年）（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163156901.html" target="_blank" title="萧县司法局开展民法典系列普法宣传活动">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县现代物流业中长期发展规划（2021-2030年）（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/160292961.html" target="_blank">
-             征集
+             萧县司法局开展民法典系列普法宣传活动
             </a>
             <span class="date">
-             2024-01-25
+             2025-06-03
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160570351.html" target="_blank" title="【无反馈意见】关于公开征求《萧县“十四五”能源发展规划（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163156911.html" target="_blank" title="民法典宣传进企业优化营商环境靠大家">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县“十四五”能源发展规划（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/160292611.html" target="_blank">
-             征集
+             民法典宣传进企业优化营商环境靠大家
             </a>
             <span class="date">
-             2024-01-22
+             2025-05-09
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160570341.html" target="_blank" title="【无反馈意见】关于公开征求《萧县充电基础设施专项规划（2023-2035年）（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163156951.html" target="_blank" title="国家安全你我有责">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县充电基础设施专项规划（2023-2035年）（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/160292431.html" target="_blank">
-             征集
+             国家安全你我有责
             </a>
             <span class="date">
-             2024-01-22
+             2025-04-16
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160324691.html" target="_blank" title="【无反馈意见】关于公开征求《萧县政府投资项目管理办法（征求意见稿）》反馈意见的说明">
+            <a class="title" href="/public/6629711/163156961.html" target="_blank" title="萧县司法局举办乡镇（街道）综合行政执法业务培训会">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县政府投资项目管理办法（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/160072351.html" target="_blank">
-             征集
+             萧县司法局举办乡镇（街道）综合行政执法业务培训会
             </a>
             <span class="date">
-             2024-01-02
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/160198471.html" target="_blank" title="【无反馈意见】关于公开征求《萧县质量强县建设“十四五”规划（征求意见稿）》反馈意见的说明">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县质量强县建设“十四五”规划（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/159990811.html" target="_blank">
-             征集
-            </a>
-            <span class="date">
-             2023-12-15
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/160143711.html" target="_blank" title="【无反馈意见】关于公开征求《宿州市萧县农田灌溉发展规划（2022-2035）（征求意见稿）》反馈意见的说明">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《宿州市萧县农田灌溉发展规划（2022-2035）（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/159941381.html" target="_blank">
-             征集
-            </a>
-            <span class="date">
-             2023-12-01
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/160055601.html" target="_blank" title="【无反馈意见】关于公开征求《数字萧县建设总体规划（2023-2025年）（征求意见稿）》反馈意见的说明">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《数字萧县建设总体规划（2023-2025年）（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/159891261.html" target="_blank">
-             征集
-            </a>
-            <span class="date">
-             2023-11-23
-            </span>
-           </li>
-           <li class="clearfix">
-            <a class="title" href="/public/6629711/160000941.html" target="_blank" title="【无反馈意见】关于公开征求《萧县防汛抗旱应急预案（征求意见稿）》反馈意见的说明">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             【无反馈意见】关于公开征求《萧县防汛抗旱应急预案（征求意见稿）》反馈意见的说明
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/159750991.html" target="_blank">
-             征集
-            </a>
-            <span class="date">
-             2023-11-09
+             2025-03-17
             </span>
            </li>
            <script>
@@ -2410,7 +2284,7 @@
                                     length : "50",
                                     organId: "",
                                     type: 4,
-                                    catId: "60733571",
+                                    catId: "60775581",
                                     action:"list",
                                     keyWords: keyWords,
                                     result : "暂无相关信息",
@@ -2424,48 +2298,15 @@
            </script>
           </ul>
          </div>
-         <div class="pagination" id="page_public_info">
-          分页
-         </div>
-         <script>
-          Ls.pagination("#page_public_info", function(pageIndex){
-                                                                                            Ls.ajax({
-                            dataType: "html",
-                            url: "/site/label/8888",
-                            data : {
-                                labelName: 'publicInfoList',
-                                siteId : "4697420",
-                                pageSize : "15",
-                                pageIndex: pageIndex,
-                                action : "list",
-                                isDate : "true",
-                                dateFormat : "yyyy-MM-dd",
-                                length : "80",
-                                organId: "6629711",
-                                type: "4",
-                                catId: "60733571",
-                                cId : "",
-                                result : "暂无相关信息",
-                                file:"/c2/jh/xxgk/publicInfoList_newest_xx"
-                            }
-                        }).done(function(html) {
-                            $("#xxgk_lmcon").html(html);
-                        });
-                                    }, {
-                    currPage: (0+1),
-                    pageCount:5,
-                    param: "pageSize=15"
-                });
-         </script>
          <div class="clear">
          </div>
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?sub=&catId=60733571&nav=&action=list&type=4&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?sub=&catId=60775581&nav=&action=list&type=4&pageIndex=" + pageIndex;
             }, {
         currPage: (0+1),
-        pageCount:(5 + 0),
+        pageCount:(1 + 0),
         param: "pageSize=15"
     });
 
@@ -2478,7 +2319,7 @@
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60733571";
+        var catId = "60775581";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
