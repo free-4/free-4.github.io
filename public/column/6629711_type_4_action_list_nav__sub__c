@@ -11,13 +11,13 @@
    <meta content="萧县人民政府" name="SiteName"/>
    <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
    <meta content="3413220004" name="SiteIDCode"/>
-   <meta content="已宣布失效、废止文件" name="ColumnName"/>
+   <meta content="公务员及事业单位招录" name="ColumnName"/>
    <meta content="信息公开目录" name="ColumnType"/>
-   <meta content="已宣布失效、废止文件" name="ColumnDescription"/>
-   <meta content="已宣布失效、废止文件" name="ColumnKeywords"/>
+   <meta content="公务员招考及事业单位招聘的职位、名额、报考条件等事项以及录用结果。" name="ColumnDescription"/>
+   <meta content="公务员及事业单位招录" name="ColumnKeywords"/>
    <meta content="萧县人民政府" name="Keywords"/>
    <meta content="萧县人民政府" name="Description"/>
-   <meta content="2026-01-31 23:39:57" name="HtmlGenerateTime"/>
+   <meta content="2026-01-31 23:44:49" name="HtmlGenerateTime"/>
    <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
    <link href="/assets/css/core.min.css" rel="stylesheet"/>
    <link href="/_res/css/public.css" rel="stylesheet"/>
@@ -52,7 +52,7 @@
        <script>
         var ll_4697460 = 3;
        </script>
-       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tbzfwlj/4697460.js?num=3&amp;ect=1769873997984">
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tbzfwlj/4697460.js?num=3&amp;ect=1769874289362">
        </script>
        <!--EndLabelHtml_linkList_c044053c4d59952ad54f103a3b09594d-->
       </ul>
@@ -101,7 +101,7 @@
          <script>
           var ll_4697461 = 5;
          </script>
-         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-bjtp/4697461.js?num=5&amp;ect=1769873997985">
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-bjtp/4697461.js?num=5&amp;ect=1769874289362">
          </script>
          <!--EndLabelHtml_linkList_195e6d7916419c611596a13f0d81419c-->
         </ul>
@@ -117,7 +117,7 @@
        <script>
         var ll_4697462 = 1;
        </script>
-       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-logo/4697462.js?num=1&amp;ect=1769873997986">
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-logo/4697462.js?num=1&amp;ect=1769874289363">
        </script>
        <!--EndLabelHtml_linkList_1102d5976d2edcbee07daf1f7db54b0e-->
       </ul>
@@ -198,7 +198,7 @@
             <script>
              var ll_22966781 = 20;
             </script>
-            <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/lmlj/tbdh-ejlm/xxgk/22966781.js?num=20&amp;ect=1769873997989">
+            <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/lmlj/tbdh-ejlm/xxgk/22966781.js?num=20&amp;ect=1769874289367">
             </script>
             <!--EndLabelHtml_linkList_c0e3484b822c6e13e8916f6fb2e49310-->
            </ul>
@@ -271,7 +271,7 @@
         <form class="formValidator" id="topSearchForm" method="get">
          <input name="action" style="display:none" type="text" value="list"/>
          <input id="type" name="type" style="display:none" type="text" value="6"/>
-         <input id="catId" name="catId" style="display:none" type="text" value="60754541"/>
+         <input id="catId" name="catId" style="display:none" type="text" value="60733911"/>
          <ul class="clearfix">
           <li class="ss2">
            <a class="search-btn" name="搜索" onclick="changeSearch(1)" value="">
@@ -2122,21 +2122,15 @@
          <i>
           &gt;
          </i>
-         <a class="publicNavPos" data-catid="60733421" data-organid="6629711" href="/public/column/6629711?type=4&amp;catId=60733421&amp;action=list" target="_self">
-          政策文件
-         </a>
-         <i>
-          &gt;
-         </i>
-         <a class="publicNavPos" data-catid="60754541" data-organid="6629711" href="/public/column/6629711?type=4&amp;catId=60754541&amp;action=list" target="_self">
-          已宣布失效、废止文件
+         <a class="publicNavPos" data-catid="60733911" data-organid="6629711" href="/public/column/6629711?type=4&amp;catId=60733911&amp;action=list" target="_self">
+          公务员及事业单位招录
          </a>
         </div>
         <div class="xxgk_lmcon" id="xxgk_lmcon">
          <!--StartLabelHtml_publicInfoList_34eb56a8d7a8df3ecb99d2e20629dec0-->
          <div class="gktit">
-          <a href="/public/column/6629711?type=4&amp;action=list&amp;nav=&amp;sub=&amp;catId=60754541" title="已宣布失效、废止文件">
-           已宣布失效、废止文件
+          <a href="/public/column/6629711?type=4&amp;action=list&amp;nav=&amp;sub=&amp;catId=60733911" title="公务员及事业单位招录">
+           公务员及事业单位招录
           </a>
           <div class="gklm_search hidden-xs hidden-sm">
            <form data-validator-option="{msgClass:'n-bottom'}" id="columnSearchForm">
@@ -2154,258 +2148,138 @@
          <div class="xxgk_nav_con">
           <ul class="clearfix xxgk_nav_list">
            <li class="clearfix">
-            <a class="title" href="/public/6629711/159977341.html" target="_blank" title="萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知">
-             <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于印发萧县建设质量强县促进高质量发展扶持奖励办法的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/159751321.html" target="_blank">
-             常务会议
+            <a class="title" href="http://www.szxf.gov.cn/Home/List/420" target="_blank" title="【专题】宿州市公务员招录专题">
+             <img src="/_res/images/zding.png"/>
+             【专题】宿州市公务员招录专题
             </a>
             <span class="date">
-             2023-10-24
+             2025-08-11
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/156875541.html" target="_blank" title="萧县人民政府关于印发萧县鼓励投资扶持政策（试行）的通知">
+            <a class="title" href="/public/6629711/163428621.html" target="_blank" title="2025年度萧县下半年事业单位公开招聘工作人员拟聘用人员名单公示">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于印发萧县鼓励投资扶持政策（试行）的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156875571.html" target="_blank">
-             负责人解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="https://www.ahxx.gov.cn/public/6629711/156665151.html" target="_blank">
-             公众征求意见反馈
+             2025年度萧县下半年事业单位公开招聘工作人员拟聘用人员名单公示
             </a>
             <span class="date">
-             2022-06-13
+             2026-01-26
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/155932981.html" target="_blank" title="萧县人民政府办公室关于印发萧县促进现代服务业企业发展激励办法的通知">
+            <a class="title" href="/public/6629711/163323551.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员考察工作的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县促进现代服务业企业发展激励办法的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/156001821.html" target="_blank">
-             图片解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/155933111.html" target="_blank">
-             负责人解读
+             关于2025年度萧县下半年事业单位公开招聘工作人员考察工作的通知
             </a>
             <span class="date">
-             2021-12-29
+             2025-12-29
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/158282441.html" target="_blank" title="萧县人民政府办公室关于印发萧县2021年绿色种养循环农业试点项目实施细则的通知">
+            <a class="title" href="/public/6629711/163319241.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员递补体检结论的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县2021年绿色种养循环农业试点项目实施细则的通知
+             关于2025年度萧县下半年事业单位公开招聘工作人员递补体检结论的通知
             </a>
             <span class="date">
-             2021-08-26
+             2025-12-26
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/154351401.html" target="_blank" title="萧县人民政府办公室关于印发萧县政府投资建设项目工程变更管理办法（试行）的通知">
+            <a class="title" href="/public/6629711/163307331.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员递补体检工作的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县政府投资建设项目工程变更管理办法（试行）的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/154351431.html" target="_blank">
-             专家解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/154458581.html" target="_blank">
-             图片解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/153979671.html" target="_blank">
-             常务会议
+             关于2025年度萧县下半年事业单位公开招聘工作人员递补体检工作的通知
             </a>
             <span class="date">
-             2021-05-06
+             2025-12-23
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/154350431.html" target="_blank" title="萧县人民政府办公室关于印发萧县政府投资建设工程实施阶段全过程造价管理办法（试行）的通知">
+            <a class="title" href="/public/6629711/163307321.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员体检结论的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县政府投资建设工程实施阶段全过程造价管理办法（试行）的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/154350501.html" target="_blank">
-             负责人解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/154458511.html" target="_blank">
-             图片解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/153979671.html" target="_blank">
-             常务会议
+             关于2025年度萧县下半年事业单位公开招聘工作人员体检结论的通知
             </a>
             <span class="date">
-             2021-05-06
+             2025-12-23
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/154803451.html" target="_blank" title="萧县人民政府关于贯彻落实支持科技创新政策的实施意见">
+            <a class="title" href="/public/6629711/163293541.html" target="_blank" title="2025年度萧县下半年事业单位公开招聘工作人员体检通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于贯彻落实支持科技创新政策的实施意见
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/154803601.html" target="_blank">
-             文字解读
+             2025年度萧县下半年事业单位公开招聘工作人员体检通知
             </a>
             <span class="date">
-             2021-04-30
+             2025-12-18
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/154803371.html" target="_blank" title="萧县人民政府关于印发支持国家火炬萧县防腐蚀新材料特色产业基地发展若干政策的通知">
+            <a class="title" href="/public/6629711/163278801.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员专业测试成绩及最终成绩的公告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于印发支持国家火炬萧县防腐蚀新材料特色产业基地发展若干政策的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/154803641.html" target="_blank">
-             文字解读
+             关于2025年度萧县下半年事业单位公开招聘工作人员专业测试成绩及最终成绩的公告
             </a>
             <span class="date">
-             2021-04-30
+             2025-12-13
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/152333221.html" target="_blank" title="萧县人民政府办公室关于印发萧县大面积停电事件应急预案的通知">
+            <a class="title" href="/public/6629711/163262701.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员专业测试有关事项的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县大面积停电事件应急预案的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/152354831.html" target="_blank">
-             部门解读
+             关于2025年度萧县下半年事业单位公开招聘工作人员专业测试有关事项的通知
             </a>
             <span class="date">
-             2020-12-30
+             2025-12-09
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/152119251.html" target="_blank" title="萧县人民政府关于印发萧县品牌战略奖励办法（2020年修订）的通知">
+            <a class="title" href="/public/6629711/163255741.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员资格复审递补工作的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于印发萧县品牌战略奖励办法（2020年修订）的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/152128291.html" target="_blank">
-             负责人解读
+             关于2025年度萧县下半年事业单位公开招聘工作人员资格复审递补工作的通知
             </a>
             <span class="date">
-             2020-12-22
+             2025-12-08
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/152119261.html" target="_blank" title="萧县人民政府办公室关于进一步规范政府投资建设项目审计工作的通知">
+            <a class="title" href="/public/6629711/163241601.html" target="_blank" title="关于2025年度萧县下半年事业单位公开招聘工作人员资格复审工作的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于进一步规范政府投资建设项目审计工作的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/152128311.html" target="_blank">
-             负责人解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/152328361.html" target="_blank">
-             图片解读
+             关于2025年度萧县下半年事业单位公开招聘工作人员资格复审工作的通知
             </a>
             <span class="date">
-             2020-12-02
+             2025-12-03
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/152119281.html" target="_blank" title="萧县人民政府办公室关于印发萧县2020年度农机深翻整地工作实施方案的通知">
+            <a class="title" href="/public/6629711/163222341.html" target="_blank" title="2025年度萧县下半年事业单位公开招聘工作人员笔试成绩公告">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县2020年度农机深翻整地工作实施方案的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/152128401.html" target="_blank">
-             负责人解读
+             2025年度萧县下半年事业单位公开招聘工作人员笔试成绩公告
             </a>
             <span class="date">
-             2020-10-09
+             2025-11-27
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160084061.html" target="_blank" title="萧县人民政府办公室关于做好2021年城乡居民基本医疗保险征缴工作的通知">
+            <a class="title" href="/public/6629711/163183051.html" target="_blank" title="2025年度萧县乡镇（街道）事业单位公开招聘工作人员拟聘用人员名单公示">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于做好2021年城乡居民基本医疗保险征缴工作的通知
+             2025年度萧县乡镇（街道）事业单位公开招聘工作人员拟聘用人员名单公示
             </a>
             <span class="date">
-             2020-09-30
+             2025-11-17
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/160364911.html" target="_blank" title="萧县人民政府办公室关于印发萧县危险货物道路运输专项整治攻坚行动方案的通知">
+            <a class="title" href="/public/6629711/163167551.html" target="_blank" title="关于2025年度萧县乡镇（街道）事业单位公开招聘考察递补人员考察工作的通知">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府办公室关于印发萧县危险货物道路运输专项整治攻坚行动方案的通知
+             关于2025年度萧县乡镇（街道）事业单位公开招聘考察递补人员考察工作的通知
             </a>
             <span class="date">
-             2020-08-05
+             2025-11-11
             </span>
            </li>
            <li class="clearfix">
-            <a class="title" href="/public/6629711/152119351.html" target="_blank" title="萧县人民政府关于印发萧县国有土地上房屋征收与补偿办法的通知">
+            <a class="title" href="/public/6629711/163167331.html" target="_blank" title="2025年萧县大学生乡村医生专项计划招聘拟聘用人员名单公示">
              <img src="/_res/images/zding.png" style="display:none;"/>
-             萧县人民政府关于印发萧县国有土地上房屋征收与补偿办法的通知
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/152127751.html" target="_blank">
-             部门解读
-            </a>
-            <span class="split">
-             |
-            </span>
-            <a class="a" href="/public/6629711/152128681.html" target="_blank">
-             负责人解读
+             2025年萧县大学生乡村医生专项计划招聘拟聘用人员名单公示
             </a>
             <span class="date">
-             2020-05-07
+             2025-11-11
             </span>
            </li>
            <script>
@@ -2440,7 +2314,7 @@
                                     length : "50",
                                     organId: "",
                                     type: 4,
-                                    catId: "60754541",
+                                    catId: "60733911",
                                     action:"list",
                                     keyWords: keyWords,
                                     result : "暂无相关信息",
@@ -2473,7 +2347,7 @@
                                 length : "80",
                                 organId: "6629711",
                                 type: "4",
-                                catId: "60754541",
+                                catId: "60733911",
                                 cId : "",
                                 result : "暂无相关信息",
                                 file:"/c2/jh/xxgk/publicInfoList_newest_xx"
@@ -2483,7 +2357,7 @@
                         });
                                     }, {
                     currPage: (0+1),
-                    pageCount:6,
+                    pageCount:33,
                     param: "pageSize=15"
                 });
          </script>
@@ -2492,10 +2366,10 @@
          <script>
           Ls.pagination("#page_public_info", function(pageIndex){
 
-                    location.href = "/public/column/6629711?sub=&catId=60754541&nav=&action=list&type=4&pageIndex=" + pageIndex;
+                    location.href = "/public/column/6629711?sub=&catId=60733911&nav=&action=list&type=4&pageIndex=" + pageIndex;
             }, {
         currPage: (0+1),
-        pageCount:(6 + 0),
+        pageCount:(33 + 0),
         param: "pageSize=15"
     });
 
@@ -2508,7 +2382,7 @@
         var fuzzySearch = "";
         var keyWords = "";
 
-        var catId = "60754541";
+        var catId = "60733911";
         var fileNum = Ls.url.get("fileNum");
         var filterFileNum = Ls.url.get("filterFileNum");
         if($("#search_keywords").val()){
@@ -2759,7 +2633,7 @@
         <script>
          var ll_4697466 = 1;
         </script>
-        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wbewm/4697466.js?num=1&amp;ect=1769873998122">
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wbewm/4697466.js?num=1&amp;ect=1769874289477">
         </script>
         <!--EndLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
        </ul>
@@ -2772,7 +2646,7 @@
         <script>
          var ll_4697467 = 1;
         </script>
-        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wxewm/4697467.js?num=1&amp;ect=1769873998123">
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wxewm/4697467.js?num=1&amp;ect=1769874289478">
         </script>
         <!--EndLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
        </ul>
