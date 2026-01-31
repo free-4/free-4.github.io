@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+  <title>
+   领导之窗_萧县人民政府
+  </title>
+  <meta content="萧县人民政府" name="SiteName"/>
+  <meta content="www.ahxx.gov.cn" name="SiteDomain"/>
+  <meta content="3413220004" name="SiteIDCode"/>
+  <meta content="领导之窗" name="ColumnName"/>
+  <meta content="领导信息" name="ColumnType"/>
+  <meta content="领导简介" name="ColumnDescription"/>
+  <meta content="领导" name="ColumnKeywords"/>
+  <meta content="萧县人民政府" name="Keywords"/>
+  <meta content="萧县人民政府" name="Description"/>
+  <meta content="2026-01-31 23:49:31" name="HtmlGenerateTime"/>
+  <link href="/_res/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/assets/css/core.min.css" rel="stylesheet"/>
+  <link href="/_res/css/public.css" rel="stylesheet"/>
+  <link href="/_res/css/lonsun.css" rel="stylesheet">
+   <script src="/assets/js/common.min.js?h5=true">
+   </script>
+   <script src="/_res/js/customize.min.js">
+   </script>
+   <!--[if lt IE 9]>
+<script src="/assets/js/patch.min.js"></script>
+<![endif]-->
+  </link>
+ </head>
+ <body>
+  <div class="ind_body">
+   <!--/***头部***/-->
+   <!--顶部end-->
+   <div class="topcon">
+    <div class="container clearfix">
+     <div class="fl top_l">
+      <ul class="clearfix">
+       <!--StartLabelHtml_linkList_c044053c4d59952ad54f103a3b09594d-->
+       <script>
+        var ll_4697460 = 3;
+       </script>
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tbzfwlj/4697460.js?num=3&amp;ect=1769874571187">
+       </script>
+       <!--EndLabelHtml_linkList_c044053c4d59952ad54f103a3b09594d-->
+      </ul>
+     </div>
+     <div class="fr top_r">
+      <ul class="clearfix">
+       <li class="num1 hidden-sm hidden-xs">
+        <a class="j-jft" data-setting="{type:'jf',jtText:'简体中文',ftText:'繁体中文'}" href="javascript:void(0);">
+        </a>
+       </li>
+       <li class="num-old">
+        <a href="javascript:void(0)" onclick="aria.oldFixedStart()">
+         <span class="ico">
+         </span>
+         长辈版
+        </a>
+       </li>
+       <li class="num-wza">
+        <a href="javascript:void(0)" onclick="aria.start()">
+         <span class="ico">
+         </span>
+         无障碍
+        </a>
+       </li>
+       <li class="sc">
+        <a class="j-favorites" data-setting="{siteId:4697420}" href="javascript:void(0)">
+         加入收藏
+        </a>
+       </li>
+       <li class="hy">
+        <span class="sylogin" data-setting="{siteId:4697420,platformCode:'gov_b'}" id="member_info">
+        </span>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <!--顶部end-->
+   <div class="header">
+    <div class="container banner">
+     <div class="flash hidden-xs">
+      <div id="flash01">
+       <div class="pic">
+        <ul>
+         <!--StartLabelHtml_linkList_195e6d7916419c611596a13f0d81419c-->
+         <script>
+          var ll_4697461 = 5;
+         </script>
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-bjtp/4697461.js?num=5&amp;ect=1769874571187">
+         </script>
+         <!--EndLabelHtml_linkList_195e6d7916419c611596a13f0d81419c-->
+        </ul>
+       </div>
+      </div>
+      <script>
+       myFocus.set({id: 'flash01', pattern: 'mF_ladyQ', thumbShowNum: 5, width: 1200, height: 160})
+      </script>
+     </div>
+     <div class="logo">
+      <ul class="clearfix">
+       <!--StartLabelHtml_linkList_1102d5976d2edcbee07daf1f7db54b0e-->
+       <script>
+        var ll_4697462 = 1;
+       </script>
+       <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/tb-logo/4697462.js?num=1&amp;ect=1769874571188">
+       </script>
+       <!--EndLabelHtml_linkList_1102d5976d2edcbee07daf1f7db54b0e-->
+      </ul>
+     </div>
+     <div class="searchbox">
+      <form action="https://www.ahsz.gov.cn/site/search/11708048" data-validator-option="{msgClass:'n-top'}" method="get" target="_blank">
+       <input name="siteId" type="hidden" value="4697420"/>
+       <input name="platformCode" type="hidden" value="sz_govb">
+        <input name="isAllSite" type="hidden" value="true"/>
+        <input name="fuzzySearch" type="hidden" value="false"/>
+        <input name="sort" type="hidden" value="desc"/>
+        <input name="orderType" type="hidden" value="0"/>
+        <!--<input type="hidden" name="typeCode" value="articleNews,pictureNews,videoNews,policyDoc,explainDoc"/>-->
+        <input name="typeCode" type="hidden" value="all">
+         <ul>
+          <li class="sea_an">
+           <input class="topsearchbtn" name="input" type="submit" value="搜索"/>
+          </li>
+          <li class="se_box">
+           <input class="search-keywords srkcss" data-rule="关键词:required;required2" data-rule-required2="[/^[0-9a-zA-z\u0391-\uFFE5\s\[\]\(\),.《》]+$/, '关键词不允许含有特殊字符']" maxlength="30" name="keywords" placeholder="请输入需要搜索的关键词" size="24" type="text" value=""/>
+          </li>
+         </ul>
+        </input>
+       </input>
+      </form>
+     </div>
+     <div class="reci_box hidden-sm hidden-xs">
+      <span class="tit">
+       热词：
+      </span>
+      <ul>
+      </ul>
+     </div>
+    </div>
+    <div class="navbar navbar-default">
+     <div class="container">
+      <div class="container-fluid">
+       <div class="navbar-header">
+        <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+         <span class="icon-bar">
+         </span>
+         <span class="icon-bar">
+         </span>
+         <span class="icon-bar">
+         </span>
+        </button>
+        <a class="navbar-brand visible-phone hidden-lg hidden-md hidden-sm" href="/index.html">
+         首页
+        </a>
+       </div>
+       <div class="navbar-collapse collapse" id="navbar">
+        <ul class="nav navbar-nav">
+         <li class="num1 hidden-xs off">
+          <a class="mn" href="/index.html">
+           <img src="/_res/images/mu1.png"/>
+           首页
+          </a>
+         </li>
+         <li class="num2 zlm off">
+          <a class="mn" href="/mlxx/index.html">
+           <img src="/_res/images/mu2.png"/>
+           魅力萧县
+          </a>
+         </li>
+         <li class="num3 zlm off">
+          <a class="mn" href="/xxdt/index.html">
+           <img src="/_res/images/mu3.png"/>
+           政务资讯
+          </a>
+         </li>
+         <li class="num4 zlm on">
+          <a class="mn" href="/public/column/6629711?type=2&amp;nav=1">
+           <img src="/_res/images/mu4.png"/>
+           政府信息公开
+          </a>
+          <div class="menulist clearfix">
+           <ul>
+            <!--StartLabelHtml_linkList_c0e3484b822c6e13e8916f6fb2e49310-->
+            <script>
+             var ll_22966781 = 20;
+            </script>
+            <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl-x/lmlj/tbdh-ejlm/xxgk/22966781.js?num=20&amp;ect=1769874571192">
+            </script>
+            <!--EndLabelHtml_linkList_c0e3484b822c6e13e8916f6fb2e49310-->
+           </ul>
+          </div>
+         </li>
+         <li class="num5 zlm off">
+          <a class="mn" href="http://sz.ahzwfw.gov.cn/?cityCode=341322000000&amp;cityName=%25E8%2590%25A7%25E5%258E%25BF">
+           <img src="/_res/images/mu5.png"/>
+           办事服务
+          </a>
+         </li>
+         <li class="num6 zlm off">
+          <a class="mn" href="/hdjl/index.html">
+           <img src="/_res/images/mu6.png"/>
+           互动交流
+          </a>
+         </li>
+         <li class="num7 zlm off">
+          <a class="mn" href="/jdhy/index.html">
+           <img src="/_res/images/mu7.png"/>
+           综合服务信息
+          </a>
+         </li>
+         <li class="num8 zlm off">
+          <a class="mn" href="/sjfb/index.html">
+           <img src="/_res/images/mu8.png"/>
+           数据发布
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <script>
+    $(document).ready(function () {
+        //处理热搜
+        var hots = $('.reci_box>ul');
+        Ls.ajax({
+            type: "post",
+            dataType: "html",
+            url: "/site/label/8888",
+            data: {
+                topCount: 3,
+                sort: 1,
+                siteId:4697420,
+                labelName:'keyWordsHeatRank',
+                file: '/c2/xiaoxian/keyWordsHeatRank-sz'
+            }
+        }).done(function (html) {
+            hots.html(html);
+        });
+    });
+   </script>
+   <div class="container mt20">
+    <div class="bg-p20">
+     <div class="position">
+      当前位置：
+      <a href="/index.html">
+       首页
+      </a>
+      &gt;
+      <!--StartLabelHtml_nav_012de32d0c32e1795f3ef94b0bfc1097-->
+      <a href="http://www.ahxx.gov.cn/public/column/6629711?type=2&amp;nav=1" target="_blank" title="政府信息公开">
+       政府信息公开
+      </a>
+      <i>
+       &gt;
+      </i>
+      <a href="https://www.ahxx.gov.cn/zwgk/ldzc/index.html" title="领导之窗">
+       领导之窗
+      </a>
+      <!--EndLabelHtml_nav_012de32d0c32e1795f3ef94b0bfc1097-->
+     </div>
+     <!--领导之窗主体-->
+     <div class="ld_contain clearfix mt20">
+      <!--StartLabelHtml_leaderTypes_b11e4420bea61768e4ae5ec8f5fc1ea2-->
+      <div class="led_nmcon hidden-sm hidden-xs">
+       <div class="led_flbox num1">
+        <div class="led_fltitle" id="leader_1" style="display:none;">
+         <a href="javascript:void()">
+          县委领导
+         </a>
+        </div>
+        <div class="led_flcon" style="">
+         <div class="led_flhtit">
+          <a href="javascript:void()">
+           县委领导
+          </a>
+         </div>
+         <div class="led_fllb">
+          <ul>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16351" title="罗圣权 县委书记">
+             <span class="name">
+              罗圣权：
+             </span>
+             <span class="positions">
+              县委书记
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15151" title="胡永乐  县委常委，县政府党组副书记、副县长">
+             <span class="name">
+              胡永乐：
+             </span>
+             <span class="positions">
+              县委常委，县政府党组副书记、副县长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15191" title="张俊伍 县委常委、组织部部长">
+             <span class="name">
+              张俊伍：
+             </span>
+             <span class="positions">
+              县委常委、组织部部长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16261" title=" 仇　索 县委常委、县政府党组成员、副县长">
+             <span class="name">
+              仇　索：
+             </span>
+             <span class="positions">
+              县委常委、县政府党组成员、副县长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=26" title="马晓勇 县委常委，县人民武装部上校政治委员">
+             <span class="name">
+              马晓勇：
+             </span>
+             <span class="positions">
+              县委常委，县人民武装部上校政治委员
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16451" title="刘　帅 县委常委、县纪委书记、县监委主任">
+             <span class="name">
+              刘　帅：
+             </span>
+             <span class="positions">
+              县委常委、县纪委书记、县监委主任
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16581" title="魏舰艇 县委常委、统战部部长、县委办公室主任">
+             <span class="name">
+              魏舰艇：
+             </span>
+             <span class="positions">
+              县委常委、统战部部长、县委办公室主任
+             </span>
+            </a>
+           </li>
+           <li class="active">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16571" title="马阳阳 县委常委、宣传部部长">
+             <span class="name">
+              马阳阳：
+             </span>
+             <span class="positions">
+              县委常委、宣传部部长
+             </span>
+            </a>
+           </li>
+          </ul>
+         </div>
+        </div>
+       </div>
+       <div class="led_flbox num2">
+        <div class="led_fltitle" id="leader_2" style="">
+         <a href="javascript:void()">
+          县人大领导
+         </a>
+        </div>
+        <div class="led_flcon" style="display:none;">
+         <div class="led_flhtit">
+          <a href="javascript:void()">
+           县人大领导
+          </a>
+         </div>
+         <div class="led_fllb">
+          <ul>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=29" title="朱永亮 萧县人大常委会党组书记、主任">
+             <span class="name">
+              朱永亮：
+             </span>
+             <span class="positions">
+              萧县人大常委会党组书记、主任
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=7" title="蒋　曦 县人大常委会副主任">
+             <span class="name">
+              蒋　曦：
+             </span>
+             <span class="positions">
+              县人大常委会副主任
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=24" title="丁勤华 县人大常委会党组成员、政法委书记、社会工作部部长">
+             <span class="name">
+              丁勤华：
+             </span>
+             <span class="positions">
+              县人大常委会党组成员、政法委书记、社会工作部部长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15891" title="刘　杰 县人大常委会副主任">
+             <span class="name">
+              刘　杰：
+             </span>
+             <span class="positions">
+              县人大常委会副主任
+             </span>
+            </a>
+           </li>
+          </ul>
+         </div>
+        </div>
+       </div>
+       <div class="led_flbox num3">
+        <div class="led_fltitle" id="leader_3" style="">
+         <a href="javascript:void()">
+          县政府领导
+         </a>
+        </div>
+        <div class="led_flcon" style="display:none;">
+         <div class="led_flhtit">
+          <a href="javascript:void()">
+           县政府领导
+          </a>
+         </div>
+         <div class="led_fllb">
+          <ul>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16101" title="胡永乐 县委常委，县政府党组副书记、副县长">
+             <span class="name">
+              胡永乐：
+             </span>
+             <span class="positions">
+              县委常委，县政府党组副书记、副县长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16461" title="仇　索 县委常委、县政府党组成员、副县长">
+             <span class="name">
+              仇　索：
+             </span>
+             <span class="positions">
+              县委常委、县政府党组成员、副县长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15361" title="李红玲 县政府党组成员、副县长">
+             <span class="name">
+              李红玲：
+             </span>
+             <span class="positions">
+              县政府党组成员、副县长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16431" title="吕　顺 县政府党组成员、副县长（挂职时间二年）">
+             <span class="name">
+              吕　顺：
+             </span>
+             <span class="positions">
+              县政府党组成员、副县长（挂职时间二年）
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15691" title="吴　群 县政府副县长">
+             <span class="name">
+              吴　群：
+             </span>
+             <span class="positions">
+              县政府副县长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15701" title="张　鹏 县政府党组成员、副县长，县公安局党委书记、局长、督察长，四级高级警长">
+             <span class="name">
+              张　鹏：
+             </span>
+             <span class="positions">
+              县政府党组成员、副县长，县公安局党委书记、局长、督察长，四级高级警长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16321" title="王　威 县政府党组成员（挂职时间二年）、副县长">
+             <span class="name">
+              王　威：
+             </span>
+             <span class="positions">
+              县政府党组成员（挂职时间二年）、副县长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16191" title="刘圣军 县政府党组成员、副县长">
+             <span class="name">
+              刘圣军：
+             </span>
+             <span class="positions">
+              县政府党组成员、副县长
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16621" title="江利景 县政府党组成员、副县长">
+             <span class="name">
+              江利景：
+             </span>
+             <span class="positions">
+              县政府党组成员、副县长
+             </span>
+            </a>
+           </li>
+          </ul>
+         </div>
+        </div>
+       </div>
+       <div class="led_flbox num4">
+        <div class="led_fltitle" id="leader_4" style="">
+         <a href="javascript:void()">
+          县政协领导
+         </a>
+        </div>
+        <div class="led_flcon" style="display:none;">
+         <div class="led_flhtit">
+          <a href="javascript:void()">
+           县政协领导
+          </a>
+         </div>
+         <div class="led_fllb">
+          <ul>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=5" title="杨洪军 县政协主席">
+             <span class="name">
+              杨洪军：
+             </span>
+             <span class="positions">
+              县政协主席
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=25" title="肖　民 县政协党组副书记、县政协副主席">
+             <span class="name">
+              肖　民：
+             </span>
+             <span class="positions">
+              县政协党组副书记、县政协副主席
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=4" title="张　艳 县政协副主席">
+             <span class="name">
+              张　艳：
+             </span>
+             <span class="positions">
+              县政协副主席
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=1" title="郑玉锦 县政协副主席">
+             <span class="name">
+              郑玉锦：
+             </span>
+             <span class="positions">
+              县政协副主席
+             </span>
+            </a>
+           </li>
+           <li class="">
+            <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15911" title="郑　峰 县政协副主席，县工商业联合会（县总商会）主席">
+             <span class="name">
+              郑　峰：
+             </span>
+             <span class="positions">
+              县政协副主席，县工商业联合会（县总商会）主席
+             </span>
+            </a>
+           </li>
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+      <script language="javascript">
+       $(document).ready(function () {
+        $(".led_nmcon").find(".led_flbox").click(function () {
+            $(this).find(".led_fltitle").hide();
+            $(this).siblings(".led_flbox").find(".led_fltitle").show();
+            $(this).find(".led_flcon").show();
+            $(this).siblings(".led_flbox").find(".led_flcon").hide();
+        })
+    })
+      </script>
+      <div class="lead-group hidden-lg hidden-md">
+       <button aria-expanded="false" aria-haspopup="true" class="btn btn-danger collapsed" data-target=".bs-example-js-navbar-collapse" data-toggle="collapse" type="button">
+        领导之窗
+        <span class="caret">
+        </span>
+       </button>
+       <div class="bs-example-js-navbar-collapse collapse led_nmcon">
+        <div class="led_flbox num1">
+         <div class="led_fltitle" id="leader_1" style="display:none;">
+          <a href="javascript:void()">
+           县委领导
+          </a>
+         </div>
+         <div class="led_flcon" style="">
+          <div class="led_flhtit">
+           <a href="javascript:void()">
+            县委领导
+           </a>
+          </div>
+          <div class="led_fllb">
+           <ul>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16351" title="罗圣权 县委书记">
+              <span class="name">
+               罗圣权：
+              </span>
+              <span class="positions">
+               县委书记
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15151" title="胡永乐  县委常委，县政府党组副书记、副县长">
+              <span class="name">
+               胡永乐：
+              </span>
+              <span class="positions">
+               县委常委，县政府党组副书记、副县长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15191" title="张俊伍 县委常委、组织部部长">
+              <span class="name">
+               张俊伍：
+              </span>
+              <span class="positions">
+               县委常委、组织部部长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16261" title=" 仇　索 县委常委、县政府党组成员、副县长">
+              <span class="name">
+               仇　索：
+              </span>
+              <span class="positions">
+               县委常委、县政府党组成员、副县长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=26" title="马晓勇 县委常委，县人民武装部上校政治委员">
+              <span class="name">
+               马晓勇：
+              </span>
+              <span class="positions">
+               县委常委，县人民武装部上校政治委员
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16451" title="刘　帅 县委常委、县纪委书记、县监委主任">
+              <span class="name">
+               刘　帅：
+              </span>
+              <span class="positions">
+               县委常委、县纪委书记、县监委主任
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16581" title="魏舰艇 县委常委、统战部部长、县委办公室主任">
+              <span class="name">
+               魏舰艇：
+              </span>
+              <span class="positions">
+               县委常委、统战部部长、县委办公室主任
+              </span>
+             </a>
+            </li>
+            <li class="active">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16571" title="马阳阳 县委常委、宣传部部长">
+              <span class="name">
+               马阳阳：
+              </span>
+              <span class="positions">
+               县委常委、宣传部部长
+              </span>
+             </a>
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="led_flbox num2">
+         <div class="led_fltitle" id="leader_2" style="">
+          <a href="javascript:void()">
+           县人大领导
+          </a>
+         </div>
+         <div class="led_flcon" style="display:none;">
+          <div class="led_flhtit">
+           <a href="javascript:void()">
+            县人大领导
+           </a>
+          </div>
+          <div class="led_fllb">
+           <ul>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=29" title="朱永亮 萧县人大常委会党组书记、主任">
+              <span class="name">
+               朱永亮：
+              </span>
+              <span class="positions">
+               萧县人大常委会党组书记、主任
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=7" title="蒋　曦 县人大常委会副主任">
+              <span class="name">
+               蒋　曦：
+              </span>
+              <span class="positions">
+               县人大常委会副主任
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=24" title="丁勤华 县人大常委会党组成员、政法委书记、社会工作部部长">
+              <span class="name">
+               丁勤华：
+              </span>
+              <span class="positions">
+               县人大常委会党组成员、政法委书记、社会工作部部长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15891" title="刘　杰 县人大常委会副主任">
+              <span class="name">
+               刘　杰：
+              </span>
+              <span class="positions">
+               县人大常委会副主任
+              </span>
+             </a>
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="led_flbox num3">
+         <div class="led_fltitle" id="leader_3" style="">
+          <a href="javascript:void()">
+           县政府领导
+          </a>
+         </div>
+         <div class="led_flcon" style="display:none;">
+          <div class="led_flhtit">
+           <a href="javascript:void()">
+            县政府领导
+           </a>
+          </div>
+          <div class="led_fllb">
+           <ul>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16101" title="胡永乐 县委常委，县政府党组副书记、副县长">
+              <span class="name">
+               胡永乐：
+              </span>
+              <span class="positions">
+               县委常委，县政府党组副书记、副县长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16461" title="仇　索 县委常委、县政府党组成员、副县长">
+              <span class="name">
+               仇　索：
+              </span>
+              <span class="positions">
+               县委常委、县政府党组成员、副县长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15361" title="李红玲 县政府党组成员、副县长">
+              <span class="name">
+               李红玲：
+              </span>
+              <span class="positions">
+               县政府党组成员、副县长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16431" title="吕　顺 县政府党组成员、副县长（挂职时间二年）">
+              <span class="name">
+               吕　顺：
+              </span>
+              <span class="positions">
+               县政府党组成员、副县长（挂职时间二年）
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15691" title="吴　群 县政府副县长">
+              <span class="name">
+               吴　群：
+              </span>
+              <span class="positions">
+               县政府副县长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15701" title="张　鹏 县政府党组成员、副县长，县公安局党委书记、局长、督察长，四级高级警长">
+              <span class="name">
+               张　鹏：
+              </span>
+              <span class="positions">
+               县政府党组成员、副县长，县公安局党委书记、局长、督察长，四级高级警长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16321" title="王　威 县政府党组成员（挂职时间二年）、副县长">
+              <span class="name">
+               王　威：
+              </span>
+              <span class="positions">
+               县政府党组成员（挂职时间二年）、副县长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16191" title="刘圣军 县政府党组成员、副县长">
+              <span class="name">
+               刘圣军：
+              </span>
+              <span class="positions">
+               县政府党组成员、副县长
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=16621" title="江利景 县政府党组成员、副县长">
+              <span class="name">
+               江利景：
+              </span>
+              <span class="positions">
+               县政府党组成员、副县长
+              </span>
+             </a>
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="led_flbox num4">
+         <div class="led_fltitle" id="leader_4" style="">
+          <a href="javascript:void()">
+           县政协领导
+          </a>
+         </div>
+         <div class="led_flcon" style="display:none;">
+          <div class="led_flhtit">
+           <a href="javascript:void()">
+            县政协领导
+           </a>
+          </div>
+          <div class="led_fllb">
+           <ul>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=5" title="杨洪军 县政协主席">
+              <span class="name">
+               杨洪军：
+              </span>
+              <span class="positions">
+               县政协主席
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=25" title="肖　民 县政协党组副书记、县政协副主席">
+              <span class="name">
+               肖　民：
+              </span>
+              <span class="positions">
+               县政协党组副书记、县政协副主席
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=4" title="张　艳 县政协副主席">
+              <span class="name">
+               张　艳：
+              </span>
+              <span class="positions">
+               县政协副主席
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=1" title="郑玉锦 县政协副主席">
+              <span class="name">
+               郑玉锦：
+              </span>
+              <span class="positions">
+               县政协副主席
+              </span>
+             </a>
+            </li>
+            <li class="">
+             <a class="clearfix" href="https://www.ahxx.gov.cn/content/column/4697569?liId=15911" title="郑　峰 县政协副主席，县工商业联合会（县总商会）主席">
+              <span class="name">
+               郑　峰：
+              </span>
+              <span class="positions">
+               县政协副主席，县工商业联合会（县总商会）主席
+              </span>
+             </a>
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="ld_lcontain">
+       <div class="ld_info clearfix">
+        <div class="ld_left">
+         <div class="ld_img">
+          <img src=" /group1/M00/01/60/Cp8OO2jLw-qAGkjPAABlNL4JjVc935.jpg"/>
+         </div>
+         <div class="ld_name j-lead-name" data-setting="{infoId:'leader_news',siteId:4697420,columnIds:'4697438',pageSize:6,length:50,dateFormat:'MM-dd',sort:'desc',orderType:1}">
+          马阳阳
+         </div>
+         <div class="ld_position" title="县委常委、宣传部部长">
+          县委常委、宣传部部长
+         </div>
+        </div>
+        <div class="ld_right">
+         <div class="ld_rheight">
+          <div class="ldtit">
+           <span>
+            分管工作
+           </span>
+          </div>
+          <div class="ld_fengong">
+           负责宣传思想文化和意识形态工作，分管县委网信办、县精神文明建设办公室、县新闻办公室、县新闻出版局、县融媒体中心、县文联。
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="ldtit ldtit1">
+        <span>
+         个人简历
+        </span>
+       </div>
+       <div class="ld_fengong">
+        马阳阳，女，汉族，1986年1月出生，中共党员，研究生。
+       </div>
+       <div class="ldtit ldtit2">
+        <a href="http://www.ahsz.gov.cn/site/search/11708048?siteId=4697420&amp;columnIds=4697438&amp;platformCode=sz_govb&amp;isAllSite=true&amp;sort=desc&amp;typeCode=articleNews%2CpictureNews%2CvideoNews%2CpolicyDoc%2CexplainDoc&amp;keywords=%E9%A9%AC%E9%98%B3%E9%98%B3" target="_blank">
+         领导活动
+        </a>
+       </div>
+       <div class="ld_hdlist">
+        <ul class="led_newslist" id="leader_news">
+        </ul>
+       </div>
+      </div>
+      <!--EndLabelHtml_leaderTypes_b11e4420bea61768e4ae5ec8f5fc1ea2-->
+     </div>
+     <!--领导之窗主体end-->
+    </div>
+   </div>
+   <!--/***底部***/-->
+   <div class="footer">
+    <div class="container">
+     <!--友情链接-->
+     <div class="is-select j-links clearfix hidden-sm hidden-xs">
+      <dl class="select first">
+       <dt>
+        国家部委网站
+       </dt>
+       <dd>
+        <ul>
+         <!--StartLabelHtml_linkList_cfde037b4d98927cfb2214b1d9e48a75-->
+         <script>
+          var ll_4697457 = 100;
+         </script>
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/gjbwwz/4697457.js?num=100&amp;ect=1769874571202">
+         </script>
+         <!--EndLabelHtml_linkList_cfde037b4d98927cfb2214b1d9e48a75-->
+        </ul>
+       </dd>
+      </dl>
+      <dl class="select">
+       <dt>
+        省内地市级网站
+       </dt>
+       <dd>
+        <ul>
+         <!--StartLabelHtml_linkList_6e9b9ae73b8490ff69f18adf2b641b28-->
+         <script>
+          var ll_4697458 = 100;
+         </script>
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/sndsjwz/4697458.js?num=100&amp;ect=1769874571203">
+         </script>
+         <!--EndLabelHtml_linkList_6e9b9ae73b8490ff69f18adf2b641b28-->
+        </ul>
+       </dd>
+      </dl>
+      <dl class="select last">
+       <dt>
+        其他机构网站
+       </dt>
+       <dd>
+        <ul>
+         <!--StartLabelHtml_linkList_210841a1da100f461443e2a111889d60-->
+         <script>
+          var ll_4697459 = 100;
+         </script>
+         <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/qtjgwz/4697459.js?num=100&amp;ect=1769874571204">
+         </script>
+         <!--EndLabelHtml_linkList_210841a1da100f461443e2a111889d60-->
+        </ul>
+       </dd>
+      </dl>
+     </div>
+     <!--底部导航-->
+     <div class="fotnav">
+      <a class="num1" href="/wzgl/lxwm/index.html">
+       联系我们
+      </a>
+      <a href="/wzgl/sybz/index.html">
+       使用帮助
+      </a>
+      <a href="/wzgl/zddt/index.html">
+       站点地图
+      </a>
+      <a href="/wzgl/yszc/index.html">
+       隐私声明
+      </a>
+     </div>
+     <div class="fotcon">
+      <span>
+       主办：萧县人民政府
+      </span>
+      <span>
+       承办：萧县数据资源管理局
+      </span>
+      <br/>
+      <span>
+       地址：安徽省宿州市萧县凤城街道复兴路18号
+      </span>
+      <span>
+       运维电话：0557-5066181
+      </span>
+      <br/>
+      <span>
+       <a href="http://beian.miit.gov.cn/" target="_blank">
+        皖ICP备05004981号-1
+       </a>
+      </span>
+      <span>
+       <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34132202000128" target="_blank">
+        <img class="gaw" src="/_res/images/ghs.png"/>
+        皖公网安备 34132202000128
+       </a>
+      </span>
+      <span>
+       网站标识码：3413220004
+      </span>
+      <span>
+       本站支持ipv6访问
+      </span>
+      <br/>
+      <div>
+       <span>
+        <a href="http://www.12377.cn/" target="_blank">
+         <img src="/_res/images/jbzxtu.jpg" style="margin-top:5px;"/>
+        </a>
+       </span>
+       <span>
+        违法与不良信息举报电话：12377
+       </span>
+       <a href="/xxdt/ztzl/wzptwfyblxxjb/index.html" target="_blank">
+        网站平台违法与不良信息举报
+       </a>
+       <span>
+        <a href="/xxswcnrzyjbqd/index.html" target="_blank">
+         <img src="/_res/images/wcnrjb-pic-01.jpg" style="margin-top:5px;"/>
+        </a>
+       </span>
+       <span class="wzaico">
+        <img alt="适老化无障碍服务" src="/_res/images/img-oldage.gif"/>
+       </span>
+      </div>
+      <script type="text/javascript">
+       document.write(unescape("%3Cspan id='cnzz_stat_icon_1279631758'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1279631758%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <div class="dzjg j-gov" data-setting="{sitecode:'0B54EBC0B0426D52E053012819AC8069'}">
+      </div>
+      <div class="dzjg jiucuo j-jiucuo" data-setting="{sitecode:3413220004}">
+      </div>
+     </div>
+    </div>
+   </div>
+   <span class="j-sitestats" data-setting="{siteId:4697420,isTimes:false}">
+   </span>
+   <!--/***右侧悬浮***/-->
+   <!--右侧悬浮-->
+   <div class="slide hidden-sm hidden-xs j-couplet">
+    <div class="couplet-close">
+     <img src="/_res/images/close.gif"/>
+    </div>
+    <ul class="icon clearfix">
+     <li class="wb">
+      <a href="https://weibo.com/p/1001063215052832/home?from=page_100106&amp;mod=TAB#place" target="_blank">
+       <span class="ico">
+       </span>
+       <span class="bt">
+        政务微博
+       </span>
+      </a>
+     </li>
+     <li class="wx">
+      <span class="ico">
+      </span>
+      <span class="bt">
+       政务微信
+      </span>
+     </li>
+     <li class="znwd">
+      <a href="https://www.ahsz.gov.cn/site/tpl/150904621" target="_blank">
+       <span class="ico">
+       </span>
+       <span class="bt">
+        智能问答
+       </span>
+      </a>
+     </li>
+     <li class="fx">
+      <a href="javascript:void(0);">
+       <span class="ico">
+       </span>
+       <span class="bt">
+        分 享
+       </span>
+      </a>
+     </li>
+     <li class="gototop">
+      <a class="j-gotoTop" href="javascript:void(0);">
+       <span class="ico">
+       </span>
+       <span class="bt">
+        返回顶部
+       </span>
+      </a>
+     </li>
+    </ul>
+    <ul class="info">
+     <li class="wb">
+      <div class="slide_ewm">
+       <ul class="active">
+        <!--StartLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
+        <script>
+         var ll_4697466 = 1;
+        </script>
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wbewm/4697466.js?num=1&amp;ect=1769874571206">
+        </script>
+        <!--EndLabelHtml_linkList_daeffd72551c9be79e6ca2817a2f8a9b-->
+       </ul>
+      </div>
+     </li>
+     <li class="wx">
+      <div class="slide_ewm">
+       <ul class="active">
+        <!--StartLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
+        <script>
+         var ll_4697467 = 1;
+        </script>
+        <script charset="utf-8" src="https://www.ahxx.gov.cn/ljgl/sylj/ycxf-wxewm/4697467.js?num=1&amp;ect=1769874571207">
+        </script>
+        <!--EndLabelHtml_linkList_aec6cbef7d05eda9adc8fca8e0e52997-->
+       </ul>
+      </div>
+     </li>
+     <li class="fx">
+      <div class="slide_fx">
+       <div class="j-share-info">
+       </div>
+      </div>
+     </li>
+    </ul>
+   </div>
+   <script type="text/javascript">
+    $(function(){
+        $('.slide .icon li').mouseenter(function(){
+            $('.slide .info').addClass('hover');
+            $('.slide .info>li').hide();
+            $('.slide .info>li.'+$(this).attr('class')).show();
+            $('.slide .icon>li').removeClass('active');
+            $(this).addClass('active');
+        });
+        $('.slide').mouseleave(function(){
+            $('.slide .info').removeClass('hover');
+            $('.slide .icon li').removeClass('active');
+        });
+    });
+   </script>
+   <!--右侧悬浮end-->
+   <!--/***右侧悬浮end***/-->
+   <script async="" charset="utf-8" defer="" src=" //gov.govwza.cn/dist/aria.js?appid=73dc4b48858d22842897e74ff8aa42c3" type="text/javascript">
+   </script>
+   <script>
+    (function() {
+    var serMgr = document.createElement("script");
+    serMgr.src = "https://service.lonsun.cn/assets/cloud/boot.min.js?sid=549363";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(serMgr, s);
+  })();
+   </script>
+   <!--技术支持：龙讯科技-->
+   <script>
+    var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?83bc455256858028cca96bd0b6ffd35b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+   </script>
+  </div>
+ </body>
+</html>
