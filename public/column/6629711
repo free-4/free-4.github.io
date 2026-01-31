@@ -370,7 +370,7 @@
          </style>
          <div class="xxgk_sqxxktop" id="public_apply_manage">
           <ul class="clearfix">
-           <li class="reload" id="ysqmn4">
+           <li class="reload active" id="ysqmn4">
             <a href="/public/column/6629711">
              <span>
               在线申请
@@ -415,7 +415,7 @@
           </ul>
          </div>
          <div class="public_apply">
-          <div class="xxgk_sqcon_sq active" id="public_apply_catalog_query">
+          <div class="xxgk_sqcon_sq" id="public_apply_catalog_query">
            <div class="ysqtitle">
             依申请公开目录
            </div>
@@ -825,7 +825,7 @@
             <!--EndLabelHtml_ordinaryPage_ec9e64c2ba9237ea4dfe28316db3678e-->
            </div>
           </div>
-          <div class="xxgk_sqcon_sq" id="public_apply_submit">
+          <div class="xxgk_sqcon_sq active" id="public_apply_submit">
            <div class="ysqtitle">
             在线申请
            </div>
@@ -1535,7 +1535,7 @@
               </p>
               <p class="bor2">
                <span>
-                <input id="applytime" name="applytime" readonly="" value="2026-01-31 23:32:09"/>
+                <input id="applytime" name="applytime" readonly="" value="2026-01-31 23:32:57"/>
                </span>
               </p>
               <div class="clear">
