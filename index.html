@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站正在搭建 | 敬请期待</title>
+    <style>
+        /* CSS 变量与双主题定义 */
+        :root {
+            /* 默认浅蓝主题 */
+            --bg-color: #F0F7FF;
+            --text-main: #1E3A8A;
+            --text-muted: #64748B;
+            --accent-color: #3B82F6;
+            --btn-bg: #DBEAFE;
+            --btn-hover: #BFDBFE;
+            --glow: rgba(59, 130, 246, 0.15);
+        }
+
+        [data-theme="pink"] {
+            /* 浅粉主题 */
+            --bg-color: #FFF0F5;
+            --text-main: #831843;
+            --text-muted: #9D174D;
+            --accent-color: #EC4899;
+            --btn-bg: #FCE7F3;
+            --btn-hover: #FBCFE8;
+            --glow: rgba(236, 72, 153, 0.15);
+        }
+
+        /* 全局重置与平滑过渡 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                        color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        stroke 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        fill 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 主题切换按钮 */
+        .theme-toggle {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            border: none;
+            background-color: var(--btn-bg);
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px var(--glow);
+            z-index: 100;
+            letter-spacing: 1px;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-1px);
+        }
+
+        /* 内容区布局 */
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 0 2rem;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        /* SVG 动画容器 */
+        .svg-container {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 2rem;
+            position: relative;
+            /* 整体悬浮动画 */
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .svg-container::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 10px;
+            background: var(--glow);
+            border-radius: 50%;
+            filter: blur(8px);
+            animation: shadowPulse 6s ease-in-out infinite;
+        }
+
+        /* 文字排版 */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .contact {
+            font-size: 0.95rem;
+            color: var(--accent-color);
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 3s infinite;
+        }
+
+        /* SVG 内部元素动画 */
+        .ring-1 { transform-origin: center; animation: spin 12s linear infinite; }
+        .ring-2 { transform-origin: center; animation: spin-reverse 15s linear infinite; }
+        .ring-3 { transform-origin: center; animation: spin 20s linear infinite; }
+        .core { transform-origin: center; animation: pulse 3s ease-in-out infinite; }
+
+        /* 关键帧动画 */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes shadowPulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            50% { transform: translateX(-50%) scale(0.8); opacity: 0.2; }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-reverse {
+            100% { transform: rotate(-360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.95); fill-opacity: 0.8; }
+            50% { transform: scale(1.05); fill-opacity: 1; }
+        }
+
+        @keyframes shine {
+            100% { left: 200%; }
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; letter-spacing: 2px; }
+            .svg-container { width: 180px; height: 180px; }
+            .theme-toggle { top: 1.5rem; right: 1.5rem; padding: 0.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">切换至浅粉</button>
+
+    <div class="container">
+        <div class="svg-container">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle class="ring-1" cx="100" cy="100" r="85" fill="none" stroke="var(--accent-color)" stroke-width="1.5" stroke-dasharray="10 20 40 20" opacity="0.6"/>
+                <circle class="ring-2" cx="100" cy="100" r="70" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="60 30" opacity="0.4"/>
+                <circle class="ring-3" cx="100" cy="100" r="55" fill="none" stroke="var(--accent-color)" stroke-width="1" stroke-dasharray="4 8" opacity="0.8"/>
+                
+                <polygon class="core" points="100,20 123,47 150,50 153,77 180,100 153,123 150,150 123,153 100,180 77,153 50,150 47,123 20,100 47,77 50,50 77,47" 
+                         fill="var(--accent-color)" opacity="0.1"/>
+                
+                <path d="M 100 65 L 130 115 L 70 115 Z" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="100" cy="100" r="15" fill="var(--bg-color)" stroke="var(--text-main)" stroke-width="2"/>
+                <circle cx="100" cy="100" r="4" fill="var(--accent-color)"/>
+            </svg>
+        </div>
+
+        <h1>网站正在搭建</h1>
+        <div class="subtitle">敬请期待</div>
+
+        <a href="mailto:shuowork155@outlook.com" class="contact">
+            联系邮箱：shuowork155@outlook.com
+        </a>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.documentElement;
+            const btn = document.getElementById('themeBtn');
+            const currentTheme = body.getAttribute('data-theme');
+
+            if (currentTheme === 'pink') {
+                body.removeAttribute('data-theme');
+                btn.textContent = '切换至浅粉';
+            } else {
+                body.setAttribute('data-theme', 'pink');
+                btn.textContent = '切换至浅蓝';
+            }
+        }
+    </script>
+</body>
+</html>
