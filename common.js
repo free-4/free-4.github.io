@@ -307,6 +307,93 @@ footer {
   animation: pulse 1.2s infinite;
 }
 
+/* ========= 卡片设计（完整版 · 含按压动效 + 无默认高亮） ========= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+
+  /* 去掉点击蓝色高亮 */
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  user-select: none;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary), transparent);
+  opacity: 0;
+  transition: var(--transition);
+  z-index: 0;
+}
+
+/* 悬浮效果 */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+  border-color: var(--primary);
+}
+.card:hover::before {
+  opacity: 0.03;
+  left: 100%;
+}
+
+/* 按压效果（点击下去） */
+.card:active {
+  transform: translateY(-2px) scale(0.97);
+  box-shadow: 0 8px 20px -10px rgba(0,0,0,0.1);
+}
+
+.icon-box {
+  position: relative;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 15px;
+  background: var(--primary-light);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  transition: var(--transition);
+}
+.card:hover .icon-box {
+  transform: rotate(-5deg) scale(1.1);
+  background: var(--primary);
+  color: white;
+}
+
+.card-title {
+  position: relative;
+  z-index: 1;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+.card:hover .card-title {
+  transform: translateY(-2px);
+  color: var(--primary);
+}
+
+
       `;
 
       document.head.appendChild(style);
