@@ -599,8 +599,7 @@ a:hover {
       footer.id = "shuoweb-footer";
 
       footer.innerHTML =
-        "&copy; 2026 SHUOWEB.COM · 始终保持好奇心
-<a href="https://github.com/free-4/free-4.github.io/issues">评论区</a>";
+        "&copy; 2026 SHUOWEB.COM · 始终保持好奇心";
 
       document.body.appendChild(footer);
     }
