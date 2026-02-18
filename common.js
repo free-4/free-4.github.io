@@ -393,6 +393,56 @@ footer {
   color: var(--primary);
 }
 
+/* 主题按钮 - 优化版 */
+.theme-btn {
+  cursor: pointer;
+  border: none;
+  background: var(--primary);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+
+  /* 去掉点击蓝色高亮 */
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  user-select: none;
+}
+
+/* 扫光效果 */
+.theme-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: all 0.6s ease;
+}
+
+/* 悬浮 */
+.theme-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  filter: brightness(1.08);
+}
+.theme-btn:hover::after {
+  left: 100%;
+}
+
+/* 按压效果 */
+.theme-btn:active {
+  transform: translateY(0) scale(0.96);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
 
       `;
 
