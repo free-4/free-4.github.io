@@ -553,26 +553,53 @@ a:hover {
   text-underline-offset: 3px;
 }
 
-/* 页脚友情链接 - 更显眼版 */
+/* 页脚友情链接 - 高级动效按钮 */
 .footer-link {
   display: inline-block;
   margin: 0 10px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   background: var(--primary-light);
   color: var(--primary);
   border-radius: 20px;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
+/* 扫光动效 */
+.footer-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+/* 悬浮效果 */
 .footer-link:hover {
   background: var(--primary);
   color: #fff;
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-decoration: none;
 }
+.footer-link:hover::after {
+  left: 100%;
+}
 
+/* 按压效果 */
+.footer-link:active {
+  transform: translateY(0) scale(0.96);
+}
 
 
       `;
