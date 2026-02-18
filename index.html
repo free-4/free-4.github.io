@@ -2,239 +2,365 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网站正在搭建 | 敬请期待</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>ShuoWeb - 高级开发者门户</title>
+
     <style>
-        /* CSS 变量与双主题定义 */
+        /* ========= 全局变量与基础 ========= */
         :root {
-            /* 默认浅蓝主题 */
-            --bg-color: #F0F7FF;
-            --text-main: #1E3A8A;
-            --text-muted: #64748B;
-            --accent-color: #3B82F6;
-            --btn-bg: #DBEAFE;
-            --btn-hover: #BFDBFE;
-            --glow: rgba(59, 130, 246, 0.15);
+            --primary: #007AFF;
+            --primary-light: #E3F2FD;
+            --bg: #F8FAFC;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --text-main: #1E293B;
+            --text-sub: #64748B;
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        [data-theme="pink"] {
-            /* 浅粉主题 */
-            --bg-color: #FFF0F5;
-            --text-main: #831843;
-            --text-muted: #9D174D;
-            --accent-color: #EC4899;
-            --btn-bg: #FCE7F3;
-            --btn-hover: #FBCFE8;
-            --glow: rgba(236, 72, 153, 0.15);
+        body.pink {
+            --primary: #FF2D55;
+            --primary-light: #FFF0F3;
+            --bg: #FFF5F7;
         }
 
-        /* 全局重置与平滑过渡 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                        color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                        stroke 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                        fill 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        * { box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-color);
+            margin: 0;
+            font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
             color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
+            transition: var(--transition);
+            line-height: 1.6;
         }
 
-        /* 主题切换按钮 */
-        .theme-toggle {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            border: none;
-            background-color: var(--btn-bg);
-            color: var(--accent-color);
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            box-shadow: 0 4px 6px var(--glow);
-            z-index: 100;
-            letter-spacing: 1px;
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--btn-hover);
-            transform: translateY(-1px);
-        }
-
-        /* 内容区布局 */
-        .container {
-            text-align: center;
-            z-index: 10;
-            padding: 0 2rem;
-            animation: fadeIn 1.2s ease-out forwards;
-        }
-
-        /* SVG 动画容器 */
-        .svg-container {
-            width: 240px;
-            height: 240px;
-            margin: 0 auto 2rem;
-            position: relative;
-            /* 整体悬浮动画 */
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .svg-container::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 10px;
-            background: var(--glow);
-            border-radius: 50%;
-            filter: blur(8px);
-            animation: shadowPulse 6s ease-in-out infinite;
-        }
-
-        /* 文字排版 */
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-
-        .contact {
-            font-size: 0.95rem;
-            color: var(--accent-color);
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            border: 1px solid var(--accent-color);
-            border-radius: 4px;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
+        /* ========= 顶部导航 ========= */
+        header {
+            position: sticky;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shine 3s infinite;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* SVG 内部元素动画 */
-        .ring-1 { transform-origin: center; animation: spin 12s linear infinite; }
-        .ring-2 { transform-origin: center; animation: spin-reverse 15s linear infinite; }
-        .ring-3 { transform-origin: center; animation: spin 20s linear infinite; }
-        .core { transform-origin: center; animation: pulse 3s ease-in-out infinite; }
-
-        /* 关键帧动画 */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--primary), #5856D6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        .theme-btn {
+            cursor: pointer;
+            border: none;
+            background: var(--primary);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
+            transition: var(--transition);
         }
 
-        @keyframes shadowPulse {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
-            50% { transform: translateX(-50%) scale(0.8); opacity: 0.2; }
+        .theme-btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        /* ========= Hero 区域 ========= */
+        .hero {
+            padding: 60px 20px 40px;
+            text-align: center;
         }
 
-        @keyframes spin-reverse {
-            100% { transform: rotate(-360deg); }
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 42px);
+            margin: 0 0 12px 0;
+            font-weight: 800;
+            color: var(--text-main);
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(0.95); fill-opacity: 0.8; }
-            50% { transform: scale(1.05); fill-opacity: 1; }
+        .hero p {
+            color: var(--text-sub);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        @keyframes shine {
-            100% { left: 200%; }
+        /* ========= 内容布局 ========= */
+        #content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-left: 5px;
+        }
+
+        .section-title svg {
+            width: 22px;
+            height: 22px;
+            color: var(--primary);
+        }
+
+        /* ========= 卡片设计 ========= */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: var(--radius);
+            padding: 24px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--primary), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .card:hover::before {
+            opacity: 0.03;
+        }
+
+        .icon-box {
+            position: relative;
+            z-index: 1;
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 15px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .card:hover .icon-box {
+            transform: rotate(-5deg) scale(1.1);
+            background: var(--primary);
+            color: white;
+        }
+
+        .card-title {
+            position: relative;
+            z-index: 1;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* ========= 页脚 ========= */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-sub);
+            font-size: 14px;
         }
 
         /* 移动端适配 */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; letter-spacing: 2px; }
-            .svg-container { width: 180px; height: 180px; }
-            .theme-toggle { top: 1.5rem; right: 1.5rem; padding: 0.5rem 1rem; }
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .hero { padding: 40px 15px 30px; }
         }
     </style>
 </head>
+
 <body>
 
-    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">切换至浅粉</button>
+<header>
+    <div class="logo">SHUOWEB.</div>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeText">切换主题</button>
+</header>
 
-    <div class="container">
-        <div class="svg-container">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <circle class="ring-1" cx="100" cy="100" r="85" fill="none" stroke="var(--accent-color)" stroke-width="1.5" stroke-dasharray="10 20 40 20" opacity="0.6"/>
-                <circle class="ring-2" cx="100" cy="100" r="70" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="60 30" opacity="0.4"/>
-                <circle class="ring-3" cx="100" cy="100" r="55" fill="none" stroke="var(--accent-color)" stroke-width="1" stroke-dasharray="4 8" opacity="0.8"/>
-                
-                <polygon class="core" points="100,20 123,47 150,50 153,77 180,100 153,123 150,150 123,153 100,180 77,153 50,150 47,123 20,100 47,77 50,50 77,47" 
-                         fill="var(--accent-color)" opacity="0.1"/>
-                
-                <path d="M 100 65 L 130 115 L 70 115 Z" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linejoin="round"/>
-                <circle cx="100" cy="100" r="15" fill="var(--bg-color)" stroke="var(--text-main)" stroke-width="2"/>
-                <circle cx="100" cy="100" r="4" fill="var(--accent-color)"/>
-            </svg>
-        </div>
+<section class="hero">
+    <h1>ShuoWeb Developer Hub</h1>
+    <p>为开发者构建的极简导航中心，整合 API 接口、生产力工具及优质开源项目。</p>
+</section>
 
-        <h1>网站正在搭建</h1>
-        <div class="subtitle">敬请期待</div>
+<div id="content"></div>
 
-        <a href="mailto:shuowork155@outlook.com" class="contact">
-            联系邮箱：shuowork155@outlook.com
-        </a>
-    </div>
+<footer>
+    &copy; 2026 SHUOWEB.COM · 始终保持好奇心
+</footer>
 
-    <script>
-        function toggleTheme() {
-            const body = document.documentElement;
-            const btn = document.getElementById('themeBtn');
-            const currentTheme = body.getAttribute('data-theme');
+<script>
+/* =========================
+   SVG 图标库：定义了各种精美图标
+========================= */
+const ICONS = {
+    api: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`,
+    tool: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
+    code: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+    box: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`,
+    // 对应小项的图标
+    user: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`,
+    weather: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path><circle cx="12" cy="12" r="4"></circle></svg>`,
+    ai: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2V4"></path><path d="M12 20V22"></path><path d="M4.93 4.93L6.34 6.34"></path><path d="M17.66 17.66L19.07 19.07"></path><path d="M2 12H4"></path><path d="M20 12H22"></path><path d="M6.34 17.66L4.93 19.07"></path><path d="M19.07 4.93L17.66 6.34"></path></svg>`,
+    json: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`,
+    cloud: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19c2.5 0 4.5-2 4.5-4.5 0-2.3-1.7-4.1-3.9-4.5a7 7 0 1 0-13.1 3.2c.3.5.7 1 1.2 1.3"></path><path d="M12 12v9"></path><path d="m15 18-3 3-3-3"></path></svg>`,
+    study: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`
+};
 
-            if (currentTheme === 'pink') {
-                body.removeAttribute('data-theme');
-                btn.textContent = '切换至浅粉';
-            } else {
-                body.setAttribute('data-theme', 'pink');
-                btn.textContent = '切换至浅蓝';
-            }
-        }
-    </script>
+/* =========================
+   JSON 数据区
+========================= */
+const SITE_DATA = [
+    {
+        name: "API 提供",
+        icon: "api",
+        items: [
+            { title: "用户API", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "user" },
+            { title: "天气API", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "weather" },
+            { title: "AI 接口", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "ai" }
+        ]
+    },
+    {
+        name: "在线工具",
+        icon: "tool",
+        items: [
+            { title: "JSON 解析", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "json" },
+            { title: "Base64 转换", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "code" },
+            { title: "图像优化", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "box" }
+        ]
+    },
+    {
+        name: "开发项目",
+        icon: "code",
+        items: [
+            { title: "云盘系统", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "cloud" },
+            { title: "开源导航", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "api" },
+            { title: "聊天系统", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "ai" }
+        ]
+    },
+    {
+        name: "资源导航",
+        icon: "box",
+        items: [
+            { title: "学习资料", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "study" },
+            { title: "代码模板", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "code" },
+            { title: "设计资源", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "tool" }
+        ]
+    }
+];
+
+/* =========================
+   渲染页面逻辑
+========================= */
+function render() {
+    const root = document.getElementById("content");
+    root.innerHTML = "";
+
+    SITE_DATA.forEach((section, sIndex) => {
+        const block = document.createElement("div");
+        block.className = "section";
+        block.style.animationDelay = `${sIndex * 0.1}s`;
+
+        block.innerHTML = `
+            <div class="section-title">
+                ${ICONS[section.icon] || ICONS.box}
+                ${section.name}
+            </div>
+            <div class="grid"></div>
+        `;
+
+        const grid = block.querySelector(".grid");
+
+        section.items.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.onclick = () => {
+                if(item.url !== "#") window.location.href = item.url;
+                else alert('此处为演示链接');
+            };
+
+            card.innerHTML = `
+                <div class="icon-box">
+                    ${ICONS[item.icon] || ICONS.code}
+                </div>
+                <div class="card-title">${item.title}</div>
+            `;
+            grid.appendChild(card);
+        });
+
+        root.appendChild(block);
+    });
+}
+
+/* =========================
+   主题系统
+========================= */
+function toggleTheme() {
+    const isPink = document.body.classList.toggle("pink");
+    localStorage.setItem("theme", isPink ? "pink" : "blue");
+    updateThemeButton(isPink);
+}
+
+function updateThemeButton(isPink) {
+    const btn = document.getElementById("themeText");
+    btn.innerText = isPink ? "克莱因蓝" : "浪漫极客粉";
+}
+
+// 初始化
+if (localStorage.getItem("theme") === "pink") {
+    document.body.classList.add("pink");
+    updateThemeButton(true);
+} else {
+    updateThemeButton(false);
+}
+
+render();
+</script>
+
 </body>
 </html>
