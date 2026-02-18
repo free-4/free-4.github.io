@@ -1,7 +1,31 @@
-(function() {
-  // ====================== 全局样式（无重复·全保留） ======================
-  const style = document.createElement('style');
-  style.textContent = `
+(function () {
+
+  /* ========= 防重复加载 ========= */
+  if (window.__SHUOWEB_UI__) return;
+  window.__SHUOWEB_UI__ = true;
+
+
+  /* ========= 等待 body 存在 ========= */
+  function ready(fn) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
+  }
+
+
+  ready(init);
+
+
+  function init() {
+
+    /* ================= 样式 ================= */
+    if (!document.getElementById("shuoweb-style")) {
+      const style = document.createElement("style");
+      style.id = "shuoweb-style";
+
+      style.textContent = `
 :root {
   --primary: #007AFF;
   --primary-light: #E3F2FD;
@@ -204,41 +228,65 @@ footer {
     padding: 40px 15px 30px;
   }
 }
-  `;
-  document.head.appendChild(style);
+      `;
 
-  // ====================== 插入头部 ======================
-  const header = document.createElement('header');
-  header.innerHTML = `
-    <div class="logo">SHUOWEB.</div>
-    <button class="theme-btn" onclick="toggleTheme()" id="themeText">切换主题</button>
-  `;
-  document.body.prepend(header);
-
-  // ====================== 插入底部 ======================
-  const footer = document.createElement('footer');
-  footer.innerHTML = `&copy; 2026 SHUOWEB.COM · 始终保持好奇心`;
-  document.body.appendChild(footer);
-
-  // ====================== 主题系统 ======================
-  window.toggleTheme = function() {
-    const isPink = document.body.classList.toggle("pink");
-    localStorage.setItem("theme", isPink ? "pink" : "blue");
-    updateThemeButton(isPink);
-  }
-
-  function updateThemeButton(isPink) {
-    const btn = document.getElementById("themeText");
-    if (!btn) return;
-    btn.innerText = isPink ? "克莱因蓝" : "浪漫极客粉";
-  }
-
-  // 初始化主题
-  document.addEventListener('DOMContentLoaded', () => {
-    const saved = localStorage.getItem("theme") === "pink";
-    if (saved) {
-      document.body.classList.add("pink");
+      document.head.appendChild(style);
     }
-    updateThemeButton(saved);
-  });
+
+
+    /* ================= Header ================= */
+
+    if (!document.getElementById("shuoweb-header")) {
+
+      const header = document.createElement("header");
+      header.id = "shuoweb-header";
+
+      header.innerHTML = `
+        <div class="logo">SHUOWEB.</div>
+        <button class="theme-btn" id="themeText">切换主题</button>
+      `;
+
+      // 插入到 body 最前
+      document.body.insertBefore(header, document.body.firstChild);
+    }
+
+
+    /* ================= Footer ================= */
+
+    if (!document.getElementById("shuoweb-footer")) {
+
+      const footer = document.createElement("footer");
+      footer.id = "shuoweb-footer";
+
+      footer.innerHTML =
+        "&copy; 2026 SHUOWEB.COM · 始终保持好奇心";
+
+      document.body.appendChild(footer);
+    }
+
+
+    /* ================= 主题系统 ================= */
+
+    window.toggleTheme = function () {
+      const isPink = document.body.classList.toggle("pink");
+      localStorage.setItem("theme", isPink ? "pink" : "blue");
+      updateBtn(isPink);
+    };
+
+    document
+      .getElementById("themeText")
+      ?.addEventListener("click", toggleTheme);
+
+
+    function updateBtn(isPink) {
+      const btn = document.getElementById("themeText");
+      if (btn)
+        btn.innerText = isPink ? "克莱因蓝" : "浪漫极客粉";
+    }
+
+    const saved = localStorage.getItem("theme") === "pink";
+    if (saved) document.body.classList.add("pink");
+    updateBtn(saved);
+  }
+
 })();
