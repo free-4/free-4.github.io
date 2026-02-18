@@ -553,19 +553,26 @@ a:hover {
   text-underline-offset: 3px;
 }
 
-/* 页脚专用友情链接 */
+/* 页脚友情链接 - 更显眼版 */
 .footer-link {
   display: inline-block;
-  margin: 0 6px;
-  color: var(--text-sub);
+  margin: 0 10px;
+  padding: 6px 12px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 20px;
   font-size: 14px;
+  font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 .footer-link:hover {
-  color: var(--primary);
-  transform: translateY(-1px);
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+  text-decoration: none;
 }
+
 
 
       `;
