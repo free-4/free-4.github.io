@@ -228,6 +228,85 @@ footer {
     padding: 40px 15px 30px;
   }
 }
+
+/* 按钮基础样式（和你现有主题统一） */
+.btn {
+  position: relative;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--primary);
+  color: #fff;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* 1. 缩放 + 高亮（最通用） */
+.btn-scale:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 20px rgba(0, 122, 255, 0.25);
+}
+.btn-scale:active {
+  transform: scale(0.97);
+}
+
+/* 2. 上浮动 */
+.btn-float:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* 3. 扫光效果 */
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: all 0.6s ease;
+}
+.btn-shine:hover::after {
+  left: 100%;
+}
+
+/* 4. 边框呼吸 */
+.btn-border {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+.btn-border:hover {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 0 12px var(--primary);
+}
+
+/* 5. 圆角变方 */
+.btn-rect {
+  border-radius: 8px;
+}
+.btn-rect:hover {
+  border-radius: 2px;
+}
+
+/* 6. 脉冲扩散 */
+.btn-pulse:hover {
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.2);
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4); }
+  100% { box-shadow: 0 0 0 12px transparent; }
+}
+.btn-pulse:hover {
+  animation: pulse 1.2s infinite;
+}
+
       `;
 
       document.head.appendChild(style);
