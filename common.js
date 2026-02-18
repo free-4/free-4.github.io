@@ -442,6 +442,58 @@ footer {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* 全局统一过渡 */
+* {
+  transition: var(--transition);
+}
+
+/* 主题色渐变过渡 */
+:root, body.pink {
+  transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 头部导航渐变 */
+header {
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+
+/* Logo 颜色渐变 */
+.logo {
+  transition: background 0.4s;
+}
+
+/* 按钮增强过渡 */
+.theme-btn {
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 卡片全套流畅过渡 */
+.card {
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.icon-box {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-title {
+  transition: transform 0.3s, color 0.3s;
+}
+
+/* 标题、文字颜色渐变 */
+.hero h1,
+.hero p,
+.section-title {
+  transition: color 0.4s;
+}
+
+/* 页脚文字渐变 */
+footer {
+  transition: color 0.4s;
+}
+
+
 
 
       `;
