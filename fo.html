@@ -3,70 +3,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>智能电子功德箱</title>
+<title>智能功德系统</title>
 
 <style>
-body{
-    margin:0;
-    background:linear-gradient(180deg,#eef3ff,#ffffff);
-    font-family:-apple-system,BlinkMacSystemFont;
-    display:flex;
-    justify-content:center;
+/* ================= 主题与排版 ================= */
+body {
+    margin: 0;
+    /* 深色禅意背景 */
+    background: linear-gradient(180deg, #1c1511 0%, #0a0806 100%);
+    color: #fce2a1;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden; /* 防止点击特效导致滚动条闪烁 */
+    user-select: none; /* 防止频繁点击时选中文本 */
 }
 
-.container{
-    width:95%;
-    max-width:420px;
-    margin-top:20px;
+.container {
+    width: 95%;
+    max-width: 420px;
+    margin: 20px 0;
+    z-index: 10;
 }
 
-.card{
-    background:#fff;
-    border-radius:20px;
-    padding:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    text-align:center;
+.card {
+    background: rgba(30, 22, 16, 0.85);
+    border: 1px solid #4a3825;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(230, 175, 75, 0.05);
+    text-align: center;
+    backdrop-filter: blur(10px);
 }
 
-h2{
-    margin:5px 0 10px;
+h2 {
+    margin: 0 0 20px;
+    font-size: 22px;
+    text-shadow: 0 2px 10px rgba(252, 226, 161, 0.5);
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-video{
-    width:100%;
-    border-radius:14px;
-    background:#000;
+/* ================= 佛光与媒体容器 ================= */
+.media-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
-button{
-    width:100%;
-    margin-top:12px;
-    padding:14px;
-    border:none;
-    border-radius:14px;
-    background:#4a7cff;
-    color:#fff;
-    font-size:16px;
+.buddha-light {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 130%;
+    height: 130%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg, 
+        rgba(255, 215, 0, 0.1) 0deg, rgba(255, 165, 0, 0.6) 45deg, 
+        rgba(255, 215, 0, 0.1) 90deg, rgba(255, 165, 0, 0.6) 135deg, 
+        rgba(255, 215, 0, 0.1) 180deg, rgba(255, 165, 0, 0.6) 225deg, 
+        rgba(255, 215, 0, 0.1) 270deg, rgba(255, 165, 0, 0.6) 315deg, 
+        rgba(255, 215, 0, 0.1) 360deg
+    );
+    filter: blur(20px);
+    z-index: 0;
+    opacity: 0.4;
+    animation: spinLight 12s linear infinite;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.counter{
-    font-size:20px;
-    margin-top:12px;
+.buddha-light.flare {
+    opacity: 1;
+    width: 160%;
+    height: 160%;
+    filter: blur(15px) brightness(1.8);
+    background: conic-gradient(
+        from 0deg, 
+        rgba(255, 255, 255, 0.6) 0deg, rgba(255, 215, 0, 1) 45deg, 
+        rgba(255, 255, 255, 0.6) 90deg, rgba(255, 215, 0, 1) 135deg, 
+        rgba(255, 255, 255, 0.6) 180deg, rgba(255, 215, 0, 1) 225deg, 
+        rgba(255, 255, 255, 0.6) 270deg, rgba(255, 215, 0, 1) 315deg, 
+        rgba(255, 255, 255, 0.6) 360deg
+    );
 }
 
-.status{
-    font-size:13px;
-    color:#666;
-    margin-top:6px;
+@keyframes spinLight {
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.flash{
-    animation:pop .35s;
+video, img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    background: #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(252, 226, 161, 0.2);
+    pointer-events: none; /* 让点击穿透到wrapper上 */
 }
 
-@keyframes pop{
-    50%{transform:scale(1.25)}
+/* ================= 按钮与控制区 ================= */
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+button, .file-upload-label {
+    width: 100%;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #c29b57, #966f33);
+    color: #1a120c;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.4);
+    transition: transform 0.1s, filter 0.2s;
+}
+
+button:active, .file-upload-label:active {
+    transform: scale(0.96);
+    filter: brightness(0.9);
+}
+
+.file-upload-label {
+    background: linear-gradient(135deg, #5c4b3a, #362a20);
+    color: #fce2a1;
+    border: 1px solid #705840;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.btn-full {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #4a3825, #261b11);
+    color: #fce2a1;
+    border: 1px solid #705840;
+}
+
+/* ================= 数据与点击特效 ================= */
+.counter {
+    font-size: 28px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #ffdf70;
+    text-shadow: 0 0 15px rgba(255, 223, 112, 0.6);
+}
+
+.status {
+    font-size: 14px;
+    color: #a68c6d;
+    margin-top: 8px;
+    letter-spacing: 1px;
+}
+
+.flash { animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes pop {
+    50% { transform: scale(1.2); text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); color: #fff; }
+}
+
+/* 屏幕点击飘字特效 */
+.floating-text {
+    position: fixed;
+    color: #ffdf70;
+    font-weight: bold;
+    font-size: 18px;
+    pointer-events: none;
+    z-index: 9999;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    animation: floatUp 1s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+    20% { transform: translate(-50%, -80px) scale(1.2); opacity: 1; }
+    100% { transform: translate(-50%, -150px) scale(1); opacity: 0; }
 }
 </style>
 </head>
@@ -74,109 +208,238 @@ button{
 <body>
 
 <div class="container">
-<div class="card">
+    <div class="card">
 
-<h2>📿 智能功德系统</h2>
+        <h2>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="#fce2a1">
+                <path d="M12,2C12,2 9,7 9,11C9,15 12,22 12,22C12,22 15,15 15,11C15,7 12,2 12,2M8.14,6.72C7.39,7.84 7,9.3 7,11C7,15.19 10.14,19.26 12,21.5C9.8,20.08 4,15.7 4,11C4,8.5 5.5,6.34 8.14,6.72M15.86,6.72C18.5,6.34 20,8.5 20,11C20,15.7 14.2,20.08 12,21.5C13.86,19.26 17,15.19 17,11C17,9.3 16.61,7.84 15.86,6.72Z"/>
+            </svg>
+            智能功德系统
+        </h2>
 
-<video id="video" autoplay playsinline></video>
-<canvas id="canvas" style="display:none"></canvas>
+        <div class="media-wrapper">
+            <div id="buddhaLight" class="buddha-light"></div>
+            <video id="video" autoplay playsinline style="display:none"></video>
+            <img id="customImg" style="display:none"/>
+        </div>
 
-<button onclick="startCamera()">开启相机</button>
+        <div class="controls">
+            <button onclick="startCamera()">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/></svg>
+                开启法眼
+            </button>
+            <button onclick="switchCamera()">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                切换镜头
+            </button>
+            
+            <label class="file-upload-label">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                供奉法相
+                <input type="file" accept="image/*" onchange="uploadImage(event)">
+            </label>
+            <button onclick="useCameraView()" style="background: linear-gradient(135deg, #5c4b3a, #362a20); color: #fce2a1; border: 1px solid #705840;">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                恢复法眼
+            </button>
+            
+            <button class="btn-full" onclick="enableSensor()">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M16,1H8C6.89,1 6,1.89 6,3V21C6,22.11 6.89,23 8,23H16C17.11,23 18,22.11 18,21V3C18,1.89 17.11,1 16,1ZM16,21H8V3H16V21ZM14.9,9.31L12,12.21L9.1,9.31L7.69,10.72L12,15.03L16.31,10.72L14.9,9.31Z"/></svg>
+                开启智能叩拜 (传感器)
+            </button>
+        </div>
 
-<div id="count" class="counter"></div>
-<div id="status" class="status">等待启动</div>
+        <div id="count" class="counter"></div>
+        <div id="status" class="status">静待善缘 (敲击屏幕亦可修行)...</div>
 
-</div>
+    </div>
 </div>
 
 <script>
 const video = document.getElementById("video");
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-
+const img = document.getElementById("customImg");
 const countEl = document.getElementById("count");
 const statusEl = document.getElementById("status");
+const buddhaLight = document.getElementById("buddhaLight");
 
 /* ========= 本地存储 ========= */
-let merit = parseInt(localStorage.getItem("merit")||"0");
-countEl.innerText="功德："+merit;
+let merit = parseInt(localStorage.getItem("merit") || "0");
+countEl.innerText = "功德：" + merit;
 
-function save(){
-    localStorage.setItem("merit",merit);
+function saveMerit(){
+    localStorage.setItem("merit", merit);
 }
 
-/* ========= 相机 ========= */
+/* ========= 功德增加与特效 ========= */
+function addMerit(reason, x, y){
+    merit++;
+    saveMerit();
+
+    // 刷新数字和动画
+    countEl.innerText = "功德：" + merit;
+    countEl.classList.remove("flash");
+    void countEl.offsetWidth; // 触发重绘
+    countEl.classList.add("flash");
+
+    // 触发佛光爆发
+    buddhaLight.classList.remove("flare");
+    void buddhaLight.offsetWidth;
+    buddhaLight.classList.add("flare");
+
+    statusEl.innerText = "触发：" + reason + " 🙏";
+
+    // 手机震动反馈 (极短的轻击震动)
+    if(navigator.vibrate) navigator.vibrate(30);
+
+    // 飘字特效
+    if (x !== undefined && y !== undefined) {
+        showFloatingText(x, y);
+    }
+
+    // 自动恢复佛光
+    setTimeout(() => {
+        buddhaLight.classList.remove("flare");
+    }, 400); // 缩短佛光高亮时间，适合连续点击
+}
+
+/* 屏幕点击漂浮特效 */
+function showFloatingText(x, y) {
+    const span = document.createElement('span');
+    span.innerText = "功德 +1";
+    span.className = 'floating-text';
+    span.style.left = x + 'px';
+    span.style.top = y + 'px';
+    document.body.appendChild(span);
+    
+    setTimeout(() => {
+        span.remove();
+    }, 1000);
+}
+
+/* ========= 监听全屏敲击 ========= */
+document.body.addEventListener('pointerdown', function(e) {
+    // 防止点击到按钮、输入框等 UI 元素时也触发
+    const ignoredTags = ['BUTTON', 'INPUT', 'LABEL', 'SVG', 'PATH'];
+    if (ignoredTags.includes(e.target.tagName.toUpperCase())) return;
+    if (e.target.closest('button') || e.target.closest('label')) return;
+
+    // 触发点击功德
+    addMerit("虔诚敲击", e.clientX, e.clientY);
+});
+
+/* ========= 摄像头 ========= */
+let useFront = false;
+let currentStream = null;
+
 async function startCamera(){
     try{
+        if(currentStream){
+            currentStream.getTracks().forEach(t => t.stop());
+        }
+
         const stream = await navigator.mediaDevices.getUserMedia({
-            video:{facingMode:"environment"},
-            audio:false
+            video: {facingMode: "environment"},
+            audio: false
         });
 
+        currentStream = stream;
         video.srcObject = stream;
-        statusEl.innerText="自动识别中...";
-        startDetection();
 
+        video.style.display = "block";
+        img.style.display = "none";
+
+        statusEl.innerText = "后置法眼已开启";
     }catch(e){
-        alert("无法打开相机："+e.message);
+        alert("法眼开启失败：" + e.message);
     }
 }
 
-/* ========= 自动识别 ========= */
+async function switchCamera(){
+    if(!currentStream) return alert("请先开启相机");
+    useFront = !useFront;
 
-let lastFrame=null;
-let detecting=false;
-let cooldown=false;
+    const stream = await navigator.mediaDevices.getUserMedia({
+        video: {facingMode: useFront ? "user" : "environment"}
+    });
 
-function startDetection(){
-    detecting=true;
+    currentStream.getTracks().forEach(t => t.stop());
+    currentStream = stream;
+    video.srcObject = stream;
 
-    setInterval(()=>{
-        if(!detecting || video.readyState!==4) return;
-
-        canvas.width=video.videoWidth/4;
-        canvas.height=video.videoHeight/4;
-
-        ctx.drawImage(video,0,0,canvas.width,canvas.height);
-
-        const frame=ctx.getImageData(0,0,canvas.width,canvas.height).data;
-
-        if(lastFrame){
-            let diff=0;
-
-            for(let i=0;i<frame.length;i+=20){
-                diff+=Math.abs(frame[i]-lastFrame[i]);
-            }
-
-            // 运动阈值（拜动作）
-            if(diff>90000 && !cooldown){
-                addMerit();
-                cooldown=true;
-                setTimeout(()=>cooldown=false,1500);
-            }
-        }
-
-        lastFrame=new Uint8ClampedArray(frame);
-
-    },250);
+    statusEl.innerText = useFront ? "前置法眼" : "后置法眼";
 }
 
-/* ========= 功德增加 ========= */
+/* ========= 上传自定义图片 ========= */
+function uploadImage(e){
+    const file = e.target.files[0];
+    if(!file) return;
 
-function addMerit(){
-    merit++;
-    save();
+    const reader = new FileReader();
+    reader.onload = function(ev){
+        img.src = ev.target.result;
+        localStorage.setItem("customImage", ev.target.result);
 
-    countEl.innerText="功德："+merit;
+        img.style.display = "block";
+        video.style.display = "none";
 
-    countEl.classList.remove("flash");
-    void countEl.offsetWidth;
-    countEl.classList.add("flash");
+        statusEl.innerText = "已供奉自定义法相";
+    };
+    reader.readAsDataURL(file);
+}
 
-    statusEl.innerText="检测到拜一拜 🙏";
+/* 恢复缓存图片 */
+const savedImg = localStorage.getItem("customImage");
+if(savedImg){
+    img.src = savedImg;
+    img.style.display = "block";
+    video.style.display = "none";
+} else {
+    // 默认展示
+    img.style.display = "block";
+}
 
-    if(navigator.vibrate){
-        navigator.vibrate(60);
+/* 切回相机 */
+function useCameraView(){
+    if(currentStream) {
+        img.style.display = "none";
+        video.style.display = "block";
+        statusEl.innerText = "已恢复法眼画面";
+    } else {
+        startCamera();
+    }
+}
+
+/* ========= 手机传感器识别 ========= */
+let lastTrigger = 0;
+
+async function enableSensor(){
+    // iOS权限申请
+    if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === "function"){
+        try{
+            const res = await DeviceOrientationEvent.requestPermission();
+            if(res !== "granted"){
+                alert("未允许传感器权限，无法感知叩拜");
+                return;
+            }
+        }catch(e){alert(e);}
+    }
+
+    window.addEventListener("deviceorientation", handleOrientation);
+    statusEl.innerText = "六根清净，智能叩拜已开启";
+}
+
+function handleOrientation(event){
+    const beta = event.beta; // 前后倾角
+    // 前倾超过40度触发
+    if(beta > 40){
+        const now = Date.now();
+        if(now - lastTrigger > 1500){ // 叩拜冷却时间设为1.5秒
+            lastTrigger = now;
+            // 获取页面中心位置触发飘字
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2 - 50;
+            addMerit("虔诚叩拜", centerX, centerY);
+        }
     }
 }
 </script>
