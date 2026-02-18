@@ -510,7 +510,7 @@ footer {
       header.id = "shuoweb-header";
 
       header.innerHTML = `
-        <div class="logo">SHUOWEB.</div>
+        <div class="logo">SHUOWEB</div>
         <button class="theme-btn" id="themeText">切换主题</button>
       `;
 
