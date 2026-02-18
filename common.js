@@ -1,4 +1,4 @@
-// 一次性插入 CSS + 头部 + 底部 + 主题逻辑
+// 一次性插入 CSS/js + 头部 + 底部 + 主题逻辑
 (function() {
   // ====================== 全局样式 ======================
   const style = document.createElement('style');
