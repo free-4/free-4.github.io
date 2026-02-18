@@ -594,18 +594,18 @@ a:hover {
     /* ================= Footer ================= */
 
     if (!document.getElementById("shuoweb-footer")) {
+  const footer = document.createElement("footer");
+  footer.id = "shuoweb-footer";
 
-      const footer = document.createElement("footer");
-      footer.id = "shuoweb-footer";
+  footer.innerHTML = `
+    <div class="footer-links">
+      <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank">评论区</a>
+    </div>
+    <p>&copy; 2026 SHUOWEB.COM · 始终保持好奇心</p>
+  `;
 
-      footer.innerHTML =
-        "<div class="footer-links">
-    <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank">评论区</a>
-  </div>
-<p>&copy; 2026 SHUOWEB.COM · 始终保持好奇心</p>";
-
-      document.body.appendChild(footer);
-    }
+  document.body.appendChild(footer);
+}
 
 
     /* ================= 主题系统 ================= */
