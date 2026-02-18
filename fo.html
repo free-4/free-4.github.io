@@ -2,22 +2,25 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>智能功德系统</title>
 
 <style>
 /* ================= 主题与排版 ================= */
 body {
     margin: 0;
-    /* 深色禅意背景 */
     background: linear-gradient(180deg, #1c1511 0%, #0a0806 100%);
     color: #fce2a1;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     display: flex;
     justify-content: center;
+    /* 适配现代手机浏览器，防止底部地址栏遮挡 */
     min-height: 100vh;
-    overflow: hidden; /* 防止点击特效导致滚动条闪烁 */
-    user-select: none; /* 防止频繁点击时选中文本 */
+    min-height: 100dvh; 
+    overflow: hidden; 
+    user-select: none; 
+    -webkit-user-select: none; /* iOS Safari 兼容 */
+    touch-action: manipulation; /* 彻底禁用双击放大，提升连击响应速度 */
 }
 
 .container {
@@ -32,9 +35,11 @@ body {
     border: 1px solid #4a3825;
     border-radius: 24px;
     padding: 24px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(230, 175, 75, 0.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    /* 移动端慎用高强度 backdrop-filter，若依然卡顿可删除此行 */
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
     text-align: center;
-    backdrop-filter: blur(10px);
 }
 
 h2 {
@@ -66,7 +71,9 @@ h2 {
     left: 50%;
     width: 130%;
     height: 130%;
-    transform: translate(-50%, -50%);
+    /* 开启 GPU 硬件加速，大幅降低移动端卡顿 */
+    transform: translate3d(-50%, -50%, 0); 
+    will-change: transform, opacity, filter;
     border-radius: 50%;
     background: conic-gradient(
         from 0deg, 
@@ -76,30 +83,20 @@ h2 {
         rgba(255, 215, 0, 0.1) 270deg, rgba(255, 165, 0, 0.6) 315deg, 
         rgba(255, 215, 0, 0.1) 360deg
     );
-    filter: blur(20px);
+    filter: blur(15px); /* 略微调低blur值，优化性能 */
     z-index: 0;
     opacity: 0.4;
     animation: spinLight 12s linear infinite;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: opacity 0.3s ease-out, filter 0.3s ease-out;
 }
 
 .buddha-light.flare {
     opacity: 1;
-    width: 160%;
-    height: 160%;
-    filter: blur(15px) brightness(1.8);
-    background: conic-gradient(
-        from 0deg, 
-        rgba(255, 255, 255, 0.6) 0deg, rgba(255, 215, 0, 1) 45deg, 
-        rgba(255, 255, 255, 0.6) 90deg, rgba(255, 215, 0, 1) 135deg, 
-        rgba(255, 255, 255, 0.6) 180deg, rgba(255, 215, 0, 1) 225deg, 
-        rgba(255, 255, 255, 0.6) 270deg, rgba(255, 215, 0, 1) 315deg, 
-        rgba(255, 255, 255, 0.6) 360deg
-    );
+    filter: blur(10px) brightness(1.5);
 }
 
 @keyframes spinLight {
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+    100% { transform: translate3d(-50%, -50%, 0) rotate(360deg); }
 }
 
 video, img {
@@ -112,7 +109,7 @@ video, img {
     background: #000;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     border: 2px solid rgba(252, 226, 161, 0.2);
-    pointer-events: none; /* 让点击穿透到wrapper上 */
+    pointer-events: none; 
 }
 
 /* ================= 按钮与控制区 ================= */
@@ -140,6 +137,8 @@ button, .file-upload-label {
     color: #1a120c;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.4);
     transition: transform 0.1s, filter 0.2s;
+    /* 防止iOS点击高亮 */
+    -webkit-tap-highlight-color: transparent; 
 }
 
 button:active, .file-upload-label:active {
@@ -171,6 +170,7 @@ input[type="file"] {
     font-weight: bold;
     color: #ffdf70;
     text-shadow: 0 0 15px rgba(255, 223, 112, 0.6);
+    will-change: transform;
 }
 
 .status {
@@ -182,7 +182,7 @@ input[type="file"] {
 
 .flash { animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 @keyframes pop {
-    50% { transform: scale(1.2); text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); color: #fff; }
+    50% { transform: scale(1.15); text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); color: #fff; }
 }
 
 /* 屏幕点击飘字特效 */
@@ -194,13 +194,14 @@ input[type="file"] {
     pointer-events: none;
     z-index: 9999;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-    animation: floatUp 1s ease-out forwards;
+    will-change: transform, opacity; /* 硬件加速 */
+    animation: floatUp 0.8s ease-out forwards;
 }
 
 @keyframes floatUp {
-    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
-    20% { transform: translate(-50%, -80px) scale(1.2); opacity: 1; }
-    100% { transform: translate(-50%, -150px) scale(1); opacity: 0; }
+    0% { transform: translate3d(-50%, -50%, 0) scale(0.8); opacity: 1; }
+    20% { transform: translate3d(-50%, -80px, 0) scale(1.2); opacity: 1; }
+    100% { transform: translate3d(-50%, -150px, 0) scale(1); opacity: 0; }
 }
 </style>
 </head>
@@ -209,7 +210,6 @@ input[type="file"] {
 
 <div class="container">
     <div class="card">
-
         <h2>
             <svg viewBox="0 0 24 24" width="28" height="28" fill="#fce2a1">
                 <path d="M12,2C12,2 9,7 9,11C9,15 12,22 12,22C12,22 15,15 15,11C15,7 12,2 12,2M8.14,6.72C7.39,7.84 7,9.3 7,11C7,15.19 10.14,19.26 12,21.5C9.8,20.08 4,15.7 4,11C4,8.5 5.5,6.34 8.14,6.72M15.86,6.72C18.5,6.34 20,8.5 20,11C20,15.7 14.2,20.08 12,21.5C13.86,19.26 17,15.19 17,11C17,9.3 16.61,7.84 15.86,6.72Z"/>
@@ -236,7 +236,7 @@ input[type="file"] {
             <label class="file-upload-label">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
                 供奉法相
-                <input type="file" accept="image/*" onchange="uploadImage(event)">
+                <input type="file" accept="image/*" onchange="uploadAndCompressImage(event)">
             </label>
             <button onclick="useCameraView()" style="background: linear-gradient(135deg, #5c4b3a, #362a20); color: #fce2a1; border: 1px solid #705840;">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
@@ -262,6 +262,8 @@ const countEl = document.getElementById("count");
 const statusEl = document.getElementById("status");
 const buddhaLight = document.getElementById("buddhaLight");
 
+let lightTimeout;
+
 /* ========= 本地存储 ========= */
 let merit = parseInt(localStorage.getItem("merit") || "0");
 countEl.innerText = "功德：" + merit;
@@ -275,34 +277,37 @@ function addMerit(reason, x, y){
     merit++;
     saveMerit();
 
-    // 刷新数字和动画
     countEl.innerText = "功德：" + merit;
+    
+    // 性能优化：使用 classList.toggle 或直接重置动画，避免滥用 offsetWidth 引发强制同步布局
     countEl.classList.remove("flash");
-    void countEl.offsetWidth; // 触发重绘
-    countEl.classList.add("flash");
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            countEl.classList.add("flash");
+        });
+    });
 
     // 触发佛光爆发
-    buddhaLight.classList.remove("flare");
-    void buddhaLight.offsetWidth;
     buddhaLight.classList.add("flare");
+    clearTimeout(lightTimeout);
+    lightTimeout = setTimeout(() => {
+        buddhaLight.classList.remove("flare");
+    }, 300); // 缩短高亮时间，提升连续点击的流畅感
 
     statusEl.innerText = "触发：" + reason + " 🙏";
 
-    // 手机震动反馈 (极短的轻击震动)
-    if(navigator.vibrate) navigator.vibrate(30);
+    // 手机震动反馈
+    if(navigator.vibrate) {
+        try { navigator.vibrate(20); } catch(e){} 
+    }
 
     // 飘字特效
     if (x !== undefined && y !== undefined) {
         showFloatingText(x, y);
     }
-
-    // 自动恢复佛光
-    setTimeout(() => {
-        buddhaLight.classList.remove("flare");
-    }, 400); // 缩短佛光高亮时间，适合连续点击
 }
 
-/* 屏幕点击漂浮特效 */
+/* 屏幕点击漂浮特效优化 */
 function showFloatingText(x, y) {
     const span = document.createElement('span');
     span.innerText = "功德 +1";
@@ -311,19 +316,19 @@ function showFloatingText(x, y) {
     span.style.top = y + 'px';
     document.body.appendChild(span);
     
-    setTimeout(() => {
+    // 监听动画结束自动清理 DOM，比 setTimeout 更准确且节省内存
+    span.addEventListener('animationend', () => {
         span.remove();
-    }, 1000);
+    });
 }
 
 /* ========= 监听全屏敲击 ========= */
+// 使用 pointerdown 兼容性好，响应速度快
 document.body.addEventListener('pointerdown', function(e) {
-    // 防止点击到按钮、输入框等 UI 元素时也触发
     const ignoredTags = ['BUTTON', 'INPUT', 'LABEL', 'SVG', 'PATH'];
     if (ignoredTags.includes(e.target.tagName.toUpperCase())) return;
     if (e.target.closest('button') || e.target.closest('label')) return;
 
-    // 触发点击功德
     addMerit("虔诚敲击", e.clientX, e.clientY);
 });
 
@@ -344,10 +349,8 @@ async function startCamera(){
 
         currentStream = stream;
         video.srcObject = stream;
-
         video.style.display = "block";
         img.style.display = "none";
-
         statusEl.innerText = "后置法眼已开启";
     }catch(e){
         alert("法眼开启失败：" + e.message);
@@ -355,47 +358,93 @@ async function startCamera(){
 }
 
 async function switchCamera(){
-    if(!currentStream) return alert("请先开启相机");
+    if(!currentStream) return alert("请先开启法眼");
     useFront = !useFront;
 
-    const stream = await navigator.mediaDevices.getUserMedia({
-        video: {facingMode: useFront ? "user" : "environment"}
-    });
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: {facingMode: useFront ? "user" : "environment"}
+        });
 
-    currentStream.getTracks().forEach(t => t.stop());
-    currentStream = stream;
-    video.srcObject = stream;
-
-    statusEl.innerText = useFront ? "前置法眼" : "后置法眼";
+        currentStream.getTracks().forEach(t => t.stop());
+        currentStream = stream;
+        video.srcObject = stream;
+        statusEl.innerText = useFront ? "前置法眼" : "后置法眼";
+    } catch(e) {
+        alert("切换失败");
+    }
 }
 
-/* ========= 上传自定义图片 ========= */
-function uploadImage(e){
+/* ========= 上传并压缩自定义图片 (核心修复点) ========= */
+function uploadAndCompressImage(e){
     const file = e.target.files[0];
     if(!file) return;
+    
+    statusEl.innerText = "法相请神中...";
 
     const reader = new FileReader();
     reader.onload = function(ev){
-        img.src = ev.target.result;
-        localStorage.setItem("customImage", ev.target.result);
+        const image = new Image();
+        image.onload = function() {
+            // 使用 Canvas 对大图进行压缩，防止撑爆 localStorage
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 限制最大宽高，足够在手机端清晰显示即可
+            const MAX_WIDTH = 800;
+            const MAX_HEIGHT = 800;
+            let width = image.width;
+            let height = image.height;
 
-        img.style.display = "block";
-        video.style.display = "none";
-
-        statusEl.innerText = "已供奉自定义法相";
+            if (width > height) {
+                if (width > MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                }
+            } else {
+                if (height > MAX_HEIGHT) {
+                    width *= MAX_HEIGHT / height;
+                    height = MAX_HEIGHT;
+                }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(image, 0, 0, width, height);
+            
+            // 导出为 JPEG 格式，质量设为 0.7，大幅减小体积
+            const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+            
+            try {
+                localStorage.setItem("customImage", compressedDataUrl);
+                img.src = compressedDataUrl;
+                img.style.display = "block";
+                video.style.display = "none";
+                statusEl.innerText = "已供奉自定义法相";
+            } catch (err) {
+                alert("法相过大，功德箱(缓存)已满，请清理浏览器缓存或使用更小的图片！");
+                statusEl.innerText = "供奉失败";
+            }
+        };
+        image.src = ev.target.result;
     };
     reader.readAsDataURL(file);
+    
+    // 重置 input，允许重复上传同一张图片
+    e.target.value = '';
 }
 
 /* 恢复缓存图片 */
-const savedImg = localStorage.getItem("customImage");
-if(savedImg){
-    img.src = savedImg;
-    img.style.display = "block";
-    video.style.display = "none";
-} else {
-    // 默认展示
-    img.style.display = "block";
+try {
+    const savedImg = localStorage.getItem("customImage");
+    if(savedImg){
+        img.src = savedImg;
+        img.style.display = "block";
+        video.style.display = "none";
+    } else {
+        img.style.display = "block";
+    }
+} catch(e) {
+    // 忽略跨域或隐私模式下的错误
 }
 
 /* 切回相机 */
@@ -413,7 +462,6 @@ function useCameraView(){
 let lastTrigger = 0;
 
 async function enableSensor(){
-    // iOS权限申请
     if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === "function"){
         try{
             const res = await DeviceOrientationEvent.requestPermission();
@@ -421,7 +469,10 @@ async function enableSensor(){
                 alert("未允许传感器权限，无法感知叩拜");
                 return;
             }
-        }catch(e){alert(e);}
+        }catch(e){
+            alert(e);
+            return;
+        }
     }
 
     window.addEventListener("deviceorientation", handleOrientation);
@@ -429,13 +480,11 @@ async function enableSensor(){
 }
 
 function handleOrientation(event){
-    const beta = event.beta; // 前后倾角
-    // 前倾超过40度触发
+    const beta = event.beta; 
     if(beta > 40){
         const now = Date.now();
-        if(now - lastTrigger > 1500){ // 叩拜冷却时间设为1.5秒
+        if(now - lastTrigger > 1500){ 
             lastTrigger = now;
-            // 获取页面中心位置触发飘字
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2 - 50;
             addMerit("虔诚叩拜", centerX, centerY);
