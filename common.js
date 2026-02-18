@@ -91,8 +91,7 @@ footer {
   .hero { padding: 40px 15px 30px; }
 }
 
-// 第二部分（主要适用index.html）
-        /* ========= 全局变量与基础 ========= */
+        /* ========= 第二部分_适用index ========= */
         :root {
             --primary: #007AFF;
             --primary-light: #E3F2FD;
