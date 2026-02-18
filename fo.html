@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>智能电子功德箱</title>
+
+<style>
+body{
+    margin:0;
+    background:linear-gradient(180deg,#eef3ff,#ffffff);
+    font-family:-apple-system,BlinkMacSystemFont;
+    display:flex;
+    justify-content:center;
+}
+
+.container{
+    width:95%;
+    max-width:420px;
+    margin-top:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:20px;
+    padding:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    text-align:center;
+}
+
+h2{
+    margin:5px 0 10px;
+}
+
+video{
+    width:100%;
+    border-radius:14px;
+    background:#000;
+}
+
+button{
+    width:100%;
+    margin-top:12px;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:#4a7cff;
+    color:#fff;
+    font-size:16px;
+}
+
+.counter{
+    font-size:20px;
+    margin-top:12px;
+}
+
+.status{
+    font-size:13px;
+    color:#666;
+    margin-top:6px;
+}
+
+.flash{
+    animation:pop .35s;
+}
+
+@keyframes pop{
+    50%{transform:scale(1.25)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h2>📿 智能功德系统</h2>
+
+<video id="video" autoplay playsinline></video>
+<canvas id="canvas" style="display:none"></canvas>
+
+<button onclick="startCamera()">开启相机</button>
+
+<div id="count" class="counter"></div>
+<div id="status" class="status">等待启动</div>
+
+</div>
+</div>
+
+<script>
+const video = document.getElementById("video");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const countEl = document.getElementById("count");
+const statusEl = document.getElementById("status");
+
+/* ========= 本地存储 ========= */
+let merit = parseInt(localStorage.getItem("merit")||"0");
+countEl.innerText="功德："+merit;
+
+function save(){
+    localStorage.setItem("merit",merit);
+}
+
+/* ========= 相机 ========= */
+async function startCamera(){
+    try{
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video:{facingMode:"user"},
+            audio:false
+        });
+
+        video.srcObject = stream;
+        statusEl.innerText="自动识别中...";
+        startDetection();
+
+    }catch(e){
+        alert("无法打开相机："+e.message);
+    }
+}
+
+/* ========= 自动识别 ========= */
+
+let lastFrame=null;
+let detecting=false;
+let cooldown=false;
+
+function startDetection(){
+    detecting=true;
+
+    setInterval(()=>{
+        if(!detecting || video.readyState!==4) return;
+
+        canvas.width=video.videoWidth/4;
+        canvas.height=video.videoHeight/4;
+
+        ctx.drawImage(video,0,0,canvas.width,canvas.height);
+
+        const frame=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+
+        if(lastFrame){
+            let diff=0;
+
+            for(let i=0;i<frame.length;i+=20){
+                diff+=Math.abs(frame[i]-lastFrame[i]);
+            }
+
+            // 运动阈值（拜动作）
+            if(diff>90000 && !cooldown){
+                addMerit();
+                cooldown=true;
+                setTimeout(()=>cooldown=false,1500);
+            }
+        }
+
+        lastFrame=new Uint8ClampedArray(frame);
+
+    },250);
+}
+
+/* ========= 功德增加 ========= */
+
+function addMerit(){
+    merit++;
+    save();
+
+    countEl.innerText="功德："+merit;
+
+    countEl.classList.remove("flash");
+    void countEl.offsetWidth;
+    countEl.classList.add("flash");
+
+    statusEl.innerText="检测到拜一拜 🙏";
+
+    if(navigator.vibrate){
+        navigator.vibrate(60);
+    }
+}
+</script>
+
+</body>
+</html>
