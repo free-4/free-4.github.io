@@ -458,32 +458,50 @@ function useCameraView(){
     }
 }
 
-/* ========= 手机传感器识别 ========= */
+/* ========= 手机传感器识别 (修正版) ========= */
 let lastTrigger = 0;
+let bowState = 0; // 记录叩拜状态：0为正常直立，1为俯身叩拜中
 
 async function enableSensor(){
+    // iOS 13+ 权限申请
     if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === "function"){
-        try{
+        try {
             const res = await DeviceOrientationEvent.requestPermission();
             if(res !== "granted"){
                 alert("未允许传感器权限，无法感知叩拜");
                 return;
             }
-        }catch(e){
-            alert(e);
+        } catch(e) {
+            alert("请在 HTTPS 环境下运行，或在手机设置中开启网页传感器权限！");
             return;
         }
     }
 
+    // 监听设备方向变化
     window.addEventListener("deviceorientation", handleOrientation);
-    statusEl.innerText = "六根清净，智能叩拜已开启";
+    statusEl.innerText = "六根清净，智能叩拜已开启 (请将手机贴近胸口，弯腰鞠躬)";
 }
 
 function handleOrientation(event){
-    const beta = event.beta; 
-    if(beta > 40){
+    // beta 范围是 -180 到 180，代表设备前后的倾斜角度
+    let beta = event.beta; 
+    
+    // 如果 beta 是 null，说明设备没有陀螺仪或被浏览器彻底拦截
+    if (beta === null) return;
+
+    // 【动作 1：俯身】手机原本是直立的，现在前倾（弯腰）至趋于平放状态
+    if (beta < 40 && beta > -20 && bowState === 0) {
+        bowState = 1; // 记录：已弯腰
+        statusEl.innerText = "弯腰中... (请起身)";
+    }
+    
+    // 【动作 2：起身】从弯腰状态恢复到了直立状态（完成一次完整叩拜）
+    if (beta > 65 && bowState === 1) {
+        bowState = 0; // 重置状态
         const now = Date.now();
-        if(now - lastTrigger > 1500){ 
+        
+        // 防抖冷却时间设为1.2秒，防止连续乱触发
+        if(now - lastTrigger > 1200){ 
             lastTrigger = now;
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2 - 50;
