@@ -505,6 +505,67 @@ footer {
               stroke 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* 主题适配链接样式 */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 无下划线链接（加 class="link-plain"） */
+.link-plain {
+  text-decoration: none !important;
+}
+
+/* 按钮式链接（加 class="link-btn"） */
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.link-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* 全局链接样式（适配主题） */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 页脚专用友情链接 */
+.footer-link {
+  display: inline-block;
+  margin: 0 6px;
+  color: var(--text-sub);
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.footer-link:hover {
+  color: var(--primary);
+  transform: translateY(-1px);
+}
 
 
       `;
