@@ -1049,6 +1049,53 @@ video {
   }
 }
 
+/* ===============================
+   全局 <a href> 链接 → 主题按钮样式
+=============================== */
+
+/* 全局所有链接默认为主题按钮 */
+a[href] {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none !important;
+  outline: none;
+  border: none;
+  
+  /* 按钮基础样式 */
+  background-color: var(--primary);
+  color: #fff !important;
+  border-radius: var(--radius);
+  padding: 10px 22px;
+  margin: 6px 4px;
+  
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  
+  /* 适配你主题 */
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  
+  /* 禁止长按弹窗 */
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* 按钮悬浮效果 */
+a[href]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  opacity: 0.92;
+  color: #fff !important;
+}
+
+/* 按钮点击效果 */
+a[href]:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
 
 
       `;
