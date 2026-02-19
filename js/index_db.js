@@ -3,7 +3,7 @@
 ========================= */
 const SITE_DATA = [
     {
-        name: "1",
+        name: "趣味小筑",
         icon: "api",
         items: [
             { title: "历史上的今天", url: "https://shuoweb.com/page/html/today_history", icon: "history" },
@@ -12,10 +12,10 @@ const SITE_DATA = [
         ]
     },
     {
-        name: "2",
+        name: "实用工具",
         icon: "tool",
         items: [
-            { title: "1", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "json" },
+            { title: "IP地址查询", url: "https://shuoweb.com/page/html/ip", icon: "ip" },
             { title: "Base64 转换", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "file" },
             { title: "3", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "box" }
         ]
