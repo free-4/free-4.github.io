@@ -1097,6 +1097,17 @@ a[href]:active {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* ===============================
+   全局 a 链接居中专用
+=============================== */
+a {
+  display: inline-block !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
 
       `;
 
