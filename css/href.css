@@ -1,0 +1,508 @@
+/* ===============================
+   <a href> 链接标签 · 完整动效库
+   可直接复制到 <style> 中使用
+=============================== */
+
+/* ========= 基础链接样式 ========= */
+a[href] {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--primary);
+  padding: 12px 28px;
+  margin: 8px auto;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 15px;
+  white-space: nowrap;
+  border: none;
+  outline: none;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* ========= 1️⃣ 扫光效果（从左到右的光线） ========= */
+a[href].link-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255,255,255,0.3), 
+    transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+a[href].link-shine:hover::after {
+  left: 100%;
+}
+
+/* ========= 2️⃣ 上浮动 + 阴影增强 ========= */
+a[href].link-float {
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+a[href].link-float:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 122, 255, 0.3);
+}
+
+a[href].link-float:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+}
+
+/* ========= 3️⃣ 缩放 + 脉冲 ========= */
+a[href].link-scale {
+  transition: all 0.3s ease;
+}
+
+a[href].link-scale:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(0, 122, 255, 0.4);
+}
+
+a[href].link-scale:active {
+  transform: scale(0.95);
+}
+
+/* ========= 4️⃣ 边框呼吸（边框由浅变深） ========= */
+a[href].link-border {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+a[href].link-border:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 0 20px var(--primary);
+  transform: translateY(-2px);
+}
+
+/* ========= 5️⃣ 渐变背景滑动 ========= */
+a[href].link-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    #5856D6 50%,
+    var(--primary) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  transition: all 0.4s ease;
+}
+
+a[href].link-gradient:hover {
+  background-position: 100% 0%;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
+}
+
+/* ========= 6️⃣ 下划线扩展 ========= */
+a[href].link-underline {
+  position: relative;
+  background: transparent;
+  color: var(--primary);
+  padding: 8px 0;
+}
+
+a[href].link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+a[href].link-underline:hover {
+  color: var(--primary);
+}
+
+a[href].link-underline:hover::after {
+  width: 100%;
+}
+
+/* ========= 7️⃣ 旋转 + 缩放 ========= */
+a[href].link-rotate {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+a[href].link-rotate:hover {
+  transform: rotate(3deg) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 122, 255, 0.25);
+}
+
+a[href].link-rotate:active {
+  transform: rotate(0deg) scale(0.98);
+}
+
+/* ========= 8️⃣ 图标向右移动 ========= */
+a[href].link-icon::after {
+  content: ' →';
+  display: inline-block;
+  transition: all 0.3s ease;
+  margin-left: 0;
+  opacity: 0;
+}
+
+a[href].link-icon:hover::after {
+  margin-left: 6px;
+  opacity: 1;
+}
+
+/* ========= 9️⃣ 脉冲扩散效果 ========= */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 122, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 122, 255, 0);
+  }
+}
+
+a[href].link-pulse {
+  transition: all 0.3s ease;
+}
+
+a[href].link-pulse:hover {
+  animation: pulse-ring 1.5s infinite;
+  transform: scale(1.05);
+}
+
+/* ========= 🔟 酷炫渐变 + 多层阴影 ========= */
+a[href].link-neon {
+  background: linear-gradient(135deg, var(--primary), #5856D6);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+a[href].link-neon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: slide 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+a[href].link-neon:hover::before {
+  opacity: 1;
+}
+
+@keyframes slide {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(20px, 20px);
+  }
+}
+
+a[href].link-neon:hover {
+  box-shadow: 
+    0 0 10px var(--primary),
+    0 0 20px var(--primary),
+    inset 0 0 10px rgba(255,255,255,0.2);
+  transform: translateY(-3px);
+}
+
+/* ========= 1️⃣1️⃣ 彩虹色渐变 ========= */
+a[href].link-rainbow {
+  background: linear-gradient(90deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #9400d3);
+  background-size: 200% 100%;
+  animation: rainbow-shift 3s ease infinite;
+  transition: transform 0.3s ease;
+}
+
+@keyframes rainbow-shift {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+a[href].link-rainbow:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: rainbow-shift 1s ease infinite;
+}
+
+/* ========= 1️⃣2️⃣ 波纹涟漪效果 ========= */
+a[href].link-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+a[href].link-ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
+}
+
+a[href].link-ripple:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ========= 1️⃣3️⃣ 3D 立体效果 ========= */
+a[href].link-3d {
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+a[href].link-3d:hover {
+  transform: translateY(-4px) rotateX(5deg);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 20px 40px rgba(0, 122, 255, 0.2);
+}
+
+/* ========= 1️⃣4️⃣ 闪烁效果 ========= */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+a[href].link-blink {
+  animation: blink 1.5s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+a[href].link-blink:hover {
+  animation: none;
+  opacity: 1;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0, 122, 255, 0.4);
+}
+
+/* ========= 1️⃣5️⃣ 磨砂玻璃效果 ========= */
+a[href].link-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+a[href].link-glass:hover {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ========= 1️⃣6️⃣ 打字机动画 ========= */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+a[href].link-type {
+  position: relative;
+  overflow: hidden;
+  min-width: 120px;
+}
+
+a[href].link-type::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: #fff;
+  animation: typewriter-blink 0.7s infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ========= 1️⃣7️⃣ 旋转彩虹边框 ========= */
+a[href].link-spin-border {
+  position: relative;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+a[href].link-spin-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: conic-gradient(
+    var(--primary),
+    #5856D6,
+    var(--primary)
+  );
+  border-radius: var(--radius);
+  z-index: -1;
+  opacity: 0;
+  animation: spin 2s linear infinite;
+  transition: opacity 0.3s;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+a[href].link-spin-border:hover::before {
+  opacity: 1;
+}
+
+a[href].link-spin-border:hover {
+  color: #fff;
+  background: var(--primary);
+}
+
+/* ========= 1️⃣8️⃣ 彩虹色下划线 ========= */
+a[href].link-rainbow-underline {
+  position: relative;
+  background: transparent;
+  color: var(--primary);
+  padding: 8px 0;
+  border: none;
+  box-shadow: none;
+}
+
+a[href].link-rainbow-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff);
+  transition: width 0.4s ease;
+}
+
+a[href].link-rainbow-underline:hover::after {
+  width: 100%;
+}
+
+/* ========= 1️⃣9️⃣ 抖动效果 ========= */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+a[href].link-shake:hover {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* ========= 2️⃣0️⃣ 霓虹灯效果 ========= */
+a[href].link-neon-glow {
+  text-shadow: 
+    0 0 5px var(--primary),
+    0 0 10px var(--primary),
+    0 0 20px var(--primary);
+  box-shadow: 
+    0 0 5px var(--primary),
+    0 0 10px var(--primary),
+    0 0 20px var(--primary),
+    inset 0 0 5px var(--primary);
+  transition: all 0.3s ease;
+}
+
+a[href].link-neon-glow:hover {
+  text-shadow: 
+    0 0 10px var(--primary),
+    0 0 20px var(--primary),
+    0 0 30px var(--primary),
+    0 0 40px var(--primary);
+  box-shadow: 
+    0 0 10px var(--primary),
+    0 0 20px var(--primary),
+    0 0 30px var(--primary),
+    0 0 40px var(--primary),
+    inset 0 0 10px var(--primary);
+  transform: scale(1.08);
+}
+
+/* ========= 通用悬停效果 ========= */
+a[href]:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+a[href]:active {
+  opacity: 0.8;
+}
+
+/* ========= 禁用状态 ========= */
+a[href]:disabled,
+a[href].disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ========= 响应式 ========= */
+@media (max-width: 768px) {
+  a[href] {
+    padding: 10px 24px;
+    font-size: 14px;
+    margin: 6px auto;
+  }
+  
+  a[href].link-3d:hover {
+    transform: translateY(-2px);
+  }
+}
