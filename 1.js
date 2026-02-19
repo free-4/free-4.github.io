@@ -208,6 +208,11 @@ header {
   font-size: 15px;
   font-weight: 600;
   color: var(--text-main);
+  transition: all 0.3s ease;
+}
+.card:hover .card-title {
+  transform: translateY(-2px);
+  color: var(--primary);
 }
 
 /* ========= 页脚 ========= */
@@ -307,90 +312,552 @@ footer {
   animation: pulse 1.2s infinite;
 }
 
-/* ========= 卡片设计（完整版 · 含按压动效 + 无默认高亮） ========= */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px;
-}
-.card {
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: var(--radius);
-  padding: 24px 16px;
-  text-align: center;
+/* 主题按钮 - 优化版 */
+.theme-btn {
   cursor: pointer;
+  border: none;
+  background: var(--primary);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
   transition: var(--transition);
-  box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 
   /* 去掉点击蓝色高亮 */
   -webkit-tap-highlight-color: transparent;
   outline: none;
   user-select: none;
 }
-.card::before {
+
+/* 扫光效果 */
+.theme-btn::after {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--primary), transparent);
-  opacity: 0;
-  transition: var(--transition);
-  z-index: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: all 0.6s ease;
 }
 
-/* 悬浮效果 */
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
-  border-color: var(--primary);
+/* 悬浮 */
+.theme-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  filter: brightness(1.08);
 }
-.card:hover::before {
-  opacity: 0.03;
+.theme-btn:hover::after {
   left: 100%;
 }
 
-/* 按压效果（点击下去） */
-.card:active {
-  transform: translateY(-2px) scale(0.97);
-  box-shadow: 0 8px 20px -10px rgba(0,0,0,0.1);
+/* 按压效果 */
+.theme-btn:active {
+  transform: translateY(0) scale(0.96);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.icon-box {
-  position: relative;
-  z-index: 1;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 15px;
-  background: var(--primary-light);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary);
+/* 全局统一过渡 */
+* {
   transition: var(--transition);
 }
-.card:hover .icon-box {
-  transform: rotate(-5deg) scale(1.1);
-  background: var(--primary);
-  color: white;
+
+/* 主题色渐变过渡 */
+:root, body.pink {
+  transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* 头部导航渐变 */
+header {
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+
+/* Logo 颜色渐变 */
+.logo {
+  transition: background 0.4s;
+}
+
+/* 按钮增强过渡 */
+.theme-btn {
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 卡片全套流畅过渡 */
+.card {
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.icon-box {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
 .card-title {
+  transition: transform 0.3s, color 0.3s;
+}
+
+/* 标题、文字颜色渐变 */
+.hero h1,
+.hero p,
+.section-title {
+  transition: color 0.4s;
+}
+
+/* 页脚文字渐变 */
+footer {
+  transition: color 0.4s;
+}
+
+/* 全局主题切换渐变动画 */
+*,
+::before,
+::after {
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              fill 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              stroke 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 无下划线链接（加 class="link-plain"） */
+.link-plain {
+  text-decoration: none !important;
+}
+
+/* 按钮式链接（加 class="link-btn"） */
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.link-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* 页脚友情链接 - 高级动效按钮 */
+.footer-link {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 6px 14px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 扫光动效 */
+.footer-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+/* 悬浮效果 */
+.footer-link:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+.footer-link:hover::after {
+  left: 100%;
+}
+
+/* 按压效果 */
+.footer-link:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* 1. 基础类：平时持续跳动，同时备好过渡效果 */
+.combo-duang {
+  display: inline-block;
+  will-change: transform;
+  
+  /* 挂载持续跳动的动画 (假设你已经定义了 continuous-duang 关键帧) */
+  animation: continuous-duang 2.5s infinite ease-in-out;
+  
+  /* 提前写好过渡曲线，等动画停掉时，这个过渡就会生效 */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.4s ease;
+}
+
+/* 2. 悬浮状态：打断动画，执行放大 */
+.combo-duang:hover {
+  /* 关键：取消循环动画，防止它干扰悬停效果 */
+  animation: none; 
+  
+  /* 执行常规的交互 Duang */
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* 3. 点击状态：打断动画，执行下压 */
+.combo-duang:active {
+  animation: none;
+  transform: scale(0.92) translateY(2px);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 之前写过的关键帧 (如果你没存的话，贴在这里) */
+@keyframes continuous-duang {
+  0%   { transform: scale(1); }
+  15%  { transform: scale(1.1) translateY(-4px); }
+  30%  { transform: scale(0.95) translateY(2px); }
+  45%  { transform: scale(1.03); }
+  60%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: 
+    box-shadow 0.3s ease, 
+    background 0.3s ease, 
+    transform 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  /* 增加阴影弥散范围，模拟悬浮高度增加 */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.nav-list {
+  display: flex;
+  position: relative;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1); /* 在磨砂之上加一层极淡的背景 */
+  border-radius: 50px;
+}
+
+.nav-link {
+  position: relative;
+  z-index: 2;
+  padding: 10px 20px;
+  transition: color 0.3s ease;
+}
+
+/* 使用伪元素制作跟随滑块 */
+/* 注意：这个纯CSS方案是针对单个Item的，若需跨Item平滑移动需少量JS */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* 带有弹性回弹 */
+}
+
+.nav-link:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-link {
+  background: linear-gradient(90deg, #fff, #fff, #4facfe, #fff, #fff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* 隐藏原始文字颜色 */
+  transition: background-position 0s;
+}
+
+.nav-link:hover {
+  background-position: -100% 0;
+  transition: background-position 0.6s ease;
+}
+
+/* 默认状态 */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px 0;
+}
+
+/* 滚动状态 (需要配合简单的 JS 添加 .scrolled 类) */
+.header.scrolled {
+  top: 20px;
+  width: 90%; /* 宽度收缩 */
+  left: 5%;
+  border-radius: 20px;
+  padding: 10px 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-item {
   position: relative;
   z-index: 1;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-main);
+}
+
+/* 悬停时的"胶囊"背景 */
+.nav-item::before {
+  content: "";
+  position: absolute;
+  inset: 5px -10px; /* 控制胶囊的大小范围 */
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.navbar {
+  /* 你现有的属性... */
+  position: relative;
+  overflow: hidden; /* 裁剪流光 */
+}
+
+/* 增加一根流动的细线 */
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.8), 
+    #4facfe, 
+    transparent
+  );
+  animation: sweep 5s infinite linear;
+}
+
+@keyframes sweep {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* 移动端加强版：禁止选中、复制、长按弹窗 */
+* {
+  /* 核心禁止选中 */
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  
+  /* 禁止系统长按菜单 */
+  -webkit-touch-callout: none !important;
+  touch-callout: none !important;
+
+  /* 禁止点击高亮 */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+
+/* 允许输入框正常使用（不影响表单） */
+input, textarea, select, [contenteditable="true"] {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -webkit-touch-callout: default !important;
+}
+
+/* 禁止拖动图片、链接 */
+img, a, picture {
+  user-drag: none !important;
+  -webkit-user-drag: none !important;
+}
+
+/* 移动端滚动流畅不卡顿 */
+html, body {
+  -webkit-overflow-scrolling: touch !important;
+  overflow-scrolling: touch !important;
 }
 
 /* ===============================
-   全局文本居中 · 独立版 · 适配双主题
+   文本 & 列表 · 完美适配当前主题
 =============================== */
+
+/* 标题 */
+h1, h2, h3, h4, h5, h6 {
+  margin: 1rem 0 0.7rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-main);
+  user-select: none;
+  transition: var(--transition);
+}
+h1 { font-size: 26px; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; }
+h4 { font-size: 20px; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+
+/* 段落 */
+p {
+  margin: 0.7rem 0;
+  line-height: 1.7;
+  font-size: 15px;
+  color: var(--text-sub);
+  user-select: none;
+  transition: var(--transition);
+}
+
+/* 列表共用 */
+ul, ol {
+  margin: 0.8rem 0;
+  padding-left: 1.4rem;
+  user-select: none;
+  transition: var(--transition);
+}
+
+/* 无序列表 */
+ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+ul li {
+  position: relative;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+  font-size: 15px;
+  color: var(--text-sub);
+  padding-left: 0.4rem;
+}
+ul li::before {
+  content: '';
+  position: absolute;
+  left: -0.9rem;
+  top: 0.65rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0.65;
+  transition: var(--transition);
+}
+
+/* 有序列表 */
+ol {
+  list-style: none;
+  counter-reset: ol-num;
+  padding-left: 1.2rem;
+}
+ol li {
+  position: relative;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+  font-size: 15px;
+  color: var(--text-sub);
+  padding-left: 0.4rem;
+}
+ol li::before {
+  counter-increment: ol-num;
+  content: counter(ol-num) ".";
+  position: absolute;
+  left: -1.4rem;
+  color: var(--primary);
+  opacity: 0.75;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+/* ===============================
+   移动端适配
+=============================== */
+@media (max-width: 768px) {
+  h1 { font-size: 24px; }
+  h2 { font-size: 22px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  h5 { font-size: 17px; }
+  h6 { font-size: 16px; }
+
+  p, ul li, ol li {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+/* ===============================
+   全新独立文本居中样式（适配双主题）
+=============================== */
+
+/* 标题居中 */
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+  text-align: center;
+  color: var(--text-main);
+  font-weight: 700;
+  margin: 1rem 0;
+  transition: var(--transition);
+}
+
+/* 段落居中 */
+.article p {
+  text-align: center;
+  color: var(--text-sub);
+  line-height: 1.7;
+  margin: 0.6rem 0;
+  transition: var(--transition);
+}
+
+/* 列表居中 + 无小圆点 */
+.article ul,
+.article ol {
+  list-style: none;
+  padding-left: 0;
+  text-align: center;
+  margin: 1rem 0;
+  transition: var(--transition);
+}
+
+.article li {
+  color: var(--text-sub);
+  margin: 0.4rem 0;
+  transition: var(--transition);
+}
 
 /* 标题全局居中 */
 h1,
@@ -477,24 +944,22 @@ video {
    全局 <a href> 链接 → 主题按钮样式（已优化）
 =============================== */
 
-/* 全局所有链接 - 统一处理 */
-a,
-a[href] {
+/* ⚠️ 关键修复：链接居中的核心规则 */
+a {
   display: inline-block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   text-align: center !important;
-  width: fit-content !important;
   
-  /* 按钮基础样式 */
+  /* 按钮样式 */
   background-color: var(--primary) !important;
   color: #fff !important;
   border-radius: var(--radius) !important;
-  padding: 10px 24px !important;
-  margin: 8px auto !important;
+  padding: 12px 28px !important;
   
   text-decoration: none !important;
   font-weight: 500 !important;
   font-size: 15px !important;
-  line-height: 1.4 !important;
   white-space: nowrap !important;
   
   border: none !important;
@@ -502,26 +967,28 @@ a[href] {
   box-shadow: var(--shadow) !important;
   transition: var(--transition) !important;
   
-  /* 禁止长按弹窗 */
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
-  user-select: none;
+  user-select: none !important;
 }
 
 /* 按钮悬浮效果 */
-a:hover,
-a[href]:hover {
+a:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
   opacity: 0.92 !important;
   color: #fff !important;
 }
 
 /* 按钮点击效果 */
-a:active,
-a[href]:active {
+a:active {
   transform: translateY(1px) !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 让所有包含链接的容器也自动居中 */
+body {
+  text-align: center;
 }
 
       `;
@@ -596,17 +1063,19 @@ const header = document.querySelector('header');
 window.addEventListener('scroll', () => {
   const currentScroll = window.pageYOffset;
 
+  if (!header) return;
+
   // 1. 处理"变身"效果：滚动超过 50px 就收缩
-  if (currentScroll > 50 && header) {
+  if (currentScroll > 50) {
     header.classList.add('scrolled');
-  } else if (header) {
+  } else {
     header.classList.remove('scrolled');
   }
 
   // 2. 进阶：向下滚动隐藏，向上滚动显示（防干扰模式）
-  if (currentScroll > lastScroll && currentScroll > 200 && header) {
+  if (currentScroll > lastScroll && currentScroll > 200) {
     header.style.transform = 'translateY(-120%)'; // 隐藏
-  } else if (header) {
+  } else {
     header.style.transform = 'translateY(0)'; // 显示
   }
   lastScroll = currentScroll;
