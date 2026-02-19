@@ -883,3 +883,42 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('contextmenu', e => e.preventDefault());
 });
 
+// 加强版禁止复制、选中、右键、打印、保存、控制台提取
+(function() {
+  // 禁止选中
+  document.documentElement.style.userSelect = 'none';
+  document.documentElement.style.webkitUserSelect = 'none';
+  document.documentElement.style.msUserSelect = 'none';
+
+  // 禁止剪切、复制、粘贴
+  document.addEventListener('copy', e => e.preventDefault());
+  document.addEventListener('cut', e => e.preventDefault());
+  document.addEventListener('paste', e => e.preventDefault());
+
+  // 禁止右键菜单
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // 禁止拖动图片/内容
+  document.addEventListener('dragstart', e => e.preventDefault());
+
+  // 禁止打印、另存为快捷键
+  document.addEventListener('keydown', function(e) {
+    // Ctrl+S / Ctrl+P / Ctrl+U / F12
+    if (
+      (e.ctrlKey && (e.key === 's' || e.key === 'p' || e.key === 'u')) ||
+      e.key === 'F12'
+    ) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // 禁止开发者工具常用选中提取
+  if (window.getSelection) {
+    window.getSelection().removeAllRanges();
+  } else if (document.selection) {
+    document.selection.empty();
+  }
+})();
+
+
