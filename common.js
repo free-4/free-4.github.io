@@ -761,3 +761,25 @@ a:hover {
   }
 
 })();
+
+let lastScroll = 0;
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  
+  // 1. 处理“变身”效果：滚动超过 50px 就收缩
+  if (currentScroll > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+  
+  // 2. 进阶：向下滚动隐藏，向上滚动显示（防干扰模式）
+  if (currentScroll > lastScroll && currentScroll > 200) {
+    header.style.transform = 'translateY(-120%)'; // 隐藏
+  } else {
+    header.style.transform = 'translateY(0)'; // 显示
+  }
+  lastScroll = currentScroll;
+});
