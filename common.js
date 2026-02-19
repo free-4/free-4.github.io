@@ -817,13 +817,12 @@ html, body {
 }
 
 /* ===============================
-   文本 & 列表样式 · 适配你的双主题
-   直接插入你现有 CSS 最后即可
+   文本 & 列表 · 完美适配当前主题
 =============================== */
 
-/* 标题 h1 ~ h6 */
+/* 标题 */
 h1, h2, h3, h4, h5, h6 {
-  margin: 1.2rem 0 0.8rem;
+  margin: 1rem 0 0.7rem;
   font-weight: 700;
   line-height: 1.4;
   color: var(--text-main);
@@ -843,12 +842,11 @@ p {
   line-height: 1.7;
   font-size: 15px;
   color: var(--text-sub);
-  word-break: break-word;
   user-select: none;
   transition: var(--transition);
 }
 
-/* 列表通用 */
+/* 列表共用 */
 ul, ol {
   margin: 0.8rem 0;
   padding-left: 1.4rem;
@@ -856,7 +854,7 @@ ul, ol {
   transition: var(--transition);
 }
 
-/* 无序列表 · 小圆点风格 */
+/* 无序列表 */
 ul {
   list-style: none;
   padding-left: 1rem;
@@ -878,11 +876,11 @@ ul li::before {
   height: 6px;
   border-radius: 50%;
   background: var(--primary);
-  opacity: 0.6;
+  opacity: 0.65;
   transition: var(--transition);
 }
 
-/* 有序列表 · 数字样式 */
+/* 有序列表 */
 ol {
   list-style: none;
   counter-reset: ol-num;
@@ -902,7 +900,7 @@ ol li::before {
   position: absolute;
   left: -1.4rem;
   color: var(--primary);
-  opacity: 0.7;
+  opacity: 0.75;
   font-weight: 600;
   transition: var(--transition);
 }
@@ -920,7 +918,7 @@ ol li::before {
 
   p, ul li, ol li {
     font-size: 14px;
-    line-height: 1.65;
+    line-height: 1.6;
   }
 }
 
