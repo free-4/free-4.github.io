@@ -964,6 +964,46 @@ ol li::before {
   transition: var(--transition);
 }
 
+/* ===============================
+   全局文本居中 · 独立版 · 适配双主题
+=============================== */
+
+/* 标题全局居中 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center !important;
+  color: var(--text-main) !important;
+  font-weight: 700 !important;
+  transition: var(--transition) !important;
+}
+
+/* 段落全局居中 */
+p {
+  text-align: center !important;
+  color: var(--text-sub) !important;
+  transition: var(--transition) !important;
+}
+
+/* 列表全局居中 + 去掉小圆点 */
+ul,
+ol {
+  list-style: none !important;
+  padding-left: 0 !important;
+  text-align: center !important;
+  transition: var(--transition) !important;
+}
+
+ul li,
+ol li {
+  text-align: center !important;
+  color: var(--text-sub) !important;
+  transition: var(--transition) !important;
+}
+
 
       `;
 
