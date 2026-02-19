@@ -208,6 +208,11 @@ header {
   font-size: 15px;
   font-weight: 600;
   color: var(--text-main);
+  transition: all 0.3s ease;
+}
+.card:hover .card-title {
+  transform: translateY(-2px);
+  color: var(--primary);
 }
 
 /* ========= 页脚 ========= */
@@ -305,92 +310,6 @@ footer {
 }
 .btn-pulse:hover {
   animation: pulse 1.2s infinite;
-}
-
-/* ========= 卡片设计（完整版 · 含按压动效 + 无默认高亮） ========= */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px;
-}
-.card {
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: var(--radius);
-  padding: 24px 16px;
-  text-align: center;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: var(--shadow);
-  position: relative;
-  overflow: hidden;
-
-  /* 去掉点击蓝色高亮 */
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-  user-select: none;
-}
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--primary), transparent);
-  opacity: 0;
-  transition: var(--transition);
-  z-index: 0;
-}
-
-/* 悬浮效果 */
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
-  border-color: var(--primary);
-}
-.card:hover::before {
-  opacity: 0.03;
-  left: 100%;
-}
-
-/* 按压效果（点击下去） */
-.card:active {
-  transform: translateY(-2px) scale(0.97);
-  box-shadow: 0 8px 20px -10px rgba(0,0,0,0.1);
-}
-
-.icon-box {
-  position: relative;
-  z-index: 1;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 15px;
-  background: var(--primary-light);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary);
-  transition: var(--transition);
-}
-.card:hover .icon-box {
-  transform: rotate(-5deg) scale(1.1);
-  background: var(--primary);
-  color: white;
-}
-
-.card-title {
-  position: relative;
-  z-index: 1;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-main);
-  transition: all 0.3s ease;
-}
-.card:hover .card-title {
-  transform: translateY(-2px);
-  color: var(--primary);
 }
 
 /* 主题按钮 - 优化版 */
@@ -505,19 +424,6 @@ footer {
               stroke 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 主题适配链接样式 */
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--primary);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 /* 无下划线链接（加 class="link-plain"） */
 .link-plain {
   text-decoration: none !important;
@@ -540,17 +446,6 @@ a:hover {
   background: var(--primary);
   color: #fff;
   transform: translateY(-1px);
-}
-
-/* 全局链接样式（适配主题） */
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 /* 页脚友情链接 - 高级动效按钮 */
@@ -733,7 +628,7 @@ a:hover {
   z-index: 1;
 }
 
-/* 悬停时的“胶囊”背景 */
+/* 悬停时的"胶囊"背景 */
 .nav-item::before {
   content: "";
   position: absolute;
@@ -964,10 +859,6 @@ ol li::before {
   transition: var(--transition);
 }
 
-/* ===============================
-   全局文本居中 · 独立版 · 适配双主题
-=============================== */
-
 /* 标题全局居中 */
 h1,
 h2,
@@ -1050,118 +941,55 @@ video {
 }
 
 /* ===============================
-   全局 <a href> 链接 → 主题按钮样式
+   全局 <a href> 链接 → 主题按钮样式（已优化）
 =============================== */
 
-/* 全局所有链接默认为主题按钮 */
-a[href] {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none !important;
-  outline: none;
-  border: none;
-  
-  /* 按钮基础样式 */
-  background-color: var(--primary);
-  color: #fff !important;
-  border-radius: var(--radius);
-  padding: 10px 22px;
-  margin: 6px 4px;
-  
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.4;
-  white-space: nowrap;
-  
-  /* 适配你主题 */
-  transition: var(--transition);
-  box-shadow: var(--shadow);
-  
-  /* 禁止长按弹窗 */
-  -webkit-touch-callout: none;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-
-/* 按钮悬浮效果 */
-a[href]:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  opacity: 0.92;
-  color: #fff !important;
-}
-
-/* 按钮点击效果 */
-a[href]:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* ===============================
-   全局 a 链接居中专用
-=============================== */
+/* ⚠️ 关键修复：链接居中的核心规则 */
 a {
   display: inline-block !important;
-  text-align: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
-}
-
-/* ===============================
-   全局 a 链接 强制居中 + 主题按钮样式
-   无论放在哪里，都居中！
-=============================== */
-
-/* 让所有链接父容器自动居中，保证内部 a 一定居中 */
-p,
-div,
-section,
-article,
-span {
   text-align: center !important;
-}
-
-/* 全局 a 标签按钮样式 + 居中 */
-a,
-a[href] {
-  display: inline-block !important;
-  text-align: center !important;
-  width: fit-content !important;
   
-  /* 你的主题变量 */
-  background: var(--primary) !important;
+  /* 按钮样式 */
+  background-color: var(--primary) !important;
   color: #fff !important;
   border-radius: var(--radius) !important;
-  padding: 10px 24px !important;
-  margin: 8px auto !important;
+  padding: 12px 28px !important;
   
   text-decoration: none !important;
   font-weight: 500 !important;
+  font-size: 15px !important;
+  white-space: nowrap !important;
+  
+  border: none !important;
+  outline: none !important;
   box-shadow: var(--shadow) !important;
   transition: var(--transition) !important;
   
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
-  user-select: none;
+  user-select: none !important;
 }
 
-/* 悬浮效果 */
+/* 按钮悬浮效果 */
 a:hover {
   transform: translateY(-2px) !important;
-  opacity: 0.9 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+  opacity: 0.92 !important;
   color: #fff !important;
 }
 
-/* 点击效果 */
+/* 按钮点击效果 */
 a:active {
   transform: translateY(1px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
 }
 
-a {
-  display: block;
+/* 让所有包含链接的容器也自动居中 */
+body {
   text-align: center;
 }
-
 
       `;
 
@@ -1230,18 +1058,20 @@ a {
 })();
 
 let lastScroll = 0;
-const header = document.querySelector('.header');
+const header = document.querySelector('header');
 
 window.addEventListener('scroll', () => {
   const currentScroll = window.pageYOffset;
-  
-  // 1. 处理“变身”效果：滚动超过 50px 就收缩
+
+  if (!header) return;
+
+  // 1. 处理"变身"效果：滚动超过 50px 就收缩
   if (currentScroll > 50) {
     header.classList.add('scrolled');
   } else {
     header.classList.remove('scrolled');
   }
-  
+
   // 2. 进阶：向下滚动隐藏，向上滚动显示（防干扰模式）
   if (currentScroll > lastScroll && currentScroll > 200) {
     header.style.transform = 'translateY(-120%)'; // 隐藏
@@ -1301,29 +1131,3 @@ document.addEventListener('DOMContentLoaded', function () {
     document.selection.empty();
   }
 })();
-
-// 全局自动让所有 a 标签居中
-document.addEventListener('DOMContentLoaded', function () {
-  const links = document.querySelectorAll('a[href]');
-  links.forEach(link => {
-    // 让链接自己变成块级、居中、宽度自适应
-    link.style.display = 'block';
-    link.style.width = 'fit-content';
-    link.style.marginLeft = 'auto';
-    link.style.marginRight = 'auto';
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function(){
-  const homeLink = document.querySelector('a[href="/"]');
-  if (homeLink) {
-    homeLink.style.display = 'block';
-    homeLink.style.width = 'fit-content';
-    homeLink.style.marginLeft = 'auto';
-    homeLink.style.marginRight = 'auto';
-  }
-});
-
-
-
-
