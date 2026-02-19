@@ -1004,6 +1004,52 @@ ol li {
   transition: var(--transition) !important;
 }
 
+/* ===============================
+   视频标签样式 · 适配当前主题
+=============================== */
+
+/* 视频容器（让视频居中、带圆角、防拖拽） */
+video {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: var(--radius);
+  background: #000;
+  outline: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: auto;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+/* 视频外层包裹（用于居中、间距、磨砂背景） */
+.video-box {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 1.2rem auto;
+  padding: 12px;
+  background: var(--card-bg);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .video-box {
+    padding: 8px;
+    margin: 1rem auto;
+  }
+  video {
+    border-radius: 12px;
+  }
+}
+
+
 
       `;
 
