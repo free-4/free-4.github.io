@@ -5,7 +5,7 @@
   window.__SHUOWEB_UI__ = true;
 
 
-  /* ========= 等待body存在 ========= */
+  /* ========= 等待 body存在 ========= */
   function ready(fn) {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", fn);
@@ -1313,6 +1313,17 @@ document.addEventListener('DOMContentLoaded', function () {
     link.style.marginRight = 'auto';
   });
 });
+
+document.addEventListener('DOMContentLoaded', function(){
+  const homeLink = document.querySelector('a[href="/"]');
+  if (homeLink) {
+    homeLink.style.display = 'block';
+    homeLink.style.width = 'fit-content';
+    homeLink.style.marginLeft = 'auto';
+    homeLink.style.marginRight = 'auto';
+  }
+});
+
 
 
 
