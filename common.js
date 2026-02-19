@@ -1107,6 +1107,55 @@ a {
   margin-right: auto !important;
 }
 
+/* ===============================
+   全局 a 链接 强制居中 + 主题按钮样式
+   无论放在哪里，都居中！
+=============================== */
+
+/* 让所有链接父容器自动居中，保证内部 a 一定居中 */
+p,
+div,
+section,
+article,
+span {
+  text-align: center !important;
+}
+
+/* 全局 a 标签按钮样式 + 居中 */
+a,
+a[href] {
+  display: inline-block !important;
+  text-align: center !important;
+  width: fit-content !important;
+  
+  /* 你的主题变量 */
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-radius: var(--radius) !important;
+  padding: 10px 24px !important;
+  margin: 8px auto !important;
+  
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  box-shadow: var(--shadow) !important;
+  transition: var(--transition) !important;
+  
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* 悬浮效果 */
+a:hover {
+  transform: translateY(-2px) !important;
+  opacity: 0.9 !important;
+  color: #fff !important;
+}
+
+/* 点击效果 */
+a:active {
+  transform: translateY(1px) !important;
+}
 
 
       `;
