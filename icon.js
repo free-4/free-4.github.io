@@ -84,5 +84,6 @@ const ICONS = {
   <line x1="12" y1="13" x2="12" y2="11" />
   <line x1="12" y1="13" x2="14" y2="13" />
 </svg>`,
+ip: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="12" rx="3" ry="3"></rect><path d="M8 12h.5M10 12h.5M12 12h.5M14 12h.5M16 12h.5"></path></svg>`,
 };
 
