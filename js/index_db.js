@@ -6,7 +6,7 @@ const SITE_DATA = [
         name: "1",
         icon: "api",
         items: [
-            { title: "1", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "user" },
+            { title: "历史上的今天", url: "http://free-4.github.io/page/html/today_history", icon: "history" },
             { title: "2", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "weather" },
             { title: "3", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "ai" }
         ]
