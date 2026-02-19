@@ -694,6 +694,20 @@ a:hover {
   transform: scale(1);
 }
 
+.nav-link {
+  background: linear-gradient(90deg, #fff, #fff, #4facfe, #fff, #fff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* 隐藏原始文字颜色 */
+  transition: background-position 0s;
+}
+
+.nav-link:hover {
+  background-position: -100% 0;
+  transition: background-position 0.6s ease;
+}
+
 
 
       `;
