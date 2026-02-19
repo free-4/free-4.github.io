@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -21,9 +20,6 @@
         #ip-info {
             font-size: 1.1rem;
             margin: 1rem 0;
-            padding: 1.2rem;
-            background-color: #f8f9fa;
-            border-radius: 5px;
             line-height: 1.6;
         }
 
@@ -65,25 +61,28 @@
     <script>
         async function getIPInfo() {
             const ipInfoElement = document.getElementById('ip-info');
-            
+
             try {
                 const response = await fetch('https://ipapi.co/json/', {
                     headers: {
-                        'Accept-Language': 'zh-CN'  // 强制返回中文结果
+                        'Accept-Language': 'zh-CN'
                     }
                 });
-                
+
                 if (!response.ok) throw new Error('请求失败');
-                
+
                 const data = await response.json();
-                
+
+                // 这里用了 <card> 标签
                 ipInfoElement.innerHTML = `
+                <card>
                     <div class="info-item"><strong>IP地址：</strong>${data.ip}</div>
                     <div class="info-item"><strong>地理位置：</strong>${data.country_name} · ${data.region} · ${data.city}</div>
                     <div class="info-item"><strong>运营商：</strong>${data.org || '未知'}</div>
                     <div class="info-item"><strong>时区：</strong>${data.timezone}</div>
                     <div class="info-item"><strong>经纬度：</strong>${data.latitude}, ${data.longitude}</div>
                     <div class="info-item"><strong>货币：</strong>${data.currency} (${data.currency_name})</div>
+                </card>
                 `;
             } catch (error) {
                 ipInfoElement.innerHTML = '<p style="color: red; margin-top:15px;">获取IP信息失败，请刷新页面重试</p>';
