@@ -4,7 +4,7 @@
 const SITE_DATA = [
     {
         name: "趣味小筑",
-        icon: "api",
+        icon: "fun",
         items: [
             { title: "历史上的今天", url: "https://shuoweb.com/page/html/today_history", icon: "history" },
             { title: "2", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "weather" },
