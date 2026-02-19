@@ -780,6 +780,41 @@ a:hover {
   100% { left: 200%; }
 }
 
+/* 移动端加强版：禁止选中、复制、长按弹窗 */
+* {
+  /* 核心禁止选中 */
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  
+  /* 禁止系统长按菜单 */
+  -webkit-touch-callout: none !important;
+  touch-callout: none !important;
+
+  /* 禁止点击高亮 */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+
+/* 允许输入框正常使用（不影响表单） */
+input, textarea, select, [contenteditable="true"] {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -webkit-touch-callout: default !important;
+}
+
+/* 禁止拖动图片、链接 */
+img, a, picture {
+  user-drag: none !important;
+  -webkit-user-drag: none !important;
+}
+
+/* 移动端滚动流畅不卡顿 */
+html, body {
+  -webkit-overflow-scrolling: touch !important;
+  overflow-scrolling: touch !important;
+}
 
 
       `;
