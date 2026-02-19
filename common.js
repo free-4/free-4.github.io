@@ -816,6 +816,115 @@ html, body {
   overflow-scrolling: touch !important;
 }
 
+/* ===============================
+   文本 & 列表样式 · 适配你的双主题
+   直接插入你现有 CSS 最后即可
+=============================== */
+
+/* 标题 h1 ~ h6 */
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.2rem 0 0.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-main);
+  user-select: none;
+  transition: var(--transition);
+}
+h1 { font-size: 26px; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; }
+h4 { font-size: 20px; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+
+/* 段落 */
+p {
+  margin: 0.7rem 0;
+  line-height: 1.7;
+  font-size: 15px;
+  color: var(--text-sub);
+  word-break: break-word;
+  user-select: none;
+  transition: var(--transition);
+}
+
+/* 列表通用 */
+ul, ol {
+  margin: 0.8rem 0;
+  padding-left: 1.4rem;
+  user-select: none;
+  transition: var(--transition);
+}
+
+/* 无序列表 · 小圆点风格 */
+ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+ul li {
+  position: relative;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+  font-size: 15px;
+  color: var(--text-sub);
+  padding-left: 0.4rem;
+}
+ul li::before {
+  content: '';
+  position: absolute;
+  left: -0.9rem;
+  top: 0.65rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0.6;
+  transition: var(--transition);
+}
+
+/* 有序列表 · 数字样式 */
+ol {
+  list-style: none;
+  counter-reset: ol-num;
+  padding-left: 1.2rem;
+}
+ol li {
+  position: relative;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+  font-size: 15px;
+  color: var(--text-sub);
+  padding-left: 0.4rem;
+}
+ol li::before {
+  counter-increment: ol-num;
+  content: counter(ol-num) ".";
+  position: absolute;
+  left: -1.4rem;
+  color: var(--primary);
+  opacity: 0.7;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+/* ===============================
+   移动端适配
+=============================== */
+@media (max-width: 768px) {
+  h1 { font-size: 24px; }
+  h2 { font-size: 22px; }
+  h3 { font-size: 20px; }
+  h4 { font-size: 18px; }
+  h5 { font-size: 17px; }
+  h6 { font-size: 16px; }
+
+  p, ul li, ol li {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+
 
       `;
 
