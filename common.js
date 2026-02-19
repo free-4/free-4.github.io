@@ -1162,12 +1162,6 @@ a {
   text-align: center;
 }
 
-a {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-block;
-}
 
       `;
 
