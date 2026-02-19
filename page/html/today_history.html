@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>历史上的今天</title>
+<style>
+/* ===============================
+   历史今日卡片主容器
+   =============================== */
+.history-card {
+    width: 90%;
+    max-width: 450px; /* 限制最大宽度 */
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ===============================
+   日期标题样式 (#date)
+   =============================== */
+#date {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    color: #2c3e50;
+}
+
+/* ===============================
+   历史列表容器 (#history-list)
+   =============================== */
+#history-list {
+    max-height: 400px; /* 设置滚动高度 */
+    overflow-y: auto;  /* 内容多时允许垂直滚动 */
+    padding-right: 8px;
+}
+
+/* 自定义滚动条样式 */
+#history-list::-webkit-scrollbar {
+    width: 5px;
+}
+#history-list::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+}
+
+/* ===============================
+   单条事件项样式 (.history-item)
+   =============================== */
+.history-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding: 8px;
+    transition: background 0.3s ease;
+    border-radius: 8px;
+}
+
+.history-item:hover {
+    background-color: #f9f9f9;
+}
+
+/* 年份样式 (.year) */
+.history-item .year {
+    font-weight: 700;
+    color: #3498db; /* 蓝色高亮年份 */
+    min-width: 60px;
+    font-size: 1rem;
+    margin-right: 12px;
+}
+
+/* 事件文字样式 (.event) */
+.history-item .event {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* 错误或空状态提示 */
+#history-list p {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="title">历史上的今天</h1>
+
+<div id="date"></div>
+
+<div id="history-list">
+    正在加载...
+</div>
+
+<script>
+// ===============================
+// 获取今天日期
+// ===============================
+function getTodayKey() {
+    const now = new Date();
+
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
+
+    // 补零
+    month = month.toString().padStart(2, "0");
+    day = day.toString().padStart(2, "0");
+
+    return `${month}-${day}`;
+}
+
+// ===============================
+// 显示日期文本
+// ===============================
+function showTodayDate() {
+    const now = new Date();
+
+    const text = `${now.getFullYear()}年 ${now.getMonth()+1}月 ${now.getDate()}日`;
+
+    document.getElementById("date").innerText = text;
+}
+
+// ===============================
+// 渲染历史事件
+// ===============================
+function renderHistory(events) {
+    const container = document.getElementById("history-list");
+
+    if (!events || events.length === 0) {
+        container.innerHTML = "<p>今天没有记录的历史事件</p>";
+        return;
+    }
+
+    let html = "";
+
+    events.forEach(item => {
+        html += `
+            <div class="history-item">
+                <span class="year">${item.year}</span>
+                <span class="event">${item.title}</span>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+// ===============================
+// 加载 JSON
+// ===============================
+async function loadHistory() {
+    try {
+        const response = await fetch("history.json");
+        const data = await response.json();
+
+        const todayKey = getTodayKey();
+
+        renderHistory(data[todayKey]);
+
+    } catch (err) {
+        document.getElementById("history-list")
+            .innerText = "历史数据加载失败";
+        console.error(err);
+    }
+}
+
+// ===============================
+// 初始化
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+    showTodayDate();
+    loadHistory();
+});
+</script>
+<script src="https://free-4.github.io/common.js"></script>
+<link rel="stylesheet" href="https://free-4.github.io/css/href.css">
+
+</body>
+</html>
