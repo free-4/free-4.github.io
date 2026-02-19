@@ -869,3 +869,17 @@ window.addEventListener('scroll', () => {
   }
   lastScroll = currentScroll;
 });
+
+// 禁止文本选择、复制、剪切、粘贴
+document.addEventListener('DOMContentLoaded', function () {
+  // 禁止选择
+  document.body.style.userSelect = 'none';
+  document.body.style.webkitUserSelect = 'none';
+  document.body.style.msUserSelect = 'none';
+
+  // 禁止复制、剪切、右键菜单
+  document.addEventListener('copy', e => e.preventDefault());
+  document.addEventListener('cut', e => e.preventDefault());
+  document.addEventListener('contextmenu', e => e.preventDefault());
+});
+
