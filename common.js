@@ -5,7 +5,7 @@
   window.__SHUOWEB_UI__ = true;
 
 
-  /* ========= 等待 body 存在 ========= */
+  /* ========= 等待body存在 ========= */
   function ready(fn) {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", fn);
