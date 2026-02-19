@@ -1302,4 +1302,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 })();
 
+// 全局自动让所有 a 标签居中
+document.addEventListener('DOMContentLoaded', function () {
+  const links = document.querySelectorAll('a[href]');
+  links.forEach(link => {
+    // 让链接自己变成块级、居中、宽度自适应
+    link.style.display = 'block';
+    link.style.width = 'fit-content';
+    link.style.marginLeft = 'auto';
+    link.style.marginRight = 'auto';
+  });
+});
+
+
 
