@@ -85,5 +85,6 @@ const ICONS = {
   <line x1="12" y1="13" x2="14" y2="13" />
 </svg>`,
 ip: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="12" rx="3" ry="3"></rect><path d="M8 12h.5M10 12h.5M12 12h.5M14 12h.5M16 12h.5"></path></svg>`,
+fun: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="15" rx="2" ry="2"></rect><path d="M7 6V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2"></path><line x1="7" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>`,
 };
 
