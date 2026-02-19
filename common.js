@@ -1024,7 +1024,7 @@ body {
     <div class="footer-links">
       <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank">评论区</a>
     </div>
-    <p>&copy; 2026 SHUOWEB.COM · 始终保持好奇心</p>
+    <p>&copy; 2026 SHUOWEB.COM · 不忘初心</p>
   `;
 
   document.body.appendChild(footer);
