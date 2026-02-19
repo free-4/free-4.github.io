@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>历史demo</title>
+</head>
+<body>
+  <div id="history-list">加载中...</div>
+  <div id="date"></div>
+  <script>
+    // 简化的数据，只留一天
+    const date = {
+      "02-19": [
+        { "year": "2000", "title": "测试历史1" },
+        { "year": "2020", "title": "测试历史2" }
+      ]
+    };
+    function getTodayKey() {
+      const now = new Date();
+      let month = now.getMonth() + 1;
+      let day = now.getDate();
+      month = month.toString().padStart(2, "0");
+      day = day.toString().padStart(2, "0");
+      return `${month}-${day}`;
+    }
+    function renderHistory(events) {
+      const container = document.getElementById("history-list");
+      if (!events || events.length === 0) {
+        container.innerHTML = "<p>暂无历史事件</p>";
+        return;
+      }
+      let html = "";
+      events.forEach(item => {
+        html += `<div class="history-item"><span class="year">${item.year}</span> <span class="event">${item.title}</span></div>`;
+      });
+      container.innerHTML = html;
+    }
+    function showTodayDate() {
+      const now = new Date();
+      document.getElementById("date").innerText = `${now.getFullYear()}年 ${now.getMonth()+1}月 ${now.getDate()}日`;
+    }
+    function loadHistory() {
+      try {
+        const todayKey = getTodayKey();
+        renderHistory(date[todayKey]);
+      } catch (err) {
+        document.getElementById("history-list").innerText = "加载失败";
+        console.error(err);
+      }
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      showTodayDate();
+      loadHistory();
+    });
+  </script>
+</body>
+</html>
