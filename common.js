@@ -751,6 +751,36 @@ a:hover {
   transform: scale(1);
 }
 
+.navbar {
+  /* 你现有的属性... */
+  position: relative;
+  overflow: hidden; /* 裁剪流光 */
+}
+
+/* 增加一根流动的细线 */
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.8), 
+    #4facfe, 
+    transparent
+  );
+  animation: sweep 5s infinite linear;
+}
+
+@keyframes sweep {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+
 
       `;
 
