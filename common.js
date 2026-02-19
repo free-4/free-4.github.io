@@ -728,6 +728,29 @@ a:hover {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.nav-item {
+  position: relative;
+  z-index: 1;
+}
+
+/* 悬停时的“胶囊”背景 */
+.nav-item::before {
+  content: "";
+  position: absolute;
+  inset: 5px -10px; /* 控制胶囊的大小范围 */
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
 
       `;
 
