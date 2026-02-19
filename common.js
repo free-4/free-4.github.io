@@ -708,6 +708,25 @@ a:hover {
   transition: background-position 0.6s ease;
 }
 
+/* 默认状态 */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px 0;
+}
+
+/* 滚动状态 (需要配合简单的 JS 添加 .scrolled 类) */
+.header.scrolled {
+  top: 20px;
+  width: 90%; /* 宽度收缩 */
+  left: 5%;
+  border-radius: 20px;
+  padding: 10px 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 
       `;
