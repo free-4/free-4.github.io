@@ -1157,6 +1157,10 @@ a:active {
   transform: translateY(1px) !important;
 }
 
+a {
+  display: block;
+  text-align: center;
+}
 
       `;
 
