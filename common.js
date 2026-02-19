@@ -922,6 +922,47 @@ ol li::before {
   }
 }
 
+/* ===============================
+   全新独立文本居中样式（适配双主题）
+=============================== */
+
+/* 标题居中 */
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+  text-align: center;
+  color: var(--text-main);
+  font-weight: 700;
+  margin: 1rem 0;
+  transition: var(--transition);
+}
+
+/* 段落居中 */
+.article p {
+  text-align: center;
+  color: var(--text-sub);
+  line-height: 1.7;
+  margin: 0.6rem 0;
+  transition: var(--transition);
+}
+
+/* 列表居中 + 无小圆点 */
+.article ul,
+.article ol {
+  list-style: none;
+  padding-left: 0;
+  text-align: center;
+  margin: 1rem 0;
+  transition: var(--transition);
+}
+
+.article li {
+  color: var(--text-sub);
+  margin: 0.4rem 0;
+  transition: var(--transition);
+}
 
 
       `;
