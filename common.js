@@ -601,6 +601,48 @@ a:hover {
   transform: translateY(0) scale(0.96);
 }
 
+/* 1. 基础类：平时持续跳动，同时备好过渡效果 */
+.combo-duang {
+  display: inline-block;
+  will-change: transform;
+  
+  /* 挂载持续跳动的动画 (假设你已经定义了 continuous-duang 关键帧) */
+  animation: continuous-duang 2.5s infinite ease-in-out;
+  
+  /* 提前写好过渡曲线，等动画停掉时，这个过渡就会生效 */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.4s ease;
+}
+
+/* 2. 悬浮状态：打断动画，执行放大 */
+.combo-duang:hover {
+  /* 关键：取消循环动画，防止它干扰悬停效果 */
+  animation: none; 
+  
+  /* 执行常规的交互 Duang */
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* 3. 点击状态：打断动画，执行下压 */
+.combo-duang:active {
+  animation: none;
+  transform: scale(0.92) translateY(2px);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 之前写过的关键帧 (如果你没存的话，贴在这里) */
+@keyframes continuous-duang {
+  0%   { transform: scale(1); }
+  15%  { transform: scale(1.1) translateY(-4px); }
+  30%  { transform: scale(0.95) translateY(2px); }
+  45%  { transform: scale(1.03); }
+  60%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+
 
       `;
 
