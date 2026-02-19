@@ -660,6 +660,41 @@ a:hover {
   transform: translateY(-5px);
 }
 
+.nav-list {
+  display: flex;
+  position: relative;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1); /* 在磨砂之上加一层极淡的背景 */
+  border-radius: 50px;
+}
+
+.nav-link {
+  position: relative;
+  z-index: 2;
+  padding: 10px 20px;
+  transition: color 0.3s ease;
+}
+
+/* 使用伪元素制作跟随滑块 */
+/* 注意：这个纯CSS方案是针对单个Item的，若需跨Item平滑移动需少量JS */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* 带有弹性回弹 */
+}
+
+.nav-link:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
 
       `;
 
