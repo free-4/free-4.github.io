@@ -991,6 +991,63 @@ body {
   text-align: center;
 }
 
+/* 每日一言 - 刷新句子按钮 */
+.refresh-btn {
+  cursor: pointer;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0, 122, 255, 0.15);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 悬浮动效 */
+.refresh-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 22px rgba(0, 122, 255, 0.2);
+}
+
+/* 点击动效 */
+.refresh-btn:active {
+  transform: translateY(0) scale(0.97);
+  transition: all 0.1s ease;
+}
+
+/* 粉色主题自动适配 */
+body.pink .refresh-btn {
+  box-shadow: 0 6px 18px rgba(255, 45, 85, 0.15);
+}
+body.pink .refresh-btn:hover {
+  box-shadow: 0 8px 22px rgba(255, 45, 85, 0.2);
+}
+
+/* 点击波纹动画 */
+.refresh-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+.refresh-btn:active::after {
+  transform: scale(1.2);
+  opacity: 1;
+  transition: 0s;
+}
+
+
       `;
 
       document.head.appendChild(style);
