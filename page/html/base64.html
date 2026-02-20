@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>base64转换器</title>
+    <script src="https://free-4.github.io/common.js"></script>
+    <link rel="stylesheet" href="https://free-4.github.io/css/href.css">
+<style>
+/* 外层容器 */
+.b64-converter {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+/* 区块样式 */
+.b64-section {
+    background: #fdfdfd;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.b64-title {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* 输入框通用样式 */
+.b64-textarea,
+.b64-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box; /* 适配移动端的关键 */
+    transition: border-color 0.2s;
+}
+
+.b64-textarea {
+    resize: vertical; /* 允许垂直拖拽 */
+    font-family: monospace; /* Base64 更适合等宽字体 */
+}
+
+.b64-textarea:focus,
+.b64-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.b64-textarea[readonly] {
+    background-color: #f5f5f5;
+}
+
+.b64-file-input {
+    width: 100%;
+    padding: 8px 0;
+}
+
+/* 按钮布局与样式 */
+.b64-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* 移动端空间不足时自动换行 */
+}
+
+.b64-btn {
+    flex: 1 1 calc(50% - 5px); /* 平分宽度 */
+    min-width: 120px;
+    padding: 10px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+.b64-btn:hover {
+    background-color: #0056b3;
+}
+
+.b64-btn-secondary {
+    background-color: #28a745;
+}
+
+.b64-btn-secondary:hover {
+    background-color: #218838;
+}
+
+/* 超小屏幕适配 */
+@media (max-width: 480px) {
+    .b64-btn {
+        flex: 1 1 100%; /* 手机竖屏时按钮占满整行 */
+    }
+}
+</style>
+</head>
+<body>
+<div class="b64-converter">
+    <div class="b64-section">
+        <h3 class="b64-title">文本转换</h3>
+        <textarea id="b64-text-input" class="b64-textarea" placeholder="在此输入普通文本或 Base64 编码..." rows="4"></textarea>
+        
+        <div class="b64-actions">
+            <button class="b64-btn" onclick="encodeText()">文本转 Base64</button>
+            <button class="b64-btn b64-btn-secondary" onclick="decodeText()">Base64 转文本</button>
+        </div>
+        
+        <textarea id="b64-text-output" class="b64-textarea" placeholder="文本转换结果将显示在这里..." rows="4" readonly></textarea>
+    </div>
+
+    <div class="b64-section">
+        <h3 class="b64-title">文件转换</h3>
+        <input type="file" id="b64-file-input" class="b64-file-input">
+        
+        <div class="b64-actions">
+            <button class="b64-btn" onclick="fileToBase64()">选择文件转 Base64</button>
+        </div>
+        
+        <textarea id="b64-file-data" class="b64-textarea" placeholder="在此粘贴文件的 Base64 代码以下载，或在此查看文件转出的 Base64 代码 (包含 Data URL 前缀)..." rows="6"></textarea>
+        
+        <input type="text" id="b64-download-name" class="b64-input" placeholder="输入下载文件名 (含扩展名, 如: image.png)">
+        
+        <div class="b64-actions">
+            <button class="b64-btn b64-btn-secondary" onclick="base64ToFile()">Base64 转文件 (点击下载)</button>
+        </div>
+    </div>
+</div>
+<script>
+// --- 文本转换逻辑 ---
+function encodeText() {
+    const input = document.getElementById('b64-text-input').value;
+    try {
+        // 使用 encodeURIComponent 处理中文字符，再进行 base64 编码
+        const base64 = btoa(encodeURIComponent(input).replace(/%([0-9A-F]{2})/g,
+            function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+        }));
+        document.getElementById('b64-text-output').value = base64;
+    } catch (e) {
+        alert("编码失败: " + e.message);
+    }
+}
+
+function decodeText() {
+    const input = document.getElementById('b64-text-input').value.trim();
+    if (!input) return;
+    try {
+        // 先 base64 解码，再 decodeURIComponent 处理中文字符
+        const text = decodeURIComponent(atob(input).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        document.getElementById('b64-text-output').value = text;
+    } catch (e) {
+        alert("解码失败！请检查是否是有效的 Base64 字符串。");
+    }
+}
+
+// --- 文件转换逻辑 ---
+function fileToBase64() {
+    const fileInput = document.getElementById('b64-file-input');
+    if (!fileInput.files || fileInput.files.length === 0) {
+        alert("请先点击上方选择一个文件");
+        return;
+    }
+    
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    
+    // 读取完成后的回调
+    reader.onload = function(e) {
+        // e.target.result 包含了带有 Data URL 前缀的 Base64 字符串
+        document.getElementById('b64-file-data').value = e.target.result;
+        // 自动填入文件名建议
+        document.getElementById('b64-download-name').value = file.name;
+    };
+    
+    // 将文件读取为 Data URL
+    reader.readAsDataURL(file);
+}
+
+function base64ToFile() {
+    let b64Data = document.getElementById('b64-file-data').value.trim();
+    let fileName = document.getElementById('b64-download-name').value.trim() || 'downloaded_file';
+
+    if (!b64Data) {
+        alert("请先输入或生成 Base64 代码！");
+        return;
+    }
+
+    try {
+        let mimeType = 'application/octet-stream';
+        
+        // 解析 Data URL 格式 (例如: data:image/png;base64,iVBORw0KGgo...)
+        if (b64Data.startsWith('data:')) {
+            const parts = b64Data.split(',');
+            mimeType = parts[0].split(':')[1].split(';')[0];
+            b64Data = parts[1]; // 去除前缀，只保留真正的 base64 内容
+        }
+
+        // 将 Base64 字符串转为字节数组
+        const byteCharacters = atob(b64Data);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        
+        // 创建 Blob 对象
+        const blob = new Blob([byteArray], { type: mimeType });
+        
+        // 创建虚拟 a 标签触发下载
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        
+        document.body.appendChild(link);
+        link.click();
+        
+        // 清理内存
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+        
+    } catch (e) {
+        alert("文件生成失败，请确认输入的 Base64 代码格式正确。");
+        console.error(e);
+    }
+}
+</script>
+</body>
+</html>
