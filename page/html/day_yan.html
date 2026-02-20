@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>每日一言</title>
+  <style>
+    /* 这里写页面专属样式，不影响你通用CSS */
+    .quote-box {
+      max-width: 700px;
+      margin: 100px auto;
+      padding: 40px;
+      text-align: center;
+    }
+    .quote-text {
+      font-size: 22px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .quote-author {
+      font-size: 16px;
+      color: #666;
+    }
+    .refresh-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quote-box">
+    <p class="quote-text" id="quoteText">加载中...</p>
+    <div class="quote-author" id="quoteAuthor"></div>
+    <button class="refresh-btn" id="refreshBtn">换一句</button>
+  </div>
+
+  <!-- JSON 数据（你可单独放 quotes.json 文件） -->
+  <script>
+    // 可直接替换成你的 JSON 地址：fetch('quotes.json')
+    const quotesData = [
+      {
+        "text": "生活就像骑自行车，要保持平衡就得不断前进。",
+        "author": "爱因斯坦"
+      },
+      {
+        "text": "种一棵树最好的时间是十年前，其次是现在。",
+        "author": "非洲谚语"
+      },
+      {
+        "text": "你不需要很厉害才开始，你需要开始才很厉害。",
+        "author": "佚名"
+      },
+      {
+        "text": "慢慢来，谁不是摸着石头过河。",
+        "author": "佚名"
+      },
+      {
+        "text": "追风赶月莫停留，平芜尽处是春山。",
+        "author": "《华夏万卷》"
+      }
+    ];
+  </script>
+
+  <!-- 核心随机逻辑（可合并进你的通用 JS） -->
+  <script>
+    function getRandomQuote() {
+      const random = Math.floor(Math.random() * quotesData.length);
+      return quotesData[random];
+    }
+
+    function showQuote() {
+      const q = getRandomQuote();
+      document.getElementById('quoteText').innerText = q.text;
+      document.getElementById('quoteAuthor').innerText = '—— ' + q.author;
+    }
+
+    // 初始化
+    window.onload = showQuote;
+    document.getElementById('refreshBtn').addEventListener('click', showQuote);
+  </script>
+    <script src="https://free-4.github.io/common.js"></script>
+    <link rel="stylesheet" href="https://free-4.github.io/css/href.css">
+</body>
+</html>
