@@ -1194,3 +1194,25 @@ document.addEventListener('DOMContentLoaded', function () {
     document.selection.empty();
   }
 })();
+
+// 禁止双指缩放
+document.addEventListener('touchmove', function(e) {
+  if (e.touches.length >= 2) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// 禁止手势缩放（针对 iOS Safari 等）
+document.addEventListener('gesturestart', function(e) {
+  e.preventDefault();
+});
+
+// 禁止双击缩放
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(e) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    e.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
