@@ -7,7 +7,7 @@ const SITE_DATA = [
         icon: "fun",
         items: [
             { title: "历史上的今天", url: "https://shuoweb.com/page/html/today_history", icon: "history" },
-            { title: "2", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "weather" },
+            { title: "每日一言", url: "https://shuoweb.com/page/html/day_yan.html", icon: "yan" },
             { title: "3", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "ai" }
         ]
     },
