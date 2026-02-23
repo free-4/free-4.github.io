@@ -2,28 +2,69 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>每日一言</title>
+
+  <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
+
   <style>
-    /* 这里写页面专属样式，不影响你通用CSS */
+    /* 基础重置，防止内边距撑破屏幕产生横向滚动条 */
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 优化后的专属样式 */
     .quote-box {
       max-width: 700px;
-      margin: 100px auto;
-      padding: 40px;
+      margin: 10vh auto; /* 使用 vh(视口高度) 替代固定像素，手机端看起来更居中 */
+      padding: 30px 20px;
       text-align: center;
     }
+    
     .quote-text {
       font-size: 22px;
       line-height: 1.6;
       margin-bottom: 20px;
+      color: #333;
     }
+    
     .quote-author {
       font-size: 16px;
       color: #666;
     }
+    
     .refresh-btn {
       margin-top: 30px;
-      padding: 10px 20px;
+      padding: 12px 24px;
+      font-size: 16px;
       cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+      transition: all 0.2s;
+    }
+    
+    .refresh-btn:active {
+      background-color: #e0e0e0;
+    }
+
+    /* 【移动端精细化适配】当屏幕宽度小于 480px (如手机) 时的样式调整 */
+    @media (max-width: 480px) {
+      .quote-box {
+        margin: 5vh 15px; /* 手机端减小顶部边距，两边留出一定空隙 */
+        padding: 20px 15px;
+      }
+      .quote-text {
+        font-size: 18px; /* 手机上字体稍作缩小，避免太拥挤 */
+      }
+      .refresh-btn {
+        width: 100%; /* 手机端按钮撑满容器，方便手指点击 */
+      }
     }
   </style>
 </head>
@@ -35,35 +76,15 @@
     <button class="refresh-btn" id="refreshBtn">换一句</button>
   </div>
 
-  <!-- JSON 数据（你可单独放 quotes.json 文件） -->
   <script>
-    // 可直接替换成你的 JSON 地址：fetch('quotes.json')
     const quotesData = [
-      {
-        "text": "生活就像骑自行车，要保持平衡就得不断前进。",
-        "author": "爱因斯坦"
-      },
-      {
-        "text": "种一棵树最好的时间是十年前，其次是现在。",
-        "author": "非洲谚语"
-      },
-      {
-        "text": "你不需要很厉害才开始，你需要开始才很厉害。",
-        "author": "佚名"
-      },
-      {
-        "text": "慢慢来，谁不是摸着石头过河。",
-        "author": "佚名"
-      },
-      {
-        "text": "追风赶月莫停留，平芜尽处是春山。",
-        "author": "《华夏万卷》"
-      }
+      { "text": "生活就像骑自行车，要保持平衡就得不断前进。", "author": "爱因斯坦" },
+      { "text": "种一棵树最好的时间是十年前，其次是现在。", "author": "非洲谚语" },
+      { "text": "你不需要很厉害才开始，你需要开始才很厉害。", "author": "佚名" },
+      { "text": "慢慢来，谁不是摸着石头过河。", "author": "佚名" },
+      { "text": "追风赶月莫停留，平芜尽处是春山。", "author": "《华夏万卷》" }
     ];
-  </script>
 
-  <!-- 核心随机逻辑（可合并进你的通用 JS） -->
-  <script>
     function getRandomQuote() {
       const random = Math.floor(Math.random() * quotesData.length);
       return quotesData[random];
@@ -74,9 +95,15 @@
       document.getElementById('quoteText').innerText = q.text;
       document.getElementById('quoteAuthor').innerText = '—— ' + q.author;
     }
-    document.getElementById('refreshBtn').addEventListener('click', showQuote);
+
+    // 【关键修复 3】让 DOM 树加载完毕后立马执行一次 showQuote()
+    // 这样就实现了“即时加载”，打开网页文字瞬间就出来了
+    document.addEventListener('DOMContentLoaded', () => {
+      showQuote(); // 初始化，立刻显示第一句话
+      document.getElementById('refreshBtn').addEventListener('click', showQuote); // 绑定点击事件
+    });
   </script>
+
   <script defer src="https://shuoweb.com/common.js"></script>
-    <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
 </body>
 </html>
