@@ -45,9 +45,15 @@ body.pink {
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+    font-family: '666font';
+    src: url('http://shuoweb.com/css/font.ttf');
+}
+
 body {
   margin: 0;
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-family: '666font', sans-serif;
   background: var(--bg);
   color: var(--text-main);
   transition: var(--transition);
