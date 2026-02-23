@@ -4,78 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>每日一言</title>
-
   <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
-
   <style>
-    /* 基础重置，防止内边距撑破屏幕产生横向滚动条 */
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     
     body {
       margin: 0;
-      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* 确保 body 至少占满全屏，方便页脚定位 */
     }
 
-    /* 优化后的专属样式 */
+    .main-content {
+      flex: 1; /* 让内容区域自动撑开，把页脚挤到底部 */
+      display: flex;
+      align-items: center; /* 垂直居中内容 */
+      justify-content: center;
+    }
+
     .quote-box {
+      width: 100%;
       max-width: 700px;
-      margin: 10vh auto; /* 使用 vh(视口高度) 替代固定像素，手机端看起来更居中 */
-      padding: 30px 20px;
+      padding: 20px;
       text-align: center;
     }
-    
+
+    /* 【核心优化】设置专用展示区 */
+    .quote-display-area {
+      /* 设置一个最小高度，防止页脚乱动 */
+      /* 200px 足够容纳大多数 3-4 行的名言 */
+      min-height: 180px; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* 让短句子在区域内垂直居中 */
+      margin-bottom: 20px;
+      transition: height 0.3s ease; /* 平滑过渡 */
+    }
+
     .quote-text {
       font-size: 22px;
       line-height: 1.6;
-      margin-bottom: 20px;
+      margin: 0 0 15px 0;
       color: #333;
     }
-    
+
     .quote-author {
       font-size: 16px;
-      color: #666;
-    }
-    
-    .refresh-btn {
-      margin-top: 30px;
-      padding: 12px 24px;
-      font-size: 16px;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background-color: #f9f9f9;
-      transition: all 0.2s;
-    }
-    
-    .refresh-btn:active {
-      background-color: #e0e0e0;
+      color: #888;
     }
 
-    /* 【移动端精细化适配】当屏幕宽度小于 480px (如手机) 时的样式调整 */
+    .refresh-btn {
+      padding: 10px 25px;
+      font-size: 15px;
+      cursor: pointer;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      background-color: #fff;
+      color: #666;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .refresh-btn:active {
+      background-color: #f5f5f5;
+      transform: scale(0.95);
+    }
+
+    /* 移动端适配 */
     @media (max-width: 480px) {
-      .quote-box {
-        margin: 5vh 15px; /* 手机端减小顶部边距，两边留出一定空隙 */
-        padding: 20px 15px;
+      .quote-display-area {
+        min-height: 220px; /* 手机端文字易换行，高度设大一点 */
       }
       .quote-text {
-        font-size: 18px; /* 手机上字体稍作缩小，避免太拥挤 */
-      }
+        font-size: 19px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="quote-box">
-    <p class="quote-text" id="quoteText">加载中...</p>
-    <div class="quote-author" id="quoteAuthor"></div>
-    <button class="refresh-btn" id="refreshBtn">换一句</button>
+  <div class="main-content">
+    <div class="quote-box">
+      <div class="quote-display-area">
+        <p class="quote-text" id="quoteText">正在寻找灵感...</p>
+        <div class="quote-author" id="quoteAuthor"></div>
+      </div>
+      
+      <button class="refresh-btn" id="refreshBtn">换一句</button>
+    </div>
   </div>
 
   <script>
-      const quotesData = [
+    const quotesData = [
   { "text": "生活就像骑自行车，要保持平衡就得不断前进。", "author": "爱因斯坦" },
   { "text": "种一棵树最好的时间是十年前，其次是现在。", "author": "非洲谚语" },
   { "text": "你不需要很厉害才开始，你需要开始才很厉害。", "author": "佚名" },
@@ -98,22 +118,19 @@
   { "text": "时间就像海绵里的水，只要愿挤，总还是有的。", "author": "鲁迅" }
 ];
 
-    function getRandomQuote() {
-      const random = Math.floor(Math.random() * quotesData.length);
-      return quotesData[random];
-    }
-
     function showQuote() {
-      const q = getRandomQuote();
-      document.getElementById('quoteText').innerText = q.text;
-      document.getElementById('quoteAuthor').innerText = '—— ' + q.author;
+      const random = Math.floor(Math.random() * quotesData.length);
+      const q = quotesData[random];
+      
+      // 使用 textContent 性能更好
+      document.getElementById('quoteText').textContent = q.text;
+      document.getElementById('quoteAuthor').textContent = '—— ' + q.author;
     }
 
-    // 【关键修复 3】让 DOM 树加载完毕后立马执行一次 showQuote()
-    // 这样就实现了“即时加载”，打开网页文字瞬间就出来了
+    // 页面加载立即执行
     document.addEventListener('DOMContentLoaded', () => {
-      showQuote(); // 初始化，立刻显示第一句话
-      document.getElementById('refreshBtn').addEventListener('click', showQuote); // 绑定点击事件
+      showQuote();
+      document.getElementById('refreshBtn').addEventListener('click', showQuote);
     });
   </script>
 
