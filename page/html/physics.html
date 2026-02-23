@@ -2,1182 +2,1177 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>物理实验室 · Physics Lab</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
 
-  :root {
-    --bg: #060d1a;
-    --panel: #0a1628;
-    --border: #1a3a6b;
-    --accent: #00e5ff;
-    --accent2: #ff6b35;
-    --accent3: #a8ff3e;
-    --text: #c8deff;
-    --muted: #4a6fa5;
-    --glow: 0 0 20px rgba(0,229,255,0.4);
-    --glow2: 0 0 20px rgba(255,107,53,0.4);
+:root {
+  --bg: #050c1a;
+  --surface: #091527;
+  --surface2: #0d1e35;
+  --border: #152d52;
+  --border2: #1e3f70;
+  --accent: #00d4f5;
+  --accent-dim: rgba(0,212,245,0.12);
+  --accent-glow: 0 0 24px rgba(0,212,245,0.35);
+  --orange: #ff6b35;
+  --orange-dim: rgba(255,107,53,0.12);
+  --orange-glow: 0 0 24px rgba(255,107,53,0.35);
+  --green: #39ff8f;
+  --green-dim: rgba(57,255,143,0.1);
+  --text: #c5dcff;
+  --text-dim: #4e6f9e;
+  --text-mid: #7a9fc4;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Noto Sans SC', sans-serif;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --header-h: 58px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,245,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,245,0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none; z-index: 0;
+}
+
+/* ── HEADER ── */
+header {
+  position: relative; z-index: 20;
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px;
+  background: rgba(5,12,26,0.96);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  flex-shrink: 0;
+}
+.logo-wrap { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--accent), #0070ff);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  box-shadow: var(--accent-glow);
+  flex-shrink: 0;
+}
+.logo-text { font-family: var(--mono); font-size: 1.05rem; letter-spacing: 2px; color: var(--accent); text-shadow: var(--accent-glow); }
+.logo-sub { font-size: 0.62rem; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; display: none; }
+@media (min-width: 480px) { .logo-sub { display: block; } }
+.header-badge {
+  font-family: var(--mono); font-size: 0.65rem;
+  color: var(--text-dim); background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 4px 12px; letter-spacing: 1px;
+}
+@media (max-width: 480px) { .header-badge { display: none; } }
+
+/* ── TOP TABS (desktop) ── */
+.top-tabs {
+  position: relative; z-index: 19;
+  display: flex;
+  background: rgba(9,21,39,0.98);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.top-tabs::-webkit-scrollbar { display: none; }
+.top-tabs .tab-btn {
+  flex: 1; min-width: 110px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 13px 16px;
+  font-family: var(--sans); font-size: 0.82rem;
+  color: var(--text-dim);
+  background: transparent; border: none; border-bottom: 2px solid transparent;
+  cursor: pointer; transition: color .25s, border-color .25s;
+  white-space: nowrap; user-select: none;
+}
+.top-tabs .tab-btn .icon { font-size: 1rem; }
+.top-tabs .tab-btn:hover { color: var(--text); }
+.top-tabs .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); text-shadow: 0 0 12px rgba(0,212,245,0.5); }
+
+/* ── LAYOUT ── */
+.app { display: flex; flex-direction: column; height: 100vh; }
+.main { flex: 1; overflow: hidden; display: flex; flex-direction: row; position: relative; z-index: 1; }
+
+/* Canvas col */
+.canvas-col {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column;
+  padding: 16px 14px 12px;
+  gap: 10px; overflow: hidden;
+}
+.canvas-wrap {
+  position: relative; flex: 1;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: #020912;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(0,212,245,0.06);
+}
+canvas { display: block; width: 100%; height: 100%; cursor: crosshair; }
+
+.canvas-hint {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; color: var(--text-dim);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 7px 12px; flex-shrink: 0;
+}
+.hint-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+  box-shadow: 0 0 6px var(--accent);
+}
+
+/* Msg overlay */
+.msg-overlay {
+  position: absolute; top: 38%; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono); font-size: 1.2rem;
+  color: var(--green); text-shadow: 0 0 18px rgba(57,255,143,0.9);
+  pointer-events: none; opacity: 0; white-space: nowrap;
+}
+.msg-overlay.pop { animation: msgPop 2.2s cubic-bezier(.22,1,.36,1) forwards; }
+@keyframes msgPop {
+  0%   { opacity:0; transform:translateX(-50%) translateY(0)   scale(0.7); }
+  18%  { opacity:1; transform:translateX(-50%) translateY(-8px) scale(1.06); }
+  70%  { opacity:1; transform:translateX(-50%) translateY(-18px) scale(1); }
+  100% { opacity:0; transform:translateX(-50%) translateY(-38px) scale(0.9); }
+}
+
+/* Angle badge */
+.angle-badge {
+  position: absolute; bottom: 10px; right: 12px;
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--orange);
+  background: rgba(5,12,26,0.82);
+  border: 1px solid rgba(255,107,53,0.22);
+  border-radius: var(--radius-sm); padding: 4px 9px;
+  pointer-events: none; backdrop-filter: blur(6px);
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 298px; flex-shrink: 0;
+  background: rgba(9,21,39,0.85);
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin; scrollbar-color: var(--border2) transparent;
+}
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+.panel { padding: 15px; border-bottom: 1px solid rgba(21,45,82,0.5); }
+.panel:last-child { border-bottom: none; }
+.panel-title {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 13px;
+  display: flex; align-items: center; gap: 8px;
+}
+.panel-title::after { content:''; flex:1; height:1px; background: linear-gradient(90deg, var(--border), transparent); }
+
+/* Sliders */
+.param { margin-bottom: 13px; }
+.param:last-child { margin-bottom: 0; }
+.param-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.param-name { font-size: 0.77rem; color: var(--text-mid); }
+.param-val { font-family: var(--mono); font-size: 0.8rem; color: var(--orange); min-width: 68px; text-align: right; }
+
+input[type=range] { width:100%; height:20px; -webkit-appearance:none; background:transparent; outline:none; cursor:pointer; }
+input[type=range]::-webkit-slider-runnable-track { height:3px; background:var(--border2); border-radius:2px; }
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance:none; width:18px; height:18px; margin-top:-7.5px;
+  border-radius:50%; background:var(--accent); border:2px solid var(--bg);
+  box-shadow:0 0 10px rgba(0,212,245,0.5);
+}
+input[type=range]::-moz-range-track { height:3px; background:var(--border2); border-radius:2px; }
+input[type=range]::-moz-range-thumb {
+  width:18px; height:18px; border-radius:50%; background:var(--accent);
+  border:2px solid var(--bg); box-shadow:0 0 10px rgba(0,212,245,0.5);
+}
+
+/* Buttons */
+.btn-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:13px; }
+.btn {
+  flex:1; min-width:68px;
+  padding:9px 12px;
+  border:1px solid var(--border2); background:var(--surface2);
+  color:var(--text-mid); font-family:var(--mono); font-size:0.7rem;
+  letter-spacing:0.5px; cursor:pointer; border-radius:var(--radius-sm);
+  transition:all .2s; white-space:nowrap;
+}
+.btn:hover,.btn:active { border-color:var(--accent); color:var(--accent); }
+.btn:active { transform:scale(0.96); }
+.btn-fire {
+  background: linear-gradient(135deg, var(--accent), #0090e0);
+  border-color:var(--accent); color:var(--bg); font-weight:700;
+  box-shadow:0 2px 14px rgba(0,212,245,0.28);
+}
+.btn-fire:hover,.btn-fire:active { background:transparent; color:var(--accent); box-shadow:var(--accent-glow); }
+
+/* Stats */
+.stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.stat-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-sm); padding:9px 11px; text-align:center;
+  transition:border-color .3s;
+}
+.stat-card:hover { border-color:var(--border2); }
+.stat-num { font-family:var(--mono); font-size:1.2rem; color:var(--accent); line-height:1.2; }
+.stat-label { font-size:0.58rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.7px; margin-top:3px; }
+@keyframes numFlash { 0%,100%{color:var(--accent)} 50%{color:var(--green);text-shadow:0 0 18px var(--green)} }
+.flash { animation:numFlash .5s ease; }
+
+/* Info card */
+.info-card {
+  background:rgba(0,212,245,0.04); border:1px solid rgba(0,212,245,0.12);
+  border-radius:var(--radius-sm); padding:12px;
+  font-size:0.75rem; line-height:1.75; color:var(--text-mid);
+}
+.info-card strong { color:var(--text); }
+.formula {
+  font-family:var(--mono); font-size:0.8rem; color:var(--green);
+  background:var(--green-dim); border-left:2px solid var(--green);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:5px 10px; margin:7px 0; letter-spacing:0.3px;
+}
+
+/* Mode btns */
+.mode-row { display:flex; gap:6px; flex-wrap:wrap; }
+.mode-btn {
+  flex:1; min-width:76px;
+  padding:7px 8px;
+  border:1px solid var(--border); background:var(--surface);
+  color:var(--text-dim); font-family:var(--mono); font-size:0.64rem;
+  cursor:pointer; border-radius:var(--radius-sm); transition:all .2s;
+}
+.mode-btn.active { border-color:var(--orange); color:var(--orange); background:var(--orange-dim); box-shadow:0 0 10px rgba(255,107,53,0.18); }
+.mode-btn:hover { border-color:var(--orange); color:var(--orange); }
+.mode-btn:active { transform:scale(0.96); }
+
+/* Collision table */
+.col-table { width:100%; border-collapse:collapse; font-size:0.74rem; }
+.col-table th { font-family:var(--mono); font-size:0.58rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; padding:0 0 7px; text-align:right; font-weight:400; }
+.col-table th:first-child { text-align:left; }
+.col-table td { padding:6px 0; border-top:1px solid var(--border); text-align:right; color:var(--text); }
+.col-table td:first-child { text-align:left; color:var(--text-mid); font-size:0.7rem; }
+.col-table .num { font-family:var(--mono); }
+.col-table .p-num { color:var(--accent); }
+.col-table .e-num { color:var(--orange); }
+
+/* ── PAGE VISIBILITY ── */
+.page { display:none; }
+.page.active { display:contents; }
+
+/* ══════════════════════════════
+   MOBILE
+══════════════════════════════ */
+@media (max-width: 680px) {
+  .top-tabs { display:none; }
+  .main { flex-direction:column; overflow:hidden; }
+
+  .canvas-col {
+    flex:none; padding:8px 8px 0;
+    height:50vw; min-height:190px; max-height:285px;
   }
+  .canvas-hint { display:none; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Noto Sans SC', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  header {
-    position: relative;
-    z-index: 10;
-    padding: 20px 40px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background: rgba(6,13,26,0.9);
-    backdrop-filter: blur(10px);
-  }
-
-  .logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 1.4rem;
-    color: var(--accent);
-    text-shadow: var(--glow);
-    letter-spacing: 2px;
-  }
-
-  .logo span { color: var(--text); }
-
-  .subtitle {
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-
-  /* Tab navigation */
-  .tabs {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    gap: 0;
-    padding: 0 40px;
-    background: rgba(10,22,40,0.95);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .tab {
-    padding: 16px 28px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    color: var(--muted);
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    letter-spacing: 0.5px;
-    user-select: none;
-  }
-
-  .tab:hover { color: var(--text); }
-
-  .tab.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-    text-shadow: var(--glow);
-  }
-
-  .tab-icon { font-size: 1.1rem; }
-
-  /* Main layout */
-  .main {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 0;
-    height: calc(100vh - 110px);
-  }
-
-  .canvas-area {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  canvas {
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: #020810;
-    cursor: crosshair;
-    display: block;
-  }
-
-  /* Sidebar */
   .sidebar {
-    border-left: 1px solid var(--border);
-    background: rgba(10,22,40,0.8);
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+    width:100%; border-left:none;
+    border-top:1px solid var(--border);
+    flex:1; overflow-y:auto;
+    padding-bottom:62px;
+    scrollbar-width:none;
   }
+  .sidebar::-webkit-scrollbar { display:none; }
 
-  .sidebar-section {
-    padding: 20px;
-    border-bottom: 1px solid rgba(26,58,107,0.5);
-  }
+  .panel { padding:12px; }
+  .stat-num { font-size:1.05rem; }
+  .param-name { font-size:0.74rem; }
+  input[type=range]::-webkit-slider-thumb { width:22px; height:22px; margin-top:-9.5px; }
+  .btn { padding:11px 10px; font-size:0.68rem; }
+  .bottom-nav { display:flex !important; }
+  header { padding:0 12px; }
+  .logo-icon { width:30px; height:30px; font-size:14px; }
+  .logo-text { font-size:0.95rem; }
+}
 
-  .sidebar-section h3 {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
+@media (min-width:681px) {
+  .bottom-nav { display:none !important; }
+}
 
-  /* Sliders */
-  .param {
-    margin-bottom: 16px;
-  }
+/* Bottom nav */
+.bottom-nav {
+  display:none;
+  position:fixed; bottom:0; left:0; right:0;
+  height:58px; z-index:100;
+  background:rgba(5,12,26,0.97);
+  border-top:1px solid var(--border);
+  backdrop-filter:blur(14px);
+}
+.nav-btn {
+  flex:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+  background:transparent; border:none;
+  color:var(--text-dim); font-family:var(--sans); font-size:0.58rem; letter-spacing:0.5px;
+  cursor:pointer; transition:color .2s; padding:5px 0;
+  -webkit-tap-highlight-color:transparent;
+}
+.nav-btn .nav-icon { font-size:1.25rem; line-height:1; }
+.nav-btn.active { color:var(--accent); }
+.nav-btn.active .nav-icon { filter:drop-shadow(0 0 5px rgba(0,212,245,0.7)); }
 
-  .param-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    margin-bottom: 6px;
-    color: var(--text);
-  }
-
-  .param-value {
-    font-family: 'Space Mono', monospace;
-    color: var(--accent2);
-    font-size: 0.85rem;
-  }
-
-  input[type=range] {
-    width: 100%;
-    -webkit-appearance: none;
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    outline: none;
-  }
-
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--accent);
-    cursor: pointer;
-    box-shadow: 0 0 8px rgba(0,229,255,0.6);
-  }
-
-  /* Buttons */
-  .btn {
-    padding: 10px 20px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    cursor: pointer;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    transition: all 0.2s;
-  }
-
-  .btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    box-shadow: var(--glow);
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
-    font-weight: 700;
-  }
-
-  .btn-primary:hover {
-    background: transparent;
-    color: var(--accent);
-  }
-
-  .btn-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  /* Info card */
-  .info-card {
-    background: rgba(0,229,255,0.05);
-    border: 1px solid rgba(0,229,255,0.15);
-    border-radius: 6px;
-    padding: 14px;
-    font-size: 0.78rem;
-    line-height: 1.7;
-    color: var(--text);
-  }
-
-  .info-card .formula {
-    font-family: 'Space Mono', monospace;
-    color: var(--accent3);
-    font-size: 0.85rem;
-    margin: 8px 0;
-    padding: 6px 10px;
-    background: rgba(168,255,62,0.08);
-    border-radius: 4px;
-    border-left: 2px solid var(--accent3);
-  }
-
-  /* Score / stats */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .stat-box {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px;
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 1.4rem;
-    color: var(--accent);
-    text-shadow: var(--glow);
-  }
-
-  .stat-label {
-    font-size: 0.65rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 2px;
-  }
-
-  /* Message overlay */
-  .message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Space Mono', monospace;
-    font-size: 1.5rem;
-    color: var(--accent3);
-    text-shadow: 0 0 20px rgba(168,255,62,0.8);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-    white-space: nowrap;
-    z-index: 99;
-  }
-
-  .message.show {
-    opacity: 1;
-    animation: fadeMsg 2s forwards;
-  }
-
-  @keyframes fadeMsg {
-    0% { opacity: 1; transform: translate(-50%, -50%); }
-    70% { opacity: 1; transform: translate(-50%, -60%); }
-    100% { opacity: 0; transform: translate(-50%, -70%); }
-  }
-
-  .page { display: none; }
-  .page.active { display: contents; }
-
-  /* Collision mode buttons */
-  .mode-btn {
-    padding: 7px 14px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: all 0.2s;
-  }
-  .mode-btn.active, .mode-btn:hover {
-    border-color: var(--accent2);
-    color: var(--accent2);
-  }
-
-  /* Pendulum hint */
-  .hint {
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-style: italic;
-    margin-top: 6px;
-  }
-
-  .score-flash {
-    animation: scoreFlash 0.5s ease;
-  }
-  @keyframes scoreFlash {
-    0%,100% { color: var(--accent); }
-    50% { color: var(--accent3); text-shadow: 0 0 30px rgba(168,255,62,1); }
-  }
+@media (min-width:900px) { .sidebar { width:316px; } }
 </style>
 </head>
 <body>
+<div class="app">
 
-<header>
-  <div>
-    <div class="logo">PHYSICS<span>LAB</span></div>
-    <div class="subtitle">互动物理实验室 · Interactive</div>
-  </div>
-</header>
-
-<div class="tabs">
-  <div class="tab active" onclick="switchTab('projectile')">
-    <span class="tab-icon">🎯</span> 抛体运动
-  </div>
-  <div class="tab" onclick="switchTab('pendulum')">
-    <span class="tab-icon">🔄</span> 单摆实验
-  </div>
-  <div class="tab" onclick="switchTab('collision')">
-    <span class="tab-icon">💥</span> 碰撞守恒
-  </div>
-</div>
-
-<div class="main">
-
-  <!-- ========== PROJECTILE PAGE ========== -->
-  <div class="canvas-area page active" id="page-projectile-canvas">
-    <div style="position:relative">
-      <canvas id="projectile-canvas" height="440"></canvas>
-      <div class="message" id="proj-msg"></div>
+  <header>
+    <div class="logo-wrap">
+      <div class="logo-icon">⚗️</div>
+      <div>
+        <div class="logo-text">PHYSICS LAB</div>
+        <div class="logo-sub">互动物理实验室</div>
+      </div>
     </div>
-    <div class="hint" style="color:var(--muted);font-size:0.75rem;padding:0 4px">
-      💡 点击画面任意位置或按 <strong style="color:var(--accent)">发射</strong> 按钮发射炮弹，尝试击中所有目标！
-    </div>
+    <div class="header-badge">3 实验模块</div>
+  </header>
+
+  <div class="top-tabs">
+    <button class="tab-btn active" onclick="switchTab('projectile')"><span class="icon">🎯</span> 抛体运动</button>
+    <button class="tab-btn" onclick="switchTab('pendulum')"><span class="icon">🌀</span> 单摆实验</button>
+    <button class="tab-btn" onclick="switchTab('collision')"><span class="icon">💥</span> 碰撞守恒</button>
   </div>
 
-  <div class="sidebar page active" id="page-projectile-side">
-    <div class="sidebar-section">
-      <h3>⚙ 发射参数</h3>
-      <div class="param">
-        <div class="param-label"><span>发射角度 θ</span><span class="param-value" id="angle-val">45°</span></div>
-        <input type="range" id="angle-slider" min="10" max="80" value="45">
+  <div class="main">
+
+    <!-- ══ PROJECTILE ══ -->
+    <div class="canvas-col page active" id="page-projectile-canvas">
+      <div class="canvas-wrap">
+        <canvas id="projectile-canvas"></canvas>
+        <div class="msg-overlay" id="proj-msg"></div>
       </div>
-      <div class="param">
-        <div class="param-label"><span>初速度 v₀</span><span class="param-value" id="speed-val">50 m/s</span></div>
-        <input type="range" id="speed-slider" min="20" max="100" value="50">
-      </div>
-      <div class="param">
-        <div class="param-label"><span>重力加速度 g</span><span class="param-value" id="gravity-val">9.8 m/s²</span></div>
-        <input type="range" id="gravity-slider" min="1" max="25" value="10" step="0.1">
-      </div>
-      <div class="btn-row" style="margin-top:12px">
-        <button class="btn btn-primary" onclick="fireProjectile()">🚀 发射</button>
-        <button class="btn" onclick="resetProjectile()">重置</button>
+      <div class="canvas-hint">
+        <div class="hint-dot"></div>
+        点击画布或按发射按钮；调整角度和速度，击中全部目标！
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <h3>📊 实时数据</h3>
-      <div class="stats-grid">
-        <div class="stat-box">
-          <div class="stat-num" id="range-val">—</div>
-          <div class="stat-label">射程 (m)</div>
+    <div class="sidebar page active" id="page-projectile-side">
+      <div class="panel">
+        <div class="panel-title">发射参数</div>
+        <div class="param">
+          <div class="param-row"><span class="param-name">发射角度 θ</span><span class="param-val" id="angle-val">45°</span></div>
+          <input type="range" id="angle-slider" min="10" max="80" value="45">
         </div>
-        <div class="stat-box">
-          <div class="stat-num" id="maxh-val">—</div>
-          <div class="stat-label">最高点 (m)</div>
+        <div class="param">
+          <div class="param-row"><span class="param-name">初速度 v₀</span><span class="param-val" id="speed-val">50 m/s</span></div>
+          <input type="range" id="speed-slider" min="20" max="100" value="50">
         </div>
-        <div class="stat-box">
-          <div class="stat-num" id="flight-val">—</div>
-          <div class="stat-label">飞行时间 (s)</div>
+        <div class="param">
+          <div class="param-row"><span class="param-name">重力加速度 g</span><span class="param-val" id="gravity-val">9.8 m/s²</span></div>
+          <input type="range" id="gravity-slider" min="1" max="25" value="9.8" step="0.1">
         </div>
-        <div class="stat-box">
-          <div class="stat-num" id="score-val" style="color:var(--accent3)">0</div>
-          <div class="stat-label">命中得分</div>
+        <div class="btn-row">
+          <button class="btn btn-fire" onclick="fireProjectile()">🚀 发射</button>
+          <button class="btn" onclick="resetProjectile()">↺ 重置</button>
         </div>
       </div>
-    </div>
 
-    <div class="sidebar-section">
-      <h3>📚 物理原理</h3>
-      <div class="info-card">
-        <strong>抛体运动</strong>由两个独立运动合成：<br>
-        水平方向匀速运动，竖直方向匀加速运动。
-        <div class="formula">x = v₀cosθ · t</div>
-        <div class="formula">y = v₀sinθ · t − ½gt²</div>
-        当 θ = 45° 时，水平射程最大！<br>
-        <span style="color:var(--muted);font-size:0.72rem">试着对比不同角度的轨迹～</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== PENDULUM PAGE ========== -->
-  <div class="canvas-area page" id="page-pendulum-canvas">
-    <canvas id="pendulum-canvas" height="440"></canvas>
-    <div class="hint">💡 拖动摆球改变初始角度，观察摆长对周期的影响</div>
-  </div>
-
-  <div class="sidebar page" id="page-pendulum-side">
-    <div class="sidebar-section">
-      <h3>⚙ 实验参数</h3>
-      <div class="param">
-        <div class="param-label"><span>摆长 L</span><span class="param-value" id="plen-val">1.0 m</span></div>
-        <input type="range" id="plen-slider" min="0.2" max="3.0" value="1.0" step="0.05">
-      </div>
-      <div class="param">
-        <div class="param-label"><span>重力加速度 g</span><span class="param-value" id="pgrav-val">9.8 m/s²</span></div>
-        <input type="range" id="pgrav-slider" min="1" max="25" value="9.8" step="0.1">
-      </div>
-      <div class="param">
-        <div class="param-label"><span>阻尼系数</span><span class="param-value" id="damp-val">0.999</span></div>
-        <input type="range" id="damp-slider" min="0.990" max="1.000" value="0.999" step="0.001">
-      </div>
-      <div class="btn-row" style="margin-top:12px">
-        <button class="btn btn-primary" onclick="resetPendulum()">↺ 重置</button>
-        <button class="btn" onclick="toggleTrail()" id="trail-btn">显示轨迹</button>
-      </div>
-    </div>
-
-    <div class="sidebar-section">
-      <h3>📊 实时数据</h3>
-      <div class="stats-grid">
-        <div class="stat-box">
-          <div class="stat-num" id="period-measured">—</div>
-          <div class="stat-label">实测周期 (s)</div>
+      <div class="panel">
+        <div class="panel-title">实时数据</div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-num" id="range-val">—</div><div class="stat-label">射程 (m)</div></div>
+          <div class="stat-card"><div class="stat-num" id="maxh-val">—</div><div class="stat-label">最高点 (m)</div></div>
+          <div class="stat-card"><div class="stat-num" id="flight-val">—</div><div class="stat-label">飞行时间 (s)</div></div>
+          <div class="stat-card"><div class="stat-num" id="score-val" style="color:var(--green)">0</div><div class="stat-label">命中得分</div></div>
         </div>
-        <div class="stat-box">
-          <div class="stat-num" id="period-theory">—</div>
-          <div class="stat-label">理论周期 (s)</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num" id="pangle-val">—</div>
-          <div class="stat-label">当前角度 (°)</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num" id="pspeed-val">—</div>
-          <div class="stat-label">角速度 (°/s)</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">物理原理</div>
+        <div class="info-card">
+          <strong>抛体运动</strong>是两个独立分运动的合成：<br>
+          水平方向匀速、竖直方向匀加速运动。
+          <div class="formula">x = v₀ cosθ · t</div>
+          <div class="formula">y = v₀ sinθ · t − ½gt²</div>
+          当 θ = 45° 时水平射程最大！<br>
+          <span style="color:var(--text-dim);font-size:0.7rem">发射多次，对比不同角度的轨迹～</span>
         </div>
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <h3>📚 物理原理</h3>
-      <div class="info-card">
-        <strong>单摆周期</strong>与摆长的平方根成正比：
-        <div class="formula">T = 2π√(L/g)</div>
-        在小角度（&lt;15°）摆动时，该公式最精准。<br>
-        注意：<span style="color:var(--accent2)">周期与摆球质量无关！</span><br>
-        <span style="color:var(--muted);font-size:0.72rem">改变摆长，观察实测 vs 理论周期的差异</span>
+    <!-- ══ PENDULUM ══ -->
+    <div class="canvas-col page" id="page-pendulum-canvas">
+      <div class="canvas-wrap">
+        <canvas id="pendulum-canvas"></canvas>
+        <div class="angle-badge" id="angle-badge">— °</div>
       </div>
-    </div>
-  </div>
-
-  <!-- ========== COLLISION PAGE ========== -->
-  <div class="canvas-area page" id="page-collision-canvas">
-    <canvas id="collision-canvas" height="440"></canvas>
-    <div class="hint">💡 点击"发射"让小球碰撞，观察动量和能量的变化</div>
-  </div>
-
-  <div class="sidebar page" id="page-collision-side">
-    <div class="sidebar-section">
-      <h3>⚙ 碰撞类型</h3>
-      <div class="btn-row">
-        <button class="mode-btn active" id="mode-elastic" onclick="setCollisionMode('elastic')">完全弹性</button>
-        <button class="mode-btn" id="mode-inelastic" onclick="setCollisionMode('inelastic')">完全非弹性</button>
-        <button class="mode-btn" id="mode-partial" onclick="setCollisionMode('partial')">部分弹性</button>
-      </div>
-      <div class="param" style="margin-top:16px">
-        <div class="param-label"><span>球A质量</span><span class="param-value" id="massA-val">2 kg</span></div>
-        <input type="range" id="massA-slider" min="1" max="5" value="2" step="0.5">
-      </div>
-      <div class="param">
-        <div class="param-label"><span>球B质量</span><span class="param-value" id="massB-val">2 kg</span></div>
-        <input type="range" id="massB-slider" min="1" max="5" value="2" step="0.5">
-      </div>
-      <div class="param">
-        <div class="param-label"><span>球A初速度</span><span class="param-value" id="velA-val">4 m/s</span></div>
-        <input type="range" id="velA-slider" min="1" max="8" value="4" step="0.5">
-      </div>
-      <div class="btn-row" style="margin-top:12px">
-        <button class="btn btn-primary" onclick="fireCollision()">▶ 发射</button>
-        <button class="btn" onclick="resetCollision()">重置</button>
+      <div class="canvas-hint">
+        <div class="hint-dot" style="background:var(--orange);box-shadow:0 0 6px var(--orange)"></div>
+        拖动摆球改变初始角度，观察摆长对周期的影响
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <h3>📊 碰撞前后对比</h3>
-      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:10px">单位：kg·m/s 和 J</div>
-      <table style="width:100%;border-collapse:collapse;font-size:0.78rem">
-        <tr style="color:var(--muted);font-size:0.7rem">
-          <td style="padding:4px 0">物理量</td>
-          <td style="text-align:right;padding:4px 0">碰撞前</td>
-          <td style="text-align:right;padding:4px 0">碰撞后</td>
-        </tr>
-        <tr style="border-top:1px solid var(--border)">
-          <td style="padding:6px 0;color:var(--text)">总动量 p</td>
-          <td style="text-align:right;font-family:'Space Mono';color:var(--accent)" id="p-before">—</td>
-          <td style="text-align:right;font-family:'Space Mono';color:var(--accent)" id="p-after">—</td>
-        </tr>
-        <tr>
-          <td style="padding:6px 0;color:var(--text)">总动能 Ek</td>
-          <td style="text-align:right;font-family:'Space Mono';color:var(--accent2)" id="e-before">—</td>
-          <td style="text-align:right;font-family:'Space Mono';color:var(--accent2)" id="e-after">—</td>
-        </tr>
-      </table>
-    </div>
+    <div class="sidebar page" id="page-pendulum-side">
+      <div class="panel">
+        <div class="panel-title">实验参数</div>
+        <div class="param">
+          <div class="param-row"><span class="param-name">摆长 L</span><span class="param-val" id="plen-val">1.00 m</span></div>
+          <input type="range" id="plen-slider" min="0.2" max="3.0" value="1.0" step="0.05">
+        </div>
+        <div class="param">
+          <div class="param-row"><span class="param-name">重力加速度 g</span><span class="param-val" id="pgrav-val">9.8 m/s²</span></div>
+          <input type="range" id="pgrav-slider" min="1" max="25" value="9.8" step="0.1">
+        </div>
+        <div class="param">
+          <div class="param-row"><span class="param-name">阻尼系数</span><span class="param-val" id="damp-val">0.999</span></div>
+          <input type="range" id="damp-slider" min="0.990" max="1.000" value="0.999" step="0.001">
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-fire" onclick="resetPendulum()">↺ 重置</button>
+          <button class="btn" id="trail-btn" onclick="toggleTrail()">轨迹 OFF</button>
+        </div>
+      </div>
 
-    <div class="sidebar-section">
-      <h3>📚 物理原理</h3>
-      <div class="info-card">
-        <strong>动量守恒定律</strong>：无论哪种碰撞，系统总动量不变。
-        <div class="formula">m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'</div>
-        <strong>能量</strong>：弹性碰撞动能守恒；非弹性碰撞有能量以热、声等形式散失。
-        <div class="formula">e = (v₂'−v₁')/(v₁−v₂)</div>
-        <span style="color:var(--muted);font-size:0.72rem">e=1弹性，e=0完全非弹性</span>
+      <div class="panel">
+        <div class="panel-title">周期比较</div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-num" id="period-theory" style="color:var(--orange)">—</div><div class="stat-label">理论周期 (s)</div></div>
+          <div class="stat-card"><div class="stat-num" id="period-measured">—</div><div class="stat-label">实测周期 (s)</div></div>
+          <div class="stat-card"><div class="stat-num" id="pangle-val">—</div><div class="stat-label">角度 (°)</div></div>
+          <div class="stat-card"><div class="stat-num" id="pspeed-val">—</div><div class="stat-label">角速度 (°/s)</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">物理原理</div>
+        <div class="info-card">
+          <strong>单摆</strong>的周期仅与摆长和重力加速度有关：
+          <div class="formula">T = 2π √(L / g)</div>
+          在小角度（&lt;15°）下公式最为精准。<br>
+          <span style="color:var(--orange)">周期与摆球质量无关！</span><br>
+          <span style="color:var(--text-dim);font-size:0.7rem">改变摆长，对比实测与理论周期差异</span>
+        </div>
       </div>
     </div>
-  </div>
 
-</div>
+    <!-- ══ COLLISION ══ -->
+    <div class="canvas-col page" id="page-collision-canvas">
+      <div class="canvas-wrap">
+        <canvas id="collision-canvas"></canvas>
+      </div>
+      <div class="canvas-hint">
+        <div class="hint-dot" style="background:var(--orange);box-shadow:0 0 6px var(--orange)"></div>
+        调整参数后点击发射，观察碰撞前后动量和能量的变化
+      </div>
+    </div>
+
+    <div class="sidebar page" id="page-collision-side">
+      <div class="panel">
+        <div class="panel-title">碰撞类型</div>
+        <div class="mode-row">
+          <button class="mode-btn active" id="mode-elastic" onclick="setCollisionMode('elastic')">完全弹性</button>
+          <button class="mode-btn" id="mode-inelastic" onclick="setCollisionMode('inelastic')">完全非弹性</button>
+          <button class="mode-btn" id="mode-partial" onclick="setCollisionMode('partial')">部分弹性</button>
+        </div>
+        <div style="margin-top:13px">
+          <div class="param">
+            <div class="param-row"><span class="param-name">球A 质量</span><span class="param-val" id="massA-val">2.0 kg</span></div>
+            <input type="range" id="massA-slider" min="1" max="5" value="2" step="0.5">
+          </div>
+          <div class="param">
+            <div class="param-row"><span class="param-name">球B 质量</span><span class="param-val" id="massB-val">2.0 kg</span></div>
+            <input type="range" id="massB-slider" min="1" max="5" value="2" step="0.5">
+          </div>
+          <div class="param">
+            <div class="param-row"><span class="param-name">球A 初速度</span><span class="param-val" id="velA-val">4.0 m/s</span></div>
+            <input type="range" id="velA-slider" min="1" max="8" value="4" step="0.5">
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-fire" onclick="fireCollision()">▶ 发射</button>
+          <button class="btn" onclick="resetCollision()">↺ 重置</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">碰撞前后对比</div>
+        <table class="col-table">
+          <thead><tr><th>物理量</th><th>碰前</th><th>碰后</th></tr></thead>
+          <tbody>
+            <tr><td>总动量 p (kg·m/s)</td><td class="num p-num" id="p-before">—</td><td class="num p-num" id="p-after">—</td></tr>
+            <tr><td>总动能 Ek (J)</td><td class="num e-num" id="e-before">—</td><td class="num e-num" id="e-after">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">物理原理</div>
+        <div class="info-card">
+          <strong>动量守恒</strong>：无论何种碰撞，系统总动量不变。
+          <div class="formula">m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'</div>
+          弹性碰撞动能守恒；非弹性碰撞部分动能散失为热或声能。
+          <div class="formula">e = (v₂'−v₁') / (v₁−v₂)</div>
+          <span style="color:var(--text-dim);font-size:0.7rem">e=1 完全弹性，e=0 完全非弹性</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- .main -->
+
+  <nav class="bottom-nav" id="bottom-nav">
+    <button class="nav-btn active" onclick="switchTab('projectile')"><span class="nav-icon">🎯</span>抛体运动</button>
+    <button class="nav-btn" onclick="switchTab('pendulum')"><span class="nav-icon">🌀</span>单摆实验</button>
+    <button class="nav-btn" onclick="switchTab('collision')"><span class="nav-icon">💥</span>碰撞守恒</button>
+  </nav>
+
+</div><!-- .app -->
 
 <script>
-// ==========================================
+'use strict';
+
+// ──────────────────────────────────────
 // TAB SYSTEM
-// ==========================================
+// ──────────────────────────────────────
 let currentTab = 'projectile';
+
 function switchTab(tab) {
-  document.querySelectorAll('.tab').forEach((t,i) => {
-    t.classList.toggle('active', ['projectile','pendulum','collision'][i] === tab);
-  });
+  currentTab = tab;
+  const names = ['projectile','pendulum','collision'];
+  document.querySelectorAll('.top-tabs .tab-btn').forEach((b,i) => b.classList.toggle('active', names[i]===tab));
+  document.querySelectorAll('.nav-btn').forEach((b,i) => b.classList.toggle('active', names[i]===tab));
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-'+tab+'-canvas').classList.add('active');
   document.getElementById('page-'+tab+'-side').classList.add('active');
-  currentTab = tab;
-  if(tab === 'projectile') initProjectile();
-  if(tab === 'pendulum') initPendulum();
-  if(tab === 'collision') initCollision();
+  cancelAnimationFrame(penAnim);
+  requestAnimationFrame(() => {
+    if (tab==='projectile') initProjectile();
+    if (tab==='pendulum')   initPendulum();
+    if (tab==='collision')  initCollision();
+  });
 }
 
-// ==========================================
-// PROJECTILE MOTION
-// ==========================================
+// ──────────────────────────────────────
+// UTILS
+// ──────────────────────────────────────
+function showMsg(id, txt) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = txt;
+  el.classList.remove('pop');
+  void el.offsetWidth;
+  el.classList.add('pop');
+}
+function resizeCanvas(canvas) {
+  const w = canvas.parentElement.clientWidth;
+  const h = canvas.parentElement.clientHeight;
+  if (canvas.width!==w || canvas.height!==h) { canvas.width=w; canvas.height=h; return true; }
+  return false;
+}
+
+// ──────────────────────────────────────
+// PROJECTILE
+// ──────────────────────────────────────
 let pjCanvas, pjCtx, pjAnim;
-let pjBalls = [];
-let pjTargets = [];
-let pjScore = 0;
-let pjTrails = [];
+let pjTargets=[], pjScore=0, pjTrails=[];
 
 function initProjectile() {
   pjCanvas = document.getElementById('projectile-canvas');
   pjCtx = pjCanvas.getContext('2d');
-  pjCanvas.width = pjCanvas.offsetWidth;
-  pjCanvas.height = 440;
-  pjCanvas.onclick = fireProjectile;
-  generateTargets();
-  updateSliders();
-  drawProjectileScene();
-}
+  resizeCanvas(pjCanvas);
+  cancelAnimationFrame(pjAnim);
 
-function updateSliders() {
-  const angle = document.getElementById('angle-slider');
-  const speed = document.getElementById('speed-slider');
-  const gravity = document.getElementById('gravity-slider');
-  if(!angle) return;
-  angle.oninput = () => {
-    document.getElementById('angle-val').textContent = angle.value + '°';
-    drawProjectileScene();
-  };
-  speed.oninput = () => {
-    document.getElementById('speed-val').textContent = speed.value + ' m/s';
-    drawProjectileScene();
-  };
-  gravity.oninput = () => {
-    document.getElementById('gravity-val').textContent = parseFloat(gravity.value).toFixed(1) + ' m/s²';
-    drawProjectileScene();
-  };
-  document.getElementById('angle-val').textContent = angle.value + '°';
-  document.getElementById('speed-val').textContent = speed.value + ' m/s';
-  document.getElementById('gravity-val').textContent = parseFloat(gravity.value).toFixed(1) + ' m/s²';
+  const $a = id => document.getElementById(id);
+  $a('angle-slider').oninput  = () => { $a('angle-val').textContent  = $a('angle-slider').value + '°'; drawPJ(); };
+  $a('speed-slider').oninput  = () => { $a('speed-val').textContent  = $a('speed-slider').value + ' m/s'; drawPJ(); };
+  $a('gravity-slider').oninput= () => { $a('gravity-val').textContent= parseFloat($a('gravity-slider').value).toFixed(1)+' m/s²'; drawPJ(); };
+
+  pjCanvas.onclick    = fireProjectile;
+  pjCanvas.ontouchend = (e)=>{ e.preventDefault(); fireProjectile(); };
+
+  generateTargets();
+  drawPJ();
 }
 
 function generateTargets() {
-  pjTargets = [];
-  const W = pjCanvas ? pjCanvas.width : 800;
-  const H = 440;
-  const ground = H - 40;
-  for(let i = 0; i < 4; i++) {
-    pjTargets.push({
-      x: 150 + Math.random() * (W - 250),
-      y: ground - 10 - Math.random() * 80,
-      r: 18,
-      hit: false
-    });
-  }
+  if (!pjCanvas) return;
+  const W=pjCanvas.width, H=pjCanvas.height, G=H-36;
+  pjTargets = Array.from({length:4}, ()=>({
+    x: 90 + Math.random()*(W-170),
+    y: G - 8 - Math.random()*Math.min(55, G*0.38),
+    r: 16, hit: false, pulse: 0
+  }));
 }
 
 function fireProjectile() {
-  if(!pjCanvas) return;
+  if (!pjCanvas) return;
   cancelAnimationFrame(pjAnim);
-  const angle = parseFloat(document.getElementById('angle-slider').value) * Math.PI / 180;
-  const v0 = parseFloat(document.getElementById('speed-slider').value);
-  const g = parseFloat(document.getElementById('gravity-slider').value);
-  const W = pjCanvas.width;
-  const H = pjCanvas.height;
-  const ground = H - 40;
-  const scale = W / 120; // pixels per meter
+  const $v = id => parseFloat(document.getElementById(id).value);
+  const angle = $v('angle-slider')*Math.PI/180;
+  const v0    = $v('speed-slider');
+  const g     = $v('gravity-slider');
+  const W=pjCanvas.width, H=pjCanvas.height, G=H-36;
+  const sc = W/100;
 
-  const vx = v0 * Math.cos(angle) * scale / 10;
-  const vy = v0 * Math.sin(angle) * scale / 10;
-  const gPx = g * scale / 100;
+  const vx  = v0*Math.cos(angle)*sc*0.01;
+  const vyI = v0*Math.sin(angle)*sc*0.01;
+  const gPx = g*sc*0.001;
 
-  // Theory
-  const T = 2 * v0 * Math.sin(angle) / g;
-  const R = v0 * v0 * Math.sin(2*angle) / g;
-  const Hmax = v0 * v0 * Math.sin(angle) * Math.sin(angle) / (2*g);
-  document.getElementById('range-val').textContent = R.toFixed(1);
-  document.getElementById('maxh-val').textContent = Hmax.toFixed(1);
+  const T = 2*v0*Math.sin(angle)/g;
+  const R = v0*v0*Math.sin(2*angle)/g;
+  const Hm= v0*v0*Math.sin(angle)**2/(2*g);
+  document.getElementById('range-val').textContent  = R.toFixed(1);
+  document.getElementById('maxh-val').textContent   = Hm.toFixed(1);
   document.getElementById('flight-val').textContent = T.toFixed(2);
 
-  let ball = { x: 50, y: ground, vx, vy: -vy, trail: [] };
-  let done = false;
+  let ball={x:42, y:G, vx, vy:-vyI, trail:[]}, done=false;
 
-  function animate() {
-    ball.trail.push({x: ball.x, y: ball.y});
-    if(ball.trail.length > 120) ball.trail.shift();
-    ball.x += ball.vx;
-    ball.vy += gPx;
-    ball.y += ball.vy;
+  function frame() {
+    ball.trail.push({x:ball.x,y:ball.y});
+    if (ball.trail.length>150) ball.trail.shift();
+    ball.x+=ball.vx; ball.vy+=gPx; ball.y+=ball.vy;
 
-    // Hit targets
-    pjTargets.forEach(t => {
-      if(!t.hit) {
-        const dx = ball.x - t.x, dy = ball.y - t.y;
-        if(Math.sqrt(dx*dx+dy*dy) < t.r + 8) {
-          t.hit = true;
-          pjScore++;
-          document.getElementById('score-val').textContent = pjScore;
-          document.getElementById('score-val').classList.add('score-flash');
-          setTimeout(()=>document.getElementById('score-val').classList.remove('score-flash'),500);
-          showMsg('proj-msg','🎯 命中！');
-        }
+    pjTargets.forEach(t=>{
+      if (!t.hit && Math.hypot(ball.x-t.x,ball.y-t.y)<t.r+7) {
+        t.hit=true; t.pulse=0; pjScore++;
+        const sv=document.getElementById('score-val');
+        sv.textContent=pjScore; sv.classList.add('flash');
+        setTimeout(()=>sv.classList.remove('flash'),500);
+        showMsg('proj-msg','🎯 命中！+1');
       }
+      if (t.hit) t.pulse++;
     });
 
-    if(ball.y >= ground) {
-      ball.y = ground;
-      done = true;
-    }
-
+    if (ball.y>=G) { ball.y=G; done=true; }
     pjTrails.push([...ball.trail]);
-    if(pjTrails.length > 5) pjTrails.shift();
+    if (pjTrails.length>6) pjTrails.shift();
 
-    drawProjectileScene(ball);
-    if(!done) pjAnim = requestAnimationFrame(animate);
+    drawPJ(ball);
+    if (!done) { pjAnim=requestAnimationFrame(frame); }
     else {
-      drawProjectileScene(null);
-      // Check all hit
-      if(pjTargets.every(t=>t.hit)) {
+      drawPJ(null);
+      if (pjTargets.every(t=>t.hit)) {
         showMsg('proj-msg','🎉 全部命中！');
-        setTimeout(()=>{ generateTargets(); drawProjectileScene(); }, 1500);
+        setTimeout(()=>{ generateTargets(); drawPJ(); }, 1600);
       }
     }
   }
-  animate();
+  frame();
 }
 
-function drawProjectileScene(ball) {
-  if(!pjCanvas) return;
-  const ctx = pjCtx, W = pjCanvas.width, H = pjCanvas.height, ground = H - 40;
+function drawPJ(ball) {
+  if (!pjCanvas) return;
+  const ctx=pjCtx, W=pjCanvas.width, H=pjCanvas.height, G=H-36;
   ctx.clearRect(0,0,W,H);
 
+  // Sky
+  const sky=ctx.createLinearGradient(0,0,0,G);
+  sky.addColorStop(0,'#020912'); sky.addColorStop(1,'#041326');
+  ctx.fillStyle=sky; ctx.fillRect(0,0,W,G);
+
   // Ground
-  ctx.fillStyle = '#0d2040';
-  ctx.fillRect(0, ground, W, H - ground);
-  ctx.strokeStyle = '#1a4a8a';
-  ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(0,ground); ctx.lineTo(W,ground); ctx.stroke();
+  const grd=ctx.createLinearGradient(0,G,0,H);
+  grd.addColorStop(0,'#0d2040'); grd.addColorStop(1,'#060d1a');
+  ctx.fillStyle=grd; ctx.fillRect(0,G,W,H-G);
 
-  // Ground grid
-  ctx.strokeStyle = 'rgba(0,229,255,0.08)';
-  ctx.lineWidth = 1;
-  for(let x = 0; x < W; x += 50) {
-    ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,ground); ctx.stroke();
-  }
-  for(let y = 0; y < ground; y += 50) {
-    ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
-  }
+  // Ground glow line
+  ctx.shadowBlur=8; ctx.shadowColor='rgba(0,212,245,0.3)';
+  ctx.strokeStyle='#1a4a8a'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(0,G); ctx.lineTo(W,G); ctx.stroke();
+  ctx.shadowBlur=0;
 
-  // Draw angle indicator at origin
-  const angle = parseFloat(document.getElementById('angle-slider') ? document.getElementById('angle-slider').value : 45) * Math.PI / 180;
-  ctx.save();
-  ctx.translate(50, ground);
-  ctx.strokeStyle = 'rgba(255,107,53,0.6)';
-  ctx.lineWidth = 2;
-  ctx.setLineDash([4,4]);
-  ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(70*Math.cos(angle), -70*Math.sin(angle)); ctx.stroke();
+  // Grid
+  ctx.strokeStyle='rgba(0,212,245,0.04)'; ctx.lineWidth=1;
+  for(let x=0;x<W;x+=44){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,G);ctx.stroke();}
+  for(let y=0;y<G;y+=44){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // Angle guide
+  const ang=parseFloat(document.getElementById('angle-slider')?.value||45)*Math.PI/180;
+  ctx.save(); ctx.translate(42,G);
+  ctx.setLineDash([5,5]); ctx.strokeStyle='rgba(255,107,53,0.45)'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(80*Math.cos(ang),-80*Math.sin(ang)); ctx.stroke();
   ctx.setLineDash([]);
+
   // Cannon
-  ctx.fillStyle = '#1a4a8a';
-  ctx.beginPath(); ctx.arc(0,0,12,0,Math.PI*2); ctx.fill();
-  ctx.fillStyle = '#00e5ff';
-  ctx.beginPath(); ctx.arc(0,0,7,0,Math.PI*2); ctx.fill();
+  const cLen=26, cH=7;
+  ctx.save(); ctx.rotate(-ang);
+  const cg=ctx.createLinearGradient(0,-cH,0,cH);
+  cg.addColorStop(0,'#2a5a9a'); cg.addColorStop(1,'#0d2040');
+  ctx.fillStyle=cg;
+  ctx.beginPath(); ctx.roundRect(0,-cH,cLen,cH*2,3); ctx.fill();
+  ctx.strokeStyle='rgba(0,212,245,0.6)'; ctx.lineWidth=1; ctx.stroke();
+  ctx.restore();
+  // Base
+  const bg2=ctx.createRadialGradient(0,0,2,0,0,10);
+  bg2.addColorStop(0,'#3a6ab0'); bg2.addColorStop(1,'#0d2040');
+  ctx.beginPath(); ctx.arc(0,0,10,0,Math.PI*2);
+  ctx.fillStyle=bg2; ctx.fill();
+  ctx.strokeStyle='#00d4f5'; ctx.lineWidth=1.5; ctx.stroke();
   ctx.restore();
 
-  // Previous trails (ghost)
-  pjTrails.forEach((trail, ti) => {
-    if(ti === pjTrails.length-1) return;
-    ctx.beginPath();
-    ctx.strokeStyle = 'rgba(0,229,255,0.12)';
-    ctx.lineWidth = 1;
-    trail.forEach((p,i) => i===0 ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y));
+  // Ghost trails
+  pjTrails.forEach((trail,ti)=>{
+    if(ti===pjTrails.length-1) return;
+    const a=0.04+ti*0.035;
+    ctx.beginPath(); ctx.strokeStyle=`rgba(0,212,245,${a})`; ctx.lineWidth=1.5;
+    trail.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
     ctx.stroke();
   });
 
-  // Current ball trail
-  if(ball && ball.trail.length > 1) {
-    ctx.beginPath();
-    ball.trail.forEach((p,i) => {
-      if(i===0) ctx.moveTo(p.x,p.y);
-      else ctx.lineTo(p.x,p.y);
-    });
-    ctx.strokeStyle = 'rgba(0,229,255,0.7)';
-    ctx.lineWidth = 2;
-    ctx.shadowBlur = 8;
-    ctx.shadowColor = '#00e5ff';
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
+  // Current trail (gradient)
+  if(ball&&ball.trail.length>1){
+    for(let i=1;i<ball.trail.length;i++){
+      const t=i/ball.trail.length;
+      ctx.beginPath();
+      ctx.moveTo(ball.trail[i-1].x,ball.trail[i-1].y);
+      ctx.lineTo(ball.trail[i].x,ball.trail[i].y);
+      ctx.strokeStyle=`rgba(0,212,245,${t*0.85})`;
+      ctx.lineWidth=1+t*2;
+      ctx.stroke();
+    }
     // Ball
-    ctx.beginPath();
-    ctx.arc(ball.x, ball.y, 8, 0, Math.PI*2);
-    ctx.fillStyle = '#ff6b35';
-    ctx.shadowBlur = 15;
-    ctx.shadowColor = '#ff6b35';
-    ctx.fill();
-    ctx.shadowBlur = 0;
+    ctx.shadowBlur=20; ctx.shadowColor='#ff6b35';
+    const bg3=ctx.createRadialGradient(ball.x-3,ball.y-3,1,ball.x,ball.y,9);
+    bg3.addColorStop(0,'#ffb07c'); bg3.addColorStop(1,'#ff3a00');
+    ctx.fillStyle=bg3; ctx.beginPath(); ctx.arc(ball.x,ball.y,9,0,Math.PI*2); ctx.fill();
+    ctx.shadowBlur=0;
   }
 
   // Targets
-  pjTargets.forEach(t => {
-    if(t.hit) {
-      ctx.strokeStyle = 'rgba(168,255,62,0.4)';
-      ctx.lineWidth = 1;
-      ctx.setLineDash([3,3]);
-      ctx.beginPath(); ctx.arc(t.x, t.y, t.r, 0, Math.PI*2); ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.fillStyle = 'rgba(168,255,62,0.2)';
-      ctx.font = '20px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('✓', t.x, t.y+7);
+  pjTargets.forEach(t=>{
+    if(t.hit){
+      const fade=Math.min(1,t.pulse/40);
+      ctx.globalAlpha=1-fade*0.65;
+      ctx.beginPath(); ctx.arc(t.x,t.y,t.r*(1+fade*0.4),0,Math.PI*2);
+      ctx.strokeStyle='rgba(57,255,143,0.5)'; ctx.lineWidth=1.5;
+      ctx.setLineDash([3,4]); ctx.stroke(); ctx.setLineDash([]);
+      ctx.font=`${Math.round(t.r*1.3)}px sans-serif`;
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillStyle='rgba(57,255,143,0.85)'; ctx.fillText('✓',t.x,t.y);
+      ctx.globalAlpha=1;
     } else {
-      ctx.beginPath(); ctx.arc(t.x,t.y,t.r,0,Math.PI*2);
-      const grad = ctx.createRadialGradient(t.x,t.y,2,t.x,t.y,t.r);
-      grad.addColorStop(0,'rgba(255,107,53,0.9)');
-      grad.addColorStop(1,'rgba(255,107,53,0.2)');
-      ctx.fillStyle = grad;
-      ctx.shadowBlur = 12; ctx.shadowColor = '#ff6b35';
-      ctx.fill(); ctx.shadowBlur = 0;
-      ctx.strokeStyle = '#ff6b35';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      // Target rings
-      ctx.beginPath(); ctx.arc(t.x,t.y,t.r*0.6,0,Math.PI*2);
-      ctx.strokeStyle = 'rgba(255,200,0,0.7)'; ctx.lineWidth=1;
-      ctx.stroke();
+      ctx.shadowBlur=15; ctx.shadowColor='#ff6b35';
+      const tg=ctx.createRadialGradient(t.x,t.y,2,t.x,t.y,t.r);
+      tg.addColorStop(0,'rgba(255,120,50,0.85)'); tg.addColorStop(1,'rgba(255,107,53,0.08)');
+      ctx.fillStyle=tg; ctx.beginPath(); ctx.arc(t.x,t.y,t.r,0,Math.PI*2); ctx.fill();
+      ctx.shadowBlur=0;
+      ctx.strokeStyle='#ff6b35'; ctx.lineWidth=2; ctx.stroke();
+      ctx.beginPath(); ctx.arc(t.x,t.y,t.r*0.5,0,Math.PI*2);
+      ctx.strokeStyle='rgba(255,200,60,0.7)'; ctx.lineWidth=1; ctx.stroke();
+      ctx.beginPath(); ctx.arc(t.x,t.y,3,0,Math.PI*2);
+      ctx.fillStyle='#ffe066'; ctx.fill();
     }
+    ctx.textBaseline='alphabetic';
   });
 }
 
 function resetProjectile() {
   cancelAnimationFrame(pjAnim);
-  pjScore = 0;
-  pjTrails = [];
-  document.getElementById('score-val').textContent = '0';
-  document.getElementById('range-val').textContent = '—';
-  document.getElementById('maxh-val').textContent = '—';
-  document.getElementById('flight-val').textContent = '—';
-  generateTargets();
-  drawProjectileScene();
+  pjScore=0; pjTrails=[];
+  ['score-val','range-val','maxh-val','flight-val'].forEach((id,i)=>{
+    document.getElementById(id).textContent = i===0?'0':'—';
+  });
+  generateTargets(); drawPJ();
 }
 
-// ==========================================
+// ──────────────────────────────────────
 // PENDULUM
-// ==========================================
+// ──────────────────────────────────────
 let penCanvas, penCtx, penAnim;
-let penAngle = Math.PI/4, penVel = 0;
-let penLastZero = null, penPeriod = null;
-let penShowTrail = false, penTrailPoints = [];
-let penTime = 0;
+let penAngle=Math.PI/4, penVel=0;
+let penLastZero=null, penTime=0;
+let penShowTrail=false, penTrail=[];
+let penDragging=false;
 
 function initPendulum() {
   penCanvas = document.getElementById('pendulum-canvas');
   penCtx = penCanvas.getContext('2d');
-  penCanvas.width = penCanvas.offsetWidth;
-  penCanvas.height = 440;
+  resizeCanvas(penCanvas);
 
-  document.getElementById('plen-slider').oninput = function() {
-    document.getElementById('plen-val').textContent = parseFloat(this.value).toFixed(2) + ' m';
-    penVel = 0; penLastZero = null; penPeriod = null; penTrailPoints = [];
-    updatePendulumTheory();
+  document.getElementById('plen-slider').oninput = function(){
+    document.getElementById('plen-val').textContent = parseFloat(this.value).toFixed(2)+' m';
+    penVel=0; penLastZero=null; penTrail=[];
+    updatePenTheory();
   };
-  document.getElementById('pgrav-slider').oninput = function() {
-    document.getElementById('pgrav-val').textContent = parseFloat(this.value).toFixed(1) + ' m/s²';
-    penVel = 0; penLastZero = null; penPeriod = null;
-    updatePendulumTheory();
+  document.getElementById('pgrav-slider').oninput = function(){
+    document.getElementById('pgrav-val').textContent = parseFloat(this.value).toFixed(1)+' m/s²';
+    penVel=0; penLastZero=null;
+    updatePenTheory();
   };
-  document.getElementById('damp-slider').oninput = function() {
+  document.getElementById('damp-slider').oninput = function(){
     document.getElementById('damp-val').textContent = parseFloat(this.value).toFixed(3);
   };
 
-  updatePendulumTheory();
+  updatePenTheory();
+  setupPenDrag();
   cancelAnimationFrame(penAnim);
-  animatePendulum();
+  animatePen();
+}
 
-  // Drag
-  penCanvas.onmousedown = function(e) {
-    const rect = penCanvas.getBoundingClientRect();
-    const mx = (e.clientX - rect.left) * penCanvas.width/rect.width;
-    const my = (e.clientY - rect.top) * penCanvas.height/rect.height;
-    const ox = penCanvas.width/2, oy = 60;
-    const L = parseFloat(document.getElementById('plen-slider').value) * getLenScale();
-    const bx = ox + Math.sin(penAngle)*L, by = oy + Math.cos(penAngle)*L;
-    if(Math.hypot(mx-bx,my-by) < 25) {
-      penCanvas.onmousemove = function(e2) {
-        const mx2 = (e2.clientX - rect.left)*penCanvas.width/rect.width - ox;
-        const my2 = (e2.clientY - rect.top)*penCanvas.height/rect.height - oy;
-        penAngle = Math.atan2(mx2, my2);
-        penVel = 0; penLastZero = null;
-      };
-      window.onmouseup = () => { penCanvas.onmousemove = null; window.onmouseup = null; };
-    }
+function getPenScale() {
+  if(!penCanvas) return 100;
+  return Math.min(penCanvas.height*0.27, penCanvas.width*0.27, 130);
+}
+
+function updatePenTheory() {
+  const L=parseFloat(document.getElementById('plen-slider').value);
+  const g=parseFloat(document.getElementById('pgrav-slider').value);
+  document.getElementById('period-theory').textContent=(2*Math.PI*Math.sqrt(L/g)).toFixed(2);
+}
+
+function setupPenDrag() {
+  const getP = (e)=>{
+    const rect=penCanvas.getBoundingClientRect();
+    const scX=penCanvas.width/rect.width, scY=penCanvas.height/rect.height;
+    const src=e.touches?e.touches[0]:e;
+    return {x:(src.clientX-rect.left)*scX, y:(src.clientY-rect.top)*scY};
   };
+  const getBall=()=>{
+    const L=parseFloat(document.getElementById('plen-slider').value)*getPenScale();
+    const ox=penCanvas.width/2, oy=Math.min(60,penCanvas.height*0.14);
+    return {bx:ox+Math.sin(penAngle)*L, by:oy+Math.cos(penAngle)*L, ox, oy};
+  };
+  const onStart=(e)=>{
+    const p=getP(e), {bx,by}=getBall();
+    if(Math.hypot(p.x-bx,p.y-by)<32){ penDragging=true; e.preventDefault(); }
+  };
+  const onMove=(e)=>{
+    if(!penDragging) return; e.preventDefault();
+    const p=getP(e), {ox,oy}=getBall();
+    penAngle=Math.max(-Math.PI*0.82,Math.min(Math.PI*0.82, Math.atan2(p.x-ox,p.y-oy)));
+    penVel=0; penLastZero=null;
+  };
+  const onEnd=()=>{ penDragging=false; };
+  penCanvas.addEventListener('mousedown', onStart);
+  penCanvas.addEventListener('touchstart', onStart, {passive:false});
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', onMove, {passive:false});
+  window.addEventListener('mouseup', onEnd);
+  window.addEventListener('touchend', onEnd);
 }
 
-function getLenScale() { return 150; } // pixels per meter
-
-function updatePendulumTheory() {
-  const L = parseFloat(document.getElementById('plen-slider').value);
-  const g = parseFloat(document.getElementById('pgrav-slider').value);
-  const T = 2*Math.PI*Math.sqrt(L/g);
-  document.getElementById('period-theory').textContent = T.toFixed(2);
-}
-
-function animatePendulum() {
+function animatePen() {
   if(!penCanvas) return;
-  const dt = 0.016;
-  const L = parseFloat(document.getElementById('plen-slider').value);
-  const g = parseFloat(document.getElementById('pgrav-slider').value);
-  const damp = parseFloat(document.getElementById('damp-slider').value);
-  const Lpx = L * getLenScale();
-  const W = penCanvas.width, H = penCanvas.height;
-  const ox = W/2, oy = 60;
+  const dt=0.016;
+  const L=parseFloat(document.getElementById('plen-slider').value);
+  const g=parseFloat(document.getElementById('pgrav-slider').value);
+  const damp=parseFloat(document.getElementById('damp-slider').value);
+  const Lpx=L*getPenScale();
+  const W=penCanvas.width, H=penCanvas.height;
+  const ox=W/2, oy=Math.min(60,H*0.14);
 
-  const prevAngle = penAngle;
-  penVel += -g/L * Math.sin(penAngle) * dt;
-  penVel *= damp;
-  penAngle += penVel * dt;
-  penTime += dt;
-
-  // Period detection
-  if(prevAngle * penAngle < 0 && Math.abs(penVel) > 0.02) {
-    if(penLastZero !== null) {
-      penPeriod = 2*(penTime - penLastZero);
-      document.getElementById('period-measured').textContent = penPeriod.toFixed(2);
+  if(!penDragging){
+    const prev=penAngle;
+    penVel+=-(g/L)*Math.sin(penAngle)*dt;
+    penVel*=damp;
+    penAngle+=penVel*dt;
+    penTime+=dt;
+    if(prev*penAngle<0&&Math.abs(penVel)>0.01){
+      if(penLastZero!==null)
+        document.getElementById('period-measured').textContent=(2*(penTime-penLastZero)).toFixed(2);
+      penLastZero=penTime;
     }
-    penLastZero = penTime;
   }
 
-  const bx = ox + Math.sin(penAngle)*Lpx;
-  const by = oy + Math.cos(penAngle)*Lpx;
+  const bx=ox+Math.sin(penAngle)*Lpx;
+  const by=oy+Math.cos(penAngle)*Lpx;
+  document.getElementById('pangle-val').textContent=(penAngle*180/Math.PI).toFixed(1);
+  document.getElementById('pspeed-val').textContent=Math.abs(penVel*180/Math.PI).toFixed(1);
+  document.getElementById('angle-badge').textContent=(penAngle*180/Math.PI).toFixed(1)+'°';
 
-  // Stats
-  document.getElementById('pangle-val').textContent = (penAngle*180/Math.PI).toFixed(1);
-  document.getElementById('pspeed-val').textContent = (penVel*180/Math.PI).toFixed(1);
+  if(penShowTrail){ penTrail.push({x:bx,y:by}); if(penTrail.length>500)penTrail.shift(); }
 
-  if(penShowTrail) {
-    penTrailPoints.push({x:bx,y:by});
-    if(penTrailPoints.length > 300) penTrailPoints.shift();
-  }
-
-  // Draw
-  const ctx = penCtx;
+  const ctx=penCtx;
   ctx.clearRect(0,0,W,H);
 
-  // Background circle hint
+  // BG
+  const bg=ctx.createRadialGradient(ox,H*0.55,0,ox,H*0.55,Math.max(W,H)*0.7);
+  bg.addColorStop(0,'#041528'); bg.addColorStop(1,'#020912');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+  // Circle hint
   ctx.beginPath(); ctx.arc(ox,oy,Lpx,0,Math.PI*2);
-  ctx.strokeStyle='rgba(0,229,255,0.06)'; ctx.lineWidth=1; ctx.stroke();
+  ctx.strokeStyle='rgba(0,212,245,0.05)'; ctx.lineWidth=1; ctx.stroke();
+
+  // Ceiling bracket
+  ctx.fillStyle='#1a3a6a'; ctx.fillRect(ox-26,0,52,12);
+  ctx.fillStyle='#243e64'; ctx.fillRect(ox-20,0,40,8);
 
   // Trail
-  if(penShowTrail && penTrailPoints.length > 2) {
-    ctx.beginPath();
-    penTrailPoints.forEach((p,i) => i===0 ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y));
-    ctx.strokeStyle = 'rgba(0,229,255,0.3)'; ctx.lineWidth=1.5; ctx.stroke();
+  if(penShowTrail&&penTrail.length>2){
+    for(let i=1;i<penTrail.length;i++){
+      const a=(i/penTrail.length)*0.5;
+      ctx.beginPath();
+      ctx.moveTo(penTrail[i-1].x,penTrail[i-1].y);
+      ctx.lineTo(penTrail[i].x,penTrail[i].y);
+      ctx.strokeStyle=`rgba(0,212,245,${a})`;
+      ctx.lineWidth=1+a*1.5;
+      ctx.stroke();
+    }
   }
 
-  // Pivot
-  ctx.beginPath(); ctx.arc(ox,oy,8,0,Math.PI*2);
-  ctx.fillStyle='#1a4a8a'; ctx.fill();
-  ctx.strokeStyle='#00e5ff'; ctx.lineWidth=2; ctx.stroke();
-
-  // Rod
-  ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(bx,by);
-  ctx.strokeStyle='rgba(100,160,255,0.7)'; ctx.lineWidth=2;
-  ctx.shadowBlur=4; ctx.shadowColor='#00e5ff';
-  ctx.stroke(); ctx.shadowBlur=0;
-
-  // Energy color (blue=fast, dim=slow)
-  const maxV = Math.sqrt(2*g/L*(1-Math.cos(Math.PI/4)));
-  const speed = Math.abs(penVel);
-  const t = Math.min(speed/maxV,1);
-  const r = Math.round(0 + t*255);
-  const gb = Math.round(229 - t*150);
-
-  ctx.beginPath(); ctx.arc(bx,by,18,0,Math.PI*2);
-  const grd = ctx.createRadialGradient(bx,by,2,bx,by,18);
-  grd.addColorStop(0,`rgba(${r},${gb},255,0.9)`);
-  grd.addColorStop(1,`rgba(${r},${gb},255,0.2)`);
-  ctx.fillStyle = grd;
-  ctx.shadowBlur = 20; ctx.shadowColor = `rgb(${r},${gb},255)`;
-  ctx.fill(); ctx.shadowBlur = 0;
-
-  // Vertical reference line
-  ctx.setLineDash([4,6]);
-  ctx.strokeStyle='rgba(255,107,53,0.3)'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(ox,oy+Lpx+10); ctx.stroke();
+  // Vertical ref
+  ctx.setLineDash([4,7]);
+  ctx.strokeStyle='rgba(255,107,53,0.22)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(ox,Math.min(oy+Lpx+20,H-10)); ctx.stroke();
   ctx.setLineDash([]);
 
   // Angle arc
-  ctx.beginPath();
-  ctx.arc(ox,oy,50,Math.PI/2,Math.PI/2+penAngle,penAngle<0);
-  ctx.strokeStyle='rgba(255,107,53,0.5)'; ctx.lineWidth=1.5;
-  ctx.stroke();
+  if(Math.abs(penAngle)>0.02){
+    ctx.beginPath(); ctx.arc(ox,oy,46,Math.PI/2,Math.PI/2+penAngle,penAngle<0);
+    ctx.strokeStyle='rgba(255,107,53,0.42)'; ctx.lineWidth=1.5; ctx.stroke();
+  }
 
-  // Label
-  ctx.fillStyle='rgba(255,107,53,0.7)';
-  ctx.font='12px Space Mono, monospace';
-  ctx.fillText((penAngle*180/Math.PI).toFixed(0)+'°', ox+58*Math.sin(penAngle/2), oy+30*Math.cos(penAngle/2));
+  // Rod
+  ctx.shadowBlur=6; ctx.shadowColor='rgba(0,212,245,0.35)';
+  ctx.strokeStyle='#3a7bbf'; ctx.lineWidth=2.5;
+  ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(bx,by); ctx.stroke();
+  ctx.shadowBlur=0;
 
-  penAnim = requestAnimationFrame(animatePendulum);
+  // Pivot
+  const pg=ctx.createRadialGradient(ox-2,oy-2,1,ox,oy,7);
+  pg.addColorStop(0,'#6ab0ff'); pg.addColorStop(1,'#0d2a50');
+  ctx.beginPath(); ctx.arc(ox,oy,7,0,Math.PI*2);
+  ctx.fillStyle=pg; ctx.fill();
+  ctx.strokeStyle='#00d4f5'; ctx.lineWidth=1.5; ctx.stroke();
+
+  // Bob (color encodes kinetic energy)
+  const maxV=Math.sqrt(2*g/L*(1-Math.cos(Math.PI/4)));
+  const t=Math.min(Math.abs(penVel)/(maxV||0.001),1);
+  const rVal=Math.round(t*230), gVal=Math.round(212-t*170);
+  const bobR=15+L*3.5;
+  ctx.shadowBlur=22; ctx.shadowColor=`rgb(${rVal},${gVal},245)`;
+  const bobG=ctx.createRadialGradient(bx-bobR*.3,by-bobR*.3,2,bx,by,bobR);
+  bobG.addColorStop(0,`rgba(${Math.round(rVal*.5+128)},${Math.round(gVal*.5+128)},255,0.95)`);
+  bobG.addColorStop(0.6,`rgba(${rVal},${gVal},245,0.8)`);
+  bobG.addColorStop(1,`rgba(${rVal},${gVal},245,0.08)`);
+  ctx.fillStyle=bobG; ctx.beginPath(); ctx.arc(bx,by,bobR,0,Math.PI*2); ctx.fill();
+  ctx.shadowBlur=0;
+  // Specular
+  ctx.beginPath(); ctx.arc(bx-bobR*.28,by-bobR*.28,bobR*.22,0,Math.PI*2);
+  ctx.fillStyle='rgba(255,255,255,0.28)'; ctx.fill();
+
+  // Drag cue
+  if(penDragging){
+    ctx.font='11px sans-serif'; ctx.textAlign='center'; ctx.fillStyle='rgba(255,107,53,0.8)';
+    ctx.fillText('松开释放',bx,by-bobR-8); ctx.textAlign='left';
+  }
+
+  penAnim=requestAnimationFrame(animatePen);
 }
 
 function resetPendulum() {
-  penAngle = Math.PI/4; penVel = 0;
-  penLastZero = null; penPeriod = null; penTrailPoints = [];
-  penTime = 0;
-  document.getElementById('period-measured').textContent = '—';
+  penAngle=Math.PI/4; penVel=0;
+  penLastZero=null; penTime=0; penTrail=[];
+  document.getElementById('period-measured').textContent='—';
 }
-
 function toggleTrail() {
-  penShowTrail = !penShowTrail;
-  document.getElementById('trail-btn').textContent = penShowTrail ? '隐藏轨迹' : '显示轨迹';
-  if(!penShowTrail) penTrailPoints = [];
+  penShowTrail=!penShowTrail;
+  const btn=document.getElementById('trail-btn');
+  btn.textContent=penShowTrail?'轨迹 ON':'轨迹 OFF';
+  btn.style.borderColor=penShowTrail?'var(--accent)':'';
+  btn.style.color=penShowTrail?'var(--accent)':'';
+  if(!penShowTrail) penTrail=[];
 }
 
-// ==========================================
+// ──────────────────────────────────────
 // COLLISION
-// ==========================================
+// ──────────────────────────────────────
 let colCanvas, colCtx, colAnim;
-let colMode = 'elastic';
-let colState = 'ready'; // ready, running, done
+let colMode='elastic', colState='ready';
 let ballA, ballB;
-let colBefore = null, colAfter = null;
 
 function initCollision() {
-  colCanvas = document.getElementById('collision-canvas');
-  colCtx = colCanvas.getContext('2d');
-  colCanvas.width = colCanvas.offsetWidth;
-  colCanvas.height = 440;
-
-  ['massA','massB','velA'].forEach(id => {
-    document.getElementById(id+'-slider').oninput = function() {
-      const labels = {massA:'massA-val',massB:'massB-val',velA:'velA-val'};
-      const units = {massA:' kg',massB:' kg',velA:' m/s'};
-      document.getElementById(labels[id]).textContent = parseFloat(this.value).toFixed(1)+units[id];
+  colCanvas=document.getElementById('collision-canvas');
+  colCtx=colCanvas.getContext('2d');
+  resizeCanvas(colCanvas);
+  const units={massA:' kg',massB:' kg',velA:' m/s'};
+  ['massA','massB','velA'].forEach(id=>{
+    document.getElementById(id+'-slider').oninput=function(){
+      document.getElementById(id+'-val').textContent=parseFloat(this.value).toFixed(1)+units[id];
     };
   });
   resetCollision();
 }
 
 function setCollisionMode(mode) {
-  colMode = mode;
-  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  colMode=mode;
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('mode-'+mode).classList.add('active');
   resetCollision();
 }
 
 function resetCollision() {
-  cancelAnimationFrame(colAnim);
-  colState = 'ready';
-  colBefore = null; colAfter = null;
+  cancelAnimationFrame(colAnim); colState='ready';
   if(!colCanvas) return;
-  const W = colCanvas.width, H = colCanvas.height;
-  const mA = parseFloat(document.getElementById('massA-slider').value);
-  const mB = parseFloat(document.getElementById('massB-slider').value);
-  const vA = parseFloat(document.getElementById('velA-slider').value);
-  const rA = 12 + mA * 5, rB = 12 + mB * 5;
-
-  ballA = { x: 80, y: H/2, r: rA, m: mA, v: vA * 3, color: '#00e5ff' };
-  ballB = { x: W/2 + 30, y: H/2, r: rB, m: mB, v: 0, color: '#ff6b35' };
-
-  document.getElementById('p-before').textContent = '—';
-  document.getElementById('p-after').textContent = '—';
-  document.getElementById('e-before').textContent = '—';
-  document.getElementById('e-after').textContent = '—';
-  drawCollisionScene();
+  const W=colCanvas.width, H=colCanvas.height;
+  const mA=parseFloat(document.getElementById('massA-slider').value);
+  const mB=parseFloat(document.getElementById('massB-slider').value);
+  const vA=parseFloat(document.getElementById('velA-slider').value);
+  const rA=14+mA*6, rB=14+mB*6;
+  ballA={x:60, y:H/2, r:rA, m:mA, v:vA*2.5, color:'#00d4f5', label:'A', trail:[]};
+  ballB={x:W*0.55, y:H/2, r:rB, m:mB, v:0, color:'#ff6b35', label:'B', trail:[]};
+  ['p-before','p-after','e-before','e-after'].forEach(id=>{ document.getElementById(id).textContent='—'; });
+  drawCol();
 }
 
 function fireCollision() {
   if(!colCanvas) return;
-  if(colState === 'running') return;
-  if(colState === 'done') { resetCollision(); return; }
-  colState = 'running';
+  if(colState==='running') return;
+  if(colState==='done'){ resetCollision(); return; }
+  colState='running';
 
-  const pBefore = ballA.m*ballA.v + ballB.m*ballB.v;
-  const eBefore = 0.5*ballA.m*ballA.v*ballA.v + 0.5*ballB.m*ballB.v*ballB.v;
-  document.getElementById('p-before').textContent = pBefore.toFixed(2);
-  document.getElementById('e-before').textContent = eBefore.toFixed(2);
+  const pB=ballA.m*ballA.v+ballB.m*ballB.v;
+  const eB=0.5*ballA.m*ballA.v**2+0.5*ballB.m*ballB.v**2;
+  document.getElementById('p-before').textContent=pB.toFixed(2);
+  document.getElementById('e-before').textContent=eB.toFixed(2);
 
-  let collided = false;
+  let collided=false;
+  const W=colCanvas.width;
 
-  function step() {
-    ballA.x += ballA.v;
-    ballB.x += ballB.v;
+  function step(){
+    ballA.trail.push({x:ballA.x,y:ballA.y}); if(ballA.trail.length>70)ballA.trail.shift();
+    ballB.trail.push({x:ballB.x,y:ballB.y}); if(ballB.trail.length>70)ballB.trail.shift();
+    ballA.x+=ballA.v; ballB.x+=ballB.v;
 
-    if(!collided && ballA.x + ballA.r >= ballB.x - ballB.r) {
-      collided = true;
-      // Collision resolution
-      const mA = ballA.m, mB = ballB.m, vA = ballA.v, vB = ballB.v;
-      let e = colMode === 'elastic' ? 1 : colMode === 'inelastic' ? 0 : 0.5;
-
-      // Combined velocity post
-      const newVA = ((mA-e*mB)*vA + mB*(1+e)*vB) / (mA+mB);
-      const newVB = ((mB-e*mA)*vB + mA*(1+e)*vA) / (mA+mB);
-      ballA.v = newVA; ballB.v = newVB;
-
-      const pAfter = mA*newVA + mB*newVB;
-      const eAfter = 0.5*mA*newVA*newVA + 0.5*mB*newVB*newVB;
-      document.getElementById('p-after').textContent = pAfter.toFixed(2);
-      document.getElementById('e-after').textContent = eAfter.toFixed(2);
+    if(!collided&&ballA.x+ballA.r>=ballB.x-ballB.r){
+      collided=true;
+      const mA=ballA.m,mB=ballB.m,vA=ballA.v,vB=ballB.v;
+      const e=colMode==='elastic'?1:colMode==='inelastic'?0:0.5;
+      const nA=((mA-e*mB)*vA+mB*(1+e)*vB)/(mA+mB);
+      const nB=((mB-e*mA)*vB+mA*(1+e)*vA)/(mA+mB);
+      ballA.v=nA; ballB.v=nB;
+      const ov=(ballA.x+ballA.r)-(ballB.x-ballB.r);
+      ballA.x-=ov/2; ballB.x+=ov/2;
+      document.getElementById('p-after').textContent=(mA*nA+mB*nB).toFixed(2);
+      document.getElementById('e-after').textContent=(0.5*mA*nA**2+0.5*mB*nB**2).toFixed(2);
     }
+    // Walls
+    if(ballA.x-ballA.r<0){ballA.v=Math.abs(ballA.v);ballA.x=ballA.r;}
+    if(ballA.x+ballA.r>W){ballA.v=-Math.abs(ballA.v);ballA.x=W-ballA.r;}
+    if(ballB.x-ballB.r<0){ballB.v=Math.abs(ballB.v);ballB.x=ballB.r;}
+    if(ballB.x+ballB.r>W){ballB.v=-Math.abs(ballB.v);ballB.x=W-ballB.r;}
 
-    drawCollisionScene();
-
-    const W = colCanvas.width;
-    if(ballA.x - ballA.r < 0) ballA.v = Math.abs(ballA.v);
-    if(ballA.x + ballA.r > W) ballA.v = -Math.abs(ballA.v);
-    if(ballB.x - ballB.r < 0) ballB.v = Math.abs(ballB.v);
-    if(ballB.x + ballB.r > W) ballB.v = -Math.abs(ballB.v);
-
-    if(collided && Math.abs(ballA.x - ballB.x) > 200) {
-      colState = 'done';
-    }
-    if(colState === 'running') colAnim = requestAnimationFrame(step);
+    drawCol();
+    if(colState==='running') colAnim=requestAnimationFrame(step);
   }
   step();
 }
 
-function drawCollisionScene() {
+function drawCol() {
   if(!colCanvas) return;
-  const ctx = colCtx, W = colCanvas.width, H = colCanvas.height;
+  const ctx=colCtx, W=colCanvas.width, H=colCanvas.height;
   ctx.clearRect(0,0,W,H);
 
-  // Track
-  const y = H/2;
-  ctx.fillStyle = '#0d2040';
-  ctx.fillRect(0, y-4, W, 8);
-  ctx.strokeStyle = '#1a4a8a'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(0,y-4); ctx.lineTo(W,y-4); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(0,y+4); ctx.lineTo(W,y+4); ctx.stroke();
+  // BG
+  const bg=ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#020912'); bg.addColorStop(1,'#041020');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
 
-  // Friction marks
-  ctx.strokeStyle='rgba(26,58,107,0.5)'; ctx.lineWidth=1;
-  for(let x=0;x<W;x+=20) { ctx.beginPath(); ctx.moveTo(x,y-4); ctx.lineTo(x+8,y+4); ctx.stroke(); }
+  // Track
+  const ty=H/2;
+  const tg=ctx.createLinearGradient(0,ty-6,0,ty+6);
+  tg.addColorStop(0,'#0d2040'); tg.addColorStop(1,'#060d1a');
+  ctx.fillStyle=tg; ctx.fillRect(0,ty-6,W,12);
+  ctx.shadowBlur=5; ctx.shadowColor='rgba(0,212,245,0.2)';
+  ctx.strokeStyle='#1a4a8a'; ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(0,ty-6);ctx.lineTo(W,ty-6);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(0,ty+6);ctx.lineTo(W,ty+6);ctx.stroke();
+  ctx.shadowBlur=0;
+  // Marks
+  ctx.strokeStyle='rgba(26,74,138,0.38)'; ctx.lineWidth=1;
+  for(let x=0;x<W;x+=18){ctx.beginPath();ctx.moveTo(x,ty-6);ctx.lineTo(x+10,ty+6);ctx.stroke();}
+
+  // Trails
+  [ballA,ballB].forEach(b=>{
+    if(!b||b.trail.length<2) return;
+    for(let i=1;i<b.trail.length;i++){
+      const a=(i/b.trail.length)*0.22;
+      const c=b.color; // hex
+      ctx.beginPath();
+      ctx.moveTo(b.trail[i-1].x,b.trail[i-1].y);
+      ctx.lineTo(b.trail[i].x,b.trail[i].y);
+      // Convert hex to rgba manually
+      const r=parseInt(c.slice(1,3),16),g2=parseInt(c.slice(3,5),16),bl=parseInt(c.slice(5,7),16);
+      ctx.strokeStyle=`rgba(${r},${g2},${bl},${a})`;
+      ctx.lineWidth=2; ctx.stroke();
+    }
+  });
 
   // Velocity arrows
-  function drawArrow(x,vy,color,yr) {
-    if(Math.abs(vy)<0.3) return;
-    const dir = vy>0?1:-1, len = Math.min(Math.abs(vy)*5,60);
-    ctx.strokeStyle=color; ctx.lineWidth=2;
-    ctx.shadowBlur=8; ctx.shadowColor=color;
-    ctx.beginPath(); ctx.moveTo(x,yr); ctx.lineTo(x+len*dir,yr); ctx.stroke();
+  const drawArrow=(b)=>{
+    if(!b||Math.abs(b.v)<0.3) return;
+    const dir=b.v>0?1:-1, len=Math.min(Math.abs(b.v)*5,70);
+    const yr=ty-b.r-22;
+    ctx.shadowBlur=8; ctx.shadowColor=b.color;
+    ctx.strokeStyle=b.color; ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(b.x,yr);ctx.lineTo(b.x+len*dir,yr);ctx.stroke();
     ctx.shadowBlur=0;
-    ctx.fillStyle=color;
-    ctx.beginPath(); ctx.moveTo(x+len*dir,yr); ctx.lineTo(x+len*dir-8*dir,-6+yr); ctx.lineTo(x+len*dir-8*dir,6+yr); ctx.fill();
-    ctx.font='11px Space Mono,monospace'; ctx.fillText(Math.abs(vy/3).toFixed(1),x+len*dir/2,yr-10);
-  }
-
-  if(ballA) drawArrow(ballA.x, ballA.v, '#00e5ff', y-ballA.r-15);
-  if(ballB) drawArrow(ballB.x, ballB.v, '#ff6b35', y-ballB.r-15);
+    ctx.fillStyle=b.color;
+    ctx.beginPath();ctx.moveTo(b.x+len*dir,yr);
+    ctx.lineTo(b.x+len*dir-8*dir,yr-5);ctx.lineTo(b.x+len*dir-8*dir,yr+5);ctx.fill();
+    ctx.font='10px Space Mono,monospace'; ctx.textAlign='center'; ctx.fillStyle=b.color;
+    ctx.fillText(Math.abs(b.v/2.5).toFixed(1)+' m/s', b.x+(len/2)*dir, yr-8);
+    ctx.textAlign='left';
+  };
+  drawArrow(ballA); drawArrow(ballB);
 
   // Balls
-  function drawBall(b) {
+  const drawBall=(b)=>{
     if(!b) return;
-    const g = ctx.createRadialGradient(b.x-b.r*0.3,b.y-b.r*0.3,2,b.x,b.y,b.r);
-    g.addColorStop(0,'rgba(255,255,255,0.6)');
-    g.addColorStop(0.4,b.color+'cc');
-    g.addColorStop(1,b.color+'33');
-    ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
-    ctx.fillStyle=g;
-    ctx.shadowBlur=20; ctx.shadowColor=b.color;
-    ctx.fill(); ctx.shadowBlur=0;
+    ctx.shadowBlur=22; ctx.shadowColor=b.color;
+    const r=parseInt(b.color.slice(1,3),16), g2=parseInt(b.color.slice(3,5),16), bl=parseInt(b.color.slice(5,7),16);
+    const g=ctx.createRadialGradient(b.x-b.r*.3,b.y-b.r*.35,2,b.x,b.y,b.r);
+    g.addColorStop(0,'rgba(255,255,255,0.5)');
+    g.addColorStop(0.35,`rgba(${r},${g2},${bl},0.75)`);
+    g.addColorStop(1,`rgba(${r},${g2},${bl},0.15)`);
+    ctx.fillStyle=g; ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fill();
+    ctx.shadowBlur=0;
     ctx.strokeStyle=b.color; ctx.lineWidth=2; ctx.stroke();
-    ctx.fillStyle='rgba(255,255,255,0.8)';
-    ctx.font=`bold ${b.r*0.65}px Noto Sans SC`;
+    ctx.fillStyle='rgba(255,255,255,0.85)';
+    ctx.font=`bold ${Math.max(10,b.r*.55)}px Noto Sans SC,sans-serif`;
     ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.fillText(b.m+'kg',b.x,b.y);
-    ctx.textBaseline='alphabetic';
-  }
+    ctx.fillText(b.m+'kg',b.x,b.y+1);
+    ctx.font=`bold ${Math.max(9,b.r*.38)}px Space Mono,monospace`;
+    ctx.fillStyle='rgba(255,255,255,0.55)'; ctx.fillText(b.label,b.x,b.y-b.r*.45);
+    ctx.textAlign='left'; ctx.textBaseline='alphabetic';
+  };
   drawBall(ballA); drawBall(ballB);
 }
 
-// ==========================================
-// UTILS
-// ==========================================
-function showMsg(id, txt) {
-  const el = document.getElementById(id);
-  el.textContent = txt;
-  el.classList.remove('show');
-  void el.offsetWidth;
-  el.classList.add('show');
+// ──────────────────────────────────────
+// RESIZE
+// ──────────────────────────────────────
+function onResize() {
+  if(currentTab==='projectile'&&pjCanvas){ resizeCanvas(pjCanvas); generateTargets(); drawPJ(); }
+  if(currentTab==='pendulum'  &&penCanvas){ resizeCanvas(penCanvas); }
+  if(currentTab==='collision' &&colCanvas){ resizeCanvas(colCanvas); resetCollision(); }
 }
+window.addEventListener('resize', onResize);
 
-// Init first tab
-window.addEventListener('load', () => {
-  setTimeout(initProjectile, 100);
-});
-window.addEventListener('resize', () => {
-  if(currentTab === 'projectile') initProjectile();
-  if(currentTab === 'pendulum') initPendulum();
-  if(currentTab === 'collision') initCollision();
-});
+// INIT
+window.addEventListener('load', ()=>{ setTimeout(initProjectile, 80); });
 </script>
 </body>
 </html>
