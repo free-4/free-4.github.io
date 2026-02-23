@@ -48,7 +48,7 @@ body.pink {
 
 @font-face {
     font-family: '666font';
-    src: url('http://shuoweb.com/css/font.ttf');
+    src: url('https://shuoweb.com/css/font.ttf');
 }
 
 body {
