@@ -104,5 +104,13 @@ const ICONS = {
 fun: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="15" rx="2" ry="2"></rect><path d="M7 6V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2"></path><line x1="7" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>`,
 sun: `<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`,
 moon: `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
+yan: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 圆角卡片，代表“每日”的容器或便签 -->
+  <rect x="4" y="4" width="16" height="16" rx="4" ry="4" fill="none" stroke="currentColor" stroke-width="2"/>
+  <!-- 三条横线，代表“一言”的文字内容，长度递减营造段落感 -->
+  <line x1="6" y1="8" x2="18" y2="8" stroke="currentColor" stroke-width="2"/>
+  <line x1="6" y1="12" x2="14" y2="12" stroke="currentColor" stroke-width="2"/>
+  <line x1="6" y1="16" x2="10" y2="16" stroke="currentColor" stroke-width="2"/>
+</svg>`
 };
 
