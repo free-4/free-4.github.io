@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Shuo Phone API</title>
+<script defer src="https://shuoweb.com/common.js"></script>
+    <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>Device Info</h1>
+
+<div class="grid">
+
+<div class="item">
+<div class="label">品牌</div>
+<div class="value" id="brand">-</div>
+</div>
+
+<div class="item">
+<div class="label">型号</div>
+<div class="value" id="model">-</div>
+</div>
+
+<div class="item">
+<div class="label">系统</div>
+<div class="value" id="os">-</div>
+</div>
+
+<div class="item">
+<div class="label">CPU</div>
+<div class="value" id="cpu">-</div>
+</div>
+
+<div class="item">
+<div class="label">GPU</div>
+<div class="value" id="gpu">-</div>
+</div>
+
+<div class="item">
+<div class="label">RAM</div>
+<div class="value" id="ram">-</div>
+</div>
+
+<div class="item">
+<div class="label">分辨率</div>
+<div class="value" id="resolution">-</div>
+</div>
+
+<div class="item">
+<div class="label">DPI</div>
+<div class="value" id="dpi">-</div>
+</div>
+
+</div>
+
+<button onclick="loadPhone()">随机设备</button>
+
+<div class="status" id="status">等待加载...</div>
+
+</div>
+</div>
+
+<script>
+
+const API="https://shuo-api.xo.je/phone/";
+
+async function loadPhone(){
+
+    const status=document.getElementById("status");
+    status.innerText="加载中...";
+
+    try{
+        const start=performance.now();
+
+        const res=await fetch(API);
+        const data=await res.json();
+
+        const d=data.device;
+
+        document.getElementById("brand").innerText=d.brand;
+        document.getElementById("model").innerText=d.model;
+        document.getElementById("os").innerText=
+            d.system.os+" "+d.system.version;
+
+        document.getElementById("cpu").innerText=
+            d.hardware.cpu;
+
+        document.getElementById("gpu").innerText=
+            d.hardware.gpu.vendor+" "+d.hardware.gpu.renderer;
+
+        document.getElementById("ram").innerText=
+            d.hardware.ram;
+
+        document.getElementById("resolution").innerText=
+            d.display.resolution;
+
+        document.getElementById("dpi").innerText=
+            d.display.dpi;
+
+        const time=Math.round(performance.now()-start);
+
+        status.innerText=
+            "请求成功 | 次数 "+data.request_count+
+            " | "+time+" ms";
+
+    }catch(e){
+        status.innerText="API 请求失败";
+    }
+}
+
+loadPhone();
+
+</script>
+
+</body>
+</html>
