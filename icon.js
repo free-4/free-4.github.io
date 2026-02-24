@@ -112,6 +112,19 @@ yan: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="curren
   <line x1="6" y1="12" x2="14" y2="12" stroke="currentColor" stroke-width="2"/>
   <line x1="6" y1="16" x2="10" y2="16" stroke="currentColor" stroke-width="2"/>
 </svg>`,
-train: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"></path><path d="M4 13v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"></path><path d="M2 11h2"></path><path d="M2 13h2"></path><path d="M20 11h2"></path><path d="M20 13h2"></path></svg>`
+train: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 票身：圆角矩形 -->
+  <rect x="3" y="4" width="18" height="16" rx="2" ry="2" />
+  
+  <!-- 左侧齿孔：三个小圆，模拟撕边效果 -->
+  <circle cx="3" cy="8" r="1.2" />
+  <circle cx="3" cy="12" r="1.2" />
+  <circle cx="3" cy="16" r="1.2" />
+  
+  <!-- 票面横线：表示文字信息 -->
+  <line x1="7" y1="9" x2="17" y2="9" />
+  <line x1="7" y1="13" x2="14" y2="13" />
+  <line x1="7" y1="17" x2="12" y2="17" />
+</svg>`
 };
 
