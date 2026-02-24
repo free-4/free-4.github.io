@@ -71,21 +71,42 @@
 
 const API="https://shuo-api.xo.je/phone/";
 
+// 最大等待时间（30秒）
+const TIMEOUT = 30000;
+
 async function loadPhone(){
 
     const status=document.getElementById("status");
-    status.innerText="加载中...";
+    status.innerText="正在等待服务器响应...";
 
     try{
-        const start=performance.now();
 
-        const res=await fetch(API);
-        const data=await res.json();
+        const controller = new AbortController();
+        const timer = setTimeout(()=>{
+            controller.abort();
+        }, TIMEOUT);
 
+        const start = performance.now();
+
+        const res = await fetch(API,{
+            signal: controller.signal,
+            cache:"no-store"
+        });
+
+        clearTimeout(timer);
+
+        if(!res.ok){
+            throw new Error("HTTP "+res.status);
+        }
+
+        const data = await res.json();
+
+        // ===== 数据填充 =====
         const d=data.device;
 
         document.getElementById("brand").innerText=d.brand;
         document.getElementById("model").innerText=d.model;
+
         document.getElementById("os").innerText=
             d.system.os+" "+d.system.version;
 
@@ -107,11 +128,16 @@ async function loadPhone(){
         const time=Math.round(performance.now()-start);
 
         status.innerText=
-            "请求成功 | 次数 "+data.request_count+
-            " | "+time+" ms";
+            `成功 | 请求次数 ${data.request_count} | ${time} ms`;
 
-    }catch(e){
-        status.innerText="API 请求失败";
+    }
+    catch(err){
+
+        if(err.name==="AbortError"){
+            status.innerText="请求超时（服务器响应较慢）";
+        }else{
+            status.innerText="网络错误："+err.message;
+        }
     }
 }
 
