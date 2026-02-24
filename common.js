@@ -116,7 +116,7 @@ div:not(:empty) {
 /* =============================== 全局通用 INPUT 样式 =============================== */
 input {
     /* 基础尺寸与间距 */
-    width: 50%; /* 可根据需要改 auto */
+    width: 100%; /* 可根据需要改 auto */
     max-width: 400px;
     padding: 12px 16px;
     margin: 8px 0;
