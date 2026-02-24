@@ -112,6 +112,6 @@ yan: `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="curren
   <line x1="6" y1="12" x2="14" y2="12" stroke="currentColor" stroke-width="2"/>
   <line x1="6" y1="16" x2="10" y2="16" stroke="currentColor" stroke-width="2"/>
 </svg>`,
-train: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path><path d="M6 8h12"></path><path d="M6 16h12"></path><path d="M12 3v14"></path></svg>`
+train: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"></path><path d="M4 13v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"></path><path d="M2 11h2"></path><path d="M2 13h2"></path><path d="M20 11h2"></path><path d="M20 13h2"></path></svg>`
 };
 
