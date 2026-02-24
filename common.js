@@ -99,6 +99,98 @@ header {
   filter: brightness(1.1);
 }
 
+/* =============================== 全局通用 DIV 样式 =============================== */
+/* 这里的策略是针对作为“直接子级”或“块级容器”的 div 进行增强 */
+div {
+    /* 继承主题定义的变量 */
+    border-radius: var(--radius);
+    transition: var(--transition);
+    /* 默认不加背景，但如果是主要内容块，它会显得非常干净 */
+}
+
+/* 模拟卡片效果：自动识别具有实际内容的 div (可选，让布局更高级) */
+div:not(:empty) {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1); /* 极其微弱的边框线 */
+}
+
+/* =============================== 全局通用 BUTTON 样式 =============================== */
+/* 彻底重写所有原生按钮，使其符合克莱因蓝/极客粉主题 */
+button {
+    /* 基础布局 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    margin: 5px;
+    
+    /* 视觉特征 */
+    background: var(--primary);
+    color: #FFFFFF !important;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    
+    /* 动画与交互 */
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    
+    /* 移动端优化 */
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    white-space: nowrap;
+}
+
+/* 鼠标悬停：上浮 + 呼吸感 */
+button:hover {
+    transform: translateY(-3px) scale(1.02);
+    filter: brightness(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* 点击反馈：物理压感回弹 */
+button:active {
+    transform: translateY(1px) scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.1s ease; /* 瞬间反馈 */
+}
+
+/* 扫光动效：利用伪元素实现 */
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: none;
+}
+
+button:hover::before {
+    left: 100%;
+    transition: all 0.6s ease;
+}
+
+/* 针对禁用状态的自动处理 */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    background: var(--text-sub);
+}
+
+
+
 /* ========= 动画 ========= */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
