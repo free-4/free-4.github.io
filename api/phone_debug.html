@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ShuoAPI Debug</title>
+<script defer src="https://shuoweb.com/common.js"></script>
+    <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
+<style>
+body{
+    background:#020617;
+    color:#e2e8f0;
+    font-family:monospace;
+    padding:20px;
+}
+.card{
+    background:#0f172a;
+    padding:20px;
+    border-radius:12px;
+    max-width:700px;
+    margin:auto;
+}
+h1{color:#38bdf8;text-align:center}
+.row{
+    padding:10px;
+    margin:8px 0;
+    border-radius:8px;
+    background:#020617;
+}
+.ok{color:#22c55e}
+.warn{color:#facc15}
+.err{color:#ef4444}
+pre{
+    background:#000;
+    padding:10px;
+    overflow:auto;
+    border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🔍 ShuoAPI 自动诊断</h1>
+
+<div id="env" class="row">检测环境...</div>
+<div id="https" class="row">检测 HTTPS...</div>
+<div id="api" class="row">检测 API...</div>
+<div id="json" class="row">检测 JSON...</div>
+<div id="latency" class="row">测速中...</div>
+
+<h3>返回内容：</h3>
+<pre id="output">等待请求...</pre>
+
+</div>
+
+<script>
+
+const API="https://shuo-api.xo.je/phone/";
+
+function set(id,msg,cls){
+    const el=document.getElementById(id);
+    el.innerHTML=msg;
+    el.className="row "+cls;
+}
+
+// ===== 环境检测 =====
+if(location.protocol==="file:"){
+    set("env","⚠️ 当前是 file:// 打开（强烈建议使用本地服务器）","warn");
+}else{
+    set("env","✅ HTTP 环境正常："+location.protocol,"ok");
+}
+
+// HTTPS 检测
+if(location.protocol==="https:" || location.hostname==="localhost"){
+    set("https","✅ HTTPS 环境安全","ok");
+}else{
+    set("https","⚠️ 非 HTTPS，可能被浏览器限制","warn");
+}
+
+// ===== API 检测 =====
+(async()=>{
+
+try{
+
+    const start=performance.now();
+
+    const res=await fetch(API,{cache:"no-store"});
+
+    const latency=Math.round(performance.now()-start);
+
+    set("api","✅ API 可访问 (HTTP "+res.status+")","ok");
+    set("latency","⏱ 延迟："+latency+" ms",
+        latency<800?"ok":
+        latency<2000?"warn":"err"
+    );
+
+    const text=await res.text();
+    document.getElementById("output").textContent=text;
+
+    try{
+        JSON.parse(text);
+        set("json","✅ 返回 JSON 格式正确","ok");
+    }catch{
+        set("json","❌ 返回不是合法 JSON","err");
+    }
+
+}catch(e){
+
+    console.error(e);
+
+    set("api","❌ Fetch 失败："+e.message,"err");
+    set("json","无法检测 JSON","err");
+    set("latency","测速失败","err");
+
+}
+
+})();
+
+</script>
+
+</body>
+</html>
