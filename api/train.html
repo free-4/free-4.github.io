@@ -2,125 +2,172 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>火车票查询</title>
-    <script defer src="https://shuoweb.com/common.js"></script>
-    <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>SHUOWEB - 实时火车票查询</title>
+    <style>
+        /* ================= 业务特定样式 ================= */
+        .search-container { margin-top: 40px; }
+        .filter-bar { display: none; gap: 15px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .filter-bar label { font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+
+        .train-card {
+            text-align: left;
+            margin-bottom: 16px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+        .train-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        
+        .route-info { display: flex; justify-content: space-between; align-items: center; margin: 15px 0; }
+        .station-box .time { font-size: 22px; font-weight: 800; }
+        .station-box .name { font-size: 14px; color: var(--text-sub); }
+        .arrow-box { flex: 1; text-align: center; color: var(--primary); opacity: 0.3; font-size: 12px; }
+
+        .seat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            background: rgba(0,0,0,0.03);
+            padding: 12px;
+            border-radius: 12px;
+        }
+        .seat-item { font-size: 13px; display: flex; justify-content: space-between; }
+        .price { color: var(--primary); font-weight: 600; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
 <body>
 
-    <div class="search-container">
-        <h2>实时火车票查询</h2>
-        <div class="input-group">
-            <label for="departure">出发地：</label>
-            <input type="text" id="departure" class="search-input" placeholder="例如：北京">
-        </div>
-        <div class="input-group">
-            <label for="arrival">目的地：</label>
-            <input type="text" id="arrival" class="search-input" placeholder="例如：上海">
-        </div>
-        <button id="search-btn" class="search-btn" onclick="searchTickets()">查询火车票</button>
+<header id="main-header">
+    <div class="logo">SHUOWEB</div>
+    <button onclick="toggleTheme()" style="padding: 8px 16px; font-size: 12px;">切换主题</button>
+</header>
+
+<div class="container-box search-container">
+    <h2 style="margin-top:0">实时火车票查询</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <input type="text" id="departure" placeholder="出发地：如北京">
+        <input type="text" id="arrival" placeholder="目的地：如上海">
     </div>
+    <button id="search-btn" onclick="searchTickets()" style="width: 100%; margin-top: 10px;">立即查询车次</button>
+</div>
 
-    <div id="results-container" class="results-container">
-        <p class="placeholder-text">请输入出发地和目的地进行查询</p>
-    </div>
+<div id="filter-bar" class="container-box filter-bar">
+    <span style="font-weight:bold">筛选：</span>
+    <label><input type="checkbox" id="filter-G" checked onchange="applyFilter()"> 高铁(G)</label>
+    <label><input type="checkbox" id="filter-D" checked onchange="applyFilter()"> 动车(D)</label>
+    <label><input type="checkbox" id="filter-Other" checked onchange="applyFilter()"> 普快/其他</label>
+</div>
 
-    <script>
-        // 核心查询逻辑
-        async function searchTickets() {
-            const departureInput = document.getElementById('departure').value.trim();
-            const arrivalInput = document.getElementById('arrival').value.trim();
-            const resultsContainer = document.getElementById('results-container');
+<div id="results-container" style="max-width: 800px; margin: 0 auto; padding-bottom: 50px;">
+    <p style="color: var(--text-sub)">输入城市名开始探索行程</p>
+</div>
 
-            // 基础校验
-            if (!departureInput || !arrivalInput) {
-                alert("请输入完整的出发地和目的地！");
-                return;
+<script>
+    let allTrainsData = [];
+
+    // 主题切换
+    function toggleTheme() {
+        const isPink = document.body.classList.toggle("pink");
+        localStorage.setItem("theme", isPink ? "pink" : "blue");
+    }
+    if (localStorage.getItem("theme") === "pink") document.body.classList.add("pink");
+
+    // 滚动头部效果
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('main-header');
+        if (window.scrollY > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+
+    // 查询逻辑
+    async function searchTickets() {
+        const dep = document.getElementById('departure').value.trim();
+        const arr = document.getElementById('arrival').value.trim();
+        const resContainer = document.getElementById('results-container');
+
+        if (!dep || !arr) { alert("请填写完整地点"); return; }
+
+        resContainer.innerHTML = '<div class="container-box"><p>正在调遣数据，请稍候...</p></div>';
+
+        try {
+            const response = await fetch(`https://api.lolimi.cn/API/hc/api?departure=${encodeURIComponent(dep)}&arrival=${encodeURIComponent(arr)}&type=json`);
+            const res = await response.json();
+
+            if (res.code === 200 && res.data) {
+                allTrainsData = res.data;
+                document.getElementById('filter-bar').style.display = 'flex';
+                applyFilter();
+            } else {
+                resContainer.innerHTML = '<div class="container-box"><p>未找到车次，换个城市试试？</p></div>';
             }
+        } catch (e) {
+            resContainer.innerHTML = '<div class="container-box"><p>接口暂时闹脾气了，请稍后再试</p></div>';
+        }
+    }
 
-            // 加载提示
-            resultsContainer.innerHTML = '<p class="loading-text">正在为您请求实时票务数据，请稍候...</p>';
+    // 过滤逻辑
+    function applyFilter() {
+        const showG = document.getElementById('filter-G').checked;
+        const showD = document.getElementById('filter-D').checked;
+        const showOther = document.getElementById('filter-Other').checked;
 
-            try {
-                // 拼接接口地址 (基于文档：departure=出发地 & arrival=目的地 & type=json)
-                const apiUrl = `https://api.lolimi.cn/API/hc/api?departure=${encodeURIComponent(departureInput)}&arrival=${encodeURIComponent(arrivalInput)}&type=json`;
-                
-                // 发送网络请求
-                const response = await fetch(apiUrl);
-                const res = await response.json();
+        const filtered = allTrainsData.filter(t => {
+            const code = t.TrainNumber[0].toUpperCase();
+            if (code === 'G') return showG;
+            if (code === 'D') return showD;
+            return showOther;
+        });
 
-                // 判断接口是否返回成功并有数据
-                if (res.code === 200 && res.data && res.data.length > 0) {
-                    renderResults(res.data);
-                } else {
-                    resultsContainer.innerHTML = `<p class="error-text">未查询到相关车次信息或接口异常（提示：该线路可能无车次）。</p>`;
-                }
-            } catch (error) {
-                console.error("API 调用失败: ", error);
-                resultsContainer.innerHTML = '<p class="error-text">请求出错，请检查网络后重试。</p>';
-            }
+        render(filtered);
+    }
+
+    // 渲染卡片
+    function render(data) {
+        const container = document.getElementById('results-container');
+        if(data.length === 0) {
+            container.innerHTML = '<div class="container-box"><p>筛选后没有剩余车次</p></div>';
+            return;
         }
 
-        // 多条结果渲染逻辑
-        function renderResults(trainsData) {
-            const resultsContainer = document.getElementById('results-container');
-            let htmlContent = '';
-
-            // 遍历所有车次并生成 DOM 字符串
-            trainsData.forEach(train => {
-                
-                // 处理座位信息
-                let seatsHtml = '';
-                if (train.SeatList && train.SeatList.length > 0) {
-                    train.SeatList.forEach(seat => {
-                        seatsHtml += `
-                            <div class="seat-item">
-                                <span class="seat-name">${seat.SeatName}</span>
-                                <span class="seat-price">￥${seat.SeatPrice}</span>
-                                <span class="seat-residue">余票: ${seat.Seatresidue}</span>
-                            </div>
-                        `;
-                    });
-                } else {
-                    seatsHtml = '<p class="no-seat-text">暂无座位信息</p>';
-                }
-
-                // 拼接当前车次卡片
-                htmlContent += `
-                    <div class="train-card">
-                        <div class="train-header">
-                            <span class="train-number">${train.TrainNumber}</span>
-                            <span class="train-duration">历时：${train.TimeDifference || '未知'}</span>
-                        </div>
-                        
-                        <div class="train-route">
-                            <div class="route-point start-point">
-                                <div class="time">${train.DepartTime}</div>
-                                <div class="station">${train.start}</div>
-                            </div>
-                            
-                            <div class="route-arrow">
-                                <span>-----></span>
-                            </div>
-                            
-                            <div class="route-point end-point">
-                                <div class="time">${train.ArriveTime}</div>
-                                <div class="station">${train.end}</div>
-                            </div>
-                        </div>
-
-                        <div class="seat-list">
-                            ${seatsHtml}
-                        </div>
+        container.innerHTML = data.map(t => `
+            <div class="container-box train-card">
+                <div style="display:flex; justify-content:space-between; align-items:center">
+                    <strong style="font-size:18px; color:var(--primary)">${t.TrainNumber}</strong>
+                    <span style="font-size:12px; color:var(--text-sub)">⏳ ${t.TimeDifference}</span>
+                </div>
+                <div class="route-info">
+                    <div class="station-box">
+                        <div class="time">${t.DepartTime}</div>
+                        <div class="name">${t.start}</div>
                     </div>
-                `;
-            });
+                    <div class="arrow-box">──────▶</div>
+                    <div class="station-box" style="text-align:right">
+                        <div class="time">${t.ArriveTime}</div>
+                        <div class="name">${t.end}</div>
+                    </div>
+                </div>
+                <div class="seat-grid">
+                    ${t.SeatList.map(s => `
+                        <div class="seat-item">
+                            <span>${s.SeatName}</span>
+                            <span class="price">${s.Seatresidue === '无' ? '<small style="color:#ccc">无票</small>' : '￥'+s.SeatPrice}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
 
-            // 将渲染好的 HTML 插入到容器中
-            resultsContainer.innerHTML = htmlContent;
-        }
-    </script>
+    // 安全防护（禁止右键、禁止选中，如不需要可删除）
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('copy', e => e.preventDefault());
+    document.body.style.userSelect = 'none';
+</script>
+
 </body>
 </html>
-
