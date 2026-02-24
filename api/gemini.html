@@ -108,14 +108,14 @@
             <option value="gemini-3.1-pro">Gemini 3.1 Pro (深度推理)</option>
             <option value="gemini-3-flash" selected>Gemini 3 Flash (极速响应)</option>
         </select>
-        <input type="password" id="api-key" class="allow-select" placeholder="粘贴 API Key..." style="flex:1; min-width:150px;">
+        <input type="text" id="api-key" class="allow-select" placeholder="输入API Key..." style="flex:1; min-width:150px;">
         <button class="btn btn-shine" onclick="saveConfig()">锁定配置</button>
         <button class="btn btn-pulse btn-border" onclick="clearChat()">清空对话</button>
     </div>
 
     <div class="input-box">
         <input type="text" id="user-input" class="combo-duang allow-select" 
-               placeholder="在此粘贴你的问题..." 
+               placeholder="在此发送你的问题..." 
                onkeypress="if(event.key==='Enter')sendMsg()">
         <button class="btn btn-scale" onclick="sendMsg()" id="send-btn">发送</button>
     </div>
