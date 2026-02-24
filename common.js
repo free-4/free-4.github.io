@@ -113,6 +113,52 @@ div:not(:empty) {
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1); /* 极其微弱的边框线 */
 }
 
+/* =============================== 全局通用 INPUT 样式 =============================== */
+input {
+    /* 基础尺寸与间距 */
+    width: 100%; /* 默认撑满容器，也可根据需要改回 auto */
+    max-width: 400px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    
+    /* 核心视觉：磨砂玻璃感 */
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius); /* 自动跟随全局圆角 */
+    
+    /* 文字样式 */
+    color: var(--text-main);
+    font-size: 14px;
+    font-family: inherit;
+    
+    /* 交互与性能 */
+    outline: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    -webkit-appearance: none; /* 移除移动端原生阴影 */
+}
+
+/* 占位符颜色调整 */
+input::placeholder {
+    color: var(--text-sub);
+    opacity: 0.6;
+}
+
+/* 重点：获取焦点时的状态 */
+input:focus {
+    background: #ffffff; /* 聚焦时变白，增加对比度 */
+    border-color: var(--primary); /* 边框变主题色 */
+    box-shadow: 0 0 0 4px var(--primary-light); /* 呼吸灯外发光 */
+    transform: translateY(-1px); /* 轻微上浮感 */
+}
+
+/* 针对粉色主题的自动适配 (如果需要特殊微调) */
+body.pink input:focus {
+    box-shadow: 0 0 0 4px rgba(255, 45, 85, 0.15);
+}
+
+
+
 /* =============================== 全局通用 BUTTON 样式 =============================== */
 /* 彻底重写所有原生按钮，使其符合克莱因蓝/极客粉主题 */
 button {
