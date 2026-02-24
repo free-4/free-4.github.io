@@ -1,1 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火车票查询</title>
+    <script defer src="https://shuoweb.com/common.js"></script>
+    <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
+    </head>
+<body>
+
+    <div class="search-container">
+        <h2>实时火车票查询</h2>
+        <div class="input-group">
+            <label for="departure">出发地：</label>
+            <input type="text" id="departure" class="search-input" placeholder="例如：北京">
+        </div>
+        <div class="input-group">
+            <label for="arrival">目的地：</label>
+            <input type="text" id="arrival" class="search-input" placeholder="例如：上海">
+        </div>
+        <button id="search-btn" class="search-btn" onclick="searchTickets()">查询火车票</button>
+    </div>
+
+    <div id="results-container" class="results-container">
+        <p class="placeholder-text">请输入出发地和目的地进行查询</p>
+    </div>
+
+    <script>
+        // 核心查询逻辑
+        async function searchTickets() {
+            const departureInput = document.getElementById('departure').value.trim();
+            const arrivalInput = document.getElementById('arrival').value.trim();
+            const resultsContainer = document.getElementById('results-container');
+
+            // 基础校验
+            if (!departureInput || !arrivalInput) {
+                alert("请输入完整的出发地和目的地！");
+                return;
+            }
+
+            // 加载提示
+            resultsContainer.innerHTML = '<p class="loading-text">正在为您请求实时票务数据，请稍候...</p>';
+
+            try {
+                // 拼接接口地址 (基于文档：departure=出发地 & arrival=目的地 & type=json)
+                const apiUrl = `https://api.lolimi.cn/API/hc/api?departure=${encodeURIComponent(departureInput)}&arrival=${encodeURIComponent(arrivalInput)}&type=json`;
+                
+                // 发送网络请求
+                const response = await fetch(apiUrl);
+                const res = await response.json();
+
+                // 判断接口是否返回成功并有数据
+                if (res.code === 200 && res.data && res.data.length > 0) {
+                    renderResults(res.data);
+                } else {
+                    resultsContainer.innerHTML = `<p class="error-text">未查询到相关车次信息或接口异常（提示：该线路可能无车次）。</p>`;
+                }
+            } catch (error) {
+                console.error("API 调用失败: ", error);
+                resultsContainer.innerHTML = '<p class="error-text">请求出错，请检查网络后重试。</p>';
+            }
+        }
+
+        // 多条结果渲染逻辑
+        function renderResults(trainsData) {
+            const resultsContainer = document.getElementById('results-container');
+            let htmlContent = '';
+
+            // 遍历所有车次并生成 DOM 字符串
+            trainsData.forEach(train => {
+                
+                // 处理座位信息
+                let seatsHtml = '';
+                if (train.SeatList && train.SeatList.length > 0) {
+                    train.SeatList.forEach(seat => {
+                        seatsHtml += `
+                            <div class="seat-item">
+                                <span class="seat-name">${seat.SeatName}</span>
+                                <span class="seat-price">￥${seat.SeatPrice}</span>
+                                <span class="seat-residue">余票: ${seat.Seatresidue}</span>
+                            </div>
+                        `;
+                    });
+                } else {
+                    seatsHtml = '<p class="no-seat-text">暂无座位信息</p>';
+                }
+
+                // 拼接当前车次卡片
+                htmlContent += `
+                    <div class="train-card">
+                        <div class="train-header">
+                            <span class="train-number">${train.TrainNumber}</span>
+                            <span class="train-duration">历时：${train.TimeDifference || '未知'}</span>
+                        </div>
+                        
+                        <div class="train-route">
+                            <div class="route-point start-point">
+                                <div class="time">${train.DepartTime}</div>
+                                <div class="station">${train.start}</div>
+                            </div>
+                            
+                            <div class="route-arrow">
+                                <span>-----></span>
+                            </div>
+                            
+                            <div class="route-point end-point">
+                                <div class="time">${train.ArriveTime}</div>
+                                <div class="station">${train.end}</div>
+                            </div>
+                        </div>
+
+                        <div class="seat-list">
+                            ${seatsHtml}
+                        </div>
+                    </div>
+                `;
+            });
+
+            // 将渲染好的 HTML 插入到容器中
+            resultsContainer.innerHTML = htmlContent;
+        }
+    </script>
+</body>
+</html>
 
