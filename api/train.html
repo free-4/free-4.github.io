@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>SHUOWEB - 实时火车票查询</title>
+<script defer src="https://shuoweb.com/common.js"></script>
+    <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
     <style>
         /* ================= 业务特定样式 ================= */
         .search-container { margin-top: 40px; }
@@ -42,11 +44,6 @@
 </head>
 <body>
 
-<header id="main-header">
-    <div class="logo">SHUOWEB</div>
-    <button onclick="toggleTheme()" style="padding: 8px 16px; font-size: 12px;">切换主题</button>
-</header>
-
 <div class="container-box search-container">
     <h2 style="margin-top:0">实时火车票查询</h2>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
@@ -69,20 +66,6 @@
 
 <script>
     let allTrainsData = [];
-
-    // 主题切换
-    function toggleTheme() {
-        const isPink = document.body.classList.toggle("pink");
-        localStorage.setItem("theme", isPink ? "pink" : "blue");
-    }
-    if (localStorage.getItem("theme") === "pink") document.body.classList.add("pink");
-
-    // 滚动头部效果
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('main-header');
-        if (window.scrollY > 50) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
 
     // 查询逻辑
     async function searchTickets() {
