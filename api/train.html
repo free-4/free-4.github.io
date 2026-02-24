@@ -143,7 +143,7 @@
         <input type="text" id="departure" placeholder="出发站">
         <input type="text" id="arrival" placeholder="到达站">
     </div>
-    <button id="search-btn" onclick="searchTickets()" style="width: 60%; margin-top: 15px; border-radius: 50px;">查询车次</button>
+    <button id="search-btn" onclick="searchTickets()" style="width: 50%; margin-top: 15px; border-radius: 50px;">查询车次</button>
 </div>
 
 <div id="filter-bar" class="filter-bar">
@@ -155,6 +155,10 @@
     </label>
     <label class="filter-tag active" id="tag-Other">
         <input type="checkbox" id="filter-Other" checked onchange="handleFilterChange('Other')"> 普快/其他
+    </label>
+    
+    <label class="filter-tag" id="tag-Available" style="border: 1px solid var(--primary); color: var(--primary);">
+        <input type="checkbox" id="filter-Available" onchange="handleFilterChange('Available')"> 仅看有票
     </label>
 </div>
 
@@ -230,22 +234,58 @@ function handleFilterChange(type) {
 }
 
 /**
- * 过滤逻辑：根据当前勾选的车型过滤数据
+ * 过滤逻辑：支持车型过滤 + 有票状态过滤
  */
 function applyFilter() {
     const showG = document.getElementById('filter-G').checked;
     const showD = document.getElementById('filter-D').checked;
     const showOther = document.getElementById('filter-Other').checked;
+    // 获取“仅看有票”的状态
+    const onlyAvailable = document.getElementById('filter-Available').checked;
 
     const filtered = allTrainsData.filter(t => {
+        // --- 1. 车型匹配 ---
         const code = t.TrainNumber[0].toUpperCase();
-        if (code === 'G') return showG;
-        if (code === 'D') return showD;
-        return showOther;
+        let typeMatch = false;
+        if (code === 'G') typeMatch = showG;
+        else if (code === 'D') typeMatch = showD;
+        else typeMatch = showOther;
+
+        if (!typeMatch) return false;
+
+        // --- 2. 有票匹配 ---
+        if (onlyAvailable) {
+            // 检查 SeatList 中是否至少有一个座席的 Seatresidue 不是“无”/0/“0”
+            return t.SeatList.some(s => {
+                return !(s.Seatresidue === '无' || s.Seatresidue === 0 || s.Seatresidue === '0' || !s.Seatresidue);
+            });
+        }
+
+        return true;
     });
 
     render(filtered);
 }
+
+/**
+ * 处理筛选标签的视觉切换与逻辑触发（兼容新标签颜色）
+ */
+function handleFilterChange(type) {
+    const tag = document.getElementById('tag-' + type);
+    const checkbox = document.getElementById('filter-' + type);
+
+    if (checkbox.checked) {
+        tag.classList.add('active');
+        // 如果是“仅看有票”，点击后加点特别的样式提醒
+        if(type === 'Available') tag.style.color = '#fff';
+    } else {
+        tag.classList.remove('active');
+        if(type === 'Available') tag.style.color = 'var(--primary)';
+    }
+
+    applyFilter();
+}
+
 
 /**
  * 渲染函数：将数据转化为带动画的卡片 HTML
