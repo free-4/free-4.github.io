@@ -1,117 +1,128 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>每日一言</title>
-  <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
-  <style>
-    * { box-sizing: border-box; }
-    
-    body {
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh; /* 确保 body 至少占满全屏，方便页脚定位 */
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>每日一言</title>
 
-    .main-content {
-      flex: 1; /* 让内容区域自动撑开，把页脚挤到底部 */
-      display: flex;
-      align-items: center; /* 垂直居中内容 */
-      justify-content: center;
-    }
+<link rel="stylesheet" href="https://shuoweb.com/css/href.css">
 
-    .quote-box {
-      width: 100%;
-      max-width: 700px;
-      padding: 20px;
-      text-align: center;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    /* 【核心优化】设置专用展示区 */
-    .quote-display-area {
-      /* 设置一个最小高度，防止页脚乱动 */
-      /* 200px 足够容纳大多数 3-4 行的名言 */
-      min-height: 180px; 
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* 让短句子在区域内垂直居中 */
-      margin-bottom: 20px;
-      transition: height 0.3s ease; /* 平滑过渡 */
-    }
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-    .quote-text {
-      font-size: 22px;
-      line-height: 1.6;
-      margin: 0 0 15px 0;
-      color: #333;
-    }
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .quote-author {
-      font-size: 16px;
-      color: #888;
-    }
+.quote-box {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+  text-align: center;
+}
 
-    .refresh-btn {
-      padding: 10px 25px;
-      font-size: 15px;
-      cursor: pointer;
-      border: 1px solid #eee;
-      border-radius: 20px;
-      background-color: #fff;
-      color: #666;
-      transition: all 0.2s;
-      outline: none;
-    }
+/* 展示区域 */
+.quote-display-area {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: height 0.3s ease;
+}
 
-    .refresh-btn:active {
-      background-color: #f5f5f5;
-      transform: scale(0.95);
-    }
+.quote-text {
+  font-size: 22px;
+  line-height: 1.6;
+  margin: 0 0 15px 0;
+  color: #333;
+}
 
-    /* 移动端适配 */
-    @media (max-width: 480px) {
-      .quote-display-area {
-        min-height: 220px; /* 手机端文字易换行，高度设大一点 */
-      }
-      .quote-text {
-        font-size: 19px;
-      }
-    }
-  </style>
+.quote-author {
+  font-size: 16px;
+  color: #888;
+}
+
+/* === 关键修复区域 === */
+.button-wrapper {
+  display: block; /* 避免被全局 flex 影响 */
+  text-align: center;
+}
+
+.refresh-btn {
+  display: inline-block; /* 防止被强制拉伸 */
+  padding: 10px 25px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #666;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.refresh-btn:active {
+  background-color: #f5f5f5;
+  transform: scale(0.95);
+}
+
+@media (max-width: 480px) {
+  .quote-display-area {
+    min-height: 220px;
+  }
+  .quote-text {
+    font-size: 19px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="main-content">
-    <div class="quote-box">
-      <div class="quote-display-area">
-        <p class="quote-text" id="quoteText">正在寻找灵感...</p>
-        <div class="quote-author" id="quoteAuthor"></div>
-      </div>
-      
+<div class="main-content">
+  <div class="quote-box">
+
+    <div class="quote-display-area">
+      <p class="quote-text" id="quoteText">正在寻找灵感...</p>
+      <div class="quote-author" id="quoteAuthor"></div>
+    </div>
+
+    <!-- 新增按钮包裹层，避免全局 flex 干扰 -->
+    <div class="button-wrapper">
       <button class="refresh-btn" id="refreshBtn">换一句</button>
     </div>
+
   </div>
+</div>
 
-  <script>
-    function showQuote() {
-      const random = Math.floor(Math.random() * quotesData.length);
-      const q = quotesData[random];
-      
-      // 使用 textContent 性能更好
-      document.getElementById('quoteText').textContent = q.text;
-      document.getElementById('quoteAuthor').textContent = '—— ' + q.author;
-    }
+<script>
+function showQuote() {
+  const random = Math.floor(Math.random() * quotesData.length);
+  const q = quotesData[random];
 
-    // 页面加载立即执行
-    document.addEventListener('DOMContentLoaded', () => {
-      showQuote();
-      document.getElementById('refreshBtn').addEventListener('click', showQuote);
-    });
-  </script>
+  document.getElementById('quoteText').textContent = q.text;
+  document.getElementById('quoteAuthor').textContent = '—— ' + q.author;
+}
 
-  <script defer src="https://shuoweb.com/common.js"></script>
-  <script defer src="https://shuoweb.com/page/html/mingyan.js"></script>
+document.addEventListener('DOMContentLoaded', () => {
+  showQuote();
+  document.getElementById('refreshBtn').addEventListener('click', showQuote);
+});
+</script>
+
+<script defer src="https://shuoweb.com/common.js"></script>
+<script defer src="https://shuoweb.com/page/html/mingyan.js"></script>
+
 </body>
 </html>
