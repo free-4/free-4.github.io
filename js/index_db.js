@@ -17,7 +17,7 @@ const SITE_DATA = [
         items: [
             { title: "IP地址查询", url: "https://shuoweb.com/page/html/ip", icon: "ip" },
             { title: "Base64 转换", url: "https://shuoweb.com/page/html/base64.html", icon: "file" },
-            { title: "JSON工具", url: "https://shuoweb.com/page/html/json.html", icon: "json" }
+            { title: "JSON工具", url: "https://shuoweb.com/page/html/json.html", icon: "code" }
         ]
     },
     {
