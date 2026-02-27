@@ -105,3 +105,75 @@ render();
     // 监听 Hash 变化事件（用户在当前页面手动在地址栏末尾加上 #sudo 并回车）
     window.addEventListener('hashchange', checkSudoEgg);
 })();
+
+(function () {
+
+  // ===== 读取 URL 参数 =====
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("token");
+
+  // ===== 判断 token =====
+  if (token !== "114514") return;
+
+  // 防止重复触发（可删除这一行关闭限制）
+  if (localStorage.getItem("shuoweb_token_114514")) return;
+  localStorage.setItem("shuoweb_token_114514", "1");
+
+  // ===== 创建彩蛋 =====
+  const egg = document.createElement("div");
+  egg.innerHTML = `
+    <div id="shuoweb-egg">
+      <h1>🎉 SHUOWEB SECRET UNLOCKED</h1>
+      <p>你发现了隐藏 Token 彩蛋！</p>
+      <small>token=114514</small>
+    </div>
+  `;
+
+  document.body.appendChild(egg);
+
+  // ===== 样式 =====
+  const style = document.createElement("style");
+  style.textContent = `
+#shuoweb-egg{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#89f7fe,#fbc2eb);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,PingFang SC,sans-serif;
+  animation:eggFade 0.8s ease;
+  text-align:center;
+}
+
+#shuoweb-egg h1{
+  font-size:32px;
+  margin-bottom:10px;
+  animation:pop 0.6s ease;
+}
+
+#shuoweb-egg p{
+  opacity:.9;
+}
+
+@keyframes eggFade{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes pop{
+  0%{transform:scale(.5)}
+  100%{transform:scale(1)}
+}
+`;
+  document.head.appendChild(style);
+
+  // ===== 点击关闭 =====
+  egg.onclick = () => {
+    egg.remove();
+  };
+
+})();
