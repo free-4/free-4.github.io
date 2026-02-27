@@ -16,7 +16,7 @@ const SITE_DATA = [
         icon: "tool",
         items: [
             { title: "IP地址查询", url: "https://shuoweb.com/page/html/ip", icon: "ip" },
-            { title: "Base64 转换", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "file" },
+            { title: "Base64 转换", url: "https://shuoweb.com/page/html/base64.html", icon: "file" },
             { title: "火车票查询", url: "https://shuoweb.com/api/train.html", icon: "train" }
         ]
     },
