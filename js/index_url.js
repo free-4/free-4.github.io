@@ -1,4 +1,25 @@
 /* =========================
+   字体引入
+========================= */
+(function () {
+    const style = document.createElement("style");
+    style.textContent = `
+@font-face {
+    font-family: 'ShuoWeb';
+    src: url('https://shuoweb.com/css/font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+body, .card-title, .section-title, .ach-toast-name, .ach-item-name {
+    font-family: 'ShuoWeb', -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+}
+    `;
+    document.head.appendChild(style);
+})();
+
+
+/* =========================
    渲染页面逻辑
 ========================= */
 function render() {
@@ -146,24 +167,47 @@ render();
             </div>
             <div class="ach-progress-bar"><div class="ach-progress-fill" style="width:${(count/total*100).toFixed(1)}%"></div></div>
             <div class="ach-list">${items}</div>
-            <div class="ach-hint">按 <kbd>?</kbd> 可随时打开此面板</div>
+            <div class="ach-hint">桌面按 <kbd>?</kbd> · 移动端长按标题</div>
         `;
         document.body.appendChild(panel);
         setTimeout(() => panel.classList.add("ach-panel-show"), 30);
     }
 
-    // 触发器：按 ? 键打开面板
+    // 触发器 1：键盘按 ? 打开面板（桌面端）
     document.addEventListener("keydown", e => {
         if (e.key === "?" || (e.shiftKey && e.key === "/")) buildPanel();
     });
 
-    // 在角落放一个小按钮
-    const btn = document.createElement("button");
-    btn.id = "ach-btn";
-    btn.title = "成就（按 ? 打开）";
-    btn.innerHTML = "🏆";
-    btn.onclick = buildPanel;
-    document.body.appendChild(btn);
+    // 触发器 2：长按任意 section-title 600ms 打开面板（移动端）
+    (function () {
+        let longPressTimer = null;
+
+        function onTouchStart() {
+            longPressTimer = setTimeout(() => {
+                longPressTimer = null;
+                if (navigator.vibrate) navigator.vibrate(40); // 轻触觉反馈
+                buildPanel();
+            }, 600);
+        }
+        function cancelLongPress() {
+            clearTimeout(longPressTimer);
+            longPressTimer = null;
+        }
+
+        function bindLongPress() {
+            document.querySelectorAll(".section-title").forEach(title => {
+                title.addEventListener("touchstart", onTouchStart,   { passive: true });
+                title.addEventListener("touchend",   cancelLongPress, { passive: true });
+                title.addEventListener("touchmove",  cancelLongPress, { passive: true });
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", bindLongPress);
+        } else {
+            bindLongPress();
+        }
+    })();
 
     // 首次访问
     window.unlockAchievement("first_visit");
@@ -175,29 +219,10 @@ render();
         stylesInjected = true;
         const s = document.createElement("style");
         s.textContent = `
-/* 成就角落按钮 */
-#ach-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(10px);
-    cursor: pointer;
-    font-size: 20px;
-    z-index: 9000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-#ach-btn:hover { transform: scale(1.15) rotate(-10deg); box-shadow: 0 6px 28px rgba(0,0,0,0.45); }
-
 /* 成就面板 */
 #ach-panel {
     position: fixed;
-    bottom: 75px;
+    bottom: 30px;
     right: 20px;
     width: 320px;
     max-height: 520px;
@@ -213,7 +238,7 @@ render();
     opacity: 0;
     transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), opacity 0.3s;
     overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    font-family: 'ShuoWeb', -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
 }
 #ach-panel.ach-panel-show { transform: translateY(0) scale(1); opacity: 1; }
 
@@ -728,22 +753,42 @@ render();
     let clickCount = 0;
     let timer = null;
 
-    // 监听任意 section-title 的点击
-    document.addEventListener("click", e => {
-        const title = e.target.closest(".section-title");
-        if (!title) return;
+    // render() 执行后直接绑定，绕开 pointer-events 问题
+    function bindTitleClicks() {
+        document.querySelectorAll(".section-title").forEach(title => {
+            // 强制覆盖其他 JS 可能设置的 pointer-events 限制
+            title.style.setProperty("pointer-events", "auto", "important");
+            title.style.cursor = "pointer";
+            // 子元素（SVG 图标等）设为不拦截，让事件统一由标题处理
+            title.querySelectorAll("*").forEach(child => {
+                child.style.setProperty("pointer-events", "none", "important");
+            });
 
-        clickCount++;
-        clearTimeout(timer);
-        timer = setTimeout(() => clickCount = 0, 2000);
+            const handler = () => {
+                clickCount++;
+                clearTimeout(timer);
+                timer = setTimeout(() => { clickCount = 0; }, 2000);
 
-        if (clickCount >= 7) {
-            clickCount = 0;
-            clearTimeout(timer);
-            window.unlockAchievement("click_maniac");
-            triggerClickEgg(title);
-        }
-    });
+                if (clickCount >= 7) {
+                    clickCount = 0;
+                    clearTimeout(timer);
+                    window.unlockAchievement("click_maniac");
+                    triggerClickEgg(title);
+                }
+            };
+
+            // capture 模式防止被其他 JS 拦截；同时绑定 touchstart 支持移动端
+            title.addEventListener("click",      handler, true);
+            title.addEventListener("touchstart", handler, { capture: true, passive: true });
+        });
+    }
+
+    // DOMContentLoaded 时绑定（render() 已同步执行）
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindTitleClicks);
+    } else {
+        bindTitleClicks();
+    }
 
     function triggerClickEgg(el) {
         const rect = el.getBoundingClientRect();
