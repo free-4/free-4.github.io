@@ -123,7 +123,7 @@ render();
   const egg = document.createElement("div");
   egg.innerHTML = `
     <div id="shuoweb-egg">
-      <h1>🎉 SHUOWEB SECRET UNLOCKED</h1>
+      <h1>SHUOWEB SECRET UNLOCKED</h1>
       <p>你发现了隐藏 Token 彩蛋！</p>
       <small>token=114514</small>
     </div>
