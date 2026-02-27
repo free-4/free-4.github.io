@@ -8,7 +8,7 @@ const SITE_DATA = [
         items: [
             { title: "历史上的今天", url: "https://shuoweb.com/page/html/today_history", icon: "history" },
             { title: "每日一言", url: "https://shuoweb.com/page/html/day_yan.html", icon: "yan" },
-            { title: "3", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "ai" }
+            { title: "火车票查询", url: "https://shuoweb.com/api/train.html", icon: "train" }
         ]
     },
     {
@@ -17,7 +17,7 @@ const SITE_DATA = [
         items: [
             { title: "IP地址查询", url: "https://shuoweb.com/page/html/ip", icon: "ip" },
             { title: "Base64 转换", url: "https://shuoweb.com/page/html/base64.html", icon: "file" },
-            { title: "火车票查询", url: "https://shuoweb.com/api/train.html", icon: "train" }
+            { title: "json工具", url: "https://shuoweb.com/page/html/json.html", icon: "json" }
         ]
     },
     {
