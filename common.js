@@ -46,6 +46,16 @@ body.pink {
   box-sizing: border-box;
 }
 
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, a, [role="button"] {
+    -webkit-user-select: none;
+    user-select: none;
+    outline: none;
+}
+
 @font-face {
     font-family: '666font';
     src: url('https://shuoweb.com/css/font.ttf');
