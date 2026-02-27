@@ -99,6 +99,13 @@ header {
   filter: brightness(1.1);
 }
 
+div:has(> button) {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 /* =============================== 全局通用 DIV 样式 =============================== */
 /* 这里的策略是针对作为“直接子级”或“块级容器”的 div 进行增强 */
 div {
