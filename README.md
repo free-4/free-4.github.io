@@ -2,8 +2,6 @@
 
 ### A budding Javascript developer
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=shuo156&label=Profile views&color=0e75b6&style=flat" alt="shuo156" /> </p>
-
 - 📫 How to reach me **shuowork155@outlook.com**
 
 - 📝 I regularly write articles on **[https://shuoweb.com/](https://shuoweb.com/)**
