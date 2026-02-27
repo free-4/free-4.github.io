@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHUOWEB - Base64 工具</title>
+
+  <!-- 引入你的UI系统 -->
+  <script src="https://shuoweb.com/icon.js"></script>
+  <script src="https://shuoweb.com/common.js"></script>
+</head>
+<body>
+
+  <div class="hero section">
+    <h1>Base64 编解码工具</h1>
+    <p>一个极简、纯前端、本地运行的编码工具</p>
+  </div>
+
+  <div id="content" class="section">
+
+    <div class="glass-card" style="max-width:700px;margin:40px auto;padding:30px;">
+
+      <div class="icon-box" style="margin:0 auto 15px;">
+        <span id="toolIcon"></span>
+      </div>
+
+      <h2>输入内容</h2>
+      <input id="inputText" placeholder="请输入需要编码或解码的内容">
+
+      <div style="margin-top:20px;">
+        <button class="btn-scale" onclick="encodeBase64()">编码</button>
+        <button class="btn-border" onclick="decodeBase64()">解码</button>
+        <button class="btn-rect" onclick="clearAll()">清空</button>
+      </div>
+
+      <h2 style="margin-top:30px;">输出结果</h2>
+      <input id="outputText" placeholder="结果将在这里显示" readonly>
+
+      <div style="margin-top:20px;">
+        <button class="btn-pulse" onclick="copyResult()">复制结果</button>
+      </div>
+
+    </div>
+
+  </div>
+
+<script>
+/* ===============================
+   插入图标
+=============================== */
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof ICONS !== "undefined") {
+    document.getElementById("toolIcon").innerHTML = ICONS.code;
+  }
+});
+
+/* ===============================
+   Base64 功能
+=============================== */
+
+function encodeBase64() {
+  const input = document.getElementById("inputText").value;
+  try {
+    document.getElementById("outputText").value =
+      btoa(unescape(encodeURIComponent(input)));
+  } catch {
+    document.getElementById("outputText").value = "编码失败";
+  }
+}
+
+function decodeBase64() {
+  const input = document.getElementById("inputText").value;
+  try {
+    document.getElementById("outputText").value =
+      decodeURIComponent(escape(atob(input)));
+  } catch {
+    document.getElementById("outputText").value = "解码失败";
+  }
+}
+
+function copyResult() {
+  const output = document.getElementById("outputText");
+  output.select();
+  document.execCommand("copy");
+}
+
+function clearAll() {
+  document.getElementById("inputText").value = "";
+  document.getElementById("outputText").value = "";
+}
+</script>
+
+</body>
+</html>
