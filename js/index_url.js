@@ -1650,3 +1650,517 @@ render();
     }
   }, 1000);
 })();
+
+
+/* ===================================================================================
+   移动端隐藏终端 —— 让手机用户也能触发所有键盘彩蛋
+   触发方式：长按页面顶部 Logo / 标题区域 1.5 秒（比成就面板的 0.6s 更长，避免误触）
+   面板内支持输入：sudo / glitch / shuo / 114514 / 666666 / 1024 / 上上下下 / konami
+=================================================================================== */
+(function () {
+
+  /* ── 暗号映射表 ── */
+  const CODES = [
+    { input: "sudo",                   action: () => fireMobileCode("sudo")     },
+    { input: "glitch",                 action: () => fireMobileCode("glitch")   },
+    { input: "shuo",                   action: () => fireMobileCode("shuo")     },
+    { input: "114514",                 action: () => fireMobileCode("114514")   },
+    { input: "666666",                 action: () => fireMobileCode("666666")   },
+    { input: "1024",                   action: () => fireMobileCode("1024")     },
+    { input: "上上下下",               action: () => fireMobileCode("matrix")   },
+    { input: "konami",                 action: () => fireMobileCode("konami")   },
+  ];
+
+  /* ── 分发到各彩蛋逻辑 ── */
+  function fireMobileCode(code) {
+    switch (code) {
+      case "sudo":
+        window.unlockAchievement("sudo_mode");
+        // 复用已有特效：模拟 hash 变化触发
+        window.location.hash = "#sudo";
+        break;
+      case "glitch":
+        window.unlockAchievement("hack_mode");
+        triggerGlitchMobile();
+        break;
+      case "shuo":
+        window.unlockAchievement("secret_word");
+        triggerLoveLetterMobile();
+        break;
+      case "114514":
+        window.unlockAchievement("token_114514");
+        showMobileTokenBanner("114514", "#ff6b35", "臭名昭著", "这个数字承载了互联网的集体记忆");
+        break;
+      case "666666":
+        window.unlockAchievement("token_666666");
+        showMobileTokenBanner("666666", "#c00060", "暗黑使徒", "六六六，传说中的黑暗之力已被你召唤");
+        break;
+      case "1024":
+        window.unlockAchievement("token_1024");
+        showMobileTokenBanner("1024", "#5ea8ff", "程序员节", "2^10 = 1024，致敬每一位码农");
+        break;
+      case "matrix":
+        window.unlockAchievement("matrix_mode");
+        triggerMatrixMobile();
+        break;
+      case "konami":
+        window.unlockAchievement("konami_code");
+        triggerKonamiMobile();
+        break;
+    }
+  }
+
+  /* ── 效果函数 ── */
+
+  function triggerGlitchMobile() {
+    const root = document.documentElement;
+    let count = 0;
+    const iv = setInterval(() => {
+      const x = (Math.random() - 0.5) * 8;
+      const y = (Math.random() - 0.5) * 4;
+      root.style.filter    = `hue-rotate(${Math.random()*360}deg) contrast(${1.2+Math.random()*0.5})`;
+      root.style.transform = `translate(${x}px,${y}px)`;
+      if (++count > 30) {
+        clearInterval(iv);
+        root.style.filter    = "";
+        root.style.transform = "";
+      }
+    }, 50);
+  }
+
+  function triggerLoveLetterMobile() {
+    if (document.getElementById("love-letter-overlay")) return;
+    const overlay = document.createElement("div");
+    overlay.id = "love-letter-overlay";
+    overlay.style.cssText = `
+      position:fixed;inset:0;z-index:99999;
+      display:flex;flex-direction:column;justify-content:center;align-items:center;
+      text-align:center;cursor:pointer;
+      font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;
+      background:radial-gradient(ellipse at center,#1a1a2e,#16213e,#0f3460);
+      opacity:0;transition:opacity 0.4s;
+    `;
+    overlay.innerHTML = `
+      <div style="width:60px;height:60px;color:#ff6b9d;animation:heartBeat 1s infinite alternate;margin-bottom:16px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" fill="#ff6b9d"/>
+        </svg>
+      </div>
+      <h2 style="color:#ff6b9d;font-size:22px;margin:0 0 10px;font-weight:800">你找到了情书</h2>
+      <p style="color:rgba(255,255,255,0.6);font-size:14px;max-width:280px;line-height:1.9;margin:0">
+        感谢每一位探索 shuoweb.com 的你<br>好奇心是最美好的品质
+      </p>
+      <small style="color:rgba(255,255,255,0.2);font-size:11px;margin-top:28px">点击关闭</small>
+      <style>@keyframes heartBeat{from{transform:scale(1)}to{transform:scale(1.18)}}</style>
+    `;
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => requestAnimationFrame(() => overlay.style.opacity = "1"));
+    overlay.onclick = () => { overlay.style.opacity = "0"; setTimeout(() => overlay.remove(), 400); };
+  }
+
+  function triggerMatrixMobile() {
+    const canvas = document.createElement("canvas");
+    canvas.style.cssText = "position:fixed;inset:0;z-index:99995;pointer-events:none;opacity:0;transition:opacity 0.5s;";
+    document.body.appendChild(canvas);
+    const ctx  = canvas.getContext("2d");
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const cols  = Math.floor(canvas.width / 16);
+    const drops = Array(cols).fill(1);
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
+    requestAnimationFrame(() => canvas.style.opacity = "1");
+    const iv = setInterval(() => {
+      ctx.fillStyle = "rgba(0,0,0,0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0f0";
+      ctx.font = "14px monospace";
+      drops.forEach((y, i) => {
+        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 16, y * 16);
+        if (y * 16 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      });
+    }, 50);
+    setTimeout(() => {
+      clearInterval(iv);
+      canvas.style.opacity = "0";
+      setTimeout(() => canvas.remove(), 600);
+    }, 4000);
+  }
+
+  function triggerKonamiMobile() {
+    const colors = ["#f9ca24","#f0932b","#6ab04c","#e55039","#5470ff","#9b59b6"];
+    for (let i = 0; i < 80; i++) {
+      const dot = document.createElement("div");
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const size  = 6 + Math.random() * 8;
+      dot.style.cssText = `
+        position:fixed;z-index:99997;border-radius:2px;pointer-events:none;
+        width:${size}px;height:${size}px;background:${color};
+        left:${Math.random()*100}vw;top:-20px;
+        animation:confettiFall ${1.5+Math.random()*2}s ease-in forwards;
+        transform:rotate(${Math.random()*360}deg);
+      `;
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 3500);
+    }
+    if (!document.getElementById("confetti-style")) {
+      const s = document.createElement("style");
+      s.id = "confetti-style";
+      s.textContent = `@keyframes confettiFall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}`;
+      document.head.appendChild(s);
+    }
+  }
+
+  function showMobileTokenBanner(code, color, title, desc) {
+    const el = document.createElement("div");
+    el.style.cssText = `
+      position:fixed;top:50%;left:50%;
+      transform:translate(-50%,-50%) scale(0.85);
+      z-index:99998;
+      background:rgba(8,8,16,0.97);
+      border:1px solid ${color}55;
+      border-radius:18px;padding:28px 36px;text-align:center;
+      font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;
+      box-shadow:0 0 60px ${color}22,0 20px 60px rgba(0,0,0,0.6);
+      opacity:0;transition:transform 0.42s cubic-bezier(.34,1.56,.64,1),opacity 0.3s;
+      min-width:260px;cursor:pointer;
+    `;
+    el.innerHTML = `
+      <div style="font-size:26px;font-weight:900;color:${color};letter-spacing:0.06em;
+        margin-bottom:8px;text-shadow:0 0 20px ${color}88;">${code}</div>
+      <div style="font-size:15px;font-weight:700;color:#eeeef8;margin-bottom:6px;">${title}</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;">${desc}</div>
+    `;
+    document.body.appendChild(el);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.style.opacity = "1";
+      el.style.transform = "translate(-50%,-50%) scale(1)";
+    }));
+    el.onclick = () => { el.style.opacity = "0"; setTimeout(() => el.remove(), 300); };
+    setTimeout(() => { el.style.opacity = "0"; setTimeout(() => el.remove(), 300); }, 3000);
+  }
+
+  /* ── 移动端终端面板 UI ── */
+  function openMobileTerminal() {
+    if (document.getElementById("mobile-terminal")) return;
+
+    // 注入终端样式（只注入一次）
+    if (!document.getElementById("mobile-terminal-style")) {
+      const s = document.createElement("style");
+      s.id = "mobile-terminal-style";
+      s.textContent = `
+        /* 遮罩层 */
+        #mobile-terminal-mask {
+          position: fixed; inset: 0;
+          z-index: 99990;
+          background: rgba(0,0,0,0.55);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          opacity: 0;
+          transition: opacity 0.28s;
+        }
+        #mobile-terminal-mask.mt-show { opacity: 1; }
+
+        /* 终端主体 */
+        #mobile-terminal {
+          position: fixed;
+          bottom: 0; left: 0; right: 0;
+          z-index: 99991;
+          background: rgba(6, 10, 14, 0.98);
+          border-radius: 20px 20px 0 0;
+          border-top: 1px solid rgba(0,255,136,0.2);
+          box-shadow: 0 -8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,255,136,0.08);
+          font-family: 'Courier New', Courier, monospace;
+          transform: translateY(100%);
+          transition: transform 0.38s cubic-bezier(.34,1.3,.64,1);
+          overflow: hidden;
+        }
+        #mobile-terminal.mt-show { transform: translateY(0); }
+
+        /* 拖动把手 */
+        .mt-handle {
+          width: 36px; height: 4px;
+          background: rgba(255,255,255,0.18);
+          border-radius: 4px;
+          margin: 10px auto 0;
+        }
+
+        /* 标题栏 */
+        .mt-titlebar {
+          display: flex; align-items: center; gap: 7px;
+          padding: 10px 18px 8px;
+          border-bottom: 1px solid rgba(0,255,136,0.1);
+        }
+        .mt-dot { width: 11px; height: 11px; border-radius: 50%; }
+        .mt-title {
+          flex: 1; text-align: center;
+          font-size: 12px; color: rgba(0,255,136,0.4);
+          letter-spacing: 0.1em;
+        }
+        .mt-close-btn {
+          background: none; border: none; cursor: pointer;
+          color: rgba(255,255,255,0.35); padding: 2px 6px;
+          font-size: 16px; line-height: 1;
+          border-radius: 6px;
+          transition: color 0.15s;
+        }
+        .mt-close-btn:hover { color: #fff; }
+
+        /* 输出区 */
+        .mt-output {
+          padding: 12px 18px 8px;
+          min-height: 80px;
+          max-height: 180px;
+          overflow-y: auto;
+          font-size: 13px;
+          line-height: 1.8;
+          color: #00ff88;
+          scrollbar-width: none;
+        }
+        .mt-output::-webkit-scrollbar { display: none; }
+        .mt-output-line { opacity: 0; animation: mtLineIn 0.2s ease forwards; }
+        @keyframes mtLineIn { from { opacity:0; transform:translateX(-6px); } to { opacity:1; transform:none; } }
+
+        /* 输入区 */
+        .mt-input-row {
+          display: flex; align-items: center; gap: 10px;
+          padding: 10px 18px 20px;
+          border-top: 1px solid rgba(0,255,136,0.08);
+        }
+        .mt-prompt {
+          color: #00ff88; font-size: 14px; white-space: nowrap;
+          user-select: none;
+        }
+        .mt-input {
+          flex: 1;
+          background: none;
+          border: none;
+          outline: none;
+          color: #e8ffe8;
+          font-family: 'Courier New', Courier, monospace;
+          font-size: 15px;
+          caret-color: #00ff88;
+          letter-spacing: 0.04em;
+        }
+        .mt-input::placeholder { color: rgba(0,255,136,0.25); }
+        .mt-send-btn {
+          background: rgba(0,255,136,0.12);
+          border: 1px solid rgba(0,255,136,0.25);
+          border-radius: 10px;
+          color: #00ff88;
+          font-size: 13px;
+          padding: 7px 14px;
+          cursor: pointer;
+          font-family: inherit;
+          white-space: nowrap;
+          transition: background 0.15s, box-shadow 0.15s;
+          letter-spacing: 0.04em;
+        }
+        .mt-send-btn:active {
+          background: rgba(0,255,136,0.22);
+          box-shadow: 0 0 12px rgba(0,255,136,0.25);
+        }
+
+        /* 提示标签 */
+        .mt-hints {
+          display: flex; flex-wrap: wrap; gap: 7px;
+          padding: 0 18px 14px;
+        }
+        .mt-hint-tag {
+          background: rgba(0,255,136,0.07);
+          border: 1px solid rgba(0,255,136,0.15);
+          border-radius: 8px;
+          color: rgba(0,255,136,0.55);
+          font-size: 11px;
+          padding: 4px 10px;
+          cursor: pointer;
+          font-family: 'Courier New', monospace;
+          transition: background 0.15s, color 0.15s;
+          letter-spacing: 0.04em;
+        }
+        .mt-hint-tag:active {
+          background: rgba(0,255,136,0.18);
+          color: #00ff88;
+        }
+      `;
+      document.head.appendChild(s);
+    }
+
+    // 遮罩
+    const mask = document.createElement("div");
+    mask.id = "mobile-terminal-mask";
+    document.body.appendChild(mask);
+
+    // 面板
+    const panel = document.createElement("div");
+    panel.id = "mobile-terminal";
+    panel.innerHTML = `
+      <div class="mt-handle"></div>
+      <div class="mt-titlebar">
+        <div class="mt-dot" style="background:#ff5f56"></div>
+        <div class="mt-dot" style="background:#ffbd2e"></div>
+        <div class="mt-dot" style="background:#27c93f"></div>
+        <div class="mt-title">shuoweb — secret terminal</div>
+        <button class="mt-close-btn" id="mt-close">✕</button>
+      </div>
+      <div class="mt-output" id="mt-output">
+        <div class="mt-output-line" style="color:rgba(0,255,136,0.5);">上上下下左右左右BA...</div>
+        <div class="mt-output-line" style="color:rgba(0,255,136,0.4);animation-delay:0.1s">输入暗号解锁隐藏彩蛋</div>
+      </div>
+      <div class="mt-hints" id="mt-hints">
+        <span class="mt-hint-tag" data-code="sudo">sudo</span>
+        <span class="mt-hint-tag" data-code="glitch">glitch</span>
+        <span class="mt-hint-tag" data-code="shuo">shuo</span>
+        <span class="mt-hint-tag" data-code="114514">114514</span>
+        <span class="mt-hint-tag" data-code="666666">666666</span>
+        <span class="mt-hint-tag" data-code="1024">1024</span>
+        <span class="mt-hint-tag" data-code="matrix">上上下下</span>
+        <span class="mt-hint-tag" data-code="konami">konami</span>
+      </div>
+      <div class="mt-input-row">
+        <span class="mt-prompt">$&nbsp;</span>
+        <input class="mt-input" id="mt-input" type="text"
+               placeholder="输入暗号..." autocomplete="off"
+               autocorrect="off" autocapitalize="off" spellcheck="false" />
+        <button class="mt-send-btn" id="mt-send">执行</button>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    // 动画入场
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      mask.classList.add("mt-show");
+      panel.classList.add("mt-show");
+    }));
+
+    // 聚焦输入框，唤起软键盘
+    setTimeout(() => {
+      const input = document.getElementById("mt-input");
+      if (input) input.focus();
+    }, 380);
+
+    function closeTerminal() {
+      mask.classList.remove("mt-show");
+      panel.classList.remove("mt-show");
+      setTimeout(() => { mask.remove(); panel.remove(); }, 380);
+    }
+
+    function printLine(text, color = "#00ff88", delay = 0) {
+      const out = document.getElementById("mt-output");
+      if (!out) return;
+      setTimeout(() => {
+        const line = document.createElement("div");
+        line.className = "mt-output-line";
+        line.style.color = color;
+        line.style.animationDelay = "0s";
+        line.textContent = text;
+        out.appendChild(line);
+        out.scrollTop = out.scrollHeight;
+      }, delay);
+    }
+
+    function submitCode(raw) {
+      const code = raw.trim().toLowerCase();
+      if (!code) return;
+
+      const input = document.getElementById("mt-input");
+      if (input) input.value = "";
+
+      printLine(`$ ${raw}`, "#e8ffe8");
+
+      const match = CODES.find(c =>
+        c.input === code || c.input.toLowerCase() === code
+      );
+
+      if (match) {
+        printLine("✓ 暗号正确 — 正在执行...", "#00ff88", 100);
+        setTimeout(() => {
+          closeTerminal();
+          setTimeout(() => match.action(), 200);
+        }, 800);
+      } else {
+        printLine(`bash: ${raw}: command not found`, "#ff5f5f", 100);
+        printLine("提示：点击上方标签填入已知暗号", "rgba(0,255,136,0.4)", 200);
+      }
+    }
+
+    // 点击标签自动填入并提交
+    document.getElementById("mt-hints").addEventListener("click", e => {
+      const tag = e.target.closest(".mt-hint-tag");
+      if (!tag) return;
+      const code = tag.dataset.code;
+      // 映射显示文字为实际暗号
+      const displayMap = { matrix: "上上下下", konami: "konami" };
+      const display = displayMap[code] || code;
+      const input = document.getElementById("mt-input");
+      if (input) {
+        input.value = display;
+        input.focus();
+      }
+      setTimeout(() => submitCode(code), 150);
+    });
+
+    // 发送按钮
+    document.getElementById("mt-send").addEventListener("click", () => {
+      const input = document.getElementById("mt-input");
+      if (input) submitCode(input.value);
+    });
+
+    // 回车提交
+    document.getElementById("mt-input").addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        submitCode(e.target.value);
+      }
+    });
+
+    // 关闭按钮 & 点击遮罩
+    document.getElementById("mt-close").addEventListener("click", closeTerminal);
+    mask.addEventListener("click", closeTerminal);
+  }
+
+  /* ── 触发方式：长按任意 section-title 1.5 秒（仅移动端）── */
+  function isTouchDevice() {
+    return navigator.maxTouchPoints > 0 || "ontouchstart" in window;
+  }
+
+  function bindMobileTerminalTrigger() {
+    // 仅在触摸设备上启用
+    if (!isTouchDevice()) return;
+
+    let pressTimer = null;
+    let pressing   = false;
+
+    function onStart(e) {
+      pressing = true;
+      pressTimer = setTimeout(() => {
+        if (!pressing) return;
+        if (navigator.vibrate) navigator.vibrate([30, 20, 30]); // 双震动提示
+        openMobileTerminal();
+      }, 1500); // 1.5 秒长按，比成就面板的 0.6s 更长
+    }
+    function onEnd() {
+      pressing = false;
+      clearTimeout(pressTimer);
+    }
+
+    document.querySelectorAll(".section-title").forEach(el => {
+      el.addEventListener("touchstart", onStart, { passive: true });
+      el.addEventListener("touchend",   onEnd,   { passive: true });
+      el.addEventListener("touchmove",  onEnd,   { passive: true });
+    });
+  }
+
+  // 等 render() 完成后绑定
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindMobileTerminalTrigger);
+  } else {
+    bindMobileTerminalTrigger();
+  }
+
+  // 桌面端也可用 F2 打开（方便调试）
+  document.addEventListener("keydown", e => {
+    if (e.key === "F2") { e.preventDefault(); openMobileTerminal(); }
+  });
+
+})();
