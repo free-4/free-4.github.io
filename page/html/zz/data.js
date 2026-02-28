@@ -556,7 +556,7 @@ window.PoliticalTest = {
   ],
 
   // 匹配人物库（带有目标雷达坐标的扩展版）
-  // 坐标轴逻辑：economic(左-右+), social(保守-开放+), authority(威权-自由+), global(本国-全球+)
+  // 坐标轴逻辑：economic(左-右+), social(保守-开放+), authority(威权-自由+), global(本国-全球+),GPT生成，不要胡说哦
   figures: [
     {
       name: "温和中间派 (Centrist)",
