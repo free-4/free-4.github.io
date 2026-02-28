@@ -112,6 +112,7 @@ render();
     { id: "long_stay",      icon: "clock",    name: "深度探索者", desc: "在页面上停留超过 3 分钟",                  secret: true  },
     { id: "sunset_visit",   icon: "sunset",   name: "黄昏访客",   desc: "在傍晚时分（17:00–19:00）到访",            secret: true  },
     // ── 终极成就 ──
+    { id: "shake_phone",    icon: "zap",      name: "摇滚精神",   desc: "摇晃手机召唤了隐藏终端",                   secret: true  },
     { id: "all_unlocked",   icon: "crown",    name: "全图鉴",     desc: "解锁了所有彩蛋成就，你是真正的探索者",       secret: true  },
   ];
 
@@ -233,7 +234,7 @@ render();
       </div>
       <div class="ach-list">${items}</div>
       <div class="ach-panel-hint">
-        桌面按 <kbd>?</kbd> &nbsp;·&nbsp; 移动端：长按标题开面板 · 三击标题开终端
+        桌面按 <kbd>?</kbd> &nbsp;·&nbsp; 移动端长按分区标题
       </div>
     `;
     document.body.appendChild(panel);
@@ -2138,53 +2139,78 @@ render();
       }
     });
 
-    // 关闭按钮 & 点击遮罩
+    // 关闭按钮
     document.getElementById("mt-close").addEventListener("click", closeTerminal);
-    mask.addEventListener("click", closeTerminal);
+
+    // 点击遮罩关闭——必须判断事件目标就是遮罩本身，
+    // 防止面板内的点击冒泡上来误触关闭
+    mask.addEventListener("click", e => {
+      if (e.target === mask) closeTerminal();
+    });
+
+    // 阻止面板内的所有点击冒泡到遮罩
+    panel.addEventListener("click", e => e.stopPropagation());
   }
 
-  /* ── 触发方式：长按任意 section-title 1.5 秒（仅移动端）── */
-  /* ── 触发方式：快速三击任意 section-title ──
-     与成就面板（长按 0.6s）完全不同的手势，互不干扰。
-     3 次点击须在 1.2 秒内完成，超时自动重置计数。         */
-  function bindMobileTerminalTrigger() {
-    let tapCount   = 0;
-    let tapTimer   = null;
-    const TAP_WIN  = 1200;  // ms，三击时间窗口
-    const TAP_NEED = 3;     // 需要几次
+  /* ── 移动端触发方式：摇晃手机 ──
+     完全不可见，不依赖任何页面元素，与成就面板长按彻底隔离。
+     同时新增「摇晃手机」成就。
+     桌面端保留 F2 快捷键（调试用）。                         */
+  (function () {
+    // 摇晃检测参数
+    const SHAKE_THRESHOLD = 18;   // 加速度变化阈值（m/s²），避免误触
+    const SHAKE_COOLDOWN  = 1500; // 两次触发间最短间隔 ms
 
-    function onTap() {
-      tapCount++;
-      clearTimeout(tapTimer);
+    let lastX = null, lastY = null, lastZ = null;
+    let lastShakeTime = 0;
+    let listening = false;
 
-      if (tapCount >= TAP_NEED) {
-        tapCount = 0;
-        if (navigator.vibrate) navigator.vibrate([20, 15, 20]);
+    function onMotion(e) {
+      const acc = e.accelerationIncludingGravity;
+      if (!acc) return;
+
+      const { x, y, z } = acc;
+      if (lastX === null) { lastX = x; lastY = y; lastZ = z; return; }
+
+      const delta = Math.abs(x - lastX) + Math.abs(y - lastY) + Math.abs(z - lastZ);
+      lastX = x; lastY = y; lastZ = z;
+
+      if (delta > SHAKE_THRESHOLD) {
+        const now = Date.now();
+        if (now - lastShakeTime < SHAKE_COOLDOWN) return;
+        lastShakeTime = now;
+
+        if (navigator.vibrate) navigator.vibrate([20, 10, 20]);
+        window.unlockAchievement("shake_phone");
         openMobileTerminal();
-        return;
       }
-
-      // 超时未凑够次数则重置
-      tapTimer = setTimeout(() => { tapCount = 0; }, TAP_WIN);
     }
 
-    function bindTitles() {
-      document.querySelectorAll(".section-title").forEach(el => {
-        // touchend 对应一次完整点击（touchstart 可能被长按逻辑拦截）
-        el.addEventListener("touchend", onTap, { passive: true });
-      });
+    function startListening() {
+      if (listening) return;
+      listening = true;
+      window.addEventListener("devicemotion", onMotion, { passive: true });
     }
 
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", bindTitles);
-    } else {
-      bindTitles();
+    // iOS 13+ 需要用户授权才能读取 DeviceMotion
+    if (typeof DeviceMotionEvent !== "undefined") {
+      if (typeof DeviceMotionEvent.requestPermission === "function") {
+        // iOS 13+：需要用户手势触发授权，监听首次 touchend
+        function requestOnGesture() {
+          DeviceMotionEvent.requestPermission()
+            .then(state => { if (state === "granted") startListening(); })
+            .catch(() => {});
+          document.removeEventListener("touchend", requestOnGesture);
+        }
+        document.addEventListener("touchend", requestOnGesture, { once: true });
+      } else {
+        // Android / 旧 iOS：直接监听
+        startListening();
+      }
     }
-  }
+  })();
 
-  bindMobileTerminalTrigger();
-
-  // 桌面端按 F2 打开（方便调试）
+  // 桌面端按 F2 打开（调试用）
   document.addEventListener("keydown", e => {
     if (e.key === "F2") { e.preventDefault(); openMobileTerminal(); }
   });
