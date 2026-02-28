@@ -6,30 +6,62 @@
   <title>政治倾向测试 | SHUOWEB</title>
   <!-- 仅引用shuoweb官方通用JS -->
   <script src="https://shuoweb.com/common.js"></script>
+  <!-- 引用指定地址的题目数据JS -->
+  <script src="https://shuoweb.com/page/html/zz/data.js"></script>
   <style>
-    /* 仅新增单选框样式：加粗描边+主题色+常驻选中，不影响原有主题 */
-    input[type="radio"] {
+    /* 单选框高亮样式：加粗描边+主题色+外发光，超明显 */
+    .custom-radio {
       width: 20px !important;
       height: 20px !important;
       min-width: 20px !important;
-      accent-color: var(--primary) !important;
       border: 2px solid var(--text-sub) !important;
       border-radius: 50% !important;
       cursor: pointer !important;
       transition: all 0.3s ease !important;
       background: var(--card-bg) !important;
+      appearance: none !important;
+      -webkit-appearance: none !important;
+      position: relative !important;
     }
-    input[type="radio"]:checked {
+    /* 选中后的高亮样式：主题色描边+外发光+内部圆点 */
+    .custom-radio.checked {
       border-color: var(--primary) !important;
       box-shadow: 0 0 0 3px var(--primary-light) !important;
     }
-    /* 选项标签鼠标悬浮效果 */
+    .custom-radio.checked::after {
+      content: '' !important;
+      position: absolute !important;
+      top: 3px !important;
+      left: 3px !important;
+      width: 10px !important;
+      height: 10px !important;
+      border-radius: 50% !important;
+      background: var(--primary) !important;
+    }
+    /* 选项悬浮效果：文字变主题色，提示可点击 */
     .quiz-option {
       cursor: pointer;
       transition: color 0.3s ease;
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      padding: 6px 0 !important;
     }
-    .quiz-option:hover span {
+    .quiz-option:hover .opt-text {
       color: var(--primary) !important;
+    }
+    .opt-text {
+      color: var(--text-sub) !important;
+      text-align: left !important;
+      font-size: 15px !important;
+      margin: 0 !important;
+    }
+    .question-title {
+      font-size: 16px !important;
+      color: var(--text-main) !important;
+      margin: 0 0 12px !important;
+      text-align: left !important;
+      line-height: 1.6 !important;
     }
   </style>
 </head>
@@ -45,62 +77,64 @@
     </div>
   </div>
 
-  <!-- 引入独立题目逻辑文件 -->
-  <script src="./data.js"></script>
   <script>
-    // 渲染题目+自定义单选框逻辑（常驻选中+再次点击取消）
+    // 全局存储选中状态：{ 题目ID: 选中的选项索引, ... }
+    let selectStatus = {};
+
+    // 渲染题目：使用自定义单选框，完全抛弃原生行为
     function renderQuiz() {
       const quizEl = document.getElementById('quiz');
       quizEl.innerHTML = '';
       
+      // 调用指定数据JS中的PoliticalTest对象
       PoliticalTest.questions.forEach((q, idx) => {
         const qDiv = document.createElement('div');
         qDiv.style.padding = '10px 0';
-        qDiv.innerHTML = `<p style="font-size:16px;color:var(--text-main);margin:0 0 12px;text-align:left !important;">${idx+1}. ${q.text}</p>`;
+        // 题目标题
+        const qTitle = document.createElement('p');
+        qTitle.className = 'question-title';
+        qTitle.innerText = `${idx+1}. ${q.text}`;
+        qDiv.appendChild(qTitle);
         
+        // 选项容器
         const optDiv = document.createElement('div');
         optDiv.style.display = 'flex';
         optDiv.style.flexDirection = 'column';
-        optDiv.style.gap = '12px';
+        optDiv.style.gap = '8px';
         optDiv.style.paddingLeft = '5px';
 
-        // 渲染选项，绑定自定义点击事件
+        // 渲染每个选项
         q.options.forEach((opt, oIdx) => {
-          // 自定义选项容器，添加类名方便样式控制
-          const optionLabel = document.createElement('label');
+          const optionLabel = document.createElement('div');
           optionLabel.className = 'quiz-option';
-          optionLabel.style.display = 'flex';
-          optionLabel.style.alignItems = 'center';
-          optionLabel.style.gap = '12px';
           
-          // 创建单选框，移除原生required，取消默认选中行为
-          const radio = document.createElement('input');
-          radio.type = 'radio';
-          radio.name = `q${q.id}`;
-          radio.value = oIdx;
-          radio.style.width = '20px';
-          radio.style.height = '20px';
-          radio.style.margin = '0';
+          // 自定义单选框（非原生input，彻底避免原生行为干扰）
+          const radio = document.createElement('div');
+          radio.className = 'custom-radio';
+          // 初始化时如果有选中状态，添加checked类
+          if (selectStatus[q.id] === oIdx) radio.classList.add('checked');
           
-          // 单选框自定义逻辑：点击常驻，再次点击取消
-          radio.addEventListener('click', (e) => {
-            // 阻止事件冒泡，避免触发其他逻辑
-            e.stopPropagation();
-            // 如果已选中，取消选中；未选中则保持选中
-            if (radio.checked) {
-              setTimeout(() => {
-                radio.checked = false;
-              }, 0);
+          // 选项文字
+          const textSpan = document.createElement('p');
+          textSpan.className = 'opt-text';
+          textSpan.innerText = opt.text;
+          
+          // 核心点击逻辑：点击切换选中状态，永久保存
+          optionLabel.addEventListener('click', (e) => {
+            e.stopPropagation(); // 阻止事件冒泡
+            // 切换选中状态：已选中则取消，未选中则选中
+            if (selectStatus[q.id] === oIdx) {
+              delete selectStatus[q.id]; // 取消选中
+              radio.classList.remove('checked');
+            } else {
+              selectStatus[q.id] = oIdx; // 保存选中状态
+              // 移除当前题目其他选项的选中样式
+              Array.from(optDiv.querySelectorAll('.custom-radio')).forEach(r => r.classList.remove('checked'));
+              // 给当前选项添加选中样式
+              radio.classList.add('checked');
             }
           });
 
-          // 选项文字
-          const textSpan = document.createElement('span');
-          textSpan.style.color = 'var(--text-sub)';
-          textSpan.style.textAlign = 'left !important';
-          textSpan.style.fontSize = '15px';
-          textSpan.innerText = opt.text;
-          
           // 组装选项
           optionLabel.appendChild(radio);
           optionLabel.appendChild(textSpan);
@@ -112,18 +146,20 @@
       });
     }
 
-    // 计算分数+匹配人物（原有逻辑不变）
+    // 计算分数+匹配人物：读取自定义选中状态
     function showResult() {
       let score = { economic:0, social:0, authority:0, global:0 };
       let allAnswered = true;
 
+      // 遍历所有题目，检查是否都已选中
       PoliticalTest.questions.forEach(q => {
-        const checked = document.querySelector(`input[name="q${q.id}"]:checked`);
-        if (!checked) {
+        // 判断当前题目是否有选中状态
+        if (selectStatus[q.id] === undefined) {
           allAnswered = false;
           return;
         }
-        const s = q.options[+checked.value].score;
+        // 根据选中的索引获取分数
+        const s = q.options[selectStatus[q.id]].score;
         score.economic += s.economic || 0;
         score.social += s.social || 0;
         score.authority += s.authority || 0;
@@ -135,7 +171,9 @@
         return;
       }
 
+      // 调用指定数据JS中的匹配逻辑
       const matchFigure = PoliticalTest.getResult(score);
+      // 渲染结果
       document.getElementById('result').innerHTML = `
         <h3 style="font-size:20px;margin:0 0 20px;">你的政治倾向得分</h3>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-bottom:30px;">
@@ -149,15 +187,19 @@
       `;
     }
 
-    // 页面加载完成初始化
+    // 页面初始化+点击其他区域不影响选中状态
     document.addEventListener('DOMContentLoaded', () => {
       renderQuiz();
       document.getElementById('submit').addEventListener('click', showResult);
-      // 点击页面其他区域，单选框选中状态不消失
+      // 点击页面任意区域，都不改变选中状态（彻底解决消失问题）
       document.addEventListener('click', (e) => {
-        if (!e.target.matches('input[type="radio"]') && !e.target.closest('.quiz-option')) {
-          return false;
-        }
+        // 仅拦截非选项区域的点击，不做任何状态修改
+        if (!e.target.closest('.quiz-option')) return;
+      });
+      // 主题切换后重新渲染，保证样式同步
+      const themeBtn = document.getElementById('themeText');
+      themeBtn && themeBtn.addEventListener('click', () => {
+        setTimeout(renderQuiz, 100); // 延迟渲染，等待主题色切换完成
       });
     });
   </script>
