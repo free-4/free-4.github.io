@@ -1,5 +1,5 @@
 // 政治倾向测试 - 题目 + 人物库 合一
-const PoliticalTest = {
+window.PoliticalTest = {
   // 40 道题目
   questions: [
     {
