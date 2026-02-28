@@ -608,6 +608,106 @@ window.PoliticalTest = {
       target: { economic: 15, social: -10, authority: -20, global: -5 },
       desc: "经济上高度允许资本逐利与市场竞争，但政治和社会层面采取铁腕高压管控。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：奥古斯托·皮诺切特 / 李光耀(早期)</span>"
     },
+{
+      name: "社会自由主义者 (Social Liberal)",
+      target: { economic: -5, social: 18, authority: 12, global: 15 },
+      desc: "支持福利国家与个人自由并存，强调机会公平与社会包容。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：贾斯廷·特鲁多 (Justin Trudeau)</span>"
+    },
+    {
+      name: "古典自由主义者 (Classical Liberal)",
+      target: { economic: 15, social: 10, authority: 15, global: 10 },
+      desc: "强调个人权利、法治与自由市场，是现代自由主义的历史源头。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：约翰·洛克 (John Locke)</span>"
+    },
+    {
+      name: "社会民主主义者 (Social Democrat)",
+      target: { economic: -12, social: 12, authority: 8, global: 12 },
+      desc: "支持资本主义框架下的高福利制度与强社会保障。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：奥洛夫·帕尔梅 (Olof Palme)</span>"
+    },
+    {
+      name: "技术官僚主义 (Technocrat)",
+      target: { economic: 5, social: 5, authority: -5, global: 10 },
+      desc: "相信专家治理与数据决策，减少意识形态影响公共政策。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：马里奥·德拉吉 (Mario Draghi)</span>"
+    },
+    {
+      name: "威权社会主义 (Authoritarian Socialist)",
+      target: { economic: -20, social: -10, authority: -25, global: -5 },
+      desc: "强调国家控制经济与社会，通过强权实现集体主义目标。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：约瑟夫·斯大林 (Joseph Stalin)</span>"
+    },
+    {
+      name: "右翼民粹主义 (Right Populist)",
+      target: { economic: 5, social: -20, authority: -10, global: -20 },
+      desc: "强调民族认同与反精英政治，主张强烈本国优先政策。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：唐纳德·特朗普 (Donald Trump)</span>"
+    },
+    {
+      name: "左翼民粹主义 (Left Populist)",
+      target: { economic: -18, social: 10, authority: -5, global: 5 },
+      desc: "反对经济精英与资本垄断，强调人民主权与财富再分配。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：雨果·查韦斯 (Hugo Chávez)</span>"
+    },
+    {
+      name: "绿色政治 (Green Politics)",
+      target: { economic: -10, social: 20, authority: 10, global: 20 },
+      desc: "环保优先，支持可持续发展与全球生态合作。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：佩特拉·凯利 (Petra Kelly)</span>"
+    },
+    {
+      name: "市场社会主义 (Market Socialist)",
+      target: { economic: -10, social: 10, authority: 5, global: 10 },
+      desc: "结合市场机制与社会所有制，追求效率与公平平衡。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：奥斯卡·兰格 (Oskar Lange)</span>"
+    },
+    {
+      name: "国家资本主义 (State Capitalist)",
+      target: { economic: 10, social: -5, authority: -20, global: -5 },
+      desc: "国家主导关键产业，同时允许市场竞争与资本运作。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：邓小平 (Deng Xiaoping)</span>"
+    },
+    {
+      name: "君主保守主义 (Monarchist Conservative)",
+      target: { economic: 0, social: -20, authority: -25, global: -10 },
+      desc: "强调传统等级秩序与国家统一，支持君主或强象征权威。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：奥托·冯·俾斯麦 (Otto von Bismarck)</span>"
+    },
+    {
+      name: "无政府资本主义 (Anarcho-Capitalist)",
+      target: { economic: 25, social: 15, authority: 25, global: 10 },
+      desc: "反对国家存在，认为市场与私人契约可替代政府。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：默里·罗斯巴德 (Murray Rothbard)</span>"
+    },
+    {
+      name: "无政府共产主义 (Anarcho-Communist)",
+      target: { economic: -25, social: 20, authority: 25, global: 15 },
+      desc: "追求无国家、无阶级社会，资源共同所有与自治社区。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：彼得·克鲁泡特金 (Peter Kropotkin)</span>"
+    },
+    {
+      name: "民族保守主义 (National Conservative)",
+      target: { economic: 5, social: -18, authority: -12, global: -18 },
+      desc: "结合民族主义与传统价值，反对全球主义文化影响。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：维克托·欧尔班 (Viktor Orbán)</span>"
+    },
+    {
+      name: "自由全球主义 (Globalist Liberal)",
+      target: { economic: 15, social: 15, authority: 10, global: 25 },
+      desc: "支持开放边界、自由贸易与全球治理结构。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：托尼·布莱尔 (Tony Blair)</span>"
+    },
+    {
+      name: "革命马克思主义 (Revolutionary Marxist)",
+      target: { economic: -25, social: 5, authority: -15, global: 10 },
+      desc: "主张通过革命推翻资本主义制度建立无阶级社会。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：列夫·托洛茨基 (Leon Trotsky)</span>"
+    },
+    {
+      name: "温和保守自由派 (Moderate Conservative Liberal)",
+      target: { economic: 10, social: -5, authority: 5, global: 5 },
+      desc: "支持市场经济与有限传统价值，强调渐进改革。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：戴维·卡梅伦 (David Cameron)</span>"
+    },
+    {
+      name: "数字自由主义 (Digital Libertarian)",
+      target: { economic: 18, social: 18, authority: 22, global: 15 },
+      desc: "强调互联网自由、隐私权与去中心化技术改变社会结构。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：爱德华·斯诺登 (Edward Snowden)</span>"
+    },
+    {
+      name: "发展主义国家派 (Developmentalist)",
+      target: { economic: -5, social: -5, authority: -10, global: 5 },
+      desc: "国家主导工业化与经济发展，以增长优先于意识形态。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：朴正熙 (Park Chung-hee)</span>"
+    },
+    {
+      name: "务实现实主义 (Realist Pragmatist)",
+      target: { economic: 5, social: 0, authority: -5, global: -5 },
+      desc: "强调国家利益与现实政治，反对理想主义外交。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：亨利·基辛格 (Henry Kissinger)</span>"
+    },
     {
       name: "生态无政府主义 (Eco-Anarchist)",
       target: { economic: -15, social: 20, authority: 20, global: 10 },
