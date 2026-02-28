@@ -30,10 +30,10 @@ const SITE_DATA = [
         ]
     },
     {
-        name: "资源导航",
+        name: "其他项目",
         icon: "box",
         items: [
-            { title: "1", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "study" },
+            { title: "政治倾向测试", url: "https://shuoweb.com/page/html/zz/", icon: "study" },
             { title: "2", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "code" },
             { title: "3", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "tool" }
         ]
