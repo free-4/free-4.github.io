@@ -233,7 +233,7 @@ render();
       </div>
       <div class="ach-list">${items}</div>
       <div class="ach-panel-hint">
-        桌面按 <kbd>?</kbd> &nbsp;·&nbsp; 移动端长按分区标题
+        桌面按 <kbd>?</kbd> &nbsp;·&nbsp; 移动端：长按标题开面板 · 三击标题开终端
       </div>
     `;
     document.body.appendChild(panel);
@@ -2144,50 +2144,47 @@ render();
   }
 
   /* ── 触发方式：长按任意 section-title 1.5 秒（仅移动端）── */
-  function isTouchDevice() {
-    return navigator.maxTouchPoints > 0 || "ontouchstart" in window;
-  }
-
+  /* ── 触发方式：快速三击任意 section-title ──
+     与成就面板（长按 0.6s）完全不同的手势，互不干扰。
+     3 次点击须在 1.2 秒内完成，超时自动重置计数。         */
   function bindMobileTerminalTrigger() {
-    // 仅在触摸设备上启用
-    if (!isTouchDevice()) return;
+    let tapCount   = 0;
+    let tapTimer   = null;
+    const TAP_WIN  = 1200;  // ms，三击时间窗口
+    const TAP_NEED = 3;     // 需要几次
 
-    let pressTimer = null;
+    function onTap() {
+      tapCount++;
+      clearTimeout(tapTimer);
 
-    function cancelPress() {
-      if (pressTimer !== null) {
-        clearTimeout(pressTimer);
-        pressTimer = null;
-      }
-    }
-
-    function onStart() {
-      cancelPress();
-      pressTimer = setTimeout(() => {
-        pressTimer = null;
-        if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
+      if (tapCount >= TAP_NEED) {
+        tapCount = 0;
+        if (navigator.vibrate) navigator.vibrate([20, 15, 20]);
         openMobileTerminal();
-      }, 1500);
+        return;
+      }
+
+      // 超时未凑够次数则重置
+      tapTimer = setTimeout(() => { tapCount = 0; }, TAP_WIN);
     }
 
-    document.querySelectorAll(".section-title").forEach(el => {
-      el.addEventListener("touchstart",  onStart,     { passive: true });
-      el.addEventListener("touchend",    cancelPress, { passive: true });
-      el.addEventListener("touchmove",   cancelPress, { passive: true });
-      el.addEventListener("touchcancel", cancelPress, { passive: true });
-      // 移动端长按会触发 contextmenu，必须在此取消，否则松手后计时器仍然继续触发
-      el.addEventListener("contextmenu", e => { e.preventDefault(); cancelPress(); });
-    });
+    function bindTitles() {
+      document.querySelectorAll(".section-title").forEach(el => {
+        // touchend 对应一次完整点击（touchstart 可能被长按逻辑拦截）
+        el.addEventListener("touchend", onTap, { passive: true });
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", bindTitles);
+    } else {
+      bindTitles();
+    }
   }
 
-  // 等 render() 完成后绑定
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bindMobileTerminalTrigger);
-  } else {
-    bindMobileTerminalTrigger();
-  }
+  bindMobileTerminalTrigger();
 
-  // 桌面端也可用 F2 打开（方便调试）
+  // 桌面端按 F2 打开（方便调试）
   document.addEventListener("keydown", e => {
     if (e.key === "F2") { e.preventDefault(); openMobileTerminal(); }
   });
