@@ -712,6 +712,11 @@ window.PoliticalTest = {
       name: "生态无政府主义 (Eco-Anarchist)",
       target: { economic: -15, social: 20, authority: 20, global: 10 },
       desc: "反对资本主义工业化，反感国家机器，主张人类应退回去中心化、高度环保的自治社区。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：默里·布克钦 (Murray Bookchin)</span>"
+    },
+    {
+      name: "国家主义威权派 (Authoritarian Nationalist)",
+      target: { economic: 5, social: -10, authority: -25, global: -5 },
+      desc: "强调国家统一、民族复兴与强力中央政府，政治上倾向威权统治以维持稳定与反对革命运动；经济上允许市场与私有资本存在，但由国家进行战略性主导与控制。通常在动荡时期以秩序与反意识形态斗争为优先目标。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：蒋介石 (Chiang Kai-shek)</span>"
     }
   ],
 
