@@ -4,35 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>政治倾向测试 | SHUOWEB</title>
-  <!-- 仅引用shuoweb官方通用JS，无任何额外CSS -->
+  <!-- 仅引用shuoweb官方通用JS -->
   <script src="https://shuoweb.com/common.js"></script>
+  <style>
+    /* 仅新增单选框样式：加粗描边+主题色+常驻选中，不影响原有主题 */
+    input[type="radio"] {
+      width: 20px !important;
+      height: 20px !important;
+      min-width: 20px !important;
+      accent-color: var(--primary) !important;
+      border: 2px solid var(--text-sub) !important;
+      border-radius: 50% !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      background: var(--card-bg) !important;
+    }
+    input[type="radio"]:checked {
+      border-color: var(--primary) !important;
+      box-shadow: 0 0 0 3px var(--primary-light) !important;
+    }
+    /* 选项标签鼠标悬浮效果 */
+    .quiz-option {
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .quiz-option:hover span {
+      color: var(--primary) !important;
+    }
+  </style>
 </head>
 <body>
-  <!-- 适配原JS的内容容器，继承所有主题样式 -->
   <div id="content" style="max-width:800px;padding:20px 15px 80px;margin:0 auto;">
-    <!-- 磨砂卡片容器，匹配原JS的玻璃质感 -->
     <div class="section" style="background:var(--card-bg);padding:30px 20px;border-radius:var(--radius);box-shadow:var(--shadow);">
       <h1 style="margin:0 0 30px;font-size:28px;">政治倾向测试</h1>
-      <!-- 题目渲染容器 -->
       <div id="quiz" style="display:flex;flex-direction:column;gap:25px;margin-bottom:30px;"></div>
-      <!-- 提交按钮（适配原JS按钮样式，居中+全屏宽适配） -->
       <button id="submit" style="width:100%;max-width:400px;margin:0 auto;padding:12px 0;font-size:16px;">
         完成测试 · 查看结果
       </button>
-      <!-- 结果展示容器（带分割线，匹配原JS视觉） -->
       <div id="result" style="margin-top:30px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.3);"></div>
     </div>
   </div>
 
-  <!-- 1. 引入独立的题目+人物逻辑文件 -->
+  <!-- 引入独立题目逻辑文件 -->
   <script src="./data.js"></script>
-  <!-- 2. 测试核心渲染/计算逻辑（极简，无样式） -->
   <script>
-    // 渲染题目（适配原JS的全局样式，单选框自动继承主题）
+    // 渲染题目+自定义单选框逻辑（常驻选中+再次点击取消）
     function renderQuiz() {
       const quizEl = document.getElementById('quiz');
       quizEl.innerHTML = '';
-      // 遍历political-test.js中的题目
+      
       PoliticalTest.questions.forEach((q, idx) => {
         const qDiv = document.createElement('div');
         qDiv.style.padding = '10px 0';
@@ -41,29 +61,62 @@
         const optDiv = document.createElement('div');
         optDiv.style.display = 'flex';
         optDiv.style.flexDirection = 'column';
-        optDiv.style.gap = '10px';
+        optDiv.style.gap = '12px';
         optDiv.style.paddingLeft = '5px';
 
-        // 渲染选项（单选框自动继承common.js的磨砂样式）
+        // 渲染选项，绑定自定义点击事件
         q.options.forEach((opt, oIdx) => {
-          optDiv.innerHTML += `
-            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
-              <input type="radio" name="q${q.id}" value="${oIdx}" style="width:auto;max-width:none;margin:0;">
-              <span style="color:var(--text-sub);text-align:left !important;">${opt.text}</span>
-            </label>
-          `;
+          // 自定义选项容器，添加类名方便样式控制
+          const optionLabel = document.createElement('label');
+          optionLabel.className = 'quiz-option';
+          optionLabel.style.display = 'flex';
+          optionLabel.style.alignItems = 'center';
+          optionLabel.style.gap = '12px';
+          
+          // 创建单选框，移除原生required，取消默认选中行为
+          const radio = document.createElement('input');
+          radio.type = 'radio';
+          radio.name = `q${q.id}`;
+          radio.value = oIdx;
+          radio.style.width = '20px';
+          radio.style.height = '20px';
+          radio.style.margin = '0';
+          
+          // 单选框自定义逻辑：点击常驻，再次点击取消
+          radio.addEventListener('click', (e) => {
+            // 阻止事件冒泡，避免触发其他逻辑
+            e.stopPropagation();
+            // 如果已选中，取消选中；未选中则保持选中
+            if (radio.checked) {
+              setTimeout(() => {
+                radio.checked = false;
+              }, 0);
+            }
+          });
+
+          // 选项文字
+          const textSpan = document.createElement('span');
+          textSpan.style.color = 'var(--text-sub)';
+          textSpan.style.textAlign = 'left !important';
+          textSpan.style.fontSize = '15px';
+          textSpan.innerText = opt.text;
+          
+          // 组装选项
+          optionLabel.appendChild(radio);
+          optionLabel.appendChild(textSpan);
+          optDiv.appendChild(optionLabel);
         });
+
         qDiv.appendChild(optDiv);
         quizEl.appendChild(qDiv);
       });
     }
 
-    // 计算分数+匹配人物
+    // 计算分数+匹配人物（原有逻辑不变）
     function showResult() {
       let score = { economic:0, social:0, authority:0, global:0 };
       let allAnswered = true;
 
-      // 遍历题目计算得分
       PoliticalTest.questions.forEach(q => {
         const checked = document.querySelector(`input[name="q${q.id}"]:checked`);
         if (!checked) {
@@ -82,9 +135,7 @@
         return;
       }
 
-      // 调用political-test.js中的匹配逻辑
       const matchFigure = PoliticalTest.getResult(score);
-      // 渲染结果（适配原JS的文字/颜色样式）
       document.getElementById('result').innerHTML = `
         <h3 style="font-size:20px;margin:0 0 20px;">你的政治倾向得分</h3>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-bottom:30px;">
@@ -98,10 +149,16 @@
       `;
     }
 
-    // 页面加载完成后初始化
+    // 页面加载完成初始化
     document.addEventListener('DOMContentLoaded', () => {
       renderQuiz();
       document.getElementById('submit').addEventListener('click', showResult);
+      // 点击页面其他区域，单选框选中状态不消失
+      document.addEventListener('click', (e) => {
+        if (!e.target.matches('input[type="radio"]') && !e.target.closest('.quiz-option')) {
+          return false;
+        }
+      });
     });
   </script>
 </body>
