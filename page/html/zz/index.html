@@ -77,25 +77,20 @@
       line-height: 1.6 !important;
       font-weight: 600 !important;
     }
-    /* 核心：提交按钮样式，防遮挡+最高优先级可点击 */
+    /* 提交按钮：防遮挡+最高优先级可点击 */
     #submit {
-      /* 防遮挡：最高层级+定位 */
       position: relative !important;
       z-index: 9999 !important;
-      /* 强制显示 */
       display: block !important;
       visibility: visible !important;
-      /* 尺寸与样式 */
       width: 100% !important;
       max-width: 400px !important;
       margin: 0 auto !important;
       padding: 14px 0 !important;
       font-size: 16px !important;
       font-weight: 600 !important;
-      /* 强制可点击 */
       pointer-events: auto !important;
       cursor: pointer !important;
-      /* 防覆盖 */
       background: var(--primary) !important;
       color: #fff !important;
       border: none !important;
@@ -112,11 +107,6 @@
       z-index: 999 !important;
       position: relative !important;
     }
-    /* 结果容器 */
-    #result {
-      position: relative !important;
-      z-index: 999 !important;
-    }
   </style>
 </head>
 <body>
@@ -128,7 +118,7 @@
       <div id="error-tip" style="display:none;"></div>
       <!-- 题目容器 -->
       <div id="quiz" style="display:none;flex-direction:column;gap:25px;margin-bottom:30px;"></div>
-      <!-- 提交按钮：内联onclick双重保障，就算事件监听被拦截也能触发 -->
+      <!-- 提交按钮：内联onclick双重保障 -->
       <button 
         id="submit" 
         style="display:none;"
@@ -143,8 +133,8 @@
   </div>
 
   <script>
-    // 全局状态
-    window.selectStatus = {};
+    // ====================== 核心：选中状态永久存储，绝对不丢失 ======================
+    window.selectStatus = window.selectStatus || {};
     const statusTip = document.getElementById('status-tip');
     const errorTip = document.getElementById('error-tip');
     const quizEl = document.getElementById('quiz');
@@ -157,6 +147,24 @@
       errorTip.style.display = 'block';
       statusTip.style.display = 'none';
       console.error('错误：', msg);
+    }
+
+    // ====================== 核心：同步选中状态到DOM，永远和存储的状态一致 ======================
+    function syncSelectStatus() {
+      // 遍历所有题目，同步选中状态
+      if (!window.PoliticalTest || !window.PoliticalTest.questions) return;
+      window.PoliticalTest.questions.forEach(q => {
+        const selectedIdx = window.selectStatus[q.id];
+        // 找到当前题目所有的单选框
+        const allRadios = document.querySelectorAll(`.question-${q.id} .custom-radio`);
+        allRadios.forEach((radio, idx) => {
+          if (idx === selectedIdx) {
+            radio.classList.add('checked');
+          } else {
+            radio.classList.remove('checked');
+          }
+        });
+      });
     }
 
     // 渲染题目
@@ -176,6 +184,7 @@
       // 渲染题目
       window.PoliticalTest.questions.forEach((q, idx) => {
         const qDiv = document.createElement('div');
+        qDiv.className = `question-${q.id}`;
         qDiv.style.padding = '15px';
         qDiv.style.background = 'rgba(255,255,255,0.05)';
         qDiv.style.borderRadius = '12px';
@@ -193,31 +202,36 @@
         q.options.forEach((opt, oIdx) => {
           const optionLabel = document.createElement('div');
           optionLabel.className = 'quiz-option';
+          optionLabel.setAttribute('data-qid', q.id);
+          optionLabel.setAttribute('data-oidx', oIdx);
           
           const radio = document.createElement('div');
           radio.className = 'custom-radio';
-          if (window.selectStatus[q.id] === oIdx) radio.classList.add('checked');
           
           const textSpan = document.createElement('p');
           textSpan.className = 'opt-text';
           textSpan.innerText = opt.text;
           
-          // 选项点击逻辑
-          optionLabel.onclick = function(e) {
+          // ====================== 核心：选项点击逻辑，绝对不被拦截 ======================
+          optionLabel.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();
             
-            if (window.selectStatus[q.id] === oIdx) {
-              delete window.selectStatus[q.id];
-              radio.classList.remove('checked');
+            const qid = optionLabel.getAttribute('data-qid');
+            const oidx = +optionLabel.getAttribute('data-oidx');
+            
+            // 切换选中状态：已选中则取消，未选中则选中
+            if (window.selectStatus[qid] === oidx) {
+              delete window.selectStatus[qid];
             } else {
-              window.selectStatus[q.id] = oIdx;
-              Array.from(optDiv.querySelectorAll('.custom-radio')).forEach(r => r.classList.remove('checked'));
-              radio.classList.add('checked');
+              window.selectStatus[qid] = oidx;
             }
+            
+            // 同步状态到DOM
+            syncSelectStatus();
             return false;
-          };
+          });
 
           optionLabel.appendChild(radio);
           optionLabel.appendChild(textSpan);
@@ -227,9 +241,12 @@
         qDiv.appendChild(optDiv);
         quizEl.appendChild(qDiv);
       });
+
+      // 渲染完成后，同步一次选中状态，确保之前的选择不丢失
+      syncSelectStatus();
     }
 
-    // 核心：计算结果函数，挂载到window，内联onclick直接调用
+    // ====================== 核心：计算结果函数，100%触发 ======================
     window.calculateResult = function() {
       console.log('按钮被点击了！开始计算结果');
       // 防止重复点击
@@ -314,12 +331,26 @@
 
       document.head.appendChild(dataScript);
 
-      // 全局事件拦截：阻止common.js吃掉我们的点击事件
+      // ====================== 核心：全局事件防护，绝对不影响选中状态 ======================
+      // 1. 阻止common.js吃掉按钮和选项的点击事件
       document.addEventListener('click', (e) => {
         if (e.target.closest('#submit') || e.target.closest('.quiz-option')) {
           e.stopImmediatePropagation();
         }
       }, true);
+
+      // 2. 点击页面任何地方，都同步一次选中状态，确保不丢失
+      document.addEventListener('click', () => {
+        syncSelectStatus();
+      });
+
+      // 3. 主题切换后，重新渲染题目，保留选中状态
+      const themeBtn = document.getElementById('themeText');
+      themeBtn && themeBtn.addEventListener('click', () => {
+        setTimeout(() => {
+          window.renderQuiz();
+        }, 150);
+      });
     });
   </script>
 </body>
