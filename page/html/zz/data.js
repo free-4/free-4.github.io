@@ -1,6 +1,6 @@
 // 政治倾向测试 - 题目 + 人物库 合一
 window.PoliticalTest = {
-  // 40 道题目
+  // 50 道题目
   questions: [
     {
       "id": 1,
@@ -441,71 +441,203 @@ window.PoliticalTest = {
         {"text": "偏向激进", "score": {"social": 1}},
         {"text": "强烈激进革新", "score": {"social": 2}}
       ]
+    },
+    // 以下为新增的10道深度题目
+    {
+      "id": 41,
+      "text": "加密货币和去中心化金融应该被政府严厉管控吗？",
+      "options": [
+        {"text": "强烈支持严管", "score": {"economic": -2, "authority": -1}},
+        {"text": "偏向适度管控", "score": {"economic": -1}},
+        {"text": "中立", "score": {"economic": 0}},
+        {"text": "偏向自由发展", "score": {"economic": 1}},
+        {"text": "绝对自由，反抗金融霸权", "score": {"economic": 2, "authority": 1}}
+      ]
+    },
+    {
+      "id": 42,
+      "text": "面对跨国公司避税，你支持推动全球统一的最低企业税率吗？",
+      "options": [
+        {"text": "强烈支持全球统一", "score": {"global": 2, "economic": -1}},
+        {"text": "偏向支持", "score": {"global": 1}},
+        {"text": "中立", "score": {"global": 0}},
+        {"text": "偏向本国按需定税", "score": {"global": -1}},
+        {"text": "坚决反对全球施压", "score": {"global": -2, "economic": 1}}
+      ]
+    },
+    {
+      "id": 43,
+      "text": "为了环保，是否应该用法律手段强制推行严苛的垃圾分类和碳排放限制？",
+      "options": [
+        {"text": "强烈支持强制", "score": {"authority": -2, "social": 1}},
+        {"text": "偏向支持", "score": {"authority": -1}},
+        {"text": "中立", "score": {"authority": 0}},
+        {"text": "偏向鼓励而非强制", "score": {"authority": 1}},
+        {"text": "强烈反对行政干预生活", "score": {"authority": 2, "social": -1}}
+      ]
+    },
+    {
+      "id": 44,
+      "text": "面对全球难民危机，本国是否应该无条件承担更多接收义务？",
+      "options": [
+        {"text": "完全应该，无国界互助", "score": {"global": 2, "social": 2}},
+        {"text": "偏向承担更多", "score": {"global": 1}},
+        {"text": "量力而行", "score": {"global": 0}},
+        {"text": "偏向收紧接收", "score": {"global": -1}},
+        {"text": "绝对反对，本国优先", "score": {"global": -2, "social": -1}}
+      ]
+    },
+    {
+      "id": 45,
+      "text": "遇到重大公共卫生危机（如疫情），政府有权强制封锁限制居民出行吗？",
+      "options": [
+        {"text": "绝对有权，集体生命至上", "score": {"authority": -2}},
+        {"text": "特殊时期可以理解", "score": {"authority": -1}},
+        {"text": "中立", "score": {"authority": 0}},
+        {"text": "偏向保障个人自由", "score": {"authority": 1}},
+        {"text": "绝对无权，自由神圣不可侵犯", "score": {"authority": 2}}
+      ]
+    },
+    {
+      "id": 46,
+      "text": "铁路、通信、水务等核心基础设施，必须由国家绝对控股吗？",
+      "options": [
+        {"text": "必须绝对控股", "score": {"economic": -2}},
+        {"text": "偏向国家主导", "score": {"economic": -1}},
+        {"text": "混合制", "score": {"economic": 0}},
+        {"text": "偏向私有化竞争", "score": {"economic": 1}},
+        {"text": "完全私有化效率更高", "score": {"economic": 2}}
+      ]
+    },
+    {
+      "id": 47,
+      "text": "中小学是否应该全面推行性教育及多元性别认同教育？",
+      "options": [
+        {"text": "强烈支持全面推行", "score": {"social": 2}},
+        {"text": "偏向支持适度普及", "score": {"social": 1}},
+        {"text": "中立", "score": {"social": 0}},
+        {"text": "偏向保留传统生物常识即可", "score": {"social": -1}},
+        {"text": "强烈反对，保护儿童免受过度引导", "score": {"social": -2}}
+      ]
+    },
+    {
+      "id": 48,
+      "text": "媒体记者是否应该拥有特权，拒绝向警方透露可能涉及犯罪的消息来源？",
+      "options": [
+        {"text": "绝对应该，新闻自由至上", "score": {"authority": 2}},
+        {"text": "偏向保护记者", "score": {"authority": 1}},
+        {"text": "看具体情况", "score": {"authority": 0}},
+        {"text": "偏向配合司法调查", "score": {"authority": -1}},
+        {"text": "绝对不应该，国家安全优先", "score": {"authority": -2}}
+      ]
+    },
+    {
+      "id": 49,
+      "text": "对于意识形态完全不同甚至对立的国家，本国应该实施经济制裁还是保持经贸往来？",
+      "options": [
+        {"text": "强烈支持制裁与脱钩", "score": {"global": -2}},
+        {"text": "偏向施压防御", "score": {"global": -1}},
+        {"text": "中立务实", "score": {"global": 0}},
+        {"text": "偏向求同存异", "score": {"global": 1}},
+        {"text": "坚决反对政治干预经济", "score": {"global": 2}}
+      ]
+    },
+    {
+      "id": 50,
+      "text": "你是否赞同对富人征收极高的“遗产税”，以防止财富世袭和阶层固化？",
+      "options": [
+        {"text": "强烈赞同，追求起点公平", "score": {"economic": -2}},
+        {"text": "偏向赞同", "score": {"economic": -1}},
+        {"text": "中立", "score": {"economic": 0}},
+        {"text": "偏向反对", "score": {"economic": 1}},
+        {"text": "强烈反对，财富支配权属于个人", "score": {"economic": 2}}
+      ]
     }
   ],
 
-  // 匹配人物
+  // 匹配人物库（带有目标雷达坐标的扩展版）
+  // 坐标轴逻辑：economic(左-右+), social(保守-开放+), authority(威权-自由+), global(本国-全球+)
   figures: [
     {
-      name: "温和中间派",
-      desc: "务实、平衡、不走极端，看情况决策，属于理性稳健型。"
+      name: "温和中间派 (Centrist)",
+      target: { economic: 0, social: 0, authority: 0, global: 0 },
+      desc: "务实、平衡、不走极端，看情况决策，属于理性稳健型。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：安格拉·默克尔 (Angela Merkel)</span>"
     },
     {
-      name: "保守秩序派",
-      desc: "重视传统、国家安全、稳定优先，经济偏政府保障。"
+      name: "保守秩序派 (Conservative)",
+      target: { economic: 5, social: -15, authority: -15, global: -10 },
+      desc: "重视传统价值、国家安全与社会秩序，经济上偏向温和市场。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：温斯顿·丘吉尔 (Winston Churchill)</span>"
     },
     {
-      name: "自由民主派",
-      desc: "支持开放社会、多元文化、温和市场、国际合作。"
+      name: "自由民主派 (Liberal)",
+      target: { economic: 5, social: 15, authority: 10, global: 15 },
+      desc: "支持开放社会、多元文化、温和的市场经济与广泛的国际合作。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：约翰·肯尼迪 (John F. Kennedy)</span>"
     },
     {
-      name: "自由意志主义者",
-      desc: "极小政府、完全市场、绝对个人自由。"
+      name: "自由意志主义者 (Libertarian)",
+      target: { economic: 20, social: 15, authority: 20, global: 5 },
+      desc: "极小政府、完全自由市场、绝对的个人权利，反感任何形式的公权力扩张。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：米尔顿·弗里德曼 (Milton Friedman)</span>"
     },
     {
-      name: "社会主义倾向",
-      desc: "强政府干预、高福利、公平优先、集体利益。"
+      name: "传统社会主义者 (State Socialist)",
+      target: { economic: -20, social: -5, authority: -15, global: 5 },
+      desc: "强调大政府干预、资源集中分配与高福利，追求绝对的经济平等，社会观念偏向保守秩序。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：克莱门特·艾德礼 (Clement Attlee)</span>"
     },
     {
-      name: "民族主义者",
-      desc: "本国优先、文化传统、强政府、保护本土产业。"
+      name: "民族主义者 (Nationalist)",
+      target: { economic: 0, social: -15, authority: -15, global: -20 },
+      desc: "本国利益绝对优先，强调文化传统、强人政治，主张保护本土产业免受外部冲击。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：夏尔·戴高乐 (Charles de Gaulle)</span>"
     },
     {
-      name: "进步激进派",
-      desc: "社会开放、平等主义、政府强力调节分配。"
+      name: "进步激进派 (Progressive)",
+      target: { economic: -15, social: 20, authority: 10, global: 15 },
+      desc: "极度强调社会多元开放与弱势群体平权，主张政府强力调节财富分配以消除不公。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：伯尼·桑德斯 (Bernie Sanders)</span>"
+    },
+    {
+      name: "新自由主义者 (Neoliberal)",
+      target: { economic: 20, social: 5, authority: 0, global: 20 },
+      desc: "坚信全球化和自由贸易，主张私有化、去监管和效率优先，用市场手段解决一切问题。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：玛格丽特·撒切尔 (Margaret Thatcher)</span>"
+    },
+    {
+      name: "民主社会主义者 (Democratic Socialist)",
+      target: { economic: -15, social: 15, authority: 15, global: 10 },
+      desc: "经济上追求高税收高福利（北欧模式），政治社会上追求极高的民主与个人自由。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：乔治·奥威尔 (George Orwell) / 典型北欧政客</span>"
+    },
+    {
+      name: "威权资本主义者 (Authoritarian Capitalist)",
+      target: { economic: 15, social: -10, authority: -20, global: -5 },
+      desc: "经济上高度允许资本逐利与市场竞争，但政治和社会层面采取铁腕高压管控。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：奥古斯托·皮诺切特 / 李光耀(早期)</span>"
+    },
+    {
+      name: "生态无政府主义 (Eco-Anarchist)",
+      target: { economic: -15, social: 20, authority: 20, global: 10 },
+      desc: "反对资本主义工业化，反感国家机器，主张人类应退回去中心化、高度环保的自治社区。<br><br><span style='display:block;margin-top:10px;font-size:14px;color:var(--text-sub);'>✦ <b>相似代表人物</b>：默里·布克钦 (Murray Bookchin)</span>"
     }
   ],
 
-  // 匹配逻辑
+  // 全新升级的匹配逻辑：多维空间距离算法 (最近邻搜索)
+  // 彻底废除原版死板的 if-else，保证绝对能匹配到最契合的流派，不会再出现匹配失败的情况。
   match(score) {
-    const { economic, social, authority, global } = score;
-    if (economic > -5 && economic < 5 &&
-        social > -5 && social < 5 &&
-        authority > -5 && authority < 5 &&
-        global > -5 && global < 5) {
-      return this.figures[0];
+    let bestMatch = null;
+    let minDistance = Infinity; // 初始距离设为无限大
+
+    // 遍历人物库，计算用户得分坐标与各流派理想坐标的“欧几里得距离”
+    for (let i = 0; i < this.figures.length; i++) {
+      let figure = this.figures[i];
+      let distance = 
+        Math.pow(score.economic - figure.target.economic, 2) +
+        Math.pow(score.social - figure.target.social, 2) +
+        Math.pow(score.authority - figure.target.authority, 2) +
+        Math.pow(score.global - figure.target.global, 2);
+
+      // 距离越小，说明匹配度越高
+      if (distance < minDistance) {
+        minDistance = distance;
+        bestMatch = figure;
+      }
     }
-    if (social <= -5 && authority <= -5 && global <= 0) {
-      return this.figures[1];
-    }
-    if (social >= 5 && global >= 5) {
-      return this.figures[2];
-    }
-    if (economic >= 10 && social >= 10 && authority >= 10) {
-      return this.figures[3];
-    }
-    if (economic <= -10) {
-      return this.figures[4];
-    }
-    if (global <= -10 && social <= -5 && authority <= -5) {
-      return this.figures[5];
-    }
-    if (economic <= -5 && social >= 10) {
-      return this.figures[6];
-    }
-    return {
-      name: "独立思考者",
-      desc: "你的政治倾向非常独特，不属于常见类型。"
-    };
+
+    // 返回最佳匹配结果给 HTML 渲染
+    return bestMatch;
   }
 };
