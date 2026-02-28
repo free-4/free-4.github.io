@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>政治倾向测试</title>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>政治倾向测试</h1>
+    <div id="quiz"></div>
+    <button id="submit">查看结果</button>
+    <div id="result"></div>
+  </div>
 
+  <!-- 2个文件 -->
+  <script src="data.js"></script>
+  <script src="https://shuoweb.com/common.js"></script>
+
+  <script>
+    // 渲染题目
+    function renderQuiz() {
+      const quiz = document.getElementById('quiz');
+      PoliticalTest.questions.forEach((q, i) => {
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.innerHTML = `<p>${i+1}. ${q.text}</p>`;
+        const opts = document.createElement('div');
+        opts.className = 'options';
+        q.options.forEach((opt, j) => {
+          opts.innerHTML += `
+            <label class="option">
+              <input type="radio" name="q${q.id}" value="${j}">
+              ${opt.text}
+            </label>
+          `;
+        });
+        div.appendChild(opts);
+        quiz.appendChild(div);
+      });
+    }
+
+    // 计算并显示结果
+    function showResult() {
+      let score = { economic:0, social:0, authority:0, global:0 };
+      let allDone = true;
+
+      PoliticalTest.questions.forEach(q => {
+        const checked = document.querySelector(`input[name="q${q.id}"]:checked`);
+        if (!checked) { allDone = false; return; }
+        const s = q.options[checked.value].score;
+        score.economic += s.economic || 0;
+        score.social += s.social || 0;
+        score.authority += s.authority || 0;
+        score.global += s.global || 0;
+      });
+
+      if (!allDone) {
+        alert('请完成所有题目');
+        return;
+      }
+
+      const figure = PoliticalTest.match(score);
+
+      document.getElementById('result').innerHTML = `
+        <h3>你的倾向得分</h3>
+        <p>经济：${score.economic}</p>
+        <p>社会：${score.social}</p>
+        <p>权威-自由：${score.authority}</p>
+        <p>国际：${score.global}</p>
+        <h3>你最像：${figure.name}</h3>
+        <p>${figure.desc}</p>
+      `;
+    }
+
+    // 启动
+    document.addEventListener('DOMContentLoaded', () => {
+      renderQuiz();
+      document.getElementById('submit').onclick = showResult;
+    });
+  </script>
+</body>
+</html>
