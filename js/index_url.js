@@ -1654,7 +1654,7 @@ render();
 
 /* ===================================================================================
    移动端隐藏终端 —— 让手机用户也能触发所有键盘彩蛋
-   触发方式：长按页面顶部 Logo / 标题区域 3 秒（比成就面板的 0.6s 更长，避免误触）
+   触发方式：长按页面顶部 Logo / 标题区域 1.5 秒（比成就面板的 0.6s 更长，避免误触）
    面板内支持输入：sudo / glitch / shuo / 114514 / 666666 / 1024 / 上上下下 / konami
 =================================================================================== */
 (function () {
@@ -1924,41 +1924,63 @@ render();
         /* 输入区 */
         .mt-input-row {
           display: flex; align-items: center; gap: 10px;
-          padding: 10px 18px 20px;
-          border-top: 1px solid rgba(0,255,136,0.08);
+          padding: 10px 14px 20px;
+          border-top: 1px solid rgba(0,255,136,0.15);
+          background: rgba(0,255,136,0.04);
         }
         .mt-prompt {
-          color: #00ff88; font-size: 14px; white-space: nowrap;
-          user-select: none;
+          color: #00ff88; font-size: 15px; white-space: nowrap;
+          user-select: none; font-weight: bold;
+          text-shadow: 0 0 8px rgba(0,255,136,0.6);
+        }
+        .mt-input-wrap {
+          flex: 1;
+          background: rgba(0,0,0,0.45);
+          border: 1.5px solid rgba(0,255,136,0.35);
+          border-radius: 10px;
+          padding: 9px 12px;
+          display: flex; align-items: center;
+          box-shadow: 0 0 0 0 rgba(0,255,136,0);
+          transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .mt-input-wrap:focus-within {
+          border-color: rgba(0,255,136,0.7);
+          box-shadow: 0 0 0 3px rgba(0,255,136,0.12), 0 0 14px rgba(0,255,136,0.15);
         }
         .mt-input {
           flex: 1;
           background: none;
           border: none;
           outline: none;
-          color: #e8ffe8;
+          color: #d0ffd8;
           font-family: 'Courier New', Courier, monospace;
           font-size: 15px;
           caret-color: #00ff88;
           letter-spacing: 0.04em;
+          min-width: 0;
         }
-        .mt-input::placeholder { color: rgba(0,255,136,0.25); }
+        .mt-input::placeholder { color: rgba(0,255,136,0.3); font-style: italic; }
         .mt-send-btn {
-          background: rgba(0,255,136,0.12);
-          border: 1px solid rgba(0,255,136,0.25);
+          background: rgba(0,255,136,0.18);
+          border: 1.5px solid rgba(0,255,136,0.45);
           border-radius: 10px;
           color: #00ff88;
           font-size: 13px;
-          padding: 7px 14px;
+          font-weight: 700;
+          padding: 9px 16px;
           cursor: pointer;
           font-family: inherit;
           white-space: nowrap;
-          transition: background 0.15s, box-shadow 0.15s;
-          letter-spacing: 0.04em;
+          transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
+          letter-spacing: 0.06em;
+          text-shadow: 0 0 8px rgba(0,255,136,0.5);
+          box-shadow: 0 0 10px rgba(0,255,136,0.1);
+          flex-shrink: 0;
         }
         .mt-send-btn:active {
-          background: rgba(0,255,136,0.22);
-          box-shadow: 0 0 12px rgba(0,255,136,0.25);
+          background: rgba(0,255,136,0.32);
+          border-color: rgba(0,255,136,0.7);
+          box-shadow: 0 0 18px rgba(0,255,136,0.35);
         }
 
         /* 提示标签 */
@@ -2019,9 +2041,11 @@ render();
       </div>
       <div class="mt-input-row">
         <span class="mt-prompt">$&nbsp;</span>
-        <input class="mt-input" id="mt-input" type="text"
-               placeholder="输入暗号..." autocomplete="off"
-               autocorrect="off" autocapitalize="off" spellcheck="false" />
+        <div class="mt-input-wrap">
+          <input class="mt-input" id="mt-input" type="text"
+                 placeholder="输入暗号..." autocomplete="off"
+                 autocorrect="off" autocapitalize="off" spellcheck="false" />
+        </div>
         <button class="mt-send-btn" id="mt-send">执行</button>
       </div>
     `;
@@ -2129,25 +2153,30 @@ render();
     if (!isTouchDevice()) return;
 
     let pressTimer = null;
-    let pressing   = false;
 
-    function onStart(e) {
-      pressing = true;
-      pressTimer = setTimeout(() => {
-        if (!pressing) return;
-        if (navigator.vibrate) navigator.vibrate([30, 20, 30]); // 双震动提示
-        openMobileTerminal();
-      }, 3000); // 3 秒长按，比成就面板的 0.6s 更长
+    function cancelPress() {
+      if (pressTimer !== null) {
+        clearTimeout(pressTimer);
+        pressTimer = null;
+      }
     }
-    function onEnd() {
-      pressing = false;
-      clearTimeout(pressTimer);
+
+    function onStart() {
+      cancelPress();
+      pressTimer = setTimeout(() => {
+        pressTimer = null;
+        if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
+        openMobileTerminal();
+      }, 1500);
     }
 
     document.querySelectorAll(".section-title").forEach(el => {
-      el.addEventListener("touchstart", onStart, { passive: true });
-      el.addEventListener("touchend",   onEnd,   { passive: true });
-      el.addEventListener("touchmove",  onEnd,   { passive: true });
+      el.addEventListener("touchstart",  onStart,     { passive: true });
+      el.addEventListener("touchend",    cancelPress, { passive: true });
+      el.addEventListener("touchmove",   cancelPress, { passive: true });
+      el.addEventListener("touchcancel", cancelPress, { passive: true });
+      // 移动端长按会触发 contextmenu，必须在此取消，否则松手后计时器仍然继续触发
+      el.addEventListener("contextmenu", e => { e.preventDefault(); cancelPress(); });
     });
   }
 
