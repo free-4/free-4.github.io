@@ -2,81 +2,106 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>政治倾向测试</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>政治倾向测试 | SHUOWEB</title>
+  <!-- 仅引用shuoweb官方通用JS，无任何额外CSS -->
+  <script src="https://shuoweb.com/common.js"></script>
 </head>
 <body>
-  <div class="quiz-container">
-    <h1>政治倾向测试</h1>
-    <div id="quiz"></div>
-    <button id="submit">查看结果</button>
-    <div id="result"></div>
+  <!-- 适配原JS的内容容器，继承所有主题样式 -->
+  <div id="content" style="max-width:800px;padding:20px 15px 80px;margin:0 auto;">
+    <!-- 磨砂卡片容器，匹配原JS的玻璃质感 -->
+    <div class="section" style="background:var(--card-bg);padding:30px 20px;border-radius:var(--radius);box-shadow:var(--shadow);">
+      <h1 style="margin:0 0 30px;font-size:28px;">政治倾向测试</h1>
+      <!-- 题目渲染容器 -->
+      <div id="quiz" style="display:flex;flex-direction:column;gap:25px;margin-bottom:30px;"></div>
+      <!-- 提交按钮（适配原JS按钮样式，居中+全屏宽适配） -->
+      <button id="submit" style="width:100%;max-width:400px;margin:0 auto;padding:12px 0;font-size:16px;">
+        完成测试 · 查看结果
+      </button>
+      <!-- 结果展示容器（带分割线，匹配原JS视觉） -->
+      <div id="result" style="margin-top:30px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.3);"></div>
+    </div>
   </div>
 
-  <!-- 2个文件 -->
-  <script src="data.js"></script>
-  <script src="https://shuoweb.com/common.js"></script>
-
+  <!-- 1. 引入独立的题目+人物逻辑文件 -->
+  <script src="./data.js"></script>
+  <!-- 2. 测试核心渲染/计算逻辑（极简，无样式） -->
   <script>
-    // 渲染题目
+    // 渲染题目（适配原JS的全局样式，单选框自动继承主题）
     function renderQuiz() {
-      const quiz = document.getElementById('quiz');
-      PoliticalTest.questions.forEach((q, i) => {
-        const div = document.createElement('div');
-        div.className = 'question';
-        div.innerHTML = `<p>${i+1}. ${q.text}</p>`;
-        const opts = document.createElement('div');
-        opts.className = 'options';
-        q.options.forEach((opt, j) => {
-          opts.innerHTML += `
-            <label class="option">
-              <input type="radio" name="q${q.id}" value="${j}">
-              ${opt.text}
+      const quizEl = document.getElementById('quiz');
+      quizEl.innerHTML = '';
+      // 遍历political-test.js中的题目
+      PoliticalTest.questions.forEach((q, idx) => {
+        const qDiv = document.createElement('div');
+        qDiv.style.padding = '10px 0';
+        qDiv.innerHTML = `<p style="font-size:16px;color:var(--text-main);margin:0 0 12px;text-align:left !important;">${idx+1}. ${q.text}</p>`;
+        
+        const optDiv = document.createElement('div');
+        optDiv.style.display = 'flex';
+        optDiv.style.flexDirection = 'column';
+        optDiv.style.gap = '10px';
+        optDiv.style.paddingLeft = '5px';
+
+        // 渲染选项（单选框自动继承common.js的磨砂样式）
+        q.options.forEach((opt, oIdx) => {
+          optDiv.innerHTML += `
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <input type="radio" name="q${q.id}" value="${oIdx}" style="width:auto;max-width:none;margin:0;">
+              <span style="color:var(--text-sub);text-align:left !important;">${opt.text}</span>
             </label>
           `;
         });
-        div.appendChild(opts);
-        quiz.appendChild(div);
+        qDiv.appendChild(optDiv);
+        quizEl.appendChild(qDiv);
       });
     }
 
-    // 计算并显示结果
+    // 计算分数+匹配人物
     function showResult() {
       let score = { economic:0, social:0, authority:0, global:0 };
-      let allDone = true;
+      let allAnswered = true;
 
+      // 遍历题目计算得分
       PoliticalTest.questions.forEach(q => {
         const checked = document.querySelector(`input[name="q${q.id}"]:checked`);
-        if (!checked) { allDone = false; return; }
-        const s = q.options[checked.value].score;
+        if (!checked) {
+          allAnswered = false;
+          return;
+        }
+        const s = q.options[+checked.value].score;
         score.economic += s.economic || 0;
         score.social += s.social || 0;
         score.authority += s.authority || 0;
         score.global += s.global || 0;
       });
 
-      if (!allDone) {
-        alert('请完成所有题目');
+      if (!allAnswered) {
+        alert('请完成所有题目后再提交～');
         return;
       }
 
-      const figure = PoliticalTest.match(score);
-
+      // 调用political-test.js中的匹配逻辑
+      const matchFigure = PoliticalTest.getResult(score);
+      // 渲染结果（适配原JS的文字/颜色样式）
       document.getElementById('result').innerHTML = `
-        <h3>你的倾向得分</h3>
-        <p>经济：${score.economic}</p>
-        <p>社会：${score.social}</p>
-        <p>权威-自由：${score.authority}</p>
-        <p>国际：${score.global}</p>
-        <h3>你最像：${figure.name}</h3>
-        <p>${figure.desc}</p>
+        <h3 style="font-size:20px;margin:0 0 20px;">你的政治倾向得分</h3>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-bottom:30px;">
+          <p style="padding:10px;background:var(--primary-light);border-radius:8px;margin:0;">经济轴：<b style="color:var(--primary);">${score.economic}</b></p>
+          <p style="padding:10px;background:var(--primary-light);border-radius:8px;margin:0;">社会轴：<b style="color:var(--primary);">${score.social}</b></p>
+          <p style="padding:10px;background:var(--primary-light);border-radius:8px;margin:0;">权威自由轴：<b style="color:var(--primary);">${score.authority}</b></p>
+          <p style="padding:10px;background:var(--primary-light);border-radius:8px;margin:0;">国际观轴：<b style="color:var(--primary);">${score.global}</b></p>
+        </div>
+        <h3 style="font-size:20px;margin:0 0 15px;">你最像：<span style="color:var(--primary);">${matchFigure.name}</span></h3>
+        <p style="font-size:16px;padding:15px;background:var(--primary-light);border-radius:8px;margin:0;text-align:center !important;">${matchFigure.desc}</p>
       `;
     }
 
-    // 启动
+    // 页面加载完成后初始化
     document.addEventListener('DOMContentLoaded', () => {
       renderQuiz();
-      document.getElementById('submit').onclick = showResult;
+      document.getElementById('submit').addEventListener('click', showResult);
     });
   </script>
 </body>
