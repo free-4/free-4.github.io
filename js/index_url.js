@@ -990,24 +990,159 @@ render();
 
 
 /* ========================= 彩蛋 1: #sudo ========================= */
+/*
+  触发方式：
+  ① URL hash: 在地址栏末尾加 #sudo 后回车（页面加载时 / hashchange 均可）
+  ② 键盘: 连续输入字母 s → u → d → o（无需 Enter，立即触发）
+*/
 (function () {
-  window.addEventListener("hashchange", check);
-  check();
-  function check() {
-    if (window.location.hash === "#sudo") window.unlockAchievement("sudo_mode");
+  let triggered = false;
+
+  function fireSudo() {
+    if (triggered) return;
+    triggered = true;
+    // 清除 hash，避免下次刷新重复触发
+    if (window.location.hash === "#sudo") {
+      try { history.replaceState(null, "", window.location.pathname + window.location.search); } catch(e){}
+    }
+    window.unlockAchievement("sudo_mode");
+    triggerSudoEffect();
+    // 30 秒后允许再次触发（防重复已由 unlockAchievement 内部保证，此处只控制特效）
+    setTimeout(() => { triggered = false; }, 30000);
+  }
+
+  // ① URL hash 检测 —— 三重保险：load / hashchange / DOMContentLoaded
+  function checkHash() {
+    if (window.location.hash === "#sudo") fireSudo();
+  }
+  window.addEventListener("hashchange", checkHash);
+  window.addEventListener("load",       checkHash);
+  if (document.readyState !== "loading") {
+    checkHash();
+  } else {
+    document.addEventListener("DOMContentLoaded", checkHash);
+  }
+
+  // ② 键盘输入 "sudo"（纯字母，连续，无需 Enter）
+  let sudoBuf = "";
+  const SUDO_TARGET = "sudo";
+  document.addEventListener("keydown", e => {
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.key.length !== 1) return;            // 跳过功能键、方向键
+    sudoBuf += e.key.toLowerCase();
+    if (sudoBuf.length > SUDO_TARGET.length) {
+      sudoBuf = sudoBuf.slice(-SUDO_TARGET.length);
+    }
+    if (sudoBuf === SUDO_TARGET) {
+      sudoBuf = "";
+      fireSudo();
+    }
+  });
+
+  // ③ 视觉特效：终端风格全屏覆盖
+  function triggerSudoEffect() {
+    if (document.getElementById("sudo-overlay")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "sudo-overlay";
+    overlay.style.cssText = `
+      position:fixed;inset:0;z-index:99997;
+      background:rgba(0,8,2,0.92);
+      display:flex;flex-direction:column;justify-content:center;align-items:center;
+      font-family:'Courier New',Courier,monospace;
+      opacity:0;transition:opacity 0.3s;
+      cursor:pointer;
+    `;
+
+    // 打字机逐行输出
+    const lines = [
+      { text: "shuoweb ~ $ sudo su",            color: "#00ff88", delay: 0    },
+      { text: "Password: ••••••••",              color: "#88ffbb", delay: 600  },
+      { text: "Authentication successful.",      color: "#00ff88", delay: 1200 },
+      { text: "Welcome, root.",                  color: "#ffffff", delay: 1700 },
+      { text: "[sudo] shell session opened",     color: "#00cc66", delay: 2200 },
+      { text: ">>> 隐藏通道已解锁 <<<",          color: "#ffd700", delay: 2700 },
+    ];
+
+    const terminal = document.createElement("div");
+    terminal.style.cssText = `
+      width:min(520px,90vw);
+      background:rgba(0,18,6,0.97);
+      border:1px solid rgba(0,255,136,0.25);
+      border-radius:12px;
+      padding:24px 28px;
+      box-shadow:0 0 60px rgba(0,255,136,0.12),0 0 0 1px rgba(0,255,136,0.08);
+    `;
+
+    // 标题栏
+    const titleBar = document.createElement("div");
+    titleBar.style.cssText = `
+      display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;
+      border-bottom:1px solid rgba(0,255,136,0.15);
+    `;
+    titleBar.innerHTML = `
+      <div style="width:12px;height:12px;border-radius:50%;background:#ff5f56"></div>
+      <div style="width:12px;height:12px;border-radius:50%;background:#ffbd2e"></div>
+      <div style="width:12px;height:12px;border-radius:50%;background:#27c93f"></div>
+      <span style="flex:1;text-align:center;font-size:12px;color:rgba(0,255,136,0.4);letter-spacing:0.1em">shuoweb — bash</span>
+    `;
+    terminal.appendChild(titleBar);
+
+    const output = document.createElement("div");
+    output.style.cssText = "line-height:1.9;font-size:13px;letter-spacing:0.04em;";
+    terminal.appendChild(output);
+
+    overlay.appendChild(terminal);
+
+    const hint = document.createElement("div");
+    hint.style.cssText = "color:rgba(255,255,255,0.18);font-size:11px;margin-top:20px;font-family:inherit;letter-spacing:0.05em;";
+    hint.textContent = "点击任意处关闭";
+    overlay.appendChild(hint);
+
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => requestAnimationFrame(() => overlay.style.opacity = "1"));
+
+    // 逐行打字机效果
+    lines.forEach(({ text, color, delay }) => {
+      setTimeout(() => {
+        const row = document.createElement("div");
+        row.style.cssText = `color:${color};white-space:pre;overflow:hidden;width:0;transition:width 0.4s ease;`;
+        row.textContent = text;
+        output.appendChild(row);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          row.style.width = row.scrollWidth + "px";
+        }));
+      }, delay);
+    });
+
+    // 点击关闭
+    overlay.addEventListener("click", () => {
+      overlay.style.opacity = "0";
+      setTimeout(() => overlay.remove(), 350);
+    });
+
+    // 4.5 秒后自动关闭
+    setTimeout(() => {
+      if (document.getElementById("sudo-overlay")) {
+        overlay.style.opacity = "0";
+        setTimeout(() => overlay.remove(), 350);
+      }
+    }, 4500);
   }
 })();
 
 
 /* ========================= 彩蛋 2: 数字雨 (Matrix) ========================= */
+/* 触发方式：键盘输入 ↑↓↑↓（方向键）—— 必须用 keydown，keypress 不捕获方向键 */
 (function () {
-  const CODES = { ArrowUp: 1, ArrowDown: 1 };
+  const TARGET = ["ArrowUp","ArrowDown","ArrowUp","ArrowDown"];
   let seq = [];
   document.addEventListener("keydown", e => {
-    if (!CODES[e.key]) { seq = []; return; }
+    const isArrow = ["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key);
+    if (!isArrow) { seq = []; return; }
     seq.push(e.key);
-    if (seq.length > 4) seq.shift();
-    if (seq.join(",") === "ArrowUp,ArrowDown,ArrowUp,ArrowDown") {
+    if (seq.length > TARGET.length) seq.shift();
+    if (seq.join(",") === TARGET.join(",")) {
       seq = [];
       window.unlockAchievement("matrix_mode");
       triggerMatrix();
@@ -1051,12 +1186,16 @@ render();
 
 
 /* ========================= 彩蛋 3: 故障美学 (Glitch) ========================= */
+/* 触发方式：键盘输入 glitch */
 (function () {
   let buf = "";
-  document.addEventListener("keypress", e => {
-    buf += e.key;
-    if (buf.length > 8) buf = buf.slice(-8);
-    if (buf.endsWith("glitch")) {
+  const TARGET = "glitch";
+  document.addEventListener("keydown", e => {
+    if (e.key.length !== 1) return; // 跳过方向键、功能键等
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    buf += e.key.toLowerCase();
+    if (buf.length > TARGET.length + 4) buf = buf.slice(-(TARGET.length + 4));
+    if (buf.endsWith(TARGET)) {
       buf = "";
       window.unlockAchievement("hack_mode");
       triggerGlitch();
@@ -1081,24 +1220,168 @@ render();
 
 
 /* ========================= 彩蛋 4–6: 数字 token ========================= */
+/*
+  触发方式：键盘连续输入对应数字序列即可
+  ① 114514  ② 666666  ③ 1024
+  注意：使用 keypress（只响应可打印字符）保持与原版行为一致，
+  避免 keydown 误监听方向键/功能键导致缓冲区意外清空。
+*/
 (function () {
   let buf = "";
-  const tokens = {
-    "114514": "token_114514",
-    "666666": "token_666666",
-    "1024":   "token_1024",
-  };
+  const MAX = 6;
+
+  const TOKENS = [
+    {
+      seq: "114514", id: "token_114514",
+      effect() {
+        showTokenBanner("114514", "#ff6b35",
+          "臭名昭著",
+          "这个数字承载了互联网的集体记忆",
+          `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17a2 2 0 002 2h4a2 2 0 002-2v-2.26C17.81 13.47 19 11.38 19 9c0-3.87-3.13-7-7-7z"/></svg>`
+        );
+      }
+    },
+    {
+      seq: "666666", id: "token_666666",
+      effect() {
+        // 短暂暗色脉冲 + 横幅
+        const flash = document.createElement("div");
+        flash.style.cssText = `
+          position:fixed;inset:0;z-index:99994;pointer-events:none;
+          background:radial-gradient(ellipse at center,rgba(180,0,60,0.35),transparent 70%);
+          opacity:0;transition:opacity 0.3s;
+        `;
+        document.body.appendChild(flash);
+        requestAnimationFrame(() => requestAnimationFrame(() => flash.style.opacity = "1"));
+        setTimeout(() => { flash.style.opacity = "0"; setTimeout(() => flash.remove(), 400); }, 900);
+
+        showTokenBanner("666666", "#c00060",
+          "暗黑使徒",
+          "六六六，传说中的黑暗之力已被你召唤",
+          `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c0 0-5 5-5 10a5 5 0 0010 0c0-3-2-5-2-5s-1 2-3 2c0-3 0-7 0-7z"/></svg>`
+        );
+      }
+    },
+    {
+      seq: "1024", id: "token_1024",
+      effect() {
+        // 短暂二进制雨效果
+        triggerBinaryRain();
+        showTokenBanner("1024", "#5ea8ff",
+          "程序员节",
+          "2^10 = 1024，以此致敬每一位码农",
+          `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6" y2="10"/><line x1="10" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="14" y2="10"/><line x1="18" y1="10" x2="18" y2="10"/><line x1="6" y1="14" x2="18" y2="14"/></svg>`
+        );
+      }
+    },
+  ];
+
+  // keypress 只触发于可打印字符，天然跳过方向键、功能键，与原版行为完全一致
   document.addEventListener("keypress", e => {
-    if (!/\d/.test(e.key)) { buf = ""; return; }
-    buf += e.key;
-    if (buf.length > 6) buf = buf.slice(-6);
-    for (const [token, id] of Object.entries(tokens)) {
-      if (buf.endsWith(token)) {
+    const ch = e.key;
+    if (!/^[0-9]$/.test(ch)) {
+      // 非数字可打印字符：清空缓冲（与原版一致）
+      buf = "";
+      return;
+    }
+    buf += ch;
+    if (buf.length > MAX) buf = buf.slice(-MAX);
+
+    for (const token of TOKENS) {
+      if (buf.endsWith(token.seq)) {
         buf = "";
-        window.unlockAchievement(id);
+        window.unlockAchievement(token.id);
+        token.effect();
+        break;
       }
     }
   });
+
+  // ── 通用横幅 ──
+  function showTokenBanner(code, color, title, desc, iconSvg) {
+    const existing = document.getElementById("token-banner");
+    if (existing) existing.remove();
+
+    const el = document.createElement("div");
+    el.id = "token-banner";
+    el.style.cssText = `
+      position:fixed;top:50%;left:50%;
+      transform:translate(-50%,-50%) scale(0.8);
+      z-index:99998;
+      background:rgba(8,8,16,0.97);
+      border:1px solid ${color}55;
+      border-radius:18px;
+      padding:28px 40px;
+      text-align:center;
+      font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;
+      box-shadow:0 0 0 1px ${color}22, 0 20px 60px rgba(0,0,0,0.6), 0 0 60px ${color}22;
+      opacity:0;
+      transition:transform 0.42s cubic-bezier(.34,1.56,.64,1),opacity 0.3s;
+      min-width:280px;
+    `;
+    el.innerHTML = `
+      <div style="width:52px;height:52px;margin:0 auto 14px;color:${color};
+        filter:drop-shadow(0 0 10px ${color});
+        border-radius:14px;padding:10px;
+        background:${color}18;border:1px solid ${color}33;">
+        ${iconSvg}
+      </div>
+      <div style="font-size:22px;font-weight:900;color:${color};letter-spacing:0.06em;
+        margin-bottom:6px;text-shadow:0 0 20px ${color}88;">${code}</div>
+      <div style="font-size:15px;font-weight:700;color:#eeeef8;margin-bottom:6px;">${title}</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;max-width:240px;">${desc}</div>
+    `;
+    document.body.appendChild(el);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.style.opacity = "1";
+      el.style.transform = "translate(-50%,-50%) scale(1)";
+    }));
+    el.addEventListener("click", () => {
+      el.style.opacity = "0";
+      el.style.transform = "translate(-50%,-50%) scale(0.85)";
+      setTimeout(() => el.remove(), 350);
+    });
+    setTimeout(() => {
+      if (document.getElementById("token-banner") === el) {
+        el.style.opacity = "0";
+        el.style.transform = "translate(-50%,-50%) scale(0.85)";
+        setTimeout(() => el.remove(), 350);
+      }
+    }, 3500);
+  }
+
+  // ── 1024 特效：快速二进制雨 ──
+  function triggerBinaryRain() {
+    const canvas = document.createElement("canvas");
+    canvas.style.cssText = "position:fixed;inset:0;z-index:99993;pointer-events:none;opacity:0;transition:opacity 0.4s;";
+    document.body.appendChild(canvas);
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx   = canvas.getContext("2d");
+    const cols  = Math.floor(canvas.width / 18);
+    const drops = Array.from({length: cols}, () => Math.floor(Math.random() * canvas.height / 18));
+    requestAnimationFrame(() => canvas.style.opacity = "1");
+
+    const iv = setInterval(() => {
+      ctx.fillStyle = "rgba(0,6,20,0.12)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#5ea8ff";
+      ctx.font = "bold 14px monospace";
+      drops.forEach((y, i) => {
+        ctx.globalAlpha = 0.7 + Math.random() * 0.3;
+        ctx.fillText(Math.random() > 0.5 ? "1" : "0", i * 18, y * 18);
+        if (y * 18 > canvas.height && Math.random() > 0.97) drops[i] = 0;
+        drops[i]++;
+      });
+      ctx.globalAlpha = 1;
+    }, 50);
+
+    setTimeout(() => {
+      clearInterval(iv);
+      canvas.style.opacity = "0";
+      setTimeout(() => canvas.remove(), 500);
+    }, 2000);
+  }
 })();
 
 
@@ -1180,7 +1463,9 @@ render();
 (function () {
   let buf = "";
   const TARGET = "shuo";
-  document.addEventListener("keypress", e => {
+  document.addEventListener("keydown", e => {
+    if (e.key.length !== 1) return;
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
     buf += e.key.toLowerCase();
     if (buf.length > TARGET.length) buf = buf.slice(-TARGET.length);
     if (buf === TARGET) {
