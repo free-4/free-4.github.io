@@ -394,294 +394,592 @@ render();
 
     const s = document.createElement("style");
     s.textContent = `
-      /* ─── CSS 变量 ─── */
+      /* ══════════════════════════════════════════════
+         CSS 变量 & 全局动画
+      ══════════════════════════════════════════════ */
       :root {
-        --ach-bg:        rgba(10, 10, 18, 0.96);
-        --ach-border:    rgba(255,255,255,0.10);
-        --ach-accent:    #7c6af7;
-        --ach-accent2:   #f5a623;
-        --ach-text:      #e8e8f0;
-        --ach-muted:     rgba(255,255,255,0.38);
-        --ach-done-bg:   rgba(124,106,247,0.12);
-        --ach-done-ring: rgba(124,106,247,0.35);
-        --ach-radius:    18px;
-        --ach-font:      'ShuoWeb', -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
-        --ach-shadow:    0 24px 80px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.06);
+        --ach-bg:           #0d0d18;
+        --ach-surface:      rgba(18, 18, 32, 0.97);
+        --ach-border:       rgba(255,255,255,0.08);
+        --ach-border-glow:  rgba(124,106,247,0.5);
+        --ach-accent:       #8b7cf8;
+        --ach-accent2:      #f5a623;
+        --ach-accent3:      #3ecfcf;
+        --ach-text:         #eeeef8;
+        --ach-text-sub:     rgba(230,230,255,0.55);
+        --ach-muted:        rgba(255,255,255,0.30);
+        --ach-done-bg:      rgba(139,124,248,0.10);
+        --ach-done-glow:    rgba(139,124,248,0.22);
+        --ach-radius:       20px;
+        --ach-font:         'ShuoWeb', -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+        --ach-shadow:
+          0 0 0 1px rgba(255,255,255,0.06),
+          0 8px 32px rgba(0,0,0,0.5),
+          0 32px 80px rgba(0,0,0,0.6),
+          0 0 80px rgba(139,124,248,0.08);
       }
 
-      /* ─── 成就面板 ─── */
+      /* 关键帧 */
+      @keyframes achPanelIn    { from { transform: translateY(22px) scale(0.94); opacity: 0; } to { transform: none; opacity: 1; } }
+      @keyframes achItemIn     { from { transform: translateX(-8px); opacity: 0; } to { transform: none; opacity: 1; } }
+      @keyframes achShimmer    { from { transform: translateX(-100%) skewX(-15deg); } to { transform: translateX(250%) skewX(-15deg); } }
+      @keyframes achPulseRing  { 0%,100% { box-shadow: 0 0 0 0 rgba(139,124,248,0.4); } 50% { box-shadow: 0 0 0 6px rgba(139,124,248,0); } }
+      @keyframes achGlow       { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+      @keyframes achToastIn    { from { transform: translateX(calc(100% + 32px)); opacity: 0; } to { transform: none; opacity: 1; } }
+      @keyframes achToastOut   { from { transform: none; opacity: 1; } to { transform: translateX(calc(100% + 32px)); opacity: 0; } }
+      @keyframes achProgress   { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+      @keyframes achOrbit      {
+        0%   { transform: rotate(0deg)   translateX(44px) rotate(0deg); }
+        100% { transform: rotate(360deg) translateX(44px) rotate(-360deg); }
+      }
+      @keyframes achOrbit2     {
+        0%   { transform: rotate(120deg)   translateX(44px) rotate(-120deg); }
+        100% { transform: rotate(480deg)   translateX(44px) rotate(-480deg); }
+      }
+      @keyframes achOrbit3     {
+        0%   { transform: rotate(240deg)   translateX(44px) rotate(-240deg); }
+        100% { transform: rotate(600deg)   translateX(44px) rotate(-600deg); }
+      }
+      @keyframes achRotate     { to { transform: rotate(360deg); } }
+      @keyframes achFloat      { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+      @keyframes achBadgePop   { 0% { transform: scale(0) rotate(-20deg); } 80% { transform: scale(1.15) rotate(3deg); } 100% { transform: scale(1) rotate(0); } }
+
+      /* ══════════════════════════════════════════════
+         成就面板 — 主容器
+      ══════════════════════════════════════════════ */
       #ach-panel {
         position: fixed;
-        bottom: 28px;
-        right: 22px;
-        width: 340px;
-        max-height: 560px;
-        background: var(--ach-bg);
-        border: 1px solid var(--ach-border);
+        bottom: 28px; right: 24px;
+        width: 356px;
+        max-height: 580px;
+        background: var(--ach-surface);
         border-radius: var(--ach-radius);
-        backdrop-filter: blur(28px) saturate(160%);
-        -webkit-backdrop-filter: blur(28px) saturate(160%);
         z-index: 9001;
         display: flex;
         flex-direction: column;
         box-shadow: var(--ach-shadow);
-        transform: translateY(18px) scale(0.96);
-        opacity: 0;
-        transition: transform 0.32s cubic-bezier(.34,1.42,.64,1), opacity 0.28s ease;
         overflow: hidden;
         font-family: var(--ach-font);
+        opacity: 0;
+        transform: translateY(22px) scale(0.94);
+        transition: none;
+        /* 渐变描边边框 via outline + pseudo */
+      }
+      #ach-panel::before {
+        content: '';
+        position: absolute; inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(135deg,
+          rgba(139,124,248,0.55) 0%,
+          rgba(255,255,255,0.08) 40%,
+          rgba(62,207,207,0.35) 70%,
+          rgba(245,166,35,0.4) 100%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 10;
+      }
+      /* 背景噪点纹理 */
+      #ach-panel::after {
+        content: '';
+        position: absolute; inset: 0;
+        border-radius: inherit;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        background-size: 160px;
+        opacity: 0.6;
+        pointer-events: none;
+        z-index: 0;
       }
       #ach-panel.ach-panel--show {
-        transform: translateY(0) scale(1);
-        opacity: 1;
+        animation: achPanelIn 0.38s cubic-bezier(.34,1.42,.64,1) forwards;
       }
 
-      /* ─── 面板顶部 ─── */
+      /* ══════════════════════════════════════════════
+         顶部标题区
+      ══════════════════════════════════════════════ */
       .ach-panel-header {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 16px 12px;
-        border-bottom: 1px solid var(--ach-border);
+        padding: 18px 18px 14px;
         flex-shrink: 0;
+        z-index: 2;
+        overflow: hidden;
       }
+      /* 标题区微光背景 */
+      .ach-panel-header::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg,
+          rgba(139,124,248,0.14) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      /* 底部分割线渐变 */
+      .ach-panel-header::after {
+        content: '';
+        position: absolute; bottom: 0; left: 18px; right: 18px;
+        height: 1px;
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(139,124,248,0.5) 30%,
+          rgba(62,207,207,0.4) 70%,
+          transparent
+        );
+      }
+
       .ach-panel-title {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         font-size: 15px;
-        font-weight: 700;
+        font-weight: 800;
         color: var(--ach-text);
-        letter-spacing: 0.02em;
+        letter-spacing: 0.03em;
+        text-shadow: 0 0 20px rgba(139,124,248,0.4);
       }
+
+      /* 图标容器：旋转光圈 */
       .ach-panel-title-icon {
-        width: 20px;
-        height: 20px;
-        color: var(--ach-accent2);
+        position: relative;
+        width: 32px; height: 32px;
         flex-shrink: 0;
-      }
-      .ach-panel-title-icon svg { width: 100%; height: 100%; }
-      .ach-panel-count {
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--ach-muted);
-        background: rgba(255,255,255,0.07);
-        padding: 2px 8px;
-        border-radius: 20px;
-      }
-      .ach-panel-close {
-        width: 28px; height: 28px;
         display: flex; align-items: center; justify-content: center;
-        background: none;
-        border: none;
+      }
+      .ach-panel-title-icon svg {
+        width: 18px; height: 18px;
+        color: var(--ach-accent2);
+        position: relative; z-index: 2;
+        filter: drop-shadow(0 0 6px rgba(245,166,35,0.7));
+        animation: achFloat 3s ease-in-out infinite;
+      }
+      .ach-panel-title-icon::before {
+        content: '';
+        position: absolute; inset: 0;
+        border-radius: 50%;
+        border: 1.5px dashed rgba(245,166,35,0.35);
+        animation: achRotate 8s linear infinite;
+      }
+      /* 轨道小点 */
+      .ach-panel-title-icon::after {
+        content: '';
+        position: absolute;
+        width: 5px; height: 5px;
+        background: var(--ach-accent);
+        border-radius: 50%;
+        top: 50%; left: 50%;
+        margin: -2.5px;
+        animation: achOrbit 3s linear infinite;
+        box-shadow: 0 0 6px var(--ach-accent);
+      }
+
+      .ach-panel-count {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--ach-accent);
+        background: rgba(139,124,248,0.12);
+        border: 1px solid rgba(139,124,248,0.25);
+        padding: 2px 9px;
+        border-radius: 20px;
+        letter-spacing: 0.04em;
+      }
+
+      .ach-panel-close {
+        position: relative;
+        width: 30px; height: 30px;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
         color: var(--ach-muted);
         cursor: pointer;
-        border-radius: 8px;
-        transition: background 0.15s, color 0.15s;
+        border-radius: 10px;
+        transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
         padding: 0;
+        z-index: 3;
       }
-      .ach-panel-close svg { width: 16px; height: 16px; }
-      .ach-panel-close:hover { background: rgba(255,255,255,0.09); color: var(--ach-text); }
+      .ach-panel-close svg { width: 14px; height: 14px; }
+      .ach-panel-close:hover {
+        background: rgba(255,255,255,0.10);
+        border-color: rgba(255,255,255,0.18);
+        color: var(--ach-text);
+        box-shadow: 0 0 12px rgba(139,124,248,0.25);
+      }
 
-      /* ─── 进度条 ─── */
+      /* ══════════════════════════════════════════════
+         进度区
+      ══════════════════════════════════════════════ */
       .ach-progress-wrap {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 10px 16px 8px;
+        gap: 12px;
+        padding: 12px 18px 10px;
         flex-shrink: 0;
+        z-index: 2;
+        position: relative;
       }
+
       .ach-progress-bar {
         flex: 1;
-        height: 4px;
-        background: rgba(255,255,255,0.08);
-        border-radius: 4px;
-        overflow: hidden;
+        height: 5px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 10px;
+        overflow: visible;
+        position: relative;
       }
       .ach-progress-fill {
+        position: relative;
         height: 100%;
-        background: linear-gradient(90deg, var(--ach-accent), var(--ach-accent2));
-        border-radius: 4px;
-        transition: width 0.8s cubic-bezier(.4,0,.2,1);
-        box-shadow: 0 0 8px rgba(124,106,247,0.5);
+        background: linear-gradient(90deg, var(--ach-accent) 0%, var(--ach-accent3) 50%, var(--ach-accent2) 100%);
+        background-size: 200% 100%;
+        border-radius: 10px;
+        transition: width 1s cubic-bezier(.4,0,.2,1);
+        box-shadow:
+          0 0 10px rgba(139,124,248,0.6),
+          0 0 24px rgba(139,124,248,0.3);
+        overflow: hidden;
       }
+      /* 进度条流光 */
+      .ach-progress-fill::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transform: translateX(-100%) skewX(-15deg);
+        animation: achShimmer 2.5s ease-in-out infinite 0.8s;
+      }
+      /* 进度条末端发光圆点 */
+      .ach-progress-fill::before {
+        content: '';
+        position: absolute; right: -3px; top: 50%;
+        width: 8px; height: 8px;
+        background: #fff;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        box-shadow:
+          0 0 6px var(--ach-accent),
+          0 0 14px var(--ach-accent);
+        opacity: 0.9;
+      }
+
       .ach-progress-label {
         font-size: 11px;
-        color: var(--ach-muted);
+        font-weight: 700;
+        color: var(--ach-accent);
         white-space: nowrap;
-        min-width: 36px;
+        min-width: 38px;
         text-align: right;
+        letter-spacing: 0.04em;
       }
 
-      /* ─── 成就列表 ─── */
+      /* ══════════════════════════════════════════════
+         成就列表
+      ══════════════════════════════════════════════ */
       .ach-list {
         overflow-y: auto;
-        padding: 6px 10px;
+        padding: 6px 10px 8px;
         flex: 1;
+        position: relative;
+        z-index: 2;
         scrollbar-width: thin;
-        scrollbar-color: rgba(255,255,255,0.12) transparent;
+        scrollbar-color: rgba(139,124,248,0.25) transparent;
       }
-      .ach-list::-webkit-scrollbar { width: 4px; }
+      .ach-list::-webkit-scrollbar { width: 3px; }
       .ach-list::-webkit-scrollbar-track { background: transparent; }
-      .ach-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+      .ach-list::-webkit-scrollbar-thumb {
+        background: rgba(139,124,248,0.3);
+        border-radius: 10px;
+      }
 
-      /* ─── 成就条目 ─── */
+      /* ── 成就条目 ── */
       .ach-item {
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 10px 10px;
-        border-radius: 12px;
-        margin-bottom: 3px;
-        transition: background 0.15s;
+        padding: 10px 12px;
+        border-radius: 14px;
+        margin-bottom: 4px;
+        position: relative;
+        cursor: default;
+        transition: background 0.2s, transform 0.18s, box-shadow 0.2s;
+        overflow: hidden;
+        opacity: 0;
+        animation: achItemIn 0.3s ease forwards;
       }
-      .ach-item:hover { background: rgba(255,255,255,0.04); }
+      /* 每个条目入场延迟 */
+      .ach-item:nth-child(1)  { animation-delay: 0.03s; }
+      .ach-item:nth-child(2)  { animation-delay: 0.06s; }
+      .ach-item:nth-child(3)  { animation-delay: 0.09s; }
+      .ach-item:nth-child(4)  { animation-delay: 0.12s; }
+      .ach-item:nth-child(5)  { animation-delay: 0.15s; }
+      .ach-item:nth-child(6)  { animation-delay: 0.18s; }
+      .ach-item:nth-child(7)  { animation-delay: 0.21s; }
+      .ach-item:nth-child(8)  { animation-delay: 0.24s; }
+      .ach-item:nth-child(9)  { animation-delay: 0.27s; }
+      .ach-item:nth-child(n+10) { animation-delay: 0.30s; }
+
+      .ach-item:hover {
+        background: rgba(255,255,255,0.04);
+        transform: translateX(2px);
+      }
+
+      /* 已解锁 */
       .ach-item--done {
         background: var(--ach-done-bg);
-        box-shadow: inset 0 0 0 1px var(--ach-done-ring);
+        box-shadow:
+          inset 0 0 0 1px rgba(139,124,248,0.2),
+          0 2px 12px rgba(139,124,248,0.08);
       }
-      .ach-item--done:hover { background: rgba(124,106,247,0.18); }
-      .ach-item--locked { opacity: 0.5; }
-
-      .ach-item-icon {
-        width: 36px; height: 36px;
+      .ach-item--done:hover {
+        background: rgba(139,124,248,0.16);
+        box-shadow:
+          inset 0 0 0 1px rgba(139,124,248,0.3),
+          0 4px 20px rgba(139,124,248,0.15);
+      }
+      /* 已解锁：左侧彩条 */
+      .ach-item--done::before {
+        content: '';
+        position: absolute; left: 0; top: 20%; bottom: 20%;
+        width: 2.5px;
         border-radius: 10px;
-        display: flex; align-items: center; justify-content: center;
-        background: rgba(255,255,255,0.07);
-        flex-shrink: 0;
-        color: var(--ach-accent);
+        background: linear-gradient(180deg, var(--ach-accent), var(--ach-accent3));
+        box-shadow: 0 0 8px var(--ach-accent);
       }
-      .ach-item--done .ach-item-icon { color: var(--ach-accent2); background: rgba(245,166,35,0.12); }
-      .ach-item-icon svg { width: 18px; height: 18px; }
+      /* 已解锁：流光扫过 */
+      .ach-item--done::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+        transform: translateX(-100%) skewX(-20deg);
+        animation: achShimmer 4s ease-in-out infinite 1s;
+        pointer-events: none;
+      }
 
+      /* 未解锁 */
+      .ach-item--locked {
+        opacity: 0.42;
+        filter: saturate(0.3);
+      }
+      .ach-item--locked:hover {
+        opacity: 0.55;
+        filter: saturate(0.5);
+        transform: none;
+      }
+
+      /* ── 图标盒子 ── */
+      .ach-item-icon {
+        width: 38px; height: 38px;
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.08);
+        flex-shrink: 0;
+        color: rgba(255,255,255,0.5);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .ach-item:hover .ach-item-icon { transform: scale(1.08) rotate(-3deg); }
+      .ach-item--done .ach-item-icon {
+        color: var(--ach-accent2);
+        background: rgba(245,166,35,0.1);
+        border-color: rgba(245,166,35,0.22);
+        box-shadow: 0 0 14px rgba(245,166,35,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+      }
+      .ach-item--done:hover .ach-item-icon {
+        box-shadow: 0 0 20px rgba(245,166,35,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+      }
+      .ach-item-icon svg { width: 19px; height: 19px; }
+
+      /* ── 文字 ── */
       .ach-item-text { flex: 1; min-width: 0; }
       .ach-item-name {
-        font-size: 13px; font-weight: 600;
+        font-size: 13px; font-weight: 700;
         color: var(--ach-text);
         white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        letter-spacing: 0.01em;
+      }
+      .ach-item--done .ach-item-name {
+        background: linear-gradient(90deg, var(--ach-text), rgba(230,230,255,0.75));
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
       .ach-item-desc {
         font-size: 11px;
-        color: var(--ach-muted);
+        color: var(--ach-text-sub);
         margin-top: 2px;
         white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        letter-spacing: 0.01em;
       }
 
+      /* ── 勾选徽章 ── */
       .ach-item-check {
-        width: 20px; height: 20px;
-        color: var(--ach-accent);
+        width: 22px; height: 22px;
+        display: flex; align-items: center; justify-content: center;
+        background: linear-gradient(135deg, var(--ach-accent), var(--ach-accent3));
+        border-radius: 50%;
         flex-shrink: 0;
+        box-shadow: 0 0 10px rgba(139,124,248,0.5);
+        animation: achBadgePop 0.35s cubic-bezier(.34,1.56,.64,1) both;
       }
-      .ach-item-check svg { width: 100%; height: 100%; }
+      .ach-item-check svg { width: 11px; height: 11px; color: #fff; }
 
-      /* ─── 底部提示 ─── */
+      /* ══════════════════════════════════════════════
+         底部提示
+      ══════════════════════════════════════════════ */
       .ach-panel-hint {
-        padding: 10px 16px 14px;
+        padding: 10px 18px 15px;
         font-size: 11px;
-        color: rgba(255,255,255,0.22);
+        color: rgba(255,255,255,0.20);
         text-align: center;
-        border-top: 1px solid var(--ach-border);
+        position: relative;
+        z-index: 2;
         flex-shrink: 0;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.03em;
+      }
+      .ach-panel-hint::before {
+        content: '';
+        position: absolute; top: 0; left: 18px; right: 18px;
+        height: 1px;
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(255,255,255,0.08) 30%,
+          rgba(255,255,255,0.08) 70%,
+          transparent
+        );
       }
       .ach-panel-hint kbd {
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.18);
-        border-radius: 4px;
-        padding: 0px 5px;
-        font-size: 11px;
+        display: inline-block;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.14);
+        border-bottom-width: 2px;
+        border-radius: 5px;
+        padding: 1px 6px;
+        font-size: 10px;
         font-family: inherit;
+        letter-spacing: 0.02em;
+        color: rgba(255,255,255,0.35);
       }
 
-      /* ─── Toast 通知 ─── */
+      /* ══════════════════════════════════════════════
+         Toast 通知
+      ══════════════════════════════════════════════ */
       .ach-toast {
         position: fixed;
         right: 22px;
-        width: 320px;
-        background: var(--ach-bg);
-        border: 1px solid var(--ach-border);
-        border-radius: 14px;
-        backdrop-filter: blur(24px) saturate(160%);
-        -webkit-backdrop-filter: blur(24px) saturate(160%);
+        width: 330px;
+        background: rgba(14, 14, 26, 0.97);
+        border-radius: 16px;
         z-index: 9002;
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 14px 16px;
-        box-shadow: var(--ach-shadow);
-        transform: translateX(110%);
-        opacity: 0;
-        transition: transform 0.4s cubic-bezier(.34,1.42,.64,1), opacity 0.3s ease;
+        gap: 13px;
+        padding: 14px 16px 16px;
         font-family: var(--ach-font);
         overflow: hidden;
+        opacity: 0;
+        transform: translateX(calc(100% + 32px));
+        transition: none;
+        /* 渐变描边 */
+        box-shadow:
+          0 0 0 1px rgba(139,124,248,0.35),
+          0 8px 32px rgba(0,0,0,0.55),
+          0 0 40px rgba(139,124,248,0.12),
+          inset 0 1px 0 rgba(255,255,255,0.06);
       }
       .ach-toast--show {
-        transform: translateX(0);
-        opacity: 1;
+        animation: achToastIn 0.42s cubic-bezier(.34,1.42,.64,1) forwards;
       }
       .ach-toast--hide {
-        transform: translateX(110%);
-        opacity: 0;
-        transition: transform 0.38s ease-in, opacity 0.3s ease;
+        animation: achToastOut 0.34s ease-in forwards;
+      }
+
+      /* Toast 左侧彩边 */
+      .ach-toast::before {
+        content: '';
+        position: absolute; left: 0; top: 0; bottom: 0;
+        width: 3px;
+        background: linear-gradient(180deg, var(--ach-accent), var(--ach-accent3), var(--ach-accent2));
+        box-shadow: 0 0 12px rgba(139,124,248,0.6);
+      }
+
+      /* Toast 背景光晕 */
+      .ach-toast::after {
+        content: '';
+        position: absolute; top: -20px; left: 10px;
+        width: 100px; height: 100px;
+        background: radial-gradient(circle, rgba(139,124,248,0.12), transparent 70%);
+        pointer-events: none;
       }
 
       .ach-toast-icon-wrap {
-        width: 42px; height: 42px;
-        border-radius: 12px;
-        background: rgba(124,106,247,0.15);
-        border: 1px solid rgba(124,106,247,0.3);
+        width: 44px; height: 44px;
+        border-radius: 14px;
+        background: rgba(139,124,248,0.12);
+        border: 1px solid rgba(139,124,248,0.28);
         display: flex; align-items: center; justify-content: center;
         color: var(--ach-accent);
         flex-shrink: 0;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 0 16px rgba(139,124,248,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+        animation: achPulseRing 2.5s ease-in-out infinite;
       }
-      .ach-toast-icon-wrap svg { width: 22px; height: 22px; }
+      .ach-toast-icon-wrap svg { width: 22px; height: 22px; filter: drop-shadow(0 0 4px rgba(139,124,248,0.6)); }
 
-      .ach-toast-body { flex: 1; min-width: 0; }
+      .ach-toast-body { flex: 1; min-width: 0; position: relative; z-index: 1; }
       .ach-toast-label {
         display: flex; align-items: center; gap: 5px;
-        font-size: 10px; font-weight: 600;
+        font-size: 10px; font-weight: 700;
         color: var(--ach-accent2);
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 3px;
+        letter-spacing: 0.10em;
+        margin-bottom: 4px;
       }
-      .ach-toast-label svg { width: 11px; height: 11px; }
+      .ach-toast-label svg { width: 10px; height: 10px; }
       .ach-toast-name {
-        font-size: 14px; font-weight: 700;
+        font-size: 14px; font-weight: 800;
         color: var(--ach-text);
         white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        letter-spacing: 0.01em;
       }
       .ach-toast-desc {
         font-size: 11px;
-        color: var(--ach-muted);
-        margin-top: 2px;
+        color: var(--ach-text-sub);
+        margin-top: 3px;
         white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       }
 
-      /* 底部进度条动画 */
+      /* 底部倒计时进度条 */
       .ach-toast-progress {
         position: absolute;
         bottom: 0; left: 0;
         height: 2px;
-        background: linear-gradient(90deg, var(--ach-accent), var(--ach-accent2));
+        background: linear-gradient(90deg, var(--ach-accent), var(--ach-accent3), var(--ach-accent2));
+        background-size: 200% 100%;
         width: 100%;
         transform-origin: left;
-        animation: toastProgress 3.8s linear forwards;
-      }
-      @keyframes toastProgress {
-        from { transform: scaleX(1); }
-        to   { transform: scaleX(0); }
+        animation: achProgress 3.8s linear forwards;
+        box-shadow: 0 0 8px rgba(139,124,248,0.6);
       }
 
-      /* ─── 移动端适配 ─── */
+      /* ══════════════════════════════════════════════
+         移动端
+      ══════════════════════════════════════════════ */
       @media (max-width: 480px) {
         #ach-panel {
           bottom: 0; right: 0; left: 0;
-          width: 100%; max-height: 70vh;
-          border-radius: 20px 20px 0 0;
+          width: 100%; max-height: 72vh;
+          border-radius: 22px 22px 0 0;
           transform: translateY(100%);
         }
-        #ach-panel.ach-panel--show { transform: translateY(0); }
+        #ach-panel.ach-panel--show {
+          animation: none;
+          transform: translateY(0);
+          opacity: 1;
+          transition: transform 0.38s cubic-bezier(.34,1.42,.64,1);
+        }
         .ach-toast { right: 12px; left: 12px; width: auto; }
       }
     `;
