@@ -1,9 +1,11 @@
 (function () {
+
   /* ========= 防重复加载 ========= */
   if (window.__SHUOWEB_UI__) return;
   window.__SHUOWEB_UI__ = true;
 
-  /* ========= 等待 body 存在 ========= */
+
+  /* ========= 等待 body存在 ========= */
   function ready(fn) {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", fn);
@@ -12,15 +14,19 @@
     }
   }
 
+
   ready(init);
 
+
   function init() {
-    try {
-      /* ================= 样式 ================= */
-      if (!document.getElementById("shuoweb-style")) {
-        const style = document.createElement("style");
-        style.id = "shuoweb-style";
-        style.textContent = `:root {
+
+    /* ================= 样式 ================= */
+    if (!document.getElementById("shuoweb-style")) {
+      const style = document.createElement("style");
+      style.id = "shuoweb-style";
+
+      style.textContent = `
+:root {
   --primary: #007AFF;
   --primary-light: #E3F2FD;
   --bg: #F8FAFC;
@@ -802,7 +808,7 @@ footer {
 }
 
 .navbar {
-  /* 你现有的属性... */ 
+  /* 你现有的属性... */
   position: relative;
   overflow: hidden; /* 裁剪流光 */
 }
@@ -1172,69 +1178,46 @@ body.pink .refresh-btn:hover {
   transition: 0s;
 }
 
-`;
-        document.head.appendChild(style);
-      }
 
-      /* ================= Header ================= */
-      if (!document.getElementById("shuoweb-header")) {
-        const header = document.createElement("header");
-        header.id = "shuoweb-header";
-        header.className = "header";
-        header.innerHTML = `
-          <div class="logo">SHUOWEB</div>
-          <button class="theme-btn" id="themeText">切换主题</button>
-        `;
-        document.body.insertBefore(header, document.body.firstChild);
-      }
+      `;
 
-      /* ================= Footer ================= */
-      if (!document.getElementById("shuoweb-footer")) {
-        const footer = document.createElement("footer");
-        footer.id = "shuoweb-footer";
-        footer.innerHTML = `
-          <div class="footer-links">
-            <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank" rel="noopener">评论区</a>
-          </div>
-          <p>&copy; 2026 SHUOWEB.COM · 不忘初心</p><br>
-          本站总浏览量：<span id="vercount_value_page_pv">Loading</span>
-        `;
-        document.body.appendChild(footer);
-      }
+      document.head.appendChild(style);
+    }
 
-      /* ================ 动态加载外部统计脚本（安全） ================ */
-      (function loadVercount() {
-        // 先检测是否已经加载过，避免重复插入
-        if (document.querySelector('script[data-vercount="1"]')) return;
-        const script = document.createElement("script");
-        script.setAttribute("data-vercount", "1");
-        script.src = "https://events.vercount.one/js";
-        // 动态插入的脚本 async 生效，defer 不一定生效，因此用 async
-        script.async = true;
 
-        // 超时保护：若 6s 内没加载成功，则放弃，避免阻塞后续逻辑
-        let timedOut = false;
-        const to = setTimeout(() => {
-          timedOut = true;
-          console.warn("vercount script load timeout");
-        }, 6000);
+    /* ================= Header ================= */
 
-        script.onload = () => {
-          clearTimeout(to);
-          if (timedOut) return;
-          console.log("vercount script loaded");
-          // 如果外部脚本需要初始化或回调，在这里调用或检查
-          // 例如：if (window._vercount_init) window._vercount_init();
-        };
+    if (!document.getElementById("shuoweb-header")) {
 
-        script.onerror = (e) => {
-          clearTimeout(to);
-          console.error("vercount script failed to load", e);
-        };
+      const header = document.createElement("header");
+      header.id = "shuoweb-header";
 
-        // 插入到 body 末尾（footer 已存在）
-        document.body.appendChild(script);
-      })();
+      header.innerHTML = `
+        <div class="logo">SHUOWEB</div>
+        <button class="theme-btn" id="themeText">切换主题</button>
+      `;
+
+      // 插入到 body 最前
+      document.body.insertBefore(header, document.body.firstChild);
+    }
+
+
+    /* ================= Footer ================= */
+
+    if (!document.getElementById("shuoweb-footer")) {
+  const footer = document.createElement("footer");
+  footer.id = "shuoweb-footer";
+
+  footer.innerHTML = `
+    <div class="footer-links">
+      <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank">评论区</a>
+    </div>
+    <p>&copy; 2026 SHUOWEB.COM · 不忘初心</p><br>
+  `;
+
+  document.body.appendChild(footer);
+}
+
 
     /* ================= 主题系统 ================= */
 
@@ -1285,11 +1268,3 @@ window.addEventListener('scroll', () => {
   }
   lastScroll = currentScroll;
 });
-
-      // 如果需要，你可以在这里做其它初始化工作
-    } catch (err) {
-      // 捕获所有初始化错误，不让页面卡死
-      console.error("初始化 shuoweb 脚本发生错误：", err);
-    }
-  }
-})();
