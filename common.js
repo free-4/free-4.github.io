@@ -1213,9 +1213,7 @@ body.pink .refresh-btn:hover {
       <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank">评论区</a>
     </div>
     <p>&copy; 2026 SHUOWEB.COM · 不忘初心</p><br>
-    <span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-</span>
+    页面总浏览量：<span id="vercount_value_page_pv">Loading</span>
   `;
 
   document.body.appendChild(footer);
@@ -1272,4 +1270,4 @@ window.addEventListener('scroll', () => {
   lastScroll = currentScroll;
 });
 
-script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+script.src = 'https://events.vercount.one/js';
