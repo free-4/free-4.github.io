@@ -1,11 +1,9 @@
 (function () {
-
   /* ========= 防重复加载 ========= */
   if (window.__SHUOWEB_UI__) return;
   window.__SHUOWEB_UI__ = true;
 
-
-  /* ========= 等待 body存在 ========= */
+  /* ========= 等待 body 存在 ========= */
   function ready(fn) {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", fn);
@@ -14,19 +12,15 @@
     }
   }
 
-
   ready(init);
 
-
   function init() {
-
-    /* ================= 样式 ================= */
-    if (!document.getElementById("shuoweb-style")) {
-      const style = document.createElement("style");
-      style.id = "shuoweb-style";
-
-      style.textContent = `
-:root {
+    try {
+      /* ================= 样式 ================= */
+      if (!document.getElementById("shuoweb-style")) {
+        const style = document.createElement("style");
+        style.id = "shuoweb-style";
+        style.textContent = `:root {
   --primary: #007AFF;
   --primary-light: #E3F2FD;
   --bg: #F8FAFC;
@@ -1178,115 +1172,123 @@ body.pink .refresh-btn:hover {
   transition: 0s;
 }
 
+`;
+        document.head.appendChild(style);
+      }
 
-      `;
+      /* ================= Header ================= */
+      if (!document.getElementById("shuoweb-header")) {
+        const header = document.createElement("header");
+        header.id = "shuoweb-header";
+        header.className = "header";
+        header.innerHTML = `
+          <div class="logo">SHUOWEB</div>
+          <button class="theme-btn" id="themeText">切换主题</button>
+        `;
+        document.body.insertBefore(header, document.body.firstChild);
+      }
 
-      document.head.appendChild(style);
+      /* ================= Footer ================= */
+      if (!document.getElementById("shuoweb-footer")) {
+        const footer = document.createElement("footer");
+        footer.id = "shuoweb-footer";
+        footer.innerHTML = `
+          <div class="footer-links">
+            <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank" rel="noopener">评论区</a>
+          </div>
+          <p>&copy; 2026 SHUOWEB.COM · 不忘初心</p><br>
+          本站总浏览量：<span id="vercount_value_page_pv">Loading</span>
+        `;
+        document.body.appendChild(footer);
+      }
+
+      /* ================ 动态加载外部统计脚本（安全） ================ */
+      (function loadVercount() {
+        // 先检测是否已经加载过，避免重复插入
+        if (document.querySelector('script[data-vercount="1"]')) return;
+        const script = document.createElement("script");
+        script.setAttribute("data-vercount", "1");
+        script.src = "https://events.vercount.one/js";
+        // 动态插入的脚本 async 生效，defer 不一定生效，因此用 async
+        script.async = true;
+
+        // 超时保护：若 6s 内没加载成功，则放弃，避免阻塞后续逻辑
+        let timedOut = false;
+        const to = setTimeout(() => {
+          timedOut = true;
+          console.warn("vercount script load timeout");
+        }, 6000);
+
+        script.onload = () => {
+          clearTimeout(to);
+          if (timedOut) return;
+          console.log("vercount script loaded");
+          // 如果外部脚本需要初始化或回调，在这里调用或检查
+          // 例如：if (window._vercount_init) window._vercount_init();
+        };
+
+        script.onerror = (e) => {
+          clearTimeout(to);
+          console.error("vercount script failed to load", e);
+        };
+
+        // 插入到 body 末尾（footer 已存在）
+        document.body.appendChild(script);
+      })();
+
+      /* ================= 主题系统 ================= */
+      window.toggleTheme = function () {
+        const isPink = document.body.classList.toggle("pink");
+        try { localStorage.setItem("theme", isPink ? "pink" : "blue"); } catch (e) {}
+        updateBtn(isPink);
+      };
+
+      const themeBtn = document.getElementById("themeText");
+      if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
+
+      function updateBtn(isPink) {
+        const btn = document.getElementById("themeText");
+        if (btn) btn.innerText = isPink ? "克莱因蓝" : "浪漫极客粉";
+      }
+
+      const saved = (() => {
+        try { return localStorage.getItem("theme") === "pink"; } catch (e) { return false; }
+      })();
+      if (saved) document.body.classList.add("pink");
+      updateBtn(saved);
+
+      /* ================= 滚动头部行为（移动到 init，确保 header 已创建） ================= */
+      (function setupScrollBehavior() {
+        let lastScroll = 0;
+        const headerEl = document.getElementById("shuoweb-header") || document.querySelector("header");
+
+        // 如果 header 不存在，不要添加繁重监听
+        if (!headerEl) return;
+
+        window.addEventListener("scroll", () => {
+          const currentScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+          // 1. 处理 "变身" 效果：滚动超过 50px 就收缩
+          if (currentScroll > 50) {
+            headerEl.classList.add("scrolled");
+          } else {
+            headerEl.classList.remove("scrolled");
+          }
+
+          // 2. 向下滚动隐藏，向上滚动显示（防干扰模式）
+          if (currentScroll > lastScroll && currentScroll > 200) {
+            headerEl.style.transform = "translateY(-120%)"; // 隐藏
+          } else {
+            headerEl.style.transform = "translateY(0)"; // 显示
+          }
+          lastScroll = currentScroll;
+        }, { passive: true });
+      })();
+
+      // 如果需要，你可以在这里做其它初始化工作
+    } catch (err) {
+      // 捕获所有初始化错误，不让页面卡死
+      console.error("初始化 shuoweb 脚本发生错误：", err);
     }
-
-
-    /* ================= Header ================= */
-
-    if (!document.getElementById("shuoweb-header")) {
-
-      const header = document.createElement("header");
-      header.id = "shuoweb-header";
-
-      header.innerHTML = `
-        <div class="logo">SHUOWEB</div>
-        <button class="theme-btn" id="themeText">切换主题</button>
-      `;
-
-      // 插入到 body 最前
-      document.body.insertBefore(header, document.body.firstChild);
-    }
-
-
-    /* ================= Footer ================= */
-
-    if (!document.getElementById("shuoweb-footer")) {
-  const footer = document.createElement("footer");
-  footer.id = "shuoweb-footer";
-
-  footer.innerHTML = `
-    <div class="footer-links">
-      <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank">评论区</a>
-    </div>
-    <p>&copy; 2026 SHUOWEB.COM · 不忘初心</p><br>
-    本站总浏览量：<span id="vercount_value_page_pv">Loading</span>
-  `;
-
-  document.body.appendChild(footer);
-}
-
-  // 在 footer 插入后再动态加载外部脚本
-  const vercountScript = document.createElement('script');
-  vercountScript.src = 'https://events.vercount.one/js';
-  vercountScript.async = true; // 动态插入会默认 async，设置方便理解
-  // NOTE: defer 对动态插入的脚本通常不起作用（defer 只对解析器插入的脚本有效）
-  vercountScript.onload = () => {
-    console.log('vercount script loaded');
-    // 如果脚本需要 span 已存在，可以在这里安全访问它
-    const el = document.getElementById('vercount_value_page_pv');
-    if (el && window._vercount_ready) {
-      // 举例：如果外部脚本提供回调或全局对象，可在这里触发或读取
-      // el.textContent = window._vercount_value || '...';
-    }
-  };
-  vercountScript.onerror = (e) => {
-    console.error('vercount script failed to load', e);
-  };
-  // 放到 head 或 body 都可以；放在 body 末尾能保证 DOM 已准备好
-  document.body.appendChild(vercountScript);
-}
-
-
-    /* ================= 主题系统 ================= */
-
-    window.toggleTheme = function () {
-      const isPink = document.body.classList.toggle("pink");
-      localStorage.setItem("theme", isPink ? "pink" : "blue");
-      updateBtn(isPink);
-    };
-
-    document
-      .getElementById("themeText")
-      ?.addEventListener("click", toggleTheme);
-
-
-    function updateBtn(isPink) {
-      const btn = document.getElementById("themeText");
-      if (btn)
-        btn.innerText = isPink ? "克莱因蓝" : "浪漫极客粉";
-    }
-
-    const saved = localStorage.getItem("theme") === "pink";
-    if (saved) document.body.classList.add("pink");
-    updateBtn(saved);
   }
-
 })();
-
-let lastScroll = 0;
-const header = document.querySelector('header');
-
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-
-  if (!header) return;
-
-  // 1. 处理"变身"效果：滚动超过 50px 就收缩
-  if (currentScroll > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-
-  // 2. 进阶：向下滚动隐藏，向上滚动显示（防干扰模式）
-  if (currentScroll > lastScroll && currentScroll > 200) {
-    header.style.transform = 'translateY(-120%)'; // 隐藏
-  } else {
-    header.style.transform = 'translateY(0)'; // 显示
-  }
-  lastScroll = currentScroll;
-});
