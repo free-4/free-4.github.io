@@ -125,6 +125,7 @@ train: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="curr
   <line x1="7" y1="9" x2="17" y2="9" />
   <line x1="7" y1="13" x2="14" y2="13" />
   <line x1="7" y1="17" x2="12" y2="17" />
-</svg>`
+</svg>`,
+qr: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3m0 3h3m-3 0v-3M14 20h3"/></svg>`
 };
 
