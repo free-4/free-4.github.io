@@ -1212,12 +1212,18 @@ body.pink .refresh-btn:hover {
     <div class="footer-links">
       <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank">评论区</a>
     </div>
-    <p>&copy; 2026 SHUOWEB.COM · 不忘初心</p></br>
-    <script defer src="https://events.vercount.one/js"></script>
-    页面总浏览量：<span id="vercount_value_page_pv">Loading</span>
+    <p>&copy; 2026 SHUOWEB.COM · 不忘初心</p><br>
+    本站总浏览量：<span id="vercount_value_page_pv">Loading</span>
   `;
 
   document.body.appendChild(footer);
+}
+
+const script = document.createElement('script');
+  script.src = 'https://events.vercount.one/js';
+  script.defer = true;          // 延迟执行，不阻塞页面
+  script.async = false;         // 确保顺序（如果需要）
+  document.body.appendChild(script);
 }
 
 
