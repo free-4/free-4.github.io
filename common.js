@@ -1219,6 +1219,27 @@ body.pink .refresh-btn:hover {
   document.body.appendChild(footer);
 }
 
+  // 在 footer 插入后再动态加载外部脚本
+  const vercountScript = document.createElement('script');
+  vercountScript.src = 'https://events.vercount.one/js';
+  vercountScript.async = true; // 动态插入会默认 async，设置方便理解
+  // NOTE: defer 对动态插入的脚本通常不起作用（defer 只对解析器插入的脚本有效）
+  vercountScript.onload = () => {
+    console.log('vercount script loaded');
+    // 如果脚本需要 span 已存在，可以在这里安全访问它
+    const el = document.getElementById('vercount_value_page_pv');
+    if (el && window._vercount_ready) {
+      // 举例：如果外部脚本提供回调或全局对象，可在这里触发或读取
+      // el.textContent = window._vercount_value || '...';
+    }
+  };
+  vercountScript.onerror = (e) => {
+    console.error('vercount script failed to load', e);
+  };
+  // 放到 head 或 body 都可以；放在 body 末尾能保证 DOM 已准备好
+  document.body.appendChild(vercountScript);
+}
+
 
     /* ================= 主题系统 ================= */
 
