@@ -802,7 +802,7 @@ footer {
 }
 
 .navbar {
-  /* 你现有的属性... */
+  /* 你现有的属性... */ 
   position: relative;
   overflow: hidden; /* 裁剪流光 */
 }
