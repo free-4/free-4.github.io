@@ -145,8 +145,31 @@
       transition: var(--transition); cursor: pointer;
     }
     .qr-canvas-box:hover { transform: scale(1.03); }
-    #qr-output { display: block; }
-    #qr-output canvas, #qr-output img { display: block !important; border-radius: 0; box-shadow: none !important; }
+    /* ─── QR 展示容器：固定 260×260 显示，canvas 内容缩放适配 ─── */
+    .qr-canvas-box {
+      width: 260px !important;
+      height: 260px !important;
+      min-width: 260px !important;
+      min-height: 260px !important;
+      max-width: 260px !important;
+      max-height: 260px !important;
+      overflow: hidden;
+    }
+    /* qr-output 铺满容器，canvas/img 缩放填充 */
+    #qr-output {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    #qr-output canvas,
+    #qr-output img {
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: 0;
+      box-shadow: none !important;
+      object-fit: contain;
+    }
     .qr-logo-overlay {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
@@ -156,7 +179,7 @@
     }
     .qr-logo-overlay img { display: block; width: 100%; height: 100%; object-fit: cover; }
     .qr-empty {
-      width: 256px; height: 256px;
+      width: 260px; height: 260px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       background: var(--card-bg);
@@ -929,7 +952,9 @@ function applyMargin(canvas, bg, margin, size) {
 function updateLogoOverlay(size) {
   const overlay = document.getElementById('logoOverlay');
   if (!logoDataURL || !size) { overlay.style.display = 'none'; return; }
-  const s = Math.round(size * 0.22);
+  // 展示区固定 260px，logo 按展示尺寸计算，而不是 canvas 分辨率
+  const displaySize = 260;
+  const s = Math.round(displaySize * 0.22);
   overlay.style.width = s + 'px'; overlay.style.height = s + 'px';
   document.getElementById('logoOverlayImg').src = logoDataURL;
   overlay.style.display = '';
