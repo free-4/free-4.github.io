@@ -1236,54 +1236,55 @@ body.pink .refresh-btn:hover {
         document.body.appendChild(script);
       })();
 
-      /* ================= 主题系统 ================= */
-      window.toggleTheme = function () {
-        const isPink = document.body.classList.toggle("pink");
-        try { localStorage.setItem("theme", isPink ? "pink" : "blue"); } catch (e) {}
-        updateBtn(isPink);
-      };
+    /* ================= 主题系统 ================= */
 
-      const themeBtn = document.getElementById("themeText");
-      if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
+    window.toggleTheme = function () {
+      const isPink = document.body.classList.toggle("pink");
+      localStorage.setItem("theme", isPink ? "pink" : "blue");
+      updateBtn(isPink);
+    };
 
-      function updateBtn(isPink) {
-        const btn = document.getElementById("themeText");
-        if (btn) btn.innerText = isPink ? "克莱因蓝" : "浪漫极客粉";
-      }
+    document
+      .getElementById("themeText")
+      ?.addEventListener("click", toggleTheme);
 
-      const saved = (() => {
-        try { return localStorage.getItem("theme") === "pink"; } catch (e) { return false; }
-      })();
-      if (saved) document.body.classList.add("pink");
-      updateBtn(saved);
 
-      /* ================= 滚动头部行为（移动到 init，确保 header 已创建） ================= */
-      (function setupScrollBehavior() {
-        let lastScroll = 0;
-        const headerEl = document.getElementById("shuoweb-header") || document.querySelector("header");
+    function updateBtn(isPink) {
+      const btn = document.getElementById("themeText");
+      if (btn)
+        btn.innerText = isPink ? "克莱因蓝" : "浪漫极客粉";
+    }
 
-        // 如果 header 不存在，不要添加繁重监听
-        if (!headerEl) return;
+    const saved = localStorage.getItem("theme") === "pink";
+    if (saved) document.body.classList.add("pink");
+    updateBtn(saved);
+  }
 
-        window.addEventListener("scroll", () => {
-          const currentScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+})();
 
-          // 1. 处理 "变身" 效果：滚动超过 50px 就收缩
-          if (currentScroll > 50) {
-            headerEl.classList.add("scrolled");
-          } else {
-            headerEl.classList.remove("scrolled");
-          }
+let lastScroll = 0;
+const header = document.querySelector('header');
 
-          // 2. 向下滚动隐藏，向上滚动显示（防干扰模式）
-          if (currentScroll > lastScroll && currentScroll > 200) {
-            headerEl.style.transform = "translateY(-120%)"; // 隐藏
-          } else {
-            headerEl.style.transform = "translateY(0)"; // 显示
-          }
-          lastScroll = currentScroll;
-        }, { passive: true });
-      })();
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if (!header) return;
+
+  // 1. 处理"变身"效果：滚动超过 50px 就收缩
+  if (currentScroll > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+
+  // 2. 进阶：向下滚动隐藏，向上滚动显示（防干扰模式）
+  if (currentScroll > lastScroll && currentScroll > 200) {
+    header.style.transform = 'translateY(-120%)'; // 隐藏
+  } else {
+    header.style.transform = 'translateY(0)'; // 显示
+  }
+  lastScroll = currentScroll;
+});
 
       // 如果需要，你可以在这里做其它初始化工作
     } catch (err) {
