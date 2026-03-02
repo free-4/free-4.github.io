@@ -1219,13 +1219,6 @@ body.pink .refresh-btn:hover {
   document.body.appendChild(footer);
 }
 
-const script = document.createElement('script');
-  script.src = 'https://events.vercount.one/js';
-  script.defer = true;          // 延迟执行，不阻塞页面
-  script.async = false;         // 确保顺序（如果需要）
-  document.body.appendChild(script);
-}
-
 
     /* ================= 主题系统 ================= */
 
