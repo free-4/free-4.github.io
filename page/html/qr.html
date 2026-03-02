@@ -46,6 +46,14 @@
       grid-template-columns: 1fr 320px;
       gap: 24px;
       align-items: start;
+      min-width: 0;
+    }
+    /* 每列都必须能收缩，防止宽内容撑破 grid */
+    .qr-layout > div {
+      min-width: 0;
+      overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
     }
     @media (max-width: 768px) { .qr-layout { grid-template-columns: 1fr; } }
 
@@ -57,6 +65,11 @@
       padding: 24px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
+      /* 防止面板内容溢出 */
+      overflow: hidden;
+      min-width: 0;
+      box-sizing: border-box;
+      width: 100%;
     }
 
     /* ─── 表单行 ─── */
@@ -137,39 +150,43 @@
     }
     .slider-val { min-width: 44px; font-size: 13px; font-weight: 700; color: var(--primary); text-align: center !important; }
 
-    /* ─── QR 预览 ─── */
-    .qr-preview-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    /* ─── QR 预览区 ─── */
+    .qr-preview-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; overflow: hidden; }
+
+    /* 展示容器：硬性锁死 260×260，不随 canvas 分辨率膨胀 */
     .qr-canvas-box {
-      position: relative; border-radius: 20px; overflow: hidden;
+      position: relative;
+      width: 260px;  height: 260px;
+      min-width: 260px; min-height: 260px;
+      max-width: 260px; max-height: 260px;
+      border-radius: 20px;
+      overflow: hidden;
       box-shadow: 0 20px 60px -10px rgba(0,0,0,0.15);
-      transition: var(--transition); cursor: pointer;
+      transition: var(--transition);
+      cursor: pointer;
+      flex-shrink: 0;
     }
     .qr-canvas-box:hover { transform: scale(1.03); }
-    /* ─── QR 展示容器：固定 260×260 显示，canvas 内容缩放适配 ─── */
-    .qr-canvas-box {
-      width: 260px !important;
-      height: 260px !important;
-      min-width: 260px !important;
-      min-height: 260px !important;
-      max-width: 260px !important;
-      max-height: 260px !important;
-      overflow: hidden;
-    }
-    /* qr-output 铺满容器，canvas/img 缩放填充 */
+
+    /* qr-output 容器铺满 260×260 */
     #qr-output {
       display: block;
-      width: 100%;
-      height: 100%;
+      width: 260px;
+      height: 260px;
+      overflow: hidden;
     }
+    /* canvas/img 强制缩放填满，不管实际分辨率多大 */
     #qr-output canvas,
     #qr-output img {
       display: block !important;
-      width: 100% !important;
-      height: 100% !important;
+      width: 260px !important;
+      height: 260px !important;
+      max-width: 260px !important;
+      max-height: 260px !important;
       border-radius: 0;
       box-shadow: none !important;
-      object-fit: contain;
     }
+
     .qr-logo-overlay {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
@@ -185,6 +202,7 @@
       background: var(--card-bg);
       border: 2px dashed rgba(0,0,0,0.1);
       border-radius: 20px; color: var(--text-sub); gap: 12px;
+      flex-shrink: 0;
     }
     .qr-empty svg { width: 48px; height: 48px; opacity: 0.3; }
     .qr-empty p { font-size: 13px; margin: 0; opacity: 0.6; text-align: center !important; }
@@ -220,13 +238,24 @@
     .btn-generate svg { width: 18px; height: 18px; }
 
     /* ─── 历史记录 ─── */
-    .history-list { display: flex; flex-direction: column; gap: 8px; max-height: 280px; overflow-y: auto; }
+    .history-list {
+      display: flex; flex-direction: column; gap: 8px;
+      max-height: 280px;  /* 超过 280px 滚动，不撑高页面 */
+      overflow-y: auto;
+      overflow-x: hidden; /* 横向绝对不溢出 */
+      min-width: 0;
+    }
     .history-item {
       display: flex; align-items: center; gap: 10px;
       padding: 10px 12px; background: rgba(255,255,255,0.5);
       border-radius: 10px; cursor: pointer;
       transition: var(--transition); border: 1px solid transparent;
       text-align: left !important;
+      /* 防止 item 本身横向溢出 */
+      min-width: 0;
+      overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
     }
     .history-item:hover { border-color: var(--primary); background: var(--primary-light); }
     .history-item-icon {
@@ -236,15 +265,29 @@
       color: var(--primary);
     }
     .history-item-icon svg { width: 15px; height: 15px; }
-    .history-item-text { flex: 1; min-width: 0; }
-    .history-item-label { font-size: 12px; font-weight: 600; color: var(--text-sub); margin-bottom: 2px; }
-    .history-item-val { font-size: 13px; color: var(--text-main); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .history-item-text { flex: 1; min-width: 0; overflow: hidden; }
+    .history-item-label { font-size: 12px; font-weight: 600; color: var(--text-sub); margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .history-item-val { font-size: 13px; color: var(--text-main); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
     .history-empty { text-align: center !important; color: var(--text-sub); font-size: 13px; padding: 20px; opacity: 0.6; }
 
     /* ─── 批量生成 ─── */
-    .batch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; margin-top: 16px; }
-    .batch-qr-item { text-align: center !important; }
-    .batch-qr-item p { font-size: 11px; color: var(--text-sub); margin: 6px 0 0; word-break: break-all; }
+    .batch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; margin-top: 16px; overflow: hidden; }
+    .batch-qr-item {
+      text-align: center !important;
+      overflow: hidden;  /* 防止 canvas 撑出单元格 */
+      min-width: 0;
+    }
+    /* 批量生成中的 canvas 强制铺满单元格，不允许超出 */
+    .batch-qr-item > div { width: 100% !important; overflow: hidden; }
+    .batch-qr-item > div canvas,
+    .batch-qr-item > div img {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      max-width: 100% !important;
+      box-shadow: none !important;
+    }
+    .batch-qr-item p { font-size: 11px; color: var(--text-sub); margin: 6px 0 0; word-break: break-all; overflow: hidden; max-width: 100%; }
 
     /* ─── 模板卡片 ─── */
     .tpl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
