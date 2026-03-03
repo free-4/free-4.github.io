@@ -1213,7 +1213,7 @@ body.pink .refresh-btn:hover {
       <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank">评论区</a>
     </div>
     <p>&copy; 2026 SHUOWEB.COM · 不忘初心</p><br>
-    页面总浏览量：<span id="vercount_value_page_pv">Loading</span>
+    页面浏览量：<span id="vercount_value_page_pv">Loading</span>
   `;
 
   document.body.appendChild(footer);
