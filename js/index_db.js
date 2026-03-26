@@ -35,7 +35,7 @@ const SITE_DATA = [
         icon: "box",
         items: [
             { title: "政治倾向测试", url: "https://shuoweb.com/page/html/zz/", icon: "study" },
-            { title: "2", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "code" },
+            { title: "2", url: "https://shuoweb.com/page/html/mbti", icon: "gift" },
             { title: "3", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "tool" }
         ]
     }
