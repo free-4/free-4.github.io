@@ -25,9 +25,7 @@ const SITE_DATA = [
         name: "开发项目",
         icon: "code",
         items: [
-            { title: "云盘系统", url: "https://github.com/shuo156/Local-cloud", icon: "cloud" },
-            { title: "1", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "api" },
-            { title: "2", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "ai" }
+            { title: "云盘系统", url: "https://github.com/shuo156/Local-cloud", icon: "cloud" }
         ]
     },
     {
@@ -35,8 +33,7 @@ const SITE_DATA = [
         icon: "box",
         items: [
             { title: "政治倾向测试", url: "https://shuoweb.com/page/html/zz/", icon: "study" },
-            { title: "2", url: "https://shuoweb.com/page/html/mbti", icon: "gift" },
-            { title: "3", url: "https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html", icon: "tool" }
+            { title: "MBTI测试", url: "https://shuoweb.com/page/html/mbti", icon: "gift" }
         ]
     }
 ];
