@@ -18,6 +18,7 @@ const SITE_DATA = [
             { title: "IP地址查询", url: "https://shuoweb.com/page/html/ip", icon: "ip" },
             { title: "Base64 转换", url: "https://shuoweb.com/page/html/base64.html", icon: "file" },
              { title: "JSON工具", url: "https://shuoweb.com/page/html/json.html", icon: "code" },
+             { title: "TOKEN计算器", url: "https://shuoweb.com/page/html/token.html", icon: "copy" },
              { title: "二维码生成器", url: "https://shuoweb.com/page/html/qr.html", icon: "qr" }
         ]
     },
