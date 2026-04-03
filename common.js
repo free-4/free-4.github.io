@@ -1178,6 +1178,71 @@ body.pink .refresh-btn:hover {
   transition: 0s;
 }
 
+/* ===============================
+   全局通用 textarea 样式 · 适配 SHUOWEB 主题
+=============================== */
+textarea {
+  /* 基础布局 */
+  width: 100%;
+  max-width: 800px;
+  min-height: 120px;
+  padding: 14px 16px;
+  margin: 10px 0;
+  resize: vertical; /* 允许垂直拖动 */
+
+  /* 磨砂玻璃质感（和 input 保持一致） */
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+
+  /* 文字样式 */
+  font-family: '666font', sans-serif;
+  font-size: 15px;
+  color: var(--text-main);
+  line-height: 1.6;
+
+  /* 交互 */
+  outline: none;
+  transition: var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* 占位符 */
+textarea::placeholder {
+  color: var(--text-sub);
+  opacity: 0.6;
+}
+
+/* 聚焦状态：呼吸光效 + 轻微上浮 */
+textarea:focus {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+  transform: translateY(-1px);
+}
+
+/* 粉色主题适配 */
+body.pink textarea:focus {
+  box-shadow: 0 0 0 4px rgba(255, 45, 85, 0.15);
+}
+
+/* 禁用状态 */
+textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* 只读状态 */
+textarea[readonly] {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+  transform: none;
+}
+
 
       `;
 
