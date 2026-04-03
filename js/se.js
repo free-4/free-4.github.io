@@ -142,7 +142,7 @@ window.__SHUOWEB_SETTING_FINAL__ = true;
         clickRipple: () => applyClickRipple(value),
         rightMenuEnhance: () => applyRightMenuEnhance(value),
       };
-      if (actionMap[key]) actionMap;
+      if (actionMap[key]) actionMap[key]();
     },
     // 批量应用所有配置
     applyAll() {
