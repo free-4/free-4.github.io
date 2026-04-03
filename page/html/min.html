@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>JS/CSS 压缩工具 | SHUOWEB</title>
+  <title>全文件代码压缩工具 | SHUOWEB</title>
   <!-- 引入SHUOWEB核心库 -->
   <script src="https://shuoweb.com/common.js" defer></script>
   <style>
@@ -11,13 +11,13 @@
        核心：彻底隔离common.js全局样式污染
        根治布局错乱、双虚线的根源
     ============================================== */
-    /* 重置所有自定义容器，干掉common.js强加的全局样式 */
     .upload-wrap,
     .code-grid,
     .code-block,
     .btn-wrap,
     .info-wrap,
-    .upload-box {
+    .upload-box,
+    .mode-wrap {
       all: unset !important;
       display: block !important;
       box-sizing: border-box !important;
@@ -27,6 +27,37 @@
       margin: 0 !important;
       padding: 0 !important;
       background: transparent !important;
+    }
+
+    /* ==============================================
+       处理模式选择
+    ============================================== */
+    .mode-wrap {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      margin: 0 0 20px 0 !important;
+      padding: 12px 16px !important;
+      background: var(--card-bg) !important;
+      border-radius: var(--radius) !important;
+      box-shadow: var(--shadow) !important;
+      justify-content: center !important;
+    }
+    .mode-radio {
+      display: none !important;
+    }
+    .mode-label {
+      padding: 6px 14px !important;
+      border-radius: 20px !important;
+      background: rgba(255,255,255,0.1) !important;
+      color: var(--text-main) !important;
+      font-size: 13px !important;
+      cursor: pointer !important;
+      transition: var(--transition) !important;
+    }
+    .mode-radio:checked + .mode-label {
+      background: var(--primary) !important;
+      color: #fff !important;
     }
 
     /* ==============================================
@@ -44,6 +75,12 @@
       cursor: pointer !important;
       transition: var(--transition) !important;
       opacity: 0.5 !important;
+      /* 移动端点击区域放大 */
+      min-height: 120px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
     .upload-box:hover,
     .upload-box.dragover {
@@ -58,7 +95,13 @@
       box-shadow: 0 0 0 4px rgba(255, 45, 85, 0.15) !important;
     }
     .upload-box input {
-      display: none !important;
+      /* 移动端兼容：不用display:none，用opacity:0铺满整个区域，保证点击有效 */
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      opacity: 0 !important;
+      cursor: pointer !important;
     }
     .upload-title {
       font-size: 16px !important;
@@ -66,12 +109,14 @@
       color: var(--text-main) !important;
       margin: 0 0 6px 0 !important;
       line-height: 1.4 !important;
+      pointer-events: none !important;
     }
     .upload-desc {
       font-size: 13px !important;
       color: var(--text-sub) !important;
       margin: 0 !important;
       line-height: 1.4 !important;
+      pointer-events: none !important;
     }
 
     /* ==============================================
@@ -103,9 +148,14 @@
       }
       .upload-box {
         padding: 32px 16px !important;
+        min-height: 100px !important;
       }
       .upload-title {
         font-size: 15px !important;
+      }
+      .mode-label {
+        font-size: 12px !important;
+        padding: 5px 10px !important;
       }
     }
 
@@ -163,6 +213,12 @@
       margin: 24px 0 !important;
       width: 100% !important;
     }
+    .btn-wrap button {
+      min-height: 44px !important;
+      min-width: 120px !important;
+      padding: 0 20px !important;
+      font-size: 15px !important;
+    }
 
     /* ==============================================
        信息统计卡片
@@ -201,22 +257,41 @@
   <div id="content">
     <!-- 标题区（复用common.js原生hero样式，无修改） -->
     <div class="hero">
-      <h1>JS / CSS 代码压缩工具</h1>
-      <p>安全删除注释 + 无损压缩，一键生成 .min 格式文件</p>
+      <h1>全文件代码压缩工具</h1>
+      <p>支持所有文本文件，安全去注释、无损压缩，一键生成精简版文件</p>
     </div>
 
     <!-- 上传区域 -->
     <div class="section">
       <h2 class="section-title">选择文件</h2>
       <label class="upload-box" id="uploadBox">
-        <input type="file" id="fileInput" accept=".js,.css">
+        <!-- 核心修复：accept="*/*" 放开所有文件，移动端100%能选到 -->
+        <input type="file" id="fileInput" accept="*/*">
         <div class="upload-title">点击选择 或 拖拽文件到此处</div>
-        <div class="upload-desc">仅支持 .js / .css 格式文件</div>
+        <div class="upload-desc">支持所有文本文件（JS/CSS/HTML/JSON/TXT等）</div>
       </label>
       <div class="info-wrap">
         <div class="info-item">
           当前文件：<strong id="fileName">未选择文件</strong>
         </div>
+        <div class="info-item">
+          文件类型：<strong id="fileType">--</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- 处理模式选择 -->
+    <div class="section">
+      <h2 class="section-title">处理模式</h2>
+      <div class="mode-wrap">
+        <input type="radio" name="mode" id="mode1" class="mode-radio" value="full" checked>
+        <label for="mode1" class="mode-label">去注释 + 压缩</label>
+
+        <input type="radio" name="mode" id="mode2" class="mode-radio" value="comment">
+        <label for="mode2" class="mode-label">仅去注释</label>
+
+        <input type="radio" name="mode" id="mode3" class="mode-radio" value="format">
+        <label for="mode3" class="mode-label">仅去空行/多余空格</label>
       </div>
     </div>
 
@@ -224,153 +299,246 @@
     <div class="code-grid">
       <div class="code-block">
         <h3>原始代码</h3>
-        <textarea id="codeOriginal" readonly placeholder="上传文件后将显示原始代码..."></textarea>
+        <textarea id="codeOriginal" readonly placeholder="上传文件后将显示原始内容..."></textarea>
       </div>
       <div class="code-block">
-        <h3>压缩后代码 (.min)</h3>
-        <textarea id="codeMin" readonly placeholder="压缩完成后将显示结果..."></textarea>
+        <h3>处理后代码</h3>
+        <textarea id="codeResult" readonly placeholder="处理完成后将显示结果..."></textarea>
       </div>
     </div>
 
     <!-- 操作按钮区 -->
     <div class="btn-wrap">
-      <button id="btnMinify" disabled>开始压缩</button>
-      <button id="btnDownload" disabled>下载 .min 文件</button>
+      <button id="btnProcess" disabled>开始处理</button>
+      <button id="btnDownload" disabled>下载处理后文件</button>
       <button id="btnClear">清空重置</button>
     </div>
 
-    <!-- 压缩统计区 -->
+    <!-- 处理统计区 -->
     <div class="info-wrap">
       <div class="info-item">
-        压缩前：<strong id="sizeBefore">0 B</strong>
+        原始大小：<strong id="sizeBefore">0 B</strong>
       </div>
       <div class="info-item">
-        压缩后：<strong id="sizeAfter">0 B</strong>
+        处理后：<strong id="sizeAfter">0 B</strong>
       </div>
       <div class="info-item">
-        压缩率：<strong id="compressRatio">0%</strong>
+        精简率：<strong id="compressRatio">0%</strong>
       </div>
     </div>
   </div>
 
   <!-- 核心功能脚本 -->
   <script>
-    document.addEventListener('DOMContentLoaded', initMinifyTool);
+    document.addEventListener('DOMContentLoaded', initTool);
 
-    function initMinifyTool() {
+    function initTool() {
       // 元素获取
       const fileInput = document.getElementById('fileInput');
       const uploadBox = document.getElementById('uploadBox');
       const codeOriginal = document.getElementById('codeOriginal');
-      const codeMin = document.getElementById('codeMin');
+      const codeResult = document.getElementById('codeResult');
       const fileName = document.getElementById('fileName');
-      const btnMinify = document.getElementById('btnMinify');
+      const fileType = document.getElementById('fileType');
+      const btnProcess = document.getElementById('btnProcess');
       const btnDownload = document.getElementById('btnDownload');
       const btnClear = document.getElementById('btnClear');
       const sizeBefore = document.getElementById('sizeBefore');
       const sizeAfter = document.getElementById('sizeAfter');
       const compressRatio = document.getElementById('compressRatio');
+      const modeRadios = document.querySelectorAll('input[name="mode"]');
 
       // 全局状态
       let currentFile = null;
-      let fileType = ''; // js / css
-      let minifiedResult = '';
+      let fileExt = ''; // 文件后缀
+      let fileMime = ''; // 文件MIME类型
+      let isTextFile = true; // 是否为可处理的文本文件
+      let processedResult = ''; // 处理后的结果
 
       // ==============================================
-      // 1. 安全删除注释（不会把代码一起注释掉，无崩溃）
+      // 1. 核心处理函数：全文件类型适配
       // ==============================================
-      function safeRemoveComments(code, type) {
-        if (type === 'js') {
-          // JS安全删注释：先删多行注释，再删单行，不误删字符串内的//
-          return code
-            // 删除多行注释 /* ... */
-            .replace(/\/\*[\s\S]*?\*\//g, '')
-            // 删除行首的单行注释
-            .replace(/^\s*\/\/.*/gm, '')
-            // 删除行尾的单行注释（不影响代码）
-            .replace(/\s+\/\/.*/g, '')
-            // 清理多余空行
-            .replace(/\n\s*\n/g, '\n');
-        } else {
-          // CSS安全删注释
-          return code.replace(/\/\*[\s\S]*?\*\//g, '');
+      // 安全删除注释（支持JS/CSS/HTML/XML等）
+      function safeRemoveComments(code, ext) {
+        switch (ext) {
+          case 'js':
+          case 'jsx':
+          case 'ts':
+          case 'java':
+          case 'php':
+          case 'py':
+            return code
+              // 删除多行注释 /* ... */
+              .replace(/\/\*[\s\S]*?\*\//g, '')
+              // 删除行首单行注释
+              .replace(/^\s*\/\/.*/gm, '')
+              // 删除行尾单行注释（不影响字符串内的//）
+              .replace(/\s+\/\/.*/g, '')
+              // 清理多余空行
+              .replace(/\n\s*\n/g, '\n');
+          
+          case 'css':
+          case 'scss':
+          case 'less':
+            return code
+              .replace(/\/\*[\s\S]*?\*\//g, '')
+              .replace(/\n\s*\n/g, '\n');
+          
+          case 'html':
+          case 'htm':
+          case 'xml':
+          case 'svg':
+            return code
+              // 删除HTML注释 <!-- ... -->
+              .replace(/<!--[\s\S]*?-->/g, '')
+              // 清理多余空行
+              .replace(/\n\s*\n/g, '\n');
+          
+          case 'json':
+            return code; // JSON不删注释，避免格式错误
+          
+          default:
+            // 通用文本文件，仅删空行
+            return code.replace(/\n\s*\n/g, '\n');
         }
       }
 
-      // ==============================================
-      // 2. 无损压缩（先删注释再压缩，绝对安全）
-      // ==============================================
-      function safeMinify(code, type) {
-        if (type === 'js') {
-          return code
-            // 合并多余空白符
-            .replace(/\s+/g, ' ')
-            // 移除符号前后多余空格
-            .replace(/\s*([=+\-*/%()\[\]{};:,.<>?!&|^~])\s*/g, '$1')
-            // 首尾去空格
-            .trim();
-        } else {
-          return code
-            // 合并多余空白符
-            .replace(/\s+/g, ' ')
-            // 移除符号前后多余空格
-            .replace(/\s*([{}:;+,>~()])\s*/g, '$1')
-            // 移除最后一个多余分号
-            .replace(/;}/g, '}')
-            // 首尾去空格
-            .trim();
+      // 无损压缩（适配不同文件类型）
+      function safeMinify(code, ext) {
+        switch (ext) {
+          case 'js':
+          case 'jsx':
+          case 'ts':
+          case 'java':
+          case 'php':
+            return code
+              .replace(/\s+/g, ' ')
+              .replace(/\s*([=+\-*/%()\[\]{};:,.<>?!&|^~])\s*/g, '$1')
+              .trim();
+          
+          case 'css':
+          case 'scss':
+          case 'less':
+            return code
+              .replace(/\s+/g, ' ')
+              .replace(/\s*([{}:;+,>~()])\s*/g, '$1')
+              .replace(/;}/g, '}')
+              .trim();
+          
+          case 'html':
+          case 'htm':
+          case 'xml':
+          case 'svg':
+            return code
+              .replace(/\s+/g, ' ')
+              .replace(/\s*([<>])\s*/g, '$1')
+              .trim();
+          
+          case 'json':
+            try {
+              // JSON压缩：格式化后再压缩，保证格式正确
+              return JSON.stringify(JSON.parse(code));
+            } catch (e) {
+              return code;
+            }
+          
+          default:
+            // 通用文本：仅合并多余空格
+            return code.replace(/\s+/g, ' ').trim();
         }
       }
 
+      // 仅去空行和多余空格
+      function removeEmptyLine(code) {
+        return code
+          .replace(/\s+/g, ' ')
+          .replace(/\n\s*\n/g, '\n')
+          .trim();
+      }
+
+      // ==============================================
+      // 2. 工具函数
       // ==============================================
       // 文件大小格式化
-      // ==============================================
       function formatFileSize(bytes) {
         if (bytes < 1024) return bytes + ' B';
         if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
         return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
       }
 
+      // 获取文件后缀和类型
+      function getFileInfo(file) {
+        const name = file.name;
+        const ext = name.split('.').pop().toLowerCase();
+        const mime = file.type || '';
+        // 判断是否为文本文件
+        const textExts = ['js','jsx','ts','css','scss','less','html','htm','xml','svg','json','txt','md','php','java','py','c','cpp','go','rs','vue','react'];
+        const isText = textExts.includes(ext) || mime.startsWith('text/') || mime.includes('javascript') || mime.includes('json');
+        return { ext, mime, isText };
+      }
+
+      // 获取当前选中的处理模式
+      function getCurrentMode() {
+        const checked = document.querySelector('input[name="mode"]:checked');
+        return checked ? checked.value : 'full';
+      }
+
       // ==============================================
-      // 加载文件
+      // 3. 文件加载处理
       // ==============================================
       function loadFile(file) {
-        // 校验文件格式
-        const isJS = file.name.toLowerCase().endsWith('.js');
-        const isCSS = file.name.toLowerCase().endsWith('.css');
-        if (!isJS && !isCSS) {
-          alert('仅支持 .js 和 .css 格式的文件');
-          return;
-        }
-
-        // 更新状态
+        // 更新文件信息
+        const fileInfo = getFileInfo(file);
         currentFile = file;
-        fileType = isJS ? 'js' : 'css';
+        fileExt = fileInfo.ext;
+        fileMime = fileInfo.mime;
+        isTextFile = fileInfo.isText;
+
+        // 更新UI
         fileName.textContent = file.name;
+        fileType.textContent = `.${fileExt} ${isTextFile ? '(可处理)' : '(二进制文件，仅支持下载)'}`;
 
         // 读取文件内容
         const reader = new FileReader();
         reader.onload = (event) => {
-          const code = event.target.result;
-          codeOriginal.value = code;
-          // 重置压缩状态
-          codeMin.value = '';
-          minifiedResult = '';
-          btnMinify.disabled = false;
+          const content = event.target.result;
+          codeOriginal.value = content;
+          
+          // 重置处理状态
+          codeResult.value = '';
+          processedResult = '';
           btnDownload.disabled = true;
-          // 更新原始大小
-          sizeBefore.textContent = formatFileSize(code.length);
-          sizeAfter.textContent = '0 B';
-          compressRatio.textContent = '0%';
+          
+          // 二进制文件：禁用处理按钮，直接启用下载
+          if (!isTextFile) {
+            btnProcess.disabled = true;
+            processedResult = content;
+            btnDownload.disabled = false;
+            sizeBefore.textContent = formatFileSize(content.length);
+            sizeAfter.textContent = formatFileSize(content.length);
+            compressRatio.textContent = '0%';
+            codeResult.value = '⚠️ 该文件为二进制文件，不支持代码处理，可直接下载原文件';
+          } else {
+            // 文本文件：启用处理按钮
+            btnProcess.disabled = false;
+            sizeBefore.textContent = formatFileSize(content.length);
+            sizeAfter.textContent = '0 B';
+            compressRatio.textContent = '0%';
+          }
         };
-        reader.readAsText(file, 'utf-8');
+
+        // 文本文件用utf-8读取，二进制文件用原始数据
+        if (isTextFile) {
+          reader.readAsText(file, 'utf-8');
+        } else {
+          reader.readAsBinaryString(file);
+        }
       }
 
       // ==============================================
-      // 事件绑定
+      // 4. 事件绑定
       // ==============================================
-      // 点击选择文件
-      uploadBox.addEventListener('click', () => fileInput.click());
+      // 文件选择
       fileInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) loadFile(file);
@@ -391,27 +559,44 @@
         if (file) loadFile(file);
       });
 
-      // 压缩按钮
-      btnMinify.addEventListener('click', () => {
+      // 处理按钮
+      btnProcess.addEventListener('click', () => {
         const originalCode = codeOriginal.value.trim();
-        if (!originalCode) {
-          alert('请先上传文件');
+        if (!originalCode || !isTextFile) {
+          alert('请先上传可处理的文本文件');
           return;
         }
 
-        // 先删注释，再压缩
-        const codeWithoutComment = safeRemoveComments(originalCode, fileType);
-        minifiedResult = safeMinify(codeWithoutComment, fileType);
-        codeMin.value = minifiedResult;
+        // 获取处理模式
+        const mode = getCurrentMode();
+        let result = originalCode;
 
-        // 计算压缩数据
+        // 按模式处理
+        switch (mode) {
+          case 'full':
+            result = safeRemoveComments(result, fileExt);
+            result = safeMinify(result, fileExt);
+            break;
+          case 'comment':
+            result = safeRemoveComments(result, fileExt);
+            break;
+          case 'format':
+            result = removeEmptyLine(result);
+            break;
+        }
+
+        // 更新结果
+        processedResult = result;
+        codeResult.value = result;
+
+        // 计算统计数据
         const originalLength = originalCode.length;
-        const minifiedLength = minifiedResult.length;
-        const ratio = Math.round((1 - minifiedLength / originalLength) * 100);
+        const resultLength = result.length;
+        const ratio = Math.round((1 - resultLength / originalLength) * 100);
 
-        // 更新显示
+        // 更新UI
         sizeBefore.textContent = formatFileSize(originalLength);
-        sizeAfter.textContent = formatFileSize(minifiedLength);
+        sizeAfter.textContent = formatFileSize(resultLength);
         compressRatio.textContent = ratio + '%';
 
         // 启用下载按钮
@@ -420,21 +605,26 @@
 
       // 下载按钮
       btnDownload.addEventListener('click', () => {
-        if (!minifiedResult || !currentFile) {
-          alert('请先完成压缩');
+        if (!processedResult || !currentFile) {
+          alert('请先完成文件处理');
           return;
         }
 
-        // 生成文件名
-        const suffix = fileType === 'css' ? '.min.css' : '.min.js';
-        const downloadFileName = currentFile.name.replace(/\.(js|css)$/i, suffix);
+        // 生成下载文件名
+        const name = currentFile.name;
+        let downloadName = name;
+        // 文本文件自动加.min后缀
+        if (isTextFile) {
+          const nameWithoutExt = name.substring(0, name.lastIndexOf('.'));
+          downloadName = `${nameWithoutExt}.min.${fileExt}`;
+        }
 
         // 创建下载链接
-        const blob = new Blob([minifiedResult], { type: 'text/plain;charset=utf-8' });
+        const blob = new Blob([processedResult], { type: fileMime || 'application/octet-stream' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = downloadFileName;
+        a.download = downloadName;
         a.click();
         URL.revokeObjectURL(url);
       });
@@ -443,17 +633,22 @@
       btnClear.addEventListener('click', () => {
         // 重置所有状态
         codeOriginal.value = '';
-        codeMin.value = '';
+        codeResult.value = '';
         fileName.textContent = '未选择文件';
+        fileType.textContent = '--';
         fileInput.value = '';
         currentFile = null;
-        fileType = '';
-        minifiedResult = '';
-        btnMinify.disabled = true;
+        fileExt = '';
+        fileMime = '';
+        isTextFile = true;
+        processedResult = '';
+        btnProcess.disabled = true;
         btnDownload.disabled = true;
         sizeBefore.textContent = '0 B';
         sizeAfter.textContent = '0 B';
         compressRatio.textContent = '0%';
+        // 重置模式为默认
+        document.getElementById('mode1').checked = true;
       });
     }
   </script>
