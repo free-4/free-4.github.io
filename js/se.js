@@ -235,7 +235,7 @@
             
             listHTML += `
                 <div class="shuo-setting-item">
-                    <div class="shuo-setting-icon">${opt.icon}</div>
+                    <div class="shuo-setting-icon"><svg viewBox="0 0 24 24">${opt.icon}</svg></div>
                     <div class="shuo-setting-info">
                         <div class="shuo-setting-name">${opt.name}</div>
                         <div class="shuo-setting-desc" id="desc-${opt.id}">${opt.desc}</div>
