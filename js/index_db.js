@@ -31,11 +31,12 @@ const SITE_DATA = [
         ]
     },
     {
-        name: "其他项目",
+        name: "其他",
         icon: "box",
         items: [
             { title: "政治倾向测试", url: "https://shuoweb.com/page/html/zz/", icon: "study" },
-            { title: "MBTI测试", url: "https://shuoweb.com/page/html/mbti", icon: "gift" }
+            { title: "MBTI测试", url: "https://shuoweb.com/page/html/mbti", icon: "gift" },
+            { title: "设置", url: "#setting", icon: "setting" },
         ]
     }
 ];
