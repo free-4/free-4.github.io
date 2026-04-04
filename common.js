@@ -2319,75 +2319,115 @@ window.addEventListener('scroll', () => {
 
 })();
 
-// ==================== Engineers Pro 功能扩展包 ====================
-// 零侵入原有代码，直接追加即可生效，全功能兼容原有配置体系
+// ==================== Engineers Pro 功能扩展包【优化版】====================
+// 零侵入原有代码，直接替换之前的扩展代码即可生效
+// 修复：100%保留原有滑块功能，绝对不影响原有字体大小/回弹速率调节
+// 优化：全量图标替换为更友好的线性图标，与原生风格完全统一
+// 删减：移除主题色、页面信息面板功能
+// 新增：10+实用功能，全兼容原生导出/导入/搜索/重置体系
 (function () {
     /* 防重复加载 */
     if (window.__SHUOWEB_SETTINGS_PRO_EXT__) return;
     window.__SHUOWEB_SETTINGS_PRO_EXT__ = true;
 
-    /* DOM就绪执行 */
+    /* DOM就绪+原生面板加载完成双重保险，确保原有滑块不丢失 */
     function readyExt(fn) {
-        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
-        else fn();
+        const checkReady = () => {
+            if (document.readyState !== "loading" && document.getElementById('shuo-settings-body')) {
+                fn();
+            } else {
+                setTimeout(checkReady, 50);
+            }
+        };
+        checkReady();
     }
     readyExt(initExtension);
 
-    /* ================= 扩展配置定义（与原有格式完全兼容）================= */
+    /* ================= 扩展配置定义（与原生格式100%兼容）================= */
     const EXT_OPTIONS = [
-        /* ── 体验类扩展 ── */
+        /* ── 体验类扩展（与原生分类对齐）── */
         {
             id: 'opt-noprotect', category: 'experience',
             name: '解除复制保护', desc: '解除页面右键禁用、文本选择限制、复制拦截',
             type: 'switch',
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>`
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/>`
         },
         {
             id: 'opt-readmode', category: 'experience',
             name: '正文阅读模式', desc: '智能提取页面正文，过滤广告、侧边栏等无关元素',
             type: 'switch',
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 19.5A2.5 2.5 0 016.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>`
         },
         {
             id: 'opt-autorefresh', category: 'experience',
             name: '页面自动刷新', desc: '当前: 关闭',
             type: 'range', min: '0', max: '300', step: '30', value: '0',
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>`
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10M13 10l-3-3m3 3l-3 3m7 2v-2a4 4 0 00-4-4H5"/>`
         },
         {
             id: 'opt-pip', category: 'experience',
             name: '视频画中画', desc: '自动提取页面视频，开启悬浮画中画播放',
             type: 'switch',
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>`
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-2M19 9h-4a2 2 0 00-2 2v4a2 2 0 002 2h4a2 2 0 002-2v-4a2 2 0 00-2-2z"/>`
+        },
+        {
+            id: 'opt-adblock', category: 'experience',
+            name: '页面广告拦截', desc: '智能识别并隐藏页面广告、弹窗、悬浮推广元素',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>`
+        },
+        {
+            id: 'opt-translate', category: 'experience',
+            name: '页面全文翻译', desc: '一键翻译页面所有文本为简体中文',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 2h4m-2 18v-4M3 5h18M3 19h18M5 9l2 6m10 0l2-6M12 9v6"/>`
+        },
+        {
+            id: 'opt-screenshot', category: 'experience',
+            name: '页面长截图', desc: '一键生成页面完整长截图并自动下载',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>`
         },
 
-        /* ── 外观类扩展 ── */
+        /* ── 外观类扩展（与原生分类对齐）── */
         {
             id: 'opt-noanimation', category: 'appearance',
             name: '禁用页面所有动画', desc: '关闭CSS过渡与动画，降低设备性能占用',
             type: 'switch',
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>`
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/>`
         },
         {
             id: 'opt-fontsmooth', category: 'appearance',
             name: '文字抗锯齿增强', desc: '优化文字渲染效果，提升长文本阅读舒适度',
             type: 'switch',
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>`
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m0 18v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M3 19h18M16 5h2a2 2 0 012 2v8a2 2 0 01-2 2h-2"/>`
         },
         {
-            id: 'opt-themecolor', category: 'appearance',
-            name: '自定义主题色', desc: '自定义页面全局主色调，一键替换原生组件',
-            type: 'color', value: '#007AFF',
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>`
+            id: 'opt-highcontrast', category: 'appearance',
+            name: '高对比度模式', desc: '增强文字与背景对比度，提升阅读清晰度',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-18v16"/>`
+        },
+        {
+            id: 'opt-lineheight', category: 'appearance',
+            name: '全局行高调节', desc: '当前: 1.0x（标准行高）',
+            type: 'range', min: '0.8', max: '2.0', step: '0.1', value: '1.0',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>`
+        },
+        {
+            id: 'opt-pagemargin', category: 'appearance',
+            name: '页面边距调节', desc: '当前: 0%（标准边距）',
+            type: 'range', min: '0', max: '30', step: '5', value: '0',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/>`
+        },
+        {
+            id: 'opt-blurenhance', category: 'appearance',
+            name: '毛玻璃效果增强', desc: '为页面悬浮元素增强毛玻璃质感',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.35 10.04A7.49 7.49 0 0012 4C7.03 4 3 8.03 3 13s4.03 9 9 9a7.49 7.49 0 007.35-6.04"/>`
         },
 
-        /* ── 调试类扩展 ── */
-        {
-            id: 'opt-pageinfo', category: 'debug',
-            name: '页面信息悬浮面板', desc: '显示域名、协议、加载耗时、Cookie等核心信息',
-            type: 'switch',
-            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-2v-6h2v6zm-1-6.891a1 1 0 110-2 1 1 0 010 2zM12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>`
-        },
+        /* ── 调试类扩展（与原生分类对齐）── */
         {
             id: 'opt-console', category: 'debug',
             name: '移动端控制台', desc: '捕获页面console日志，页面内实时显示调试信息',
@@ -2406,6 +2446,24 @@ window.addEventListener('scroll', () => {
             type: 'switch',
             icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>`
         },
+        {
+            id: 'opt-cookiemanage', category: 'debug',
+            name: 'Cookie一键管理', desc: '一键导出/清空当前页面Cookie',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>`
+        },
+        {
+            id: 'opt-cacheclear', category: 'debug',
+            name: '缓存一键清理', desc: '清理页面静态资源缓存，强制刷新最新内容',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>`
+        },
+        {
+            id: 'opt-perftest', category: 'debug',
+            name: '页面性能测速', desc: '一键检测页面加载、渲染、资源加载耗时',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>`
+        },
     ];
 
     /* ================= 核心初始化 ================= */
@@ -2422,21 +2480,6 @@ window.addEventListener('scroll', () => {
         const style = document.createElement("style");
         style.id = "shuoweb-settings-style-ext";
         style.textContent = `
-            /* 颜色选择器适配 */
-            .shuo-color-picker {
-                width: 50px; height: 28px;
-                border: none; border-radius: 8px;
-                cursor: pointer; background: none;
-                padding: 0; flex-shrink: 0;
-            }
-            .shuo-color-picker::-webkit-color-swatch-wrapper {
-                padding: 0;
-            }
-            .shuo-color-picker::-webkit-color-swatch {
-                border-radius: 8px;
-                border: 2px solid rgba(0,0,0,0.1);
-            }
-
             /* 复制保护解除 */
             body.noprotect-mode * {
                 -webkit-user-select: auto !important;
@@ -2453,7 +2496,7 @@ window.addEventListener('scroll', () => {
                 line-height: 1.8;
                 color: #1c1c1e;
             }
-            body.readmode-mode > :not(#shuoweb-settings-mask):not(#shuo-read-container):not(#shuo-toast):not(#shuo-fps-monitor):not(#shuo-progress-bar):not(#shuo-totop-btn):not(#shuo-cursor-glow):not(#shuo-pageinfo-panel):not(#shuo-console-panel) {
+            body.readmode-mode > :not(#shuoweb-settings-mask):not(#shuo-read-container):not(#shuo-toast):not(#shuo-fps-monitor):not(#shuo-progress-bar):not(#shuo-totop-btn):not(#shuo-cursor-glow):not(#shuo-console-panel) {
                 display: none !important;
             }
 
@@ -2471,17 +2514,21 @@ window.addEventListener('scroll', () => {
                 text-rendering: optimizeLegibility;
             }
 
-            /* 页面信息面板 */
-            #shuo-pageinfo-panel {
-                position: fixed; top: 15px; left: 15px; z-index: 99998;
-                background: rgba(0,0,0,0.88); color: #fff;
-                font-family: 'SF Mono', Consolas, monospace;
-                padding: 10px 14px; border-radius: 12px; font-size: 11.5px; font-weight: 600;
-                pointer-events: none; display: none; line-height: 1.75;
-                box-shadow: 0 4px 16px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.2);
-                max-width: 280px;
+            /* 高对比度模式 */
+            body.highcontrast-mode {
+                --text-color: #000000 !important;
+                --bg-color: #ffffff !important;
+                filter: contrast(1.5) !important;
             }
-            body.pageinfo-mode #shuo-pageinfo-panel { display: block; }
+            html.shuo-dark body.highcontrast-mode {
+                filter: invert(1) hue-rotate(180deg) contrast(1.5) !important;
+            }
+
+            /* 毛玻璃增强 */
+            body.blurenhance-mode * {
+                backdrop-filter: blur(24px) !important;
+                -webkit-backdrop-filter: blur(24px) !important;
+            }
 
             /* 控制台面板 */
             #shuo-console-panel {
@@ -2517,9 +2564,20 @@ window.addEventListener('scroll', () => {
             .shuo-console-log.error { color: #ff3b30; }
             .shuo-console-log.info { color: #007AFF; }
 
+            /* 广告拦截 */
+            body.adblock-mode [class*="ad"],
+            body.adblock-mode [id*="ad"],
+            body.adblock-mode [class*="advert"],
+            body.adblock-mode [id*="advert"],
+            body.adblock-mode [class*="promotion"],
+            body.adblock-mode [id*="promotion"],
+            body.adblock-mode [class*="popup"],
+            body.adblock-mode [id*="popup"] {
+                display: none !important;
+            }
+
             /* 移动端适配 */
             @media (max-width: 600px) {
-                #shuo-pageinfo-panel { max-width: 200px; font-size: 10px; top: 10px; left: 10px; }
                 #shuo-console-panel { width: 90%; left: 5%; bottom: 70px; }
                 body.readmode-mode #shuo-read-container { padding: 20px 16px; font-size: 16px; }
             }
@@ -2527,7 +2585,7 @@ window.addEventListener('scroll', () => {
         document.head.appendChild(style);
     }
 
-    /* ================= 2. 插入扩展DOM（自动融入原有面板）================= */
+    /* ================= 2. 插入扩展DOM（仅追加，不修改原有内容）================= */
     function insertExtDOM() {
         const settingsBody = document.getElementById('shuo-settings-body');
         if (!settingsBody) return;
@@ -2539,7 +2597,7 @@ window.addEventListener('scroll', () => {
             categoryMap[opt.category].push(opt);
         });
 
-        // 插入到对应分类标签下
+        // 插入到对应分类标签下，仅追加不覆盖原有内容
         Object.keys(categoryMap).forEach(catId => {
             const catLabel = settingsBody.querySelector(`.shuo-cat-label[data-label="${catId}"]`);
             if (!catLabel) return;
@@ -2548,7 +2606,7 @@ window.addEventListener('scroll', () => {
             let itemsHTML = '';
 
             items.forEach(opt => {
-                // 生成对应控件
+                // 生成对应控件，与原生格式完全一致
                 let control = '';
                 if (opt.type === 'switch') {
                     control = `<input type="checkbox" class="shuo-switch" id="${opt.id}">`;
@@ -2557,11 +2615,9 @@ window.addEventListener('scroll', () => {
                         <input type="range" class="shuo-range" id="${opt.id}"
                             min="${opt.min}" max="${opt.max}" step="${opt.step}" value="${opt.value}">
                     </div>`;
-                } else if (opt.type === 'color') {
-                    control = `<input type="color" class="shuo-color-picker" id="${opt.id}" value="${opt.value}">`;
                 }
 
-                // 生成与原有格式完全一致的项HTML
+                // 生成与原生格式完全一致的项HTML
                 itemsHTML += `
                     <div class="shuo-setting-item" data-cat="${opt.category}" data-name="${opt.name}">
                         <div class="shuo-setting-icon">
@@ -2575,7 +2631,7 @@ window.addEventListener('scroll', () => {
                     </div>`;
             });
 
-            // 插入到对应分类标签之后
+            // 仅追加到对应分类标签之后，绝对不覆盖原有内容
             catLabel.insertAdjacentHTML('afterend', itemsHTML);
         });
 
@@ -2585,12 +2641,7 @@ window.addEventListener('scroll', () => {
         readContainer.id = 'shuo-read-container';
         document.body.appendChild(readContainer);
 
-        // 2. 页面信息面板
-        const pageinfoPanel = document.createElement('div');
-        pageinfoPanel.id = 'shuo-pageinfo-panel';
-        document.body.appendChild(pageinfoPanel);
-
-        // 3. 移动端控制台面板
+        // 2. 移动端控制台面板
         const consolePanel = document.createElement('div');
         consolePanel.id = 'shuo-console-panel';
         consolePanel.innerHTML = `
@@ -2603,8 +2654,7 @@ window.addEventListener('scroll', () => {
         document.body.appendChild(consolePanel);
     }
 
-    /* ================= 3. 通用工具函数 ================= */
-    // 兼容原有Toast组件
+    /* ================= 3. 通用工具函数（兼容原生Toast）================= */
     let extToastTimer;
     function showExtToast(msg) {
         const t = document.getElementById('shuo-toast');
@@ -2678,7 +2728,7 @@ window.addEventListener('scroll', () => {
             if (originalBodyCache) {
                 document.body.innerHTML = originalBodyCache;
                 originalBodyCache = '';
-                // 恢复原有组件
+                // 恢复原生组件
                 window.__SHUOWEB_SETTINGS_PRO__ = false;
                 const originalScript = document.querySelector('#shuoweb-settings-style-pro').previousElementSibling;
                 if (originalScript) eval(originalScript.textContent);
@@ -2714,65 +2764,82 @@ window.addEventListener('scroll', () => {
         }
     }
 
-    // 5. 禁用页面所有动画
+    // 5. 广告拦截
+    function toggleAdBlock(on) {
+        document.body.classList.toggle('adblock-mode', on);
+        if (on) showExtToast('已开启广告拦截，自动隐藏广告元素');
+    }
+
+    // 6. 页面全文翻译
+    function toggleTranslate(on) {
+        if (on) {
+            const translateScript = document.createElement('script');
+            translateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            window.googleTranslateElementInit = () => {
+                new google.translate.TranslateElement({pageLanguage: 'auto', includedLanguages: 'zh-CN'}, 'google_translate_element');
+            };
+            document.body.appendChild(translateScript);
+            showExtToast('翻译引擎已加载，页面将自动翻译');
+        } else {
+            location.reload();
+        }
+    }
+
+    // 7. 页面长截图
+    function toggleScreenshot(on) {
+        if (on) {
+            import('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js').then(() => {
+                html2canvas(document.body, {scale: 2, useCORS: true}).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `页面长截图_${Date.now()}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    showExtToast('长截图已生成并自动下载');
+                });
+            }).catch(() => showExtToast('截图生成失败，请重试'));
+            // 自动复位开关
+            setTimeout(() => {
+                const el = document.getElementById('opt-screenshot');
+                if (el) el.checked = false;
+            }, 500);
+        }
+    }
+
+    // 8. 禁用页面所有动画
     function toggleNoAnimation(on) {
         document.body.classList.toggle('noanimation-mode', on);
     }
 
-    // 6. 文字抗锯齿增强
+    // 9. 文字抗锯齿增强
     function toggleFontSmooth(on) {
         document.body.classList.toggle('fontsmooth-mode', on);
     }
 
-    // 7. 自定义主题色
-    function setThemeColor(color) {
-        document.documentElement.style.setProperty('--shuo-theme-color', color);
-        // 替换全局主题色样式
-        const style = document.createElement('style');
-        style.id = 'shuo-themecolor-style';
-        style.textContent = `
-            .shuo-switch:checked { background: ${color} !important; }
-            .shuo-range::-webkit-slider-thumb { background: ${color} !important; }
-            .shuo-btn.primary { background: ${color} !important; box-shadow: 0 4px 14px ${color}38 !important; }
-            .shuo-settings-title svg { color: ${color} !important; }
-            .shuo-close-btn { background: ${color}15 !important; color: ${color} !important; }
-            .shuo-close-btn:hover { background: ${color} !important; }
-            .shuo-setting-icon { background: ${color}15 !important; color: ${color} !important; }
-            .shuo-search-input:focus { border-color: ${color} !important; box-shadow: 0 0 0 3px ${color}12 !important; }
-            #shuo-progress-bar { background: linear-gradient(90deg, ${color} 0%, ${color}dd 100%) !important; box-shadow: 0 0 10px ${color} !important; }
-            #shuo-totop-btn { background: ${color} !important; box-shadow: 0 4px 18px ${color}42 !important; }
-        `;
-        document.getElementById('shuo-themecolor-style')?.remove();
-        document.head.appendChild(style);
+    // 10. 高对比度模式
+    function toggleHighContrast(on) {
+        document.body.classList.toggle('highcontrast-mode', on);
     }
 
-    // 8. 页面信息悬浮面板
-    let pageinfoTimer = null;
-    function togglePageInfo(on) {
-        const panel = document.getElementById('shuo-pageinfo-panel');
-        if (on) {
-            const updateInfo = () => {
-                const loadTime = (performance.timing.loadEventEnd - performance.timing.navigationStart) || 0;
-                panel.innerHTML = `
-                    URL: ${location.href}<br>
-                    域名: ${location.hostname}<br>
-                    协议: ${location.protocol.replace(':','')}<br>
-                    加载耗时: ${loadTime}ms<br>
-                    Cookie数量: ${document.cookie.split(';').length}<br>
-                    分辨率: ${screen.width}×${screen.height}
-                `;
-            };
-            updateInfo();
-            pageinfoTimer = setInterval(updateInfo, 2000);
-            document.body.classList.add('pageinfo-mode');
-        } else {
-            clearInterval(pageinfoTimer);
-            pageinfoTimer = null;
-            document.body.classList.remove('pageinfo-mode');
-        }
+    // 11. 全局行高调节
+    function toggleLineHeight(scale) {
+        const descEl = document.getElementById('desc-opt-lineheight');
+        document.documentElement.style.lineHeight = scale;
+        descEl.textContent = `当前: ${scale}x 行高`;
     }
 
-    // 9. 移动端控制台
+    // 12. 页面边距调节
+    function togglePageMargin(percent) {
+        const descEl = document.getElementById('desc-opt-pagemargin');
+        document.documentElement.style.padding = `0 ${percent}%`;
+        descEl.textContent = percent === 0 ? '当前: 0%（标准边距）' : `当前: ${percent}% 边距`;
+    }
+
+    // 13. 毛玻璃效果增强
+    function toggleBlurEnhance(on) {
+        document.body.classList.toggle('blurenhance-mode', on);
+    }
+
+    // 14. 移动端控制台
     let originalConsole = {};
     function toggleConsole(on) {
         const content = document.getElementById('shuo-console-content');
@@ -2807,7 +2874,7 @@ window.addEventListener('scroll', () => {
         }
     }
 
-    // 10. 禁用图片懒加载
+    // 15. 禁用图片懒加载
     function toggleNoLazyLoad(on) {
         if (on) {
             const imgs = document.querySelectorAll('img');
@@ -2822,10 +2889,15 @@ window.addEventListener('scroll', () => {
                 img.loading = 'eager';
             });
             showExtToast('已强制加载所有图片');
+            // 自动复位开关
+            setTimeout(() => {
+                const el = document.getElementById('opt-nolazyload');
+                if (el) el.checked = false;
+            }, 500);
         }
     }
 
-    // 11. 表单自动填充
+    // 16. 表单自动填充
     function toggleFormFill(on) {
         if (on) {
             const inputs = document.querySelectorAll('input, textarea, select');
@@ -2874,6 +2946,65 @@ window.addEventListener('scroll', () => {
         }
     }
 
+    // 17. Cookie一键管理
+    function toggleCookieManage(on) {
+        if (on) {
+            // 导出Cookie
+            const cookieStr = document.cookie;
+            const blob = new Blob([cookieStr], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `页面Cookie_${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showExtToast('Cookie已导出，如需清空请再次点击开关');
+        } else {
+            // 清空Cookie
+            document.cookie.split(";").forEach(cookie => {
+                document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+            });
+            showExtToast('Cookie已清空');
+        }
+    }
+
+    // 18. 缓存一键清理
+    function toggleCacheClear(on) {
+        if (on) {
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+            // 强制刷新
+            location.reload(true);
+        }
+    }
+
+    // 19. 页面性能测速
+    function togglePerfTest(on) {
+        if (on) {
+            const perf = performance.getEntriesByType('navigation')[0];
+            const resourceList = performance.getEntriesByType('resource');
+            const totalResourceSize = resourceList.reduce((sum, res) => sum + (res.transferSize || 0), 0);
+            
+            const report = `
+                页面加载总耗时: ${Math.round(perf.loadEventEnd - perf.fetchStart)}ms
+                DOM渲染耗时: ${Math.round(perf.domContentLoadedEventEnd - perf.responseEnd)}ms
+                首字节耗时: ${Math.round(perf.responseStart - perf.requestStart)}ms
+                资源总大小: ${(totalResourceSize / 1024).toFixed(2)}KB
+                资源总数: ${resourceList.length}个
+            `;
+            alert(`页面性能测速报告\n\n${report}`);
+            showExtToast('性能测速完成');
+            // 自动复位开关
+            setTimeout(() => {
+                const el = document.getElementById('opt-perftest');
+                if (el) el.checked = false;
+            }, 500);
+        }
+    }
+
     /* ================= 5. 事件绑定 ================= */
     function bindExtEvents() {
         // 开关绑定工厂
@@ -2891,12 +3022,19 @@ window.addEventListener('scroll', () => {
         bindExtSwitch('opt-noprotect', toggleNoProtect);
         bindExtSwitch('opt-readmode', toggleReadMode);
         bindExtSwitch('opt-pip', togglePIP);
+        bindExtSwitch('opt-adblock', toggleAdBlock);
+        bindExtSwitch('opt-translate', toggleTranslate);
+        bindExtSwitch('opt-screenshot', toggleScreenshot);
         bindExtSwitch('opt-noanimation', toggleNoAnimation);
         bindExtSwitch('opt-fontsmooth', toggleFontSmooth);
-        bindExtSwitch('opt-pageinfo', togglePageInfo);
+        bindExtSwitch('opt-highcontrast', toggleHighContrast);
+        bindExtSwitch('opt-blurenhance', toggleBlurEnhance);
         bindExtSwitch('opt-console', toggleConsole);
         bindExtSwitch('opt-nolazyload', toggleNoLazyLoad);
         bindExtSwitch('opt-formfill', toggleFormFill);
+        bindExtSwitch('opt-cookiemanage', toggleCookieManage);
+        bindExtSwitch('opt-cacheclear', toggleCacheClear);
+        bindExtSwitch('opt-perftest', togglePerfTest);
 
         // 自动刷新滑块绑定
         const refreshEl = document.getElementById('opt-autorefresh');
@@ -2906,12 +3044,20 @@ window.addEventListener('scroll', () => {
             localStorage.setItem('shuo_opt_autorefresh', v);
         });
 
-        // 主题色选择器绑定
-        const colorEl = document.getElementById('opt-themecolor');
-        colorEl?.addEventListener('input', e => {
-            const v = e.target.value;
-            setThemeColor(v);
-            localStorage.setItem('shuo_opt_themecolor', v);
+        // 行高调节滑块绑定
+        const lineHeightEl = document.getElementById('opt-lineheight');
+        lineHeightEl?.addEventListener('input', e => {
+            const v = parseFloat(e.target.value);
+            toggleLineHeight(v);
+            localStorage.setItem('shuo_opt_lineheight', v);
+        });
+
+        // 页面边距调节滑块绑定
+        const marginEl = document.getElementById('opt-pagemargin');
+        marginEl?.addEventListener('input', e => {
+            const v = parseInt(e.target.value);
+            togglePageMargin(v);
+            localStorage.setItem('shuo_opt_pagemargin', v);
         });
     }
 
@@ -2928,10 +3074,11 @@ window.addEventListener('scroll', () => {
         // 恢复开关状态
         applyExtSwitch('opt-noprotect', toggleNoProtect);
         applyExtSwitch('opt-readmode', toggleReadMode);
-        applyExtSwitch('opt-pip', togglePIP);
+        applyExtSwitch('opt-adblock', toggleAdBlock);
         applyExtSwitch('opt-noanimation', toggleNoAnimation);
         applyExtSwitch('opt-fontsmooth', toggleFontSmooth);
-        applyExtSwitch('opt-pageinfo', togglePageInfo);
+        applyExtSwitch('opt-highcontrast', toggleHighContrast);
+        applyExtSwitch('opt-blurenhance', toggleBlurEnhance);
         applyExtSwitch('opt-console', toggleConsole);
 
         // 恢复自动刷新配置
@@ -2944,13 +3091,23 @@ window.addEventListener('scroll', () => {
             }
         }
 
-        // 恢复自定义主题色
-        const colorVal = localStorage.getItem('shuo_opt_themecolor');
-        if (colorVal !== null) {
-            const el = document.getElementById('opt-themecolor');
+        // 恢复行高配置
+        const lineHeightVal = localStorage.getItem('shuo_opt_lineheight');
+        if (lineHeightVal !== null) {
+            const el = document.getElementById('opt-lineheight');
             if (el) {
-                el.value = colorVal;
-                setThemeColor(colorVal);
+                el.value = lineHeightVal;
+                toggleLineHeight(parseFloat(lineHeightVal));
+            }
+        }
+
+        // 恢复页面边距配置
+        const marginVal = localStorage.getItem('shuo_opt_pagemargin');
+        if (marginVal !== null) {
+            const el = document.getElementById('opt-pagemargin');
+            if (el) {
+                el.value = marginVal;
+                togglePageMargin(parseInt(marginVal));
             }
         }
     }
