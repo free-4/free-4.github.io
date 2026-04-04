@@ -9,11 +9,10 @@
     }
     ready(initSettings);
 
-    /* ================= 分类定义 ================= */
+    /* ================= 分类定义（仅用于分组标签）================= */
     const CATEGORIES = [
-        { id: 'all',        label: '全部' },
-        { id: 'appearance', label: '外观' },
         { id: 'experience', label: '体验' },
+        { id: 'appearance', label: '外观' },
         { id: 'debug',      label: '调试' },
     ];
 
@@ -155,191 +154,192 @@
         const style = document.createElement("style");
         style.id = "shuoweb-settings-style-pro";
         style.textContent = `
-            /* ── 遮罩与面板 ── */
+            /* ── 遮罩 ── */
             .shuo-settings-mask {
                 position: fixed; inset: 0; z-index: 99999;
-                background: rgba(15, 23, 42, 0.4);
+                background: rgba(15, 23, 42, 0.45);
                 backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
                 display: flex; justify-content: center; align-items: center;
                 opacity: 0; pointer-events: none;
-                transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             }
             .shuo-settings-mask.active { opacity: 1; pointer-events: auto; }
 
+            /* ── 面板（桌面居中）── */
             .shuo-settings-panel {
                 width: 92%; max-width: 520px; max-height: 88vh;
-                background: var(--bg, #ffffff);
+                background: #ffffff;
                 border-radius: 28px; padding: 24px 24px 20px;
                 box-shadow: 0 40px 80px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.6);
                 transform: translateY(50px) scale(0.92);
-                transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+                transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
                 display: flex; flex-direction: column; overflow: hidden;
+                box-sizing: border-box;
             }
             .shuo-settings-mask.active .shuo-settings-panel { transform: translateY(0) scale(1); }
 
             /* ── 头部 ── */
             .shuo-settings-header {
                 display: flex; justify-content: space-between; align-items: center;
-                margin-bottom: 16px; padding: 0 6px 16px;
+                margin-bottom: 16px; padding: 0 4px 16px;
                 border-bottom: 1px solid rgba(0,0,0,0.06);
+                flex-shrink: 0;
             }
             .shuo-settings-title {
-                font-size: 21px; font-weight: 800; color: var(--text-main, #1c1c1e);
-                margin: 0; display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px;
+                font-size: 20px; font-weight: 800; color: #1c1c1e;
+                margin: 0; display: flex; align-items: center; gap: 10px; letter-spacing: -0.4px;
             }
-            .shuo-settings-title svg { width: 24px; height: 24px; color: var(--primary, #007AFF); }
+            .shuo-settings-title svg { width: 22px; height: 22px; color: #007AFF; flex-shrink: 0; }
             .shuo-close-btn {
                 width: 36px; height: 36px; border-radius: 50%;
-                background: var(--primary-light, #EBF4FF); color: var(--primary, #007AFF);
+                background: #EBF4FF; color: #007AFF;
                 display: flex; justify-content: center; align-items: center;
-                cursor: pointer; transition: all 0.3s ease;
+                cursor: pointer; transition: all 0.3s ease; flex-shrink: 0;
             }
-            .shuo-close-btn:hover { transform: rotate(90deg); background: var(--primary, #007AFF); color: #fff; }
-
-            /* ── Tab 导航 ── */
-            .shuo-tab-nav {
-                display: flex; gap: 8px; margin-bottom: 14px; overflow-x: auto;
-                scrollbar-width: none; padding: 0 2px 4px;
-            }
-            .shuo-tab-nav::-webkit-scrollbar { display: none; }
-            .shuo-tab-btn {
-                padding: 6px 18px; border-radius: 20px; white-space: nowrap;
-                border: 1.5px solid rgba(0,0,0,0.07); font-size: 13px; font-weight: 600;
-                background: var(--card-bg, #f2f2f7); color: var(--text-sub, #8e8e93);
-                cursor: pointer; transition: all 0.25s ease; line-height: 1.6;
-            }
-            .shuo-tab-btn.active {
-                background: var(--primary, #007AFF); color: #fff;
-                border-color: var(--primary, #007AFF);
-                box-shadow: 0 4px 14px rgba(0,122,255,0.28);
-            }
-            .shuo-tab-btn:not(.active):hover {
-                border-color: var(--primary, #007AFF); color: var(--primary, #007AFF);
-            }
+            .shuo-close-btn:hover { transform: rotate(90deg); background: #007AFF; color: #fff; }
 
             /* ── 搜索框 ── */
             .shuo-search-wrap {
-                position: relative; margin-bottom: 14px; padding: 0 2px;
+                position: relative; margin-bottom: 14px; flex-shrink: 0;
             }
             .shuo-search-icon {
                 position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
-                width: 16px; height: 16px; color: var(--text-sub, #8e8e93); pointer-events: none;
+                width: 16px; height: 16px; color: #8e8e93; pointer-events: none;
             }
             .shuo-search-input {
                 width: 100%; box-sizing: border-box; padding: 10px 14px 10px 36px;
-                border-radius: 14px; border: 1.5px solid rgba(0,0,0,0.07);
-                background: var(--card-bg, #f2f2f7); color: var(--text-main, #1c1c1e);
-                font-size: 13px; outline: none; transition: all 0.25s ease;
+                border-radius: 14px; border: 1.5px solid rgba(0,0,0,0.08);
+                background: #f2f2f7; color: #1c1c1e;
+                font-size: 14px; outline: none;
+                transition: border-color 0.2s, box-shadow 0.2s;
+                -webkit-appearance: none;
             }
             .shuo-search-input:focus {
-                border-color: var(--primary, #007AFF);
-                box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+                border-color: #007AFF;
+                box-shadow: 0 0 0 3px rgba(0,122,255,0.12);
             }
 
             /* ── 滚动区 ── */
             .shuo-settings-body {
                 overflow-y: auto; overflow-x: hidden;
-                padding: 2px 2px 16px; display: flex; flex-direction: column; gap: 10px;
+                padding: 2px 0 8px; display: flex; flex-direction: column; gap: 8px;
                 scrollbar-width: none; -webkit-overflow-scrolling: touch;
+                flex: 1; min-height: 0;
             }
             .shuo-settings-body::-webkit-scrollbar { display: none; }
 
             /* ── 分组标签 ── */
             .shuo-cat-label {
-                font-size: 11px; font-weight: 800; color: var(--text-sub, #8e8e93);
+                font-size: 11px; font-weight: 800; color: #8e8e93;
                 text-transform: uppercase; letter-spacing: 1.4px;
-                padding: 6px 4px 2px; opacity: 0.5;
+                padding: 8px 4px 2px;
                 display: flex; align-items: center; gap: 8px;
+                flex-shrink: 0;
             }
             .shuo-cat-label::after {
-                content: ''; flex: 1; height: 1px; background: currentColor; opacity: 0.3;
+                content: ''; flex: 1; height: 1px;
+                background: rgba(142,142,147,0.3);
             }
 
             /* ── 设置卡片 ── */
             .shuo-setting-item {
-                display: flex; align-items: center; gap: 14px;
-                padding: 15px; background: var(--card-bg, #f2f2f7);
-                border-radius: 20px; border: 1px solid rgba(255,255,255,0.5);
-                box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                display: flex; align-items: center; gap: 12px;
+                padding: 13px 14px; background: #f2f2f7;
+                border-radius: 18px; border: 1px solid rgba(0,0,0,0.04);
+                box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+                transition: border-color 0.25s, box-shadow 0.25s;
+                flex-shrink: 0;
             }
-            .shuo-setting-item:hover {
-                transform: translateX(4px); border-color: var(--primary-light, #EBF4FF);
-                box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            @media (hover: hover) {
+                .shuo-setting-item:hover {
+                    border-color: #c7dcff;
+                    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+                }
             }
             .shuo-setting-item.shuo-hidden { display: none !important; }
 
             .shuo-setting-icon {
-                width: 42px; height: 42px; border-radius: 12px;
-                background: var(--primary-light, #EBF4FF); color: var(--primary, #007AFF);
+                width: 40px; height: 40px; border-radius: 11px;
+                background: #EBF4FF; color: #007AFF;
                 display: flex; justify-content: center; align-items: center; flex-shrink: 0;
             }
-            .shuo-setting-icon svg { width: 21px; height: 21px; fill: none; stroke: currentColor; }
+            .shuo-setting-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; }
             .shuo-setting-info { flex-grow: 1; min-width: 0; }
             .shuo-setting-name {
-                font-size: 14.5px; font-weight: 700; color: var(--text-main, #1c1c1e); margin-bottom: 2px;
+                font-size: 14px; font-weight: 700; color: #1c1c1e; margin-bottom: 2px;
                 white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
             }
-            .shuo-setting-desc { font-size: 11.5px; color: var(--text-sub, #8e8e93); line-height: 1.4; opacity: 0.85; }
+            .shuo-setting-desc {
+                font-size: 11.5px; color: #6e6e73; line-height: 1.4;
+            }
 
             /* ── iOS Switch ── */
             .shuo-switch {
                 appearance: none; -webkit-appearance: none;
-                width: 50px; height: 28px; background: rgba(0,0,0,0.1);
+                width: 50px; height: 28px; background: rgba(0,0,0,0.12);
                 border-radius: 30px; position: relative; cursor: pointer; outline: none;
-                transition: background 0.3s ease; flex-shrink: 0;
+                transition: background 0.28s ease; flex-shrink: 0;
             }
             .shuo-switch::after {
                 content: ''; position: absolute; top: 2px; left: 2px;
                 width: 24px; height: 24px; background: #fff; border-radius: 50%;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                box-shadow: 0 2px 6px rgba(0,0,0,0.22);
+                transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
             }
-            .shuo-switch:checked { background: var(--primary, #007AFF); }
+            .shuo-switch:checked { background: #007AFF; }
             .shuo-switch:checked::after { transform: translateX(22px); }
 
             /* ── Range ── */
-            .shuo-range-container { width: 100px; flex-shrink: 0; }
+            .shuo-range-container { width: 96px; flex-shrink: 0; }
             .shuo-range {
                 -webkit-appearance: none; width: 100%; height: 6px;
-                background: var(--primary-light, #EBF4FF); border-radius: 6px; outline: none;
+                background: #d0e4ff; border-radius: 6px; outline: none; cursor: pointer;
             }
             .shuo-range::-webkit-slider-thumb {
                 -webkit-appearance: none; appearance: none;
-                width: 18px; height: 18px; border-radius: 50%;
-                background: var(--primary, #007AFF); cursor: pointer;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.2s;
+                width: 20px; height: 20px; border-radius: 50%;
+                background: #007AFF; cursor: pointer;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.22); transition: transform 0.15s;
             }
             .shuo-range::-webkit-slider-thumb:active { transform: scale(1.3); }
 
             /* ── Footer 2×2 ── */
             .shuo-settings-footer {
-                display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-                padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.06);
+                display: grid; grid-template-columns: 1fr 1fr; gap: 9px;
+                padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);
+                flex-shrink: 0;
             }
             .shuo-btn {
-                padding: 11px 8px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05);
+                padding: 12px 8px; border-radius: 16px; border: none;
                 font-size: 13px; font-weight: 700; cursor: pointer;
-                transition: all 0.3s ease; background: var(--card-bg, #f2f2f7);
-                color: var(--text-main, #1c1c1e);
-                box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+                transition: filter 0.2s ease, transform 0.2s ease;
                 display: flex; align-items: center; justify-content: center; gap: 6px;
+                line-height: 1; -webkit-tap-highlight-color: transparent;
             }
-            .shuo-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-            .shuo-btn:active { transform: translateY(0); }
-            .shuo-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; flex-shrink: 0; }
-            .shuo-btn.primary { background: var(--primary, #007AFF); color: #fff; border: none; box-shadow: 0 4px 14px rgba(0,122,255,0.3); }
-            .shuo-btn.success { background: #F0FFF6; color: #30D158; border-color: rgba(48,209,88,0.15); }
-            .shuo-btn.warning { background: #FFFBF0; color: #FF9F0A; border-color: rgba(255,159,10,0.15); }
-            .shuo-btn.danger  { background: #FFF0F3; color: #FF2D55; border-color: rgba(255,45,85,0.15); }
+            @media (hover: hover) {
+                .shuo-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+            }
+            .shuo-btn:active { filter: brightness(0.92); transform: translateY(0) scale(0.97); }
+            .shuo-btn svg {
+                width: 14px; height: 14px; fill: none;
+                stroke: currentColor; stroke-width: 2.2; flex-shrink: 0;
+            }
+            /* ── 按钮：全部使用实色背景 + 白色文字，确保高对比度 ── */
+            .shuo-btn.primary { background: #007AFF; color: #ffffff; box-shadow: 0 4px 14px rgba(0,122,255,0.38); }
+            .shuo-btn.success { background: #25C452; color: #ffffff; box-shadow: 0 4px 14px rgba(37,196,82,0.38); }
+            .shuo-btn.warning { background: #F5970A; color: #ffffff; box-shadow: 0 4px 14px rgba(245,151,10,0.38); }
+            .shuo-btn.danger  { background: #E8234A; color: #ffffff; box-shadow: 0 4px 14px rgba(232,35,74,0.38); }
 
             /* ── Toast ── */
             .shuo-toast {
-                position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
-                background: rgba(28,28,30,0.9); color: #fff; padding: 10px 20px;
+                position: fixed; bottom: 36px; left: 50%;
+                transform: translateX(-50%) translateY(16px);
+                background: rgba(28,28,30,0.92); color: #fff; padding: 10px 22px;
                 border-radius: 24px; font-size: 13.5px; font-weight: 600;
-                backdrop-filter: blur(10px); z-index: 999999999;
-                opacity: 0; pointer-events: none; transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+                backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+                z-index: 999999999;
+                opacity: 0; pointer-events: none;
+                transition: all 0.32s cubic-bezier(0.34,1.56,0.64,1);
                 white-space: nowrap;
             }
             .shuo-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -348,7 +348,8 @@
             body.immersive-mode header,
             body.immersive-mode nav,
             body.immersive-mode footer {
-                opacity: 0 !important; pointer-events: none !important; transform: translateY(-100%) !important;
+                opacity: 0 !important; pointer-events: none !important;
+                transform: translateY(-100%) !important;
             }
             body.termux-mode { font-family: 'Courier New', Consolas, 'SF Mono', monospace !important; }
             body.m3-mode { --radius: 28px !important; --shadow: 0 2px 6px rgba(0,0,0,0.08) !important; }
@@ -376,7 +377,8 @@
             /* ── FPS 悬浮窗 ── */
             #shuo-fps-monitor {
                 position: fixed; top: 15px; right: 15px; z-index: 99998;
-                background: rgba(0,0,0,0.88); color: #0f0; font-family: 'SF Mono', Consolas, monospace;
+                background: rgba(0,0,0,0.88); color: #0f0;
+                font-family: 'SF Mono', Consolas, monospace;
                 padding: 8px 14px; border-radius: 12px; font-size: 11.5px; font-weight: 600;
                 pointer-events: none; display: none; line-height: 1.75;
                 box-shadow: 0 4px 16px rgba(0,0,0,0.35); border: 1px solid rgba(0,255,0,0.25);
@@ -387,37 +389,115 @@
             #shuo-progress-bar {
                 position: fixed; top: 0; left: 0; z-index: 999999;
                 height: 3px; width: 0%;
-                background: linear-gradient(90deg, var(--primary, #007AFF) 0%, #5856D6 60%, #AF52DE 100%);
+                background: linear-gradient(90deg, #007AFF 0%, #5856D6 60%, #AF52DE 100%);
                 border-radius: 0 3px 3px 0;
-                box-shadow: 0 0 12px var(--primary, #007AFF);
-                transition: width 0.12s linear; display: none; pointer-events: none;
+                box-shadow: 0 0 10px #007AFF;
+                transition: width 0.1s linear; display: none; pointer-events: none;
             }
             body.progress-mode #shuo-progress-bar { display: block; }
 
             /* ── 回顶按钮 ── */
             #shuo-totop-btn {
                 position: fixed; bottom: 88px; right: 20px; z-index: 99997;
-                width: 46px; height: 46px; border-radius: 50%;
-                background: var(--primary, #007AFF); color: #fff; border: none;
+                width: 48px; height: 48px; border-radius: 50%;
+                background: #007AFF !important;
+                border: none !important; outline: none !important;
                 display: none; justify-content: center; align-items: center;
-                cursor: pointer; box-shadow: 0 4px 16px rgba(0,122,255,0.4);
+                cursor: pointer; padding: 0;
+                box-shadow: 0 4px 18px rgba(0,122,255,0.42);
                 opacity: 0; transform: translateY(16px) scale(0.8);
-                transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                            box-shadow 0.25s ease;
+                -webkit-tap-highlight-color: transparent;
             }
-            #shuo-totop-btn svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; }
             body.totop-mode #shuo-totop-btn { display: flex; }
             #shuo-totop-btn.visible { opacity: 1; transform: translateY(0) scale(1); }
-            #shuo-totop-btn:hover { transform: scale(1.12) !important; box-shadow: 0 8px 28px rgba(0,122,255,0.55); }
+            #shuo-totop-btn:hover { box-shadow: 0 8px 28px rgba(0,122,255,0.55); transform: scale(1.1) !important; }
+            #shuo-totop-btn:active { transform: scale(0.95) !important; }
 
             /* ── 鼠标光晕 ── */
             #shuo-cursor-glow {
                 position: fixed; width: 300px; height: 300px; border-radius: 50%;
                 background: radial-gradient(circle, rgba(0,122,255,0.08) 0%, transparent 70%);
                 pointer-events: none; z-index: 99990; transform: translate(-50%, -50%);
-                transition: left 0.08s ease-out, top 0.08s ease-out;
-                display: none;
+                transition: left 0.08s ease-out, top 0.08s ease-out; display: none;
             }
             body.highlight-mode #shuo-cursor-glow { display: block; }
+
+            /* ════════════════════════════════════════
+               移动端适配：底部弹出 Sheet 样式
+               ════════════════════════════════════════ */
+            @media (max-width: 600px) {
+                /* 遮罩改为底部对齐 */
+                .shuo-settings-mask {
+                    align-items: flex-end;
+                }
+                /* 面板从底部弹出，圆角仅上方 */
+                .shuo-settings-panel {
+                    width: 100%;
+                    max-width: 100%;
+                    max-height: 91vh;
+                    border-radius: 22px 22px 0 0;
+                    padding: 16px 16px calc(20px + env(safe-area-inset-bottom, 0px));
+                    transform: translateY(100%);
+                    transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
+                    box-shadow: 0 -8px 40px rgba(0,0,0,0.18);
+                }
+                .shuo-settings-mask.active .shuo-settings-panel {
+                    transform: translateY(0);
+                }
+                /* 顶部拖动指示条 */
+                .shuo-settings-panel::before {
+                    content: '';
+                    display: block;
+                    width: 36px; height: 4px;
+                    background: rgba(0,0,0,0.15);
+                    border-radius: 2px;
+                    margin: 0 auto 14px;
+                    flex-shrink: 0;
+                }
+                .shuo-settings-title { font-size: 17px; }
+                .shuo-settings-header { margin-bottom: 12px; padding-bottom: 12px; }
+                /* 设置项更紧凑 */
+                .shuo-setting-item {
+                    padding: 11px 12px; gap: 10px; border-radius: 14px;
+                }
+                .shuo-setting-icon {
+                    width: 36px; height: 36px; border-radius: 9px;
+                }
+                .shuo-setting-icon svg { width: 18px; height: 18px; }
+                .shuo-setting-name { font-size: 13.5px; }
+                .shuo-setting-desc { font-size: 11px; }
+                /* Switch 稍小 */
+                .shuo-switch { width: 46px; height: 26px; }
+                .shuo-switch::after { width: 22px; height: 22px; }
+                .shuo-switch:checked::after { transform: translateX(20px); }
+                /* Range 控件 */
+                .shuo-range-container { width: 78px; }
+                /* 底部按钮 */
+                .shuo-settings-footer { gap: 8px; padding-top: 12px; }
+                .shuo-btn {
+                    font-size: 12.5px; padding: 11px 6px;
+                    border-radius: 14px; gap: 5px;
+                }
+                .shuo-btn svg { width: 13px; height: 13px; }
+                /* 回顶按钮适配底部安全区 */
+                #shuo-totop-btn {
+                    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+                    right: 16px;
+                    width: 44px; height: 44px;
+                }
+                /* Toast 留出安全区 */
+                .shuo-toast {
+                    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+                }
+            }
+
+            @media (max-width: 380px) {
+                .shuo-settings-title { font-size: 15.5px; gap: 7px; }
+                .shuo-settings-title svg { width: 18px; height: 18px; }
+                .shuo-btn { font-size: 11.5px; }
+            }
         `;
         document.head.appendChild(style);
     }
@@ -428,25 +508,21 @@
         mask.className = 'shuo-settings-mask';
         mask.id = 'shuoweb-settings-mask';
 
-        /* Tab 导航 */
-        let tabHTML = `<div class="shuo-tab-nav" id="shuo-tab-nav">`;
-        CATEGORIES.forEach((cat, i) => {
-            tabHTML += `<button class="shuo-tab-btn${i === 0 ? ' active' : ''}" data-cat="${cat.id}">${cat.label}</button>`;
-        });
-        tabHTML += `</div>`;
-
-        /* 搜索框 */
+        /* 搜索框（无 Tab 导航）*/
         const searchHTML = `
             <div class="shuo-search-wrap">
-                <svg class="shuo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-3.5-3.5"/>
+                <svg class="shuo-search-icon" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="7"/>
+                    <path stroke-linecap="round" d="M21 21l-3.5-3.5"/>
                 </svg>
-                <input class="shuo-search-input" id="shuo-search" type="text" placeholder="搜索功能…" autocomplete="off">
+                <input class="shuo-search-input" id="shuo-search" type="search"
+                    placeholder="搜索功能…" autocomplete="off" autocorrect="off" spellcheck="false">
             </div>`;
 
-        /* 按分类分组构建设置项 */
+        /* 按分类构建列表 */
         let listHTML = '';
-        CATEGORIES.slice(1).forEach(cat => {
+        CATEGORIES.forEach(cat => {
             const items = settingsOptions.filter(o => o.category === cat.id);
             if (!items.length) return;
             listHTML += `<div class="shuo-cat-label" data-label="${cat.id}">${cat.label}</div>`;
@@ -471,11 +547,18 @@
             });
         });
 
-        /* 按钮 SVG 简写 */
-        const svgShare   = `<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>`;
-        const svgExport  = `<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>`;
-        const svgImport  = `<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>`;
-        const svgTrash   = `<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>`;
+        /* 按钮 SVG */
+        const svgShare  = `<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0
+            110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0
+            00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>`;
+        const svgExport = `<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>`;
+        const svgImport = `<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>`;
+        const svgTrash  = `<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6
+            m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>`;
 
         mask.innerHTML = `
             <div class="shuo-settings-panel" id="shuoweb-settings-panel">
@@ -491,18 +574,18 @@
                                 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0
                                 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0
                                 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                         Engineers Pro
                     </h3>
-                    <div class="shuo-close-btn" id="shuo-close-btn">
+                    <div class="shuo-close-btn" id="shuo-close-btn" role="button" aria-label="关闭">
                         <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"
                             stroke-width="2.5" fill="none">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </div>
                 </div>
-                ${tabHTML}
                 ${searchHTML}
                 <div class="shuo-settings-body" id="shuo-settings-body">
                     ${listHTML}
@@ -517,30 +600,44 @@
         `;
         document.body.appendChild(mask);
 
-        /* ── 附加 DOM 元素 ── */
+        /* ── FPS 监控 ── */
         const fpsDiv = document.createElement('div');
         fpsDiv.id = 'shuo-fps-monitor';
         document.body.appendChild(fpsDiv);
 
+        /* ── 进度条 ── */
         const progressBar = document.createElement('div');
         progressBar.id = 'shuo-progress-bar';
         document.body.appendChild(progressBar);
 
+        /* ── 回顶按钮（内联 SVG 属性，确保任意宿主页面均可渲染）── */
         const totopBtn = document.createElement('button');
         totopBtn.id = 'shuo-totop-btn';
         totopBtn.setAttribute('aria-label', '回到顶部');
-        totopBtn.innerHTML = `<svg viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 15l7-7 7 7"/></svg>`;
+        totopBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" width="22" height="22"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="2.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="display:block;pointer-events:none;">
+            <path d="M5 15l7-7 7 7"/>
+        </svg>`;
         document.body.appendChild(totopBtn);
 
+        /* ── 光晕 ── */
         const glowDiv = document.createElement('div');
         glowDiv.id = 'shuo-cursor-glow';
         document.body.appendChild(glowDiv);
 
+        /* ── Toast ── */
         const toast = document.createElement('div');
         toast.className = 'shuo-toast';
         toast.id = 'shuo-toast';
         document.body.appendChild(toast);
 
+        /* ── 导入文件选择 ── */
         const importInput = document.createElement('input');
         importInput.type = 'file'; importInput.id = 'shuo-import-input';
         importInput.accept = '.json'; importInput.style.display = 'none';
@@ -549,7 +646,7 @@
 
     /* ================= 3. 功能实现 ================= */
 
-    /* Toast 工具 */
+    /* Toast */
     let toastTimer;
     function showToast(msg) {
         const t = document.getElementById('shuo-toast');
@@ -648,13 +745,18 @@
         if (on) {
             extH = (e) => {
                 const a = e.target.closest('a');
-                if (a && a.href && !a.href.startsWith(location.origin) && !/^(#|javascript)/.test(a.getAttribute('href') || '')) {
+                if (a && a.href && !a.href.startsWith(location.origin) &&
+                    !/^(#|javascript)/.test(a.getAttribute('href') || '')) {
                     a.target = '_blank'; a.rel = 'noopener noreferrer';
                 }
             };
             document.addEventListener('click', extH, true);
             document.querySelectorAll(`a[href]:not([href^="#"]):not([href^="javascript"])`).forEach(a => {
-                try { if (new URL(a.href).origin !== location.origin) { a.target = '_blank'; a.rel = 'noopener noreferrer'; } } catch {}
+                try {
+                    if (new URL(a.href).origin !== location.origin) {
+                        a.target = '_blank'; a.rel = 'noopener noreferrer';
+                    }
+                } catch {}
             });
         } else {
             if (extH) document.removeEventListener('click', extH, true);
@@ -700,20 +802,9 @@
         mask.addEventListener('click', e => { if (e.target === mask) closeSettings(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSettings(); });
 
-        /* Tab 切换 */
-        document.getElementById('shuo-tab-nav').addEventListener('click', e => {
-            const btn = e.target.closest('.shuo-tab-btn');
-            if (!btn) return;
-            document.querySelectorAll('.shuo-tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const cat = btn.dataset.cat;
-            filterItems(cat, document.getElementById('shuo-search').value);
-        });
-
-        /* 搜索框 */
+        /* 搜索框（已移除 Tab，直接按文字过滤）*/
         document.getElementById('shuo-search').addEventListener('input', e => {
-            const activeCat = document.querySelector('.shuo-tab-btn.active')?.dataset.cat || 'all';
-            filterItems(activeCat, e.target.value);
+            filterItems(e.target.value);
         });
 
         /* Switch 绑定工厂 */
@@ -816,26 +907,24 @@
         });
     }
 
-    /* ── Tab + 搜索联合过滤 ── */
-    function filterItems(cat, query) {
+    /* ── 搜索过滤（已移除分类 Tab，仅保留文字搜索）── */
+    function filterItems(query) {
         const q = (query || '').trim().toLowerCase();
         const body = document.getElementById('shuo-settings-body');
         body.querySelectorAll('.shuo-setting-item').forEach(item => {
-            const catMatch = cat === 'all' || item.dataset.cat === cat;
             const nameMatch = !q || item.dataset.name.toLowerCase().includes(q);
-            item.classList.toggle('shuo-hidden', !catMatch || !nameMatch);
+            item.classList.toggle('shuo-hidden', !nameMatch);
         });
+        /* 若某分类下所有项都被搜索隐藏，也隐藏分类标签 */
         body.querySelectorAll('.shuo-cat-label').forEach(label => {
             const labelCat = label.dataset.label;
-            const catShow = cat === 'all' || cat === labelCat;
-            /* 如果该分组下的所有项都被隐藏，也隐藏标签 */
             const hasVisible = [...body.querySelectorAll(`.shuo-setting-item[data-cat="${labelCat}"]`)]
                 .some(el => !el.classList.contains('shuo-hidden'));
-            label.style.display = (catShow && hasVisible) ? '' : 'none';
+            label.style.display = hasVisible ? '' : 'none';
         });
     }
 
-    /* ================= 5. 数据恢复 ================= */
+    /* ================= 5. 状态恢复 ================= */
     function checkHash() {
         const mask = document.getElementById('shuoweb-settings-mask');
         if (window.location.hash === '#setting') {
