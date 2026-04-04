@@ -2318,3 +2318,640 @@ window.addEventListener('scroll', () => {
     }
 
 })();
+
+// ==================== Engineers Pro 功能扩展包 ====================
+// 零侵入原有代码，直接追加即可生效，全功能兼容原有配置体系
+(function () {
+    /* 防重复加载 */
+    if (window.__SHUOWEB_SETTINGS_PRO_EXT__) return;
+    window.__SHUOWEB_SETTINGS_PRO_EXT__ = true;
+
+    /* DOM就绪执行 */
+    function readyExt(fn) {
+        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+        else fn();
+    }
+    readyExt(initExtension);
+
+    /* ================= 扩展配置定义（与原有格式完全兼容）================= */
+    const EXT_OPTIONS = [
+        /* ── 体验类扩展 ── */
+        {
+            id: 'opt-noprotect', category: 'experience',
+            name: '解除复制保护', desc: '解除页面右键禁用、文本选择限制、复制拦截',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>`
+        },
+        {
+            id: 'opt-readmode', category: 'experience',
+            name: '正文阅读模式', desc: '智能提取页面正文，过滤广告、侧边栏等无关元素',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>`
+        },
+        {
+            id: 'opt-autorefresh', category: 'experience',
+            name: '页面自动刷新', desc: '当前: 关闭',
+            type: 'range', min: '0', max: '300', step: '30', value: '0',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>`
+        },
+        {
+            id: 'opt-pip', category: 'experience',
+            name: '视频画中画', desc: '自动提取页面视频，开启悬浮画中画播放',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>`
+        },
+
+        /* ── 外观类扩展 ── */
+        {
+            id: 'opt-noanimation', category: 'appearance',
+            name: '禁用页面所有动画', desc: '关闭CSS过渡与动画，降低设备性能占用',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>`
+        },
+        {
+            id: 'opt-fontsmooth', category: 'appearance',
+            name: '文字抗锯齿增强', desc: '优化文字渲染效果，提升长文本阅读舒适度',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>`
+        },
+        {
+            id: 'opt-themecolor', category: 'appearance',
+            name: '自定义主题色', desc: '自定义页面全局主色调，一键替换原生组件',
+            type: 'color', value: '#007AFF',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>`
+        },
+
+        /* ── 调试类扩展 ── */
+        {
+            id: 'opt-pageinfo', category: 'debug',
+            name: '页面信息悬浮面板', desc: '显示域名、协议、加载耗时、Cookie等核心信息',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-2v-6h2v6zm-1-6.891a1 1 0 110-2 1 1 0 010 2zM12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>`
+        },
+        {
+            id: 'opt-console', category: 'debug',
+            name: '移动端控制台', desc: '捕获页面console日志，页面内实时显示调试信息',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>`
+        },
+        {
+            id: 'opt-nolazyload', category: 'debug',
+            name: '禁用图片懒加载', desc: '强制加载页面所有图片，关闭懒加载逻辑',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>`
+        },
+        {
+            id: 'opt-formfill', category: 'debug',
+            name: '表单自动填充', desc: '一键为页面所有表单填充测试数据，提升开发效率',
+            type: 'switch',
+            icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>`
+        },
+    ];
+
+    /* ================= 核心初始化 ================= */
+    function initExtension() {
+        injectExtStyle();
+        insertExtDOM();
+        bindExtEvents();
+        loadExtData();
+    }
+
+    /* ================= 1. 注入扩展样式（零冲突）================= */
+    function injectExtStyle() {
+        if (document.getElementById("shuoweb-settings-style-ext")) return;
+        const style = document.createElement("style");
+        style.id = "shuoweb-settings-style-ext";
+        style.textContent = `
+            /* 颜色选择器适配 */
+            .shuo-color-picker {
+                width: 50px; height: 28px;
+                border: none; border-radius: 8px;
+                cursor: pointer; background: none;
+                padding: 0; flex-shrink: 0;
+            }
+            .shuo-color-picker::-webkit-color-swatch-wrapper {
+                padding: 0;
+            }
+            .shuo-color-picker::-webkit-color-swatch {
+                border-radius: 8px;
+                border: 2px solid rgba(0,0,0,0.1);
+            }
+
+            /* 复制保护解除 */
+            body.noprotect-mode * {
+                -webkit-user-select: auto !important;
+                user-select: auto !important;
+                -webkit-user-drag: auto !important;
+            }
+
+            /* 阅读模式 */
+            body.readmode-mode #shuo-read-container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 40px 20px;
+                font-size: 18px;
+                line-height: 1.8;
+                color: #1c1c1e;
+            }
+            body.readmode-mode > :not(#shuoweb-settings-mask):not(#shuo-read-container):not(#shuo-toast):not(#shuo-fps-monitor):not(#shuo-progress-bar):not(#shuo-totop-btn):not(#shuo-cursor-glow):not(#shuo-pageinfo-panel):not(#shuo-console-panel) {
+                display: none !important;
+            }
+
+            /* 禁用动画 */
+            body.noanimation-mode * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+
+            /* 文字抗锯齿 */
+            body.fontsmooth-mode {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+            }
+
+            /* 页面信息面板 */
+            #shuo-pageinfo-panel {
+                position: fixed; top: 15px; left: 15px; z-index: 99998;
+                background: rgba(0,0,0,0.88); color: #fff;
+                font-family: 'SF Mono', Consolas, monospace;
+                padding: 10px 14px; border-radius: 12px; font-size: 11.5px; font-weight: 600;
+                pointer-events: none; display: none; line-height: 1.75;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.2);
+                max-width: 280px;
+            }
+            body.pageinfo-mode #shuo-pageinfo-panel { display: block; }
+
+            /* 控制台面板 */
+            #shuo-console-panel {
+                position: fixed; bottom: 15px; left: 15px; z-index: 99998;
+                width: 320px; max-height: 200px;
+                background: rgba(0,0,0,0.92); color: #fff;
+                font-family: 'SF Mono', Consolas, monospace;
+                border-radius: 12px; font-size: 11px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.2);
+                display: none; flex-direction: column;
+                overflow: hidden;
+            }
+            body.console-mode #shuo-console-panel { display: flex; }
+            #shuo-console-header {
+                padding: 6px 10px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                font-weight: 700;
+                display: flex; justify-content: space-between; align-items: center;
+            }
+            #shuo-console-clear {
+                cursor: pointer; color: #ff3b30;
+                background: none; border: none;
+                font-size: 10px; font-weight: 700;
+            }
+            #shuo-console-content {
+                padding: 8px 10px;
+                overflow-y: auto;
+                flex: 1;
+            }
+            .shuo-console-log { margin: 2px 0; word-break: break-all; }
+            .shuo-console-log.log { color: #fff; }
+            .shuo-console-log.warn { color: #ffcc00; }
+            .shuo-console-log.error { color: #ff3b30; }
+            .shuo-console-log.info { color: #007AFF; }
+
+            /* 移动端适配 */
+            @media (max-width: 600px) {
+                #shuo-pageinfo-panel { max-width: 200px; font-size: 10px; top: 10px; left: 10px; }
+                #shuo-console-panel { width: 90%; left: 5%; bottom: 70px; }
+                body.readmode-mode #shuo-read-container { padding: 20px 16px; font-size: 16px; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    /* ================= 2. 插入扩展DOM（自动融入原有面板）================= */
+    function insertExtDOM() {
+        const settingsBody = document.getElementById('shuo-settings-body');
+        if (!settingsBody) return;
+
+        // 按分类聚合配置项
+        const categoryMap = {};
+        EXT_OPTIONS.forEach(opt => {
+            if (!categoryMap[opt.category]) categoryMap[opt.category] = [];
+            categoryMap[opt.category].push(opt);
+        });
+
+        // 插入到对应分类标签下
+        Object.keys(categoryMap).forEach(catId => {
+            const catLabel = settingsBody.querySelector(`.shuo-cat-label[data-label="${catId}"]`);
+            if (!catLabel) return;
+
+            const items = categoryMap[catId];
+            let itemsHTML = '';
+
+            items.forEach(opt => {
+                // 生成对应控件
+                let control = '';
+                if (opt.type === 'switch') {
+                    control = `<input type="checkbox" class="shuo-switch" id="${opt.id}">`;
+                } else if (opt.type === 'range') {
+                    control = `<div class="shuo-range-container">
+                        <input type="range" class="shuo-range" id="${opt.id}"
+                            min="${opt.min}" max="${opt.max}" step="${opt.step}" value="${opt.value}">
+                    </div>`;
+                } else if (opt.type === 'color') {
+                    control = `<input type="color" class="shuo-color-picker" id="${opt.id}" value="${opt.value}">`;
+                }
+
+                // 生成与原有格式完全一致的项HTML
+                itemsHTML += `
+                    <div class="shuo-setting-item" data-cat="${opt.category}" data-name="${opt.name}">
+                        <div class="shuo-setting-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">${opt.icon}</svg>
+                        </div>
+                        <div class="shuo-setting-info">
+                            <div class="shuo-setting-name">${opt.name}</div>
+                            <div class="shuo-setting-desc" id="desc-${opt.id}">${opt.desc}</div>
+                        </div>
+                        ${control}
+                    </div>`;
+            });
+
+            // 插入到对应分类标签之后
+            catLabel.insertAdjacentHTML('afterend', itemsHTML);
+        });
+
+        // 插入功能所需的全局DOM元素
+        // 1. 阅读模式容器
+        const readContainer = document.createElement('div');
+        readContainer.id = 'shuo-read-container';
+        document.body.appendChild(readContainer);
+
+        // 2. 页面信息面板
+        const pageinfoPanel = document.createElement('div');
+        pageinfoPanel.id = 'shuo-pageinfo-panel';
+        document.body.appendChild(pageinfoPanel);
+
+        // 3. 移动端控制台面板
+        const consolePanel = document.createElement('div');
+        consolePanel.id = 'shuo-console-panel';
+        consolePanel.innerHTML = `
+            <div id="shuo-console-header">
+                <span>Console</span>
+                <button id="shuo-console-clear">清空</button>
+            </div>
+            <div id="shuo-console-content"></div>
+        `;
+        document.body.appendChild(consolePanel);
+    }
+
+    /* ================= 3. 通用工具函数 ================= */
+    // 兼容原有Toast组件
+    let extToastTimer;
+    function showExtToast(msg) {
+        const t = document.getElementById('shuo-toast');
+        if (!t) return;
+        t.textContent = msg;
+        t.classList.add('show');
+        clearTimeout(extToastTimer);
+        extToastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    // 正文智能提取
+    function extractMainContent() {
+        let mainContent = '';
+        // 优先取语义化标签
+        const article = document.querySelector('article') || document.querySelector('main') || document.querySelector('.content') || document.querySelector('.article');
+        
+        if (article) {
+            mainContent = article.innerHTML;
+        } else {
+            // 兜底：取p标签最多的容器
+            const allDivs = document.querySelectorAll('div');
+            let maxP = 0;
+            let targetDiv = null;
+            allDivs.forEach(div => {
+                const pCount = div.querySelectorAll('p').length;
+                if (pCount > maxP) {
+                    maxP = pCount;
+                    targetDiv = div;
+                }
+            });
+            mainContent = (targetDiv && maxP >= 3) ? targetDiv.innerHTML : document.body.innerHTML;
+        }
+        return mainContent;
+    }
+
+    /* ================= 4. 扩展功能实现 ================= */
+    // 1. 解除复制保护
+    let protectListener = null;
+    function toggleNoProtect(on) {
+        const events = ['contextmenu', 'selectstart', 'copy', 'cut', 'paste'];
+        if (on) {
+            document.body.classList.add('noprotect-mode');
+            protectListener = (e) => e.stopImmediatePropagation();
+            events.forEach(evt => document.addEventListener(evt, protectListener, true));
+            // 注入强制选择样式
+            const style = document.createElement('style');
+            style.id = 'shuo-noprotect-style';
+            style.textContent = '* { user-select: auto !important; -webkit-user-select: auto !important; }';
+            document.head.appendChild(style);
+        } else {
+            document.body.classList.remove('noprotect-mode');
+            if (protectListener) {
+                events.forEach(evt => document.removeEventListener(evt, protectListener, true));
+                protectListener = null;
+            }
+            document.getElementById('shuo-noprotect-style')?.remove();
+        }
+    }
+
+    // 2. 正文阅读模式
+    let originalBodyCache = '';
+    function toggleReadMode(on) {
+        const readContainer = document.getElementById('shuo-read-container');
+        if (on) {
+            originalBodyCache = document.body.innerHTML;
+            readContainer.innerHTML = extractMainContent();
+            document.body.classList.add('readmode-mode');
+        } else {
+            document.body.classList.remove('readmode-mode');
+            readContainer.innerHTML = '';
+            if (originalBodyCache) {
+                document.body.innerHTML = originalBodyCache;
+                originalBodyCache = '';
+                // 恢复原有组件
+                window.__SHUOWEB_SETTINGS_PRO__ = false;
+                const originalScript = document.querySelector('#shuoweb-settings-style-pro').previousElementSibling;
+                if (originalScript) eval(originalScript.textContent);
+            }
+        }
+    }
+
+    // 3. 页面自动刷新
+    let refreshTimer = null;
+    function toggleAutoRefresh(seconds) {
+        const descEl = document.getElementById('desc-opt-autorefresh');
+        clearInterval(refreshTimer);
+        if (seconds > 0) {
+            descEl.textContent = `当前: ${seconds}秒 刷新一次`;
+            refreshTimer = setInterval(() => location.reload(), seconds * 1000);
+        } else {
+            descEl.textContent = '当前: 关闭';
+        }
+    }
+
+    // 4. 视频画中画
+    function togglePIP(on) {
+        const videos = document.querySelectorAll('video');
+        if (on && videos.length > 0) {
+            const targetVideo = videos[0];
+            if (document.pictureInPictureEnabled && !targetVideo.paused) {
+                targetVideo.requestPictureInPicture().catch(() => showExtToast('画中画开启失败，请先播放视频'));
+            } else {
+                showExtToast('请先播放页面视频后再开启');
+            }
+        } else if (document.pictureInPictureElement) {
+            document.exitPictureInPicture();
+        }
+    }
+
+    // 5. 禁用页面所有动画
+    function toggleNoAnimation(on) {
+        document.body.classList.toggle('noanimation-mode', on);
+    }
+
+    // 6. 文字抗锯齿增强
+    function toggleFontSmooth(on) {
+        document.body.classList.toggle('fontsmooth-mode', on);
+    }
+
+    // 7. 自定义主题色
+    function setThemeColor(color) {
+        document.documentElement.style.setProperty('--shuo-theme-color', color);
+        // 替换全局主题色样式
+        const style = document.createElement('style');
+        style.id = 'shuo-themecolor-style';
+        style.textContent = `
+            .shuo-switch:checked { background: ${color} !important; }
+            .shuo-range::-webkit-slider-thumb { background: ${color} !important; }
+            .shuo-btn.primary { background: ${color} !important; box-shadow: 0 4px 14px ${color}38 !important; }
+            .shuo-settings-title svg { color: ${color} !important; }
+            .shuo-close-btn { background: ${color}15 !important; color: ${color} !important; }
+            .shuo-close-btn:hover { background: ${color} !important; }
+            .shuo-setting-icon { background: ${color}15 !important; color: ${color} !important; }
+            .shuo-search-input:focus { border-color: ${color} !important; box-shadow: 0 0 0 3px ${color}12 !important; }
+            #shuo-progress-bar { background: linear-gradient(90deg, ${color} 0%, ${color}dd 100%) !important; box-shadow: 0 0 10px ${color} !important; }
+            #shuo-totop-btn { background: ${color} !important; box-shadow: 0 4px 18px ${color}42 !important; }
+        `;
+        document.getElementById('shuo-themecolor-style')?.remove();
+        document.head.appendChild(style);
+    }
+
+    // 8. 页面信息悬浮面板
+    let pageinfoTimer = null;
+    function togglePageInfo(on) {
+        const panel = document.getElementById('shuo-pageinfo-panel');
+        if (on) {
+            const updateInfo = () => {
+                const loadTime = (performance.timing.loadEventEnd - performance.timing.navigationStart) || 0;
+                panel.innerHTML = `
+                    URL: ${location.href}<br>
+                    域名: ${location.hostname}<br>
+                    协议: ${location.protocol.replace(':','')}<br>
+                    加载耗时: ${loadTime}ms<br>
+                    Cookie数量: ${document.cookie.split(';').length}<br>
+                    分辨率: ${screen.width}×${screen.height}
+                `;
+            };
+            updateInfo();
+            pageinfoTimer = setInterval(updateInfo, 2000);
+            document.body.classList.add('pageinfo-mode');
+        } else {
+            clearInterval(pageinfoTimer);
+            pageinfoTimer = null;
+            document.body.classList.remove('pageinfo-mode');
+        }
+    }
+
+    // 9. 移动端控制台
+    let originalConsole = {};
+    function toggleConsole(on) {
+        const content = document.getElementById('shuo-console-content');
+        const clearBtn = document.getElementById('shuo-console-clear');
+
+        if (on) {
+            // 备份原生console
+            ['log', 'warn', 'error', 'info'].forEach(method => {
+                originalConsole[method] = console[method];
+                console[method] = function(...args) {
+                    originalConsole[method].apply(console, args);
+                    // 渲染到面板
+                    const logEl = document.createElement('div');
+                    logEl.className = `shuo-console-log ${method}`;
+                    logEl.textContent = args.map(arg => 
+                        typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                    ).join(' ');
+                    content.appendChild(logEl);
+                    content.scrollTop = content.scrollHeight;
+                };
+            });
+            // 清空按钮绑定
+            clearBtn.onclick = () => content.innerHTML = '';
+            document.body.classList.add('console-mode');
+        } else {
+            // 恢复原生console
+            Object.keys(originalConsole).forEach(method => {
+                console[method] = originalConsole[method];
+            });
+            originalConsole = {};
+            document.body.classList.remove('console-mode');
+        }
+    }
+
+    // 10. 禁用图片懒加载
+    function toggleNoLazyLoad(on) {
+        if (on) {
+            const imgs = document.querySelectorAll('img');
+            imgs.forEach(img => {
+                // 替换常见懒加载属性
+                ['data-src', 'data-original', 'data-lazy', 'data-srcset'].forEach(attr => {
+                    if (img.hasAttribute(attr)) {
+                        img.src = img.getAttribute(attr);
+                        img.removeAttribute(attr);
+                    }
+                });
+                img.loading = 'eager';
+            });
+            showExtToast('已强制加载所有图片');
+        }
+    }
+
+    // 11. 表单自动填充
+    function toggleFormFill(on) {
+        if (on) {
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                const type = input.type.toLowerCase();
+                const name = input.name.toLowerCase();
+                const id = input.id.toLowerCase();
+
+                // 跳过特殊类型
+                if (['hidden', 'button', 'submit', 'reset', 'radio', 'checkbox'].includes(type)) return;
+                if (input.disabled || input.readOnly) return;
+
+                // 智能匹配填充
+                if (type === 'email' || name.includes('email') || id.includes('email')) {
+                    input.value = 'test@example.com';
+                } else if (type === 'tel' || name.includes('phone') || name.includes('tel') || id.includes('phone')) {
+                    input.value = '13800138000';
+                } else if (type === 'password' || name.includes('password') || id.includes('password')) {
+                    input.value = 'Test@123456';
+                } else if (name.includes('name') || id.includes('name') || name.includes('username')) {
+                    input.value = '测试用户';
+                } else if (type === 'number' || name.includes('age') || id.includes('age')) {
+                    input.value = '25';
+                } else if (type === 'date') {
+                    input.value = '2024-01-01';
+                } else if (type === 'url' || name.includes('url') || name.includes('website')) {
+                    input.value = 'https://example.com';
+                } else if (input.tagName === 'TEXTAREA') {
+                    input.value = '这是一段测试文本，用于表单填充测试。';
+                } else if (input.tagName === 'SELECT' && input.options.length > 1) {
+                    input.selectedIndex = 1;
+                } else {
+                    input.value = '测试内容';
+                }
+
+                // 触发原生事件
+                input.dispatchEvent(new Event('input', { bubbles: true }));
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            showExtToast('已填充所有表单测试数据');
+            // 自动复位开关
+            setTimeout(() => {
+                const el = document.getElementById('opt-formfill');
+                if (el) el.checked = false;
+            }, 500);
+        }
+    }
+
+    /* ================= 5. 事件绑定 ================= */
+    function bindExtEvents() {
+        // 开关绑定工厂
+        const bindExtSwitch = (id, cb) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener('change', e => {
+                const v = e.target.checked;
+                localStorage.setItem(`shuo_${id}`, v);
+                cb(v);
+            });
+        };
+
+        // 绑定所有开关
+        bindExtSwitch('opt-noprotect', toggleNoProtect);
+        bindExtSwitch('opt-readmode', toggleReadMode);
+        bindExtSwitch('opt-pip', togglePIP);
+        bindExtSwitch('opt-noanimation', toggleNoAnimation);
+        bindExtSwitch('opt-fontsmooth', toggleFontSmooth);
+        bindExtSwitch('opt-pageinfo', togglePageInfo);
+        bindExtSwitch('opt-console', toggleConsole);
+        bindExtSwitch('opt-nolazyload', toggleNoLazyLoad);
+        bindExtSwitch('opt-formfill', toggleFormFill);
+
+        // 自动刷新滑块绑定
+        const refreshEl = document.getElementById('opt-autorefresh');
+        refreshEl?.addEventListener('input', e => {
+            const v = parseInt(e.target.value);
+            toggleAutoRefresh(v);
+            localStorage.setItem('shuo_opt_autorefresh', v);
+        });
+
+        // 主题色选择器绑定
+        const colorEl = document.getElementById('opt-themecolor');
+        colorEl?.addEventListener('input', e => {
+            const v = e.target.value;
+            setThemeColor(v);
+            localStorage.setItem('shuo_opt_themecolor', v);
+        });
+    }
+
+    /* ================= 6. 状态恢复（页面刷新自动还原）================= */
+    function loadExtData() {
+        const applyExtSwitch = (id, cb) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const v = localStorage.getItem(`shuo_${id}`) === 'true';
+            el.checked = v;
+            if (v) cb(true);
+        };
+
+        // 恢复开关状态
+        applyExtSwitch('opt-noprotect', toggleNoProtect);
+        applyExtSwitch('opt-readmode', toggleReadMode);
+        applyExtSwitch('opt-pip', togglePIP);
+        applyExtSwitch('opt-noanimation', toggleNoAnimation);
+        applyExtSwitch('opt-fontsmooth', toggleFontSmooth);
+        applyExtSwitch('opt-pageinfo', togglePageInfo);
+        applyExtSwitch('opt-console', toggleConsole);
+
+        // 恢复自动刷新配置
+        const refreshVal = localStorage.getItem('shuo_opt_autorefresh');
+        if (refreshVal !== null) {
+            const el = document.getElementById('opt-autorefresh');
+            if (el) {
+                el.value = refreshVal;
+                toggleAutoRefresh(parseInt(refreshVal));
+            }
+        }
+
+        // 恢复自定义主题色
+        const colorVal = localStorage.getItem('shuo_opt_themecolor');
+        if (colorVal !== null) {
+            const el = document.getElementById('opt-themecolor');
+            if (el) {
+                el.value = colorVal;
+                setThemeColor(colorVal);
+            }
+        }
+    }
+})();
