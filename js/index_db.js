@@ -24,13 +24,6 @@ const SITE_DATA = [
         ]
     },
     {
-        name: "开发项目",
-        icon: "code",
-        items: [
-            { title: "云盘系统", url: "https://github.com/shuo156/Local-cloud", icon: "cloud" }
-        ]
-    },
-    {
         name: "其他",
         icon: "box",
         items: [
@@ -38,6 +31,13 @@ const SITE_DATA = [
             { title: "MBTI测试", url: "https://shuoweb.com/page/html/mbti", icon: "gift" },
             { title: "关于我", url: "https://shuoweb.com/page/me", icon: "home" },
             { title: "设置", url: "#setting", icon: "settings" }
+        ]
+    },
+    {
+        name: "开发项目",
+        icon: "code",
+        items: [
+            { title: "SHUOWEB云盘", url: "https://shuoweb.wuaze.com/", icon: "cloud" }
         ]
     }
 ];
