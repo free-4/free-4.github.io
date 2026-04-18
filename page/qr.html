@@ -1,22 +1,464 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>测试页面</title>
-    <style>
-     a {
-  display: block;
-  text-align: center;
-}
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IP 检测 · IPScan</title>
+  <link rel="stylesheet" href="https://shuoweb.com/css/res.css" />
+  <style>
+    /* ── Page Layout ── */
+    body {
+      min-height: 100vh !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      padding: var(--space-16) var(--space-4) var(--space-8) !important;
+    }
+
+    /* ── Hero IP Display ── */
+    .ip-hero {
+      text-align: center !important;
+      margin-bottom: var(--space-12) !important;
+    }
+
+    .ip-label {
+      font-size: var(--text-xs) !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      color: var(--color-text-tertiary) !important;
+      margin-bottom: var(--space-3) !important;
+    }
+
+    .ip-address {
+      font-family: var(--font-mono) !important;
+      font-size: clamp(2rem, 6vw, 4rem) !important;
+      font-weight: 500 !important;
+      color: var(--color-text) !important;
+      letter-spacing: -0.03em !important;
+      line-height: 1 !important;
+      margin-bottom: var(--space-4) !important;
+      min-height: 1.2em !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: var(--space-3) !important;
+    }
+
+    .ip-address .cursor {
+      display: inline-block !important;
+      width: 3px !important;
+      height: 0.85em !important;
+      background: var(--color-text) !important;
+      animation: blink 1s step-end infinite !important;
+      border-radius: 1px !important;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .ip-copy-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: var(--space-2) !important;
+      font-size: var(--text-xs) !important;
+      font-weight: 500 !important;
+      color: var(--color-text-tertiary) !important;
+      background: transparent !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: var(--radius-full) !important;
+      padding: var(--space-1) var(--space-3) !important;
+      cursor: pointer !important;
+      transition: all var(--transition-base) !important;
+      letter-spacing: 0.02em !important;
+    }
+
+    .ip-copy-btn:hover {
+      color: var(--color-text) !important;
+      border-color: var(--color-border-hover) !important;
+    }
+
+    .ip-copy-btn.copied {
+      color: var(--color-success) !important;
+      border-color: var(--color-success) !important;
+    }
+
+    /* ── Grid Cards ── */
+    .info-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+      gap: var(--space-3) !important;
+      width: 100% !important;
+      max-width: 900px !important;
+      margin-bottom: var(--space-6) !important;
+    }
+
+    .info-card {
+      background-color: var(--color-bg-secondary) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: var(--radius-lg) !important;
+      padding: var(--space-5) var(--space-5) !important;
+      transition: border-color var(--transition-base) !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .info-card:hover {
+      border-color: var(--color-border-hover) !important;
+    }
+
+    .info-card-icon {
+      font-size: 1.1rem !important;
+      margin-bottom: var(--space-3) !important;
+      display: block !important;
+      opacity: 0.7 !important;
+    }
+
+    .info-card-label {
+      font-size: var(--text-xs) !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
+      color: var(--color-text-tertiary) !important;
+      margin-bottom: var(--space-1) !important;
+    }
+
+    .info-card-value {
+      font-size: var(--text-base) !important;
+      font-weight: 500 !important;
+      color: var(--color-text) !important;
+      line-height: 1.4 !important;
+      word-break: break-word !important;
+    }
+
+    .info-card-value.mono {
+      font-family: var(--font-mono) !important;
+      font-size: var(--text-sm) !important;
+    }
+
+    .info-card-value.loading {
+      display: flex !important;
+      align-items: center !important;
+      gap: var(--space-2) !important;
+    }
+
+    /* skeleton shimmer for loading values */
+    .skeleton-text {
+      height: 1.1em !important;
+      width: 70% !important;
+      border-radius: var(--radius-sm) !important;
+      background: linear-gradient(
+        90deg,
+        var(--color-bg-secondary) 0%,
+        var(--color-bg-tertiary) 50%,
+        var(--color-bg-secondary) 100%
+      ) !important;
+      background-size: 200% 100% !important;
+      animation: shimmer 1.5s infinite !important;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+
+    /* ── Map Placeholder ── */
+    .map-card {
+      width: 100% !important;
+      max-width: 900px !important;
+      background-color: var(--color-bg-secondary) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: var(--radius-lg) !important;
+      overflow: hidden !important;
+      margin-bottom: var(--space-6) !important;
+    }
+
+    .map-header {
+      padding: var(--space-4) var(--space-5) !important;
+      border-bottom: 1px solid var(--color-border) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+
+    .map-header-title {
+      font-size: var(--text-sm) !important;
+      font-weight: 600 !important;
+      color: var(--color-text) !important;
+    }
+
+    .map-coords {
+      font-family: var(--font-mono) !important;
+      font-size: var(--text-xs) !important;
+      color: var(--color-text-tertiary) !important;
+    }
+
+    #map-iframe {
+      width: 100% !important;
+      height: 280px !important;
+      border: none !important;
+      display: block !important;
+      filter: invert(1) hue-rotate(180deg) !important;
+      opacity: 0.85 !important;
+    }
+
+    .map-placeholder {
+      width: 100% !important;
+      height: 280px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: var(--color-text-tertiary) !important;
+      font-size: var(--text-sm) !important;
+    }
+
+    /* ── Status Bar ── */
+    .status-bar {
+      display: flex !important;
+      align-items: center !important;
+      gap: var(--space-2) !important;
+      font-size: var(--text-xs) !important;
+      color: var(--color-text-tertiary) !important;
+      margin-bottom: var(--space-8) !important;
+    }
+
+    .status-dot {
+      width: 6px !important;
+      height: 6px !important;
+      border-radius: var(--radius-full) !important;
+      background-color: var(--color-text-tertiary) !important;
+      flex-shrink: 0 !important;
+    }
+
+    .status-dot.online {
+      background-color: var(--color-success) !important;
+      box-shadow: 0 0 6px var(--color-success) !important;
+    }
+
+    /* ── Refresh Button ── */
+    .refresh-area {
+      display: flex !important;
+      justify-content: center !important;
+      margin-bottom: var(--space-8) !important;
+    }
+
+    /* ── Error State ── */
+    .error-msg {
+      display: none !important;
+      font-size: var(--text-sm) !important;
+      color: var(--color-error) !important;
+      text-align: center !important;
+      margin-bottom: var(--space-4) !important;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      font-size: var(--text-xs) !important;
+      color: var(--color-text-tertiary) !important;
+      text-align: center !important;
+      margin-top: auto !important;
+    }
+
+    /* ── Fade In on Load ── */
+    .fade-in {
+      opacity: 0 !important;
+      transform: translateY(10px) !important;
+      transition: opacity 0.5s ease, transform 0.5s ease !important;
+    }
+
+    .fade-in.visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  </style>
 </head>
 <body>
-    <ul>
-      <li>666</li>
-    </ul>
-    <p>545545</p>
-    <h2>hdjxjxkdh</h2>
-    <link rel="stylesheet" href="https://shuoweb.com/css/res.css">
+
+  <!-- Hero -->
+  <div class="ip-hero fade-in" id="hero">
+    <div class="ip-label">Your IP Address</div>
+    <div class="ip-address" id="ip-display">
+      <span class="cursor"></span>
+    </div>
+    <div class="status-bar" style="justify-content:center">
+      <span class="status-dot" id="status-dot"></span>
+      <span id="status-text">正在检测…</span>
+    </div>
+    <button class="ip-copy-btn" id="copy-btn" onclick="copyIP()" style="display:none">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+      <span id="copy-label">复制</span>
+    </button>
+  </div>
+
+  <!-- Error -->
+  <div class="error-msg" id="error-msg">⚠ 无法获取 IP 信息，请稍后重试</div>
+
+  <!-- Info Grid -->
+  <div class="info-grid fade-in" id="info-grid" style="transition-delay:0.1s">
+    <div class="info-card">
+      <span class="info-card-icon"></span>
+      <div class="info-card-label">国家 / 地区</div>
+      <div class="info-card-value" id="val-country"><span class="skeleton-text"></span></div>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon"></span>
+      <div class="info-card-label">城市</div>
+      <div class="info-card-value" id="val-city"><span class="skeleton-text"></span></div>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon"></span>
+      <div class="info-card-label">ISP / 组织</div>
+      <div class="info-card-value" id="val-org"><span class="skeleton-text"></span></div>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon">⏱</span>
+      <div class="info-card-label">时区</div>
+      <div class="info-card-value mono" id="val-tz"><span class="skeleton-text"></span></div>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon"></span>
+      <div class="info-card-label">ASN</div>
+      <div class="info-card-value mono" id="val-asn"><span class="skeleton-text"></span></div>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon"></span>
+      <div class="info-card-label">经纬度</div>
+      <div class="info-card-value mono" id="val-latlon"><span class="skeleton-text"></span></div>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="map-card fade-in" id="map-card" style="transition-delay:0.2s">
+    <div class="map-header">
+      <span class="map-header-title">位置地图</span>
+      <span class="map-coords mono" id="map-coords-label">—</span>
+    </div>
+    <div class="map-placeholder" id="map-placeholder">加载中…</div>
+    <iframe id="map-iframe" style="display:none" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+
+  <!-- Refresh -->
+  <div class="refresh-area fade-in" style="transition-delay:0.3s">
+    <button class="btn btn-secondary" onclick="fetchIP()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+      </svg>
+      重新检测
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    Powered by <a href="https://ipapi.co" target="_blank" style="color:var(--color-text-secondary)">ipapi.co</a>
+    &nbsp;·&nbsp; Data is not stored
+  </footer>
+
+  <script>
+    let currentIP = '';
+
+    function setVal(id, text, extra = '') {
+      const el = document.getElementById(id);
+      el.innerHTML = text + (extra ? `<br><span style="font-size:var(--text-xs);color:var(--color-text-tertiary)">${extra}</span>` : '');
+    }
+
+    function fetchIP() {
+      // Reset
+      currentIP = '';
+      document.getElementById('copy-btn').style.display = 'none';
+      document.getElementById('error-msg').style.display = 'none';
+      document.getElementById('status-dot').className = 'status-dot';
+      document.getElementById('status-text').textContent = '正在检测…';
+      document.getElementById('ip-display').innerHTML = '<span class="cursor"></span>';
+      document.getElementById('map-iframe').style.display = 'none';
+      document.getElementById('map-placeholder').style.display = 'flex';
+      document.getElementById('map-placeholder').textContent = '加载中…';
+      document.getElementById('map-coords-label').textContent = '—';
+      ['val-country','val-city','val-org','val-tz','val-asn','val-latlon'].forEach(id => {
+        document.getElementById(id).innerHTML = '<span class="skeleton-text"></span>';
+      });
+
+      fetch('https://ipapi.co/json/')
+        .then(r => {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(d => {
+          if (d.error) throw new Error(d.reason || 'API error');
+
+          currentIP = d.ip;
+
+          // IP display
+          document.getElementById('ip-display').textContent = d.ip;
+
+          // Status
+          document.getElementById('status-dot').className = 'status-dot online';
+          document.getElementById('status-text').textContent = '检测完成 · ' + new Date().toLocaleTimeString('zh-CN');
+
+          // Copy button
+          document.getElementById('copy-btn').style.display = 'inline-flex';
+
+          // Cards
+          const flag = d.country ? String.fromCodePoint(...[...d.country].map(c => 0x1F1E6 + c.charCodeAt(0) - 65)) : '';
+          setVal('val-country', `${flag} ${d.country_name || '—'}`, d.country || '');
+          setVal('val-city', d.city || '—', d.region || '');
+          setVal('val-org', d.org || d.as || '—');
+          setVal('val-tz', d.timezone || '—', d.utc_offset ? 'UTC' + d.utc_offset : '');
+          setVal('val-asn', d.asn || '—');
+          const lat = d.latitude?.toFixed(4);
+          const lon = d.longitude?.toFixed(4);
+          setVal('val-latlon', lat && lon ? `${lat}, ${lon}` : '—');
+
+          // Map
+          if (lat && lon) {
+            document.getElementById('map-coords-label').textContent = `${lat}, ${lon}`;
+            const src = `https://maps.google.com/maps?q=${d.latitude},${d.longitude}&z=10&output=embed`;
+            const iframe = document.getElementById('map-iframe');
+            iframe.src = src;
+            iframe.style.display = 'block';
+            document.getElementById('map-placeholder').style.display = 'none';
+          } else {
+            document.getElementById('map-placeholder').textContent = '无位置数据';
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          document.getElementById('ip-display').textContent = '获取失败';
+          document.getElementById('status-dot').className = 'status-dot';
+          document.getElementById('status-text').textContent = '检测失败';
+          document.getElementById('error-msg').style.display = 'block';
+          document.getElementById('map-placeholder').textContent = '—';
+          ['val-country','val-city','val-org','val-tz','val-asn','val-latlon'].forEach(id => {
+            document.getElementById(id).textContent = '—';
+          });
+        });
+    }
+
+    function copyIP() {
+      if (!currentIP) return;
+      navigator.clipboard.writeText(currentIP).then(() => {
+        const btn = document.getElementById('copy-btn');
+        const label = document.getElementById('copy-label');
+        btn.classList.add('copied');
+        label.textContent = '已复制';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          label.textContent = '复制';
+        }, 2000);
+      });
+    }
+
+    // Animate elements in
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        setTimeout(() => el.classList.add('visible'), 50);
+      });
+      fetchIP();
+    });
+  </script>
 </body>
 </html>
