@@ -1,3 +1,21 @@
+/* ========================= 字体引入 ========================= */
+(function () {
+  const style = document.createElement("style");
+  style.textContent = `
+    @font-face {
+      font-family: 'ShuoWeb';
+      src: url('https://shuoweb.com/css/font.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    body, .card-title, .section-title, .ach-toast-name, .ach-item-name {
+      font-family: 'ShuoWeb', -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+    }
+  `;
+  document.head.appendChild(style);
+})();
+
 /* ========================= 渲染页面逻辑 ========================= */
 function render() {
   const root = document.getElementById("content");
