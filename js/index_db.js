@@ -8,14 +8,14 @@ const SITE_DATA = [
         items: [
             { title: "历史上的今天", url: "https://shuoweb.com/page/html/today_history", icon: "history" },
             { title: "每日一言", url: "https://shuoweb.com/page/html/day_yan.html", icon: "yan" },
-            { title: "世界人口时钟", url: "https://shuoweb.com/page/html/people.html", icon: "user" }
+            { title: "世界人口时钟", url: "https://shuoweb.com/page/html/people.html", icon: "user" },
+            { title: "聊天室", url: "https://shuoweb.wuaze.com/chat/", icon: "user" }
         ]
     },
     {
         name: "实用工具",
         icon: "tool",
         items: [
-            { title: "火车票查询", url: "https://shuoweb.com/api/train.html", icon: "train" },
             { title: "IP地址查询", url: "https://shuoweb.com/page/html/ip", icon: "ip" },
             { title: "Base64 转换", url: "https://shuoweb.com/page/html/base64.html", icon: "file" },
              { title: "JSON工具", url: "https://shuoweb.com/page/html/json.html", icon: "code" },
