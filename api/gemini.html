@@ -2,231 +2,409 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gemini 3.1 - SHUOWEB 版</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script defer src="https://shuoweb.com/common.js"></script>
-    <link rel="stylesheet" href="https://shuoweb.com/css/href.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Pro 智能终端</title>
     <style>
-        /* 1. 强制破解脚本中的“禁止选中”和“禁止粘贴”限制（仅限聊天区） */
-        #chat-app-container, #chat-app-container *, .allow-select {
-            user-select: text !important;
-            -webkit-user-select: text !important;
-            -ms-user-select: text !important;
+        :root {
+            --primary-blue: #1a73e8;
+            --primary-hover: #1557b0;
+            --bg-color: #f4f7f9;
+            --chat-bg: #ffffff;
+            --text-main: #202124;
+            --text-muted: #5f6368;
+            --border-color: #dadce0;
+            --user-msg-bg: #e8f0fe;
+            --user-msg-text: #1967d2;
+            --ai-msg-bg: #ffffff;
+            --ai-msg-text: #202124;
+            --code-bg: #f8f9fa;
+            --shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.25s ease;
         }
 
-        /* 2. 布局适配 */
-        #chat-app-container {
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 80px); /* 减去你自带 Header 的高度 */
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 10px;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
 
-        /* 聊天气泡区域 */
-        #chat-display {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        body { background-color: var(--bg-color); display: flex; height: 100vh; color: var(--text-main); overflow: hidden; }
 
-        .msg-row { display: flex; width: 100%; gap: 10px; animation: fadeInUp 0.4s ease; }
-        .msg-row.user { flex-direction: row-reverse; }
+        /* 侧边栏 */
+        .sidebar { width: 320px; background-color: var(--chat-bg); border-right: 1px solid var(--border-color); padding: 20px; display: flex; flex-direction: column; gap: 18px; overflow-y: auto; z-index: 10; }
+        
+        .brand { display: flex; align-items: center; gap: 12px; color: var(--primary-blue); font-size: 18px; font-weight: 600; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
+        .brand svg { width: 24px; height: 24px; fill: var(--primary-blue); }
 
-        .bubble {
-            max-width: 85%;
-            padding: 12px 18px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            font-size: 15px;
-            line-height: 1.6;
-            position: relative;
-        }
-        /* 复用你的主题颜色 */
-        .user .bubble { background: var(--primary); color: white; }
-        .model .bubble { background: var(--card-bg); color: var(--text-main); backdrop-filter: blur(8px); }
+        .setting-group { display: flex; flex-direction: column; gap: 8px; }
+        .setting-group label { font-size: 13px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+        .setting-group label .icon-text { display: flex; align-items: center; gap: 6px; }
+        .setting-group label svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-        /* 代码块与 Markdown 优化 */
-        pre { 
-            background: #1e1e1e; padding: 15px; border-radius: 12px; 
-            overflow-x: auto; margin: 10px 0; position: relative;
-        }
-        code { font-family: 'Consolas', monospace; font-size: 14px; }
-        .copy-code-btn {
-            position: absolute; top: 8px; right: 8px;
-            background: rgba(255,255,255,0.1); color: #fff;
-            border: none; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer;
-        }
+        input[type="password"], select, textarea.system-prompt { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; transition: var(--transition); font-size: 13px; color: var(--text-main); }
+        input[type="password"]:focus, select:focus, textarea.system-prompt:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2); }
+        textarea.system-prompt { resize: vertical; min-height: 80px; }
 
-        /* 底部操作区（模型选择 + API Key） */
-        .controls {
-            padding: 15px;
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            margin-bottom: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
+        /* 滑块样式 */
+        input[type="range"] { -webkit-appearance: none; width: 100%; height: 4px; background: var(--border-color); border-radius: 2px; outline: none; margin: 10px 0; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--primary-blue); cursor: pointer; transition: var(--transition); }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 
-        .controls select, .controls input {
-            padding: 8px 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.05);
-            font-family: inherit;
-            background: #fff;
-        }
+        .btn-group { display: flex; gap: 10px; margin-top: auto; flex-direction: column; }
+        .btn { padding: 10px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 500; font-size: 13px; transition: var(--transition); background: transparent; }
+        .btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-export { border: 1px solid var(--primary-blue); color: var(--primary-blue); }
+        .btn-export:hover { background-color: var(--user-msg-bg); }
+        .btn-clear { border: 1px solid #d93025; color: #d93025; }
+        .btn-clear:hover { background-color: #fce8e6; }
+
+        /* 主聊天区 */
+        .main-chat { flex: 1; display: flex; flex-direction: column; position: relative; }
+        .chat-container { flex: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; scroll-behavior: smooth; }
+
+        .message { display: flex; gap: 16px; max-width: 88%; animation: fadeIn 0.3s ease forwards; position: relative; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .message.user { align-self: flex-end; flex-direction: row-reverse; }
+        .message.ai { align-self: flex-start; }
+        .message.error .content { border-color: #d93025; background-color: #fce8e6; color: #d93025; }
+
+        .avatar { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .message.user .avatar { background-color: var(--primary-blue); }
+        .message.ai .avatar { background-color: #fff; border: 1px solid var(--border-color); box-shadow: var(--shadow); }
+        .message.error .avatar { background-color: #d93025; }
+        
+        .avatar svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .message.ai .avatar svg { stroke: var(--primary-blue); }
+
+        .content-wrapper { display: flex; flex-direction: column; gap: 4px; max-width: 100%; }
+        
+        .content { padding: 14px 18px; border-radius: 8px; line-height: 1.6; font-size: 14px; white-space: pre-wrap; word-break: break-word; position: relative; }
+        .message.user .content { background-color: var(--user-msg-bg); color: var(--user-msg-text); border-top-right-radius: 0; border: 1px solid rgba(26, 115, 232, 0.2); }
+        .message.ai .content { background-color: var(--ai-msg-bg); color: var(--ai-msg-text); border: 1px solid var(--border-color); border-top-left-radius: 0; box-shadow: var(--shadow); }
+
+        /* 基础 Markdown 样式 */
+        .content pre { background-color: var(--code-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 12px; margin: 8px 0; overflow-x: auto; font-family: monospace; font-size: 13px; }
+        .content code { background-color: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; border: 1px solid var(--border-color); font-size: 13px; color: var(--primary-blue); }
+        .content pre code { border: none; padding: 0; background: none; color: inherit; }
+        .content strong { color: var(--primary-blue); font-weight: 600; }
+
+        /* 复制按钮 */
+        .btn-copy { position: absolute; top: 8px; right: 8px; background: var(--chat-bg); border: 1px solid var(--border-color); border-radius: 4px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: var(--transition); color: var(--text-muted); }
+        .message:hover .btn-copy { opacity: 1; }
+        .btn-copy:hover { color: var(--primary-blue); border-color: var(--primary-blue); }
+        .btn-copy svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
         /* 输入区 */
-        .input-box {
-            display: flex;
-            gap: 10px;
-            padding-bottom: 20px;
-        }
-        #user-input { flex: 1; max-width: none; margin: 0; width: 100%; }
+        .input-area { padding: 20px 24px; background-color: var(--chat-bg); border-top: 1px solid var(--border-color); display: flex; align-items: flex-end; gap: 12px; }
+        textarea#messageInput { flex: 1; resize: none; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px; outline: none; font-size: 14px; max-height: 150px; min-height: 50px; transition: var(--transition); background-color: var(--bg-color); line-height: 1.5; }
+        textarea#messageInput:focus { border-color: var(--primary-blue); background-color: #fff; box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1); }
+        
+        .btn-send { width: 50px; height: 50px; border-radius: 8px; background-color: var(--primary-blue); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; }
+        .btn-send:hover { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3); }
+        .btn-send svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-send:disabled { background-color: var(--border-color); cursor: not-allowed; transform: none; box-shadow: none; }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* 加载动画 */
+        .typing-indicator { display: flex; gap: 5px; padding: 6px 4px; }
+        .dot { width: 6px; height: 6px; background-color: var(--primary-blue); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; } }
+
     </style>
 </head>
 <body>
 
-<div id="chat-app-container">
-    <div id="chat-display"></div>
+    <div class="sidebar">
+        <div class="brand">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            Gemini 终端
+        </div>
 
-    <div class="controls">
-        <select id="model-select" class="allow-select">
-            <option value="gemini-3.1-pro">Gemini 3.1 Pro (深度推理)</option>
-            <option value="gemini-3-flash" selected>Gemini 3 Flash (极速响应)</option>
-        </select>
-        <input type="text" id="api-key" class="allow-select" placeholder="输入API Key..." style="flex:1; min-width:150px;">
-        <button class="btn btn-shine" onclick="saveConfig()">锁定配置</button>
-        <button class="btn btn-pulse btn-border" onclick="clearChat()">清空对话</button>
+        <div class="setting-group">
+            <label>
+                <div class="icon-text"><svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg> 密钥 (API Key)</div>
+            </label>
+            <input type="password" id="apiKeyInput" placeholder="填入 API Key" autocomplete="off">
+        </div>
+
+        <div class="setting-group">
+            <label>
+                <div class="icon-text"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path></svg> 选择模型</div>
+            </label>
+            <select id="modelSelect">
+                <option value="gemini-3.1-pro">Gemini 3.1 Pro (最新)</option>
+                <option value="gemini-3.0-pro">Gemini 3.0 Pro</option>
+                <option value="gemini-1.5-pro-latest">Gemini 1.5 Pro</option>
+                <option value="gemini-1.5-flash-latest">Gemini 1.5 Flash</option>
+            </select>
+        </div>
+
+        <div class="setting-group">
+            <label>
+                <div class="icon-text"><svg viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg> 系统提示词 (System)</div>
+            </label>
+            <textarea id="systemPrompt" class="system-prompt" placeholder="例如：你是一个资深的程序员，回答务必简练专业..."></textarea>
+        </div>
+
+        <div class="setting-group">
+            <label>
+                <div class="icon-text"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> 创造力 (Temperature)</div>
+                <span id="tempValue">0.7</span>
+            </label>
+            <input type="range" id="tempSlider" min="0" max="2" step="0.1" value="0.7">
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-export" id="exportBtn">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> 导出对话记录
+            </button>
+            <button class="btn btn-clear" id="clearBtn">
+                <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg> 清空上下文
+            </button>
+        </div>
     </div>
 
-    <div class="input-box">
-        <input type="text" id="user-input" class="combo-duang allow-select" 
-               placeholder="在此发送你的问题..." 
-               onkeypress="if(event.key==='Enter')sendMsg()">
-        <button class="btn btn-scale" onclick="sendMsg()" id="send-btn">发送</button>
+    <div class="main-chat">
+        <div class="chat-container" id="chatContainer"></div>
+
+        <div class="input-area">
+            <textarea id="messageInput" placeholder="输入你想问的问题... (Enter发送，Shift+Enter换行)" rows="1"></textarea>
+            <button class="btn-send" id="sendBtn">
+                <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </div>
     </div>
-</div>
 
-<script>
-    // 拦截粘贴限制：由于你的 JS 禁止了全局粘贴，我们需要在输入框上强制开启
-    const inputEl = document.getElementById('user-input');
-    inputEl.addEventListener('paste', (e) => {
-        e.stopPropagation(); // 阻止事件冒泡到你那个禁止粘贴的监听器上
-    }, true);
+    <script>
+        const DOM = {
+            key: document.getElementById('apiKeyInput'),
+            model: document.getElementById('modelSelect'),
+            sysPrompt: document.getElementById('systemPrompt'),
+            tempSlider: document.getElementById('tempSlider'),
+            tempVal: document.getElementById('tempValue'),
+            msgInput: document.getElementById('messageInput'),
+            sendBtn: document.getElementById('sendBtn'),
+            clearBtn: document.getElementById('clearBtn'),
+            exportBtn: document.getElementById('exportBtn'),
+            chat: document.getElementById('chatContainer')
+        };
 
-    const apiKeyEl = document.getElementById('api-key');
-    apiKeyEl.addEventListener('paste', (e) => e.stopPropagation(), true);
+        const SVGS = {
+            user: `<svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`,
+            ai: `<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>`,
+            copy: `<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`,
+            error: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`
+        };
 
-    // Markdown 逻辑
-    marked.setOptions({
-        highlight: function(code, lang) { return hljs.highlightAuto(code).value; },
-        breaks: true
-    });
+        let chatHistory = [];
 
-    let history = JSON.parse(localStorage.getItem('chat_hist') || '[]');
+        // 初始化加载缓存
+        function init() {
+            ['gemini_api_key', 'gemini_model', 'gemini_sys_prompt', 'gemini_temp'].forEach(key => {
+                const val = localStorage.getItem(key);
+                if (val !== null) {
+                    if(key === 'gemini_api_key') DOM.key.value = val;
+                    if(key === 'gemini_model') DOM.model.value = val;
+                    if(key === 'gemini_sys_prompt') DOM.sysPrompt.value = val;
+                    if(key === 'gemini_temp') {
+                        DOM.tempSlider.value = val;
+                        DOM.tempVal.textContent = val;
+                    }
+                }
+            });
 
-    window.onload = () => {
-        const k = localStorage.getItem('gemini_key');
-        if(k) apiKeyEl.value = k;
-        render();
-    };
+            const savedHistory = localStorage.getItem('gemini_history');
+            if (savedHistory) {
+                try {
+                    chatHistory = JSON.parse(savedHistory);
+                    chatHistory.forEach(msg => {
+                        appendMessage(msg.parts[0].text, msg.role === 'user' ? 'user' : 'ai', false);
+                    });
+                } catch (e) {}
+            }
+        }
 
-    function saveConfig() {
-        localStorage.setItem('gemini_key', apiKeyEl.value);
-        alert("配置已成功锁定");
-    }
-
-    function clearChat() {
-        history = [];
-        localStorage.removeItem('chat_hist');
-        render();
-    }
-
-    function render() {
-        const display = document.getElementById('chat-display');
-        display.innerHTML = '';
-        history.forEach((msg, idx) => {
-            const isUser = msg.role === 'user';
-            const html = isUser ? msg.parts[0].text : marked.parse(msg.parts[0].text);
-            
-            const div = document.createElement('div');
-            div.className = `msg-row ${isUser ? 'user' : 'model'}`;
-            div.innerHTML = `
-                <div class="bubble allow-select">
-                    ${html}
-                    ${!isUser ? `<button class="copy-code-btn" style="bottom:-25px; top:auto; color:var(--text-sub)" onclick="copyRaw(${idx})">一键复制全文</button>` : ''}
-                </div>
-            `;
-            display.appendChild(div);
+        // 监听并缓存设置
+        DOM.key.addEventListener('input', () => localStorage.setItem('gemini_api_key', DOM.key.value.trim()));
+        DOM.model.addEventListener('change', () => localStorage.setItem('gemini_model', DOM.model.value));
+        DOM.sysPrompt.addEventListener('input', () => localStorage.setItem('gemini_sys_prompt', DOM.sysPrompt.value.trim()));
+        DOM.tempSlider.addEventListener('input', (e) => {
+            DOM.tempVal.textContent = e.target.value;
+            localStorage.setItem('gemini_temp', e.target.value);
         });
+
+        // 输入框高度自适应 & 快捷键
+        DOM.msgInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight < 150 ? this.scrollHeight : 150) + 'px';
+        });
+        DOM.msgInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
+        });
+
+        // 基础 Markdown 渲染器
+        function parseMarkdown(text) {
+            let html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); // 防止 XSS
+            html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>'); // 代码块
+            html = html.replace(/`([^`]+)`/g, '<code>$1</code>'); // 行内代码
+            html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>'); // 加粗
+            return html;
+        }
+
+        // 复制功能
+        function copyText(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalSvg = btnElement.innerHTML;
+                btnElement.innerHTML = `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+                btnElement.style.color = 'var(--primary-blue)';
+                setTimeout(() => {
+                    btnElement.innerHTML = originalSvg;
+                    btnElement.style.color = '';
+                }, 2000);
+            });
+        }
+
+        // 添加消息到 UI
+        function appendMessage(text, type, animate = true, rawText = null) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${type}`;
+            if(!animate) msgDiv.style.animation = 'none';
+
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = 'avatar';
+            avatarDiv.innerHTML = type === 'error' ? SVGS.error : (type === 'user' ? SVGS.user : SVGS.ai);
+
+            const wrapperDiv = document.createElement('div');
+            wrapperDiv.className = 'content-wrapper';
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'content';
+            contentDiv.innerHTML = (type === 'user' || type === 'error') ? text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : parseMarkdown(text);
+
+            // 复制按钮 (仅针对有效消息)
+            if(type !== 'error') {
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'btn-copy';
+                copyBtn.innerHTML = SVGS.copy;
+                copyBtn.title = '复制内容';
+                const textToCopy = rawText || text;
+                copyBtn.onclick = () => copyText(textToCopy, copyBtn);
+                contentDiv.appendChild(copyBtn);
+            }
+
+            wrapperDiv.appendChild(contentDiv);
+            msgDiv.appendChild(avatarDiv);
+            msgDiv.appendChild(wrapperDiv);
+            DOM.chat.appendChild(msgDiv);
+            DOM.chat.scrollTop = DOM.chat.scrollHeight;
+        }
+
+        function showLoading() {
+            const div = document.createElement('div');
+            div.className = 'message ai';
+            div.id = 'loading';
+            div.innerHTML = `<div class="avatar">${SVGS.ai}</div><div class="content"><div class="typing-indicator"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
+            DOM.chat.appendChild(div);
+            DOM.chat.scrollTop = DOM.chat.scrollHeight;
+        }
+
+        function removeLoading() {
+            const loading = document.getElementById('loading');
+            if (loading) loading.remove();
+        }
+
+        // 发送逻辑
+        async function handleSend() {
+            const text = DOM.msgInput.value.trim();
+            const apiKey = DOM.key.value.trim();
+            
+            if (!text) return;
+            if (!apiKey) {
+                appendMessage("[系统提示] 请先在左侧配置面板中输入您的 API Key。", "error");
+                return;
+            }
+
+            DOM.msgInput.value = '';
+            DOM.msgInput.style.height = '50px';
+            DOM.sendBtn.disabled = true;
+
+            appendMessage(text, 'user', true, text);
+            showLoading();
+
+            chatHistory.push({ role: "user", parts: [{ text: text }] });
+
+            const payload = {
+                contents: chatHistory,
+                generationConfig: {
+                    temperature: parseFloat(DOM.tempSlider.value)
+                }
+            };
+
+            // 如果有系统提示词则附加
+            const sysText = DOM.sysPrompt.value.trim();
+            if (sysText) {
+                payload.systemInstruction = { parts: [{ text: sysText }] };
+            }
+
+            try {
+                const model = DOM.model.value;
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                removeLoading();
+
+                if (!response.ok) {
+                    throw new Error(data.error?.message || "网络请求或 API 验证失败");
+                }
+
+                const aiText = data.candidates[0].content.parts[0].text;
+                appendMessage(aiText, 'ai', true, aiText);
+                
+                chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+                localStorage.setItem('gemini_history', JSON.stringify(chatHistory));
+
+            } catch (error) {
+                removeLoading();
+                appendMessage(`[请求错误] ${error.message}\n请检查密钥是否正确或网络环境是否畅通。`, 'error');
+                chatHistory.pop(); // 失败则剔除最后一次提问
+            } finally {
+                DOM.sendBtn.disabled = false;
+            }
+        }
+
+        // 按钮事件
+        DOM.sendBtn.addEventListener('click', handleSend);
         
-        // 为所有代码块添加复制按钮
-        document.querySelectorAll('pre').forEach(pre => {
-            if (!pre.querySelector('.copy-code-btn')) {
-                const b = document.createElement('button');
-                b.className = 'copy-code-btn';
-                b.innerText = 'Copy Code';
-                b.onclick = (e) => {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(pre.innerText.replace('Copy Code', ''));
-                    b.innerText = 'OK';
-                    setTimeout(() => b.innerText = 'Copy Code', 2000);
-                };
-                pre.appendChild(b);
+        DOM.clearBtn.addEventListener('click', () => {
+            if(confirm("确定要清空所有上下文记录吗？")) {
+                chatHistory = [];
+                localStorage.removeItem('gemini_history');
+                DOM.chat.innerHTML = '';
             }
         });
-        display.scrollTop = display.scrollHeight;
-    }
 
-    async function sendMsg() {
-        const text = inputEl.value.trim();
-        const key = apiKeyEl.value;
-        const model = document.getElementById('model-select').value;
-        
-        if(!text || !key) return alert("请检查输入内容和 Key");
-
-        history.push({ role: "user", parts: [{ text }] });
-        inputEl.value = '';
-        render();
-
-        try {
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ contents: history })
+        DOM.exportBtn.addEventListener('click', () => {
+            if(chatHistory.length === 0) return;
+            let text = "=== Gemini 对话记录 ===\n\n";
+            chatHistory.forEach(msg => {
+                const roleName = msg.role === 'user' ? '我' : 'Gemini';
+                text += `[${roleName}]:\n${msg.parts[0].text}\n\n------------------------\n\n`;
             });
-            const data = await res.json();
-            const reply = data.candidates[0].content.parts[0].text;
-            
-            history.push({ role: "model", parts: [{ text: reply }] });
-            localStorage.setItem('chat_hist', JSON.stringify(history));
-            render();
-        } catch (e) {
-            alert("请求超时或接口错误");
-            history.pop();
-            render();
-        }
-    }
+            const blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Gemini_Chat_${new Date().getTime()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
 
-    function copyRaw(idx) {
-        const text = history[idx].parts[0].text;
-        navigator.clipboard.writeText(text).then(() => alert("已复制全文"));
-    }
-</script>
-
+        // 启动
+        init();
+    </script>
 </body>
 </html>
