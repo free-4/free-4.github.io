@@ -1,805 +1,666 @@
 <!DOCTYPE html>
 <html lang="zh" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>resend.css — Design System Demo</title>
-  <link rel="stylesheet" href="res.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>resend-pro.css — Enhanced Demo</title>
+  <link rel="stylesheet" href="res.css"/>
   <style>
-    /* Page-specific demo styles */
-    body {
-      padding-top: var(--nav-height);
-    }
+    body { padding-top: 56px; }
 
-    .demo-section {
-      border-bottom: 1px solid var(--color-border);
-      padding: var(--space-16) 0;
+    /* Demo scaffolding */
+    .demo-wrap {
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 0;
     }
-
     .demo-label {
-      font-size: var(--text-xs);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-widest);
-      color: var(--color-text-faint);
-      margin-bottom: var(--space-8);
+      font-size: .6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .12em; color: var(--text-faint); margin-bottom: 2rem;
+      display: flex; align-items: center; gap: .75rem;
     }
-
+    .demo-label::after { content:''; flex:1; height:1px; background:var(--border); }
     .demo-row {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--space-3);
-      margin-bottom: var(--space-5);
+      display: flex; align-items: center; flex-wrap: wrap; gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+    .demo-stack { display: flex; flex-direction: column; gap: 1rem; }
+    .demo-note  { font-family: var(--font-mono); font-size: .6875rem; color: var(--text-faint); margin-top: 4px; }
+
+    /* Hero glow orb */
+    .orb {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px);
+      animation: morph 8s ease-in-out infinite;
+    }
+    .orb-1 { width: 500px; height: 500px; top:-200px; left:30%; background: rgba(255,255,255,0.018); }
+    .orb-2 { width: 320px; height: 320px; top:-100px; left:55%; background: rgba(59,130,246,0.04); animation-delay:-3s; }
+
+    /* Gradient hero text */
+    .hero-gradient-text {
+      background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.45) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-secondary); border: 1px solid var(--border-strong);
+      border-radius: 9999px; padding: 4px 12px 4px 8px;
+      font-size: .75rem; color: var(--text-sub); margin-bottom: 1.5rem;
+    }
+    .hero-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); animation: dot-pulse 2s infinite; }
+
+    /* Code highlight helpers */
+    .tok-k  { color: #7dd3fc; }
+    .tok-s  { color: #86efac; }
+    .tok-c  { color: var(--text-faint); }
+    .tok-f  { color: #fbbf24; }
+    .tok-p  { color: var(--text-sub); }
+
+    /* Animated gradient border card */
+    .card-gradient-border {
+      position: relative; border-radius: var(--radius-lg); padding: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03), rgba(255,255,255,0.10));
+      background-size: 200% 200%;
+      animation: gradient-shift 5s ease infinite;
+    }
+    .card-gradient-border > div {
+      background: var(--bg-secondary); border-radius: calc(var(--radius-lg) - 1px); padding: 1.5rem;
     }
 
-    .demo-stack {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-4);
+    /* Stat bar */
+    .stat-num {
+      font-size: clamp(2rem,5vw,3rem); font-weight: 800;
+      letter-spacing: -.05em; line-height: 1;
     }
 
-    .component-name {
-      font-size: var(--text-xs);
-      font-family: var(--font-mono);
-      color: var(--color-text-faint);
-      margin-top: var(--space-2);
+    /* Animation playground */
+    .anim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
+      gap: .75rem;
     }
-
-    /* Gradient hero */
-    .hero-glow {
-      position: absolute;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, transparent 70%);
-      pointer-events: none;
+    .anim-cell {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1rem .75rem;
+      text-align: center; cursor: pointer;
+      transition: border-color .2s, background .2s;
     }
+    .anim-cell:hover { border-color: var(--border-strong); background: var(--bg-elevated); }
+    .anim-icon { font-size: 1.5rem; display: block; margin-bottom: .4rem; }
+    .anim-label { font-size: .6875rem; color: var(--text-faint); font-family: var(--font-mono); }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      background: var(--color-bg-secondary);
-      border: 1px solid var(--color-border-strong);
-      border-radius: var(--radius-full);
-      padding: var(--space-1) var(--space-3) var(--space-1) var(--space-2);
-      font-size: var(--text-xs);
-      color: var(--color-text-muted);
-      margin-bottom: var(--space-6);
-    }
-
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--color-success);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .stat-number {
-      font-size: var(--text-5xl);
-      font-weight: 700;
-      letter-spacing: var(--tracking-tight);
-      line-height: 1;
-    }
-
-    .feature-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--color-bg-elevated);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      margin-bottom: var(--space-4);
-    }
-
-    .color-chip {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--color-border);
-    }
-
-    .token-row {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      padding: var(--space-3) 0;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .token-row:last-child { border-bottom: none; }
-
-    @media (max-width: 768px) {
-      .demo-section {
-        padding: var(--space-10) 0;
-      }
-      .stat-number {
-        font-size: var(--text-4xl);
-      }
+    @media (max-width: 480px) {
+      .anim-grid { grid-template-columns: repeat(3, 1fr); }
+      .demo-wrap { padding: 2.5rem 0; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── Nav ─────────────────────────────────────────────────── -->
-<nav class="nav">
-  <a href="#" class="nav-brand">resend.css</a>
+<!-- ══════════════════════ NAV ══════════════════════ -->
+<header class="navbar" id="main-header">
+  <a href="#" class="logo">resend·pro</a>
 
-  <ul class="nav-links">
-    <li><a href="#components" class="active">Components</a></li>
-    <li><a href="#typography">Typography</a></li>
-    <li><a href="#forms">Forms</a></li>
-    <li><a href="#docs">Docs</a></li>
+  <ul class="nav-list">
+    <li class="nav-item"><a href="#typography" class="nav-link active">排版</a></li>
+    <li class="nav-item"><a href="#buttons"    class="nav-link">按钮</a></li>
+    <li class="nav-item"><a href="#forms"      class="nav-link">表单</a></li>
+    <li class="nav-item"><a href="#animations" class="nav-link">动画</a></li>
+    <li class="nav-item"><a href="#components" class="nav-link">组件</a></li>
   </ul>
 
-  <div class="nav-actions">
-    <a href="#" class="btn btn-secondary hide-mobile">GitHub</a>
-    <a href="#" class="btn btn-primary">Get started</a>
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
+  <div style="display:flex;align-items:center;gap:.625rem;margin-left:auto;">
+    <button class="theme-btn" id="themeBtn">切换主题</button>
+    <button class="nav-hamburger" id="hamburger" aria-label="菜单">
+      <span></span><span></span><span></span>
     </button>
   </div>
-</nav>
+</header>
 
-<!-- Mobile Drawer -->
+<!-- Mobile drawer -->
 <div class="nav-drawer" id="drawer">
-  <a href="#components">Components</a>
-  <a href="#typography">Typography</a>
-  <a href="#forms">Forms</a>
-  <a href="#docs">Docs</a>
-  <a href="#">GitHub</a>
+  <a href="#typography">排版</a>
+  <a href="#buttons">按钮</a>
+  <a href="#forms">表单</a>
+  <a href="#animations">动画</a>
+  <a href="#components">组件</a>
 </div>
 
-<!-- ─── Hero ─────────────────────────────────────────────────── -->
-<section class="section-hero" style="position:relative; overflow:hidden;">
-  <div class="hero-glow"></div>
-  <div class="container container-lg" style="text-align:center;">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      v1.0 — Production ready
-    </div>
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero" style="position:relative;overflow:hidden;padding:5rem 1.5rem 4rem;">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
 
-    <h1>Email infrastructure<br/>for developers</h1>
+  <div class="hero-pill animate-fade-down">
+    <span class="hero-pill-dot"></span>
+    Enhanced · Based on Resend.com
+  </div>
 
-    <p class="lead" style="max-width:500px; margin: var(--space-6) auto;">
-      A complete design system inspired by Resend. Clean, minimal, and built for developer tools and dashboards.
-    </p>
+  <h1 class="hero-gradient-text animate-fade-up" style="max-width:700px;margin:0 auto .75rem;">
+    Design system for<br/>developer products
+  </h1>
+  <p class="animate-fade-up delay-100" style="max-width:480px;margin:0 auto 2.5rem;">
+    全覆盖 common.js 的所有 CSS 类名，仿 Resend 暗色风格，附丰富动画库与完善移动端适配。
+  </p>
 
-    <div class="demo-row" style="justify-content:center; margin-top: var(--space-8);">
-      <a href="#components" class="btn btn-primary btn-lg">Browse components</a>
-      <a href="#" class="btn btn-secondary btn-lg">View on GitHub</a>
-    </div>
+  <div class="demo-row animate-fade-up delay-200" style="justify-content:center;">
+    <button class="btn btn-primary btn-lg combo-duang">快速开始</button>
+    <button class="btn btn-secondary btn-lg">查看文档</button>
+  </div>
 
-    <div style="margin-top: var(--space-12); display:inline-block; text-align:left;">
-      <pre style="max-width:480px;"><code><span style="color:#555;">$</span> npm install resend-css
+  <div style="margin-top:3rem;display:inline-block;text-align:left;" class="animate-fade-up delay-300">
+    <pre style="max-width:480px;"><code><span class="tok-c">// 只需引入一个文件</span>
+<span class="tok-k">@import</span> <span class="tok-s">'resend-pro.css'</span><span class="tok-p">;</span>
 
-<span style="color:#555">// main.css</span>
-<span style="color:#22c55e">@import</span> 'resend-css';</code></pre>
-    </div>
+<span class="tok-c">// 所有 token 可覆盖</span>
+<span class="tok-k">:root</span> <span class="tok-p">{</span>
+  <span class="tok-f">--primary</span><span class="tok-p">:</span> <span class="tok-s">#ffffff</span><span class="tok-p">;</span>
+  <span class="tok-f">--radius</span><span class="tok-p">:</span>  <span class="tok-s">10px</span><span class="tok-p">;</span>
+<span class="tok-p">}</span></code></pre>
   </div>
 </section>
 
-<!-- ─── Stats ────────────────────────────────────────────────── -->
-<div class="demo-section" style="background: var(--color-bg-secondary);">
-  <div class="container container-lg">
-    <div class="grid grid-4" style="gap: var(--space-8); text-align:center;">
-      <div>
-        <div class="stat-number">99<span style="color:var(--color-text-faint); font-weight:400;">%</span></div>
-        <p style="margin-top:var(--space-2); font-size:var(--text-sm);">Delivery rate</p>
+<!-- ══════════════════════ STATS ══════════════════════ -->
+<div style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container container-lg" style="padding-top:2.5rem;padding-bottom:2.5rem;">
+    <div class="grid grid-4" style="gap:2rem;text-align:center;">
+      <div class="animate-fade-up delay-100">
+        <div class="stat-num">120<span style="color:var(--text-faint);font-weight:400;font-size:1.5rem;">+</span></div>
+        <p style="margin-top:6px;font-size:.8125rem;">CSS 类名</p>
       </div>
-      <div>
-        <div class="stat-number">50<span style="color:var(--color-text-faint); font-size:var(--text-3xl);">ms</span></div>
-        <p style="margin-top:var(--space-2); font-size:var(--text-sm);">Average latency</p>
+      <div class="animate-fade-up delay-150">
+        <div class="stat-num">28</div>
+        <p style="margin-top:6px;font-size:.8125rem;">动画关键帧</p>
       </div>
-      <div>
-        <div class="stat-number">100<span style="color:var(--color-text-faint); font-weight:400; font-size:var(--text-3xl);">+</span></div>
-        <p style="margin-top:var(--space-2); font-size:var(--text-sm);">Components</p>
+      <div class="animate-fade-up delay-200">
+        <div class="stat-num">100<span style="color:var(--text-faint);font-size:1.25rem;font-weight:400;">%</span></div>
+        <p style="margin-top:6px;font-size:.8125rem;">移动端适配</p>
       </div>
-      <div>
-        <div class="stat-number">∞</div>
-        <p style="margin-top:var(--space-2); font-size:var(--text-sm);">Customizable</p>
+      <div class="animate-fade-up delay-300">
+        <div class="stat-num">0</div>
+        <p style="margin-top:6px;font-size:.8125rem;">依赖项</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ─── Typography ───────────────────────────────────────────── -->
-<section class="demo-section" id="typography">
-  <div class="container container-lg">
-    <p class="demo-label">Typography</p>
+<!-- ══════════════════════ CONTENT ══════════════════════ -->
+<div id="content">
 
-    <h1 style="margin-bottom:var(--space-3)">The quick brown fox</h1>
-    <p class="component-name">.h1 — 4.5rem / 700 / −0.05em</p>
+  <!-- ─── Typography ─── -->
+  <div class="demo-wrap" id="typography">
+    <div class="demo-label">Typography</div>
 
-    <h2 style="margin-top:var(--space-6); margin-bottom:var(--space-3)">Designed for developers</h2>
-    <p class="component-name">.h2 — 3rem / 600 / −0.04em</p>
+    <h1 style="margin-bottom:.25rem;">H1 · The quick brown fox</h1>
+    <div class="demo-note">font-size: clamp(1.75rem,4vw,2.75rem) · weight 800 · −0.05em</div>
+    <h2 style="margin-top:1.5rem;margin-bottom:.25rem;">H2 · Designed for developers</h2>
+    <h3 style="margin-top:1.25rem;margin-bottom:.25rem;">H3 · Simple, powerful API</h3>
+    <h4 style="margin-top:1rem;margin-bottom:.25rem;">H4 · Send your first email</h4>
+    <h5 style="margin-top:.75rem;margin-bottom:.25rem;">H5 · Getting started guide</h5>
+    <h6 style="margin-top:.75rem;margin-bottom:.25rem;">H6 · Section label</h6>
 
-    <h3 style="margin-top:var(--space-6); margin-bottom:var(--space-3)">Simple, powerful API</h3>
-    <p class="component-name">.h3 — 1.875rem / 600 / −0.03em</p>
+    <hr/>
 
-    <h4 style="margin-top:var(--space-6); margin-bottom:var(--space-3)">Send your first email</h4>
-    <p class="component-name">.h4 — 1.25rem / 600</p>
+    <p class="lead" style="margin-bottom:.75rem;">Lead paragraph — introductory text with a larger size and comfortable line height.</p>
+    <p style="margin-bottom:.75rem;">Body text. The quick brown fox jumps over the lazy dog. You can use <a href="#" class="link-btn" style="display:inline-flex;">inline links</a>, <strong>bold</strong>, <em>italic</em>, inline <code>code()</code>, <mark>highlighted</mark>, <del>deleted</del>, <kbd>Cmd</kbd>+<kbd>K</kbd> and <small>small text</small>.</p>
 
-    <h5 style="margin-top:var(--space-6); margin-bottom:var(--space-3)">Getting started guide</h5>
-    <p class="component-name">.h5 — 0.9375rem / 600</p>
-
-    <h6 style="margin-top:var(--space-6); margin-bottom:var(--space-3)">Section label</h6>
-    <p class="component-name">.h6 — 0.8125rem / uppercase / muted</p>
-
-    <hr style="margin: var(--space-8) 0;" />
-
-    <p class="lead" style="margin-bottom:var(--space-4)">This is a lead paragraph. Use it for introductory text that needs more presence than body copy but less weight than a heading.</p>
-
-    <p style="margin-bottom:var(--space-4)">Regular body text. The quick brown fox jumps over the lazy dog. Paragraphs use a comfortable line height and muted color so they're easy to read without competing with headings. You can include <a href="#">links like this</a>, <strong>bold text</strong>, <em>italic text</em>, or inline <code>code()</code>.</p>
-
-    <p style="margin-bottom:var(--space-6)">You can also use <mark>highlighted text</mark>, <del>deleted content</del>, <kbd>Cmd</kbd>+<kbd>K</kbd> keyboard shortcuts, and <small>smaller helper text</small>.</p>
-
-    <blockquote>
+    <blockquote style="margin-top:1.5rem;">
       <p>The best developer experience is one you barely notice — it just works.</p>
       <cite>Resend team</cite>
     </blockquote>
-  </div>
-</section>
 
-<!-- ─── Buttons ──────────────────────────────────────────────── -->
-<section class="demo-section" id="components">
-  <div class="container container-lg">
-    <p class="demo-label">Buttons</p>
+    <div style="margin-top:1.5rem;">
+      <p class="text-shimmer" style="font-size:1.25rem;font-weight:700;letter-spacing:-.03em;margin:0;">
+        ✦ Shimmer gradient text animation
+      </p>
+    </div>
+
+    <div style="margin-top:1.25rem;">
+      <p class="typewriter" style="font-size:1rem;font-weight:500;width:fit-content;margin:0 auto;">
+        > npx create-resend-app
+      </p>
+    </div>
+  </div>
+
+  <!-- ─── Buttons ─── -->
+  <div class="demo-wrap" id="buttons">
+    <div class="demo-label">Buttons</div>
 
     <div class="demo-stack">
       <div>
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-3)">Variants</p>
+        <p class="text-muted text-sm" style="margin-bottom:.625rem;">变体 Variants</p>
         <div class="demo-row">
           <button class="btn btn-primary">Primary</button>
           <button class="btn btn-secondary">Secondary</button>
           <button class="btn btn-ghost">Ghost</button>
           <button class="btn btn-danger">Danger</button>
-          <button class="btn btn-success">Success</button>
+          <button class="btn btn-border">Border</button>
         </div>
       </div>
-
       <div>
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-3)">Sizes</p>
+        <p class="text-muted text-sm" style="margin-bottom:.625rem;">尺寸 Sizes</p>
         <div class="demo-row" style="align-items:center;">
           <button class="btn btn-secondary btn-sm">Small</button>
           <button class="btn btn-secondary">Default</button>
           <button class="btn btn-secondary btn-lg">Large</button>
-          <button class="btn btn-secondary btn-xl">XL</button>
+          <button class="btn btn-primary btn-xl">Extra Large</button>
         </div>
       </div>
-
       <div>
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-3)">States</p>
+        <p class="text-muted text-sm" style="margin-bottom:.625rem;">动效变体 Animation Modifiers</p>
         <div class="demo-row">
-          <button class="btn btn-primary" disabled>Disabled</button>
+          <button class="btn btn-secondary btn-scale">Scale</button>
+          <button class="btn btn-secondary btn-float">Float</button>
+          <button class="btn btn-primary btn-shine">Shine</button>
+          <button class="btn btn-secondary btn-pulse">Pulse</button>
+          <button class="btn btn-secondary btn-rect">Rect</button>
+          <button class="btn btn-primary combo-duang">Duang ✦</button>
+        </div>
+      </div>
+      <div>
+        <p class="text-muted text-sm" style="margin-bottom:.625rem;">状态 States</p>
+        <div class="demo-row">
           <button class="btn btn-primary btn-loading">Loading</button>
-          <button class="btn btn-secondary btn-icon" aria-label="Settings">⚙</button>
-          <button class="btn btn-primary btn-full" style="max-width:200px;">Full width</button>
+          <button class="btn btn-secondary" disabled>Disabled</button>
+          <button class="btn btn-secondary btn-icon" aria-label="icon">⚙</button>
+          <button class="btn btn-primary btn-full" style="max-width:200px;">Full Width</button>
+        </div>
+      </div>
+      <div>
+        <p class="text-muted text-sm" style="margin-bottom:.625rem;">特殊链接按钮 Link Buttons</p>
+        <div class="demo-row">
+          <a href="#" class="footer-link">Footer Link</a>
+          <a href="#" class="link-btn">Link Button →</a>
+          <a href="#" class="refresh-btn">刷新句子</a>
+          <a href="#" class="theme-btn">Theme Btn</a>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ─── Badges ───────────────────────────────────────────────── -->
-<section class="demo-section">
-  <div class="container container-lg">
-    <p class="demo-label">Badges & Tags</p>
+  <!-- ─── Animations ─── -->
+  <div class="demo-wrap" id="animations">
+    <div class="demo-label">Animation Library — 点击触发</div>
 
-    <div class="demo-row">
+    <div class="anim-grid" id="animGrid">
+      <!-- populated by JS -->
+    </div>
+
+    <div style="margin-top:2rem;">
+      <p class="text-muted text-sm" style="margin-bottom:.75rem;">连续动画 Continuous</p>
+      <div class="demo-row">
+        <span style="font-size:1.5rem;" class="animate-float">🚀 float</span>
+        <span style="font-size:1.5rem;" class="animate-bounce">⚡ bounce</span>
+        <span style="font-size:1.5rem;" class="animate-heartbeat">❤ heartbeat</span>
+        <span style="font-size:1.5rem;" class="animate-spin" style="display:inline-block;">⚙ spin</span>
+        <div style="width:60px;height:60px;border-radius:50%;background:var(--bg-elevated);border:1px solid var(--border);" class="animate-glow animate-morph"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <p class="text-muted text-sm" style="margin-bottom:.75rem;">渐变动画背景</p>
+      <div class="gradient-animated" style="padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
+        <p style="margin:0;font-weight:600;font-size:.875rem;">gradient-animated 背景循环位移</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Forms ─── -->
+  <div class="demo-wrap" id="forms">
+    <div class="demo-label">Forms</div>
+
+    <div class="grid grid-2" style="gap:2rem;max-width:800px;">
+      <div class="demo-stack">
+        <div class="form-group">
+          <label>邮件地址</label>
+          <input type="email" placeholder="you@company.com"/>
+        </div>
+        <div class="form-group">
+          <label>API 密钥</label>
+          <div class="input-wrapper">
+            <span class="input-prefix">🔑</span>
+            <input type="password" placeholder="re_xxxxxxxxxxxx"/>
+          </div>
+          <span class="field-hint">在控制台设置中查看</span>
+        </div>
+        <div class="form-group">
+          <label>发件地址 <span class="label-optional"></span></label>
+          <input type="text" placeholder="Acme &lt;noreply@acme.com&gt;"/>
+        </div>
+        <div class="form-group">
+          <label>错误状态</label>
+          <input type="email" class="input-error" value="invalid-email"/>
+          <span class="field-error">✕ 请填写有效的邮件地址</span>
+        </div>
+        <div class="form-group">
+          <label>消息内容</label>
+          <textarea placeholder="写下你的邮件内容..."></textarea>
+        </div>
+      </div>
+      <div class="demo-stack">
+        <div class="form-group">
+          <label>套餐计划</label>
+          <select>
+            <option>Free — 每月 3,000 封</option>
+            <option>Pro — 每月 50,000 封</option>
+            <option>Scale — 每月 100 万封</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>通知设置</label>
+          <div class="demo-stack" style="gap:.625rem;">
+            <label class="checkbox-label"><input type="checkbox" checked/>邮件退信</label>
+            <label class="checkbox-label"><input type="checkbox" checked/>垃圾投诉</label>
+            <label class="checkbox-label"><input type="checkbox"/>每周摘要</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>区域选择</label>
+          <div class="demo-stack" style="gap:.5rem;">
+            <label class="radio-label"><input type="radio" name="region" checked/>US East · 弗吉尼亚</label>
+            <label class="radio-label"><input type="radio" name="region"/>EU West · 爱尔兰</label>
+            <label class="radio-label"><input type="radio" name="region"/>AP SE · 新加坡</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>功能开关</label>
+          <div class="demo-stack" style="gap:.625rem;">
+            <div class="flex items-center gap-3">
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-track"></span></label>
+              <span class="text-sm text-muted">点击追踪</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="toggle"><input type="checkbox"/><span class="toggle-track"></span></label>
+              <span class="text-sm text-muted">打开追踪</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>字体缩放</label>
+          <input type="range" min="80" max="140" step="10" value="100"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Components ─── -->
+  <div class="demo-wrap" id="components">
+    <div class="demo-label">Components</div>
+
+    <!-- Badges -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">徽章 Badges</p>
+    <div class="demo-row" style="margin-bottom:2rem;">
       <span class="badge badge-default">default</span>
       <span class="badge badge-success badge-dot">delivered</span>
       <span class="badge badge-error badge-dot">bounced</span>
       <span class="badge badge-warning badge-dot">pending</span>
       <span class="badge badge-info badge-dot">scheduled</span>
     </div>
-  </div>
-</section>
 
-<!-- ─── Alerts ───────────────────────────────────────────────── -->
-<section class="demo-section">
-  <div class="container container-lg">
-    <p class="demo-label">Alerts</p>
-
-    <div class="demo-stack" style="max-width:640px;">
-      <div class="alert alert-default">
-        <span class="alert-icon">ℹ</span>
-        <div class="alert-content">
-          <div class="alert-title">Heads up</div>
-          Your domain's DKIM record hasn't been verified yet. Check your DNS settings.
-        </div>
-      </div>
-
-      <div class="alert alert-success">
-        <span class="alert-icon">✓</span>
-        <div class="alert-content">
-          <div class="alert-title">Email sent</div>
-          Your message was delivered to 3,241 recipients with a 99.2% delivery rate.
-        </div>
-      </div>
-
-      <div class="alert alert-error">
-        <span class="alert-icon">✕</span>
-        <div class="alert-content">
-          <div class="alert-title">Authentication failed</div>
-          The API key you provided is invalid or has been revoked. Please check your credentials.
-        </div>
-      </div>
-
-      <div class="alert alert-warning">
-        <span class="alert-icon">⚠</span>
-        <div class="alert-content">
-          <div class="alert-title">Approaching rate limit</div>
-          You've used 8,400 of your 10,000 monthly emails. Consider upgrading your plan.
-        </div>
-      </div>
+    <!-- Alerts -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">提示框 Alerts</p>
+    <div class="demo-stack" style="max-width:640px;margin-bottom:2rem;">
+      <div class="alert alert-success"><span class="alert-icon">✓</span><div><div class="alert-title">发送成功</div>已投递 3,241 位收件人，成功率 99.2%</div></div>
+      <div class="alert alert-error"><span class="alert-icon">✕</span><div><div class="alert-title">认证失败</div>API Key 无效或已被吊销，请检查凭证</div></div>
+      <div class="alert alert-warning"><span class="alert-icon">⚠</span><div><div class="alert-title">即将达到限额</div>本月已使用 8,400 / 10,000 封</div></div>
+      <div class="alert alert-info"><span class="alert-icon">ℹ</span><div><div class="alert-title">提示</div>你的 DKIM 记录尚未验证，请检查 DNS 设置</div></div>
     </div>
-  </div>
-</section>
 
-<!-- ─── Forms ────────────────────────────────────────────────── -->
-<section class="demo-section" id="forms">
-  <div class="container container-lg">
-    <p class="demo-label">Form Elements</p>
-
-    <div class="grid grid-2" style="gap: var(--space-8); max-width:800px;">
-      <div class="demo-stack">
-        <div class="form-group">
-          <label>Email address</label>
-          <input type="email" placeholder="you@company.com" />
-        </div>
-
-        <div class="form-group">
-          <label>API Key</label>
-          <div class="input-wrapper">
-            <span class="input-prefix">key</span>
-            <input type="password" placeholder="re_xxxxxxxxxxxxxxxxxx" />
-          </div>
-          <span class="field-hint">Find this in your dashboard settings.</span>
-        </div>
-
-        <div class="form-group">
-          <label>From address <span class="label-optional"></span></label>
-          <input type="text" placeholder="Acme <noreply@acme.com>" />
-        </div>
-
-        <div class="form-group">
-          <label class="label-optional">Message body</label>
-          <textarea placeholder="Write your email content here..."></textarea>
-        </div>
-      </div>
-
-      <div class="demo-stack">
-        <div class="form-group">
-          <label>Plan</label>
-          <select>
-            <option>Free — 3,000 emails/mo</option>
-            <option>Pro — 50,000 emails/mo</option>
-            <option>Scale — 1,000,000 emails/mo</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Error state</label>
-          <input type="email" class="input-error" value="invalid-email" />
-          <span class="field-error">✕ Please enter a valid email address.</span>
-        </div>
-
-        <div class="form-group">
-          <label>Success state</label>
-          <input type="email" class="input-success" value="hello@resend.com" />
-        </div>
-
-        <div class="form-group">
-          <label>Notifications</label>
-          <div class="demo-stack" style="gap:var(--space-3);">
-            <label class="checkbox-label">
-              <input type="checkbox" checked />
-              Email bounces
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" checked />
-              Spam complaints
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" />
-              Weekly digest
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Region</label>
-          <div class="demo-stack" style="gap:var(--space-2);">
-            <label class="radio-label">
-              <input type="radio" name="region" checked />
-              US East (N. Virginia)
-            </label>
-            <label class="radio-label">
-              <input type="radio" name="region" />
-              EU West (Ireland)
-            </label>
-            <label class="radio-label">
-              <input type="radio" name="region" />
-              AP Southeast (Singapore)
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Toggle features</label>
-          <div class="demo-stack" style="gap:var(--space-3);">
-            <div class="flex items-center gap-3">
-              <label class="toggle">
-                <input type="checkbox" checked />
-                <span class="toggle-track"></span>
-              </label>
-              <span class="text-sm text-muted">Click tracking</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <label class="toggle">
-                <input type="checkbox" />
-                <span class="toggle-track"></span>
-              </label>
-              <span class="text-sm text-muted">Open tracking</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── Cards ────────────────────────────────────────────────── -->
-<section class="demo-section">
-  <div class="container container-lg">
-    <p class="demo-label">Cards</p>
-
-    <div class="grid grid-3" style="gap:var(--space-5);">
-      <!-- Feature card -->
+    <!-- Cards -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">卡片 Cards</p>
+    <div class="grid grid-3" style="gap:1.25rem;margin-bottom:2rem;">
       <div class="card card-interactive">
-        <div class="feature-icon">✉</div>
-        <h4>Transactional email</h4>
-        <p style="font-size:var(--text-sm); margin-top:var(--space-2);">Send one-to-one emails triggered by user actions with a simple API call.</p>
-        <a href="#" class="link-muted text-sm" style="display:inline-flex; align-items:center; gap:4px; margin-top:var(--space-4);">
-          Learn more →
-        </a>
+        <div class="icon-box">✉</div>
+        <div class="card-title">事务邮件</div>
+        <p style="font-size:.8125rem;margin-top:.5rem;">通过简洁 API 触发一对一个性化邮件</p>
+        <a href="#" class="link-btn" style="margin-top:1rem;">了解更多 →</a>
       </div>
-
-      <!-- Card with status -->
       <div class="card">
         <div class="card-header">
-          <div>
-            <div class="card-title">Email activity</div>
-            <div class="card-description">Last 30 days</div>
-          </div>
-          <span class="badge badge-success badge-dot">Live</span>
+          <div><div class="card-title">发送统计</div><div class="card-description">过去 30 天</div></div>
+          <span class="badge badge-success badge-dot">实时</span>
         </div>
-        <div class="demo-stack" style="gap:var(--space-3);">
-          <div class="flex justify-between items-center">
-            <span class="text-sm text-muted">Delivered</span>
-            <span class="text-sm font-semibold">24,812</span>
-          </div>
-          <div class="progress">
-            <div class="progress-bar success" style="width:94%;"></div>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-sm text-muted">Bounced</span>
-            <span class="text-sm font-semibold">312</span>
-          </div>
-          <div class="progress">
-            <div class="progress-bar error" style="width:1.2%;"></div>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-sm text-muted">Spam</span>
-            <span class="text-sm font-semibold">18</span>
-          </div>
-          <div class="progress">
-            <div class="progress-bar warning" style="width:0.07%;"></div>
-          </div>
+        <div class="demo-stack" style="gap:.75rem;">
+          <div class="flex justify-between items-center"><span class="text-sm text-muted">投递</span><span class="text-sm font-semibold">24,812</span></div>
+          <div class="progress"><div class="progress-bar success" style="width:94%;"></div></div>
+          <div class="flex justify-between items-center"><span class="text-sm text-muted">退信</span><span class="text-sm font-semibold">312</span></div>
+          <div class="progress"><div class="progress-bar error" style="width:8%;"></div></div>
+          <div class="flex justify-between items-center"><span class="text-sm text-muted">处理中</span><span class="text-sm font-semibold">—</span></div>
+          <div class="progress"><div class="progress-bar indeterminate"></div></div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-secondary btn-sm">View report</button>
-          <button class="btn btn-primary btn-sm">Export CSV</button>
+          <button class="btn btn-secondary btn-sm">查看报告</button>
+          <button class="btn btn-primary btn-sm">导出 CSV</button>
         </div>
       </div>
-
-      <!-- API key card -->
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">API Keys</div>
-            <div class="card-description">2 active keys</div>
-          </div>
-          <button class="btn btn-ghost btn-sm btn-icon" data-tooltip="Create new key">+</button>
-        </div>
-        <div class="demo-stack" style="gap:var(--space-3);">
-          <div class="flex items-center gap-3">
-            <code style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:var(--text-xs);">re_••••••••••••••••</code>
-            <span class="badge badge-success">Active</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <code style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:var(--text-xs);">re_••••••••••••••••</code>
-            <span class="badge badge-default">Test</span>
+      <div class="card-gradient-border animate-fade-up delay-200">
+        <div>
+          <div class="card-title" style="margin-bottom:.5rem;">渐变边框卡片</div>
+          <p style="font-size:.8125rem;">使用 CSS 渐变 + 动画实现的发光边框效果</p>
+          <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+            <span class="badge badge-info">gradient</span>
+            <span class="badge badge-default">animation</span>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ─── Tables ───────────────────────────────────────────────── -->
-<section class="demo-section">
-  <div class="container container-lg">
-    <p class="demo-label">Tables</p>
+    <!-- Glass cards -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">玻璃卡片 Glass Cards</p>
+    <div class="grid grid-3" style="gap:1.25rem;margin-bottom:2rem;">
+      <div class="glass-card" style="padding:1.25rem;">
+        <div class="icon-box">🔐</div>
+        <div class="card-title">端对端加密</div>
+        <p style="font-size:.8125rem;margin-top:.5rem;">所有数据传输均采用 TLS 1.3</p>
+      </div>
+      <div class="glass-card" style="padding:1.25rem;">
+        <div class="icon-box">⚡</div>
+        <div class="card-title">极速送达</div>
+        <p style="font-size:.8125rem;margin-top:.5rem;">平均延迟低于 50ms 的全球边缘节点</p>
+      </div>
+      <div class="glass-card" style="padding:1.25rem;">
+        <div class="icon-box">📊</div>
+        <div class="card-title">实时分析</div>
+        <p style="font-size:.8125rem;margin-top:.5rem;">毫秒级别的投递状态追踪仪表板</p>
+      </div>
+    </div>
 
-    <div class="table-wrapper" style="max-width:800px;">
+    <!-- Table -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">表格 Table</p>
+    <div class="table-wrapper" style="max-width:720px;margin-bottom:2rem;">
       <table>
-        <thead>
-          <tr>
-            <th>To</th>
-            <th>Subject</th>
-            <th>Status</th>
-            <th>Sent</th>
-            <th class="hide-mobile">Opens</th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th>收件人</th><th>主题</th><th>状态</th><th>时间</th><th class="hide-mobile">打开</th>
+        </tr></thead>
         <tbody>
-          <tr>
-            <td><span class="text-mono text-sm">alice@example.com</span></td>
-            <td>Welcome to Acme</td>
-            <td><span class="badge badge-success badge-dot">Delivered</span></td>
-            <td class="text-faint text-sm">2 min ago</td>
-            <td class="hide-mobile text-muted text-sm">3</td>
-          </tr>
-          <tr>
-            <td><span class="text-mono text-sm">bob@example.com</span></td>
-            <td>Your invoice #1042</td>
-            <td><span class="badge badge-success badge-dot">Delivered</span></td>
-            <td class="text-faint text-sm">1 hr ago</td>
-            <td class="hide-mobile text-muted text-sm">1</td>
-          </tr>
-          <tr>
-            <td><span class="text-mono text-sm">charlie@invalid.io</span></td>
-            <td>Password reset</td>
-            <td><span class="badge badge-error badge-dot">Bounced</span></td>
-            <td class="text-faint text-sm">3 hr ago</td>
-            <td class="hide-mobile text-muted text-sm">—</td>
-          </tr>
-          <tr>
-            <td><span class="text-mono text-sm">diana@corp.com</span></td>
-            <td>Weekly digest</td>
-            <td><span class="badge badge-warning badge-dot">Pending</span></td>
-            <td class="text-faint text-sm">Scheduled</td>
-            <td class="hide-mobile text-muted text-sm">—</td>
-          </tr>
+          <tr><td class="text-mono text-sm">alice@example.com</td><td>欢迎加入 Acme</td><td><span class="badge badge-success badge-dot">已投递</span></td><td class="text-faint text-sm">2 分钟前</td><td class="hide-mobile text-muted text-sm">3</td></tr>
+          <tr><td class="text-mono text-sm">bob@example.com</td><td>发票 #1042</td><td><span class="badge badge-success badge-dot">已投递</span></td><td class="text-faint text-sm">1 小时前</td><td class="hide-mobile text-muted text-sm">1</td></tr>
+          <tr><td class="text-mono text-sm">charlie@invalid.io</td><td>密码重置</td><td><span class="badge badge-error badge-dot">已退信</span></td><td class="text-faint text-sm">3 小时前</td><td class="hide-mobile text-muted text-sm">—</td></tr>
+          <tr><td class="text-mono text-sm">diana@corp.com</td><td>每周摘要</td><td><span class="badge badge-warning badge-dot">排队中</span></td><td class="text-faint text-sm">计划发送</td><td class="hide-mobile text-muted text-sm">—</td></tr>
         </tbody>
       </table>
     </div>
-  </div>
-</section>
 
-<!-- ─── Tabs ─────────────────────────────────────────────────── -->
-<section class="demo-section">
-  <div class="container container-lg">
-    <p class="demo-label">Tabs</p>
-
-    <div class="demo-stack" style="gap:var(--space-8);">
-      <!-- Underline tabs -->
-      <div>
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-4);">Underline</p>
-        <div class="tabs">
-          <a href="#" class="tab active">Overview</a>
-          <a href="#" class="tab">Logs</a>
-          <a href="#" class="tab">Webhooks</a>
-          <a href="#" class="tab">Settings</a>
-        </div>
-      </div>
-
-      <!-- Pill tabs -->
-      <div>
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-4);">Pill</p>
-        <div class="tabs-pill">
-          <a href="#" class="tab active">Monthly</a>
-          <a href="#" class="tab">Yearly</a>
-        </div>
+    <!-- Tabs -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">标签页 Tabs</p>
+    <div class="tabs" style="margin-bottom:1.25rem;">
+      <a href="#" class="tab active">概览</a>
+      <a href="#" class="tab">日志</a>
+      <a href="#" class="tab">Webhooks</a>
+      <a href="#" class="tab">设置</a>
+    </div>
+    <div style="margin-bottom:2rem;">
+      <div class="tabs-pill">
+        <a href="#" class="tab active">月付</a>
+        <a href="#" class="tab">年付</a>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ─── Avatars ───────────────────────────────────────────────── -->
-<section class="demo-section">
-  <div class="container container-lg">
-    <p class="demo-label">Avatars</p>
-
-    <div class="demo-row" style="align-items:flex-end;">
+    <!-- Avatars + Tooltip -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">头像 & 提示 Avatars & Tooltips</p>
+    <div class="demo-row" style="align-items:flex-end;margin-bottom:2rem;">
+      <div><div class="avatar avatar-sm" data-tooltip="SM · 24px">JD</div></div>
+      <div><div class="avatar avatar-md" data-tooltip="MD · 32px">RS</div></div>
+      <div><div class="avatar avatar-lg" style="background:var(--success-bg);color:var(--success);" data-tooltip="LG · 40px">AI</div></div>
+      <div><div class="avatar avatar-xl" style="background:var(--info-bg);color:var(--info);" data-tooltip="XL · 56px">MK</div></div>
       <div>
-        <div class="avatar avatar-sm">JD</div>
-        <p class="component-name">sm / 24px</p>
-      </div>
-      <div>
-        <div class="avatar avatar-md">JD</div>
-        <p class="component-name">md / 32px</p>
-      </div>
-      <div>
-        <div class="avatar avatar-lg" style="background:var(--color-success-bg); color:var(--color-success);">RS</div>
-        <p class="component-name">lg / 40px</p>
-      </div>
-      <div>
-        <div class="avatar avatar-xl" style="background:var(--color-info-bg); color:var(--color-info);">AI</div>
-        <p class="component-name">xl / 56px</p>
-      </div>
-      <div>
-        <!-- Avatar group -->
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-2);">Group</p>
+        <p style="font-size:.75rem;color:var(--text-faint);margin-bottom:.5rem;">Group</p>
         <div class="avatar-group">
-          <div class="avatar avatar-md" style="background:var(--color-success-bg); color:var(--color-success);">A</div>
-          <div class="avatar avatar-md" style="background:var(--color-info-bg); color:var(--color-info);">B</div>
-          <div class="avatar avatar-md" style="background:var(--color-warning-bg); color:var(--color-warning);">C</div>
+          <div class="avatar avatar-md" style="background:var(--success-bg);color:var(--success);">A</div>
+          <div class="avatar avatar-md" style="background:var(--info-bg);color:var(--info);">B</div>
+          <div class="avatar avatar-md" style="background:var(--warning-bg);color:var(--warning);">C</div>
           <div class="avatar avatar-md">+4</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ─── Code ──────────────────────────────────────────────────── -->
-<section class="demo-section">
-  <div class="container container-lg">
-    <p class="demo-label">Code</p>
-
-    <pre style="max-width:640px;"><code><span style="color:var(--color-text-faint);">import</span> { Resend } <span style="color:var(--color-text-faint);">from</span> <span style="color:var(--color-success);">'resend'</span><span style="color:var(--color-text-muted);">;</span>
-
-<span style="color:var(--color-text-faint);">const</span> resend = <span style="color:var(--color-text-faint);">new</span> <span style="color:var(--color-info);">Resend</span>(<span style="color:var(--color-success);">'re_123456789'</span>);
-
-<span style="color:var(--color-text-faint);">await</span> resend.emails.<span style="color:var(--color-warning);">send</span>({
-  from: <span style="color:var(--color-success);">'Acme &lt;hi@acme.com&gt;'</span>,
-  to: <span style="color:var(--color-success);">'alice@example.com'</span>,
-  subject: <span style="color:var(--color-success);">'Hello from Resend!'</span>,
-  html: <span style="color:var(--color-success);">'&lt;p&gt;Welcome!&lt;/p&gt;'</span>,
-});</code></pre>
-  </div>
-</section>
-
-<!-- ─── Divider & Misc ────────────────────────────────────────── -->
-<section class="demo-section">
-  <div class="container container-lg">
-    <p class="demo-label">Misc</p>
-
-    <div class="demo-stack" style="max-width: 640px; gap:var(--space-8);">
-      <!-- Divider -->
-      <div>
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-3);">Divider</p>
-        <div class="divider">or continue with</div>
+    <!-- Progress & Skeleton -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">进度 & 骨架屏</p>
+    <div class="demo-stack" style="max-width:500px;margin-bottom:2rem;">
+      <div class="flex items-center gap-4"><span class="text-sm text-muted" style="width:48px;">94%</span><div class="progress" style="flex:1;"><div class="progress-bar success" style="width:94%;"></div></div></div>
+      <div class="flex items-center gap-4"><span class="text-sm text-muted" style="width:48px;">进行中</span><div class="progress" style="flex:1;"><div class="progress-bar indeterminate"></div></div></div>
+      <div class="demo-stack" style="gap:.625rem;">
+        <div class="skeleton" style="height:14px;width:60%;"></div>
+        <div class="skeleton" style="height:12px;width:88%;"></div>
+        <div class="skeleton" style="height:12px;width:72%;"></div>
+        <div class="skeleton" style="height:34px;width:110px;border-radius:var(--radius);"></div>
       </div>
+    </div>
 
-      <!-- Skeleton -->
-      <div>
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-3);">Skeleton loading</p>
-        <div class="demo-stack" style="gap:var(--space-3);">
-          <div class="skeleton" style="height:16px; width:60%;"></div>
-          <div class="skeleton" style="height:12px; width:90%;"></div>
-          <div class="skeleton" style="height:12px; width:75%;"></div>
-          <div class="skeleton" style="height:36px; width:120px; border-radius:var(--radius-md);"></div>
-        </div>
+    <!-- Code -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">代码块 Code</p>
+    <pre style="max-width:600px;margin-bottom:2rem;"><code><span class="tok-k">import</span> { Resend } <span class="tok-k">from</span> <span class="tok-s">'resend'</span><span class="tok-p">;</span>
+
+<span class="tok-k">const</span> resend <span class="tok-p">=</span> <span class="tok-k">new</span> <span class="tok-f">Resend</span><span class="tok-p">(</span><span class="tok-s">'re_123456789'</span><span class="tok-p">);</span>
+
+<span class="tok-k">await</span> resend.emails.<span class="tok-f">send</span><span class="tok-p">({</span>
+  from<span class="tok-p">:</span> <span class="tok-s">'Acme &lt;hi@acme.com&gt;'</span><span class="tok-p">,</span>
+  to<span class="tok-p">:</span>   <span class="tok-s">'alice@example.com'</span><span class="tok-p">,</span>
+  subject<span class="tok-p">:</span> <span class="tok-s">'Hello from Resend!'</span><span class="tok-p">,</span>
+  html<span class="tok-p">:</span>    <span class="tok-s">'&lt;p&gt;Welcome!&lt;/p&gt;'</span><span class="tok-p">,</span>
+<span class="tok-p">});</span></code></pre>
+
+    <!-- Divider -->
+    <div class="divider" style="max-width:600px;margin-bottom:2rem;">或者继续使用</div>
+
+    <!-- Dropdown demo -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">下拉菜单 Dropdown</p>
+    <div style="position:relative;display:inline-block;margin-bottom:2rem;" id="ddWrap">
+      <button class="btn btn-secondary" id="ddTrigger">操作菜单 ▾</button>
+      <div class="dropdown-menu" id="ddMenu" style="display:none;">
+        <a href="#" class="menu-item">📋 复制链接</a>
+        <a href="#" class="menu-item">✏ 编辑</a>
+        <a href="#" class="menu-item">📤 导出</a>
+        <div class="menu-separator"></div>
+        <a href="#" class="menu-item danger">🗑 删除</a>
       </div>
+    </div>
 
-      <!-- Progress -->
+    <!-- Lists -->
+    <p class="text-muted text-sm" style="margin-bottom:.75rem;">列表 Lists</p>
+    <div class="grid grid-2" style="max-width:600px;gap:2rem;margin-bottom:2rem;">
       <div>
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-3);">Progress</p>
-        <div class="demo-stack" style="gap:var(--space-3);">
-          <div class="flex items-center gap-4">
-            <span class="text-sm text-muted" style="width:60px;">94%</span>
-            <div class="progress" style="flex:1;"><div class="progress-bar success" style="width:94%;"></div></div>
-          </div>
-          <div class="flex items-center gap-4">
-            <span class="text-sm text-muted" style="width:60px;">60%</span>
-            <div class="progress" style="flex:1;"><div class="progress-bar" style="width:60%;"></div></div>
-          </div>
-          <div class="flex items-center gap-4">
-            <span class="text-sm text-muted" style="width:60px;">28%</span>
-            <div class="progress" style="flex:1;"><div class="progress-bar warning" style="width:28%;"></div></div>
-          </div>
-        </div>
+        <p style="font-size:.75rem;color:var(--text-faint);margin-bottom:.5rem;">无序列表</p>
+        <ul>
+          <li>极速送达</li><li>99.9% 正常运行</li><li>实时 Webhook</li><li>全球边缘节点</li>
+        </ul>
       </div>
-
-      <!-- Tooltip demo -->
       <div>
-        <p class="text-muted text-sm" style="margin-bottom:var(--space-3);">Tooltips</p>
-        <div class="demo-row">
-          <button class="btn btn-secondary" data-tooltip="Copies to clipboard">Copy key</button>
-          <button class="btn btn-ghost" data-tooltip="Opens in new tab">View docs ↗</button>
-          <span class="badge badge-warning badge-dot" data-tooltip="Verified on Apr 10, 2025">Domain</span>
-        </div>
+        <p style="font-size:.75rem;color:var(--text-faint);margin-bottom:.5rem;">有序列表</p>
+        <ol>
+          <li>注册账号</li><li>获取 API Key</li><li>发送第一封邮件</li><li>查看数据分析</li>
+        </ol>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ─── Footer ───────────────────────────────────────────────── -->
-<footer class="footer">
-  <div class="container container-lg">
-    <div class="grid grid-4" style="gap:var(--space-8); margin-bottom:var(--space-12);">
-      <div>
-        <div class="nav-brand" style="display:block; margin-bottom:var(--space-4);">resend.css</div>
-        <p style="font-size:var(--text-sm);">A minimal design system for developer-focused products.</p>
-      </div>
-      <div>
-        <p style="font-size:var(--text-xs); font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-text-faint); margin-bottom:var(--space-4);">Product</p>
-        <div class="demo-stack" style="gap:var(--space-2);">
-          <a href="#" class="link-muted" style="font-size:var(--text-sm);">Changelog</a>
-          <a href="#" class="link-muted" style="font-size:var(--text-sm);">Pricing</a>
-          <a href="#" class="link-muted" style="font-size:var(--text-sm);">Documentation</a>
-        </div>
-      </div>
-      <div>
-        <p style="font-size:var(--text-xs); font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-text-faint); margin-bottom:var(--space-4);">Company</p>
-        <div class="demo-stack" style="gap:var(--space-2);">
-          <a href="#" class="link-muted" style="font-size:var(--text-sm);">About</a>
-          <a href="#" class="link-muted" style="font-size:var(--text-sm);">Blog</a>
-          <a href="#" class="link-muted" style="font-size:var(--text-sm);">Careers</a>
-        </div>
-      </div>
-      <div>
-        <p style="font-size:var(--text-xs); font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-text-faint); margin-bottom:var(--space-4);">Legal</p>
-        <div class="demo-stack" style="gap:var(--space-2);">
-          <a href="#" class="link-muted" style="font-size:var(--text-sm);">Privacy</a>
-          <a href="#" class="link-muted" style="font-size:var(--text-sm);">Terms</a>
-        </div>
-      </div>
-    </div>
-    <div class="divider" style="margin-bottom:var(--space-6);"></div>
-    <div class="flex items-center justify-between" style="flex-wrap:wrap; gap:var(--space-3);">
-      <span>© 2025 resend.css — MIT License</span>
-      <span class="flex gap-4">
-        <a href="#">Twitter</a>
-        <a href="#">GitHub</a>
-        <a href="#">Discord</a>
-      </span>
-    </div>
+</div><!-- /content -->
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <div class="footer-links" style="margin-bottom:1rem;">
+    <a href="#" class="footer-link">GitHub</a>
+    <a href="#" class="footer-link">文档</a>
+    <a href="#" class="footer-link">更新日志</a>
+    <a href="#" class="footer-link">社区</a>
   </div>
+  <p style="margin:0;">© 2025 resend-pro.css · MIT License · 不忘初心</p>
 </footer>
 
+<!-- ══════════════════════ Scripts ══════════════════════ -->
 <script>
-  // Mobile nav toggle
-  const hamburger = document.getElementById('hamburger');
-  const drawer = document.getElementById('drawer');
-  let open = false;
+/* ── Hamburger ── */
+const ham = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+let drawerOpen = false;
+ham.addEventListener('click', () => {
+  drawerOpen = !drawerOpen;
+  drawer.classList.toggle('open', drawerOpen);
+});
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  drawerOpen = false; drawer.classList.remove('open');
+}));
 
-  hamburger.addEventListener('click', () => {
-    open = !open;
-    drawer.classList.toggle('open', open);
-    hamburger.setAttribute('aria-expanded', open);
+/* ── Header scroll pill effect ── */
+const hdr = document.getElementById('main-header');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── Theme toggle (pink) ── */
+const themeBtn = document.getElementById('themeBtn');
+let isPink = false;
+themeBtn.addEventListener('click', () => {
+  isPink = !isPink;
+  document.body.classList.toggle('pink', isPink);
+  themeBtn.textContent = isPink ? '克莱因蓝' : '切换主题';
+});
+
+/* ── Dropdown ── */
+const ddTrigger = document.getElementById('ddTrigger');
+const ddMenu    = document.getElementById('ddMenu');
+let ddOpen = false;
+ddTrigger.addEventListener('click', e => {
+  e.stopPropagation();
+  ddOpen = !ddOpen;
+  ddMenu.style.display = ddOpen ? 'block' : 'none';
+});
+document.addEventListener('click', () => { ddOpen = false; ddMenu.style.display = 'none'; });
+
+/* ── Animation playground ── */
+const anims = [
+  { label:'fade-up',    cls:'animate-fade-up',    icon:'⬆' },
+  { label:'fade-down',  cls:'animate-fade-down',   icon:'⬇' },
+  { label:'fade-left',  cls:'animate-fade-left',   icon:'⬅' },
+  { label:'fade-right', cls:'animate-fade-right',  icon:'➡' },
+  { label:'scale-in',   cls:'animate-scale-in',    icon:'🔍' },
+  { label:'pop-in',     cls:'animate-pop-in',      icon:'💥' },
+  { label:'blur-in',    cls:'animate-blur-in',     icon:'🌫' },
+  { label:'rotate-in',  cls:'animate-rotate-in',   icon:'🔄' },
+  { label:'flip-x',     cls:'animate-flip-x',      icon:'↔' },
+  { label:'flip-y',     cls:'animate-flip-y',      icon:'↕' },
+  { label:'wiggle',     cls:'animate-wiggle',      icon:'〰' },
+  { label:'rubber',     cls:'animate-rubber-band', icon:'🏀' },
+  { label:'shake',      cls:'animate-shake',       icon:'📳' },
+  { label:'tada',       cls:'animate-tada',        icon:'🎉' },
+  { label:'jello',      cls:'animate-jello',       icon:'🌊' },
+  { label:'heartbeat',  cls:'animate-heartbeat',   icon:'❤' },
+  { label:'bounce',     cls:'animate-bounce',      icon:'⚡' },
+  { label:'ping',       cls:'animate-ping',        icon:'📡' },
+];
+const grid = document.getElementById('animGrid');
+anims.forEach(({ label, cls, icon }) => {
+  const cell = document.createElement('div');
+  cell.className = 'anim-cell';
+  cell.innerHTML = `<span class="anim-icon">${icon}</span><span class="anim-label">${label}</span>`;
+  cell.addEventListener('click', () => {
+    cell.classList.remove(cls);
+    void cell.offsetWidth; // reflow
+    cell.classList.add(cls);
+    cell.addEventListener('animationend', () => cell.classList.remove(cls), { once: true });
   });
-
-  // Close drawer on link click
-  drawer.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      open = false;
-      drawer.classList.remove('open');
-    });
-  });
-
-  // Light/dark theme toggle via URL param (demo)
-  const params = new URLSearchParams(location.search);
-  if (params.get('theme') === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
+  grid.appendChild(cell);
+});
 </script>
 </body>
 </html>
