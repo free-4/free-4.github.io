@@ -126,6 +126,15 @@ train: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="curr
   <line x1="7" y1="13" x2="14" y2="13" />
   <line x1="7" y1="17" x2="12" y2="17" />
 </svg>`,
-qr: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3m0 3h3m-3 0v-3M14 20h3"/></svg>`
+qr: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3m0 3h3m-3 0v-3M14 20h3"/></svg>`,
+chat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 气泡主体 -->
+  <path d="M8 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.5l-3.5 3v-3z"></path>
+  <!-- 对话线条 -->
+  <path d="M8 13h.01"></path>
+  <path d="M12 13h.01"></path>
+  <path d="M16 13h.01"></path>
+</svg>
+`
 };
 
