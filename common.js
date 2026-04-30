@@ -1278,7 +1278,6 @@ textarea[readonly] {
       <a href="https://github.com/free-4/free-4.github.io/issues" class="footer-link" target="_blank">评论区</a>
     </div>
     <p>&copy; 2026 SHUOWEB.COM</p><br>
-    <a href="https://icp.gov.moe/?keyword=20263555" target="_blank">萌ICP备20263555号</a>
     页面浏览量：<span id="vercount_value_page_pv">Loading</span>
   `;
 
