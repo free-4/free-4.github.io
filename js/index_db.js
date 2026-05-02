@@ -9,6 +9,7 @@ const SITE_DATA = [
             { title: "历史上的今天", url: "https://shuoweb.com/page/html/today_history", icon: "history" },
             { title: "每日一言", url: "https://shuoweb.com/page/html/day_yan.html", icon: "yan" },
             { title: "世界人口时钟", url: "https://shuoweb.com/page/html/people.html", icon: "user" },
+            { title: "随机手机型号", url: "https://shuoweb.com/api/phone", icon: "phone" },
             { title: "聊天室", url: "https://shuoweb.wuaze.com/chat/", icon: "chat" }
         ]
     },
