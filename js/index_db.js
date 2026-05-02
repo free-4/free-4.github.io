@@ -16,7 +16,7 @@ const SITE_DATA = [
         name: "实用工具",
         icon: "tool",
         items: [
-            { title: "SHUOWEB API服务", url: "https://api.shuoweb.com/", icon: "api" },
+            { title: "API服务", url: "https://api.shuoweb.com/", icon: "api" },
             { title: "IP地址查询", url: "https://shuoweb.com/page/html/ip", icon: "ip" },
             { title: "Base64 转换", url: "https://shuoweb.com/page/html/base64.html", icon: "file" },
              { title: "JSON工具", url: "https://shuoweb.com/page/html/json.html", icon: "code" },
