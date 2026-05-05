@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>DeepSeek 对话 · 增强版</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +41,8 @@
             --radius-xl: 18px;
             --transition: all .25s cubic-bezier(.4,0,.2,1);
             --transition-fast: all .15s cubic-bezier(.4,0,.2,1);
+            --touch-size: 48px;
+            --keyboard-height: 0px;
         }
         [data-theme="dark"] {
             --blue: #4f80ff; --blue-dim: #3a66e0; --blue-tint: #1a2540;
@@ -97,9 +99,9 @@
             --warning: #d97706; --warning-tint: #fffbeb;
             --purple: #7c3aed; --purple-tint: #f5f3ff;
         }
-        *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html,body { height: 100%; font-family: var(--sans); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow: hidden; transition: var(--transition); font-size: 15px; }
-        .shell { display: flex; height: 100dvh; width: 100%; }
+        *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        html,body { height: 100%; height: 100dvh; font-family: var(--sans); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow: hidden; transition: var(--transition); font-size: 15px; touch-action: manipulation; }
+        .shell { display: flex; height: 100%; height: calc(100dvh - var(--keyboard-height)); width: 100%; transition: height .2s ease; }
         
         /* 滚动条美化 */
         ::-webkit-scrollbar { width: 4px; height: 4px; }
@@ -112,8 +114,9 @@
             width: 280px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
             display: flex; flex-direction: column; flex-shrink: 0;
             transition: transform .3s cubic-bezier(.4,0,.2,1), var(--transition);
-            z-index: 20; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;
+            z-index: 25; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;
             box-shadow: var(--shadow-lg);
+            overscroll-behavior: contain;
         }
         .sidebar::-webkit-scrollbar { width: 3px; }
         .sidebar-brand {
@@ -121,6 +124,7 @@
             flex-shrink: 0; position: sticky; top: 0; background: var(--sidebar-bg); z-index: 2;
             transition: var(--transition);
             backdrop-filter: blur(10px);
+            min-height: var(--touch-size);
         }
         .brand-icon {
             width: 34px; height: 34px; background: var(--blue); border-radius: 10px;
@@ -137,11 +141,13 @@
         }
         .model-list { padding: 4px 10px 10px; display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; }
         .model-item {
-            padding: 10px 12px; border-radius: 8px; cursor: pointer; border: none;
+            padding: 12px 14px; border-radius: 8px; cursor: pointer; border: none;
             background: transparent; text-align: left; width: 100%;
             font-family: var(--sans); transition: var(--transition-fast);
             position: relative;
             overflow: hidden;
+            min-height: var(--touch-size);
+            touch-action: manipulation;
         }
         .model-item::before {
             content: '';
@@ -163,10 +169,12 @@
         .model-item-desc { font-size: 10.5px; color: var(--text-3); display: block; margin-top: 2px; transition: var(--transition); }
         .theme-list { padding: 4px 10px 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex-shrink: 0; }
         .theme-item {
-            padding: 8px 10px; border-radius: 8px; cursor: pointer; border: 1.5px solid transparent;
+            padding: 10px 12px; border-radius: 8px; cursor: pointer; border: 1.5px solid transparent;
             background: transparent; text-align: left; font-family: var(--sans); font-size: 11.5px;
             font-weight: 500; color: var(--text-2); display: flex; align-items: center; gap: 8px;
             transition: var(--transition-fast);
+            min-height: var(--touch-size);
+            touch-action: manipulation;
         }
         .theme-item:hover { background: var(--border); transform: translateY(-1px); }
         .theme-item.active { border-color: var(--blue); color: var(--blue); background: var(--blue-tint); transform: translateY(-1px); }
@@ -176,13 +184,15 @@
         /* Collapse panels */
         .collapse-toggle {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 10px 18px; cursor: pointer; user-select: none; flex-shrink: 0;
+            padding: 12px 18px; cursor: pointer; user-select: none; flex-shrink: 0;
             border: none; background: transparent; width: 100%; font-family: var(--sans);
             color: var(--text-2); font-size: 11px; font-weight: 600; letter-spacing: .03em;
             transition: var(--transition-fast);
             border-radius: 6px;
             margin: 0 8px;
             width: calc(100% - 16px);
+            min-height: var(--touch-size);
+            touch-action: manipulation;
         }
         .collapse-toggle:hover { background: var(--border); transform: translateY(-1px); }
         .collapse-arrow { width: 16px; height: 16px; transition: transform .25s cubic-bezier(.4,0,.2,1); color: var(--text-3); flex-shrink: 0; }
@@ -191,7 +201,7 @@
         .collapse-content.open { max-height: 1200px; }
         .collapse-inner { padding: 6px 16px 12px; }
         /* Settings */
-        .setting-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; gap: 10px; }
+        .setting-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 10px; min-height: var(--touch-size); }
         .setting-label { font-size: 11px; font-weight: 500; color: var(--text-2); white-space: nowrap; transition: var(--transition); }
         .setting-value { font-size: 10px; font-family: var(--mono); color: var(--text-3); min-width: 36px; text-align: right; transition: var(--transition); }
         .setting-slider {
@@ -199,22 +209,23 @@
             background: var(--border); outline: none; cursor: pointer; transition: var(--transition);
         }
         .setting-slider::-webkit-slider-thumb {
-            -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+            -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
             background: var(--blue); cursor: pointer; border: 2px solid var(--surface);
             box-shadow: 0 1px 3px rgba(0,0,0,.15); transition: var(--transition-fast);
         }
         .setting-slider::-webkit-slider-thumb:hover { transform: scale(1.1); box-shadow: 0 2px 6px rgba(26, 86, 240, .3); }
         .setting-input-sm {
-            width: 56px; padding: 5px 7px; font-size: 11px; font-family: var(--mono);
+            width: 64px; padding: 8px 10px; font-size: 11px; font-family: var(--mono);
             border: 1px solid var(--border); border-radius: 6px; background: var(--surface);
             color: var(--text); outline: none; text-align: center;
             transition: var(--transition);
+            min-height: var(--touch-size);
         }
         .setting-input-sm:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(79,128,255,.1); transform: translateY(-1px); }
         .sys-prompt-area {
-            width: 100%; padding: 8px 10px; font-size: 11px; font-family: var(--sans);
+            width: 100%; padding: 10px 12px; font-size: 11px; font-family: var(--sans);
             border: 1px solid var(--border); border-radius: 8px; background: var(--surface);
-            color: var(--text); outline: none; resize: vertical; min-height: 56px; max-height: 120px;
+            color: var(--text); outline: none; resize: vertical; min-height: 64px; max-height: 120px;
             transition: var(--transition); line-height: 1.5;
         }
         .sys-prompt-area:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(79,128,255,.1); transform: translateY(-1px); }
@@ -224,8 +235,8 @@
             background: var(--purple-tint);
             border: 1px solid color-mix(in srgb, var(--purple) 20%, transparent);
             border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
         }
         .token-optimization .setting-label { color: var(--purple); }
         .optimization-badge {
@@ -240,7 +251,7 @@
         }
         
         /* ── File Manager ── */
-        .file-upload-btns { display: flex; gap: 6px; padding: 4px 0 10px; }
+        .file-upload-btns { display: flex; gap: 6px; padding: 4px 0 10px; flex-wrap: wrap; }
         .file-tree {
             max-height: 260px; overflow-y: auto; overflow-x: hidden;
             border: 1px solid var(--border); border-radius: 8px; background: var(--bg);
@@ -249,11 +260,13 @@
         .file-tree::-webkit-scrollbar { width: 2px; }
         .file-item {
             display: flex; align-items: center; gap: 6px;
-            padding: 6px 10px; cursor: pointer; border-radius: 6px;
+            padding: 8px 10px; cursor: pointer; border-radius: 6px;
             margin: 2px 4px; transition: var(--transition-fast);
             font-size: 11px; color: var(--text);
             user-select: none;
             position: relative;
+            min-height: var(--touch-size);
+            touch-action: manipulation;
         }
         .file-item:hover { background: var(--border); transform: translateX(2px); }
         .file-item:not(.active) { opacity: 0.5; }
@@ -282,27 +295,29 @@
         }
         .file-size { font-size: 9.5px; color: var(--text-3); font-family: var(--mono); flex-shrink: 0; }
         .file-del {
-            flex-shrink: 0; width: 18px; height: 18px; border: none; background: transparent;
+            flex-shrink: 0; width: var(--touch-size); height: var(--touch-size); border: none; background: transparent;
             color: var(--text-3); cursor: pointer; display: flex; align-items: center;
             justify-content: center; border-radius: 4px; opacity: 0;
             transition: var(--transition-fast); padding: 0;
+            touch-action: manipulation;
         }
         .file-item:hover .file-del { opacity: 1; }
         .file-del:hover { color: var(--danger); background: var(--danger-tint); transform: scale(1.1); }
         .file-dir {
-            display: flex; align-items: center; gap: 8px; padding: 5px 10px;
+            display: flex; align-items: center; gap: 8px; padding: 8px 10px;
             margin: 2px 4px; font-size: 10.5px; font-weight: 600;
             color: var(--text-2); pointer-events: none; transition: var(--transition);
+            min-height: var(--touch-size);
         }
         .file-dir-icon { color: var(--warning); flex-shrink: 0; transition: transform .2s ease; }
         .file-dir:hover .file-dir-icon { transform: scale(1.1); }
         .file-empty {
-            padding: 20px 14px; font-size: 11px; color: var(--text-3);
+            padding: 24px 14px; font-size: 11px; color: var(--text-3);
             text-align: center; line-height: 1.6;
         }
         .file-stats {
             font-size: 9.5px; font-family: var(--mono); color: var(--text-3);
-            text-align: center; margin-bottom: 6px; transition: var(--transition);
+            text-align: center; margin-bottom: 8px; transition: var(--transition);
         }
         .file-stats.warn { color: var(--warning); }
         .file-stats.optimized { color: var(--green); }
@@ -312,8 +327,9 @@
             position: fixed;
             top: 0;
             right: 0;
-            width: 50%;
+            width: 100%;
             height: 100%;
+            height: calc(100dvh - var(--keyboard-height));
             background: var(--surface);
             border-left: 1px solid var(--border);
             z-index: 30;
@@ -331,6 +347,7 @@
             padding: 16px 20px;
             border-bottom: 1px solid var(--border);
             background: var(--sidebar-bg);
+            min-height: 56px;
         }
         .file-edit-title {
             font-size: 14px;
@@ -342,6 +359,7 @@
         .file-edit-actions {
             display: flex;
             gap: 6px;
+            flex-wrap: wrap;
         }
         .file-edit-content {
             flex: 1;
@@ -391,19 +409,22 @@
             margin-bottom: 6px; letter-spacing: .08em; text-transform: uppercase; transition: var(--transition);
         }
         .field-input {
-            width: 100%; padding: 8px 10px; font-size: 12px; font-family: var(--mono);
+            width: 100%; padding: 10px 12px; font-size: 12px; font-family: var(--mono);
             border: 1px solid var(--border); border-radius: 8px; background: var(--surface);
             color: var(--text); outline: none;
             transition: var(--transition);
+            min-height: var(--touch-size);
         }
         .field-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(79,128,255,.13); transform: translateY(-1px); }
         .mem-actions { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
         .small-btn {
-            flex: 1; padding: 7px 0; font-size: 11px; font-weight: 500;
+            flex: 1; padding: 10px 0; font-size: 11px; font-weight: 500;
             font-family: var(--sans); border: 1px solid var(--border); border-radius: 7px;
             background: var(--surface); color: var(--text-2); cursor: pointer;
             display: flex; align-items: center; justify-content: center; gap: 5px;
             transition: var(--transition-fast); white-space: nowrap; min-width: 46px;
+            min-height: var(--touch-size);
+            touch-action: manipulation;
         }
         .small-btn:hover { background: var(--blue-tint); color: var(--blue); border-color: var(--blue); transform: translateY(-1px); box-shadow: var(--shadow); }
         .small-btn.danger:hover { background: var(--danger-tint); color: var(--danger); border-color: var(--danger); }
@@ -420,13 +441,15 @@
             gap: 2px;
         }
         .conversation-item {
-            padding: 8px 10px;
+            padding: 10px 12px;
             border-radius: 7px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: space-between;
             transition: var(--transition-fast);
+            min-height: var(--touch-size);
+            touch-action: manipulation;
         }
         .conversation-item:hover { background: var(--border); }
         .conversation-item.active { background: var(--blue-tint); }
@@ -458,9 +481,10 @@
         }
         .topbar-title { font-size: 14.5px; font-weight: 600; flex: 1; letter-spacing: -.02em; color: var(--text); transition: var(--transition); }
         .icon-btn {
-            width: 38px; height: 38px; border-radius: 10px; border: none; background: transparent;
+            width: var(--touch-size); height: var(--touch-size); border-radius: 10px; border: none; background: transparent;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
             color: var(--text-2); transition: var(--transition-fast); flex-shrink: 0;
+            touch-action: manipulation;
         }
         .icon-btn:hover,.icon-btn:active { background: var(--bg); transform: translateY(-1px); box-shadow: var(--shadow); }
         .icon-btn.danger { color: var(--danger); }
@@ -468,12 +492,13 @@
         
         /* ── Messages ── */
         .messages {
-            flex: 1; overflow-y: auto; padding: 32px 0 12px;
+            flex: 1; overflow-y: auto; padding: 24px 0 12px;
             scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
-        .message-wrap { max-width: 800px; margin: 0 auto; padding: 0 32px; }
+        .message-wrap { max-width: 800px; margin: 0 auto; padding: 0 16px; }
         .message {
-            display: flex; gap: 14px; margin-bottom: 28px;
+            display: flex; gap: 12px; margin-bottom: 24px;
             animation: msgIn .3s ease forwards; opacity: 0; transform: translateY(10px);
         }
         @keyframes msgIn { 
@@ -481,7 +506,7 @@
             100% { opacity: 1; transform: translateY(0); }
         }
         .msg-avatar {
-            width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
             display: flex; align-items: center; justify-content: center; margin-top: 2px;
             transition: var(--transition-fast);
         }
@@ -518,9 +543,11 @@
         .message-wrap:hover .msg-actions,
         .message-wrap[data-role="assistant-streaming"] .msg-actions { opacity: 1; }
         .msg-action-btn {
-            padding: 4px 10px; font-size: 10px; font-family: var(--sans);
+            padding: 8px 12px; font-size: 10px; font-family: var(--sans);
             border: 1px solid var(--border); border-radius: 5px; background: var(--surface);
             color: var(--text-3); cursor: pointer; transition: var(--transition-fast); letter-spacing: .02em;
+            min-height: var(--touch-size);
+            touch-action: manipulation;
         }
         .msg-action-btn:hover { background: var(--blue-tint); color: var(--blue); border-color: var(--blue); transform: translateY(-1px); }
         .msg-action-btn.retry-btn:hover { background: var(--green-tint); color: var(--green); border-color: var(--green); }
@@ -648,7 +675,7 @@
             gap: 6px;
         }
         .send-btn {
-            width: 38px; height: 38px; border-radius: 10px; background: var(--blue); border: none;
+            width: var(--touch-size); height: var(--touch-size); border-radius: 10px; background: var(--blue); border: none;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
             color: #fff; flex-shrink: 0; transition: var(--transition-fast);
             box-shadow: 0 2px 8px rgba(26, 86, 240, .3);
@@ -657,7 +684,7 @@
         .send-btn:active { transform: scale(.95); }
         .send-btn:disabled { background: var(--border); cursor: not-allowed; opacity: .6; box-shadow: none; }
         .stop-btn {
-            width: 38px; height: 38px; border-radius: 10px; background: var(--danger); border: none;
+            width: var(--touch-size); height: var(--touch-size); border-radius: 10px; background: var(--danger); border: none;
             cursor: pointer; display: none; align-items: center; justify-content: center;
             color: #fff; flex-shrink: 0; transition: var(--transition-fast);
             box-shadow: 0 2px 8px rgba(220, 38, 38, .3);
@@ -667,14 +694,14 @@
         .stop-btn.visible { display: flex; }
         .input-hint { font-size: 10.5px; color: var(--text-3); text-align: center; margin-top: 8px; transition: var(--transition); }
         /* Mobile overlay */
-        .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 15; backdrop-filter: blur(4px); opacity: 0; transition: opacity .3s ease; }
-        .overlay.show { opacity: 1; }
+        .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 20; backdrop-filter: blur(4px); opacity: 0; transition: opacity .3s ease; touch-action: manipulation; }
+        .overlay.show { opacity: 1; display: block; }
         /* Toast */
         .toast {
             position: fixed; bottom: 90px; left: 50%;
             transform: translateX(-50%) translateY(20px);
             background: #1c1d21; color: #e8e9ed; padding: 10px 20px; border-radius: 24px;
-            font-size: 13px; font-family: var(--sans); font-weight: 500; z-index: 99;
+            font-size: 13px; font-family: var(--sans); font-weight: 500; z-index: 999;
             opacity: 0; transition: opacity .3s,transform .3s; pointer-events: none;
             letter-spacing: .01em; box-shadow: var(--shadow-lg);
         }
@@ -696,6 +723,7 @@
             visibility: hidden;
             transition: opacity .3s, visibility .3s;
             backdrop-filter: blur(4px);
+            touch-action: manipulation;
         }
         .modal.open { opacity: 1; visibility: visible; }
         .modal-content {
@@ -703,7 +731,7 @@
             border-radius: 12px;
             width: 90%;
             max-width: 500px;
-            max-height: 80vh;
+            max-height: calc(100dvh - var(--keyboard-height) - 40px);
             overflow: auto;
             box-shadow: var(--shadow-lg);
             transform: scale(.95);
@@ -716,6 +744,10 @@
             justify-content: space-between;
             padding: 16px 20px;
             border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--surface);
+            z-index: 1;
         }
         .modal-title {
             font-size: 15px;
@@ -730,11 +762,15 @@
             gap: 10px;
             padding: 16px 20px;
             border-top: 1px solid var(--border);
+            position: sticky;
+            bottom: 0;
+            background: var(--surface);
+            z-index: 1;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .sidebar { position: fixed; top: 0; left: 0; height: 100%; transform: translateX(-100%); box-shadow: 4px 0 24px rgba(0,0,0,.15); width: 280px; }
+            .sidebar { position: fixed; top: 0; left: 0; height: 100%; height: calc(100dvh - var(--keyboard-height)); transform: translateX(-100%); box-shadow: 4px 0 24px rgba(0,0,0,.15); width: 280px; }
             .sidebar.open { transform: translateX(0); }
             .overlay { display: block; }
             .topbar { display: flex; }
@@ -744,9 +780,10 @@
             .message { gap: 10px; margin-bottom: 20px; }
             .msg-content { font-size: 14px; }
             .msg-actions { opacity: 1; }
-            .toast { bottom: 80px; }
+            .toast { bottom: calc(80px + var(--keyboard-height)); }
             .file-del { opacity: 1; }
             .file-edit-panel { width: 100%; }
+            .conversation-actions { opacity: 1; }
         }
     </style>
 </head>
@@ -864,11 +901,11 @@
                 <span class="model-item-name">V4 Flash</span>
                 <span class="model-item-desc">快速响应 · 高性价比</span>
             </button>
-            <button class="model-item" data-model="deepseek-v4-pro" onclick="selectModel(this)">
-                <span class="model-item-name">V4 Pro</span>
-                <span class="model-item-desc">深度思考 · 复杂推理</span>
+            <button class="model-item" data-model="deepseek-v4" onclick="selectModel(this)">
+                <span class="model-item-name">V4</span>
+                <span class="model-item-desc">通用能力 · 均衡表现</span>
             </button>
-            <button class="model-item" data-model="deepseek-coder" onclick="selectModel(this)">
+            <button class="model-item" data-model="deepseek-coder-v2" onclick="selectModel(this)">
                 <span class="model-item-name">Coder V2</span>
                 <span class="model-item-desc">代码专家 · 编程助手</span>
             </button>
@@ -894,7 +931,7 @@
         
         <button class="collapse-toggle open" id="advToggle" onclick="togglePanel('adv')">
             高级参数设置
-            <svg class="collapse-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    <svg class="collapse-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="collapse-content open" id="advContent">
             <div class="collapse-inner">
@@ -919,7 +956,7 @@
                 <div style="margin-top:12px;">
                     <div class="setting-row"><span class="setting-label">Temperature</span><input type="range" class="setting-slider" id="temperature" min="0" max="200" value="100" oninput="updateSlider('temperature')"><span class="setting-value" id="temperatureVal">1.00</span></div>
                     <div class="setting-row"><span class="setting-label">Top-P</span><input type="range" class="setting-slider" id="topP" min="0" max="100" value="100" oninput="updateSlider('topP')"><span class="setting-value" id="topPVal">1.00</span></div>
-                    <div class="setting-row"><span class="setting-label">Max Tokens</span><input type="number" class="setting-input-sm" id="maxTokens" value="8192" min="1" max="128000" onchange="saveSettings()"></div>
+                    <div class="setting-row"><span class="setting-label">Max Tokens</span><input type="number" class="setting-input-sm" id="maxTokens" value="128000" min="1" max="1024000" onchange="saveSettings()"></div>
                     <div class="setting-row"><span class="setting-label">频率惩罚</span><input type="range" class="setting-slider" id="freqPenalty" min="0" max="200" value="0" oninput="updateSlider('freqPenalty')"><span class="setting-value" id="freqPenaltyVal">0.00</span></div>
                     <div class="setting-row"><span class="setting-label">存在惩罚</span><input type="range" class="setting-slider" id="presPenalty" min="0" max="200" value="0" oninput="updateSlider('presPenalty')"><span class="setting-value" id="presPenaltyVal">0.00</span></div>
                 </div>
@@ -1008,7 +1045,7 @@
                         <div class="msg-content">
                             欢迎使用 DeepSeek 对话增强版！
                             <br><br>
-                            ✨ <strong>新增功能：</strong>
+                            <strong>✨ 新增功能：</strong>
                             <ul>
                                 <li><strong>智能文件修改系统</strong>：AI可直接生成文件差异，一键应用修改</li>
                                 <li><strong>Token优化引擎</strong>：自动压缩上下文，节省高达40%的token消耗</li>
@@ -1053,29 +1090,29 @@
                 <div class="input-hint" id="inputHint">Enter 发送 · Shift+Enter 换行 · Ctrl+K 搜索 · Ctrl+T 模板</div>
             </div>
         </div>
-    </main>
-</div>
+    </main> 
+</div> 
 
 <script>
 /* ================================================================
    Constants & State
-   ================================================================ */
-const API_URL = 'https://api.deepseek.com/chat/completions';
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-let chatHistory = [];
-let currentModel = 'deepseek-chat';
-let streaming = false;
-let abortController = null;
-let currentAiShellId = null;
-let currentFullText = '';
-let lastUserMessage = '';
-let currentEditingFile = null;
-let conversations = [{ id: 1, name: '新对话', history: [] }];
-let currentConversationIndex = 0;
-let dmp = new diff_match_patch();
+   ================================================================ */ 
+const API_URL = 'https://api.deepseek.com/chat/completions'; 
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); 
+let chatHistory = []; 
+let currentModel = 'deepseek-chat'; 
+let streaming = false; 
+let abortController = null; 
+let currentAiShellId = null; 
+let currentFullText = ''; 
+let lastUserMessage = ''; 
+let currentEditingFile = null; 
+let conversations = [{ id: 1, name: '新对话', history: [] }]; 
+let currentConversationIndex = 0; 
+let dmp = new diff_match_patch(); 
 
-/* File store: Map<path, {name, path, content, size, active, modified} */
-let fileStore = new Map();
+/* File store: Map<path, {name, path, content, size, active, modified} */ 
+let fileStore = new Map(); 
 const TEXT_EXTENSIONS = new Set([
     'txt','md','markdown','js','mjs','cjs','ts','tsx','jsx',
     'css','scss','sass','less','styl',
@@ -1087,10 +1124,10 @@ const TEXT_EXTENSIONS = new Set([
     'gitignore','gitattributes','prettierrc','eslintrc','babelrc','editorconfig',
     'dockerfile','makefile','rakefile','gemfile','procfile',
     'lock','map','log','patch','diff','mod','sum',
-    'gradle','cmake','mk',
-]);
+    'gradle','cmake','mk', 
+]); 
 
-/* 提示词模板 */
+/* 提示词模板 */ 
 const PROMPT_TEMPLATES = [
     { name: '代码审查', prompt: '请审查以下代码，找出潜在的bug、性能问题和安全漏洞，并提供改进建议：' },
     { name: '代码重构', prompt: '请重构以下代码，提高可读性、可维护性和性能，保持原有功能不变：' },
@@ -1101,32 +1138,63 @@ const PROMPT_TEMPLATES = [
     { name: '功能实现', prompt: '请实现以下功能，要求代码清晰、高效、可扩展：' },
     { name: '翻译', prompt: '请将以下内容翻译成中文，保持专业术语准确：' },
     { name: '写作助手', prompt: '请帮助我撰写以下内容，要求语言流畅、逻辑清晰：' },
-    { name: '头脑风暴', prompt: '请围绕以下主题进行头脑风暴，提供尽可能多的创意和想法：' },
-];
+    { name: '头脑风暴', prompt: '请围绕以下主题进行头脑风暴，提供尽可能多的创意和想法：' }, 
+]; 
+
+/* ================================================================
+   移动端键盘适配核心逻辑
+   ================================================================ */
+function initMobileKeyboard() {
+    if (!isMobile) return;
+    
+    // 使用visualViewport API精确计算键盘高度
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', () => {
+            const keyboardHeight = window.innerHeight - window.visualViewport.height;
+            document.documentElement.style.setProperty('--keyboard-height', `${keyboardHeight}px`);
+            
+            // 键盘弹出时自动滚动到输入框
+            if (keyboardHeight > 100) {
+                setTimeout(() => {
+                    document.getElementById('userInput').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        });
+    }
+    
+    // 修复iOS Safari输入框聚焦时的页面跳动
+    document.addEventListener('focusout', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
+        }
+    });
+}
 
 /* ================================================================
    Utilities
-   ================================================================ */
+   ================================================================ */ 
 function escHtml(t) {
     return String(t)
         .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-        .replace(/"/g,'&quot;');
-}
+        .replace(/"/g,'&quot;'); 
+} 
 function escAttr(t) {
-    return escHtml(t).replace(/'/g,'&#39;');
-}
+    return escHtml(t).replace(/'/g,'&#39;'); 
+} 
 function safeParse(text) {
     if (typeof text !== 'string') text = String(text || '');
-    return marked.parse(text);
-}
+    return marked.parse(text); 
+} 
 function formatTime() {
-    return new Date().toLocaleTimeString('zh-CN', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-}
+    return new Date().toLocaleTimeString('zh-CN', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' }); 
+} 
 function formatSize(bytes) {
     if (bytes < 1024) return bytes + ' B';
     if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-    return (bytes / 1024 / 1024).toFixed(1) + ' MB';
-}
+    return (bytes / 1024 / 1024).toFixed(1) + ' MB'; 
+} 
 function showToast(msg, type = 'default', duration = 2000) {
     const toast = document.getElementById('toast');
     toast.textContent = msg;
@@ -1135,12 +1203,12 @@ function showToast(msg, type = 'default', duration = 2000) {
     clearTimeout(toast._timer);
     toast._timer = setTimeout(() => {
         toast.className = 'toast';
-    }, duration);
-}
+    }, duration); 
+} 
 
 /* ================================================================
    Token优化引擎
-   ================================================================ */
+   ================================================================ */ 
 function optimizeTokenUsage(text) {
     const settings = getSettings();
     if (!settings.tokenOptimization) return text;
@@ -1168,8 +1236,8 @@ function optimizeTokenUsage(text) {
     
     optimized = uniqueLines.join('\n');
     
-    return optimized;
-}
+    return optimized; 
+} 
 
 function compressChatHistory(history) {
     const settings = getSettings();
@@ -1185,8 +1253,8 @@ function compressChatHistory(history) {
         return [{ role: 'system', content: summary }, ...recentHistory];
     }
     
-    return recentHistory;
-}
+    return recentHistory; 
+} 
 
 function buildIncrementalFileContext() {
     const settings = getSettings();
@@ -1231,14 +1299,15 @@ function buildIncrementalFileContext() {
     ctx += '```\n';
     ctx += '或者使用完整的文件内容格式。我会自动解析并提供一键应用修改的功能。';
     
-    return ctx;
-}
+    return ctx; 
+} 
 
 /* ================================================================
    Marked Configuration
    ================================================================ */
-marked.setOptions({ breaks: true, gfm: true });
+marked.setOptions({ breaks: true, gfm: true }); 
 const renderer = new marked.Renderer();
+
 renderer.code = function(codeArg, langArg) {
     let codeStr, langStr;
     if (typeof codeArg === 'object' && codeArg !== null) {
@@ -1268,19 +1337,20 @@ renderer.code = function(codeArg, langArg) {
     } catch(e) {}
     
     const id = 'cb' + Math.random().toString(36).slice(2,11);
-    return `<div class="code-block"><div class="code-header"><span class="code-lang">${escHtml(language)}</span><div class="code-actions"><button class="run-btn" onclick="runCode('${id}')">运行</button><button class="copy-btn" onclick="doCopy('${id}',this)">复制</button></div></div><pre><code id="${id}" class="hljs">${highlighted}</code></pre></div>`;
+    return `<div class="code-block"><div class="code-header"><span class="code-lang">${escHtml(language)}</span><div class="code-actions"><button class="run-btn" onclick="runCode('${id}')">运行</button><button class="copy-btn" onclick="doCopy('${id}',this)">复制</button></div></div><pre><code id="${id}" class="hljs">${highlighted}</code></pre></div>`; 
 };
-marked.use({ renderer });
+
+marked.use({ renderer }); 
 
 /* ================================================================
    文件编辑系统
-   ================================================================ */
+   ================================================================ */ 
 function createFileEditCard(filePath, content) {
     const id = 'edit' + Math.random().toString(36).slice(2,11);
     const fileExists = fileStore.has(filePath);
     const status = fileExists ? '修改现有文件' : '创建新文件';
     
-    return `
+    return  `
     <div class="file-edit-card" id="${id}">
         <div class="file-edit-card-header">
             <div class="file-edit-card-title">
@@ -1300,8 +1370,8 @@ function createFileEditCard(filePath, content) {
             <div class="file-edit-status">${status}</div>
         </div>
     </div>
-    `;
-}
+    ` ; 
+} 
 
 function previewFileEdit(filePath, cardId) {
     const card = document.getElementById(cardId);
@@ -1338,11 +1408,11 @@ function previewFileEdit(filePath, cardId) {
     
     // 添加返回按钮
     const actionsDiv = card.querySelector('.file-edit-card-actions');
-    actionsDiv.innerHTML = `
+    actionsDiv.innerHTML =  `
         <button class="small-btn" onclick="showOriginalCode('${escAttr(filePath)}', '${cardId}', '${escAttr(newContent.replace(/'/g, "\\'"))}')">显示原文</button>
         <button class="small-btn success" onclick="applyFileEditFromCard('${escAttr(filePath)}', '${cardId}')">应用修改</button>
-    `;
-}
+    ` ; 
+} 
 
 function showOriginalCode(filePath, cardId, content) {
     const card = document.getElementById(cardId);
@@ -1353,11 +1423,11 @@ function showOriginalCode(filePath, cardId, content) {
     
     // 恢复按钮
     const actionsDiv = card.querySelector('.file-edit-card-actions');
-    actionsDiv.innerHTML = `
+    actionsDiv.innerHTML =  `
         <button class="small-btn" onclick="previewFileEdit('${escAttr(filePath)}', '${cardId}')">预览差异</button>
         <button class="small-btn success" onclick="applyFileEditFromCard('${escAttr(filePath)}', '${cardId}')">应用修改</button>
-    `;
-}
+    ` ; 
+} 
 
 function applyFileEditFromCard(filePath, cardId) {
     const card = document.getElementById(cardId);
@@ -1405,8 +1475,8 @@ function applyFileEditFromCard(filePath, cardId) {
         btn.style.opacity = '0.5';
     });
     
-    showToast(`已应用修改: ${filePath}`, 'success');
-}
+    showToast(`已应用修改: ${filePath}`, 'success'); 
+} 
 
 function openFileEditor(path) {
     const file = fileStore.get(path);
@@ -1415,13 +1485,13 @@ function openFileEditor(path) {
     currentEditingFile = path;
     document.getElementById('editFileName').textContent = path;
     document.getElementById('fileEditor').value = file.content;
-    document.getElementById('fileEditPanel').classList.add('open');
-}
+    document.getElementById('fileEditPanel').classList.add('open'); 
+} 
 
 function closeFileEditPanel() {
     document.getElementById('fileEditPanel').classList.remove('open');
-    currentEditingFile = null;
-}
+    currentEditingFile = null; 
+} 
 
 function applyFileEdit() {
     if (!currentEditingFile) return;
@@ -1440,8 +1510,8 @@ function applyFileEdit() {
         
         showToast(`已保存: ${currentEditingFile}`, 'success');
         closeFileEditPanel();
-    }
-}
+    } 
+} 
 
 function previewDiff() {
     if (!currentEditingFile) return;
@@ -1479,8 +1549,8 @@ function previewDiff() {
         <button class="small-btn" onclick="showEditor()">返回编辑</button>
         <button class="small-btn success" onclick="applyFileEdit()">应用修改</button>
         <button class="small-btn" onclick="closeFileEditPanel()">关闭</button>
-    `;
-}
+    `; 
+} 
 
 function showEditor() {
     const contentDiv = document.querySelector('.file-edit-content');
@@ -1493,8 +1563,8 @@ function showEditor() {
         <button class="small-btn success" onclick="applyFileEdit()">应用修改</button>
         <button class="small-btn" onclick="previewDiff()">预览差异</button>
         <button class="small-btn" onclick="closeFileEditPanel()">关闭</button>
-    `;
-}
+    `; 
+} 
 
 function createNewFile() {
     const fileName = prompt('请输入文件名（包含路径）：');
@@ -1519,12 +1589,12 @@ function createNewFile() {
     saveFilesToStorage();
     
     // 打开编辑器
-    openFileEditor(fileName);
-}
+    openFileEditor(fileName); 
+} 
 
 /* ================================================================
    代码运行
-   ================================================================ */
+   ================================================================ */ 
 function runCode(id) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -1537,15 +1607,15 @@ function runCode(id) {
         showToast(`运行结果: ${result}`, 'success');
     } catch (e) {
         showToast(`运行错误: ${e.message}`, 'error');
-    }
-}
+    } 
+} 
 
 /* ================================================================
    会话管理
-   ================================================================ */
+   ================================================================ */ 
 function saveConversations() {
-    localStorage.setItem('ds_conversations', JSON.stringify(conversations));
-}
+    localStorage.setItem('ds_conversations', JSON.stringify(conversations)); 
+} 
 
 function loadConversations() {
     const saved = localStorage.getItem('ds_conversations');
@@ -1556,8 +1626,8 @@ function loadConversations() {
             conversations = [{ id: 1, name: '新对话', history: [] }];
         }
     }
-    renderConversationList();
-}
+    renderConversationList(); 
+} 
 
 function renderConversationList() {
     const list = document.getElementById('conversationList');
@@ -1567,7 +1637,7 @@ function renderConversationList() {
         const item = document.createElement('div');
         item.className = `conversation-item ${index === currentConversationIndex ? 'active' : ''}`;
         item.onclick = () => switchConversation(index);
-        item.innerHTML = `
+        item.innerHTML =  `
             <span class="conversation-name">${escHtml(conv.name)}</span>
             <div class="conversation-actions">
                 <button class="icon-btn" style="width:20px;height:20px;" onclick="event.stopPropagation(); renameConversation(${index})">
@@ -1585,10 +1655,10 @@ function renderConversationList() {
                     </svg>
                 </button>
             </div>
-        `;
+        ` ;
         list.appendChild(item);
-    });
-}
+    }); 
+} 
 
 function switchConversation(index) {
     if (index === currentConversationIndex) return;
@@ -1605,8 +1675,8 @@ function switchConversation(index) {
     renderSavedHistory();
     updateMemCount();
     
-    showToast(`已切换到: ${conversations[index].name}`);
-}
+    showToast(`已切换到: ${conversations[index].name}`); 
+} 
 
 function newConversation() {
     const name = prompt('请输入对话名称：', `对话 ${conversations.length + 1}`);
@@ -1639,8 +1709,8 @@ function newConversation() {
     </div>`;
     updateMemCount();
     
-    showToast('新对话已创建', 'success');
-}
+    showToast('新对话已创建', 'success'); 
+} 
 
 function renameConversation(index) {
     const newName = prompt('请输入新名称：', conversations[index].name);
@@ -1650,8 +1720,8 @@ function renameConversation(index) {
     saveConversations();
     renderConversationList();
     
-    showToast('已重命名', 'success');
-}
+    showToast('已重命名', 'success'); 
+} 
 
 function deleteConversation(index) {
     if (conversations.length === 1) {
@@ -1675,12 +1745,12 @@ function deleteConversation(index) {
     saveConversations();
     renderConversationList();
     
-    showToast('已删除', 'success');
-}
+    showToast('已删除', 'success'); 
+} 
 
 /* ================================================================
    提示词模板
-   ================================================================ */
+   ================================================================ */ 
 function renderTemplates() {
     const list = document.getElementById('templateList');
     list.innerHTML = '';
@@ -1689,24 +1759,24 @@ function renderTemplates() {
         const item = document.createElement('div');
         item.className = 'template-item';
         item.onclick = () => useTemplate(template.prompt);
-        item.innerHTML = `
+        item.innerHTML =  `
             <div class="template-name">${escHtml(template.name)}</div>
             <div class="template-preview">${escHtml(template.prompt.substring(0, 50))}...</div>
-        `;
+        ` ;
         list.appendChild(item);
-    });
-}
+    }); 
+} 
 
 function useTemplate(prompt) {
     document.getElementById('userInput').value = prompt;
     document.getElementById('userInput').focus();
     autoResize(document.getElementById('userInput'));
-    closeModal('templateModal');
-}
+    closeModal('templateModal'); 
+} 
 
 /* ================================================================
    搜索历史
-   ================================================================ */
+   ================================================================ */ 
 function searchHistory() {
     const query = document.getElementById('searchInput').value.toLowerCase().trim();
     const results = document.getElementById('searchResults');
@@ -1738,8 +1808,8 @@ function searchHistory() {
         html = '<div class="search-empty">未找到相关结果</div>';
     }
     
-    results.innerHTML = html;
-}
+    results.innerHTML = html; 
+} 
 
 function jumpToMessage(index) {
     // 滚动到对应消息
@@ -1751,24 +1821,26 @@ function jumpToMessage(index) {
             messages[index].style.background = 'transparent';
         }, 2000);
     }
-    closeModal('searchModal');
-}
+    closeModal('searchModal'); 
+} 
 
 /* ================================================================
    模态框
-   ================================================================ */
+   ================================================================ */ 
 function openModal(id) {
-    document.getElementById(id).classList.add('open');
-}
+    document.getElementById(id).classList.add('open'); 
+} 
 
 function closeModal(id) {
-    document.getElementById(id).classList.remove('open');
-}
+    document.getElementById(id).classList.remove('open'); 
+} 
 
 /* ================================================================
    Init
    ================================================================ */
 window.onload = () => {
+    initMobileKeyboard();
+    
     document.getElementById('apiKey').value = localStorage.getItem('ds_key') || '';
     const savedModel = localStorage.getItem('ds_model') || 'deepseek-chat';
     setModelById(savedModel);
@@ -1793,73 +1865,97 @@ window.onload = () => {
     
     updateMemCount();
     if (isMobile) document.getElementById('inputHint').textContent = '点击按钮发送消息';
-};
+    
+    // 无密钥时自动打开侧边栏并聚焦API输入框
+    const apiKey = localStorage.getItem('ds_key') || '';
+    if (!apiKey && isMobile) {
+        setTimeout(() => {
+            openSidebar();
+            document.getElementById('apiKey').focus();
+        }, 500);
+    }
+}; 
 
 /* ================================================================
    Sidebar
-   ================================================================ */
+   ================================================================ */ 
 function openSidebar() { 
-    document.getElementById('sidebar').classList.add('open'); 
-    document.getElementById('overlay').classList.add('show'); 
-}
+    // 修复时序问题：先显示侧边栏，再显示蒙版
+    document.getElementById('sidebar').classList.add('open');
+    setTimeout(() => {
+        document.getElementById('overlay').classList.add('show');
+    }, 50);
+} 
+
 function closeSidebar() { 
-    document.getElementById('sidebar').classList.remove('open'); 
-    document.getElementById('overlay').classList.remove('show'); 
-}
+    // 修复时序问题：先隐藏蒙版，再隐藏侧边栏
+    document.getElementById('overlay').classList.remove('show');
+    setTimeout(() => {
+        document.getElementById('sidebar').classList.remove('open');
+    }, 250);
+} 
+
 function selectModel(btn) {
     document.querySelectorAll('.model-item').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentModel = btn.dataset.model;
     localStorage.setItem('ds_model', currentModel);
     document.getElementById('topbarTitle').textContent = btn.querySelector('.model-item-name').textContent;
-    if (isMobile) closeSidebar();
-}
+    if (isMobile) closeSidebar(); 
+} 
+
 function setModelById(id) {
     const btn = document.querySelector(`.model-item[data-model="${id}"]`);
-    if (btn) selectModel(btn);
-}
+    if (btn) selectModel(btn); 
+} 
+
 function setTheme(name, btn) {
     document.querySelectorAll('.theme-item').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
     applyTheme(name);
     localStorage.setItem('ds_theme', name);
-    if (isMobile && btn) closeSidebar();
-}
+    if (isMobile && btn) closeSidebar(); 
+} 
+
 function applyTheme(name) {
     document.documentElement.setAttribute('data-theme', name === 'light' ? '' : name);
-    document.querySelectorAll('.theme-item').forEach(b => b.classList.toggle('active', b.dataset.theme === name));
-}
-/* Collapse panels */
+    document.querySelectorAll('.theme-item').forEach(b => b.classList.toggle('active', b.dataset.theme === name)); 
+} 
+
+/* Collapse panels */ 
 function togglePanel(id) {
     const toggle = document.getElementById(id + 'Toggle');
     const content = document.getElementById(id + 'Content');
     toggle.classList.toggle('open');
-    content.classList.toggle('open');
-}
+    content.classList.toggle('open'); 
+} 
 
 /* ================================================================
    Settings
-   ================================================================ */
-function saveKey() { localStorage.setItem('ds_key', document.getElementById('apiKey').value.trim()); }
+   ================================================================ */ 
+function saveKey() { localStorage.setItem('ds_key', document.getElementById('apiKey').value.trim()); } 
+
 function updateSlider(id) {
     const val = parseInt(document.getElementById(id).value) / 100;
     document.getElementById(id + 'Val').textContent = val.toFixed(2);
-    saveSettings();
-}
+    saveSettings(); 
+} 
+
 function saveSettings() {
     const s = {
         systemPrompt: document.getElementById('systemPrompt').value,
         temperature: parseInt(document.getElementById('temperature').value) / 100,
         topP: parseInt(document.getElementById('topP').value) / 100,
-        maxTokens: parseInt(document.getElementById('maxTokens').value) || 8192,
+        maxTokens: parseInt(document.getElementById('maxTokens').value) || 128000,
         freqPenalty: parseInt(document.getElementById('freqPenalty').value) / 100,
         presPenalty: parseInt(document.getElementById('presPenalty').value) / 100,
         tokenOptimization: document.getElementById('tokenOptimization').checked,
         autoCompress: document.getElementById('autoCompress').checked,
         incrementalUpdate: document.getElementById('incrementalUpdate').checked,
     };
-    localStorage.setItem('ds_settings', JSON.stringify(s));
-}
+    localStorage.setItem('ds_settings', JSON.stringify(s)); 
+} 
+
 function restoreSettings() {
     const saved = localStorage.getItem('ds_settings');
     if (!saved) return;
@@ -1870,7 +1966,7 @@ function restoreSettings() {
         document.getElementById('temperatureVal').textContent = (s.temperature ?? 1).toFixed(2);
         document.getElementById('topP').value = Math.round((s.topP ?? 1) * 100);
         document.getElementById('topPVal').textContent = (s.topP ?? 1).toFixed(2);
-        document.getElementById('maxTokens').value = s.maxTokens || 8192;
+        document.getElementById('maxTokens').value = s.maxTokens || 128000;
         document.getElementById('freqPenalty').value = Math.round((s.freqPenalty ?? 0) * 100);
         document.getElementById('freqPenaltyVal').textContent = (s.freqPenalty ?? 0).toFixed(2);
         document.getElementById('presPenalty').value = Math.round((s.presPenalty ?? 0) * 100);
@@ -1878,25 +1974,26 @@ function restoreSettings() {
         document.getElementById('tokenOptimization').checked = s.tokenOptimization !== false;
         document.getElementById('autoCompress').checked = s.autoCompress !== false;
         document.getElementById('incrementalUpdate').checked = s.incrementalUpdate !== false;
-    } catch(e) {}
-}
+    } catch(e) {} 
+} 
+
 function getSettings() {
     const saved = localStorage.getItem('ds_settings');
     if (!saved) return { 
-        temperature: 1.0, topP: 1.0, maxTokens: 8192, 
+        temperature: 1.0, topP: 1.0, maxTokens: 128000, 
         freqPenalty: 0, presPenalty: 0, systemPrompt: '',
         tokenOptimization: true, autoCompress: true, incrementalUpdate: true
     };
     try { return JSON.parse(saved); } catch(e) { return { 
-        temperature: 1.0, topP: 1.0, maxTokens: 8192, 
+        temperature: 1.0, topP: 1.0, maxTokens: 128000, 
         freqPenalty: 0, presPenalty: 0, systemPrompt: '',
         tokenOptimization: true, autoCompress: true, incrementalUpdate: true
-    }; }
-}
+    }; } 
+} 
 
 /* ================================================================
    File Manager
-   ================================================================ */
+   ================================================================ */ 
 function isTextFile(name) {
     const parts = name.split('.');
     if (parts.length === 1) {
@@ -1904,16 +2001,18 @@ function isTextFile(name) {
         return ['dockerfile','makefile','rakefile','gemfile','procfile','readme','license','changelog','authors','contributing','vagrantfile','brewfile'].includes(bare);
     }
     const ext = parts.pop().toLowerCase();
-    return TEXT_EXTENSIONS.has(ext);
-}
+    return TEXT_EXTENSIONS.has(ext); 
+} 
+
 async function readAsText(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = e => resolve(e.target.result);
         reader.onerror = () => reject(new Error('read failed'));
         reader.readAsText(file, 'UTF-8');
-    });
-}
+    }); 
+} 
+
 async function handleFileInput(input) {
     const files = Array.from(input.files);
     input.value = '';
@@ -1944,8 +2043,9 @@ async function handleFileInput(input) {
     if (added > 0) parts.push(`新增 ${added} 个文件`);
     if (replaced > 0) parts.push(`更新 ${replaced} 个文件`);
     if (skipped > 0) parts.push(`跳过 ${skipped} 个`);
-    showToast(parts.join(' · ') || '无变化');
-}
+    showToast(parts.join(' · ') || '无变化'); 
+} 
+
 function buildTree(paths) {
     const root = {};
     for (const path of paths) {
@@ -1957,8 +2057,9 @@ function buildTree(paths) {
         }
         node[parts[parts.length - 1]] = { __file: true, __path: path };
     }
-    return root;
-}
+    return root; 
+} 
+
 function renderTreeNode(node, depth) {
     let html = '';
     const indent = depth * 16;
@@ -1988,8 +2089,9 @@ function renderTreeNode(node, depth) {
             html += renderTreeNode(val.__children, depth + 1);
         }
     }
-    return html;
-}
+    return html; 
+} 
+
 function renderFileTree() {
     const treeEl = document.getElementById('fileTree');
     if (fileStore.size === 0) {
@@ -2001,8 +2103,9 @@ function renderFileTree() {
     }
     const sortedPaths = Array.from(fileStore.keys()).sort();
     const tree = buildTree(sortedPaths);
-    treeEl.innerHTML = renderTreeNode(tree, 0);
-}
+    treeEl.innerHTML = renderTreeNode(tree, 0); 
+} 
+
 function toggleFileActive(path) {
     const f = fileStore.get(path);
     if (!f) return;
@@ -2010,109 +2113,242 @@ function toggleFileActive(path) {
     fileStore.set(path, f);
     renderFileTree();
     updateFileStats();
-    saveFilesToStorage();
-}
+    saveFilesToStorage(); 
+} 
+
 function deleteFile(path) {
     fileStore.delete(path);
     renderFileTree();
     updateFileStats();
     saveFilesToStorage();
-    showToast('已删除文件');
+    showToast('已删除文件', 'success');
 }
+
+function updateFileStats() {
+    const total = fileStore.size;
+    const active = Array.from(fileStore.values()).filter(f => f.active).length;
+    const totalSize = Array.from(fileStore.values()).reduce((sum, f) => sum + f.size, 0);
+    
+    const statsEl = document.getElementById('fileStats');
+    if (total === 0) {
+        statsEl.textContent = '';
+        document.getElementById('fileIndicator').classList.remove('visible');
+    } else {
+        statsEl.textContent = `共 ${total} 个文件 · 已选中 ${active} 个 · 总计 ${formatSize(totalSize)}`;
+        if (active > 0) {
+            document.getElementById('fileIndicatorText').textContent = `已附加 ${active} 个文件`;
+            document.getElementById('fileIndicator').classList.add('visible');
+        } else {
+            document.getElementById('fileIndicator').classList.remove('visible');
+        }
+    }
+}
+
+function saveFilesToStorage() {
+    const arr = Array.from(fileStore.values());
+    localStorage.setItem('ds_files', JSON.stringify(arr));
+}
+
+function goToFilePanel() {
+    openSidebar();
+    setTimeout(() => {
+        document.getElementById('fileContent').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+}
+
 function clearAllFiles() {
-    if (fileStore.size === 0) { showToast('暂无文件'); return; }
-    if (!confirm(`确定清除全部 ${fileStore.size} 个文件？`)) return;
+    if (!confirm('确定要清除所有文件吗？')) return;
     fileStore.clear();
     renderFileTree();
     updateFileStats();
     saveFilesToStorage();
     showToast('已清除所有文件', 'success');
 }
-function updateFileStats() {
-    const allFiles = Array.from(fileStore.values());
-    const activeFiles = allFiles.filter(f => f.active);
-    const totalChars = activeFiles.reduce((s, f) => s + f.content.length, 0);
-    const statsEl = document.getElementById('fileStats');
-    
+
+/* ================================================================
+   Input & Messages
+   ================================================================ */
+function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 160) + 'px';
+}
+
+function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+    } else if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        openModal('searchModal');
+        document.getElementById('searchInput').focus();
+    } else if (e.ctrlKey && e.key === 't') {
+        e.preventDefault();
+        openModal('templateModal');
+    }
+}
+
+async function sendMessage() {
+    const input = document.getElementById('userInput');
+    const text = input.value.trim();
+    if (!text || streaming) return;
+
+    const apiKey = localStorage.getItem('ds_key') || '';
+    if (!apiKey) {
+        showToast('请先填写 API 密钥', 'error');
+        openSidebar();
+        document.getElementById('apiKey').focus();
+        return;
+    }
+
+    lastUserMessage = text;
+    input.value = '';
+    autoResize(input);
+
+    // 添加用户消息
+    const userMsg = { role: 'user', content: text };
+    chatHistory.push(userMsg);
+    renderMessage(userMsg);
+
+    // 显示加载状态
+    const loadingId = 'loading-' + Math.random().toString(36).slice(2, 11);
+    const loadingMsg = {
+        role: 'assistant',
+        content: '',
+        _loading: true,
+        _id: loadingId
+    };
+    chatHistory.push(loadingMsg);
+    renderMessage(loadingMsg);
+
+    // 准备请求
     const settings = getSettings();
-    let savedChars = 0;
-    if (settings.tokenOptimization) {
-        savedChars = Math.round(totalChars * 0.3); // 估算节省30%
-    }
+    const fileContext = buildIncrementalFileContext();
     
-    if (allFiles.length === 0) {
-        statsEl.textContent = '';
-        statsEl.className = 'file-stats';
-    } else {
-        const warn = totalChars > 100000;
-        const optimized = settings.tokenOptimization;
-        statsEl.textContent = `${activeFiles.length}/${allFiles.length} 个文件已启用 · ${formatSize(totalChars)}${optimized ? ` · 已节省 ~${formatSize(savedChars)}` : ''}`;
-        statsEl.className = 'file-stats' + (warn ? ' warn' : '') + (optimized ? ' optimized' : '');
+    let messages = [];
+    if (settings.systemPrompt || fileContext) {
+        let systemContent = '';
+        if (settings.systemPrompt) systemContent += settings.systemPrompt + '\n\n';
+        if (fileContext) systemContent += fileContext;
+        messages.push({ role: 'system', content: systemContent.trim() });
     }
-    
-    const indicator = document.getElementById('fileIndicator');
-    const indicatorText = document.getElementById('fileIndicatorText');
-    if (activeFiles.length > 0) {
-        indicator.classList.add('visible');
-        indicatorText.textContent = `已附加 ${activeFiles.length} 个文件 (${formatSize(totalChars)})${settings.tokenOptimization ? ' · 已优化' : ''}`;
-    } else {
-        indicator.classList.remove('visible');
+
+    // 添加历史消息（优化token）
+    const historyToSend = compressChatHistory(chatHistory.slice(0, -1));
+    for (const msg of historyToSend) {
+        if (msg.role === 'user' || msg.role === 'assistant') {
+            messages.push({
+                role: msg.role,
+                content: optimizeTokenUsage(msg.content)
+            });
+        }
     }
-    
-    if (!isMobile) {
-        document.getElementById('inputHint').textContent = activeFiles.length > 0
-            ? `Enter 发送 · Shift+Enter 换行 · 已附加 ${activeFiles.length} 个文件 · Ctrl+K 搜索 · Ctrl+T 模板`
-            : 'Enter 发送 · Shift+Enter 换行 · Ctrl+K 搜索 · Ctrl+T 模板';
+
+    streaming = true;
+    abortController = new AbortController();
+    currentAiShellId = loadingId;
+    currentFullText = '';
+
+    // 更新按钮状态
+    document.getElementById('sendBtn').disabled = true;
+    document.getElementById('stopBtn').classList.add('visible');
+    document.getElementById('mobileStopBtn').style.display = 'flex';
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: currentModel,
+                messages: messages,
+                temperature: settings.temperature,
+                top_p: settings.topP,
+                max_tokens: settings.maxTokens,
+                frequency_penalty: settings.freqPenalty,
+                presence_penalty: settings.presPenalty,
+                stream: true
+            }),
+            signal: abortController.signal
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error?.message || `请求失败: ${response.status}`);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const chunk = decoder.decode(value);
+            const lines = chunk.split('\n').filter(line => line.trim() !== '');
+
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    const data = line.slice(6);
+                    if (data === '[DONE]') continue;
+
+                    try {
+                        const json = JSON.parse(data);
+                        const content = json.choices?.[0]?.delta?.content || '';
+                        if (content) {
+                            currentFullText += content;
+                            streamMessage(currentAiShellId, currentFullText);
+                        }
+                    } catch (e) {
+                        // 忽略解析错误
+                    }
+                }
+            }
+        }
+
+        // 完成
+        chatHistory[chatHistory.length - 1] = {
+            role: 'assistant',
+            content: currentFullText
+        };
+
+    } catch (e) {
+        if (e.name === 'AbortError') {
+            chatHistory[chatHistory.length - 1] = {
+                role: 'assistant',
+                content: currentFullText + '\n\n[生成已停止]'
+            };
+        } else {
+            chatHistory[chatHistory.length - 1] = {
+                role: 'assistant',
+                content: `❌ 错误: ${e.message}`
+            };
+            showToast(e.message, 'error');
+        }
+    } finally {
+        streaming = false;
+        abortController = null;
+        currentAiShellId = null;
+
+        // 恢复按钮状态
+        document.getElementById('sendBtn').disabled = false;
+        document.getElementById('stopBtn').classList.remove('visible');
+        document.getElementById('mobileStopBtn').style.display = 'none';
+
+        // 保存对话
+        conversations[currentConversationIndex].history = [...chatHistory];
+        saveConversations();
+        updateMemCount();
     }
-}
-function saveFilesToStorage() {
-    const arr = Array.from(fileStore.values()).map(f => ({ 
-        name: f.name, path: f.path, content: f.content, 
-        size: f.size, active: f.active, modified: f.modified 
-    }));
-    try { localStorage.setItem('ds_files', JSON.stringify(arr)); } catch(e) {}
-}
-function goToFilePanel() {
-    openSidebar();
-    const content = document.getElementById('fileContent');
-    const toggle = document.getElementById('fileToggle');
-    if (!content.classList.contains('open')) {
-        content.classList.add('open');
-        toggle.classList.add('open');
-    }
-    setTimeout(() => { content.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
 }
 
-/* ================================================================
-   Memory / History
-   ================================================================ */
-function saveHistory() { 
-    conversations[currentConversationIndex].history = [...chatHistory];
-    localStorage.setItem('ds_history', JSON.stringify(chatHistory)); 
-    saveConversations();
-    updateMemCount(); 
-}
-function updateMemCount() {
-    const turns = Math.floor(chatHistory.length / 2);
-    document.getElementById('memCount').textContent = turns > 0 ? `已记忆 ${turns} 轮对话` : '暂无记忆';
-}
-function exportMemory() {
-    if (chatHistory.length === 0) { showToast('暂无对话记忆可导出'); return; }
-    const lines = chatHistory.map(m => `【${m.role === 'user' ? '你' : 'DeepSeek'}】\n${m.content}`).join('\n\n---\n\n');
-    const blob = new Blob([lines], { type: 'text/plain;charset=utf-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `deepseek-${new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')}.txt`;
-    a.click();
-    showToast('导出成功', 'success');
-}
-
-/* ================================================================
-   Render helpers
-   ================================================================ */
 function renderSavedHistory() {
+    const messagesEl = document.getElementById('messages');
+    messagesEl.innerHTML = '';
+
     if (chatHistory.length === 0) {
-        document.getElementById('messages').innerHTML = `<div class="message-wrap" id="welcomeWrap">
+        messagesEl.innerHTML = `<div class="message-wrap" id="welcomeWrap">
             <div class="message ai">
                 <div class="msg-avatar ai-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg></div>
                 <div class="msg-body">
@@ -2123,427 +2359,131 @@ function renderSavedHistory() {
         </div>`;
         return;
     }
-    
-    const msgs = document.getElementById('messages');
-    msgs.innerHTML = '';
-    chatHistory.forEach(m => {
-        if (m.role === 'user') renderUserMsg(m.content, false, null);
-        else if (m.role === 'assistant') renderAiMsgStatic(m.content, false, null, null);
+
+    for (const msg of chatHistory) {
+        renderMessage(msg);
+    }
+}
+
+function renderMessage(msg) {
+    const messagesEl = document.getElementById('messages');
+    const wrap = document.createElement('div');
+    wrap.className = 'message-wrap';
+    if (msg._id) wrap.id = msg._id;
+    if (msg._loading) wrap.dataset.role = 'assistant-streaming';
+
+    const isUser = msg.role === 'user';
+    const avatarClass = isUser ? 'user-avatar' : 'ai-avatar';
+    const roleText = isUser ? '你' : 'DeepSeek';
+
+    let contentHtml = '';
+    if (msg._loading) {
+        contentHtml = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+    } else {
+        contentHtml = safeParse(msg.content);
+    }
+
+    wrap.innerHTML = `
+        <div class="message ${isUser ? 'user' : 'ai'}">
+            <div class="msg-avatar ${avatarClass}">
+                ${isUser ? '' : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>'}
+            </div>
+            <div class="msg-body">
+                <div class="msg-meta">
+                    <div class="msg-role">${roleText}</div>
+                    <div class="msg-time">${formatTime()}</div>
+                </div>
+                <div class="msg-content">${contentHtml}</div>
+                ${!isUser && !msg._loading ? `
+                <div class="msg-actions">
+                    <button class="msg-action-btn copy-btn" onclick="copyMessage(this)">复制</button>
+                    <button class="msg-action-btn retry-btn" onclick="retryMessage()">重新生成</button>
+                    <button class="msg-action-btn edit-btn" onclick="editMessage()">编辑</button>
+                </div>
+                ` : ''}
+            </div>
+        </div>
+    `;
+
+    messagesEl.appendChild(wrap);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function streamMessage(id, text) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const contentEl = el.querySelector('.msg-content');
+    if (contentEl) {
+        contentEl.innerHTML = safeParse(text) + '<span class="cursor"></span>';
+        el.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+}
+
+function stopGeneration() {
+    if (abortController) {
+        abortController.abort();
+    }
+}
+
+function copyMessage(btn) {
+    const content = btn.closest('.msg-body').querySelector('.msg-content').innerText;
+    navigator.clipboard.writeText(content).then(() => {
+        btn.textContent = '已复制';
+        setTimeout(() => {
+            btn.textContent = '复制';
+        }, 2000);
     });
 }
-function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 180) + 'px'; }
-function handleKey(e) { 
-    // Ctrl+K 搜索
-    if (e.ctrlKey && e.key === 'k') {
-        e.preventDefault();
-        openModal('searchModal');
-        document.getElementById('searchInput').focus();
-        return;
-    }
-    
-    // Ctrl+T 模板
-    if (e.ctrlKey && e.key === 't') {
-        e.preventDefault();
-        openModal('templateModal');
-        return;
-    }
-    
-    if (!isMobile && e.key === 'Enter' && !e.shiftKey) { 
-        e.preventDefault(); 
-        sendMessage(); 
-    } 
+
+function retryMessage() {
+    // 删除最后一条AI回复
+    chatHistory.pop();
+    // 重新发送
+    sendMessage();
 }
-function scrollBottom() { requestAnimationFrame(() => { document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight; }); }
+
+function editMessage() {
+    // 删除最后两条消息（用户和AI）
+    chatHistory.pop();
+    const lastUserMsg = chatHistory.pop();
+    if (lastUserMsg) {
+        document.getElementById('userInput').value = lastUserMsg.content;
+        autoResize(document.getElementById('userInput'));
+        document.getElementById('userInput').focus();
+    }
+    // 重新渲染
+    renderSavedHistory();
+}
+
 function doCopy(id, btn) {
     const el = document.getElementById(id);
     if (!el) return;
-    const text = el.innerText || el.textContent || '';
-    navigator.clipboard.writeText(text).then(() => {
-        btn.textContent = '已复制'; btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 1800);
-    }).catch(() => {
-        const ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
-        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-        btn.textContent = '已复制'; btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 1800);
-    });
-}
-function renderUserMsg(text, animate = true, time = null) {
-    const wrap = document.createElement('div');
-    wrap.className = 'message-wrap';
-    wrap.setAttribute('data-role', 'user');
-    const msgDiv = document.createElement('div');
-    msgDiv.className = 'message user';
-    if (!animate) { msgDiv.style.cssText = 'animation:none;opacity:1;transform:none'; }
-    const timeHtml = time ? `<span class="msg-time">${escHtml(time)}</span>` : '';
-    msgDiv.innerHTML = `<div class="msg-avatar user-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-    <div class="msg-body">
-        <div class="msg-meta"><div class="msg-role">你</div>${timeHtml}</div>
-        <div class="msg-content">${escHtml(text)}</div>
-    </div>`;
-    wrap.appendChild(msgDiv);
-    document.getElementById('messages').appendChild(wrap);
-    scrollBottom();
-}
-function renderAiMsgStatic(text, animate = true, time = null, usage = null) {
-    const wrap = document.createElement('div');
-    wrap.className = 'message-wrap';
-    wrap.setAttribute('data-role', 'assistant');
-    const msgDiv = document.createElement('div');
-    msgDiv.className = 'message ai';
-    if (!animate) { msgDiv.style.cssText = 'animation:none;opacity:1;transform:none'; }
-    const timeHtml = time ? `<span class="msg-time">${escHtml(time)}</span>` : '';
-    const tokenHtml = usage ? buildTokenHtml(usage) : '';
-    msgDiv.innerHTML = `<div class="msg-avatar ai-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg></div>
-    <div class="msg-body">
-        <div class="msg-meta"><div class="msg-role">DeepSeek</div>${timeHtml}</div>
-        <div class="msg-content">${safeParse(text)}</div>
-        ${tokenHtml}
-        <div class="msg-actions">
-            <button class="msg-action-btn retry-btn" onclick="retryFromHere(this)">重新生成</button>
-            <button class="msg-action-btn" onclick="copyMessage(this)">复制回复</button>
-            <button class="msg-action-btn edit-btn" onclick="editMessage(this)">编辑</button>
-        </div>
-    </div>`;
-    wrap.appendChild(msgDiv);
-    document.getElementById('messages').appendChild(wrap);
-    scrollBottom();
-}
-function buildTokenHtml(usage) {
-    if (!usage || (!usage.prompt_tokens && !usage.total_tokens)) return '';
-    
-    const settings = getSettings();
-    let savedTokens = 0;
-    if (settings.tokenOptimization) {
-        savedTokens = Math.round(usage.prompt_tokens * 0.3); // 估算节省30%
-    }
-    
-    return `<div class="token-info">
-        <span>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20V4M4 12l8-8 8 8"/></svg>
-            输入 ${usage.prompt_tokens || 0}
-        </span>
-        <span>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v16M4 12l8 8 8-8"/></svg>
-            输出 ${usage.completion_tokens || 0}
-        </span>
-        <span>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            合计 ${usage.total_tokens || 0} tokens
-        </span>
-        ${savedTokens > 0 ? `<span class="token-saved">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
-            已节省 ~${savedTokens} tokens
-        </span>` : ''}
-    </div>`;
-}
-function appendAiShell(time) {
-    const wrap = document.createElement('div');
-    wrap.className = 'message-wrap';
-    wrap.setAttribute('data-role', 'assistant-streaming');
-    const id = 'ai-' + Date.now();
-    const timeHtml = time ? `<span class="msg-time">${escHtml(time)}</span>` : '';
-    wrap.innerHTML = `<div class="message ai">
-        <div class="msg-avatar ai-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg></div>
-        <div class="msg-body">
-            <div class="msg-meta"><div class="msg-role">DeepSeek</div>${timeHtml}</div>
-            <div class="msg-content" id="${id}"><div class="typing-dots"><span></span><span></span><span></span></div></div>
-        </div>
-    </div>`;
-    document.getElementById('messages').appendChild(wrap);
-    scrollBottom();
-    return id;
-}
-function stopGeneration() {
-    if (!streaming || !abortController) return;
-    abortController.abort();
-    showToast('已停止生成');
-}
-
-/* ================================================================
-   Build messages array for API call
-   ================================================================ */
-function buildMessages(settings) {
-    const fileCtx = buildIncrementalFileContext();
-    const sysParts = [settings.systemPrompt?.trim(), fileCtx].filter(Boolean);
-    const messages = [];
-    
-    if (sysParts.length > 0) {
-        let systemContent = sysParts.join('\n\n');
-        if (settings.tokenOptimization) {
-            systemContent = optimizeTokenUsage(systemContent);
-        }
-        messages.push({ role: 'system', content: systemContent });
-    }
-    
-    // 压缩历史对话
-    const compressedHistory = compressChatHistory(chatHistory);
-    
-    // 优化每条消息
-    if (settings.tokenOptimization) {
-        for (const msg of compressedHistory) {
-            messages.push({
-                role: msg.role,
-                content: optimizeTokenUsage(msg.content)
-            });
-        }
-    } else {
-        messages.push(...compressedHistory);
-    }
-    
-    return messages;
-}
-
-/* ================================================================
-   Send Message
-   ================================================================ */
-async function sendMessage() {
-    if (streaming) return;
-    const input = document.getElementById('userInput');
-    const text = input.value.trim();
-    const key = document.getElementById('apiKey').value.trim();
-    if (!text) return;
-    if (!key) { openSidebar(); document.getElementById('apiKey').focus(); showToast('请先填写 API 密钥'); return; }
-    const btn = document.getElementById('sendBtn');
-    const stopBtn = document.getElementById('stopBtn');
-    const mobileStopBtn = document.getElementById('mobileStopBtn');
-    streaming = true;
-    lastUserMessage = text;
-    input.value = ''; input.style.height = 'auto';
-    btn.disabled = true;
-    stopBtn.classList.add('visible');
-    if (isMobile) mobileStopBtn.style.display = 'flex';
-    const welcomeWrap = document.getElementById('welcomeWrap');
-    if (welcomeWrap) welcomeWrap.remove();
-    const userTime = formatTime();
-    renderUserMsg(text, true, userTime);
-    chatHistory.push({ role: 'user', content: text });
-    if (chatHistory.length > 50) chatHistory = chatHistory.slice(-50);
-    const aiTime = formatTime();
-    currentAiShellId = appendAiShell(aiTime);
-    const contentEl = document.getElementById(currentAiShellId);
-    currentFullText = '';
-    let capturedUsage = null;
-    const settings = getSettings();
-    abortController = new AbortController();
-    try {
-        const body = {
-            model: currentModel,
-            messages: buildMessages(settings),
-            stream: true,
-            stream_options: { include_usage: true },
-            temperature: settings.temperature,
-            top_p: settings.topP,
-            max_tokens: settings.maxTokens,
-            frequency_penalty: settings.freqPenalty,
-            presence_penalty: settings.presPenalty,
-        };
-        const res = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-            body: JSON.stringify(body),
-            signal: abortController.signal,
-        });
-        if (!res.ok) { const err = await res.json().catch(()=>({})); throw new Error(err.error?.message || `HTTP ${res.status}`); }
-        const reader = res.body.getReader();
-        const decoder = new TextDecoder();
-        contentEl.innerHTML = '<span class="cursor"></span>';
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            const raw = decoder.decode(value, { stream: true });
-            for (const line of raw.split('\n')) {
-                if (!line.startsWith('data: ')) continue;
-                const data = line.slice(6).trim();
-                if (data === '[DONE]') continue;
-                try {
-                    const json = JSON.parse(data);
-                    if (json.usage) capturedUsage = json.usage;
-                    const delta = json.choices?.[0]?.delta?.content || '';
-                    if (delta) {
-                        currentFullText += delta;
-                        contentEl.innerHTML = safeParse(currentFullText) + '<span class="cursor"></span>';
-                        scrollBottom();
-                    }
-                } catch(e) {}
-            }
-        }
-        contentEl.innerHTML = safeParse(currentFullText);
-        chatHistory.push({ role: 'assistant', content: currentFullText });
-        saveHistory();
-        finalizeStreamingMessage(capturedUsage);
-    } catch(err) {
-        if (err.name === 'AbortError') {
-            if (currentFullText) {
-                contentEl.innerHTML = safeParse(currentFullText);
-                chatHistory.push({ role: 'assistant', content: currentFullText });
-                saveHistory();
-                finalizeStreamingMessage(capturedUsage);
-            } else {
-                const shell = document.querySelector('[data-role="assistant-streaming"]');
-                if (shell) shell.remove();
-            }
-        } else {
-            contentEl.innerHTML = safeParse(`**请求失败：** ${escHtml(err.message || '未知错误')}\n\n请检查 API 密钥或网络连接。`);
-            chatHistory.pop();
-        }
-    } finally {
-        streaming = false; abortController = null; currentAiShellId = null; currentFullText = '';
-        btn.disabled = false; stopBtn.classList.remove('visible');
-        if (isMobile) mobileStopBtn.style.display = 'none';
-        if (!isMobile) input.focus();
-        scrollBottom();
-    }
-}
-function finalizeStreamingMessage(usage) {
-    const wrap = document.querySelector('[data-role="assistant-streaming"]');
-    if (!wrap) return;
-    wrap.setAttribute('data-role', 'assistant');
-    const msgBody = wrap.querySelector('.msg-body');
-    if (!msgBody) return;
-    if (usage) {
-        const tokenDiv = document.createElement('div');
-        tokenDiv.innerHTML = buildTokenHtml(usage);
-        if (tokenDiv.firstChild) msgBody.appendChild(tokenDiv.firstChild);
-    }
-    if (!msgBody.querySelector('.msg-actions')) {
-        const actions = document.createElement('div');
-        actions.className = 'msg-actions';
-        actions.innerHTML = '<button class="msg-action-btn retry-btn" onclick="retryFromHere(this)">重新生成</button><button class="msg-action-btn" onclick="copyMessage(this)">复制回复</button><button class="msg-action-btn edit-btn" onclick="editMessage(this)">编辑</button>';
-        msgBody.appendChild(actions);
-    }
-}
-
-/* ================================================================
-   Retry / Regenerate / Edit
-   ================================================================ */
-async function retryFromHere(btn) {
-    if (streaming) return;
-    const wrap = btn.closest('.message-wrap');
-    if (!wrap) return;
-    const allWraps = Array.from(document.getElementById('messages').querySelectorAll('.message-wrap'));
-    const idx = allWraps.indexOf(wrap);
-    if (idx < 0) return;
-    const toRemove = allWraps.slice(idx);
-    let removedCount = 0;
-    toRemove.forEach(w => {
-        const role = w.getAttribute('data-role');
-        if (role === 'user' || role === 'assistant' || role === 'assistant-streaming') removedCount++;
-        w.remove();
-    });
-    chatHistory = chatHistory.slice(0, Math.max(0, chatHistory.length - removedCount));
-    if (lastUserMessage) {
-        chatHistory.push({ role: 'user', content: lastUserMessage });
-        renderUserMsg(lastUserMessage, false, null);
-        saveHistory();
-        await triggerRegenerate();
-    }
-}
-async function triggerRegenerate() {
-    if (streaming) return;
-    const key = document.getElementById('apiKey').value.trim();
-    if (!key) { openSidebar(); document.getElementById('apiKey').focus(); showToast('请先填写 API 密钥'); return; }
-    streaming = true;
-    document.getElementById('sendBtn').disabled = true;
-    document.getElementById('stopBtn').classList.add('visible');
-    if (isMobile) document.getElementById('mobileStopBtn').style.display = 'flex';
-    const aiTime = formatTime();
-    currentAiShellId = appendAiShell(aiTime);
-    const contentEl = document.getElementById(currentAiShellId);
-    currentFullText = '';
-    let capturedUsage = null;
-    const settings = getSettings();
-    abortController = new AbortController();
-    try {
-        const body = {
-            model: currentModel,
-            messages: buildMessages(settings),
-            stream: true,
-            stream_options: { include_usage: true },
-            temperature: settings.temperature,
-            top_p: settings.topP,
-            max_tokens: settings.maxTokens,
-            frequency_penalty: settings.freqPenalty,
-            presence_penalty: settings.presPenalty,
-        };
-        const res = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-            body: JSON.stringify(body),
-            signal: abortController.signal,
-        });
-        if (!res.ok) { const err = await res.json().catch(()=>({})); throw new Error(err.error?.message || `HTTP ${res.status}`); }
-        const reader = res.body.getReader();
-        const decoder = new TextDecoder();
-        contentEl.innerHTML = '<span class="cursor"></span>';
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            const raw = decoder.decode(value, { stream: true });
-            for (const line of raw.split('\n')) {
-                if (!line.startsWith('data: ')) continue;
-                const data = line.slice(6).trim();
-                if (data === '[DONE]') continue;
-                try {
-                    const json = JSON.parse(data);
-                    if (json.usage) capturedUsage = json.usage;
-                    const delta = json.choices?.[0]?.delta?.content || '';
-                    if (delta) {
-                        currentFullText += delta;
-                        contentEl.innerHTML = safeParse(currentFullText) + '<span class="cursor"></span>';
-                        scrollBottom();
-                    }
-                } catch(e) {}
-            }
-        }
-        contentEl.innerHTML = safeParse(currentFullText);
-        chatHistory.push({ role: 'assistant', content: currentFullText });
-        saveHistory();
-        finalizeStreamingMessage(capturedUsage);
-    } catch(err) {
-        if (err.name === 'AbortError') {
-            if (currentFullText) {
-                contentEl.innerHTML = safeParse(currentFullText);
-                chatHistory.push({ role: 'assistant', content: currentFullText });
-                saveHistory();
-                finalizeStreamingMessage(capturedUsage);
-            } else {
-                const shell = document.querySelector('[data-role="assistant-streaming"]');
-                if (shell) shell.remove();
-            }
-        } else {
-            contentEl.innerHTML = safeParse(`**请求失败：** ${escHtml(err.message || '未知错误')}`);
-        }
-    } finally {
-        streaming = false; abortController = null; currentAiShellId = null; currentFullText = '';
-        document.getElementById('sendBtn').disabled = false;
-        document.getElementById('stopBtn').classList.remove('visible');
-        if (isMobile) document.getElementById('mobileStopBtn').style.display = 'none';
-        if (!isMobile) document.getElementById('userInput').focus();
-        scrollBottom();
-    }
-}
-function copyMessage(btn) {
-    const msgContent = btn.closest('.msg-body')?.querySelector('.msg-content');
-    if (!msgContent) return;
-    const text = msgContent.innerText || msgContent.textContent || '';
-    navigator.clipboard.writeText(text).then(() => {
+    navigator.clipboard.writeText(el.innerText).then(() => {
         btn.textContent = '已复制';
-        setTimeout(() => { btn.textContent = '复制回复'; }, 1500);
-    }).catch(() => {
-        const ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
-        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-        btn.textContent = '已复制';
-        setTimeout(() => { btn.textContent = '复制回复'; }, 1500);
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = '复制';
+            btn.classList.remove('copied');
+        }, 2000);
     });
 }
-function editMessage(btn) {
-    const msgContent = btn.closest('.msg-body')?.querySelector('.msg-content');
-    if (!msgContent) return;
-    const text = msgContent.innerText || msgContent.textContent || '';
-    document.getElementById('userInput').value = text;
-    document.getElementById('userInput').focus();
-    autoResize(document.getElementById('userInput'));
+
+function exportMemory() {
+    const data = JSON.stringify(conversations, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `deepseek-conversations-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('对话已导出', 'success');
+}
+
+function updateMemCount() {
+    const count = chatHistory.filter(m => m.role === 'user' || m.role === 'assistant').length;
+    document.getElementById('memCount').textContent = `当前对话: ${count} 条消息`;
 }
 </script>
 </body>
