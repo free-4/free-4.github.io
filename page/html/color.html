@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配色工坊 · SHUOWEB</title>
+
+    <!-- ============ 引用两个通用 JS ============ -->
+    <script src="https://shuoweb.com/common.js"></script>
+    <script src="https://shuoweb.com/icon.js"></script>
+
+    <!-- ============ 配色工具专属样式（在 common.js 基础上增强） ============ -->
+    <style>
+        :root {
+            --tool-radius: 18px;
+            --tool-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ── 内容容器微调 ── */
+        #content {
+            padding-bottom: 80px;
+        }
+
+        /* ── 工具标题区 ── */
+        .tool-header {
+            text-align: center;
+            padding: 30px 20px 10px;
+        }
+        .tool-header h2 {
+            font-size: clamp(22px, 4vw, 30px);
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin: 0 0 6px;
+            color: var(--text-main);
+        }
+        .tool-header .subtitle {
+            font-size: 14px;
+            color: var(--text-sub);
+            letter-spacing: 0.5px;
+        }
+
+        /* ── 主颜色展示区 ── */
+        .main-color-stage {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: stretch;
+            justify-content: center;
+            margin: 20px 0 28px;
+            padding: 0 10px;
+        }
+        .main-color-preview {
+            width: 180px;
+            height: 180px;
+            border-radius: 24px;
+            box-shadow: var(--tool-shadow), 0 0 0 1px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .main-color-preview:hover {
+            transform: scale(1.04);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.14);
+        }
+        .main-color-preview::after {
+            content: '点击复制';
+            position: absolute;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-size: 12px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .main-color-preview:hover::after {
+            opacity: 1;
+        }
+
+        .main-color-info {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            justify-content: center;
+            min-width: 200px;
+            flex: 1;
+            max-width: 360px;
+        }
+        .color-value-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        .color-value-row:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+            transform: translateY(-1px);
+        }
+        .color-value-row .label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 36px;
+        }
+        .color-value-row .value {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            font-family: 'SF Mono', 'Courier New', Consolas, monospace;
+            letter-spacing: 0.5px;
+            flex: 1;
+        }
+        .color-value-row .copy-hint {
+            font-size: 10px;
+            color: var(--primary);
+            opacity: 0;
+            transition: opacity 0.25s;
+            font-weight: 600;
+        }
+        .color-value-row:hover .copy-hint {
+            opacity: 1;
+        }
+        .color-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ── 颜色选择器美化 ── */
+        .color-picker-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+        }
+        .color-picker-wrap:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+        }
+        .color-picker-wrap input[type="color"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .color-picker-wrap input[type="color"]:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            border-color: #fff;
+        }
+        .color-picker-wrap input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        .color-picker-wrap input[type="color"]::-webkit-color-swatch {
+            border-radius: 10px;
+            border: none;
+        }
+        .color-picker-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-sub);
+        }
+
+        /* ── 方案类型切换按钮组 ── */
+        .scheme-toggle-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 20px 0 24px;
+            padding: 0 10px;
+        }
+        .scheme-btn {
+            padding: 9px 18px;
+            border-radius: 22px;
+            border: 2px solid transparent;
+            background: var(--card-bg);
+            color: var(--text-sub);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            outline: none;
+            letter-spacing: 0.3px;
+        }
+        .scheme-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .scheme-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.25);
+            font-weight: 700;
+        }
+        body.pink .scheme-btn.active {
+            box-shadow: 0 6px 20px rgba(255, 45, 85, 0.25);
+        }
+
+        /* ── 配色卡片网格 ── */
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            margin: 0 10px 24px;
+            padding: 0;
+        }
+        @media (max-width: 900px) {
+            .palette-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+        }
+        @media (max-width: 500px) {
+            .palette-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .main-color-preview {
+                width: 140px;
+                height: 140px;
+                border-radius: 20px;
+            }
+        }
+        @media (max-width: 360px) {
+            .palette-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+        }
+
+        .palette-card {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--tool-shadow);
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            position: relative;
+        }
+        .palette-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+        }
+        .palette-card:active {
+            transform:(0.96);
+            transition: all 0.1s ease;
+        }
+        .palette-card .color-block {
+            height: 110px;
+            transition: all 0.35s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 500px) {
+            .palette-card .color-block {
+                height: 80px;
+            }
+        }
+        .palette-card .color-block .copy-icon-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .palette-card:hover .color-block .copy-icon-overlay {
+            opacity: 1;
+        }
+        .palette-card .color-block .copy-icon-overlay svg {
+            width: 18px;
+            height: 18px;
+            stroke: #fff;
+            fill: none;
+        }
+        .palette-card .color-info {
+            padding: 10px 12px;
+            text-align: center;
+            background: var(--card-bg);
+        }
+        .palette-card .color-hex {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            font-family: 'SF Mono', 'Courier New', Consolas, monospace;
+            letter-spacing: 0.5px;
+        }
+        .palette-card .color-role {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        /* ── 操作按钮行 ── */
+        .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 0 10px 32px;
+        }
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 22px;
+            border-radius: 24px;
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            outline: none;
+            white-space: nowrap;
+        }
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+            border-color: var(--primary);
+        }
+        .action-btn:active {
+            transform: scale(0.95);
+            transition: all 0.1s ease;
+        }
+        .action-btn svg {
+            width: 17px;
+            height: 17px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .action-btn.primary-action {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.22);
+        }
+        .action-btn.primary-action:hover {
+            box-shadow: 0 10px 28px rgba(0, 122, 255, 0.32);
+        }
+        body.pink .action-btn.primary-action {
+            box-shadow: 0 6px 20px rgba(255, 45, 85, 0.22);
+        }
+
+        /* ── 收藏区 ── */
+        .saved-section {
+            margin: 0 10px 40px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: var(--tool-shadow);
+            transition: var(--transition);
+        }
+        .saved-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 0 16px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .saved-section h3 svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 2;
+        }
+        .saved-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .saved-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.03);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+        .saved-item:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        .saved-item .mini-dots {
+            display: flex;
+            gap: 3px;
+        }
+        .saved-item .mini-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1pxpx solid rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+        .saved-item .del-saved {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            padding: 0;
+            margin: 0;
+            color: #999;
+            font-size: 12px;
+            line-height: 1;
+        }
+        .saved-item .del-saved:hover {
+            background: #e8234a;
+            color: #fff;
+        }
+        .no-saved {
+            font-size: 13px;
+            color: var(--text-sub);
+            opacity: 0.7;
+            padding: 8px 0;
+        }
+
+        /* ── Toast 提示（独立于 common.js）── */
+        .palette-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(28, 28, 30, 0.94);
+            color: #fff;
+            padding: 11px 24px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 999999;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            letter-spacing: 0.3px;
+        }
+        .palette-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ── 预设配色区 ── */
+        .preset-section {
+            margin: 0 10px 28px;
+            text-align: center;
+        }
+        .preset-section .preset-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 10px;
+        }
+        .preset-dots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .preset-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .preset-dot:hover {
+            transform: scale(1.25);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            border-color: #fff;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ 主内容区 ============ -->
+    <div id="content">
+
+        <!-- 工具标题 -->
+        <div class="tool-header section">
+            <h2>配色工坊</h2>
+            <p class="subtitle">选择主色 · 智能生成 · 一键复制 · 灵感无限</p>
+        </div>
+
+        <!-- 主颜色展示区 -->
+        <div class="main-color-stage section" id="mainColorStage">
+            <div class="main-color-preview" id="mainColorPreview" style="background: #4F46E5;" title="点击复制HEX值"></div>
+            <div class="main-color-info" id="mainColorInfo">
+                <!-- HEX -->
+                <div class="color-value-row" data-format="hex" title="点击复制">
+                    <span class="color-dot" style="background:#4F46E5;"></span>
+                    <span class="label">HEX</span>
+                    <span class="value" id="valHex">#4F46E5</span>
+                    <span class="copy-hint">复制</span>
+                </div>
+                <!-- RGB -->
+                <div class="color-value-row" data-format="rgb" title="点击复制">
+                    <span class="color-dot" style="background:#4F46E5;"></span>
+                    <span class="label">RGB</span>
+                    <span class="value" id="valRgb">79, 70, 229</span>
+                    <span class="copy-hint">复制</span>
+                </div>
+                <!-- HSL -->
+                <div class="color-value-row" data-format="hsl" title="点击复制">
+                    <span class="color-dot" style="background:#4F46E5;"></span>
+                    <span class="label">HSL</span>
+                    <span class="value" id="valHsl">243°, 75%, 59%</span>
+                    <span class="copy-hint">复制</span>
+                </div>
+                <!-- 颜色选择器 -->
+                <div class="color-picker-wrap">
+                    <input type="color" id="colorPicker" value="#4F46E5" title="选择主颜色">
+                    <span class="color-picker-label">选择主色</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 预设颜色点 -->
+        <div class="preset-section section" id="presetSection">
+            <p class="preset-label">快速取色</p>
+            <div class="preset-dots" id="presetDots"></div>
+        </div>
+
+        <!-- 配色方案类型切换 -->
+        <div class="scheme-toggle-group section" id="schemeToggleGroup">
+            <button class="scheme-btn active" data-scheme="complementary">互补色</button>
+            <button class="scheme-btn" data-scheme="analogous">类似色</button>
+            <button class="scheme-btn" data-scheme="triadic">三角色</button>
+            <button class="scheme-btn" data-scheme="split-complementary">分裂互补</button>
+            <button class="scheme-btn" data-scheme="monochromatic">单色调</button>
+            <button class="scheme-btn" data-scheme="tetradic">四角色</button>
+        </div>
+
+        <!-- 配色卡片网格 -->
+        <div class="palette-grid section" id="paletteGrid"></div>
+
+        <!-- 操作按钮 -->
+        <div class="action-row section" id="actionRow">
+            <button class="action-btn primary-action" id="btnRandom" title="随机生成配色">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                随机配色
+            </button>
+            <button class="action-btn" id="btnCopyAll" title="复制全部配色HEX值">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                复制全部
+            </button>
+            <button class="action-btn" id="btnSave" title="收藏当前配色方案">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                收藏方案
+            </button>
+            <button class="action-btn" id="btnExport" title="导出配色方案为JSON">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                导出JSON
+            </button>
+        </div>
+
+        <!-- 收藏区 -->
+        <div class="saved-section section" id="savedSection">
+            <h3>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                收藏的配色方案
+            </h3>
+            <div class="saved-list" id="savedList">
+                <span class="no-saved">还没有收藏的配色方案，快来生成一个吧</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Toast 提示 -->
+    <div class="palette-toast" id="paletteToast"></div>
+
+    <!-- ============ 配色工具核心脚本 ============ -->
+    <script>
+        (function () {
+            /* ==================== 工具函数：颜色转换 ==================== */
+
+            /** HEX → HSL */
+            function hexToHsl(hex) {
+                let r = 0,
+                    g = 0,
+                    b = 0;
+                hex = hex.replace('#', '');
+                if (hex.length === 3) {
+                    r = parseInt(hex[0] + hex[0], 16);
+                    g = parseInt(hex[1] + hex[1], 16);
+                    b = parseInt(hex[2] + hex[2], 16);
+                } else if (hex.length === 6) {
+                    r = parseInt(hex.substring(0, 2), 16);
+                    g = parseInt(hex.substring(2, 4), 16);
+                    b = parseInt(hex.substring(4, 6), 16);
+                }
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const max = Math.max(r, g, b),
+                    min = Math.min(r, g, b);
+                let h = 0,
+                    s = 0,
+                    l = (max + min) / 2;
+                if (max !== min) {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r:
+                            h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+                            break;
+                        case g:
+                            h = ((b - r) / d + 2) / 6;
+                            break;
+                        case b:
+                            h = ((r - g) / d + 4) / 6;
+                            break;
+                    }
+                }
+                return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+            }
+
+            /** HSL → HEX */
+            function hslToHex(h, s, l) {
+                h = ((h % 360) + 360) % 360;
+                s = Math.max(0, Math.min(100, s)) / 100;
+                l = Math.max(0, Math.min(100, l)) / 100;
+                const c = (1 - Math.abs(2 * l - 1)) * s;
+                const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+                const m = l - c / 2;
+                let r = 0,
+                    g = 0,
+                    b = 0;
+                if (h < 60) { r = c;
+                    g = x;
+                    b = 0; } else if (h < 120) { r = x;
+                    g = c;
+                    b = 0; } else if (h < 180) { r = 0;
+                    g = c;
+                    b = x; } else if (h < 240) { r = 0;
+                    g = x;
+                    b = c; } else if (h < 300) { r = x;
+                    g = 0;
+                    b = c; } else { r = c;
+                    g = 0;
+                    b = x; }
+                const toHex = (v) => {
+                    const hex = Math.round((v + m) * 255).toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;
+                };
+                return '#' + toHex(r) + toHex(g) + toHex(b);
+            }
+
+            /** HEX → RGB 字符串 */
+            function hexToRgbStr(hex) {
+                hex = hex.replace('#', '');
+                if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+                const r = parseInt(hex.substring(0, 2), 16);
+                const g = parseInt(hex.substring(2, 4), 16);
+                const b = parseInt(hex.substring(4, 6), 16);
+                return `${r}, ${g}, ${b}`;
+            }
+
+            /** HSL → 字符串 */
+            function hslToStr(h, s, l) {
+                return `${Math.round(h)}°, ${Math.round(s)}%, ${Math.round(l)}%`;
+            }
+
+            /** 判断颜色亮度，返回合适的文字颜色 */
+            function getTextColor(hex) {
+                hex = hex.replace('#', '');
+                if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+                const r = parseInt(hex.substring(0, 2), 16);
+                const g = parseInt(hex.substring(2, 4), 16);
+                const b = parseInt(hex.substring(4, 6), 16);
+                const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+                return luminance > 140 ? '#1a1a2e' : '#ffffff';
+            }
+
+            /** 规范化 HEX */
+            function normalizeHex(hex) {
+                hex = hex.replace('#', '').toUpperCase();
+                if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+                if (hex.length !== 6) return '#4F46E5';
+                return '#' + hex;
+            }
+
+            /* ==================== 配色方案生成 ==================== */
+
+            function generateScheme(hex, type) {
+                const hsl = hexToHsl(hex);
+                const colors = [{ hex: normalizeHex(hex), role: '主色', hsl: { ...hsl } }];
+
+                switch (type) {
+                    case 'complementary':
+                        colors.push({
+                            hex: hslToHex(hsl.h + 180, hsl.s, hsl.l),
+                            role: '互补色',
+                            hsl: { h: (hsl.h + 180) % 360, s: hsl.s, l: hsl.l }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h + 180, hsl.s, Math.min(100, hsl.l + 15)),
+                            role: '互补亮',
+                            hsl: { h: (hsl.h + 180) % 360, s: hsl.s, l: Math.min(100, hsl.l + 15) }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h, hsl.s, Math.max(0, hsl.l - 18)),
+                            role: '主色暗',
+                            hsl: { h: hsl.h, s: hsl.s, l: Math.max(0, hsl.l - 18) }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h, Math.max(0, hsl.s - 20), Math.min(100, hsl.l + 25)),
+                            role: '柔和辅',
+                            hsl: { h: hsl.h, s: Math.max(0, hsl.s - 20), l: Math.min(100, hsl.l + 25) }
+                        });
+                        break;
+
+                    case 'analogous':
+                        colors.push({
+                            hex: hslToHex(hsl.h - 30, hsl.s, hsl.l),
+                            role: '类似-30°',
+                            hsl: { h: (hsl.h - 30 + 360) % 360, s: hsl.s, l: hsl.l }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h + 30, hsl.s, hsl.l),
+                            role: '类似+30°',
+                            hsl: { h: (hsl.h + 30) % 360, s: hsl.s, l: hsl.l }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h - 15, Math.min(100, hsl.s + 10), Math.max(0, hsl.l - 10)),
+                            role: '邻近暗',
+                            hsl: { h: (hsl.h - 15 + 360) % 360, s: Math.min(100, hsl.s + 10), l: Math.max(0, hsl.l -
+                                    10) }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h + 15, Math.max(0, hsl.s - 15), Math.min(100, hsl.l + 18)),
+                            role: '邻近亮',
+                            hsl: { h: (hsl.h + 15) % 360, s: Math.max(0, hsl.s - 15), l: Math.min(100, hsl.l + 18) }
+                        });
+                        break;
+
+                    case 'triadic':
+                        colors.push({
+                            hex: hslToHex(hsl.h + 120, hsl.s, hsl.l),
+                            role: '三角1',
+                            hsl: { h: (hsl.h + 120) % 360, s: hsl.s, l: hsl.l }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h + 240, hsl.s, hsl.l),
+                            role: '三角2',
+                            hsl: { h: (hsl.h + 240) % 360, s: hsl.s, l: hsl.l }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h + 120, hsl.s, Math.min(100, hsl.l + 12)),
+                            role: '三角1亮',
+                            hsl: { h: (hsl.h + 120) % 360, s: hsl.s, l: Math.min(100, hsl.l + 12) }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h + 240, Math.max(0, hsl.s - 10), Math.max(0, hsl.l - 10)),
+                            role: '三角2暗',
+                            hsl: { h: (hsl.h + 240) % 360, s: Math.max(0, hsl.s - 10), l: Math.max(0, hsl.l - 10) }
+                        });
+                        break;
+
+                    case 'split-complementary':
+                        colors.push({
+                            hex: hslToHex(hsl.h + 150, hsl.s, hsl.l),
+                            role: '分裂1',
+                            hsl: { h: (hsl.h + 150) % 360, s: hsl.s, l: hsl.l }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h + 210, hsl.s, hsl.l),
+                            role: '分裂2',
+                            hsl: { h: (hsl.h + 210) % 360, s: hsl.s, l: hsl.l }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h + 150, Math.min(100, hsl.s + 8), Math.max(0, hsl.l - 8)),
+                            role: '分裂1暗',
+                            hsl: { h: (hsl.h + 150) % 360, s: Math.min(100, hsl.s + 8), l: Math.max(0, hsl.l - 8) }
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h + 210, Math.max(0, hsl.s - 12), Math.min(100, hsl.l + 14)),
+                            role: '分裂2亮',
+                            hsl: { h: (hsl.h + 210) % 360, s: Math.max(0, hsl.s - 12), l: Math.min(100, hsl.l + 14) }
+                        });
+                        break;
+
+                    case 'monochromatic':
+                        [20, -15, 35, -25].forEach((delta, i) => {
+                            const nl = Math.max(5, Math.min(98, hsl.l + delta));
+                            const ns = Math.max(5, Math.min(100, hsl.s + (delta > 0 ? -8 : 8)));
+                            colors.push({
+                                hex: hslToHex(hsl.h, ns, nl),
+                                role: delta > 0 ? `浅变${i+1}` : `深变${i+1}`,
+                                hsl: { h: hsl.h, s: ns, l: nl }
+                            });
+                        });
+                        break;
+
+                    case 'tetradic':
+                        [60, 180, 240].forEach((dh, i) => {
+                            const nh = (hsl.h + dh) % 360;
+                            colors.push({
+                                hex: hslToHex(nh, hsl.s, hsl.l),
+                                role: `四角${i+1}`,
+                                hsl: { h: nh, s: hsl.s, l: hsl.l }
+                            });
+                        });
+                        colors.push({
+                            hex: hslToHex(hsl.h, Math.max(0, hsl.s - 25), Math.min(100,.l + 20)),
+                            role: '主色柔',
+                            hsl: { h: hsl.h, s: Math.max(0, hsl.s - 25), l: Math.min(100, hsl.l + 20) }
+                        });
+                        break;
+
+                    default:
+                        // fallback to complementary
+                        return generateScheme(hex, 'complementary');
+                }
+
+                // 确保返回正好5个颜色
+                while (colors.length < 5) {
+                    const last = colors[colors.length - 1].hsl;
+                    colors.push({
+                        hex: hslToHex((last.h + 45) % 360, last.s, Math.min(100, last.l + 10)),
+                        role: '扩展',
+                        hsl: { h: (last.h + 45) % 360, s: last.s, l: Math.min(100, last.l + 10) }
+                    });
+                }
+                return colors.slice(0, 5);
+            }
+
+            /* ==================== 状态管理 ==================== */
+            let currentHex = '#4F46E5';
+            let currentScheme = 'complementary';
+            let currentPalette = generateScheme(currentHex, currentScheme);
+
+            /* ==================== DOM 引用 ==================== */
+            const $ = (sel) => document.querySelector(sel);
+            const $$ = (sel) => document.querySelectorAll(sel);
+
+            const mainColorPreview = $('#mainColorPreview');
+            const colorPicker = $('#colorPicker');
+            const valHex = $('#valHex');
+            const valRgb = $('#valRgb');
+            const valHsl = $('#valHsl');
+            const paletteGrid = $('#paletteGrid');
+            const schemeToggleGroup = $('#schemeToggleGroup');
+            const savedList = $('#savedList');
+            const paletteToast = $('#paletteToast');
+            const presetDots = $('#presetDots');
+            const colorDotSpans = $$('.color-dot');
+
+            /* ==================== Toast ==================== */
+            let toastTimer;
+
+            function showToast(msg) {
+                paletteToast.textContent = msg;
+                paletteToast.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => paletteToast.classList.remove('show'), 2000);
+            }
+
+            /* ==================== 复制到剪贴板 ==================== */
+            async function copyToClipboard(text) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    showToast('✓ 已复制：' + text);
+                } catch {
+                    // 降级方案
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.left = '-9999px';
+                    ta.style.top = '-9999px';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+                    try { document.execCommand('copy');
+                        showToast('✓ 已复制：' + text); } catch { showToast('复制失败，请手动选择'); }
+                    document.body.removeChild(ta);
+                }
+            }
+
+            /* ==================== 更新主颜色展示 ==================== */
+            function updateMainColorDisplay(hex) {
+                hex = normalizeHex(hex);
+                currentHex = hex;
+                const hsl = hexToHsl(hex);
+                const rgbStr = hexToRgbStr(hex);
+                const hslStr = hslToStr(hsl.h, hsl.s, hsl.l);
+
+                mainColorPreview.style.background = hex;
+                valHex.textContent = hex;
+                valRgb.textContent = rgbStr;
+                valHsl.textContent = hslStr;
+                colorPicker.value = hex;
+
+                // 更新小色点
+                colorDotSpans.forEach(dot => { dot.style.background = hex; });
+            }
+
+            /* ==================== 渲染配色卡片 ==================== */
+            function renderPalette(palette) {
+                currentPalette = palette;
+                paletteGrid.innerHTML = '';
+
+                palette.forEach((color, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'palette-card';
+                    card.setAttribute('data-hex', color.hex);
+                    card.title = '点击复制 ' + color.hex;
+
+                    const textColor = getTextColor(color.hex);
+
+                    card.innerHTML = `
+                <div class="color-block" style="background:${color.hex}; color:${textColor};">
+                  <div class="copy-icon-overlay">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="color-info">
+                  <div class="color-hex">${color.hex}</div>
+                  <div class="color-role">${color.role}</div>
+                </div>
+              `;
+
+                    card.addEventListener('click', () => {
+                        copyToClipboard(color.hex);
+                        // 点击动画
+                        card.style.transform = 'scale(0.93)';
+                        setTimeout(() => { card.style.transform = ''; }, 150);
+                    });
+
+                    paletteGrid.appendChild(card);
+                });
+            }
+
+            /* ==================== 刷新全部 ==================== */
+            function refreshAll(hex, schemeType) {
+                hex = normalizeHex(hex);
+                updateMainColorDisplay(hex);
+                const palette = generateScheme(hex, schemeType);
+                renderPalette(palette);
+                // 更新主色预览中的颜色信息行
+                const hsl = hexToHsl(hex);
+                valHex.textContent = hex;
+                valRgb.textContent = hexToRgbStr(hex);
+                valHsl.textContent = hslToStr(hsl.h, hsl.s, hsl.l);
+                colorDotSpans.forEach(dot => { dot.style.background = hex; });
+            }
+
+            /* ==================== 事件绑定 ==================== */
+
+            // 颜色选择器
+            colorPicker.addEventListener('input', (e) => {
+                const hex = e.target.value;
+                refreshAll(hex, currentScheme);
+            });
+
+            // 主色预览点击复制
+            mainColorPreview.addEventListener('click', () => {
+                copyToClipboard(currentHex);
+            });
+
+            // 颜色值行点击复制
+            $$('.color-value-row').forEach(row => {
+                row.addEventListener('click', () => {
+                    const format = row.getAttribute('data-format');
+                    let text = '';
+                    switch (format) {
+                        case 'hex':
+                            text = currentHex;
+                            break;
+                        case 'rgb':
+                            text = 'rgb(' + hexToRgbStr(currentHex) + ')';
+                            break;
+                        case 'hsl':
+                            const hsl = hexToHsl(currentHex);
+                            text = 'hsl(' + hslToStr(hsl.h, hsl.s, hsl.l) + ')';
+                            break;
+                    }
+                    copyToClipboard(text);
+                });
+            });
+
+            // 方案类型切换
+            schemeToggleGroup.addEventListener('click', (e) => {
+                const btn = e.target.closest('.scheme-btn');
+                if (!btn) return;
+                const schemeType = btn.getAttribute('data-scheme');
+                if (!schemeType || schemeType === currentScheme) return;
+
+                // 更新active状态
+                $$('.scheme-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                currentScheme = schemeType;
+                refreshAll(currentHex, currentScheme);
+            });
+
+            // 随机配色
+            $('#btnRandom').addEventListener('click', () => {
+                const randomHex = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')
+                    .toUpperCase();
+                // 也随机切换方案类型
+                const schemeTypes = ['complementary', 'analogous', 'triadic', 'split-complementary',
+                    'monochromatic', 'tetradic'
+                ];
+                const randomScheme = schemeTypes[Math.floor(Math.random() * schemeTypes.length)];
+                currentScheme = randomScheme;
+                $$('.scheme-btn').forEach(b => {
+                    b.classList.remove('active');
+                    if (b.getAttribute('data-scheme') === randomScheme) b.classList.add('active');
+                });
+                refreshAll(randomHex, currentScheme);
+                showToast('随机配色已生成');
+            });
+
+            // 复制全部
+            $('#btnCopyAll').addEventListener('click', () => {
+                const allHex = currentPalette.map(c => c.hex).join(', ');
+                copyToClipboard(allHex);
+            });
+
+            // 收藏方案
+            $('#btnSave').addEventListener('click', () => {
+                savePalette(currentPalette);
+                showToast('配色方案已收藏');
+            });
+
+            // 导出JSON
+            $('#btnExport').addEventListener('click', () => {
+                const exportData = {
+                    name: 'SHUOWEB配色方案',
+                    timestamp: new Date().toISOString(),
+                    mainColor: currentHex,
+                    schemeType: currentScheme,
+                    colors: currentPalette.map(c => ({ hex: c.hex, role: c.role, hsl: c.hsl }))
+                };
+                const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `palette-${currentHex.replace('#','')}-${Date.now()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+                showToast('配色方案已导出');
+            });
+
+            // 键盘快捷键：空格随机
+            document.addEventListener('keydown', (e) => {
+                if (e.key === ' ' && e.target === document.body) {
+                    e.preventDefault();
+                    $('#btnRandom').click();
+                }
+            });
+
+            /* ==================== 收藏功能 ==================== */
+            const STORAGE_KEY = 'shuoweb_saved_palettes';
+
+            function getSavedPalettes() {
+                try {
+                    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                } catch { return []; }
+            }
+
+            function savePalette(palette) {
+                const saved = getSavedPalettes();
+                // 去重
+                const hexKey = palette.map(c => c.hex).join(',');
+                const exists = saved.some(p => p.map(c => c.hex).join(',') === hexKey);
+                if (exists) {
+                    showToast('该方案已收藏过');
+                    return;
+                }
+                saved.push(palette.map(c => ({ hex: c.hex, role: c.role, hsl: c.hsl })));
+                if (saved.length > 20) saved.shift(); // 最多20个
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+                renderSavedList();
+            }
+
+            function deleteSaved(index) {
+                const saved = getSavedPalettes();
+                saved.splice(index, 1);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+                renderSavedList();
+                showToast('已删除');
+            }
+
+            function renderSavedList() {
+                const saved = getSavedPalettes();
+                if (saved.length === 0) {
+                    savedList.innerHTML = '<span class="no-saved">还没有收藏的配色方案，快来生成一个吧</span>';
+                    return;
+                }
+                savedList.innerHTML = '';
+                saved.forEach((palette, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'saved-item';
+                    item.title = '点击加载此配色方案';
+
+                    const dotsHTML = palette.slice(0, 5).map(c =>
+                        `<span class="mini-dot" style="background:${c.hex};" title="${c.hex}"></span>`
+                    ).join('');
+
+                    item.innerHTML = `
+                <span class="mini-dots">${dotsHTML}</span>
+                <span style="font-size:12px;color:var(--text-sub);">${palette[0]?.hex || ''}</span>
+                <button class="del-saved" title="删除" data-index="${index}">×</button>
+              `;
+
+                    // 点击加载
+                    item.addEventListener('click', (e) => {
+                        if (e.target.closest('.del-saved')) return;
+                        const hex = palette[0]?.hex || '#4F46E5';
+                        refreshAll(hex, currentScheme);
+                        showToast('已加载收藏配色');
+                    });
+
+                    // 删除按钮
+                    item.querySelector('.del-saved').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const idx = parseInt(e.target.getAttribute('data-index'));
+                        deleteSaved(idx);
+                    });
+
+                    savedList.appendChild(item);
+                });
+            }
+
+            /* ==================== 预设颜色 ==================== */
+            const presetColors = [
+                '#4F46E5', '#007AFF', '#FF2D55', '#34C759', '#FF9500',
+                '#AF52DE', '#5856D6', '#00C7BE', '#FF3B30', '#0A84FF',
+                '#30D158', '#FFD60A', '#BF5AF2', '#64D2FF', '#FF9F0A',
+                '#E8234A', '#25C452', '#F5970A', '#5E5CE6', '#009988',
+            ];
+
+            function renderPresetDots() {
+                presetDots.innerHTML = '';
+                presetColors.forEach(hex => {
+                    const dot = document.createElement('span');
+                    dot.className = 'preset-dot';
+                    dot.style.background = hex;
+                    dot.title = hex;
+                    dot.addEventListener('click', () => {
+                        refreshAll(hex, currentScheme);
+                        showToast('已选择：' + hex);
+                    });
+                    presetDots.appendChild(dot);
+                });
+            }
+
+            /* ==================== 初始化 ==================== */
+            function init() {
+                updateMainColorDisplay(currentHex);
+                renderPalette(currentPalette);
+                renderSavedList();
+                renderPresetDots();
+                // 初始active方案按钮
+                const activeBtn = schemeToggleGroup.querySelector(`[data-scheme="${currentScheme}"]`);
+                if (activeBtn) activeBtn.classList.add('active');
+            }
+
+            // 等 common.js 和 icon.js 都加载完毕
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+            /* ==================== 如果 ICONS 全局可用，尝试使用图标替换部分SVG ==================== */
+            // 在icon.js加载后，ICONS对象可用。这里做可选的图标增强。
+            function enhanceWithIcons() {
+                if (typeof ICONS === 'undefined') return;
+                // 可以在这里用ICONS中的图标替换一些内联SVG
+                // 例如：ICONS.copy, ICONS.refresh, ICONS.download, ICONS.like 等
+                // 此处保留为可选增强，内联SVG已足够使用
+                console.log('ICONS 图标库已就绪，配色工坊运行中');
+            }
+
+            // 延迟检查ICONS
+            setTimeout(() => {
+                if (typeof ICONS !== 'undefined') {
+                    enhanceWithIcons();
+                }
+            }, 500);
+
+            console.log('配色工坊已就绪 | 选择主色 · 探索配色方案 · 点击卡片复制');
+            console.log('提示：按空格键随机生成配色 | 点击色块复制颜色值');
+
+        })();
+    </script>
+
+</body>
+</html>
