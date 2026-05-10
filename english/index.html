@@ -1153,8 +1153,6 @@ async function init() {
   updateBadges();
   updateProgress();
   renderQuizStart();
-  setupNav();
-  setupMobile();
 }
 
 // ===== LOAD WORDS (fetch + localStorage cache) =====
@@ -1226,9 +1224,8 @@ function showPage(id) {
   closeSidebar();
 }
 function setupNav() {
-  // Use event delegation so clicks always work even if DOM mutates
   document.addEventListener('click', function(e) {
-    const el = e.target.closest('[data-page]');
+    const el = e.target.closest('.nav-item, .bottom-nav-item');
     if (el && el.dataset.page) {
       showPage(el.dataset.page);
     }
@@ -1755,6 +1752,9 @@ function clearWordsCache() {
 }
 
 // ===== START =====
+// Register nav clicks immediately — don't wait for word data to load
+setupNav();
+setupMobile();
 init();
 </script>
 </body>
