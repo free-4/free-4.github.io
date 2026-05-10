@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>高中英语3500词</title>
+<title>高中英语6000词</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Space+Mono:wght@400;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -92,7 +92,7 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   position: fixed;
   top: 0; left: 0; bottom: 0;
-  z-index: 100;
+  z-index: 200;
   transition: transform var(--transition), background var(--transition);
 }
 .sidebar-logo {
@@ -587,7 +587,7 @@ a { text-decoration: none; color: inherit; }
   display: none;
   position: fixed;
   top: 14px; left: 14px;
-  z-index: 200;
+  z-index: 300;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -599,7 +599,7 @@ a { text-decoration: none; color: inherit; }
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.4);
-  z-index: 99;
+  z-index: 199;
 }
 
 /* ===== Toast ===== */
@@ -671,7 +671,7 @@ a { text-decoration: none; color: inherit; }
 }
 #loaderScreen.hide {
   opacity: 0;
-  pointer-events: none;
+  pointer-events: none !important;
 }
 .loader-logo {
   text-align: center;
@@ -734,7 +734,7 @@ a { text-decoration: none; color: inherit; }
 <!-- ===== LOADER SCREEN ===== -->
 <div id="loaderScreen">
   <div class="loader-logo">
-    <h1>高中英语 3500词</h1>
+    <h1>高中英语 6000词</h1>
     <p>VOCAB MASTER</p>
   </div>
   <svg class="loader-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
@@ -758,7 +758,7 @@ a { text-decoration: none; color: inherit; }
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <h1>高中英语<br>3500词</h1>
+      <h1>高中英语<br>6000词</h1>
       <p>VOCAB MASTER</p>
     </div>
     <nav class="sidebar-nav">
@@ -1226,8 +1226,12 @@ function showPage(id) {
   closeSidebar();
 }
 function setupNav() {
-  document.querySelectorAll('[data-page]').forEach(el => {
-    el.addEventListener('click', () => showPage(el.dataset.page));
+  // Use event delegation so clicks always work even if DOM mutates
+  document.addEventListener('click', function(e) {
+    const el = e.target.closest('[data-page]');
+    if (el && el.dataset.page) {
+      showPage(el.dataset.page);
+    }
   });
 }
 
@@ -1633,7 +1637,7 @@ async function sendAI(overrideMsg) {
     const base = s.apiBase || DEFAULT_BASE_URLS[s.provider];
     const currentWord = deck.length ? deck[deckIndex].word : null;
 
-    const systemPrompt = `你是一个专业的高中英语词汇助教。你的任务是帮助学生记忆和理解高中英语3500词的词汇。
+    const systemPrompt = `你是一个专业的高中英语词汇助教。你的任务是帮助学生记忆和理解高中英语6000词的词汇。
 请用中文回答，语言简洁易懂。可以：
 1. 解释单词的含义、用法、词根词缀
 2. 造例句帮助理解
@@ -1739,8 +1743,9 @@ function setLoaderProgress(pct) {
 }
 function hideLoader() {
   const screen = document.getElementById('loaderScreen');
+  screen.style.pointerEvents = 'none';
   screen.classList.add('hide');
-  setTimeout(() => screen.remove(), 420);
+  setTimeout(() => { if (screen.parentNode) screen.parentNode.removeChild(screen); }, 450);
 }
 
 // Also add a settings cache-clear helper
