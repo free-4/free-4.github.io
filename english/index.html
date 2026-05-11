@@ -81,7 +81,7 @@ input, select, textarea { font-family: inherit; }
 a { text-decoration: none; color: inherit; }
 
 /* ===== Layout ===== */
-.app-shell { display: flex; min-height: 100vh; }
+.app-shell { display: flex; min-height: 100vh; overflow-x: hidden; width: 100%; }
 
 /* ===== Sidebar ===== */
 .sidebar {
@@ -174,8 +174,19 @@ a { text-decoration: none; color: inherit; }
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow-x: hidden;
 }
-.page { display: none; flex: 1; padding: 32px; max-width: 900px; width: 100%; margin: 0 auto; }
+.page {
+  display: none;
+  flex: 1;
+  padding: 32px;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  min-width: 0;
+  overflow-x: hidden;
+}
 .page.active { display: flex; flex-direction: column; gap: 24px; }
 
 /* ===== Page Header ===== */
@@ -265,7 +276,12 @@ a { text-decoration: none; color: inherit; }
 .phrase-en { font-style: italic; color: var(--text); }
 
 /* ===== Study Controls ===== */
-.study-controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.study-controls {
+  display: grid;
+  grid-template-columns: 1fr auto auto 1fr;
+  gap: 8px;
+  align-items: center;
+}
 .btn {
   padding: 10px 20px;
   border-radius: var(--radius);
@@ -329,7 +345,7 @@ a { text-decoration: none; color: inherit; }
 .stat-label { font-size: 0.75rem; color: var(--text3); margin-top: 4px; }
 
 /* ===== Word List (Vocabulary) ===== */
-.vocab-filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.vocab-filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; width: 100%; }
 .search-input {
   flex: 1;
   min-width: 180px;
@@ -342,7 +358,15 @@ a { text-decoration: none; color: inherit; }
   transition: border-color var(--transition), background var(--transition);
 }
 .search-input:focus { outline: none; border-color: var(--accent); background: var(--surface); }
-.word-list { display: flex; flex-direction: column; gap: 8px; max-height: 60vh; overflow-y: auto; padding-right: 4px; }
+.word-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 4px;
+  max-height: calc(100vh - 280px);
+  min-height: 200px;
+}
 .word-list::-webkit-scrollbar { width: 4px; }
 .word-list::-webkit-scrollbar-track { background: transparent; }
 .word-list::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
@@ -359,7 +383,7 @@ a { text-decoration: none; color: inherit; }
 }
 .word-row:hover { border-color: var(--accent-border); background: var(--accent-bg); }
 .word-row.learned { border-left: 3px solid var(--green); }
-.word-row-en { font-family: 'Crimson Pro', serif; font-size: 1.1rem; font-weight: 600; flex-shrink: 0; min-width: 120px; }
+.word-row-en { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-weight: 600; flex-shrink: 0; width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .word-row-zh { font-size: 0.82rem; color: var(--text2); flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .word-row-badge {
   flex-shrink: 0;
@@ -408,7 +432,7 @@ a { text-decoration: none; color: inherit; }
 .quiz-feedback.show { display: flex; }
 .quiz-feedback.correct { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
 .quiz-feedback.wrong { background: var(--red-bg); color: var(--red); border: 1px solid var(--red); }
-.quiz-progress-row { display: flex; align-items: center; gap: 10px; }
+.quiz-progress-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .quiz-progress-text { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text3); white-space: nowrap; }
 
 /* ===== Mistake Book ===== */
@@ -425,7 +449,7 @@ a { text-decoration: none; color: inherit; }
   border-left: 3px solid var(--red);
   border-radius: var(--radius);
 }
-.mistake-en { font-family: 'Crimson Pro', serif; font-size: 1.1rem; font-weight: 600; min-width: 120px; }
+.mistake-en { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-weight: 600; width: 100px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
 .mistake-zh { font-size: 0.85rem; color: var(--text2); flex: 1; }
 .mistake-count { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--red); background: var(--red-bg); padding: 2px 8px; border-radius: 99px; }
 
@@ -624,9 +648,24 @@ a { text-decoration: none; color: inherit; }
   .sidebar-overlay.show { display: block; }
   .main { margin-left: 0; }
   .hamburger { display: flex; }
-  .page { padding: 72px 16px 100px; }
+  .page { padding: 60px 12px calc(70px + env(safe-area-inset-bottom, 0px)); }
+  .word-list { max-height: calc(100vh - 260px); }
+  .vocab-filters { gap: 6px; }
+  .search-input { min-width: 0; width: 100%; }
+  .mode-chip { font-size: 0.78rem; padding: 5px 10px; }
+  .word-row { padding: 10px 12px; gap: 8px; }
+  .word-row-en { width: 90px; font-size: 0.95rem; }
+  .word-row-zh { font-size: 0.78rem; }
+  .stats-grid { gap: 8px; }
+  .stat-num { font-size: 1.4rem; }
+  .card { padding: 16px; }
+  .page-title { font-size: 1.5rem; }
   .quiz-options { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(3,1fr); }
+  .study-controls { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .word-card-wrapper { min-height: 220px; }
+  .word-card-front, .word-card-back { min-height: 220px; padding: 20px 16px; }
+  .mode-row { gap: 6px; }
   .word-en { font-size: 2.2rem; }
   .quiz-word { font-size: 1.9rem; }
   .bottom-nav {
@@ -652,7 +691,7 @@ a { text-decoration: none; color: inherit; }
   }
   .bottom-nav-item svg { width: 22px; height: 22px; }
   .bottom-nav-item.active { color: var(--accent); }
-  .ai-chat-wrap { height: calc(100vh - 240px); min-height: 300px; }
+  .ai-chat-wrap { height: calc(100vh - 280px); min-height: 260px; }
 }
 @media (min-width: 769px) { .bottom-nav { display: none !important; } }
 
@@ -874,14 +913,16 @@ a { text-decoration: none; color: inherit; }
         </div>
       </div>
       <div class="card card-sm">
-        <div class="vocab-filters">
-          <input class="search-input" type="text" placeholder="搜索单词或释义…" id="vocabSearch" oninput="renderVocab()">
-          <button class="mode-chip active" id="filterAll" onclick="setVocabFilter('all')">全部</button>
-          <button class="mode-chip" id="filterLearned" onclick="setVocabFilter('learned')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg>
-            已学
-          </button>
-          <button class="mode-chip" id="filterUnlearned" onclick="setVocabFilter('unlearned')">未学</button>
+        <div style="display:flex;flex-direction:column;gap:8px;width:100%">
+          <input class="search-input" type="text" placeholder="搜索单词或释义…" id="vocabSearch" oninput="renderVocab()" style="width:100%">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="mode-chip active" id="filterAll" onclick="setVocabFilter('all')">全部</button>
+            <button class="mode-chip" id="filterLearned" onclick="setVocabFilter('learned')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg>
+              已学
+            </button>
+            <button class="mode-chip" id="filterUnlearned" onclick="setVocabFilter('unlearned')">未学</button>
+          </div>
         </div>
       </div>
       <div class="word-list" id="wordList"></div>
@@ -1385,20 +1426,67 @@ function renderVocab() {
     return true;
   });
   document.getElementById('vocabSubtitle').textContent = `共 ${filtered.length} 个词汇`;
+  // Store filtered list globally for virtual scroll
+  window._vocabFiltered = filtered;
+  window._vocabLearned = learned;
+  window._vocabMistakes = mistakes;
+  renderVocabRows(0);
+}
+
+const VOCAB_PAGE = 80; // rows per render batch
+
+function renderVocabRows(startFrom) {
+  const filtered = window._vocabFiltered || [];
+  const learned = window._vocabLearned || new Set();
+  const mistakes = window._vocabMistakes || {};
   const list = document.getElementById('wordList');
-  list.innerHTML = filtered.map(w => {
+
+  if (startFrom === 0) list.innerHTML = '';
+
+  const end = Math.min(startFrom + VOCAB_PAGE, filtered.length);
+  const frag = document.createDocumentFragment();
+
+  for (let i = startFrom; i < end; i++) {
+    const w = filtered[i];
     const isLearned = learned.has(w.word);
     const isMistake = !!mistakes[w.word];
     const trans = (w.translations[0] || {}).translation || '';
-    return `<div class="word-row ${isLearned ? 'learned' : ''}" onclick="jumpToWord('${w.word}')">
-      <div class="word-row-en">${w.word}</div>
-      <div class="word-row-zh">${trans}</div>
-      <div class="word-row-badge ${isLearned ? 'learned' : ''} ${isMistake ? 'wrong' : ''}">
-        ${isLearned ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>' : ''}
-        ${isMistake ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' : ''}
-      </div>
-    </div>`;
-  }).join('');
+    const div = document.createElement('div');
+    div.className = 'word-row' + (isLearned ? ' learned' : '');
+    div.dataset.word = w.word;
+    div.innerHTML =
+      `<div class="word-row-en">${w.word}</div>` +
+      `<div class="word-row-zh">${trans}</div>` +
+      `<div class="word-row-badge ${isLearned ? 'learned' : ''} ${isMistake ? 'wrong' : ''}">` +
+      (isLearned ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
+      (isMistake ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' : '') +
+      '</div>';
+    div.addEventListener('click', () => jumpToWord(w.word));
+    frag.appendChild(div);
+  }
+  list.appendChild(frag);
+
+  // Load more sentinel
+  const old = list.querySelector('.vocab-load-more');
+  if (old) old.remove();
+  if (end < filtered.length) {
+    const more = document.createElement('div');
+    more.className = 'vocab-load-more';
+    more.style.cssText = 'text-align:center;padding:16px;color:var(--text3);font-size:0.82rem;cursor:pointer;';
+    more.textContent = `显示 ${end} / ${filtered.length}，点击加载更多`;
+    more.addEventListener('click', () => renderVocabRows(end));
+    list.appendChild(more);
+
+    // Auto-load on scroll near bottom
+    list.onscroll = () => {
+      if (list.scrollTop + list.clientHeight >= list.scrollHeight - 80) {
+        list.onscroll = null;
+        renderVocabRows(end);
+      }
+    };
+  } else {
+    list.onscroll = null;
+  }
 }
 
 function jumpToWord(word) {
@@ -1449,9 +1537,18 @@ function renderQuestion() {
   const correct = (q.translations[0] || {}).translation || '';
   const options = shuffle([correct, ...distractors]);
 
+  // Store options on window to avoid quote-escaping issues in onclick
+  window._quizOptions = options;
+  window._quizCorrect = correct;
   document.getElementById('quizOptions').innerHTML = options.map((opt, i) =>
-    `<button class="quiz-option" onclick="selectOption(this,'${escHtml(opt)}','${escHtml(correct)}')">${opt}</button>`
+    `<button class="quiz-option" data-idx="${i}">${opt}</button>`
   ).join('');
+  document.getElementById('quizOptions').querySelectorAll('.quiz-option').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const idx = parseInt(this.dataset.idx);
+      selectOption(this, window._quizOptions[idx], window._quizCorrect);
+    });
+  });
 }
 
 function selectOption(btn, selected, correct) {
