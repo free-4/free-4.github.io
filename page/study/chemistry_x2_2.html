@@ -273,6 +273,21 @@
         }
 
         /* 框架对a标签的全局按钮样式已被.toc-link覆盖 */
+
+/* 全局文本强制换行，防止长单词/长链接撑开容器 */
+body, p, li, span, div, h1, h2, h3, h4, h5, h6, a, code, pre, blockquote {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;   /* 现代浏览器推荐写法 */
+    hyphens: auto;            /* 英文自动连字符 */
+    max-width: 100%;
+}
+
+/* 对于代码块或长 URL 的额外保护 */
+code, pre, .overview-text code {
+    word-break: break-all;
+    white-space: pre-wrap;
+}
     </style>
 </head>
 <body>
