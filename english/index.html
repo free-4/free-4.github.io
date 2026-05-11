@@ -1,1917 +1,2704 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>高中英语6000词</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Space+Mono:wght@400;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<style>
-/* ===== CSS Variables ===== */
-:root {
-  --bg: #f5f0e8;
-  --bg2: #ede8de;
-  --bg3: #e2dbd0;
-  --surface: #faf7f2;
-  --surface2: #f0ece4;
-  --border: #d4ccc0;
-  --border2: #bfb8ad;
-  --text: #2c2418;
-  --text2: #6b5f50;
-  --text3: #9c8f7e;
-  --accent: #c8692a;
-  --accent2: #a3521f;
-  --accent-bg: #fdf0e8;
-  --accent-border: #e8b898;
-  --green: #3a7d44;
-  --green-bg: #edf7ef;
-  --red: #b5341a;
-  --red-bg: #fdf0ee;
-  --yellow: #b08000;
-  --yellow-bg: #fdf8e8;
-  --blue: #1a5fa8;
-  --blue-bg: #edf3fc;
-  --shadow: 0 2px 12px rgba(44,36,24,0.08);
-  --shadow-lg: 0 8px 32px rgba(44,36,24,0.14);
-  --radius: 10px;
-  --radius-lg: 16px;
-  --font-size-base: 16px;
-  --transition: 0.2s ease;
-}
-[data-theme="dark"] {
-  --bg: #1a1710;
-  --bg2: #211e15;
-  --bg3: #2a261c;
-  --surface: #252118;
-  --surface2: #2e2a20;
-  --border: #3d3828;
-  --border2: #4e4835;
-  --text: #f0e8d8;
-  --text2: #b8a888;
-  --text3: #7a6e5a;
-  --accent: #e07a38;
-  --accent2: #c8692a;
-  --accent-bg: #2d1e0e;
-  --accent-border: #5a3018;
-  --green: #5aab64;
-  --green-bg: #0e2010;
-  --red: #e05540;
-  --red-bg: #220e08;
-  --yellow: #d4a020;
-  --yellow-bg: #201800;
-  --blue: #4a8fd4;
-  --blue-bg: #0a1828;
-  --shadow: 0 2px 12px rgba(0,0,0,0.3);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <title>高中英语6000词</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Space+Mono:wght@400;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f0e8;
+            --bg2: #ede8de;
+            --bg3: #e2dbd0;
+            --surface: #faf7f2;
+            --surface2: #f0ece4;
+            --border: #d4ccc0;
+            --border2: #bfb8ad;
+            --text: #2c2418;
+            --text2: #6b5f50;
+            --text3: #9c8f7e;
+            --accent: #c8692a;
+            --accent2: #a3521f;
+            --accent-bg: #fdf0e8;
+            --accent-border: #e8b898;
+            --green: #3a7d44;
+            --green-bg: #edf7ef;
+            --red: #b5341a;
+            --red-bg: #fdf0ee;
+            --yellow: #b08000;
+            --yellow-bg: #fdf8e8;
+            --blue: #1a5fa8;
+            --blue-bg: #edf3fc;
+            --shadow: 0 2px 12px rgba(44, 36, 24, 0.08);
+            --shadow-lg: 0 8px 32px rgba(44, 36, 24, 0.14);
+            --radius: 10px;
+            --radius-lg: 16px;
+            --font-size-base: 16px;
+            --transition: 0.2s ease;
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        [data-theme="dark"] {
+            --bg: #1a1710;
+            --bg2: #211e15;
+            --bg3: #2a261c;
+            --surface: #252118;
+            --surface2: #2e2a20;
+            --border: #3d3828;
+            --border2: #4e4835;
+            --text: #f0e8d8;
+            --text2: #b8a888;
+            --text3: #7a6e5a;
+            --accent: #e07a38;
+            --accent2: #c8692a;
+            --accent-bg: #2d1e0e;
+            --accent-border: #5a3018;
+            --green: #5aab64;
+            --green-bg: #0e2010;
+            --red: #e05540;
+            --red-bg: #220e08;
+            --yellow: #d4a020;
+            --yellow-bg: #201800;
+            --blue: #4a8fd4;
+            --blue-bg: #0a1828;
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            font-size: var(--font-size-base);
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            transition: background var(--transition), color var(--transition);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: 16px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .app-shell {
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        .sidebar {
+            width: 220px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 200;
+            transition: transform var(--transition), background var(--transition);
+            flex-shrink: 0;
+        }
+        .sidebar-logo {
+            padding: 24px 20px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .sidebar-logo h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.3;
+        }
+        .sidebar-logo p {
+            font-size: 0.7rem;
+            color: var(--text3);
+            margin-top: 2px;
+            font-family: 'Space Mono', monospace;
+        }
+        .sidebar-nav {
+            flex: 1;
+            padding: 12px 0;
+            overflow-y: auto;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: var(--text2);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            border-left: 3px solid transparent;
+            position: relative;
+            user-select: none;
+        }
+        .nav-item:hover {
+            background: var(--bg2);
+            color: var(--text);
+        }
+        .nav-item.active {
+            background: var(--accent-bg);
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+        .nav-item svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+        .nav-badge {
+            margin-left: auto;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.65rem;
+            font-family: 'Space Mono', monospace;
+            padding: 1px 6px;
+            border-radius: 20px;
+            min-width: 20px;
+            text-align: center;
+        }
+        .nav-badge.green {
+            background: var(--green);
+        }
+        .sidebar-progress {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+        }
+        .sidebar-progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            color: var(--text3);
+            margin-bottom: 6px;
+            font-family: 'Space Mono', monospace;
+        }
+        .progress-bar-track {
+            height: 6px;
+            background: var(--bg3);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #e8943a);
+            border-radius: 99px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .main {
+            margin-left: 220px;
+            flex: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            overflow-x: hidden;
+        }
+        .page {
+            display: none;
+            flex: 1;
+            padding: 32px;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            min-width: 0;
+            overflow-x: hidden;
+        }
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .page-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .page-subtitle {
+            color: var(--text3);
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .card-sm {
+            padding: 16px;
+        }
+        .word-card-wrapper {
+            perspective: 1000px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .word-card-inner {
+            position: relative;
+            width: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .word-card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+        .word-card-front,
+        .word-card-back {
+            width: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 24px;
+            text-align: center;
+        }
+        .word-card-front {
+            position: relative;
+            min-height: 260px;
+        }
+        .word-card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            min-height: 260px;
+            transform: rotateY(180deg);
+            align-items: flex-start;
+            text-align: left;
+            justify-content: flex-start;
+            padding-top: 28px;
+            padding-bottom: 28px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .word-en {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.01em;
+            word-break: break-word;
+        }
+        .word-hint {
+            font-size: 0.8rem;
+            color: var(--text3);
+            margin-top: 12px;
+            font-family: 'Space Mono', monospace;
+        }
+        .word-counter-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text3);
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 99px;
+            z-index: 2;
+        }
+        .trans-row {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .trans-type {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            background: var(--accent-bg);
+            border: 1px solid var(--accent-border);
+            padding: 1px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 3px;
+        }
+        .trans-text {
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .phrases-section {
+            margin-top: 14px;
+            width: 100%;
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+        }
+        .phrases-title {
+            font-size: 0.72rem;
+            color: var(--text3);
+            margin-bottom: 8px;
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+        }
+        .phrase-item {
+            font-size: 0.85rem;
+            color: var(--text2);
+            margin-bottom: 6px;
+            padding-left: 8px;
+            border-left: 2px solid var(--accent-border);
+        }
+        .phrase-en {
+            font-style: italic;
+            color: var(--text);
+        }
+        .study-controls {
+            display: grid;
+            grid-template-columns: 1fr auto auto 1fr;
+            gap: 8px;
+            align-items: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 42px;
+        }
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: var(--accent2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(200, 105, 42, 0.3);
+        }
+        .btn-secondary {
+            background: var(--surface2);
+            color: var(--text);
+            border-color: var(--border);
+        }
+        .btn-secondary:hover {
+            background: var(--bg3);
+            border-color: var(--border2);
+        }
+        .btn-success {
+            background: var(--green);
+            color: #fff;
+        }
+        .btn-success:hover {
+            opacity: 0.88;
+        }
+        .btn-danger {
+            background: var(--red);
+            color: #fff;
+        }
+        .btn-danger:hover {
+            opacity: 0.88;
+        }
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 0.82rem;
+            min-height: 34px;
+        }
+        .btn-icon {
+            padding: 8px;
+            border-radius: 8px;
+            min-height: auto;
+        }
+        .btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .mode-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .mode-chip {
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 0.82rem;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            color: var(--text2);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 36px;
+        }
+        .mode-chip svg {
+            width: 14px;
+            height: 14px;
+        }
+        .mode-chip.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .mode-chip:hover:not(.active) {
+            border-color: var(--border2);
+            background: var(--bg3);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text3);
+            margin-top: 4px;
+        }
+        .vocab-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            width: 100%;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 180px;
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface2);
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: border-color var(--transition), background var(--transition);
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--surface);
+        }
+        .word-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+            padding-right: 4px;
+            flex: 1;
+            min-height: 200px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .word-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .word-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .word-list::-webkit-scrollbar-thumb {
+            background: var(--border2);
+            border-radius: 99px;
+        }
+        .word-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .word-row:hover {
+            border-color: var(--accent-border);
+            background: var(--accent-bg);
+        }
+        .word-row.learned {
+            border-left: 3px solid var(--green);
+        }
+        .word-row-en {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            flex-shrink: 0;
+            width: 110px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .word-row-zh {
+            font-size: 0.82rem;
+            color: var(--text2);
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .word-row-badge {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+        .word-row-badge.learned {
+            background: var(--green-bg);
+            color: var(--green);
+        }
+        .word-row-badge.wrong {
+            background: var(--red-bg);
+            color: var(--red);
+        }
 
-/* ===== Reset & Base ===== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: var(--font-size-base); scroll-behavior: smooth; }
-body {
-  font-family: 'Noto Serif SC', serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  transition: background var(--transition), color var(--transition);
-  overflow-x: hidden;
-}
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
-input, select, textarea { font-family: inherit; }
-a { text-decoration: none; color: inherit; }
+        .quiz-question-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text3);
+        }
+        .quiz-word {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 24px 0 8px;
+            word-break: break-word;
+        }
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .quiz-option {
+            padding: 14px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text);
+            transition: all var(--transition);
+            text-align: left;
+            line-height: 1.4;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 48px;
+            word-break: break-word;
+        }
+        .quiz-option:hover:not(:disabled) {
+            border-color: var(--accent);
+            background: var(--accent-bg);
+        }
+        .quiz-option.correct {
+            border-color: var(--green);
+            background: var(--green-bg);
+            color: var(--green);
+        }
+        .quiz-option.wrong {
+            border-color: var(--red);
+            background: var(--red-bg);
+            color: var(--red);
+        }
+        .quiz-option:disabled {
+            cursor: default;
+        }
+        .quiz-feedback {
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+        .quiz-feedback.show {
+            display: flex;
+        }
+        .quiz-feedback.correct {
+            background: var(--green-bg);
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
+        .quiz-feedback.wrong {
+            background: var(--red-bg);
+            color: var(--red);
+            border: 1px solid var(--red);
+        }
+        .quiz-progress-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .quiz-progress-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text3);
+            white-space: nowrap;
+        }
 
-/* ===== Layout ===== */
-.app-shell { display: flex; min-height: 100vh; overflow-x: hidden; width: 100%; }
+        .mistake-empty {
+            text-align: center;
+            padding: 48px;
+            color: var(--text3);
+        }
+        .mistake-empty svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 12px;
+            opacity: 0.4;
+        }
+        .mistake-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .mistake-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--red);
+            border-radius: var(--radius);
+            flex-wrap: wrap;
+        }
+        .mistake-en {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            width: 100px;
+            flex-shrink: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .mistake-zh {
+            font-size: 0.85rem;
+            color: var(--text2);
+            flex: 1;
+            min-width: 60px;
+        }
+        .mistake-count {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--red);
+            background: var(--red-bg);
+            padding: 2px 8px;
+            border-radius: 99px;
+            white-space: nowrap;
+        }
 
-/* ===== Sidebar ===== */
-.sidebar {
-  width: 220px;
-  background: var(--surface);
-  border-right: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 0; left: 0; bottom: 0;
-  z-index: 200;
-  transition: transform var(--transition), background var(--transition);
-}
-.sidebar-logo {
-  padding: 24px 20px 20px;
-  border-bottom: 1px solid var(--border);
-}
-.sidebar-logo h1 {
-  font-family: 'Crimson Pro', serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1.3;
-}
-.sidebar-logo p {
-  font-size: 0.7rem;
-  color: var(--text3);
-  margin-top: 2px;
-  font-family: 'Space Mono', monospace;
-}
-.sidebar-nav { flex: 1; padding: 12px 0; overflow-y: auto; }
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  color: var(--text2);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all var(--transition);
-  border-left: 3px solid transparent;
-  position: relative;
-}
-.nav-item:hover { background: var(--bg2); color: var(--text); }
-.nav-item.active { background: var(--accent-bg); color: var(--accent); border-left-color: var(--accent); }
-.nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
-.nav-badge {
-  margin-left: auto;
-  background: var(--accent);
-  color: #fff;
-  font-size: 0.65rem;
-  font-family: 'Space Mono', monospace;
-  padding: 1px 6px;
-  border-radius: 20px;
-  min-width: 20px;
-  text-align: center;
-}
-.nav-badge.green { background: var(--green); }
+        .settings-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .settings-section-title {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text3);
+            font-family: 'Space Mono', monospace;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .setting-row:last-child {
+            border-bottom: none;
+        }
+        .setting-label {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        .setting-desc {
+            font-size: 0.78rem;
+            color: var(--text3);
+            margin-top: 2px;
+        }
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: var(--bg3);
+            border-radius: 99px;
+            cursor: pointer;
+            transition: background var(--transition);
+            border: 1px solid var(--border);
+        }
+        .toggle-slider::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 2px;
+            top: 2px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform var(--transition);
+        }
+        .toggle input:checked+.toggle-slider {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        .toggle input:checked+.toggle-slider::after {
+            transform: translateX(20px);
+        }
+        .font-size-slider {
+            width: 140px;
+            accent-color: var(--accent);
+        }
+        .api-key-input {
+            width: 100%;
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface2);
+            color: var(--text);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.82rem;
+            transition: border-color var(--transition);
+        }
+        .api-key-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .model-select {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface2);
+            color: var(--text);
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        .model-select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
 
-/* ===== Progress bar in sidebar ===== */
-.sidebar-progress {
-  padding: 16px 20px;
-  border-top: 1px solid var(--border);
-}
-.sidebar-progress-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.72rem;
-  color: var(--text3);
-  margin-bottom: 6px;
-  font-family: 'Space Mono', monospace;
-}
-.progress-bar-track {
-  height: 6px;
-  background: var(--bg3);
-  border-radius: 99px;
-  overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), #e8943a);
-  border-radius: 99px;
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        .ai-chat-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            flex: 1;
+            min-height: 360px;
+        }
+        .ai-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius) var(--radius) 0 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        .ai-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+        .ai-messages::-webkit-scrollbar-thumb {
+            background: var(--border2);
+            border-radius: 99px;
+        }
+        .ai-msg {
+            max-width: 82%;
+            padding: 10px 14px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .ai-msg.user {
+            background: var(--accent);
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 3px;
+        }
+        .ai-msg.assistant {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            align-self: flex-start;
+            border-bottom-left-radius: 3px;
+        }
+        .ai-msg.system {
+            background: var(--yellow-bg);
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+            align-self: center;
+            font-size: 0.8rem;
+            border-radius: 99px;
+            padding: 4px 14px;
+            max-width: 90%;
+        }
+        .ai-input-row {
+            display: flex;
+            gap: 8px;
+            padding: 12px 14px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+        .ai-input {
+            flex: 1;
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg2);
+            color: var(--text);
+            font-size: 0.9rem;
+            resize: none;
+            min-height: 38px;
+            max-height: 100px;
+            overflow-y: auto;
+            font-family: inherit;
+        }
+        .ai-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .ai-quick-btns {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .ai-quick-btn {
+            padding: 5px 12px;
+            border-radius: 99px;
+            font-size: 0.78rem;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            color: var(--text2);
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 32px;
+        }
+        .ai-quick-btn:hover {
+            background: var(--accent-bg);
+            border-color: var(--accent-border);
+            color: var(--accent);
+        }
+        .ai-no-key {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 40px;
+            text-align: center;
+            color: var(--text3);
+        }
+        .ai-no-key svg {
+            width: 40px;
+            height: 40px;
+            opacity: 0.4;
+        }
+        .typing-dots {
+            display: inline-flex;
+            gap: 4px;
+            align-items: center;
+            padding: 4px 0;
+        }
+        .typing-dots span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--text3);
+            animation: blink 1.2s infinite;
+        }
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes blink {
+            0%,
+            80%,
+            100% {
+                opacity: 0.2;
+            }
+            40% {
+                opacity: 1;
+            }
+        }
 
-/* ===== Main content ===== */
-.main {
-  margin-left: 220px;
-  flex: 1;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow-x: hidden;
-}
-.page {
-  display: none;
-  flex: 1;
-  padding: 32px;
-  max-width: 900px;
-  width: 100%;
-  margin: 0 auto;
-  min-width: 0;
-  overflow-x: hidden;
-}
-.page.active { display: flex; flex-direction: column; gap: 24px; }
+        .hamburger {
+            display: none;
+            position: fixed;
+            top: 14px;
+            left: 14px;
+            z-index: 300;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+        }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 199;
+        }
 
-/* ===== Page Header ===== */
-.page-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.page-title { font-family: 'Crimson Pro', serif; font-size: 1.9rem; font-weight: 600; color: var(--text); }
-.page-subtitle { color: var(--text3); font-size: 0.85rem; margin-top: 2px; }
+        .toast-wrap {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+        .toast-wrap>* {
+            pointer-events: auto;
+        }
+        .toast {
+            padding: 10px 18px;
+            border-radius: var(--radius);
+            font-size: 0.88rem;
+            box-shadow: var(--shadow-lg);
+            animation: slideIn 0.2s ease;
+            max-width: 280px;
+            word-break: break-word;
+        }
+        .toast.success {
+            background: var(--green);
+            color: #fff;
+        }
+        .toast.error {
+            background: var(--red);
+            color: #fff;
+        }
+        .toast.info {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* ===== Cards ===== */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  box-shadow: var(--shadow);
-  transition: background var(--transition), border-color var(--transition);
-}
-.card-sm { padding: 16px; }
+        .bottom-nav {
+            display: none;
+        }
 
-/* ===== Word Card (Study) ===== */
-.word-card-wrapper {
-  perspective: 1000px;
-  min-height: 280px;
-  cursor: pointer;
-}
-.word-card-inner {
-  position: relative;
-  width: 100%;
-  min-height: 280px;
-  transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.word-card-inner.flipped { transform: rotateY(180deg); }
-.word-card-front, .word-card-back {
-  position: absolute;
-  width: 100%;
-  min-height: 280px;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 24px;
-  text-align: center;
-}
-.word-card-back { transform: rotateY(180deg); align-items: flex-start; text-align: left; justify-content: flex-start; padding-top: 28px; overflow-y: auto; }
-.word-en {
-  font-family: 'Crimson Pro', serif;
-  font-size: 3rem;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-.word-hint { font-size: 0.8rem; color: var(--text3); margin-top: 12px; font-family: 'Space Mono', monospace; }
-.word-counter-badge {
-  position: absolute;
-  top: 16px; right: 16px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  color: var(--text3);
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  padding: 3px 8px;
-  border-radius: 99px;
-}
-.trans-row { width: 100%; margin-bottom: 10px; }
-.trans-type {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  background: var(--accent-bg);
-  border: 1px solid var(--accent-border);
-  padding: 1px 6px;
-  border-radius: 4px;
-  display: inline-block;
-  margin-bottom: 3px;
-}
-.trans-text { font-size: 1rem; color: var(--text); line-height: 1.6; }
-.phrases-section { margin-top: 14px; width: 100%; border-top: 1px solid var(--border); padding-top: 12px; }
-.phrases-title { font-size: 0.72rem; color: var(--text3); margin-bottom: 8px; font-family: 'Space Mono', monospace; text-transform: uppercase; }
-.phrase-item { font-size: 0.85rem; color: var(--text2); margin-bottom: 6px; padding-left: 8px; border-left: 2px solid var(--accent-border); }
-.phrase-en { font-style: italic; color: var(--text); }
+        .page-bottom-spacer {
+            display: none;
+            flex-shrink: 0;
+        }
 
-/* ===== Study Controls ===== */
-.study-controls {
-  display: grid;
-  grid-template-columns: 1fr auto auto 1fr;
-  gap: 8px;
-  align-items: center;
-}
-.btn {
-  padding: 10px 20px;
-  border-radius: var(--radius);
-  font-size: 0.9rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  transition: all var(--transition);
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-.btn svg { width: 16px; height: 16px; }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(200,105,42,0.3); }
-.btn-secondary { background: var(--surface2); color: var(--text); border-color: var(--border); }
-.btn-secondary:hover { background: var(--bg3); border-color: var(--border2); }
-.btn-success { background: var(--green); color: #fff; }
-.btn-success:hover { opacity: 0.88; }
-.btn-danger { background: var(--red); color: #fff; }
-.btn-danger:hover { opacity: 0.88; }
-.btn-sm { padding: 6px 14px; font-size: 0.82rem; }
-.btn-icon { padding: 8px; border-radius: 8px; }
-.btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 260px;
+                max-width: 85vw;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar-overlay.show {
+                display: block;
+            }
+            .main {
+                margin-left: 0;
+            }
+            .hamburger {
+                display: flex;
+            }
 
-/* ===== Mode selector ===== */
-.mode-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.mode-chip {
-  padding: 6px 14px;
-  border-radius: 99px;
-  font-size: 0.82rem;
-  border: 1px solid var(--border);
-  background: var(--surface2);
-  color: var(--text2);
-  cursor: pointer;
-  transition: all var(--transition);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.mode-chip svg { width: 14px; height: 14px; }
-.mode-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-.mode-chip:hover:not(.active) { border-color: var(--border2); background: var(--bg3); }
+            .page {
+                padding-top: 56px;
+                padding-left: 14px;
+                padding-right: 14px;
+                padding-bottom: 0;
+            }
+            .page.active {
+                gap: 16px;
+            }
 
-/* ===== Stats row ===== */
-.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  text-align: center;
-}
-.stat-num {
-  font-family: 'Space Mono', monospace;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-}
-.stat-label { font-size: 0.75rem; color: var(--text3); margin-top: 4px; }
+            .page-bottom-spacer {
+                display: block;
+                height: calc(80px + var(--safe-bottom));
+                flex-shrink: 0;
+            }
 
-/* ===== Word List (Vocabulary) ===== */
-.vocab-filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; width: 100%; }
-.search-input {
-  flex: 1;
-  min-width: 180px;
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface2);
-  color: var(--text);
-  font-size: 0.9rem;
-  transition: border-color var(--transition), background var(--transition);
-}
-.search-input:focus { outline: none; border-color: var(--accent); background: var(--surface); }
-.word-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  overflow-y: auto;
-  padding-right: 4px;
-  max-height: calc(100vh - 280px);
-  min-height: 200px;
-}
-.word-list::-webkit-scrollbar { width: 4px; }
-.word-list::-webkit-scrollbar-track { background: transparent; }
-.word-list::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
-.word-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: all var(--transition);
-}
-.word-row:hover { border-color: var(--accent-border); background: var(--accent-bg); }
-.word-row.learned { border-left: 3px solid var(--green); }
-.word-row-en { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-weight: 600; flex-shrink: 0; width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.word-row-zh { font-size: 0.82rem; color: var(--text2); flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.word-row-badge {
-  flex-shrink: 0;
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px;
-}
-.word-row-badge.learned { background: var(--green-bg); color: var(--green); }
-.word-row-badge.wrong { background: var(--red-bg); color: var(--red); }
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .word-en {
+                font-size: 2.2rem;
+            }
+            .quiz-word {
+                font-size: 1.8rem;
+            }
 
-/* ===== Quiz ===== */
-.quiz-question-num { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--text3); }
-.quiz-word {
-  font-family: 'Crimson Pro', serif;
-  font-size: 2.4rem;
-  font-weight: 600;
-  text-align: center;
-  padding: 24px 0 8px;
-}
-.quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
-.quiz-option {
-  padding: 14px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface2);
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: var(--text);
-  transition: all var(--transition);
-  text-align: left;
-  line-height: 1.4;
-}
-.quiz-option:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-bg); }
-.quiz-option.correct { border-color: var(--green); background: var(--green-bg); color: var(--green); }
-.quiz-option.wrong { border-color: var(--red); background: var(--red-bg); color: var(--red); }
-.quiz-option:disabled { cursor: default; }
-.quiz-feedback {
-  padding: 12px 16px;
-  border-radius: var(--radius);
-  font-size: 0.9rem;
-  display: none;
-  align-items: center;
-  gap: 8px;
-}
-.quiz-feedback.show { display: flex; }
-.quiz-feedback.correct { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
-.quiz-feedback.wrong { background: var(--red-bg); color: var(--red); border: 1px solid var(--red); }
-.quiz-progress-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.quiz-progress-text { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text3); white-space: nowrap; }
+            .card {
+                padding: 14px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+            .stat-num {
+                font-size: 1.4rem;
+            }
 
-/* ===== Mistake Book ===== */
-.mistake-empty { text-align: center; padding: 48px; color: var(--text3); }
-.mistake-empty svg { width: 48px; height: 48px; margin-bottom: 12px; opacity: 0.4; }
-.mistake-list { display: flex; flex-direction: column; gap: 8px; }
-.mistake-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--red);
-  border-radius: var(--radius);
-}
-.mistake-en { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-weight: 600; width: 100px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
-.mistake-zh { font-size: 0.85rem; color: var(--text2); flex: 1; }
-.mistake-count { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--red); background: var(--red-bg); padding: 2px 8px; border-radius: 99px; }
+            .study-controls {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
 
-/* ===== Settings ===== */
-.settings-section { display: flex; flex-direction: column; gap: 8px; }
-.settings-section-title {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text3);
-  font-family: 'Space Mono', monospace;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--border);
-}
-.setting-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.setting-row:last-child { border-bottom: none; }
-.setting-label { font-size: 0.9rem; color: var(--text); }
-.setting-desc { font-size: 0.78rem; color: var(--text3); margin-top: 2px; }
-.toggle {
-  position: relative;
-  width: 44px;
-  height: 24px;
-  flex-shrink: 0;
-}
-.toggle input { opacity: 0; width: 0; height: 0; }
-.toggle-slider {
-  position: absolute;
-  inset: 0;
-  background: var(--bg3);
-  border-radius: 99px;
-  cursor: pointer;
-  transition: background var(--transition);
-  border: 1px solid var(--border);
-}
-.toggle-slider::after {
-  content: '';
-  position: absolute;
-  width: 18px; height: 18px;
-  left: 2px; top: 2px;
-  background: #fff;
-  border-radius: 50%;
-  transition: transform var(--transition);
-}
-.toggle input:checked + .toggle-slider { background: var(--accent); border-color: var(--accent); }
-.toggle input:checked + .toggle-slider::after { transform: translateX(20px); }
-.font-size-slider { width: 140px; accent-color: var(--accent); }
-.api-key-input {
-  width: 100%;
-  padding: 9px 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface2);
-  color: var(--text);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
-  transition: border-color var(--transition);
-}
-.api-key-input:focus { outline: none; border-color: var(--accent); }
-.model-select {
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface2);
-  color: var(--text);
-  font-size: 0.85rem;
-  cursor: pointer;
-}
-.model-select:focus { outline: none; border-color: var(--accent); }
+            .word-card-wrapper {
+                min-height: auto;
+            }
+            .word-card-front {
+                min-height: 220px;
+                padding: 20px 14px;
+            }
+            .word-card-back {
+                min-height: 220px;
+                padding: 20px 14px 24px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+            }
 
-/* ===== AI Tutor ===== */
-.ai-chat-wrap { display: flex; flex-direction: column; gap: 0; height: calc(100vh - 260px); min-height: 360px; }
-.ai-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-.ai-messages::-webkit-scrollbar { width: 4px; }
-.ai-messages::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
-.ai-msg {
-  max-width: 82%;
-  padding: 10px 14px;
-  border-radius: var(--radius);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  white-space: pre-wrap;
-}
-.ai-msg.user { background: var(--accent); color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
-.ai-msg.assistant { background: var(--surface); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 3px; }
-.ai-msg.system { background: var(--yellow-bg); border: 1px solid var(--yellow); color: var(--yellow); align-self: center; font-size: 0.8rem; border-radius: 99px; padding: 4px 14px; max-width: 90%; }
-.ai-input-row {
-  display: flex;
-  gap: 8px;
-  padding: 12px 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-}
-.ai-input {
-  flex: 1;
-  padding: 9px 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg2);
-  color: var(--text);
-  font-size: 0.9rem;
-  resize: none;
-  min-height: 38px;
-  max-height: 100px;
-  overflow-y: auto;
-  font-family: inherit;
-}
-.ai-input:focus { outline: none; border-color: var(--accent); }
-.ai-quick-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-.ai-quick-btn {
-  padding: 5px 12px;
-  border-radius: 99px;
-  font-size: 0.78rem;
-  border: 1px solid var(--border);
-  background: var(--surface2);
-  color: var(--text2);
-  cursor: pointer;
-  transition: all var(--transition);
-}
-.ai-quick-btn:hover { background: var(--accent-bg); border-color: var(--accent-border); color: var(--accent); }
-.ai-no-key {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 40px;
-  text-align: center;
-  color: var(--text3);
-}
-.ai-no-key svg { width: 40px; height: 40px; opacity: 0.4; }
-.typing-dots { display: inline-flex; gap: 4px; align-items: center; padding: 4px 0; }
-.typing-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--text3); animation: blink 1.2s infinite; }
-.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes blink { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
+            .word-card-back .word-counter-badge {
+                top: 10px;
+                right: 10px;
+            }
+            .word-card-front .word-counter-badge {
+                top: 10px;
+                right: 10px;
+            }
 
-/* ===== Mobile hamburger ===== */
-.hamburger {
-  display: none;
-  position: fixed;
-  top: 14px; left: 14px;
-  z-index: 300;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px;
-  box-shadow: var(--shadow);
-}
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 199;
-}
+            .mode-row {
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+            .mode-chip {
+                font-size: 0.78rem;
+                padding: 5px 10px;
+                min-height: 32px;
+            }
 
-/* ===== Toast ===== */
-.toast-wrap { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; flex-direction: column; gap: 8px; }
-.toast {
-  padding: 10px 18px;
-  border-radius: var(--radius);
-  font-size: 0.88rem;
-  box-shadow: var(--shadow-lg);
-  animation: slideIn 0.2s ease;
-  max-width: 280px;
-}
-.toast.success { background: var(--green); color: #fff; }
-.toast.error { background: var(--red); color: #fff; }
-.toast.info { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
-@keyframes slideIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+            .word-list {
+                flex: 1;
+                min-height: 150px;
+            }
+            .word-row {
+                padding: 9px 10px;
+                gap: 8px;
+            }
+            .word-row-en {
+                width: 88px;
+                font-size: 0.92rem;
+            }
+            .word-row-zh {
+                font-size: 0.78rem;
+            }
 
-/* ===== Bottom Nav (mobile only) ===== */
-.bottom-nav { display: none; }
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+            .quiz-progress-row {
+                gap: 6px;
+            }
+            .quiz-option {
+                padding: 12px 14px;
+                min-height: 44px;
+            }
 
-@media (max-width: 768px) {
-  /* Sidebar */
-  .sidebar { transform: translateX(-100%); }
-  .sidebar.open { transform: translateX(0); }
-  .sidebar-overlay.show { display: block; }
-  .main { margin-left: 0; }
-  .hamburger { display: flex; }
+            .ai-chat-wrap {
+                flex: 1;
+                min-height: 260px;
+            }
+            .ai-quick-btns {
+                gap: 6px;
+            }
+            .ai-quick-btn {
+                font-size: 0.74rem;
+                padding: 4px 10px;
+                min-height: 30px;
+            }
 
-  /* Pages — top padding clears hamburger, bottom padding clears bottom nav */
-  .page {
-    padding-top: 56px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-bottom: 0; /* spacer div handles this */
-  }
-  /* Spacer at end of every page content so last item clears the nav */
-  .page-bottom-spacer {
-    display: block;
-    height: calc(70px + env(safe-area-inset-bottom, 0px));
-    flex-shrink: 0;
-  }
+            .btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+                min-height: 40px;
+            }
+            .btn-sm {
+                padding: 5px 12px;
+                font-size: 0.78rem;
+                min-height: 32px;
+            }
 
-  /* Typography */
-  .page-title { font-size: 1.5rem; }
-  .word-en { font-size: 2.2rem; }
-  .quiz-word { font-size: 1.8rem; }
+            .mistake-item {
+                padding: 10px 12px;
+                gap: 8px;
+            }
+            .mistake-en {
+                width: 80px;
+                font-size: 0.95rem;
+            }
+            .mistake-zh {
+                font-size: 0.78rem;
+            }
 
-  /* Cards */
-  .card { padding: 14px; }
-  .stats-grid { grid-template-columns: repeat(3,1fr); gap: 8px; }
-  .stat-num { font-size: 1.4rem; }
+            .bottom-nav {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--surface);
+                border-top: 1.5px solid var(--border);
+                z-index: 150;
+                padding-top: 6px;
+                padding-bottom: max(8px, var(--safe-bottom));
+                box-shadow: 0 -2px 12px rgba(44, 36, 24, 0.06);
+            }
+            .bottom-nav-item {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+                padding: 4px 0;
+                color: var(--text3);
+                font-size: 0.6rem;
+                cursor: pointer;
+                transition: color var(--transition);
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            .bottom-nav-item svg {
+                width: 21px;
+                height: 21px;
+            }
+            .bottom-nav-item.active {
+                color: var(--accent);
+            }
 
-  /* Study controls: 2x2 grid */
-  .study-controls { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .word-card-wrapper { min-height: 200px; }
-  .word-card-front, .word-card-back { min-height: 200px; padding: 18px 14px; }
-  .mode-row { gap: 6px; flex-wrap: wrap; }
-  .mode-chip { font-size: 0.78rem; padding: 5px 10px; }
+            .toast-wrap {
+                bottom: calc(80px + var(--safe-bottom));
+                right: 12px;
+                left: 12px;
+                align-items: flex-end;
+            }
+            .toast {
+                max-width: 100%;
+            }
+        }
 
-  /* Vocab list */
-  .word-list { max-height: calc(100vh - 250px); }
-  .word-row { padding: 9px 10px; gap: 8px; }
-  .word-row-en { width: 88px; font-size: 0.92rem; }
-  .word-row-zh { font-size: 0.78rem; }
+        @media (max-width: 380px) {
+            .page {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+            .word-en {
+                font-size: 1.8rem;
+            }
+            .quiz-word {
+                font-size: 1.5rem;
+            }
+            .word-card-front {
+                min-height: 180px;
+                padding: 16px 10px;
+            }
+            .word-card-back {
+                min-height: 180px;
+                padding: 16px 10px 20px;
+            }
+            .study-controls {
+                gap: 6px;
+            }
+            .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                min-height: 36px;
+                gap: 4px;
+            }
+            .btn svg {
+                width: 14px;
+                height: 14px;
+            }
+            .stats-grid {
+                gap: 6px;
+            }
+            .stat-card {
+                padding: 10px 6px;
+            }
+            .stat-num {
+                font-size: 1.2rem;
+            }
+            .stat-label {
+                font-size: 0.68rem;
+            }
+        }
 
-  /* Quiz */
-  .quiz-options { grid-template-columns: 1fr; }
-  .quiz-progress-row { gap: 6px; }
-
-  /* AI */
-  .ai-chat-wrap { height: calc(100vh - 260px); min-height: 260px; }
-  .ai-quick-btns { gap: 6px; }
-
-  /* Bottom nav */
-  .bottom-nav {
-    display: flex;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: var(--surface);
-    border-top: 1.5px solid var(--border);
-    z-index: 150;
-    padding-top: 6px;
-    padding-bottom: max(8px, env(safe-area-inset-bottom));
-  }
-  .bottom-nav-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    padding: 4px 0;
-    color: var(--text3);
-    font-size: 0.6rem;
-    cursor: pointer;
-    transition: color var(--transition);
-  }
-  .bottom-nav-item svg { width: 21px; height: 21px; }
-  .bottom-nav-item.active { color: var(--accent); }
-}
-
-/* ===== Loader Screen ===== */
-#loaderScreen {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--bg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  transition: opacity 0.4s ease;
-}
-#loaderScreen.hide {
-  opacity: 0;
-  pointer-events: none !important;
-}
-.loader-logo {
-  text-align: center;
-}
-.loader-logo h1 {
-  font-family: 'Crimson Pro', serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 4px;
-}
-.loader-logo p {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  color: var(--text3);
-  letter-spacing: 0.12em;
-}
-.loader-icon {
-  width: 56px;
-  height: 56px;
-  color: var(--accent);
-  animation: loaderPulse 1.6s ease-in-out infinite;
-}
-@keyframes loaderPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(0.92); }
-}
-.loader-track {
-  width: min(340px, 80vw);
-  height: 6px;
-  background: var(--bg3);
-  border-radius: 99px;
-  overflow: hidden;
-}
-.loader-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), #e8943a);
-  border-radius: 99px;
-  width: 0%;
-  transition: width 0.3s ease;
-}
-.loader-msg {
-  font-size: 0.82rem;
-  color: var(--text3);
-  font-family: 'Space Mono', monospace;
-  text-align: center;
-}
-.loader-msg.error { color: var(--red); }
-.loader-pct {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--text3);
-  margin-top: -16px;
-}
-
-</style>
+        #loaderScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            transition: opacity 0.4s ease;
+        }
+        #loaderScreen.hide {
+            opacity: 0;
+            pointer-events: none !important;
+        }
+        .loader-logo {
+            text-align: center;
+        }
+        .loader-logo h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .loader-logo p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text3);
+            letter-spacing: 0.12em;
+        }
+        .loader-icon {
+            width: 56px;
+            height: 56px;
+            color: var(--accent);
+            animation: loaderPulse 1.6s ease-in-out infinite;
+        }
+        @keyframes loaderPulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(0.92);
+            }
+        }
+        .loader-track {
+            width: min(340px, 80vw);
+            height: 6px;
+            background: var(--bg3);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+        .loader-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #e8943a);
+            border-radius: 99px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .loader-msg {
+            font-size: 0.82rem;
+            color: var(--text3);
+            font-family: 'Space Mono', monospace;
+            text-align: center;
+        }
+        .loader-msg.error {
+            color: var(--red);
+        }
+        .loader-pct {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text3);
+            margin-top: -16px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- ===== LOADER SCREEN ===== -->
-<div id="loaderScreen">
-  <div class="loader-logo">
-    <h1>高中英语 6000词</h1>
-    <p>VOCAB MASTER</p>
-  </div>
-  <svg class="loader-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-  </svg>
-  <div style="width:min(340px,80vw)">
-    <div class="loader-track"><div class="loader-fill" id="loaderFill"></div></div>
-  </div>
-  <div class="loader-pct" id="loaderPct">0%</div>
-  <div class="loader-msg" id="loaderMsg">正在加载词汇数据…</div>
-</div>
-
-
-<!-- Hamburger -->
-<button class="hamburger" id="hamburger" aria-label="菜单">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-</button>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<div class="app-shell">
-  <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <h1>高中英语<br>6000词</h1>
-      <p>VOCAB MASTER</p>
+    <div id="loaderScreen">
+        <div class="loader-logo">
+            <h1>高中英语 6000词</h1>
+            <p>VOCAB MASTER</p>
+        </div>
+        <svg class="loader-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        <div style="width:min(340px,80vw)">
+            <div class="loader-track"><div class="loader-fill" id="loaderFill"></div></div>
+        </div>
+        <div class="loader-pct" id="loaderPct">0%</div>
+        <div class="loader-msg" id="loaderMsg">正在加载词汇数据…</div>
     </div>
-    <nav class="sidebar-nav">
-      <div class="nav-item active" data-page="study">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-        学习单词
-      </div>
-      <div class="nav-item" data-page="vocab">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 10h16M4 14h8m-8 4h4"/></svg>
-        词汇表
-        <span class="nav-badge" id="vocabBadge">0</span>
-      </div>
-      <div class="nav-item" data-page="quiz">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-        测验
-        <span class="nav-badge green" id="quizBadge">0</span>
-      </div>
-      <div class="nav-item" data-page="mistakes">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-        错题本
-        <span class="nav-badge" id="mistakeBadge" style="background:var(--red)">0</span>
-      </div>
-      <div class="nav-item" data-page="ai">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        AI 助教
-      </div>
-      <div class="nav-item" data-page="settings">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        设置
-      </div>
+
+    <button class="hamburger" id="hamburger" aria-label="菜单">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <h1>高中英语<br>6000词</h1>
+                <p>VOCAB MASTER</p>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-page="study">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                    学习单词
+                </div>
+                <div class="nav-item" data-page="vocab">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 10h16M4 14h8m-8 4h4" /></svg>
+                    词汇表
+                    <span class="nav-badge" id="vocabBadge">0</span>
+                </div>
+                <div class="nav-item" data-page="quiz">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>
+                    测验
+                    <span class="nav-badge green" id="quizBadge">0</span>
+                </div>
+                <div class="nav-item" data-page="mistakes">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /></svg>
+                    错题本
+                    <span class="nav-badge" id="mistakeBadge" style="background:var(--red)">0</span>
+                </div>
+                <div class="nav-item" data-page="ai">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+                    AI 助教
+                </div>
+                <div class="nav-item" data-page="settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>
+                    设置
+                </div>
+            </nav>
+            <div class="sidebar-progress">
+                <div class="sidebar-progress-label">
+                    <span>学习进度</span>
+                    <span id="progressText">0 / 0</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main">
+
+            <section class="page active" id="page-study">
+                <div class="page-header">
+                    <div>
+                        <div class="page-title">学习单词</div>
+                        <div class="page-subtitle">翻转卡片查看释义</div>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label">总词数</div></div>
+                    <div class="stat-card"><div class="stat-num" id="statLearned" style="color:var(--green)">0</div><div class="stat-label">已学习</div></div>
+                    <div class="stat-card"><div class="stat-num" id="statRemain" style="color:var(--text2)">0</div><div class="stat-label">剩余</div></div>
+                </div>
+                <div class="mode-row">
+                    <span style="font-size:0.82rem;color:var(--text3)">学习模式：</span>
+                    <button class="mode-chip active" id="modeOrdered" onclick="setMode('ordered')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg>
+                        正序
+                    </button>
+                    <button class="mode-chip" id="modeRandom" onclick="setMode('random')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8" /><line x1="4" y1="20" x2="21" y2="3" /><polyline points="21 16 21 21 16 21" /><line x1="15" y1="15" x2="21" y2="21" /></svg>
+                        随机
+                    </button>
+                    <button class="mode-chip" id="modeUnlearned" onclick="setMode('unlearned')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
+                        仅未学
+                    </button>
+                </div>
+                <div class="word-card-wrapper" id="wordCardWrapper" onclick="flipCard()">
+                    <div class="word-card-inner" id="wordCardInner">
+                        <div class="word-card-front">
+                            <div class="word-counter-badge" id="cardCounter">0 / 0</div>
+                            <div class="word-en" id="cardWord">—</div>
+                            <div class="word-hint">点击翻转查看释义</div>
+                        </div>
+                        <div class="word-card-back" id="cardBack">
+                            <div class="word-counter-badge" id="cardCounter2">0 / 0</div>
+                            <div id="cardTranslations"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="study-controls">
+                    <button class="btn btn-secondary" onclick="prevCard()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6" /></svg>
+                        上一个
+                    </button>
+                    <button class="btn btn-success" onclick="markLearned()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+                        已掌握
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="markMistake()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                        加入错题
+                    </button>
+                    <button class="btn btn-secondary" onclick="nextCard()">
+                        下一个
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6" /></svg>
+                    </button>
+                </div>
+                <div class="page-bottom-spacer"></div>
+            </section>
+
+            <section class="page" id="page-vocab">
+                <div class="page-header">
+                    <div>
+                        <div class="page-title">词汇表</div>
+                        <div class="page-subtitle" id="vocabSubtitle">共 0 个词汇</div>
+                    </div>
+                </div>
+                <div class="card card-sm">
+                    <div style="display:flex;flex-direction:column;gap:8px;width:100%">
+                        <input class="search-input" type="text" placeholder="搜索单词或释义…" id="vocabSearch" oninput="renderVocab()" style="width:100%">
+                        <div style="display:flex;gap:6px;flex-wrap:wrap">
+                            <button class="mode-chip active" id="filterAll" onclick="setVocabFilter('all')">全部</button>
+                            <button class="mode-chip" id="filterLearned" onclick="setVocabFilter('learned')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--green)"><polyline points="20 6 9 17 4 12" /></svg>
+                                已学
+                            </button>
+                            <button class="mode-chip" id="filterUnlearned" onclick="setVocabFilter('unlearned')">未学</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="word-list" id="wordList"></div>
+                <div class="page-bottom-spacer"></div>
+            </section>
+
+            <section class="page" id="page-quiz">
+                <div class="page-header">
+                    <div>
+                        <div class="page-title">测验</div>
+                        <div class="page-subtitle">从词汇中随机测试</div>
+                    </div>
+                </div>
+                <div id="quizStart" class="card" style="text-align:center;padding:32px 20px">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:48px;height:48px;color:var(--accent);margin-bottom:16px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                    <div style="font-size:1rem;color:var(--text2);margin-bottom:6px">
+                        已学 <span id="quizStartCount" style="color:var(--green);font-weight:700">0</span> 词 &nbsp;·&nbsp; 共 <span id="quizTotalCount" style="color:var(--text);font-weight:700">0</span> 词
+                    </div>
+                    <div style="font-size:0.8rem;color:var(--text3);margin-bottom:20px">可从全部词汇中测验，或只测已学词汇</div>
+                    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                        <button class="btn btn-primary" onclick="startQuiz('learned')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+                            测验已学
+                        </button>
+                        <button class="btn btn-secondary" onclick="startQuiz('all')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+                            全部词汇
+                        </button>
+                    </div>
+                </div>
+                <div id="quizGame" style="display:none" class="card">
+                    <div class="quiz-progress-row">
+                        <div class="quiz-question-num" id="quizNum">第 1 / 10 题</div>
+                        <div style="flex:1">
+                            <div class="progress-bar-track" style="height:4px">
+                                <div class="progress-bar-fill" id="quizProgressFill" style="width:0%"></div>
+                            </div>
+                        </div>
+                        <div class="quiz-progress-text" id="quizScore">正确 0  错误 0</div>
+                    </div>
+                    <div class="quiz-word" id="quizWord">—</div>
+                    <div class="quiz-options" id="quizOptions"></div>
+                    <div class="quiz-feedback" id="quizFeedback">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" id="quizFeedbackIcon"><polyline points="20 6 9 17 4 12" /></svg>
+                        <span id="quizFeedbackText"></span>
+                    </div>
+                    <div style="display:flex;justify-content:flex-end;margin-top:14px">
+                        <button class="btn btn-primary" id="quizNextBtn" onclick="nextQuestion()" disabled>下一题</button>
+                    </div>
+                </div>
+                <div id="quizResult" style="display:none;text-align:center" class="card">
+                    <div style="display:flex;justify-content:center;padding:12px 0" id="quizResultEmoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--accent)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg></div>
+                    <div style="text-align:center">
+                        <div style="font-family:'Space Mono',monospace;font-size:2.2rem;color:var(--accent)" id="quizResultScore">0 / 0</div>
+                        <div style="color:var(--text2);margin-top:4px" id="quizResultMsg">测验完成</div>
+                    </div>
+                    <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+                        <button class="btn btn-primary" onclick="retryQuiz()">再来一次</button>
+                        <button class="btn btn-secondary" onclick="showPage('study')">去学习</button>
+                    </div>
+                </div>
+                <div class="page-bottom-spacer"></div>
+            </section>
+
+            <section class="page" id="page-mistakes">
+                <div class="page-header">
+                    <div>
+                        <div class="page-title">错题本</div>
+                        <div class="page-subtitle" id="mistakeSubtitle">0 个错词</div>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" onclick="clearMistakes()" style="margin-left:auto">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" /></svg>
+                        清空
+                    </button>
+                </div>
+                <div id="mistakeContent"></div>
+                <div class="page-bottom-spacer"></div>
+            </section>
+
+            <section class="page" id="page-ai">
+                <div class="page-header">
+                    <div>
+                        <div class="page-title">AI 助教</div>
+                        <div class="page-subtitle">用 AI 帮助你更好地学习词汇</div>
+                    </div>
+                </div>
+                <div id="aiNoKey" class="card ai-no-key">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" /></svg>
+                    <div style="font-size:1rem;color:var(--text)">请先配置 API Key</div>
+                    <div style="font-size:0.85rem">在设置页面填写 API Key 后即可使用 AI 助教</div>
+                    <button class="btn btn-primary btn-sm" onclick="showPage('settings')">去设置</button>
+                </div>
+                <div id="aiMain" style="display:none;flex-direction:column;gap:12px;flex:1">
+                    <div class="ai-quick-btns">
+                        <button class="ai-quick-btn" onclick="aiQuick('explain')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg> 解释单词</button>
+                        <button class="ai-quick-btn" onclick="aiQuick('example')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg> 造句示例</button>
+                        <button class="ai-quick-btn" onclick="aiQuick('synonym')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /></svg> 近义词</button>
+                        <button class="ai-quick-btn" onclick="aiQuick('memory')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.14z" /><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.14z" /></svg> 记忆技巧</button>
+                        <button class="ai-quick-btn" onclick="aiQuick('mistakes')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg> 分析错题</button>
+                    </div>
+                    <div class="ai-chat-wrap">
+                        <div class="ai-messages" id="aiMessages">
+                            <div class="ai-msg system">你好！我是你的英语助教，可以帮你解释单词、造句、辨析近义词等。</div>
+                        </div>
+                        <div class="ai-input-row">
+                            <textarea class="ai-input" id="aiInput" placeholder="问我任何关于英语学习的问题…" rows="1" onkeydown="aiKeydown(event)"></textarea>
+                            <button class="btn btn-primary btn-icon" onclick="sendAI()" id="aiSendBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-bottom-spacer"></div>
+            </section>
+
+            <section class="page" id="page-settings">
+                <div class="page-header">
+                    <div class="page-title">设置</div>
+                </div>
+                <div class="card">
+                    <div class="settings-section">
+                        <div class="settings-section-title">外观</div>
+                        <div class="setting-row">
+                            <div><div class="setting-label">夜间模式</div><div class="setting-desc">切换深色 / 浅色主题</div></div>
+                            <label class="toggle">
+                                <input type="checkbox" id="toggleDark" onchange="toggleDarkMode(this.checked)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-row">
+                            <div><div class="setting-label">字体大小</div><div class="setting-desc">当前：<span id="fontSizeLabel">16</span>px</div></div>
+                            <input type="range" class="font-size-slider" min="13" max="22" value="16" id="fontSizeSlider" oninput="changeFontSize(this.value)">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="settings-section">
+                        <div class="settings-section-title">AI 助教配置</div>
+                        <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:8px">
+                            <div><div class="setting-label">AI 服务商</div><div class="setting-desc">选择要使用的 AI 服务</div></div>
+                            <select class="model-select" id="aiProvider" onchange="onProviderChange()">
+                                <option value="claude">Anthropic Claude</option>
+                                <option value="openai">OpenAI ChatGPT</option>
+                                <option value="deepseek">DeepSeek</option>
+                            </select>
+                        </div>
+                        <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:8px">
+                            <div><div class="setting-label">模型</div></div>
+                            <select class="model-select" id="aiModel"></select>
+                        </div>
+                        <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:8px">
+                            <div><div class="setting-label">API Key</div><div class="setting-desc" id="apiKeyDesc">输入你的 API Key</div></div>
+                            <div style="display:flex;gap:8px;width:100%">
+                                <input class="api-key-input" type="password" id="apiKeyInput" placeholder="sk-…">
+                                <button class="btn btn-primary btn-sm" onclick="saveApiKey()">保存</button>
+                            </div>
+                        </div>
+                        <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:8px">
+                            <div><div class="setting-label">API 地址</div><div class="setting-desc">（可选）自定义 base URL，默认使用官方地址</div></div>
+                            <input class="api-key-input" type="text" id="apiBaseUrl" placeholder="https://api.example.com/v1">
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="settings-section">
+                        <div class="settings-section-title">学习数据</div>
+                        <div class="setting-row">
+                            <div><div class="setting-label">重置学习进度</div><div class="setting-desc">清除所有已学记录</div></div>
+                            <button class="btn btn-danger btn-sm" onclick="resetProgress()">重置</button>
+                        </div>
+                        <div class="setting-row">
+                            <div><div class="setting-label">刷新词汇缓存</div><div class="setting-desc">下次启动时重新从文件加载</div></div>
+                            <button class="btn btn-secondary btn-sm" onclick="clearWordsCache()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="23 4 23 10 17 10" /><polyline points="1 20 1 14 7 14" /><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" /></svg>
+                                清除缓存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-bottom-spacer"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <nav class="bottom-nav">
+        <div class="bottom-nav-item active" data-page="study">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+            学习
+        </div>
+        <div class="bottom-nav-item" data-page="vocab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 10h16M4 14h8m-8 4h4" /></svg>
+            词汇
+        </div>
+        <div class="bottom-nav-item" data-page="quiz">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>
+            测验
+        </div>
+        <div class="bottom-nav-item" data-page="mistakes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /></svg>
+            错题
+        </div>
+        <div class="bottom-nav-item" data-page="ai">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+            AI
+        </div>
     </nav>
-    <div class="sidebar-progress">
-      <div class="sidebar-progress-label">
-        <span>学习进度</span>
-        <span id="progressText">0 / 0</span>
-      </div>
-      <div class="progress-bar-track">
-        <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Main -->
-  <main class="main">
-
-    <!-- ===== STUDY PAGE ===== -->
-    <section class="page active" id="page-study">
-      <div class="page-header">
-        <div>
-          <div class="page-title">学习单词</div>
-          <div class="page-subtitle">翻转卡片查看释义</div>
-        </div>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label">总词数</div></div>
-        <div class="stat-card"><div class="stat-num" id="statLearned" style="color:var(--green)">0</div><div class="stat-label">已学习</div></div>
-        <div class="stat-card"><div class="stat-num" id="statRemain" style="color:var(--text2)">0</div><div class="stat-label">剩余</div></div>
-      </div>
-      <div class="mode-row">
-        <span style="font-size:0.82rem;color:var(--text3)">学习模式：</span>
-        <button class="mode-chip active" id="modeOrdered" onclick="setMode('ordered')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          正序
-        </button>
-        <button class="mode-chip" id="modeRandom" onclick="setMode('random')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
-          随机
-        </button>
-        <button class="mode-chip" id="modeUnlearned" onclick="setMode('unlearned')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          仅未学
-        </button>
-      </div>
-      <div class="word-card-wrapper" id="wordCardWrapper" onclick="flipCard()">
-        <div class="word-card-inner" id="wordCardInner">
-          <div class="word-card-front">
-            <div class="word-counter-badge" id="cardCounter">0 / 0</div>
-            <div class="word-en" id="cardWord">—</div>
-            <div class="word-hint">点击翻转查看释义</div>
-          </div>
-          <div class="word-card-back" id="cardBack">
-            <div class="word-counter-badge" id="cardCounter2">0 / 0</div>
-            <div id="cardTranslations"></div>
-          </div>
-        </div>
-      </div>
-      <div class="study-controls">
-        <button class="btn btn-secondary" onclick="prevCard()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-          上一个
-        </button>
-        <button class="btn btn-success" onclick="markLearned()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-          已掌握
-        </button>
-        <button class="btn btn-danger btn-sm" onclick="markMistake()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          加入错题
-        </button>
-        <button class="btn btn-secondary" onclick="nextCard()">
-          下一个
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-          <div class="page-bottom-spacer"></div>
-    </section>
-
-    <!-- ===== VOCAB PAGE ===== -->
-    <section class="page" id="page-vocab">
-      <div class="page-header">
-        <div>
-          <div class="page-title">词汇表</div>
-          <div class="page-subtitle" id="vocabSubtitle">共 0 个词汇</div>
-        </div>
-      </div>
-      <div class="card card-sm">
-        <div style="display:flex;flex-direction:column;gap:8px;width:100%">
-          <input class="search-input" type="text" placeholder="搜索单词或释义…" id="vocabSearch" oninput="renderVocab()" style="width:100%">
-          <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <button class="mode-chip active" id="filterAll" onclick="setVocabFilter('all')">全部</button>
-            <button class="mode-chip" id="filterLearned" onclick="setVocabFilter('learned')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--green)"><polyline points="20 6 9 17 4 12"/></svg>
-              已学
-            </button>
-            <button class="mode-chip" id="filterUnlearned" onclick="setVocabFilter('unlearned')">未学</button>
-          </div>
-        </div>
-      </div>
-      <div class="word-list" id="wordList"></div>
-          <div class="page-bottom-spacer"></div>
-    </section>
-
-    <!-- ===== QUIZ PAGE ===== */
-    <section class="page" id="page-quiz">
-      <div class="page-header">
-        <div>
-          <div class="page-title">测验</div>
-          <div class="page-subtitle">从已学词汇中随机测试</div>
-        </div>
-      </div>
-      <div id="quizStart" class="card" style="text-align:center;padding:32px 20px">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:48px;height:48px;color:var(--accent);margin-bottom:16px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        <div style="font-size:1rem;color:var(--text2);margin-bottom:6px">
-          已学 <span id="quizStartCount" style="color:var(--green);font-weight:700">0</span> 词 &nbsp;·&nbsp; 共 <span id="quizTotalCount" style="color:var(--text);font-weight:700">0</span> 词
-        </div>
-        <div style="font-size:0.8rem;color:var(--text3);margin-bottom:20px">可从全部词汇中测验，或只测已学词汇</div>
-        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-          <button class="btn btn-primary" onclick="startQuiz('learned')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            测验已学
-          </button>
-          <button class="btn btn-secondary" onclick="startQuiz('all')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            全部词汇
-          </button>
-        </div>
-      </div>
-      <div id="quizGame" style="display:none" class="card">
-        <div class="quiz-progress-row">
-          <div class="quiz-question-num" id="quizNum">第 1 / 10 题</div>
-          <div style="flex:1">
-            <div class="progress-bar-track" style="height:4px">
-              <div class="progress-bar-fill" id="quizProgressFill" style="width:0%"></div>
-            </div>
-          </div>
-          <div class="quiz-progress-text" id="quizScore">正确 0  错误 0</div>
-        </div>
-        <div class="quiz-word" id="quizWord">—</div>
-        <div class="quiz-options" id="quizOptions"></div>
-        <div class="quiz-feedback" id="quizFeedback">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" id="quizFeedbackIcon"><polyline points="20 6 9 17 4 12"/></svg>
-          <span id="quizFeedbackText"></span>
-        </div>
-        <div style="display:flex;justify-content:flex-end;margin-top:14px">
-          <button class="btn btn-primary" id="quizNextBtn" onclick="nextQuestion()" disabled>下一题</button>
-        </div>
-      </div>
-      <div id="quizResult" style="display:none" class="card" style="text-align:center">
-        <div style="display:flex;justify-content:center;padding:12px 0" id="quizResultEmoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--accent)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <div style="text-align:center">
-          <div style="font-family:'Space Mono',monospace;font-size:2.2rem;color:var(--accent)" id="quizResultScore">0 / 0</div>
-          <div style="color:var(--text2);margin-top:4px" id="quizResultMsg">测验完成</div>
-        </div>
-        <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap">
-          <button class="btn btn-primary" onclick="startQuiz()">再来一次</button>
-          <button class="btn btn-secondary" onclick="showPage('study')">去学习</button>
-        </div>
-      </div>
-          <div class="page-bottom-spacer"></div>
-    </section>
-
-    <!-- ===== MISTAKES PAGE ===== -->
-    <section class="page" id="page-mistakes">
-      <div class="page-header">
-        <div>
-          <div class="page-title">错题本</div>
-          <div class="page-subtitle" id="mistakeSubtitle">0 个错词</div>
-        </div>
-        <button class="btn btn-secondary btn-sm" onclick="clearMistakes()" style="margin-left:auto">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-          清空
-        </button>
-      </div>
-      <div id="mistakeContent"></div>
-          <div class="page-bottom-spacer"></div>
-    </section>
-
-    <!-- ===== AI PAGE ===== -->
-    <section class="page" id="page-ai">
-      <div class="page-header">
-        <div>
-          <div class="page-title">AI 助教</div>
-          <div class="page-subtitle">用 AI 帮助你更好地学习词汇</div>
-        </div>
-      </div>
-      <div id="aiNoKey" class="card ai-no-key">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-        <div style="font-size:1rem;color:var(--text)">请先配置 API Key</div>
-        <div style="font-size:0.85rem">在设置页面填写 API Key 后即可使用 AI 助教</div>
-        <button class="btn btn-primary btn-sm" onclick="showPage('settings')">去设置</button>
-      </div>
-      <div id="aiMain" style="display:none;flex-direction:column;gap:12px">
-        <div class="ai-quick-btns">
-          <button class="ai-quick-btn" onclick="aiQuick('explain')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> 解释单词</button>
-          <button class="ai-quick-btn" onclick="aiQuick('example')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> 造句示例</button>
-          <button class="ai-quick-btn" onclick="aiQuick('synonym')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> 近义词</button>
-          <button class="ai-quick-btn" onclick="aiQuick('memory')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.14z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.14z"/></svg> 记忆技巧</button>
-          <button class="ai-quick-btn" onclick="aiQuick('mistakes')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;vertical-align:-2px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> 分析错题</button>
-        </div>
-        <div class="ai-chat-wrap">
-          <div class="ai-messages" id="aiMessages">
-            <div class="ai-msg system">你好！我是你的英语助教，可以帮你解释单词、造句、辨析近义词等。</div>
-          </div>
-          <div class="ai-input-row">
-            <textarea class="ai-input" id="aiInput" placeholder="问我任何关于英语学习的问题…" rows="1" onkeydown="aiKeydown(event)"></textarea>
-            <button class="btn btn-primary btn-icon" onclick="sendAI()" id="aiSendBtn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-          <div class="page-bottom-spacer"></div>
-    </section>
-
-    <!-- ===== SETTINGS PAGE ===== -->
-    <section class="page" id="page-settings">
-      <div class="page-header">
-        <div class="page-title">设置</div>
-      </div>
-
-      <div class="card">
-        <div class="settings-section">
-          <div class="settings-section-title">外观</div>
-          <div class="setting-row">
-            <div><div class="setting-label">夜间模式</div><div class="setting-desc">切换深色 / 浅色主题</div></div>
-            <label class="toggle">
-              <input type="checkbox" id="toggleDark" onchange="toggleDarkMode(this.checked)">
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <div class="setting-row">
-            <div><div class="setting-label">字体大小</div><div class="setting-desc">当前：<span id="fontSizeLabel">16</span>px</div></div>
-            <input type="range" class="font-size-slider" min="13" max="22" value="16" id="fontSizeSlider" oninput="changeFontSize(this.value)">
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="settings-section">
-          <div class="settings-section-title">AI 助教配置</div>
-          <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:8px">
-            <div><div class="setting-label">AI 服务商</div><div class="setting-desc">选择要使用的 AI 服务</div></div>
-            <select class="model-select" id="aiProvider" onchange="onProviderChange()">
-              <option value="claude">Anthropic Claude</option>
-              <option value="openai">OpenAI ChatGPT</option>
-              <option value="deepseek">DeepSeek</option>
-            </select>
-          </div>
-          <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:8px">
-            <div><div class="setting-label">模型</div></div>
-            <select class="model-select" id="aiModel"></select>
-          </div>
-          <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:8px">
-            <div><div class="setting-label">API Key</div><div class="setting-desc" id="apiKeyDesc">输入你的 API Key</div></div>
-            <div style="display:flex;gap:8px;width:100%">
-              <input class="api-key-input" type="password" id="apiKeyInput" placeholder="sk-…">
-              <button class="btn btn-primary btn-sm" onclick="saveApiKey()">保存</button>
-            </div>
-          </div>
-          <div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:8px">
-            <div><div class="setting-label">API 地址</div><div class="setting-desc">（可选）自定义 base URL，默认使用官方地址</div></div>
-            <input class="api-key-input" type="text" id="apiBaseUrl" placeholder="https://api.example.com/v1">
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="settings-section">
-          <div class="settings-section-title">学习数据</div>
-          <div class="setting-row">
-            <div><div class="setting-label">重置学习进度</div><div class="setting-desc">清除所有已学记录</div></div>
-            <button class="btn btn-danger btn-sm" onclick="resetProgress()">重置</button>
-          </div>
-          <div class="setting-row">
-            <div><div class="setting-label">刷新词汇缓存</div><div class="setting-desc">下次启动时重新从文件加载</div></div>
-            <button class="btn btn-secondary btn-sm" onclick="clearWordsCache()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-              清除缓存
-            </button>
-          </div>
-        </div>
-      </div>
-          <div class="page-bottom-spacer"></div>
-    </section>
-
-  </main>
-</div>
-
-<!-- Bottom nav (mobile) -->
-<nav class="bottom-nav">
-  <div class="bottom-nav-item active" data-page="study">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-    学习
-  </div>
-  <div class="bottom-nav-item" data-page="vocab">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 10h16M4 14h8m-8 4h4"/></svg>
-    词汇
-  </div>
-  <div class="bottom-nav-item" data-page="quiz">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-    测验
-  </div>
-  <div class="bottom-nav-item" data-page="mistakes">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-    错题
-  </div>
-  <div class="bottom-nav-item" data-page="ai">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    AI
-  </div>
-</nav>
-
-<!-- Toast container -->
-<div class="toast-wrap" id="toastWrap"></div>
-
-<script>
-// ===== STATE =====
-let words = [];
-let deck = [];
-let deckIndex = 0;
-let studyMode = 'ordered'; // ordered | random | unlearned
-let isFlipped = false;
-let vocabFilter = 'all';
-let quizQuestions = [];
-let quizIndex = 0;
-let quizCorrect = 0;
-let quizWrong = 0;
-
-const MODELS = {
-  claude: [
-    { label: 'Claude Sonnet 4.5', value: 'claude-sonnet-4-5' },
-    { label: 'Claude Opus 4', value: 'claude-opus-4-0' },
-    { label: 'Claude Haiku 3.5', value: 'claude-haiku-3-5' },
-  ],
-  openai: [
-    { label: 'GPT-4.1', value: 'gpt-4.1' },
-    { label: 'GPT-4o', value: 'gpt-4o' },
-    { label: 'o4-mini', value: 'o4-mini' },
-  ],
-  deepseek: [
-    { label: 'DeepSeek-V3', value: 'deepseek-chat' },
-    { label: 'DeepSeek-R1', value: 'deepseek-reasoner' },
-  ]
-};
-
-const DEFAULT_BASE_URLS = {
-  claude: 'https://api.anthropic.com',
-  openai: 'https://api.openai.com/v1',
-  deepseek: 'https://api.deepseek.com/v1'
-};
-
-// ===== STORAGE =====
-const LS = {
-  get: k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
-  set: (k, v) => localStorage.setItem(k, JSON.stringify(v)),
-};
-
-function getLearnedSet() { return new Set(LS.get('learned') || []); }
-function saveLearnedSet(s) { LS.set('learned', [...s]); }
-function getMistakes() { return LS.get('mistakes') || {}; }
-function saveMistakes(m) { LS.set('mistakes', m); }
-function getSettings() {
-  return Object.assign({
-    dark: false, fontSize: 16,
-    provider: 'claude', model: 'claude-sonnet-4-5',
-    apiKey: '', apiBase: ''
-  }, LS.get('settings') || {});
-}
-function saveSettings(s) { LS.set('settings', s); }
-
-// ===== INIT =====
-async function init() {
-  applySettings();
-  await loadWords();
-  buildDeck();
-  renderCard();
-  renderVocab();
-  renderMistakes();
-  updateBadges();
-  updateProgress();
-  renderQuizStart();
-}
-
-// ===== LOAD WORDS (fetch + localStorage cache) =====
-const WORDS_CACHE_KEY = 'vocab_words_cache';
-const WORDS_CACHE_URL_KEY = 'vocab_words_url';
-const WORDS_JSON_URL = 'words.json'; // same directory as the HTML file
-
-async function loadWords() {
-  // Try cache first
-  try {
-    const cached = localStorage.getItem(WORDS_CACHE_KEY);
-    if (cached) {
-      words = JSON.parse(cached);
-      hideLoader();
-      return;
-    }
-  } catch(e) {}
-
-  // Fetch with progress
-  showLoader('正在加载词汇数据…', 0);
-  try {
-    const response = await fetch(WORDS_JSON_URL);
-    if (!response.ok) throw new Error('HTTP ' + response.status);
-
-    const contentLength = response.headers.get('Content-Length');
-    const total = contentLength ? parseInt(contentLength) : 0;
-    const reader = response.body.getReader();
-    let received = 0;
-    const chunks = [];
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      chunks.push(value);
-      received += value.length;
-      if (total > 0) {
-        setLoaderProgress(Math.round(received / total * 90));
-      } else {
-        // unknown size: animate
-        setLoaderProgress(Math.min(85, received / 5000));
-      }
-    }
-
-    setLoaderProgress(95);
-    const blob = new Blob(chunks);
-    const text = await blob.text();
-    setLoaderProgress(98);
-    words = JSON.parse(text);
-
-    // Cache it
-    try { localStorage.setItem(WORDS_CACHE_KEY, text); } catch(e) {}
-
-    setLoaderProgress(100);
-    setTimeout(hideLoader, 300);
-  } catch(err) {
-    showLoader('加载失败：' + err.message, -1);
-    throw err;
-  }
-}
-
-// ===== NAV =====
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.querySelectorAll('.bottom-nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  document.querySelectorAll(`[data-page="${id}"]`).forEach(el => el.classList.add('active'));
-  if (id === 'ai') checkAIKey();
-  closeSidebar();
-}
-function setupNav() {
-  document.addEventListener('click', function(e) {
-    const el = e.target.closest('.nav-item, .bottom-nav-item');
-    if (el && el.dataset.page) {
-      showPage(el.dataset.page);
-    }
-  });
-}
-
-// ===== MOBILE =====
-function setupMobile() {
-  document.getElementById('hamburger').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('open');
-    document.getElementById('sidebarOverlay').classList.toggle('show');
-  });
-  document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
-}
-function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebarOverlay').classList.remove('show');
-}
-
-// ===== DECK =====
-function buildDeck() {
-  const learned = getLearnedSet();
-  if (studyMode === 'ordered') {
-    deck = [...words];
-  } else if (studyMode === 'random') {
-    deck = [...words].sort(() => Math.random() - 0.5);
-  } else {
-    deck = words.filter(w => !learned.has(w.word)).sort(() => Math.random() - 0.5);
-  }
-  deckIndex = 0;
-}
-
-function setMode(mode) {
-  studyMode = mode;
-  document.querySelectorAll('.mode-chip').forEach(c => c.classList.remove('active'));
-  document.getElementById('mode' + mode.charAt(0).toUpperCase() + mode.slice(1)).classList.add('active');
-  buildDeck();
-  renderCard();
-  isFlipped = false;
-  document.getElementById('wordCardInner').classList.remove('flipped');
-}
-
-// ===== CARD =====
-function renderCard() {
-  if (!deck.length) {
-    document.getElementById('cardWord').textContent = '暂无词汇';
-    document.getElementById('cardCounter').textContent = '0 / 0';
-    document.getElementById('cardCounter2').textContent = '0 / 0';
-    return;
-  }
-  const w = deck[deckIndex];
-  const counter = `${deckIndex + 1} / ${deck.length}`;
-  document.getElementById('cardWord').textContent = w.word;
-  document.getElementById('cardCounter').textContent = counter;
-  document.getElementById('cardCounter2').textContent = counter;
-
-  const back = document.getElementById('cardTranslations');
-  let html = '';
-  (w.translations || []).forEach(t => {
-    html += `<div class="trans-row"><span class="trans-type">${t.type}</span><div class="trans-text">${t.translation}</div></div>`;
-  });
-  if (w.phrases && w.phrases.length) {
-    html += `<div class="phrases-section"><div class="phrases-title">常用短语</div>`;
-    w.phrases.forEach(p => {
-      html += `<div class="phrase-item"><span class="phrase-en">${p.phrase}</span> — ${p.translation}</div>`;
-    });
-    html += `</div>`;
-  }
-  back.innerHTML = html;
-}
-
-function flipCard() {
-  isFlipped = !isFlipped;
-  document.getElementById('wordCardInner').classList.toggle('flipped', isFlipped);
-}
-
-function nextCard() {
-  if (!deck.length) return;
-  deckIndex = (deckIndex + 1) % deck.length;
-  isFlipped = false;
-  document.getElementById('wordCardInner').classList.remove('flipped');
-  renderCard();
-}
-
-function prevCard() {
-  if (!deck.length) return;
-  deckIndex = (deckIndex - 1 + deck.length) % deck.length;
-  isFlipped = false;
-  document.getElementById('wordCardInner').classList.remove('flipped');
-  renderCard();
-}
-
-function markLearned() {
-  if (!deck.length) return;
-  const w = deck[deckIndex];
-  const s = getLearnedSet();
-  s.add(w.word);
-  saveLearnedSet(s);
-  updateProgress();
-  updateBadges();
-  toast('已标记为掌握', 'success');
-  nextCard();
-}
-
-function markMistake() {
-  if (!deck.length) return;
-  const w = deck[deckIndex];
-  const m = getMistakes();
-  m[w.word] = (m[w.word] || 0) + 1;
-  saveMistakes(m);
-  updateBadges();
-  toast('加入错题本', 'error');
-  renderMistakes();
-}
-
-// ===== PROGRESS =====
-function updateProgress() {
-  const learned = getLearnedSet().size;
-  const total = words.length;
-  const remain = total - learned;
-  const pct = total ? Math.round(learned / total * 100) : 0;
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressText').textContent = `${learned} / ${total}`;
-  document.getElementById('statTotal').textContent = total;
-  document.getElementById('statLearned').textContent = learned;
-  document.getElementById('statRemain').textContent = remain;
-}
-
-function updateBadges() {
-  const learned = getLearnedSet().size;
-  const mistakes = Object.keys(getMistakes()).length;
-  document.getElementById('vocabBadge').textContent = words.length;
-  document.getElementById('quizBadge').textContent = learned;
-  document.getElementById('mistakeBadge').textContent = mistakes;
-}
-
-// ===== VOCAB =====
-function setVocabFilter(f) {
-  vocabFilter = f;
-  document.querySelectorAll('#page-vocab .mode-chip').forEach(c => c.classList.remove('active'));
-  document.getElementById('filter' + f.charAt(0).toUpperCase() + f.slice(1)).classList.add('active');
-  renderVocab();
-}
-
-function renderVocab() {
-  const q = (document.getElementById('vocabSearch').value || '').toLowerCase();
-  const learned = getLearnedSet();
-  const mistakes = getMistakes();
-  let filtered = words.filter(w => {
-    if (vocabFilter === 'learned' && !learned.has(w.word)) return false;
-    if (vocabFilter === 'unlearned' && learned.has(w.word)) return false;
-    if (q) {
-      const inWord = w.word.toLowerCase().includes(q);
-      const inTrans = (w.translations || []).some(t => t.translation.includes(q));
-      if (!inWord && !inTrans) return false;
-    }
-    return true;
-  });
-  document.getElementById('vocabSubtitle').textContent = `共 ${filtered.length} 个词汇`;
-  // Store filtered list globally for virtual scroll
-  window._vocabFiltered = filtered;
-  window._vocabLearned = learned;
-  window._vocabMistakes = mistakes;
-  renderVocabRows(0);
-}
-
-const VOCAB_PAGE = 80; // rows per render batch
-
-function renderVocabRows(startFrom) {
-  const filtered = window._vocabFiltered || [];
-  const learned = window._vocabLearned || new Set();
-  const mistakes = window._vocabMistakes || {};
-  const list = document.getElementById('wordList');
-
-  if (startFrom === 0) list.innerHTML = '';
-
-  const end = Math.min(startFrom + VOCAB_PAGE, filtered.length);
-  const frag = document.createDocumentFragment();
-
-  for (let i = startFrom; i < end; i++) {
-    const w = filtered[i];
-    const isLearned = learned.has(w.word);
-    const isMistake = !!mistakes[w.word];
-    const trans = (w.translations[0] || {}).translation || '';
-    const div = document.createElement('div');
-    div.className = 'word-row' + (isLearned ? ' learned' : '');
-    div.dataset.word = w.word;
-    div.innerHTML =
-      `<div class="word-row-en">${w.word}</div>` +
-      `<div class="word-row-zh">${trans}</div>` +
-      `<div class="word-row-badge ${isLearned ? 'learned' : ''} ${isMistake ? 'wrong' : ''}">` +
-      (isLearned ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
-      (isMistake ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' : '') +
-      '</div>';
-    div.addEventListener('click', () => jumpToWord(w.word));
-    frag.appendChild(div);
-  }
-  list.appendChild(frag);
-
-  // Load more sentinel
-  const old = list.querySelector('.vocab-load-more');
-  if (old) old.remove();
-  if (end < filtered.length) {
-    const more = document.createElement('div');
-    more.className = 'vocab-load-more';
-    more.style.cssText = 'text-align:center;padding:16px;color:var(--text3);font-size:0.82rem;cursor:pointer;';
-    more.textContent = `显示 ${end} / ${filtered.length}，点击加载更多`;
-    more.addEventListener('click', () => renderVocabRows(end));
-    list.appendChild(more);
-
-    // Auto-load on scroll near bottom
-    list.onscroll = () => {
-      if (list.scrollTop + list.clientHeight >= list.scrollHeight - 80) {
-        list.onscroll = null;
-        renderVocabRows(end);
-      }
-    };
-  } else {
-    list.onscroll = null;
-  }
-}
-
-function jumpToWord(word) {
-  const idx = words.findIndex(w => w.word === word);
-  if (idx === -1) return;
-  studyMode = 'ordered';
-  deck = [...words];
-  deckIndex = idx;
-  isFlipped = false;
-  document.querySelectorAll('.mode-chip').forEach(c => c.classList.remove('active'));
-  document.getElementById('modeOrdered').classList.add('active');
-  document.getElementById('wordCardInner').classList.remove('flipped');
-  renderCard();
-  showPage('study');
-}
-
-// ===== QUIZ =====
-function renderQuizStart() {
-  const count = getLearnedSet().size;
-  document.getElementById('quizStartCount').textContent = count;
-  const totalEl = document.getElementById('quizTotalCount');
-  if (totalEl) totalEl.textContent = words.length;
-}
-
-function startQuiz(mode) {
-  // mode: 'learned' | 'all' | undefined (re-use last mode)
-  const learned = getLearnedSet();
-  let pool;
-  if (mode === 'all') {
-    pool = [...words];
-  } else {
-    pool = words.filter(w => learned.has(w.word));
-    if (pool.length < 4) {
-      // Fall back to all words if not enough learned
-      pool = [...words];
-      toast('已学词汇不足，将从全部词汇中出题', 'info');
-    }
-  }
-  if (pool.length < 4) { toast('词汇数据还未加载完成，请稍候', 'error'); return; }
-  quizQuestions = shuffle([...pool]).slice(0, Math.min(20, pool.length));
-  quizIndex = 0; quizCorrect = 0; quizWrong = 0;
-  document.getElementById('quizStart').style.display = 'none';
-  document.getElementById('quizResult').style.display = 'none';
-  document.getElementById('quizGame').style.display = 'block';
-  renderQuestion();
-}
-
-function renderQuestion() {
-  if (quizIndex >= quizQuestions.length) { showQuizResult(); return; }
-  const q = quizQuestions[quizIndex];
-  document.getElementById('quizNum').textContent = `第 ${quizIndex + 1} / ${quizQuestions.length} 题`;
-  document.getElementById('quizProgressFill').style.width = (quizIndex / quizQuestions.length * 100) + '%';
-  document.getElementById('quizScore').textContent = `正确 ${quizCorrect}  错误 ${quizWrong}`;
-  document.getElementById('quizWord').textContent = q.word;
-  document.getElementById('quizFeedback').className = 'quiz-feedback';
-  document.getElementById('quizNextBtn').disabled = true;
-
-  const learned = getLearnedSet();
-  let distPool = words.filter(w => learned.has(w.word) && w.word !== q.word);
-  // If not enough learned words for distractors, pull from all words
-  if (distPool.length < 3) distPool = words.filter(w => w.word !== q.word);
-  const distractors = shuffle(distPool).slice(0, 3).map(w => (w.translations[0] || {}).translation || w.word);
-  const correct = (q.translations[0] || {}).translation || '';
-  const options = shuffle([correct, ...distractors]);
-
-  // Store options on window to avoid quote-escaping issues in onclick
-  window._quizOptions = options;
-  window._quizCorrect = correct;
-  document.getElementById('quizOptions').innerHTML = options.map((opt, i) =>
-    `<button class="quiz-option" data-idx="${i}">${opt}</button>`
-  ).join('');
-  document.getElementById('quizOptions').querySelectorAll('.quiz-option').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const idx = parseInt(this.dataset.idx);
-      selectOption(this, window._quizOptions[idx], window._quizCorrect);
-    });
-  });
-}
-
-function selectOption(btn, selected, correct) {
-  document.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
-  const fb = document.getElementById('quizFeedback');
-  const w = quizQuestions[quizIndex];
-  if (selected === correct) {
-    btn.classList.add('correct');
-    fb.className = 'quiz-feedback correct show';
-    document.getElementById('quizFeedbackIcon').innerHTML = '<polyline points="20 6 9 17 4 12"/>';
-    document.getElementById('quizFeedbackText').textContent = '正确！';
-    quizCorrect++;
-  } else {
-    btn.classList.add('wrong');
-    document.querySelectorAll('.quiz-option').forEach(b => {
-      if (b.textContent === correct) b.classList.add('correct');
-    });
-    fb.className = 'quiz-feedback wrong show';
-    document.getElementById('quizFeedbackIcon').innerHTML = '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>';
-    document.getElementById('quizFeedbackText').textContent = `错误！正确答案：${correct}`;
-    quizWrong++;
-    // add to mistakes
-    const m = getMistakes();
-    m[w.word] = (m[w.word] || 0) + 1;
-    saveMistakes(m);
-    updateBadges();
-    renderMistakes();
-  }
-  document.getElementById('quizNextBtn').disabled = false;
-  document.getElementById('quizScore').textContent = `正确 ${quizCorrect}  错误 ${quizWrong}`;
-}
-
-function nextQuestion() {
-  quizIndex++;
-  renderQuestion();
-}
-
-function showQuizResult() {
-  document.getElementById('quizGame').style.display = 'none';
-  document.getElementById('quizResult').style.display = 'block';
-  const total = quizQuestions.length;
-  const pct = Math.round(quizCorrect / total * 100);
-  document.getElementById('quizResultScore').textContent = `${quizCorrect} / ${total}`;
-  const svgStar = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--accent)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
-  const svgSmile = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--green)"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>';
-  const svgFist = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--text2)"><path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>';
-  document.getElementById('quizResultEmoji').innerHTML = pct >= 80 ? svgStar : pct >= 60 ? svgSmile : svgFist;
-  document.getElementById('quizResultMsg').textContent = pct >= 80 ? '优秀！继续保持！' : pct >= 60 ? '不错！还需巩固' : '继续努力，加油！';
-}
-
-// ===== MISTAKES =====
-function renderMistakes() {
-  const m = getMistakes();
-  const entries = Object.entries(m).sort((a, b) => b[1] - a[1]);
-  document.getElementById('mistakeSubtitle').textContent = `${entries.length} 个错词`;
-  const container = document.getElementById('mistakeContent');
-  if (!entries.length) {
-    container.innerHTML = `<div class="mistake-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div>暂无错题，继续加油！</div></div>`;
-    return;
-  }
-  container.innerHTML = `<div class="mistake-list">${entries.map(([word, count]) => {
-    const w = words.find(x => x.word === word);
-    const trans = w ? (w.translations[0] || {}).translation || '' : '';
-    return `<div class="mistake-item">
-      <div class="mistake-en" style="cursor:pointer" onclick="jumpToWord('${word}')">${word}</div>
-      <div class="mistake-zh">${trans}</div>
-      <span class="mistake-count">错 ${count} 次</span>
-      <button class="btn btn-sm btn-secondary" style="padding:4px 8px" onclick="removeMistake('${word}')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-      </button>
-    </div>`;
-  }).join('')}</div>`;
-}
-
-function removeMistake(word) {
-  const m = getMistakes();
-  delete m[word];
-  saveMistakes(m);
-  updateBadges();
-  renderMistakes();
-}
-
-function clearMistakes() {
-  if (!confirm('确定清空所有错题？')) return;
-  saveMistakes({});
-  updateBadges();
-  renderMistakes();
-  toast('已清空错题本', 'info');
-}
-
-// ===== SETTINGS =====
-function applySettings() {
-  const s = getSettings();
-  document.documentElement.setAttribute('data-theme', s.dark ? 'dark' : '');
-  document.documentElement.style.setProperty('--font-size-base', s.fontSize + 'px');
-  document.getElementById('toggleDark').checked = s.dark;
-  document.getElementById('fontSizeSlider').value = s.fontSize;
-  document.getElementById('fontSizeLabel').textContent = s.fontSize;
-  document.getElementById('aiProvider').value = s.provider || 'claude';
-  updateModelOptions(s.provider || 'claude', s.model);
-  document.getElementById('apiKeyInput').value = s.apiKey || '';
-  document.getElementById('apiBaseUrl').value = s.apiBase || '';
-}
-
-function toggleDarkMode(v) {
-  const s = getSettings(); s.dark = v; saveSettings(s);
-  document.documentElement.setAttribute('data-theme', v ? 'dark' : '');
-}
-
-function changeFontSize(v) {
-  document.getElementById('fontSizeLabel').textContent = v;
-  document.documentElement.style.setProperty('--font-size-base', v + 'px');
-  const s = getSettings(); s.fontSize = parseInt(v); saveSettings(s);
-}
-
-function onProviderChange() {
-  const p = document.getElementById('aiProvider').value;
-  updateModelOptions(p);
-  const descs = { claude: 'Anthropic Claude API Key (sk-ant-…)', openai: 'OpenAI API Key (sk-…)', deepseek: 'DeepSeek API Key' };
-  document.getElementById('apiKeyDesc').textContent = descs[p];
-  document.getElementById('apiBaseUrl').placeholder = DEFAULT_BASE_URLS[p];
-}
-
-function updateModelOptions(provider, selectedModel) {
-  const sel = document.getElementById('aiModel');
-  sel.innerHTML = (MODELS[provider] || []).map(m =>
-    `<option value="${m.value}" ${selectedModel === m.value ? 'selected' : ''}>${m.label}</option>`
-  ).join('');
-}
-
-function saveApiKey() {
-  const s = getSettings();
-  s.provider = document.getElementById('aiProvider').value;
-  s.model = document.getElementById('aiModel').value;
-  s.apiKey = document.getElementById('apiKeyInput').value.trim();
-  s.apiBase = document.getElementById('apiBaseUrl').value.trim();
-  saveSettings(s);
-  toast('API Key 已保存', 'success');
-  checkAIKey();
-}
-
-function resetProgress() {
-  if (!confirm('确定重置所有学习进度？')) return;
-  saveLearnedSet(new Set());
-  updateProgress();
-  updateBadges();
-  buildDeck();
-  renderCard();
-  renderVocab();
-  toast('学习进度已重置', 'info');
-}
-
-// ===== AI =====
-function checkAIKey() {
-  const s = getSettings();
-  if (s.apiKey) {
-    document.getElementById('aiNoKey').style.display = 'none';
-    document.getElementById('aiMain').style.display = 'flex';
-  } else {
-    document.getElementById('aiNoKey').style.display = 'flex';
-    document.getElementById('aiMain').style.display = 'none';
-  }
-}
-
-let aiHistory = [];
-
-async function sendAI(overrideMsg) {
-  const s = getSettings();
-  if (!s.apiKey) { toast('请先配置 API Key', 'error'); return; }
-  const inputEl = document.getElementById('aiInput');
-  const msg = overrideMsg || inputEl.value.trim();
-  if (!msg) return;
-  inputEl.value = '';
-  appendMsg('user', msg);
-  aiHistory.push({ role: 'user', content: msg });
-  const typingEl = appendMsg('assistant', null, true);
-  document.getElementById('aiSendBtn').disabled = true;
-
-  try {
-    const base = s.apiBase || DEFAULT_BASE_URLS[s.provider];
-    const currentWord = deck.length ? deck[deckIndex].word : null;
-
-    const systemPrompt = `你是一个专业的高中英语词汇助教。你的任务是帮助学生记忆和理解高中英语6000词的词汇。
-请用中文回答，语言简洁易懂。可以：
-1. 解释单词的含义、用法、词根词缀
-2. 造例句帮助理解
-3. 列出近义词、反义词
-4. 分享记忆技巧（词根法、联想法等）
-5. 分析学生的错题规律
-当前正在学习的单词：${currentWord ? `"${currentWord}"` : '（未知）'}`;
-
-    let response;
-    if (s.provider === 'claude') {
-      response = await fetch(`${base}/v1/messages`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': s.apiKey, 'anthropic-version': '2023-06-01' },
-        body: JSON.stringify({ model: s.model, max_tokens: 1024, system: systemPrompt, messages: aiHistory })
-      });
-      const data = await response.json();
-      if (data.error) throw new Error(data.error.message);
-      const reply = data.content[0].text;
-      aiHistory.push({ role: 'assistant', content: reply });
-      typingEl.remove();
-      appendMsg('assistant', reply);
-    } else {
-      // OpenAI / DeepSeek compatible
-      const messages = [{ role: 'system', content: systemPrompt }, ...aiHistory];
-      response = await fetch(`${base}/chat/completions`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${s.apiKey}` },
-        body: JSON.stringify({ model: s.model, max_tokens: 1024, messages })
-      });
-      const data = await response.json();
-      if (data.error) throw new Error(data.error.message);
-      const reply = data.choices[0].message.content;
-      aiHistory.push({ role: 'assistant', content: reply });
-      typingEl.remove();
-      appendMsg('assistant', reply);
-    }
-  } catch (e) {
-    typingEl.remove();
-    appendMsg('assistant', `请求失败：${e.message}\n请检查 API Key 和网络连接。`);
-  }
-  document.getElementById('aiSendBtn').disabled = false;
-}
-
-function appendMsg(role, text, typing = false) {
-  const container = document.getElementById('aiMessages');
-  const el = document.createElement('div');
-  el.className = `ai-msg ${role}`;
-  if (typing) {
-    el.innerHTML = `<div class="typing-dots"><span></span><span></span><span></span></div>`;
-  } else {
-    el.textContent = text;
-  }
-  container.appendChild(el);
-  container.scrollTop = container.scrollHeight;
-  return el;
-}
-
-function aiKeydown(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAI(); }
-}
-
-function aiQuick(type) {
-  const w = deck.length ? deck[deckIndex] : null;
-  const wName = w ? w.word : '当前单词';
-  const msgs = {
-    explain: `请详细解释单词 "${wName}" 的含义、词性、常见用法和词根`,
-    example: `请用 "${wName}" 造3个贴近高考场景的例句，并附中文翻译`,
-    synonym: `请列出 "${wName}" 的近义词和反义词，并说明区别`,
-    memory: `请给我3种记忆 "${wName}" 的技巧，比如词根联想、故事记忆等`,
-    mistakes: `我的错题本单词是：${Object.keys(getMistakes()).slice(0,10).join('、') || '暂无'}，请帮我分析这些单词有什么共同规律，怎么记忆`
-  };
-  sendAI(msgs[type]);
-}
-
-// ===== UTILS =====
-function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
-function escHtml(s) { return s.replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
-
-function toast(msg, type = 'info') {
-  const wrap = document.getElementById('toastWrap');
-  const el = document.createElement('div');
-  el.className = `toast ${type}`;
-  el.textContent = msg;
-  wrap.appendChild(el);
-  setTimeout(() => el.remove(), 2800);
-}
-
-
-// ===== LOADER FUNCTIONS =====
-function showLoader(msg, pct) {
-  const screen = document.getElementById('loaderScreen');
-  screen.classList.remove('hide');
-  if (msg) {
-    const el = document.getElementById('loaderMsg');
-    el.textContent = msg;
-    el.className = 'loader-msg' + (pct === -1 ? ' error' : '');
-  }
-  if (pct >= 0) setLoaderProgress(pct);
-}
-function setLoaderProgress(pct) {
-  document.getElementById('loaderFill').style.width = pct + '%';
-  document.getElementById('loaderPct').textContent = Math.round(pct) + '%';
-}
-function hideLoader() {
-  const screen = document.getElementById('loaderScreen');
-  screen.style.pointerEvents = 'none';
-  screen.classList.add('hide');
-  setTimeout(() => { if (screen.parentNode) screen.parentNode.removeChild(screen); }, 450);
-}
-
-// Also add a settings cache-clear helper
-function clearWordsCache() {
-  localStorage.removeItem(WORDS_CACHE_KEY);
-  toast('词汇缓存已清除，刷新页面重新加载', 'info');
-}
-
-// ===== START =====
-// Register nav clicks immediately — don't wait for word data to load
-setupNav();
-setupMobile();
-init();
-</script>
+
+    <div class="toast-wrap" id="toastWrap"></div>
+
+    <script>
+        (function() {
+            // ===== STATE =====
+            let words = [];
+            let deck = [];
+            let deckIndex = 0;
+            let studyMode = 'ordered';
+            let isFlipped = false;
+            let vocabFilter = 'all';
+            let quizQuestions = [];
+            let quizIndex = 0;
+            let quizCorrect = 0;
+            let quizWrong = 0;
+            let lastQuizMode = 'learned';
+            let aiHistory = [];
+
+            const MODELS = {
+                claude: [
+                    { label: 'Claude Sonnet 4.5', value: 'claude-sonnet-4-5' },
+                    { label: 'Claude Opus 4', value: 'claude-opus-4-0' },
+                    { label: 'Claude Haiku 3.5', value: 'claude-haiku-3-5' },
+                ],
+                openai: [
+                    { label: 'GPT-4.1', value: 'gpt-4.1' },
+                    { label: 'GPT-4o', value: 'gpt-4o' },
+                    { label: 'o4-mini', value: 'o4-mini' },
+                ],
+                deepseek: [
+                    { label: 'DeepSeek-V3', value: 'deepseek-chat' },
+                    { label: 'DeepSeek-R1', value: 'deepseek-reasoner' },
+                ]
+            };
+
+            const DEFAULT_BASE_URLS = {
+                claude: 'https://api.anthropic.com',
+                openai: 'https://api.openai.com/v1',
+                deepseek: 'https://api.deepseek.com/v1'
+            };
+
+            const WORDS_CACHE_KEY = 'vocab_words_cache';
+            const WORDS_JSON_URL = 'words.json';
+
+            // ===== STORAGE =====
+            const LS = {
+                get: k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+                set: (k, v) => localStorage.setItem(k, JSON.stringify(v)),
+            };
+
+            function getLearnedSet() { return new Set(LS.get('learned') || []); }
+
+            function saveLearnedSet(s) { LS.set('learned', [...s]); }
+
+            function getMistakes() { return LS.get('mistakes') || {}; }
+
+            function saveMistakes(m) { LS.set('mistakes', m); }
+
+            function getSettings() {
+                return Object.assign({
+                    dark: false,
+                    fontSize: 16,
+                    provider: 'claude',
+                    model: 'claude-sonnet-4-5',
+                    apiKey: '',
+                    apiBase: ''
+                }, LS.get('settings') || {});
+            }
+
+            function saveSettings(s) { LS.set('settings', s); }
+
+            // ===== DOM refs =====
+            const $ = id => document.getElementById(id);
+            const cardWord = $('cardWord');
+            const cardCounter = $('cardCounter');
+            const cardCounter2 = $('cardCounter2');
+            const cardTranslations = $('cardTranslations');
+            const wordCardInner = $('wordCardInner');
+            const progressFill = $('progressFill');
+            const progressText = $('progressText');
+            const statTotal = $('statTotal');
+            const statLearned = $('statLearned');
+            const statRemain = $('statRemain');
+            const vocabBadge = $('vocabBadge');
+            const quizBadge = $('quizBadge');
+            const mistakeBadge = $('mistakeBadge');
+            const vocabSubtitle = $('vocabSubtitle');
+            const wordList = $('wordList');
+            const mistakeSubtitle = $('mistakeSubtitle');
+            const mistakeContent = $('mistakeContent');
+            const toastWrap = $('toastWrap');
+            const aiNoKey = $('aiNoKey');
+            const aiMain = $('aiMain');
+            const aiMessages = $('aiMessages');
+            const aiInput = $('aiInput');
+            const aiSendBtn = $('aiSendBtn');
+            const quizStartEl = $('quizStart');
+            const quizGameEl = $('quizGame');
+            const quizResultEl = $('quizResult');
+            const quizNum = $('quizNum');
+            const quizProgressFill = $('quizProgressFill');
+            const quizScore = $('quizScore');
+            const quizWord = $('quizWord');
+            const quizOptions = $('quizOptions');
+            const quizFeedback = $('quizFeedback');
+            const quizFeedbackIcon = $('quizFeedbackIcon');
+            const quizFeedbackText = $('quizFeedbackText');
+            const quizNextBtn = $('quizNextBtn');
+            const quizResultScore = $('quizResultScore');
+            const quizResultMsg = $('quizResultMsg');
+            const quizResultEmoji = $('quizResultEmoji');
+            const quizStartCount = $('quizStartCount');
+            const quizTotalCount = $('quizTotalCount');
+            const sidebar = $('sidebar');
+            const sidebarOverlay = $('sidebarOverlay');
+
+            // ===== INIT =====
+            async function init() {
+                applySettings();
+                await loadWords();
+                buildDeck();
+                renderCard();
+                renderVocab();
+                renderMistakes();
+                updateBadges();
+                updateProgress();
+                renderQuizStart();
+            }
+
+            // ===== LOAD WORDS =====
+            async function loadWords() {
+                try {
+                    const cached = localStorage.getItem(WORDS_CACHE_KEY);
+                    if (cached) {
+                        words = JSON.parse(cached);
+                        hideLoader();
+                        return;
+                    }
+                } catch (e) {}
+
+                showLoader('正在加载词汇数据…', 0);
+                try {
+                    const response = await fetch(WORDS_JSON_URL);
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+
+                    const contentLength = response.headers.get('Content-Length');
+                    const total = contentLength ? parseInt(contentLength) : 0;
+                    const reader = response.body.getReader();
+                    let received = 0;
+                    const chunks = [];
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        chunks.push(value);
+                        received += value.length;
+                        if (total > 0) {
+                            setLoaderProgress(Math.round(received / total * 90));
+                        } else {
+                            setLoaderProgress(Math.min(85, received / 5000));
+                        }
+                    }
+
+                    setLoaderProgress(95);
+                    const blob = new Blob(chunks);
+                    const text = await blob.text();
+                    setLoaderProgress(98);
+                    words = JSON.parse(text);
+
+                    try { localStorage.setItem(WORDS_CACHE_KEY, text); } catch (e) {}
+
+                    setLoaderProgress(100);
+                    setTimeout(hideLoader, 300);
+                } catch (err) {
+                    showLoader('加载失败：' + err.message, -1);
+                    throw err;
+                }
+            }
+
+            // ===== NAV =====
+            function showPage(id) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.bottom-nav-item').forEach(n => n.classList.remove('active'));
+                const pageEl = document.getElementById('page-' + id);
+                if (pageEl) pageEl.classList.add('active');
+                document.querySelectorAll(`[data-page="${id}"]`).forEach(el => el.classList.add('active'));
+                if (id === 'ai') checkAIKey();
+                if (id === 'quiz') {
+                    renderQuizStart();
+                    resetQuizUI();
+                }
+                closeSidebar();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function resetQuizUI() {
+                if (quizStartEl) quizStartEl.style.display = 'block';
+                if (quizGameEl) quizGameEl.style.display = 'none';
+                if (quizResultEl) quizResultEl.style.display = 'none';
+            }
+
+            function setupNav() {
+                document.addEventListener('click', function(e) {
+                    const el = e.target.closest('.nav-item, .bottom-nav-item');
+                    if (el && el.dataset.page) {
+                        showPage(el.dataset.page);
+                    }
+                });
+            }
+
+            // ===== MOBILE =====
+            function setupMobile() {
+                const hamburger = document.getElementById('hamburger');
+                if (hamburger) {
+                    hamburger.addEventListener('click', () => {
+                        sidebar.classList.toggle('open');
+                        sidebarOverlay.classList.toggle('show');
+                    });
+                }
+                if (sidebarOverlay) {
+                    sidebarOverlay.addEventListener('click', closeSidebar);
+                }
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('show');
+            }
+
+            // ===== DECK =====
+            function buildDeck() {
+                const learned = getLearnedSet();
+                if (studyMode === 'ordered') {
+                    deck = [...words];
+                } else if (studyMode === 'random') {
+                    deck = [...words].sort(() => Math.random() - 0.5);
+                } else {
+                    deck = words.filter(w => !learned.has(w.word)).sort(() => Math.random() - 0.5);
+                }
+                if (deck.length === 0 && words.length > 0) {
+                    deck = [...words];
+                }
+                deckIndex = 0;
+            }
+
+            function setMode(mode) {
+                studyMode = mode;
+                document.querySelectorAll('#page-study .mode-chip').forEach(c => c.classList.remove('active'));
+                const modeMap = { ordered: 'modeOrdered', random: 'modeRandom', unlearned: 'modeUnlearned' };
+                const target = document.getElementById(modeMap[mode]);
+                if (target) target.classList.add('active');
+                buildDeck();
+                renderCard();
+                isFlipped = false;
+                wordCardInner.classList.remove('flipped');
+            }
+
+            // ===== CARD =====
+            function renderCard() {
+                if (!deck.length) {
+                    cardWord.textContent = '暂无词汇';
+                    cardCounter.textContent = '0 / 0';
+                    cardCounter2.textContent = '0 / 0';
+                    cardTranslations.innerHTML = '';
+                    return;
+                }
+                const w = deck[deckIndex];
+                const counter = `${deckIndex + 1} / ${deck.length}`;
+                cardWord.textContent = w.word;
+                cardCounter.textContent = counter;
+                cardCounter2.textContent = counter;
+
+                let html = '';
+                (w.translations || []).forEach(t => {
+                    html +=
+                        `<div class="trans-row"><span class="trans-type">${escHtml(t.type)}</span><div class="trans-text">${escHtml(t.translation)}</div></div>`;
+                });
+                if (w.phrases && w.phrases.length) {
+                    html += `<div class="phrases-section"><div class="phrases-title">常用短语</div>`;
+                    w.phrases.forEach(p => {
+                        html +=
+                            `<div class="phrase-item"><span class="phrase-en">${escHtml(p.phrase)}</span> — ${escHtml(p.translation)}</div>`;
+                    });
+                    html += `</div>`;
+                }
+                cardTranslations.innerHTML = html;
+                const cardBack = $('cardBack');
+                if (cardBack) cardBack.scrollTop = 0;
+            }
+
+            function flipCard() {
+                if (!deck.length) return;
+                isFlipped = !isFlipped;
+                wordCardInner.classList.toggle('flipped', isFlipped);
+            }
+
+            function nextCard() {
+                if (!deck.length) return;
+                deckIndex = (deckIndex + 1) % deck.length;
+                isFlipped = false;
+                wordCardInner.classList.remove('flipped');
+                renderCard();
+            }
+
+            function prevCard() {
+                if (!deck.length) return;
+                deckIndex = (deckIndex - 1 + deck.length) % deck.length;
+                isFlipped = false;
+                wordCardInner.classList.remove('flipped');
+                renderCard();
+            }
+
+            function markLearned() {
+                if (!deck.length) return;
+                const w = deck[deckIndex];
+                const s = getLearnedSet();
+                s.add(w.word);
+                saveLearnedSet(s);
+                updateProgress();
+                updateBadges();
+                toast('已标记为掌握', 'success');
+                nextCard();
+            }
+
+            function markMistake() {
+                if (!deck.length) return;
+                const w = deck[deckIndex];
+                const m = getMistakes();
+                m[w.word] = (m[w.word] || 0) + 1;
+                saveMistakes(m);
+                updateBadges();
+                toast('加入错题本', 'error');
+                renderMistakes();
+            }
+
+            // ===== PROGRESS =====
+            function updateProgress() {
+                const learned = getLearnedSet().size;
+                const total = words.length;
+                const remain = total - learned;
+                const pct = total ? Math.round(learned / total * 100) : 0;
+                progressFill.style.width = pct + '%';
+                progressText.textContent = `${learned} / ${total}`;
+                statTotal.textContent = total;
+                statLearned.textContent = learned;
+                statRemain.textContent = remain;
+            }
+
+            function updateBadges() {
+                const learned = getLearnedSet().size;
+                const mistakes = Object.keys(getMistakes()).length;
+                vocabBadge.textContent = words.length;
+                quizBadge.textContent = learned;
+                mistakeBadge.textContent = mistakes;
+            }
+
+            // ===== VOCAB =====
+            function setVocabFilter(f) {
+                vocabFilter = f;
+                document.querySelectorAll('#page-vocab .mode-chip').forEach(c => c.classList.remove('active'));
+                const filterMap = { all: 'filterAll', learned: 'filterLearned', unlearned: 'filterUnlearned' };
+                const target = document.getElementById(filterMap[f]);
+                if (target) target.classList.add('active');
+                renderVocab();
+            }
+
+            window._vocabFiltered = [];
+            window._vocabLearned = new Set();
+            window._vocabMistakes = {};
+            const VOCAB_PAGE = 80;
+
+            function renderVocab() {
+                const q = (document.getElementById('vocabSearch')?.value || '').toLowerCase();
+                const learned = getLearnedSet();
+                const mistakes = getMistakes();
+                let filtered = words.filter(w => {
+                    if (vocabFilter === 'learned' && !learned.has(w.word)) return false;
+                    if (vocabFilter === 'unlearned' && learned.has(w.word)) return false;
+                    if (q) {
+                        const inWord = w.word.toLowerCase().includes(q);
+                        const inTrans = (w.translations || []).some(t => t.translation.includes(q));
+                        if (!inWord && !inTrans) return false;
+                    }
+                    return true;
+                });
+                vocabSubtitle.textContent = `共 ${filtered.length} 个词汇`;
+                window._vocabFiltered = filtered;
+                window._vocabLearned = learned;
+                window._vocabMistakes = mistakes;
+                renderVocabRows(0);
+            }
+
+            function renderVocabRows(startFrom) {
+                const filtered = window._vocabFiltered || [];
+                const learned = window._vocabLearned || new Set();
+                const mistakes = window._vocabMistakes || {};
+
+                if (startFrom === 0) wordList.innerHTML = '';
+
+                const end = Math.min(startFrom + VOCAB_PAGE, filtered.length);
+                const frag = document.createDocumentFragment();
+
+                for (let i = startFrom; i < end; i++) {
+                    const w = filtered[i];
+                    const isLearned = learned.has(w.word);
+                    const isMistake = !!mistakes[w.word];
+                    const trans = (w.translations[0] || {}).translation || '';
+                    const div = document.createElement('div');
+                    div.className = 'word-row' + (isLearned ? ' learned' : '');
+                    div.dataset.word = w.word;
+                    div.innerHTML =
+                        `<div class="word-row-en">${escHtml(w.word)}</div>` +
+                        `<div class="word-row-zh">${escHtml(trans)}</div>` +
+                        `<div class="word-row-badge ${isLearned ? 'learned' : ''} ${isMistake ? 'wrong' : ''}">` +
+                        (isLearned ?
+                            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>' :
+                            '') +
+                        (isMistake ?
+                            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' :
+                            '') +
+                        '</div>';
+                    div.addEventListener('click', () => jumpToWord(w.word));
+                    frag.appendChild(div);
+                }
+                wordList.appendChild(frag);
+
+                const old = wordList.querySelector('.vocab-load-more');
+                if (old) old.remove();
+                if (end < filtered.length) {
+                    const more = document.createElement('div');
+                    more.className = 'vocab-load-more';
+                    more.style.cssText =
+                        'text-align:center;padding:16px;color:var(--text3);font-size:0.82rem;cursor:pointer;';
+                    more.textContent = `显示 ${end} / ${filtered.length}，点击加载更多`;
+                    more.addEventListener('click', () => renderVocabRows(end));
+                    wordList.appendChild(more);
+
+                    wordList.onscroll = () => {
+                        if (wordList.scrollTop + wordList.clientHeight >= wordList.scrollHeight - 80) {
+                            wordList.onscroll = null;
+                            renderVocabRows(end);
+                        }
+                    };
+                } else {
+                    wordList.onscroll = null;
+                }
+            }
+
+            function jumpToWord(word) {
+                const idx = words.findIndex(w => w.word === word);
+                if (idx === -1) return;
+                studyMode = 'ordered';
+                deck = [...words];
+                deckIndex = idx;
+                isFlipped = false;
+                document.querySelectorAll('#page-study .mode-chip').forEach(c => c.classList.remove('active'));
+                const modeOrdered = document.getElementById('modeOrdered');
+                if (modeOrdered) modeOrdered.classList.add('active');
+                wordCardInner.classList.remove('flipped');
+                renderCard();
+                showPage('study');
+            }
+
+            // ===== QUIZ =====
+            function renderQuizStart() {
+                const count = getLearnedSet().size;
+                if (quizStartCount) quizStartCount.textContent = count;
+                if (quizTotalCount) quizTotalCount.textContent = words.length;
+            }
+
+            function startQuiz(mode) {
+                if (!words.length) {
+                    toast('词汇数据还未加载完成，请稍候', 'error');
+                    return;
+                }
+                const learned = getLearnedSet();
+                let pool;
+                if (mode === 'all') {
+                    pool = [...words];
+                    lastQuizMode = 'all';
+                } else {
+                    pool = words.filter(w => learned.has(w.word));
+                    lastQuizMode = 'learned';
+                    if (pool.length < 4) {
+                        pool = [...words];
+                        lastQuizMode = 'all';
+                        toast('已学词汇不足，将从全部词汇中出题', 'info');
+                    }
+                }
+                if (pool.length < 4) {
+                    toast('词汇数据不足，请先加载词汇', 'error');
+                    return;
+                }
+                quizQuestions = shuffle([...pool]).slice(0, Math.min(20, pool.length));
+                quizIndex = 0;
+                quizCorrect = 0;
+                quizWrong = 0;
+                if (quizStartEl) quizStartEl.style.display = 'none';
+                if (quizResultEl) quizResultEl.style.display = 'none';
+                if (quizGameEl) quizGameEl.style.display = 'block';
+                renderQuestion();
+            }
+
+            function retryQuiz() {
+                startQuiz(lastQuizMode);
+            }
+
+            function renderQuestion() {
+                if (quizIndex >= quizQuestions.length) {
+                    showQuizResult();
+                    return;
+                }
+                const q = quizQuestions[quizIndex];
+                quizNum.textContent = `第 ${quizIndex + 1} / ${quizQuestions.length} 题`;
+                quizProgressFill.style.width = (quizIndex / quizQuestions.length * 100) + '%';
+                quizScore.textContent = `正确 ${quizCorrect}  错误 ${quizWrong}`;
+                quizWord.textContent = q.word;
+                quizFeedback.className = 'quiz-feedback';
+                quizNextBtn.disabled = true;
+
+                const learned = getLearnedSet();
+                let distPool = words.filter(w => learned.has(w.word) && w.word !== q.word);
+                if (distPool.length < 3) distPool = words.filter(w => w.word !== q.word);
+                const distractors = shuffle(distPool).slice(0, 3).map(w => (w.translations[0] || {}).translation || w
+                    .word);
+                const correct = (q.translations[0] || {}).translation || '';
+                const options = shuffle([correct, ...distractors]);
+
+                window._quizOptions = options;
+                window._quizCorrect = correct;
+                quizOptions.innerHTML = options.map((opt, i) =>
+                    `<button class="quiz-option" data-idx="${i}">${escHtml(opt)}</button>`
+                ).join('');
+                quizOptions.querySelectorAll('.quiz-option').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const idx = parseInt(this.dataset.idx);
+                        selectOption(this, window._quizOptions[idx], window._quizCorrect);
+                    });
+                });
+            }
+
+            function selectOption(btn, selected, correct) {
+                document.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+                const w = quizQuestions[quizIndex];
+                if (selected === correct) {
+                    btn.classList.add('correct');
+                    quizFeedback.className = 'quiz-feedback correct show';
+                    quizFeedbackIcon.innerHTML = '<polyline points="20 6 9 17 4 12"/>';
+                    quizFeedbackText.textContent = '正确！';
+                    quizCorrect++;
+                } else {
+                    btn.classList.add('wrong');
+                    document.querySelectorAll('.quiz-option').forEach(b => {
+                        if (b.textContent === correct) b.classList.add('correct');
+                    });
+                    quizFeedback.className = 'quiz-feedback wrong show';
+                    quizFeedbackIcon.innerHTML =
+                        '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>';
+                    quizFeedbackText.textContent = `错误！正确答案：${correct}`;
+                    quizWrong++;
+                    const m = getMistakes();
+                    m[w.word] = (m[w.word] || 0) + 1;
+                    saveMistakes(m);
+                    updateBadges();
+                    renderMistakes();
+                }
+                quizNextBtn.disabled = false;
+                quizScore.textContent = `正确 ${quizCorrect}  错误 ${quizWrong}`;
+            }
+
+            function nextQuestion() {
+                quizIndex++;
+                renderQuestion();
+            }
+
+            function showQuizResult() {
+                if (quizGameEl) quizGameEl.style.display = 'none';
+                if (quizResultEl) quizResultEl.style.display = 'block';
+                const total = quizQuestions.length;
+                const pct = total ? Math.round(quizCorrect / total * 100) : 0;
+                quizResultScore.textContent = `${quizCorrect} / ${total}`;
+                const svgStar =
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--accent)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+                const svgSmile =
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--green)"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>';
+                const svgFist =
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--text2)"><path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>';
+                quizResultEmoji.innerHTML = pct >= 80 ? svgStar : pct >= 60 ? svgSmile : svgFist;
+                quizResultMsg.textContent = pct >= 80 ? '优秀！继续保持！' : pct >= 60 ? '不错！还需巩固' :
+                    '继续努力，加油！';
+            }
+
+            // ===== MISTAKES =====
+            function renderMistakes() {
+                const m = getMistakes();
+                const entries = Object.entries(m).sort((a, b) => b[1] - a[1]);
+                mistakeSubtitle.textContent = `${entries.length} 个错词`;
+                if (!entries.length) {
+                    mistakeContent.innerHTML =
+                        `<div class="mistake-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div>暂无错题，继续加油！</div></div>`;
+                    return;
+                }
+                mistakeContent.innerHTML = `<div class="mistake-list">${entries.map(([word, count]) => {
+                    const w = words.find(x => x.word === word);
+                    const trans = w ? (w.translations[0] || {}).translation || '' : '';
+                    return `<div class="mistake-item">
+                        <div class="mistake-en" style="cursor:pointer" onclick="jumpToWord('${escHtml(word)}')">${escHtml(word)}</div>
+                        <div class="mistake-zh">${escHtml(trans)}</div>
+                        <span class="mistake-count">错 ${count} 次</span>
+                        <button class="btn btn-sm btn-secondary" style="padding:4px 8px;flex-shrink:0" onclick="event.stopPropagation();removeMistake('${escHtml(word)}')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                        </button>
+                    </div>`;
+                }).join('')}</div>`;
+            }
+
+            function removeMistake(word) {
+                const m = getMistakes();
+                delete m[word];
+                saveMistakes(m);
+                updateBadges();
+                renderMistakes();
+                toast('已移除错词', 'info');
+            }
+
+            function clearMistakes() {
+                if (!confirm('确定清空所有错题？')) return;
+                saveMistakes({});
+                updateBadges();
+                renderMistakes();
+                toast('已清空错题本', 'info');
+            }
+
+            // ===== SETTINGS =====
+            function applySettings() {
+                const s = getSettings();
+                document.documentElement.setAttribute('data-theme', s.dark ? 'dark' : '');
+                document.documentElement.style.setProperty('--font-size-base', s.fontSize + 'px');
+                const toggleDark = $('toggleDark');
+                const fontSizeSlider = $('fontSizeSlider');
+                const fontSizeLabel = $('fontSizeLabel');
+                const aiProvider = $('aiProvider');
+                const apiKeyInput = $('apiKeyInput');
+                const apiBaseUrl = $('apiBaseUrl');
+                if (toggleDark) toggleDark.checked = s.dark;
+                if (fontSizeSlider) fontSizeSlider.value = s.fontSize;
+                if (fontSizeLabel) fontSizeLabel.textContent = s.fontSize;
+                if (aiProvider) aiProvider.value = s.provider || 'claude';
+                updateModelOptions(s.provider || 'claude', s.model);
+                if (apiKeyInput) apiKeyInput.value = s.apiKey || '';
+                if (apiBaseUrl) apiBaseUrl.value = s.apiBase || '';
+            }
+
+            function toggleDarkMode(v) {
+                const s = getSettings();
+                s.dark = v;
+                saveSettings(s);
+                document.documentElement.setAttribute('data-theme', v ? 'dark' : '');
+            }
+
+            function changeFontSize(v) {
+                const fontSizeLabel = $('fontSizeLabel');
+                if (fontSizeLabel) fontSizeLabel.textContent = v;
+                document.documentElement.style.setProperty('--font-size-base', v + 'px');
+                const s = getSettings();
+                s.fontSize = parseInt(v);
+                saveSettings(s);
+            }
+
+            function onProviderChange() {
+                const p = $('aiProvider')?.value || 'claude';
+                updateModelOptions(p);
+                const descs = { claude: 'Anthropic Claude API Key (sk-ant-…)', openai: 'OpenAI API Key (sk-…)',
+                    deepseek: 'DeepSeek API Key' };
+                const apiKeyDesc = $('apiKeyDesc');
+                const apiBaseUrl = $('apiBaseUrl');
+                if (apiKeyDesc) apiKeyDesc.textContent = descs[p];
+                if (apiBaseUrl) apiBaseUrl.placeholder = DEFAULT_BASE_URLS[p];
+            }
+
+            function updateModelOptions(provider, selectedModel) {
+                const sel = $('aiModel');
+                if (!sel) return;
+                sel.innerHTML = (MODELS[provider] || []).map(m =>
+                    `<option value="${m.value}" ${selectedModel === m.value ? 'selected' : ''}>${m.label}</option>`
+                ).join('');
+            }
+
+            function saveApiKey() {
+                const s = getSettings();
+                s.provider = $('aiProvider')?.value || 'claude';
+                s.model = $('aiModel')?.value || '';
+                s.apiKey = $('apiKeyInput')?.value.trim() || '';
+                s.apiBase = $('apiBaseUrl')?.value.trim() || '';
+                saveSettings(s);
+                toast('API Key 已保存', 'success');
+                checkAIKey();
+            }
+
+            function resetProgress() {
+                if (!confirm('确定重置所有学习进度？')) return;
+                saveLearnedSet(new Set());
+                updateProgress();
+                updateBadges();
+                buildDeck();
+                renderCard();
+                renderVocab();
+                toast('学习进度已重置', 'info');
+            }
+
+            function clearWordsCache() {
+                localStorage.removeItem(WORDS_CACHE_KEY);
+                toast('词汇缓存已清除，刷新页面重新加载', 'info');
+            }
+
+            // ===== AI =====
+            function checkAIKey() {
+                const s = getSettings();
+                if (s.apiKey) {
+                    if (aiNoKey) aiNoKey.style.display = 'none';
+                    if (aiMain) aiMain.style.display = 'flex';
+                } else {
+                    if (aiNoKey) aiNoKey.style.display = 'flex';
+                    if (aiMain) aiMain.style.display = 'none';
+                }
+            }
+
+            async function sendAI(overrideMsg) {
+                const s = getSettings();
+                if (!s.apiKey) {
+                    toast('请先配置 API Key', 'error');
+                    return;
+                }
+                const msg = overrideMsg || (aiInput ? aiInput.value.trim() : '');
+                if (!msg) return;
+                if (aiInput) aiInput.value = '';
+                appendMsg('user', msg);
+                aiHistory.push({ role: 'user', content: msg });
+                const typingEl = appendMsg('assistant', null, true);
+                if (aiSendBtn) aiSendBtn.disabled = true;
+
+                try {
+                    const base = s.apiBase || DEFAULT_BASE_URLS[s.provider];
+                    const currentWord = deck.length ? deck[deckIndex].word : null;
+
+                    const systemPrompt = `你是一个专业的高中英语词汇助教。你的任务是帮助学生记忆和理解高中英语6000词的词汇。
+        请用中文回答，语言简洁易懂。可以：
+        1. 解释单词的含义、用法、词根词缀
+        2. 造例句帮助理解
+        3. 列出近义词、反义词
+        4. 分享记忆技巧（词根法、联想法等）
+        5. 分析学生的错题规律
+        当前正在学习的单词：${currentWord ? `"${currentWord}"` : '（未知）'}`;
+
+                    let response;
+                    if (s.provider === 'claude') {
+                        response = await fetch(`${base}/v1/messages`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'x-api-key': s.apiKey,
+                                'anthropic-version': '2023-06-01'
+                            },
+                            body: JSON.stringify({ model: s.model, max_tokens: 1024, system: systemPrompt,
+                                messages: aiHistory })
+                        });
+                        const data = await response.json();
+                        if (data.error) throw new Error(data.error.message);
+                        const reply = data.content[0].text;
+                        aiHistory.push({ role: 'assistant', content: reply });
+                        typingEl.remove();
+                        appendMsg('assistant', reply);
+                    } else {
+                        const messages = [{ role: 'system', content: systemPrompt }, ...aiHistory];
+                        response = await fetch(`${base}/chat/completions`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${s.apiKey}`
+                            },
+                            body: JSON.stringify({ model: s.model, max_tokens: 1024, messages })
+                        });
+                        const data = await response.json();
+                        if (data.error) throw new Error(data.error.message);
+                        const reply = data.choices[0].message.content;
+                        aiHistory.push({ role: 'assistant', content: reply });
+                        typingEl.remove();
+                        appendMsg('assistant', reply);
+                    }
+                } catch (e) {
+                    typingEl.remove();
+                    appendMsg('assistant', `请求失败：${e.message}\n请检查 API Key 和网络连接。`);
+                }
+                if (aiSendBtn) aiSendBtn.disabled = false;
+            }
+
+            function appendMsg(role, text, typing = false) {
+                const el = document.createElement('div');
+                el.className = `ai-msg ${role}`;
+                if (typing) {
+                    el.innerHTML =
+                        `<div class="typing-dots"><span></span><span></span><span></span></div>`;
+                } else {
+                    el.textContent = text;
+                }
+                aiMessages.appendChild(el);
+                aiMessages.scrollTop = aiMessages.scrollHeight;
+                return el;
+            }
+
+            function aiKeydown(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendAI();
+                }
+            }
+
+            function aiQuick(type) {
+                const w = deck.length ? deck[deckIndex] : null;
+                const wName = w ? w.word : '当前单词';
+                const msgs = {
+                    explain: `请详细解释单词 "${wName}" 的含义、词性、常见用法和词根`,
+                    example: `请用 "${wName}" 造3个贴近高考场景的例句，并附中文翻译`,
+                    synonym: `请列出 "${wName}" 的近义词和反义词，并说明区别`,
+                    memory: `请给我3种记忆 "${wName}" 的技巧，比如词根联想、故事记忆等`,
+                    mistakes: `我的错题本单词是：${Object.keys(getMistakes()).slice(0,10).join('、') || '暂无'}，请帮我分析这些单词有什么共同规律，怎么记忆`
+                };
+                sendAI(msgs[type]);
+            }
+
+            // ===== UTILS =====
+            function shuffle(arr) {
+                const a = [...arr];
+                for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]];
+                }
+                return a;
+            }
+
+            function escHtml(s) {
+                if (!s) return '';
+                return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            }
+
+            function toast(msg, type = 'info') {
+                const el = document.createElement('div');
+                el.className = `toast ${type}`;
+                el.textContent = msg;
+                toastWrap.appendChild(el);
+                setTimeout(() => el.remove(), 2800);
+            }
+
+            function showLoader(msg, pct) {
+                const screen = $('loaderScreen');
+                if (!screen) return;
+                screen.classList.remove('hide');
+                if (msg) {
+                    const el = $('loaderMsg');
+                    if (el) {
+                        el.textContent = msg;
+                        el.className = 'loader-msg' + (pct === -1 ? ' error' : '');
+                    }
+                }
+                if (pct >= 0) setLoaderProgress(pct);
+            }
+
+            function setLoaderProgress(pct) {
+                const fill = $('loaderFill');
+                const pctEl = $('loaderPct');
+                if (fill) fill.style.width = pct + '%';
+                if (pctEl) pctEl.textContent = Math.round(pct) + '%';
+            }
+
+            function hideLoader() {
+                const screen = $('loaderScreen');
+                if (!screen) return;
+                screen.style.pointerEvents = 'none';
+                screen.classList.add('hide');
+                setTimeout(() => { if (screen.parentNode) screen.parentNode.removeChild(screen); }, 450);
+            }
+
+            // ===== Expose to global scope for onclick handlers =====
+            window.setMode = setMode;
+            window.flipCard = flipCard;
+            window.nextCard = nextCard;
+            window.prevCard = prevCard;
+            window.markLearned = markLearned;
+            window.markMistake = markMistake;
+            window.setVocabFilter = setVocabFilter;
+            window.renderVocab = renderVocab;
+            window.jumpToWord = jumpToWord;
+            window.startQuiz = startQuiz;
+            window.retryQuiz = retryQuiz;
+            window.nextQuestion = nextQuestion;
+            window.showPage = showPage;
+            window.clearMistakes = clearMistakes;
+            window.removeMistake = removeMistake;
+            window.toggleDarkMode = toggleDarkMode;
+            window.changeFontSize = changeFontSize;
+            window.onProviderChange = onProviderChange;
+            window.saveApiKey = saveApiKey;
+            window.resetProgress = resetProgress;
+            window.clearWordsCache = clearWordsCache;
+            window.sendAI = sendAI;
+            window.aiKeydown = aiKeydown;
+            window.aiQuick = aiQuick;
+
+            // ===== START =====
+            setupNav();
+            setupMobile();
+            init();
+        })();
+    </script>
 </body>
 </html>
