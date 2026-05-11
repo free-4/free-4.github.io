@@ -641,59 +641,88 @@ a { text-decoration: none; color: inherit; }
 .toast.info { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
 @keyframes slideIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
-/* ===== Responsive ===== */
+/* ===== Bottom Nav (mobile only) ===== */
+.bottom-nav { display: none; }
+
 @media (max-width: 768px) {
+  /* Sidebar */
   .sidebar { transform: translateX(-100%); }
   .sidebar.open { transform: translateX(0); }
   .sidebar-overlay.show { display: block; }
   .main { margin-left: 0; }
   .hamburger { display: flex; }
-  .page { padding: 60px 12px calc(70px + env(safe-area-inset-bottom, 0px)); }
-  .word-list { max-height: calc(100vh - 260px); }
-  .vocab-filters { gap: 6px; }
-  .search-input { min-width: 0; width: 100%; }
-  .mode-chip { font-size: 0.78rem; padding: 5px 10px; }
-  .word-row { padding: 10px 12px; gap: 8px; }
-  .word-row-en { width: 90px; font-size: 0.95rem; }
-  .word-row-zh { font-size: 0.78rem; }
-  .stats-grid { gap: 8px; }
-  .stat-num { font-size: 1.4rem; }
-  .card { padding: 16px; }
+
+  /* Pages — top padding clears hamburger, bottom padding clears bottom nav */
+  .page {
+    padding-top: 56px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 0; /* spacer div handles this */
+  }
+  /* Spacer at end of every page content so last item clears the nav */
+  .page-bottom-spacer {
+    display: block;
+    height: calc(70px + env(safe-area-inset-bottom, 0px));
+    flex-shrink: 0;
+  }
+
+  /* Typography */
   .page-title { font-size: 1.5rem; }
-  .quiz-options { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: repeat(3,1fr); }
-  .study-controls { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .word-card-wrapper { min-height: 220px; }
-  .word-card-front, .word-card-back { min-height: 220px; padding: 20px 16px; }
-  .mode-row { gap: 6px; }
   .word-en { font-size: 2.2rem; }
-  .quiz-word { font-size: 1.9rem; }
+  .quiz-word { font-size: 1.8rem; }
+
+  /* Cards */
+  .card { padding: 14px; }
+  .stats-grid { grid-template-columns: repeat(3,1fr); gap: 8px; }
+  .stat-num { font-size: 1.4rem; }
+
+  /* Study controls: 2x2 grid */
+  .study-controls { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .word-card-wrapper { min-height: 200px; }
+  .word-card-front, .word-card-back { min-height: 200px; padding: 18px 14px; }
+  .mode-row { gap: 6px; flex-wrap: wrap; }
+  .mode-chip { font-size: 0.78rem; padding: 5px 10px; }
+
+  /* Vocab list */
+  .word-list { max-height: calc(100vh - 250px); }
+  .word-row { padding: 9px 10px; gap: 8px; }
+  .word-row-en { width: 88px; font-size: 0.92rem; }
+  .word-row-zh { font-size: 0.78rem; }
+
+  /* Quiz */
+  .quiz-options { grid-template-columns: 1fr; }
+  .quiz-progress-row { gap: 6px; }
+
+  /* AI */
+  .ai-chat-wrap { height: calc(100vh - 260px); min-height: 260px; }
+  .ai-quick-btns { gap: 6px; }
+
+  /* Bottom nav */
   .bottom-nav {
     display: flex;
     position: fixed;
     bottom: 0; left: 0; right: 0;
     background: var(--surface);
-    border-top: 1px solid var(--border);
+    border-top: 1.5px solid var(--border);
     z-index: 150;
-    padding: 8px 0 env(safe-area-inset-bottom);
+    padding-top: 6px;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
   }
   .bottom-nav-item {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
-    padding: 6px 0;
+    gap: 2px;
+    padding: 4px 0;
     color: var(--text3);
-    font-size: 0.62rem;
+    font-size: 0.6rem;
     cursor: pointer;
     transition: color var(--transition);
   }
-  .bottom-nav-item svg { width: 22px; height: 22px; }
+  .bottom-nav-item svg { width: 21px; height: 21px; }
   .bottom-nav-item.active { color: var(--accent); }
-  .ai-chat-wrap { height: calc(100vh - 280px); min-height: 260px; }
 }
-@media (min-width: 769px) { .bottom-nav { display: none !important; } }
 
 /* ===== Loader Screen ===== */
 #loaderScreen {
@@ -902,6 +931,7 @@ a { text-decoration: none; color: inherit; }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
+          <div class="page-bottom-spacer"></div>
     </section>
 
     <!-- ===== VOCAB PAGE ===== -->
@@ -926,6 +956,7 @@ a { text-decoration: none; color: inherit; }
         </div>
       </div>
       <div class="word-list" id="wordList"></div>
+          <div class="page-bottom-spacer"></div>
     </section>
 
     <!-- ===== QUIZ PAGE ===== */
@@ -936,13 +967,22 @@ a { text-decoration: none; color: inherit; }
           <div class="page-subtitle">从已学词汇中随机测试</div>
         </div>
       </div>
-      <div id="quizStart" class="card" style="text-align:center;padding:40px">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--accent);margin-bottom:12px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        <div style="font-size:1.1rem;color:var(--text2);margin-bottom:20px">已学 <span id="quizStartCount" style="color:var(--green);font-weight:700">0</span> 个单词可参与测验</div>
-        <button class="btn btn-primary" onclick="startQuiz()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          开始测验
-        </button>
+      <div id="quizStart" class="card" style="text-align:center;padding:32px 20px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:48px;height:48px;color:var(--accent);margin-bottom:16px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <div style="font-size:1rem;color:var(--text2);margin-bottom:6px">
+          已学 <span id="quizStartCount" style="color:var(--green);font-weight:700">0</span> 词 &nbsp;·&nbsp; 共 <span id="quizTotalCount" style="color:var(--text);font-weight:700">0</span> 词
+        </div>
+        <div style="font-size:0.8rem;color:var(--text3);margin-bottom:20px">可从全部词汇中测验，或只测已学词汇</div>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="startQuiz('learned')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            测验已学
+          </button>
+          <button class="btn btn-secondary" onclick="startQuiz('all')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            全部词汇
+          </button>
+        </div>
       </div>
       <div id="quizGame" style="display:none" class="card">
         <div class="quiz-progress-row">
@@ -975,6 +1015,7 @@ a { text-decoration: none; color: inherit; }
           <button class="btn btn-secondary" onclick="showPage('study')">去学习</button>
         </div>
       </div>
+          <div class="page-bottom-spacer"></div>
     </section>
 
     <!-- ===== MISTAKES PAGE ===== -->
@@ -990,6 +1031,7 @@ a { text-decoration: none; color: inherit; }
         </button>
       </div>
       <div id="mistakeContent"></div>
+          <div class="page-bottom-spacer"></div>
     </section>
 
     <!-- ===== AI PAGE ===== -->
@@ -1026,6 +1068,7 @@ a { text-decoration: none; color: inherit; }
           </div>
         </div>
       </div>
+          <div class="page-bottom-spacer"></div>
     </section>
 
     <!-- ===== SETTINGS PAGE ===== -->
@@ -1096,6 +1139,7 @@ a { text-decoration: none; color: inherit; }
           </div>
         </div>
       </div>
+          <div class="page-bottom-spacer"></div>
     </section>
 
   </main>
@@ -1507,12 +1551,25 @@ function jumpToWord(word) {
 function renderQuizStart() {
   const count = getLearnedSet().size;
   document.getElementById('quizStartCount').textContent = count;
+  const totalEl = document.getElementById('quizTotalCount');
+  if (totalEl) totalEl.textContent = words.length;
 }
 
-function startQuiz() {
+function startQuiz(mode) {
+  // mode: 'learned' | 'all' | undefined (re-use last mode)
   const learned = getLearnedSet();
-  const pool = words.filter(w => learned.has(w.word));
-  if (pool.length < 4) { toast('至少需要学习 4 个单词才能测验', 'error'); return; }
+  let pool;
+  if (mode === 'all') {
+    pool = [...words];
+  } else {
+    pool = words.filter(w => learned.has(w.word));
+    if (pool.length < 4) {
+      // Fall back to all words if not enough learned
+      pool = [...words];
+      toast('已学词汇不足，将从全部词汇中出题', 'info');
+    }
+  }
+  if (pool.length < 4) { toast('词汇数据还未加载完成，请稍候', 'error'); return; }
   quizQuestions = shuffle([...pool]).slice(0, Math.min(20, pool.length));
   quizIndex = 0; quizCorrect = 0; quizWrong = 0;
   document.getElementById('quizStart').style.display = 'none';
@@ -1532,8 +1589,10 @@ function renderQuestion() {
   document.getElementById('quizNextBtn').disabled = true;
 
   const learned = getLearnedSet();
-  const pool = words.filter(w => learned.has(w.word) && w.word !== q.word);
-  const distractors = shuffle(pool).slice(0, 3).map(w => (w.translations[0] || {}).translation || w.word);
+  let distPool = words.filter(w => learned.has(w.word) && w.word !== q.word);
+  // If not enough learned words for distractors, pull from all words
+  if (distPool.length < 3) distPool = words.filter(w => w.word !== q.word);
+  const distractors = shuffle(distPool).slice(0, 3).map(w => (w.translations[0] || {}).translation || w.word);
   const correct = (q.translations[0] || {}).translation || '';
   const options = shuffle([correct, ...distractors]);
 
