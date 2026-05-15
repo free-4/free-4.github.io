@@ -39,7 +39,7 @@ const SITE_DATA = [
         name: "友情链接",
         icon: "code",
         items: [
-            { title: "SHUOWEB云盘", url: "https://shuoweb.wuaze.com/", icon: "cloud" }
+            { title: "SHUOWEB云盘", url: "https://shuoweb.42web.io/", icon: "cloud" }
         ]
     }
 ];
