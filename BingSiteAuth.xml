@@ -1,1 +1,4 @@
-{ "type": "https://tools.ietf.org/html/rfc9110#section-15.5.2", "title": "Unauthorized", "status": 401, "traceId": "00-a936e702c39da45ae7899e8072a1513c-ca0f8a9b7fa6b793-00" }
+<?xml version="1.0"?>
+<users>
+	<user>78FB2FA9447B75F3B68DB3544534346C</user>
+</users>
