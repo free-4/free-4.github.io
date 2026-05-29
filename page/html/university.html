@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>中国大学查询</title>
+
+<script src="https://shuoweb.com/common.js"></script>
+
+<style>
+body{
+    padding:20px;
+}
+
+.main{
+    max-width:1200px;
+    margin:auto;
+}
+
+.title{
+    font-size:40px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.desc{
+    opacity:.7;
+    margin-bottom:25px;
+}
+
+.search-box{
+    display:grid;
+    grid-template-columns:1fr 180px 180px;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.input,
+.select{
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:18px;
+    padding:0 18px;
+    font-size:15px;
+    background:rgba(255,255,255,.08);
+    color:white;
+    outline:none;
+}
+
+.list{
+    display:grid;
+    gap:15px;
+}
+
+.card{
+    padding:22px;
+    border-radius:24px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(10px);
+}
+
+.name{
+    font-size:24px;
+    font-weight:700;
+}
+
+.code{
+    opacity:.65;
+    margin-top:6px;
+}
+
+.info{
+    margin-top:15px;
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+    gap:12px;
+}
+
+.item{
+    padding:14px;
+    border-radius:16px;
+    background:rgba(255,255,255,.04);
+}
+
+.label{
+    opacity:.6;
+    font-size:13px;
+    margin-bottom:5px;
+}
+
+.loading,
+.empty{
+    text-align:center;
+    padding:60px 20px;
+    opacity:.7;
+}
+
+@media(max-width:768px){
+
+    .search-box{
+        grid-template-columns:1fr;
+    }
+
+    .title{
+        font-size:30px;
+    }
+
+}
+</style>
+</head>
+<body>
+
+<div class="main">
+
+    <div class="title">
+        中国大学查询
+    </div>
+
+    <div class="desc">
+        GitHub Pages 静态部署版
+    </div>
+
+    <div class="search-box">
+
+        <input
+            id="search"
+            class="input"
+            placeholder="搜索大学名称 / 学校代码"
+        >
+
+        <select id="province" class="select">
+            <option value="">全部省份</option>
+        </select>
+
+        <select id="level" class="select">
+            <option value="">全部层次</option>
+            <option value="本科">本科</option>
+            <option value="专科">专科</option>
+        </select>
+
+    </div>
+
+    <div id="list" class="list">
+        <div class="loading">
+            正在加载大学数据...
+        </div>
+    </div>
+
+</div>
+
+<script>
+const list = document.getElementById("list");
+const search = document.getElementById("search");
+const province = document.getElementById("province");
+const level = document.getElementById("level");
+
+let all = [];
+
+/*
+    加载 JSON
+*/
+fetch("./json/university.json")
+.then(res => res.json())
+.then(data => {
+
+    Object.keys(data).forEach(key => {
+
+        province.innerHTML += `
+            <option value="${key}">
+                ${key}
+            </option>
+        `;
+
+        data[key].forEach(item => {
+
+            all.push({
+                ...item,
+                province:key
+            });
+
+        });
+
+    });
+
+    render();
+
+})
+.catch(err => {
+
+    list.innerHTML = `
+        <div class="empty">
+            JSON 加载失败
+        </div>
+    `;
+
+    console.error(err);
+
+});
+
+/*
+    渲染
+*/
+function render(){
+
+    const keyword = search.value.trim();
+
+    const p = province.value;
+
+    const l = level.value;
+
+    const result = all.filter(item => {
+
+        const matchKeyword =
+            item.name.includes(keyword) ||
+            item.code.includes(keyword);
+
+        const matchProvince =
+            !p || item.province === p;
+
+        const matchLevel =
+            !l || item.level === l;
+
+        return (
+            matchKeyword &&
+            matchProvince &&
+            matchLevel
+        );
+
+    });
+
+    if(result.length === 0){
+
+        list.innerHTML = `
+            <div class="empty">
+                没有搜索结果
+            </div>
+        `;
+
+        return;
+    }
+
+    list.innerHTML = result.map(item => `
+
+        <div class="card">
+
+            <div class="name">
+                ${item.name}
+            </div>
+
+            <div class="code">
+                学校代码：${item.code}
+            </div>
+
+            <div class="info">
+
+                <div class="item">
+                    <div class="label">
+                        所属省份
+                    </div>
+
+                    <div>
+                        ${item.province}
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="label">
+                        所属部门
+                    </div>
+
+                    <div>
+                        ${item.department}
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="label">
+                        办学层次
+                    </div>
+
+                    <div>
+                        ${item.level}
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="label">
+                        备注
+                    </div>
+
+                    <div>
+                        ${item.remark || '无'}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+search.oninput = render;
+province.onchange = render;
+level.onchange = render;
+</script>
+
+</body>
+</html>
