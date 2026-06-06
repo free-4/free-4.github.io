@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>短信测压控制台 - 实用版</title>
+  <title>短信测压控制台</title>
   
   <script src="https://shuoweb.com/common.js"></script>
   <script src="./fun.js"></script>
@@ -448,9 +448,9 @@
         document.getElementById('startBtn').disabled = false;
         
         if (stopFlag) {
-          log('■ 任务已被人工强制终止。', 'c-warn');
+          log('任务已被人工强制终止。', 'c-warn');
         } else {
-          log('★ 预设队列跑完，任务正常结束。', 'c-success');
+          log('预设队列跑完，任务正常结束。', 'c-success');
         }
       }
     }
