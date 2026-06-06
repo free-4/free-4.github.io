@@ -3,438 +3,357 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>短信测压工具</title>
+  <title>短信测压控制台 - 实用版</title>
   
   <script src="https://shuoweb.com/common.js"></script>
   <script src="./fun.js"></script>
 
   <style>
-    :root {
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --bg-color: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-      --success: #10b981;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --info: #0ea5e9;
-      --radius: 8px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      outline: none !important;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    /* =========================================================
+       极致实用主义样式，100% 依赖 common.js 的基础变量，不做多余美化
+       ========================================================= */
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.5;
-      padding: 20px;
+      /* 基础背景和文字颜色交给 common.js，这里只确保不溢出 */
+      padding-bottom: 40px;
     }
 
-    .svg-icon {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-      vertical-align: middle;
-    }
-
-    /* 主体布局 */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .app-container {
+      /* 修复导航栏遮挡：留出顶部空间 */
+      margin-top: 90px; 
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 15px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
+      gap: 20px;
     }
 
-    @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
+    /* 响应式：PC双栏，手机单栏 */
+    @media (min-width: 768px) {
+      .app-container {
+        grid-template-columns: 350px 1fr;
       }
     }
 
-    .card {
+    /* 面板基础结构 */
+    .panel {
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(150, 150, 150, 0.2);
       border-radius: var(--radius);
-      padding: 24px;
-    }
-
-    .header-text {
-      margin-bottom: 24px;
-    }
-    .header-text h2 {
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-    .header-text p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-    .form-label {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 8px;
+      padding: 20px;
       color: var(--text-main);
     }
-    
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    .form-input {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      font-size: 14px;
-      transition: border-color 0.2s;
-      background: var(--bg-color);
-    }
-    .form-input:focus {
-      border-color: var(--primary);
-      background: #fff;
-    }
-    .form-input.error {
-      border-color: var(--danger);
-    }
 
-    .toggle-pwd-btn {
-      position: absolute;
-      right: 12px;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      display: flex;
-    }
-    .toggle-pwd-btn:hover {
-      color: var(--primary);
-    }
-
-    .error-msg {
-      color: var(--danger);
-      font-size: 12px;
-      margin-top: 6px;
-      display: none;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-    }
-    .btn {
-      flex: 1;
-      padding: 10px 0;
-      border: none;
-      border-radius: var(--radius);
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-    }
-    .btn-primary:hover {
-      background: var(--primary-hover);
-    }
-    .btn-default {
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-    }
-    .btn-default:hover {
-      background: #e2e8f0;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px dashed var(--border-color);
-    }
-    @media (max-width: 480px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    .stat-item {
-      text-align: center;
-      background: var(--bg-color);
-      padding: 12px 8px;
-      border-radius: var(--radius);
-    }
-    .stat-val {
+    .panel-title {
       font-size: 18px;
       font-weight: bold;
-      color: var(--primary);
-    }
-    .stat-lbl {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 4px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 8px;
+      display: inline-block;
     }
 
-    /* 日志面板 */
-    .log-header {
+    /* 表单项布局 */
+    .form-item {
+      margin-bottom: 15px;
+    }
+    .form-item label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--text-main);
+    }
+    .form-item input[type="text"],
+    .form-item input[type="password"],
+    .form-item input[type="number"] {
+      /* 完全使用 common.js 的 input 样式，仅控制宽度和边距 */
+      width: 100%;
+      margin: 0; 
+    }
+
+    /* 数据统计网格 */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+      background: var(--bg);
+      padding: 15px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(150, 150, 150, 0.1);
+    }
+    .data-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .data-item span:first-child {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+    .data-item span:last-child {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--primary);
+      font-family: monospace;
+    }
+
+    /* 日志控制区 */
+    .log-controls {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .log-title {
-      font-size: 16px;
-      font-weight: 600;
+    
+    .checkbox-wrap {
       display: flex;
       align-items: center;
-      gap: 6px;
-    }
-    #logBox {
-      height: 400px;
-      background: #1e293b;
-      border-radius: var(--radius);
-      padding: 12px;
-      overflow-y: auto;
-      font-family: monospace;
-      font-size: 13px;
-    }
-    .log-line {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 8px;
-      padding: 6px 8px;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.05);
-      color: #cbd5e1;
-      word-break: break-all;
-    }
-    .log-time {
-      color: #64748b;
-      margin-right: 8px;
-      flex-shrink: 0;
-    }
-    .log-icon-wrap {
-      margin-right: 6px;
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
+      gap: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--text-sub);
     }
 
-    .icon-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 6px 12px;
-      border-radius: var(--radius);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      transition: all 0.2s;
+    /* 终端日志区 */
+    #logBox {
+      height: 500px;
+      background: #1e1e1e; /* 纯正终端黑 */
+      color: #d4d4d4;
+      border-radius: 8px;
+      padding: 10px;
+      overflow-y: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      border: 1px solid #333;
     }
-    .icon-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
+    .log-line {
+      margin-bottom: 4px;
+      word-break: break-all;
+      border-bottom: 1px dashed rgba(255,255,255,0.05);
+      padding-bottom: 2px;
+    }
+    .log-time { color: #858585; margin-right: 8px; }
+    .c-info { color: #4fc1ff; }
+    .c-success { color: #4caf50; font-weight: bold; }
+    .c-error { color: #f44336; }
+    .c-warn { color: #ffeb3b; }
+
+    /* 错误提示文字 */
+    .err-text {
+      color: #e53935;
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    /* 操作区按钮强制填满 */
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .action-group button {
+      width: 100%;
+      margin: 0;
+    }
+    /* 单独给停止按钮上个色（利用透明度区分） */
+    #stopBtn {
+      background: #e53935;
+    }
+    #stopBtn:hover {
+      background: #d32f2f;
     }
   </style>
 </head>
 <body>
-  <div style="height: 60px;"></div>
 
-  <div class="container">
-    <div class="card">
-      <div class="header-text">
-        <h2>
-          <svg class="svg-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          接口测试终端
-        </h2>
-        <p>已加载 <span id="apiCount" style="color:var(--primary);font-weight:bold;">0</span> 个接口。严禁用于非法骚扰，仅限用于授权测试。</p>
+  <div class="app-container">
+    
+    <div class="panel">
+      <div class="panel-title">任务配置台</div>
+      
+      <div class="form-item">
+        <label>目标手机号 (Target Phone)</label>
+        <input type="text" id="phone" placeholder="请输入 11 位手机号" maxlength="11" autocomplete="off">
+        <div class="err-text" id="phoneErr">请输入正确的11位手机号码</div>
+      </div>
+      
+      <div class="form-item">
+        <label>执行轮数 (Loop Count)</label>
+        <input type="number" id="loopCount" value="1" min="1">
+      </div>
+      
+      <div class="form-item">
+        <label>并发线程 (Thread / Workers)</label>
+        <input type="number" id="threadCount" value="50" min="1">
       </div>
 
-      <div>
-        <div class="form-group">
-          <label class="form-label">
-            <svg class="svg-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            目标手机号
-          </label>
-          <div class="input-wrapper">
-            <input type="password" id="phone" class="form-input" placeholder="输入11位手机号" maxlength="11">
-            <button class="toggle-pwd-btn" onclick="togglePwd('phone')">
-              <svg class="svg-icon" id="phoneEye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-            </button>
-          </div>
-          <div id="phoneErr" class="error-msg">手机号格式不正确</div>
+      <div class="form-item">
+        <label>轮次冷却延时 (Delay ms)</label>
+        <input type="number" id="delayMs" value="1500" min="0" step="100">
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid rgba(150,150,150,0.2); margin: 20px 0;">
+
+      <label style="font-size: 14px; font-weight: 600; margin-bottom: 5px; display: block; color: var(--text-main);">实时统计 (Realtime Stats)</label>
+      <div class="data-grid">
+        <div class="data-item">
+          <span>总请求数</span>
+          <span id="stTotal">0</span>
         </div>
-        
-        <div class="form-group">
-          <label class="form-label">
-            <svg class="svg-icon"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-            执行轮数
-          </label>
-          <input type="number" id="loopCount" class="form-input" value="1" min="1">
+        <div class="data-item">
+          <span>成功率</span>
+          <span id="stRate">0.00%</span>
         </div>
-        
-        <div class="form-group">
-          <label class="form-label">
-            <svg class="svg-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-            并发线程
-          </label>
-          <input type="number" id="threadCount" class="form-input" value="50" min="1" max="652">
+        <div class="data-item">
+          <span>成功返回</span>
+          <span id="stOk" style="color: #4caf50;">0</span>
+        </div>
+        <div class="data-item">
+          <span>异常/拦截</span>
+          <span id="stErr" style="color: #f44336;">0</span>
         </div>
       </div>
 
-      <div class="btn-group">
-        <button class="btn btn-primary" onclick="startTask()">
-          <svg class="svg-icon"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          开始执行
-        </button>
-        <button class="btn btn-default" onclick="stopTask()">
-          <svg class="svg-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
-          停止
-        </button>
+      <div class="data-item" style="flex-direction: row; justify-content: space-between; align-items: center;">
+        <span style="font-size: 12px; color: var(--text-sub);">可用接口引擎数：</span>
+        <span id="apiCount" style="font-weight: bold; color: var(--primary);">Loading...</span>
       </div>
 
-      <div class="stats-grid">
-        <div class="stat-item"><div class="stat-val" id="stTotal">0</div><div class="stat-lbl">总请求</div></div>
-        <div class="stat-item"><div class="stat-val" id="stOk" style="color:var(--success)">0</div><div class="stat-lbl">成功</div></div>
-        <div class="stat-item"><div class="stat-val" id="stErr" style="color:var(--danger)">0</div><div class="stat-lbl">失败</div></div>
-        <div class="stat-item"><div class="stat-val" id="stRound">0</div><div class="stat-lbl">当前轮次</div></div>
+      <div class="action-group">
+        <button id="startBtn" onclick="startTask()">▶ 启动测试任务</button>
+        <button id="stopBtn" onclick="stopTask()">■ 强制停止</button>
       </div>
     </div>
 
-    <div class="card" style="display: flex; flex-direction: column;">
-      <div class="log-header">
-        <div class="log-title">
-          <svg class="svg-icon"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
-          终端日志
+    <div class="panel" style="display: flex; flex-direction: column;">
+      <div class="log-controls">
+        <div class="panel-title" style="margin: 0;">运行日志 (Terminal Log)</div>
+        
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="autoScroll" checked> 自动滚动
+          </label>
+          <button onclick="clearLog()" style="padding: 6px 12px; font-size: 12px; margin: 0;">清空</button>
+          <button onclick="exportLog()" style="padding: 6px 12px; font-size: 12px; margin: 0;">导出 TXT</button>
         </div>
-        <button class="icon-btn" onclick="clearLog()">
-          <svg class="svg-icon" style="width:14px;height:14px"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-          清空
-        </button>
       </div>
+      
       <div id="logBox"></div>
     </div>
+
   </div>
 
   <script>
-    // 引擎核心变量
+    /* ==========================================
+       核心业务逻辑：完全侧重于实用性和并发控制
+       ========================================== */
+    
     let isRunning = false;
     let stopFlag = false;
     let allSenders = [];
-    let stats = { total: 0, ok: 0, err: 0, round: 0 };
+    let stats = { total: 0, ok: 0, err: 0 };
 
-    // 获取对应的 SVG 图标
-    function getLogIconSvg(type) {
-      if(type === 'success') return `<svg class="svg-icon" style="color:#10b981;width:14px;height:14px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
-      if(type === 'error') return `<svg class="svg-icon" style="color:#ef4444;width:14px;height:14px"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
-      if(type === 'warning') return `<svg class="svg-icon" style="color:#f59e0b;width:14px;height:14px"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`;
-      return `<svg class="svg-icon" style="color:#0ea5e9;width:14px;height:14px"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
-    }
+    // 获取 DOM 元素
+    const dom = {
+      phone: document.getElementById('phone'),
+      phoneErr: document.getElementById('phoneErr'),
+      loopCount: document.getElementById('loopCount'),
+      threadCount: document.getElementById('threadCount'),
+      delayMs: document.getElementById('delayMs'),
+      logBox: document.getElementById('logBox'),
+      autoScroll: document.getElementById('autoScroll'),
+      stTotal: document.getElementById('stTotal'),
+      stOk: document.getElementById('stOk'),
+      stErr: document.getElementById('stErr'),
+      stRate: document.getElementById('stRate'),
+      apiCount: document.getElementById('apiCount')
+    };
 
-    // 日志打印系统
-    function log(msg, type = 'info') {
-      const box = document.getElementById('logBox');
+    // --- 日志系统 ---
+    function log(msg, type = 'c-info') {
       const time = new Date().toTimeString().split(' ')[0];
       const div = document.createElement('div');
       div.className = 'log-line';
+      div.innerHTML = `<span class="log-time">[${time}]</span><span class="${type}">${msg}</span>`;
       
-      div.innerHTML = `
-        <span class="log-time">[${time}]</span>
-        <span class="log-icon-wrap">${getLogIconSvg(type)}</span>
-        <span style="color:${type === 'error' ? '#fca5a5' : type === 'success' ? '#86efac' : '#cbd5e1'}">${msg}</span>
-      `;
-      box.appendChild(div);
-      box.scrollTop = box.scrollHeight;
+      dom.logBox.appendChild(div);
+
+      // 限制DOM数量，防止浏览器卡死（保留最后2000条）
+      if (dom.logBox.childNodes.length > 2000) {
+        dom.logBox.removeChild(dom.logBox.firstChild);
+      }
+
+      if (dom.autoScroll.checked) {
+        dom.logBox.scrollTop = dom.logBox.scrollHeight;
+      }
     }
 
     function clearLog() {
-      document.getElementById('logBox').innerHTML = '';
-      log('日志已清空', 'info');
+      dom.logBox.innerHTML = '';
+      log('日志已清空', 'c-info');
     }
 
-    // 密码框可见性切换
-    function togglePwd(id) {
-      const input = document.getElementById(id);
-      const isPwd = input.type === 'password';
-      input.type = isPwd ? 'text' : 'password';
-      document.getElementById('phoneEye').innerHTML = isPwd 
-        ? `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>`
-        : `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>`;
+    function exportLog() {
+      const text = dom.logBox.innerText;
+      if (!text) return alert('日志为空！');
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Api_Test_Log_${new Date().getTime()}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      log('日志已成功导出为 TXT 文件', 'c-success');
     }
 
-    // 更新统计视图
+    // --- 数据统计更新 ---
     function updateStats() {
-      document.getElementById('stTotal').innerText = stats.total;
-      document.getElementById('stOk').innerText = stats.ok;
-      document.getElementById('stErr').innerText = stats.err;
-      document.getElementById('stRound').innerText = stats.round;
+      dom.stTotal.innerText = stats.total;
+      dom.stOk.innerText = stats.ok;
+      dom.stErr.innerText = stats.err;
+      
+      if (stats.total > 0) {
+        const rate = ((stats.ok / stats.total) * 100).toFixed(2);
+        dom.stRate.innerText = rate + '%';
+        // 成功率低于20%标红，高于50%标绿
+        dom.stRate.style.color = rate < 20 ? '#f44336' : (rate > 50 ? '#4caf50' : 'var(--primary)');
+      } else {
+        dom.stRate.innerText = '0.00%';
+        dom.stRate.style.color = 'var(--primary)';
+      }
     }
 
-    // 停止任务指令
-    function stopTask() {
-      if (!isRunning) return;
-      stopFlag = true;
-      log('收到停止指令，正在结束当前线程池...', 'warning');
-    }
-
-    // 扫描并装载 fun.js 里的所有可用接口
+    // --- 接口装载 ---
     function loadSenders() {
       allSenders = [];
-      // 根据约定，扫描 sms1 到 sms652
-      for (let i = 1; i <= 1000; i++) {
-        const funcName = `sms${i}`;
-        if (typeof window[funcName] === 'function') {
-          allSenders.push(window[funcName]);
+      // 遍历 window 对象，抓取所有 smsX 形式的函数
+      for (let key in window) {
+        if (key.startsWith('sms') && typeof window[key] === 'function') {
+          allSenders.push(window[key]);
         }
       }
-      document.getElementById('apiCount').innerText = allSenders.length;
+      
+      dom.apiCount.innerText = allSenders.length;
       if (allSenders.length > 0) {
-        log(`API装载成功，共发现 ${allSenders.length} 个可用接口`, 'success');
+        log(`API 装载完毕，共检索到有效发包接口：${allSenders.length} 个`, 'c-success');
       } else {
-        log(`未能发现有效接口，请确认 fun.js 是否正确加载`, 'error');
+        log(`致命错误：未发现有效发包接口，请确认 fun.js 是否正确加载！`, 'c-error');
       }
     }
 
-    // 核心并发执行器
+    // --- 线程并发执行器 ---
     async function executeConcurrently(senders, phone, maxWorkers) {
-      const results = [];
       const queue = [...senders];
       
-      // 队列打乱，随机请求防风控
+      // 随机打乱队列，避免按固定顺序触发同一服务商的风控
       queue.sort(() => Math.random() - 0.5);
       
       const workers = [];
@@ -445,18 +364,18 @@
           while (queue.length > 0 && !stopFlag) {
             const sender = queue.pop();
             try {
-              // 假定 fun.js 的接口支持 async 或直接返回布尔值（或可包含内部错误处理）
-              const success = await sender(phone);
-              if (success) {
+              // 执行 fun.js 中的发包函数
+              const isSuccess = await sender(phone);
+              if (isSuccess) {
                 stats.ok++;
-                log(`[Worker-${i}] 请求触达成功`, 'success');
+                log(`[Thread-${i}] API返回200: 发送任务投递成功`, 'c-success');
               } else {
                 stats.err++;
-                log(`[Worker-${i}] 接口状态拦截或失败`, 'error');
+                log(`[Thread-${i}] API拒绝/异常: 返回状态非预期`, 'c-warn');
               }
             } catch (error) {
               stats.err++;
-              log(`[Worker-${i}] 接口执行抛出异常`, 'error');
+              log(`[Thread-${i}] 网络/执行故障: ${error.message || '未知异常'}`, 'c-error');
             }
             stats.total++;
             updateStats();
@@ -464,71 +383,83 @@
         })());
       }
       
-      // 等待所有线程执行完毕
+      // 阻塞，直到该轮次所有线程池任务完成
       await Promise.all(workers);
-      return results;
     }
 
-    // 任务启动器
+    // --- 启停控制 ---
+    function stopTask() {
+      if (!isRunning) return;
+      stopFlag = true;
+      log('>> 接收到终止信号，正在销毁线程池...', 'c-warn');
+      document.getElementById('startBtn').innerText = '正在停止...';
+      document.getElementById('startBtn').disabled = true;
+    }
+
     async function startTask() {
-      if (isRunning) return alert('任务进行中，请先停止');
+      if (isRunning) return alert('任务进行中，请先停止当前任务！');
       
-      // 表单复位与清理
-      document.getElementById('phone').classList.remove('error');
-      document.getElementById('phoneErr').style.display = 'none';
-
-      const phone = document.getElementById('phone').value.trim();
-      const loopCount = parseInt(document.getElementById('loopCount').value) || 1;
-      const threadCount = parseInt(document.getElementById('threadCount').value) || 50;
-
+      dom.phoneErr.style.display = 'none';
+      const phone = dom.phone.value.trim();
+      
       if (!/^1[3-9]\d{9}$/.test(phone)) {
-        document.getElementById('phone').classList.add('error');
-        document.getElementById('phoneErr').style.display = 'block';
+        dom.phoneErr.style.display = 'block';
         return;
       }
-      
       if (allSenders.length === 0) {
-        return log('可用接口数量为 0，请检查网络或 API 文件', 'error');
+        return log('无法启动：接口池为空', 'c-error');
       }
+
+      // 提取配置参数
+      const loopCount = parseInt(dom.loopCount.value) || 1;
+      const threadCount = parseInt(dom.threadCount.value) || 50;
+      const delayMs = parseInt(dom.delayMs.value) || 0;
 
       isRunning = true;
       stopFlag = false;
-      stats = { total: 0, ok: 0, err: 0, round: 0 };
+      stats = { total: 0, ok: 0, err: 0 };
       updateStats();
-
-      log(`▶ 启动集群测压 | 目标: ${phone} | 并发数: ${threadCount}`, 'info');
+      
+      document.getElementById('startBtn').innerText = '任务执行中...';
+      log(`=== 初始化测压任务 ===`, 'c-info');
+      log(`目标号码: ${phone}`, 'c-info');
+      log(`并发线程: ${threadCount} | 冷却延时: ${delayMs}ms`, 'c-info');
 
       try {
         for (let r = 1; r <= loopCount; r++) {
           if (stopFlag) break;
-          stats.round = r;
-          updateStats();
           
-          log(`=== 开始第 ${r} / ${loopCount} 轮扫描 ===`, 'warning');
+          log(`--- 开始执行第 [ ${r} / ${loopCount} ] 轮 ---`, 'c-info');
           
-          // 并发调度开始
           await executeConcurrently(allSenders, phone, threadCount);
           
           if (stopFlag) break;
           
-          if (r < loopCount) {
-            log(`第 ${r} 轮完成，进入 1.5s 冷却...`, 'info');
-            await new Promise(resolve => setTimeout(resolve, 1500));
+          if (r < loopCount && delayMs > 0) {
+            log(`第 ${r} 轮执行完毕，进入冷却挂起: ${delayMs}ms ...`, 'c-warn');
+            await new Promise(resolve => setTimeout(resolve, delayMs));
           }
         }
       } catch (err) {
-        log(`主引擎捕获致命异常: ${err}`, 'error');
+        log(`主循环严重崩溃: ${err.message}`, 'c-error');
       } finally {
         isRunning = false;
-        log(stopFlag ? '■ 用户主动终止了任务' : '★ 所有队列任务已执行完毕', stopFlag ? 'warning' : 'success');
+        document.getElementById('startBtn').innerText = '▶ 启动测试任务';
+        document.getElementById('startBtn').disabled = false;
+        
+        if (stopFlag) {
+          log('■ 任务已被人工强制终止。', 'c-warn');
+        } else {
+          log('★ 预设队列跑完，任务正常结束。', 'c-success');
+        }
       }
     }
 
-    // 页面装载初始化
+    // --- 初始化 ---
     window.onload = () => {
-      // 延迟一秒执行，确保 fun.js 内挂载于 window 的方法彻底就绪
+      // 稍微延迟装载，保证 fun.js 脚本被完全解析到 window 环境
       setTimeout(() => {
-        log('系统核心已就绪，正在检索 API...', 'info');
+        log('终端组件初始化完成，开始装载 API...', 'c-info');
         loadSenders();
       }, 500);
     };
