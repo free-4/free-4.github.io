@@ -66,12 +66,15 @@ transform:
 }
 
 #shuoweb-tg-fab svg{
+    width:22px;
+    height:22px;
 
-width:28px;
-height:28px;
+    fill:white;
 
-fill:white;
+    position:relative;
 
+    left:-1px;
+    top:-1px;
 }
 
 #shuoweb-tg-fab::before{
