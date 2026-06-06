@@ -131,12 +131,6 @@ animation:
     bottom:calc(env(safe-area-inset-bottom,0px) + 14px);
 }
 
-#shuoweb-tg-fab svg{
-
-    width:24px;
-    height:24px;
-}
-
 }
 `;
 
