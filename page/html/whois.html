@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>WHOIS 查询</title>
+
+<script src="https://shuoweb.com/common.js"></script>
+
+<style>
+.container{
+max-width:1100px;
+margin:auto;
+padding:30px 15px;
+}
+
+.search-box{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+justify-content:center;
+margin-bottom:25px;
+}
+
+.search-box input{
+max-width:500px;
+}
+
+.result{
+display:none;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:18px;
+}
+
+.whois-card{
+background:var(--card-bg);
+border-radius:var(--radius);
+padding:20px;
+box-shadow:var(--shadow);
+backdrop-filter:blur(10px);
+}
+
+.whois-card h3{
+margin-top:0;
+margin-bottom:15px;
+font-size:18px;
+}
+
+.info-row{
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:8px 0;
+border-bottom:1px solid rgba(0,0,0,.05);
+}
+
+.info-row:last-child{
+border:none;
+}
+
+.label{
+font-weight:600;
+color:var(--text-sub);
+}
+
+.value{
+text-align:right;
+word-break:break-word;
+}
+
+.ns-list{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.ns-item{
+padding:10px;
+background:var(--primary-light);
+border-radius:12px;
+}
+
+.status-list{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.status-item{
+background:var(--primary-light);
+color:var(--primary);
+padding:8px 12px;
+border-radius:999px;
+font-size:13px;
+}
+
+.detail-box{
+margin-top:25px;
+}
+
+pre{
+text-align:left;
+overflow:auto;
+padding:15px;
+border-radius:12px;
+background:#111;
+color:#fff;
+font-size:13px;
+max-height:500px;
+display:none;
+}
+
+.loading{
+text-align:center;
+padding:30px;
+}
+
+.error{
+text-align:center;
+color:red;
+padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>WHOIS 查询</h1>
+
+<p>
+基于 RDAP 协议的域名查询系统
+</p>
+
+<div class="search-box">
+<input
+id="domain"
+placeholder="输入域名，例如 shuoweb.com"
+>
+<button onclick="queryDomain()">
+查询
+</button>
+</div>
+
+<div id="loading" class="loading" style="display:none">
+正在查询...
+</div>
+
+<div id="error" class="error"></div>
+
+<div id="result" class="result">
+
+<div class="cards">
+
+<div class="whois-card">
+<h3>基础信息</h3>
+
+<div class="info-row">
+<span class="label">域名</span>
+<span class="value" id="domainName"></span>
+</div>
+
+<div class="info-row">
+<span class="label">注册日期</span>
+<span class="value" id="registerDate"></span>
+</div>
+
+<div class="info-row">
+<span class="label">到期日期</span>
+<span class="value" id="expireDate"></span>
+</div>
+
+<div class="info-row">
+<span class="label">最后修改</span>
+<span class="value" id="changedDate"></span>
+</div>
+
+</div>
+
+<div class="whois-card">
+<h3>注册商</h3>
+
+<div class="info-row">
+<span class="label">名称</span>
+<span class="value" id="registrar"></span>
+</div>
+
+<div class="info-row">
+<span class="label">IANA ID</span>
+<span class="value" id="registrarId"></span>
+</div>
+
+</div>
+
+<div class="whois-card">
+<h3>DNS 服务器</h3>
+
+<div id="nameservers" class="ns-list"></div>
+</div>
+
+<div class="whois-card">
+<h3>域名状态</h3>
+
+<div id="statusList" class="status-list"></div>
+</div>
+
+</div>
+
+<div class="detail-box">
+
+<button onclick="toggleRaw()">
+展开详细信息
+</button>
+
+<pre id="rawJson"></pre>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let currentJson=null;
+
+function getEvent(data,name){
+let event=data.events?.find(
+e=>e.eventAction===name
+);
+return event?.eventDate || "-";
+}
+
+async function queryDomain(){
+
+const domain=document
+.getElementById("domain")
+.value
+.trim()
+.toLowerCase();
+
+if(!domain){
+alert("请输入域名");
+return;
+}
+
+document.getElementById("error").innerHTML="";
+document.getElementById("loading").style.display="block";
+document.getElementById("result").style.display="none";
+
+try{
+
+const api=
+`https://rdap.verisign.com/com/v1/domain/${domain}`;
+
+const res=await fetch(api);
+
+if(!res.ok){
+throw new Error("查询失败");
+}
+
+const data=await res.json();
+
+currentJson=data;
+
+document.getElementById("domainName")
+.textContent=data.ldhName || "-";
+
+document.getElementById("registerDate")
+.textContent=getEvent(data,"registration");
+
+document.getElementById("expireDate")
+.textContent=getEvent(data,"expiration");
+
+document.getElementById("changedDate")
+.textContent=getEvent(data,"last changed");
+
+const registrar=
+data.entities?.find(
+e=>e.roles?.includes("registrar")
+);
+
+document.getElementById("registrar")
+.textContent=
+registrar?.vcardArray?.[1]?.find(
+x=>x[0]==="fn"
+)?.[3] || "-";
+
+document.getElementById("registrarId")
+.textContent=
+registrar?.publicIds?.[0]?.identifier || "-";
+
+const ns=document.getElementById("nameservers");
+ns.innerHTML="";
+
+(data.nameservers||[]).forEach(item=>{
+
+const div=document.createElement("div");
+
+div.className="ns-item";
+
+div.textContent=item.ldhName;
+
+ns.appendChild(div);
+
+});
+
+const status=document.getElementById("statusList");
+status.innerHTML="";
+
+(data.status||[]).forEach(item=>{
+
+const div=document.createElement("div");
+
+div.className="status-item";
+
+div.textContent=item;
+
+status.appendChild(div);
+
+});
+
+document.getElementById("rawJson").textContent=
+JSON.stringify(data,null,2);
+
+document.getElementById("loading").style.display="none";
+document.getElementById("result").style.display="block";
+
+}
+catch(err){
+
+document.getElementById("loading").style.display="none";
+
+document.getElementById("error").innerHTML=
+err.message;
+
+}
+
+}
+
+function toggleRaw(){
+
+const box=document.getElementById("rawJson");
+
+if(box.style.display==="block"){
+box.style.display="none";
+}else{
+box.style.display="block";
+}
+
+}
+
+</script>
+
+</body>
+</html>
