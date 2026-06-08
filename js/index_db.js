@@ -10,6 +10,7 @@ const SITE_DATA = [
             { title: "每日一言", url: "https://shuoweb.com/page/html/day_yan.html", icon: "yan" },
             { title: "世界人口时钟", url: "https://shuoweb.com/page/html/people.html", icon: "user" },
             { title: "随机手机型号", url: "https://shuoweb.com/api/phone", icon: "phone" },
+            { title: "萧中表白墙", url: "https://ovo.shuoweb.com/bb/", icon: "heart" },
             { title: "学习大厅", url: "https://shuoweb.com/page/study/", icon: "study" }
         ]
     },
