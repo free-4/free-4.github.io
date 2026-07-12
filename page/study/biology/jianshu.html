@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>减数分裂模拟</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg-deep: #0a0e1a;
+  --bg-mid: #111a2e;
+  --bg-cell: #0d1628;
+  --accent-cyan: #00d9c0;
+  --accent-amber: #f0a830;
+  --accent-rose: #e85a7a;
+  --accent-blue: #5b8def;
+  --text-primary: #e8eaf0;
+  --text-muted: #8892b0;
+  --border-subtle: rgba(0, 217, 192, 0.15);
+  --card-bg: rgba(17, 26, 46, 0.85);
+  --chrom-maternal: #e85a7a;
+  --chrom-paternal: #5b8def;
+  --centrosome: #f0a830;
+  --spindle: rgba(240, 168, 48, 0.35);
+  --nuclear-membrane: rgba(0, 217, 192, 0.3);
+  --cell-membrane: rgba(0, 217, 192, 0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Background texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(0, 217, 192, 0.08), transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(232, 90, 122, 0.06), transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(91, 141, 239, 0.04), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header */
+header {
+  position: relative;
+  z-index: 1;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10, 14, 26, 0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.header-title h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-amber));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-title .subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.phase-badge {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  padding: 4px 16px;
+  border: 1px solid var(--accent-cyan);
+  border-radius: 20px;
+  background: rgba(0, 217, 192, 0.08);
+  white-space: nowrap;
+}
+
+/* Main layout */
+main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* SVG Stage */
+.stage {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 0;
+}
+
+.stage svg {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  max-width: 900px;
+}
+
+/* Info Panel */
+.info-panel {
+  position: relative;
+  z-index: 1;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-subtle);
+  padding: 16px 24px;
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.info-text {
+  flex: 1;
+  min-width: 220px;
+}
+
+.phase-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent-amber);
+  margin-bottom: 4px;
+}
+
+.phase-name .phase-en {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-left: 8px;
+  letter-spacing: 0.5px;
+}
+
+.phase-desc {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.stats {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* Controls */
+.controls {
+  position: relative;
+  z-index: 1;
+  background: rgba(10, 14, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-subtle);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background: rgba(0, 217, 192, 0.1);
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: rgba(0, 217, 192, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 217, 192, 0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(0, 217, 192, 0.1);
+  border-radius: 3px;
+  position: relative;
+  min-width: 100px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-amber));
+  border-radius: 3px;
+  transition: width 0.1s linear;
+  width: 0%;
+}
+
+.progress-markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.progress-marker {
+  position: absolute;
+  top: -2px;
+  width: 2px;
+  height: 10px;
+  background: var(--text-muted);
+  opacity: 0.4;
+  border-radius: 1px;
+}
+
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.speed-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.speed-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.speed-btn.active {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  background: rgba(0, 217, 192, 0.1);
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  z-index: 1;
+  background: rgba(10, 14, 26, 0.9);
+  border-top: 1px solid var(--border-subtle);
+  padding: 8px 24px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-cyan) transparent;
+}
+
+.timeline::-webkit-scrollbar {
+  height: 4px;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.timeline-item:hover {
+  color: var(--text-primary);
+}
+
+.timeline-item.active {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  background: rgba(0, 217, 192, 0.08);
+}
+
+.timeline-item.passed {
+  color: var(--text-primary);
+  opacity: 0.5;
+}
+
+/* Legend */
+.legend {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(13, 22, 40, 0.7);
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(6px);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* SVG element styles */
+.chromosome {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.centrosome-glow {
+  filter: drop-shadow(0 0 6px var(--centrosome));
+}
+
+.chrom-glow-maternal {
+  filter: drop-shadow(0 0 4px rgba(232, 90, 122, 0.4));
+}
+
+.chrom-glow-paternal {
+  filter: drop-shadow(0 0 4px rgba(91, 141, 239, 0.4));
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.nuclear-envelope {
+  transition: opacity 0.6s ease;
+}
+
+.cell-membrane-anim {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spindle-line {
+  transition: opacity 0.5s ease;
+}
+
+.crossover-point {
+  transition: opacity 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeInUp 0.4s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
+    padding: 12px 16px;
+  }
+
+  .header-title h1 {
+    font-size: 20px;
+  }
+
+  .header-title .subtitle {
+    display: none;
+  }
+
+  .phase-badge {
+    font-size: 13px;
+    padding: 3px 12px;
+  }
+
+  .stage {
+    padding: 8px;
+  }
+
+  .info-panel {
+    padding: 12px 16px;
+  }
+
+  .phase-name {
+    font-size: 18px;
+  }
+
+  .phase-desc {
+    font-size: 13px;
+  }
+
+  .stats {
+    gap: 16px;
+  }
+
+  .stat-value {
+    font-size: 22px;
+  }
+
+  .controls {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  .speed-control {
+    gap: 4px;
+  }
+
+  .speed-btn {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+
+  .timeline {
+    padding: 6px 12px;
+  }
+
+  .timeline-item {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .legend {
+    top: 8px;
+    right: 8px;
+    padding: 8px 10px;
+  }
+
+  .legend-item {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .legend {
+    display: none;
+  }
+
+  .stats {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    <h1>减数分裂模拟</h1>
+    <span class="subtitle">MEIOSIS SIMULATOR</span>
+  </div>
+  <div class="phase-badge" id="phaseBadge">间期 I</div>
+</header>
+
+<main>
+  <div class="stage">
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--chrom-maternal)"></div>
+        <span>母源染色体</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--chrom-paternal)"></div>
+        <span>父源染色体</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--centrosome)"></div>
+        <span>中心体</span>
+      </div>
+    </div>
+    <svg id="mainSvg" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <radialGradient id="cellGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#162038" stop-opacity="1"/>
+          <stop offset="70%" stop-color="#0d1628" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#0a0e1a" stop-opacity="0.8"/>
+        </radialGradient>
+        <radialGradient id="nuclearGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(0,217,192,0.06)"/>
+          <stop offset="100%" stop-color="rgba(0,217,192,0.02)"/>
+        </radialGradient>
+        <linearGradient id="chromMGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#e85a7a"/>
+          <stop offset="50%" stop-color="#c04060"/>
+          <stop offset="100%" stop-color="#e85a7a"/>
+        </linearGradient>
+        <linearGradient id="chromPGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#5b8def"/>
+          <stop offset="50%" stop-color="#3060c0"/>
+          <stop offset="100%" stop-color="#5b8def"/>
+        </linearGradient>
+        <filter id="glowSoft">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <g id="stageContent"></g>
+    </svg>
+  </div>
+
+  <div class="info-panel">
+    <div class="info-row">
+      <div class="info-text">
+        <div class="phase-name">
+          <span id="phaseName">间期 I</span>
+          <span class="phase-en" id="phaseNameEn">Interphase I</span>
+        </div>
+        <div class="phase-desc" id="phaseDesc">DNA 复制完成，染色质处于未凝缩状态。中心体复制，为分裂做准备。</div>
+      </div>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-value" id="chromCount">4</div>
+          <div class="stat-label">染色体</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="dnaCount">4</div>
+          <div class="stat-label">DNA分子</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="cellCount">1</div>
+          <div class="stat-label">细胞数</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="controls">
+  <button class="btn" id="playBtn">
+    <span class="btn-icon" id="playIcon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    </span>
+    <span id="playLabel">播放</span>
+  </button>
+  <button class="btn" id="prevBtn">
+    <span class="btn-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+    </span>
+    <span>上一步</span>
+  </button>
+  <button class="btn" id="nextBtn">
+    <span>下一步</span>
+    <span class="btn-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+    </span>
+  </button>
+  <div class="progress-track" id="progressTrack">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <div class="speed-control">
+    <span class="speed-label">速度</span>
+    <button class="speed-btn" data-speed="0.5">0.5x</button>
+    <button class="speed-btn active" data-speed="1">1x</button>
+    <button class="speed-btn" data-speed="2">2x</button>
+  </div>
+</div>
+
+<div class="timeline" id="timeline"></div>
+
+<script>
+'use strict';
+
+/* ===== 阶段定义 ===== */
+const PHASES = [
+  { id:'interphase1', name:'间期 I', en:'Interphase I', desc:'DNA 复制完成，染色质处于未凝缩状态。每条染色体含2条姐妹染色单体。中心体复制，为分裂做准备。', chrom:4, dna:8, cell:1 },
+  { id:'prophase1_early', name:'前期 I (早)', en:'Early Prophase I', desc:'染色质开始凝缩变粗。同源染色体开始配对。中心体向两极移动，纺锤丝开始形成。', chrom:4, dna:8, cell:1 },
+  { id:'prophase1_pairing', name:'前期 I (配对)', en:'Zygotene', desc:'同源染色体精确配对，形成二价体（四分体）。同源配对过程称为联会。', chrom:4, dna:8, cell:1 },
+  { id:'prophase1_crossing', name:'前期 I (交叉)', en:'Pachytene', desc:'同源染色体紧密配对，非姐妹染色单体间发生交叉互换，交换遗传物质。', chrom:4, dna:8, cell:1 },
+  { id:'metaphase1', name:'中期 I', en:'Metaphase I', desc:'二价体（四分体）排列在细胞赤道板上。同源染色体对的着丝粒分别朝向两极。', chrom:4, dna:8, cell:1 },
+  { id:'anaphase1', name:'后期 I', en:'Anaphase I', desc:'同源染色体分离，分别移向两极。注意：姐妹染色单体未分离。同源染色体随机分配。', chrom:4, dna:8, cell:1 },
+  { id:'telophase1', name:'末期 I', en:'Telophase I', desc:'染色体到达两极，核膜重新形成。细胞质分裂，形成两个子细胞。每个子细胞染色体数减半。', chrom:2, dna:4, cell:2 },
+  { id:'prophase2', name:'前期 II', en:'Prophase II', desc:'两个子细胞中染色体再次凝缩。中心体复制并移向两极，纺锤丝重新形成。核膜消失。', chrom:2, dna:4, cell:2 },
+  { id:'metaphase2', name:'中期 II', en:'Metaphase II', desc:'染色体排列在各自细胞的赤道板上。着丝粒朝向两极，准备分离姐妹染色单体。', chrom:2, dna:4, cell:2 },
+  { id:'anaphase2', name:'后期 II', en:'Anaphase II', desc:'着丝粒分裂，姐妹染色单体分离，分别移向两极。每个子细胞将获得单条染色单体。', chrom:4, dna:4, cell:2 },
+  { id:'telophase2', name:'末期 II', en:'Telophase II', desc:'染色单体到达两极，核膜重新形成。细胞质分裂，最终形成四个单倍体子细胞，各含2条染色体。', chrom:2, dna:2, cell:4 },
+];
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const stageContent = document.getElementById('stageContent');
+let currentPhase = 0;
+let isPlaying = false;
+let playTimer = null;
+let speed = 1;
+
+/* ===== 工具函数 ===== */
+function el(tag, attrs, children) {
+  const e = document.createElementNS(SVG_NS, tag);
+  if (attrs) {
+    for (const k in attrs) {
+      if (k === 'text') e.textContent = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    }
+  }
+  if (children) {
+    if (Array.isArray(children)) {
+      children.forEach(c => e.appendChild(c));
+    } else if (typeof children === 'string') {
+      e.textContent = children;
+    } else {
+      e.appendChild(children);
+    }
+  }
+  return e;
+}
+
+function circle(cx, cy, r, fill, opts) {
+  const attrs = { cx, cy, r, fill };
+  if (opts) Object.assign(attrs, opts);
+  return el('circle', attrs);
+}
+
+function path(d, opts) {
+  const attrs = { d };
+  if (opts) Object.assign(attrs, opts);
+  return el('path', attrs);
+}
+
+function line(x1, y1, x2, y2, opts) {
+  const attrs = { x1, y1, x2, y2 };
+  if (opts) Object.assign(attrs, opts);
+  return el('line', attrs);
+}
+
+/* ===== 染色体绘制 ===== */
+/* 染色体结构：每条染色体有 id, origin(maternal/paternal), 位置(cx,cy), 角度(angle),
+   是否为二分体(hasSister), 着丝粒位置(centromereY ratio) */
+
+function drawChromatid(cx, cy, length, angle, isMaternal, centromereRatio) {
+  const g = el('g', { transform: `translate(${cx},${cy}) rotate(${angle})` });
+  const half = length / 2;
+  const grad = isMaternal ? 'url(#chromMGrad)' : 'url(#chromPGrad)';
+  const glowClass = isMaternal ? 'chrom-glow-maternal' : 'chrom-glow-paternal';
+  g.setAttribute('class', 'chromosome ' + glowClass);
+
+  const stemW = 5;
+  // 两条染色单体臂（用一个带圆角的矩形模拟）
+  const arm1 = el('rect', {
+    x: -stemW - 1, y: -half, width: stemW, height: length,
+    rx: 2.5, fill: grad, opacity: 0.95
+  });
+  g.appendChild(arm1);
+
+  // 着丝粒（小圆点）
+  const centY = -half + length * centromereRatio;
+  g.appendChild(circle(0, centY, 3.5, '#f0a830', { opacity: 0.9 }));
+
+  return g;
+}
+
+function drawReplicatedChromosome(cx, cy, length, angle, isMaternal, centromereRatio) {
+  const g = el('g', { transform: `translate(${cx},${cy}) rotate(${angle})` });
+  const half = length / 2;
+  const grad = isMaternal ? 'url(#chromMGrad)' : 'url(#chromPGrad)';
+  const glowClass = isMaternal ? 'chrom-glow-maternal' : 'chrom-glow-paternal';
+  g.setAttribute('class', 'chromosome ' + glowClass);
+
+  const stemW = 4;
+  const gap = 3;
+  const centY = -half + length * centromereRatio;
+  // 上臂：两条染色单体并排
+  g.appendChild(el('rect', {
+    x: -(gap + stemW), y: -half, width: stemW, height: centY + half,
+    rx: 2, fill: grad, opacity: 0.95
+  }));
+  g.appendChild(el('rect', {
+    x: gap, y: -half, width: stemW, height: centY + half,
+    rx: 2, fill: grad, opacity: 0.95
+  }));
+  // 下臂
+  g.appendChild(el('rect', {
+    x: -(gap + stemW), y: centY, width: stemW, height: half - centY,
+    rx: 2, fill: grad, opacity: 0.95
+  }));
+  g.appendChild(el('rect', {
+    x: gap, y: centY, width: stemW, height: half - centY,
+    rx: 2, fill: grad, opacity: 0.95
+  }));
+
+  // 着丝粒
+  g.appendChild(circle(0, centY, 3.5, '#f0a830', { opacity: 0.9 }));
+
+  return g;
+}
+
+/* ===== 中心体 ===== */
+function drawCentrosome(cx, cy) {
+  const g = el('g', { class: 'centrosome-glow', transform: `translate(${cx},${cy})` });
+  g.appendChild(circle(0, 0, 5, '#f0a830', { opacity: 0.9 }));
+  g.appendChild(circle(0, 0, 8, '#f0a830', { opacity: 0.2 }));
+  // 小放射线
+  for (let i = 0; i < 6; i++) {
+    const a = i * 60 * Math.PI / 180;
+    g.appendChild(line(
+      Math.cos(a) * 6, Math.sin(a) * 6,
+      Math.cos(a) * 10, Math.sin(a) * 10,
+      { stroke: '#f0a830', 'stroke-width': 1, opacity: 0.4 }
+    ));
+  }
+  return g;
+}
+
+/* ===== 纺锤丝 ===== */
+function drawSpindle(cyTop, cyBot, leftX, rightX, opacity) {
+  const g = el('g', { class: 'spindle-line', opacity: opacity });
+  const midX = (leftX + rightX) / 2;
+  g.appendChild(line(leftX, cyTop, midX, cyBot, { stroke: 'var(--spindle)', 'stroke-width': 1.2, opacity: 0.5 }));
+  g.appendChild(line(rightX, cyTop, midX, cyBot, { stroke: 'var(--spindle)', 'stroke-width': 1.2, opacity: 0.5 }));
+  g.appendChild(line(leftX, cyTop + (cyBot - cyTop)*0.3, midX, cyBot, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.35 }));
+  g.appendChild(line(rightX, cyTop + (cyBot - cyTop)*0.3, midX, cyBot, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.35 }));
+  g.appendChild(line(leftX, cyTop + (cyBot - cyTop)*0.6, midX, cyBot, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.25 }));
+  g.appendChild(line(rightX, cyTop + (cyBot - cyTop)*0.6, midX, cyBot, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.25 }));
+  return g;
+}
+
+/* ===== 细胞 ===== */
+function drawCell(cx, cy, r, opts) {
+  const attrs = { cx, cy, r, fill: 'url(#cellGrad)' };
+  if (opts) Object.assign(attrs, opts);
+  return circle(cx, cy, r, 'url(#cellGrad)', opts);
+}
+
+function drawCellMembrane(cx, cy, r, opacity) {
+  return circle(cx, cy, r, 'none', {
+    fill: 'url(#cellGrad)',
+    stroke: '#00d9c0',
+    'stroke-width': 1.5,
+    opacity: opacity,
+    'stroke-opacity': 0.6,
+    class: 'cell-membrane-anim'
+  });
+}
+
+function drawNuclearMembrane(cx, cy, r, opacity) {
+  return circle(cx, cy, r, 'none', {
+    stroke: '#00d9c0',
+    'stroke-width': 1,
+    opacity: opacity,
+    'stroke-opacity': 0.3,
+    fill: 'url(#nuclearGrad)',
+    class: 'nuclear-envelope'
+  });
+}
+
+/* ===== 阶段渲染 ===== */
+function renderPhase(idx) {
+  const phase = PHASES[idx];
+  clearStage();
+
+  const W = 900, H = 500;
+  const midX = W / 2, midY = H / 2;
+
+  switch (phase.id) {
+    case 'interphase1':
+      renderInterphase1();
+      break;
+    case 'prophase1_early':
+      renderProphase1Early();
+      break;
+    case 'prophase1_pairing':
+      renderProphase1Pairing();
+      break;
+    case 'prophase1_crossing':
+      renderProphase1Crossing();
+      break;
+    case 'metaphase1':
+      renderMetaphase1();
+      break;
+    case 'anaphase1':
+      renderAnaphase1();
+      break;
+    case 'telophase1':
+      renderTelophase1();
+      break;
+    case 'prophase2':
+      renderProphase2();
+      break;
+    case 'metaphase2':
+      renderMetaphase2();
+      break;
+    case 'anaphase2':
+      renderAnaphase2();
+      break;
+    case 'telophase2':
+      renderTelophase2();
+      break;
+  }
+}
+
+function clearStage() {
+  while (stageContent.firstChild) {
+    stageContent.removeChild(stageContent.firstChild);
+  }
+}
+
+/* --- 间期 I --- */
+function renderInterphase1() {
+  const midX = 450, midY = 250;
+
+  // 细胞膜
+  stageContent.appendChild(drawCellMembrane(midX, midY, 170, 1));
+
+  // 核膜
+  stageContent.appendChild(drawNuclearMembrane(midX, midY, 130, 1));
+
+  // 染色质（分散的细线，未凝缩）
+  const chromatinColors = ['#e85a7a', '#5b8def', '#e85a7a', '#5b8def'];
+  for (let i = 0; i < 4; i++) {
+    const angle = i * 47 + 20;
+    const r = 30 + i * 15;
+    const cx = midX + Math.cos(angle * Math.PI / 180) * r;
+    const cy = midY + Math.sin(angle * Math.PI / 180) * r;
+    const lineAngle = (angle + 45) % 360;
+
+    const chrom = el('g', {
+      class: 'chromosome',
+      transform: `translate(${cx},${cy}) rotate(${lineAngle})`
+    });
+    chrom.appendChild(path(
+      'M -30 -10 Q -15 -20 0 -8 Q 15 4 30 -6 Q 15 10 0 6 Q -15 14 -30 -10',
+      {
+        stroke: chromatinColors[i],
+        'stroke-width': 2,
+        fill: 'none',
+        opacity: 0.6,
+        'stroke-linecap': 'round'
+      }
+    ));
+    stageContent.appendChild(chrom);
+  }
+
+  // 中心体（两个，分开不远）
+  stageContent.appendChild(drawCentrosome(midX - 100, midY + 110));
+  stageContent.appendChild(drawCentrosome(midX + 100, midY + 110));
+
+  // 核仁
+  stageContent.appendChild(circle(midX + 30, midY - 20, 15, '#e85a7a', { opacity: 0.15 }));
+  stageContent.appendChild(circle(midX - 40, midY + 10, 12, '#5b8def', { opacity: 0.12 }));
+}
+
+/* --- 前期 I (早) --- */
+function renderProphase1Early() {
+  const midX = 450, midY = 250;
+
+  stageContent.appendChild(drawCellMembrane(midX, midY, 170, 1));
+  stageContent.appendChild(drawNuclearMembrane(midX, midY, 120, 0.4));
+
+  // 染色体开始凝缩，但仍分散
+  const positions = [
+    { x: midX - 50, y: midY - 30, angle: 30, maternal: true },
+    { x: midX - 60, y: midY + 40, angle: -20, maternal: true },
+    { x: midX + 50, y: midY - 25, angle: 15, maternal: false },
+    { x: midX + 45, y: midY + 50, angle: -35, maternal: false },
+  ];
+
+  positions.forEach((p, i) => {
+    stageContent.appendChild(drawReplicatedChromosome(p.x, p.y, 60, p.angle, p.maternal, 0.5));
+  });
+
+  // 中心体移向两极
+  stageContent.appendChild(drawCentrosome(midX - 130, midY));
+  stageContent.appendChild(drawCentrosome(midX + 130, midY));
+
+  // 纺锤丝开始形成
+  stageContent.appendChild(drawSpindle(midY - 100, midY, midX - 130, midX + 130, 0.3));
+}
+
+/* --- 前期 I (配对) --- */
+function renderProphase1Pairing() {
+  const midX = 450, midY = 250;
+
+  stageContent.appendChild(drawCellMembrane(midX, midY, 170, 1));
+  stageContent.appendChild(drawNuclearMembrane(midX, midY, 100, 0.15));
+
+  // 同源染色体配对，形成两个二价体
+  // 二价体1：在上方
+  drawBivalent(midX - 40, midY - 50, 65, true, 0, 4);
+  // 二价体2：在下方
+  drawBivalent(midX + 30, midY + 50, 65, false, 180, 4);
+
+  stageContent.appendChild(drawCentrosome(midX - 140, midY));
+  stageContent.appendChild(drawCentrosome(midX + 140, midY));
+  stageContent.appendChild(drawSpindle(midY - 80, midY, midX - 140, midX + 140, 0.4));
+}
+
+function drawBivalent(cx, cy, length, isLeftMaternal, rotationAngle, gap) {
+  const g = el('g', { transform: `translate(${cx},${cy}) rotate(${rotationAngle})` });
+  const half = length / 2;
+
+  // 母源染色体（复制后，两条姐妹染色单体）
+  const maternal = drawReplicatedChromosome(-gap/2, 0, length, 0, true, 0.5);
+  // 父源染色体
+  const paternal = drawReplicatedChromosome(gap/2, 0, length, 0, false, 0.5);
+
+  g.appendChild(maternal);
+  g.appendChild(paternal);
+  stageContent.appendChild(g);
+}
+
+/* --- 前期 I (交叉互换) --- */
+function renderProphase1Crossing() {
+  const midX = 450, midY = 250;
+
+  stageContent.appendChild(drawCellMembrane(midX, midY, 170, 1));
+
+  // 二价体1：上方，显示交叉
+  drawBivalentWithCrossover(midX - 35, midY - 55, 70, true, 10);
+  drawBivalentWithCrossover(midX + 35, midY + 55, 70, false, 170);
+
+  stageContent.appendChild(drawCentrosome(midX - 140, midY));
+  stageContent.appendChild(drawCentrosome(midX + 140, midY));
+  stageContent.appendChild(drawSpindle(midY - 80, midY, midX - 140, midX + 140, 0.45));
+}
+
+function drawBivalentWithCrossover(cx, cy, length, isLeftMaternal, rotationAngle) {
+  const g = el('g', { transform: `translate(${cx},${cy}) rotate(${rotationAngle})` });
+  const half = length / 2;
+  const gap = 5;
+
+  const grad1 = 'url(#chromMGrad)';
+  const grad2 = 'url(#chromPGrad)';
+
+  // 母源染色体（两条姐妹染色单体并排）
+  const maternalG = el('g', { class: 'chromosome chrom-glow-maternal' });
+  // 左侧染色单体
+  maternalG.appendChild(el('rect', { x: -(gap+3), y: -half, width: 3.5, height: length, rx: 1.5, fill: grad1, opacity: 0.95 }));
+  // 右侧染色单体
+  maternalG.appendChild(el('rect', { x: -gap, y: -half, width: 3.5, height: length, rx: 1.5, fill: grad1, opacity: 0.95 }));
+  // 着丝粒
+  maternalG.appendChild(circle(-(gap+1.5), 0, 3, '#f0a830', { opacity: 0.9 }));
+
+  // 父源染色体（带交叉互换的颜色段）
+  const paternalG = el('g', { class: 'chromosome chrom-glow-paternal' });
+  // 上半段：父源色
+  paternalG.appendChild(el('rect', { x: gap, y: -half, width: 3.5, height: half * 0.35, rx: 1.5, fill: grad2, opacity: 0.95 }));
+  // 交叉段：母源色（表示交换了片段）
+  paternalG.appendChild(el('rect', { x: gap, y: -half + half * 0.35, width: 3.5, height: half * 0.3, rx: 1.5, fill: grad1, opacity: 0.95 }));
+  // 下半段：父源色
+  paternalG.appendChild(el('rect', { x: gap, y: -half + half * 0.65, width: 3.5, height: half * 0.35, rx: 1.5, fill: grad2, opacity: 0.95 }));
+  // 右侧姐妹染色单体（同样的交叉模式）
+  paternalG.appendChild(el('rect', { x: gap + 5, y: -half, width: 3.5, height: half * 0.35, rx: 1.5, fill: grad2, opacity: 0.95 }));
+  paternalG.appendChild(el('rect', { x: gap + 5, y: -half + half * 0.35, width: 3.5, height: half * 0.3, rx: 1.5, fill: grad1, opacity: 0.95 }));
+  paternalG.appendChild(el('rect', { x: gap + 5, y: -half + half * 0.65, width: 3.5, height: half * 0.35, rx: 1.5, fill: grad2, opacity: 0.95 }));
+  // 着丝粒
+  paternalG.appendChild(circle(gap + 6.7, 0, 3, '#f0a830', { opacity: 0.9 }));
+
+  g.appendChild(maternalG);
+  g.appendChild(paternalG);
+
+  // 交叉点标记
+  const crossY = -half + half * 0.35;
+  const crossPoint1 = el('g', { class: 'crossover-point' });
+  crossPoint1.appendChild(circle(-(gap+1.5), crossY, 3, '#f0a830', { opacity: 1 }));
+  crossPoint1.appendChild(circle(gap + 6.7, crossY, 3, '#f0a830', { opacity: 1 }));
+  // 交换线
+  crossPoint1.appendChild(path(
+    `M ${-(gap+1.5)} ${crossY} Q 0 ${crossY - 6} ${gap + 6.7} ${crossY}`,
+    { stroke: '#f0a830', 'stroke-width': 1, fill: 'none', opacity: 0.5, 'stroke-dasharray': '2,2' }
+  ));
+  g.appendChild(crossPoint1);
+
+  stageContent.appendChild(g);
+}
+
+/* --- 中期 I --- */
+function renderMetaphase1() {
+  const midX = 450, midY = 250;
+
+  stageContent.appendChild(drawCellMembrane(midX, midY, 170, 1));
+
+  // 两个二价体排列在赤道板上
+  drawBivalentAtEquator(midX - 30, midY, 70, true);
+  drawBivalentAtEquator(midX + 30, midY, 70, false);
+
+  stageContent.appendChild(drawCentrosome(midX - 150, midY));
+  stageContent.appendChild(drawCentrosome(midX + 150, midY));
+
+  // 完整纺锤丝
+  drawFullSpindle(midX, midY, 150, 70);
+}
+
+function drawBivalentAtEquator(cx, cy, length, isLeftMaternal) {
+  const g = el('g', { transform: `translate(${cx},${cy})` });
+  const half = length / 2;
+  const gap = 5;
+
+  // 母源在左，父源在右
+  const maternal = el('g', { class: 'chromosome chrom-glow-maternal' });
+  maternal.appendChild(el('rect', { x: -(gap+3), y: -half, width: 3.5, height: length, rx: 1.5, fill: 'url(#chromMGrad)', opacity: 0.95 }));
+  maternal.appendChild(el('rect', { x: -gap, y: -half, width: 3.5, height: length, rx: 1.5, fill: 'url(#chromMGrad)', opacity: 0.95 }));
+  maternal.appendChild(circle(-(gap+1.5), 0, 3, '#f0a830', { opacity: 0.9 }));
+  g.appendChild(maternal);
+
+  const paternal = el('g', { class: 'chromosome chrom-glow-paternal' });
+  paternal.appendChild(el('rect', { x: gap, y: -half, width: 3.5, height: length, rx: 1.5, fill: 'url(#chromPGrad)', opacity: 0.95 }));
+  paternal.appendChild(el('rect', { x: gap+5, y: -half, width: 3.5, height: length, rx: 1.5, fill: 'url(#chromPGrad)', opacity: 0.95 }));
+  paternal.appendChild(circle(gap+6.7, 0, 3, '#f0a830', { opacity: 0.9 }));
+  g.appendChild(paternal);
+
+  stageContent.appendChild(g);
+}
+
+function drawFullSpindle(midX, midY, halfWidth, halfHeight) {
+  const leftPole = midX - halfWidth;
+  const rightPole = midX + halfWidth;
+  const topY = midY - halfHeight;
+  const botY = midY + halfHeight;
+
+  for (let i = 0; i < 4; i++) {
+    const y = topY + i * (halfHeight * 2 / 3);
+    stageContent.appendChild(line(leftPole, midY, midX + (i - 1.5) * 15, y, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.4 }));
+    stageContent.appendChild(line(rightPole, midY, midX + (i - 1.5) * 15, y, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.4 }));
+  }
+
+  // 极间纺锤丝
+  stageContent.appendChild(line(leftPole, midY, rightPole, midY, { stroke: 'var(--spindle)', 'stroke-width': 0.8, opacity: 0.2 }));
+}
+
+/* --- 后期 I --- */
+function renderAnaphase1() {
+  const midX = 450, midY = 250;
+
+  stageContent.appendChild(drawCellMembrane(midX, midY, 170, 1));
+
+  // 同源染色体分离，各自移向两极
+  // 左侧：母源1 + 父源2
+  drawReplicatedAt(midX - 90, midY - 25, 60, 10, true);
+  drawReplicatedAt(midX - 75, midY + 30, 60, -15, false);
+
+  // 右侧：母源2 + 父源1
+  drawReplicatedAt(midX + 75, midY - 30, 60, 15, true);
+  drawReplicatedAt(midX + 90, midY + 25, 60, -10, false);
+
+  stageContent.appendChild(drawCentrosome(midX - 160, midY));
+  stageContent.appendChild(drawCentrosome(midX + 160, midY));
+
+  // 纺锤丝向两极拉伸
+  drawFullSpindle(midX, midY, 160, 55);
+}
+
+function drawReplicatedAt(cx, cy, length, angle, isMaternal) {
+  stageContent.appendChild(drawReplicatedChromosome(cx, cy, length, angle, isMaternal, 0.5));
+}
+
+/* --- 末期 I --- */
+function renderTelophase1() {
+  const midX = 450, midY = 250;
+  const cellR = 110;
+  const sep = 120;
+
+  // 两个子细胞，中间分裂沟
+  stageContent.appendChild(drawCellMembrane(midX - sep, midY, cellR, 0.9));
+  stageContent.appendChild(drawCellMembrane(midX + sep, midY, cellR, 0.9));
+
+  // 分裂沟
+  stageContent.appendChild(line(midX, midY - 70, midX, midY + 70, { stroke: '#00d9c0', 'stroke-width': 2, opacity: 0.4, 'stroke-dasharray': '4,3' }));
+
+  // 左细胞：2条染色体
+  drawReplicatedAt(midX - sep - 20, midY - 15, 45, 20, true);
+  drawReplicatedAt(midX - sep + 15, midY + 20, 45, -10, false);
+
+  // 右细胞：2条染色体
+  drawReplicatedAt(midX + sep - 15, midY - 20, 45, 15, true);
+  drawReplicatedAt(midX + sep + 20, midY + 15, 45, -15, false);
+
+  // 核膜重建
+  stageContent.appendChild(drawNuclearMembrane(midX - sep, midY, 75, 0.4));
+  stageContent.appendChild(drawNuclearMembrane(midX + sep, midY, 75, 0.4));
+}
+
+/* --- 前期 II --- */
+function renderProphase2() {
+  const midX = 450, midY = 250;
+  const cellR = 110;
+  const sep = 120;
+
+  stageContent.appendChild(drawCellMembrane(midX - sep, midY, cellR, 1));
+  stageContent.appendChild(drawCellMembrane(midX + sep, midY, cellR, 1));
+
+  // 染色体重新凝缩
+  drawReplicatedAt(midX - sep - 15, midY - 20, 50, 25, true);
+  drawReplicatedAt(midX - sep + 15, midY + 20, 50, -20, false);
+  drawReplicatedAt(midX + sep - 15, midY - 20, 50, 20, true);
+  drawReplicatedAt(midX + sep + 15, midY + 20, 50, -25, false);
+
+  // 每个细胞两个中心体
+  stageContent.appendChild(drawCentrosome(midX - sep - 60, midY - 40));
+  stageContent.appendChild(drawCentrosome(midX - sep + 60, midY + 40));
+  stageContent.appendChild(drawCentrosome(midX + sep - 60, midY - 40));
+  stageContent.appendChild(drawCentrosome(midX + sep + 60, midY + 40));
+
+  // 纺锤丝
+  const sg = el('g', { class: 'spindle-line', opacity: 0.3 });
+  sg.appendChild(line(midX - sep - 60, midY - 40, midX - sep + 60, midY + 40, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.3 }));
+  sg.appendChild(line(midX + sep - 60, midY - 40, midX + sep + 60, midY + 40, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.3 }));
+  stageContent.appendChild(sg);
+}
+
+/* --- 中期 II --- */
+function renderMetaphase2() {
+  const midX = 450, midY = 250;
+  const cellR = 110;
+  const sep = 120;
+
+  stageContent.appendChild(drawCellMembrane(midX - sep, midY, cellR, 1));
+  stageContent.appendChild(drawCellMembrane(midX + sep, midY, cellR, 1));
+
+  // 染色体在赤道板排列
+  drawReplicatedAt(midX - sep, midY - 20, 55, 85, true);
+  drawReplicatedAt(midX - sep, midY + 20, 55, 85, false);
+  drawReplicatedAt(midX + sep, midY - 20, 55, 85, true);
+  drawReplicatedAt(midX + sep, midY + 20, 55, 85, false);
+
+  // 中心体在上下极
+  stageContent.appendChild(drawCentrosome(midX - sep, midY - 80));
+  stageContent.appendChild(drawCentrosome(midX - sep, midY + 80));
+  stageContent.appendChild(drawCentrosome(midX + sep, midY - 80));
+  stageContent.appendChild(drawCentrosome(midX + sep, midY + 80));
+
+  // 纺锤丝（垂直方向）
+  const sg = el('g', { class: 'spindle-line' });
+  for (let i = 0; i < 3; i++) {
+    const dy = (i - 1) * 15;
+    sg.appendChild(line(midX - sep, midY - 80, midX - sep + dy, midY, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.35 }));
+    sg.appendChild(line(midX - sep, midY + 80, midX - sep + dy, midY, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.35 }));
+    sg.appendChild(line(midX + sep, midY - 80, midX + sep + dy, midY, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.35 }));
+    sg.appendChild(line(midX + sep, midY + 80, midX + sep + dy, midY, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.35 }));
+  }
+  stageContent.appendChild(sg);
+}
+
+/* --- 后期 II --- */
+function renderAnaphase2() {
+  const midX = 450, midY = 250;
+  const cellR = 110;
+  const sep = 120;
+
+  stageContent.appendChild(drawCellMembrane(midX - sep, midY, cellR, 1));
+  stageContent.appendChild(drawCellMembrane(midX + sep, midY, cellR, 1));
+
+  // 姐妹染色单体分离，向上向下移动
+  // 左细胞
+  drawSingleChromatid(midX - sep - 15, midY - 35, 40, 0, true);
+  drawSingleChromatid(midX - sep + 15, midY - 35, 40, 0, false);
+  drawSingleChromatid(midX - sep - 15, midY + 35, 40, 0, true);
+  drawSingleChromatid(midX - sep + 15, midY + 35, 40, 0, false);
+
+  // 右细胞
+  drawSingleChromatid(midX + sep - 15, midY - 35, 40, 0, true);
+  drawSingleChromatid(midX + sep + 15, midY - 35, 40, 0, false);
+  drawSingleChromatid(midX + sep - 15, midY + 35, 40, 0, true);
+  drawSingleChromatid(midX + sep + 15, midY + 35, 40, 0, false);
+
+  // 中心体
+  stageContent.appendChild(drawCentrosome(midX - sep, midY - 85));
+  stageContent.appendChild(drawCentrosome(midX - sep, midY + 85));
+  stageContent.appendChild(drawCentrosome(midX + sep, midY - 85));
+  stageContent.appendChild(drawCentrosome(midX + sep, midY + 85));
+
+  // 纺锤丝拉伸
+  const sg = el('g', { class: 'spindle-line' });
+  for (let i = 0; i < 4; i++) {
+    const dx = (i - 1.5) * 12;
+    sg.appendChild(line(midX - sep, midY - 85, midX - sep + dx, midY - 20, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.3 }));
+    sg.appendChild(line(midX - sep, midY + 85, midX - sep + dx, midY + 20, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.3 }));
+    sg.appendChild(line(midX + sep, midY - 85, midX + sep + dx, midY - 20, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.3 }));
+    sg.appendChild(line(midX + sep, midY + 85, midX + sep + dx, midY + 20, { stroke: 'var(--spindle)', 'stroke-width': 1, opacity: 0.3 }));
+  }
+  stageContent.appendChild(sg);
+}
+
+function drawSingleChromatid(cx, cy, length, angle, isMaternal) {
+  const g = el('g', {
+    class: 'chromosome ' + (isMaternal ? 'chrom-glow-maternal' : 'chrom-glow-paternal'),
+    transform: `translate(${cx},${cy}) rotate(${angle})`
+  });
+  const half = length / 2;
+  const grad = isMaternal ? 'url(#chromMGrad)' : 'url(#chromPGrad)';
+
+  g.appendChild(el('rect', {
+    x: -3, y: -half, width: 6, height: length,
+    rx: 3, fill: grad, opacity: 0.95
+  }));
+  // 着丝粒
+  g.appendChild(circle(0, 0, 2.5, '#f0a830', { opacity: 0.9 }));
+
+  stageContent.appendChild(g);
+}
+
+/* --- 末期 II --- */
+function renderTelophase2() {
+  const midX = 450, midY = 250;
+  const cellR = 75;
+  const positions = [
+    { x: midX - 150, y: midY - 90 },
+    { x: midX - 50, y: midY - 90 },
+    { x: midX + 50, y: midY - 90 },
+    { x: midX + 150, y: midY - 90 },
+  ];
+
+  // 重新排列为2x2网格
+  const grid = [
+    { x: midX - 120, y: midY - 70 },
+    { x: midX + 120, y: midY - 70 },
+    { x: midX - 120, y: midY + 70 },
+    { x: midX + 120, y: midY + 70 },
+  ];
+
+  grid.forEach((p, i) => {
+    const isMaternal1 = i % 2 === 0;
+    const isMaternal2 = (i < 2) ? !isMaternal1 : isMaternal1;
+    stageContent.appendChild(drawCellMembrane(p.x, p.y, cellR, 1));
+    stageContent.appendChild(drawNuclearMembrane(p.x, p.y, 50, 0.4));
+    drawSingleChromatid(p.x - 12, p.y - 8, 28, 15, isMaternal1);
+    drawSingleChromatid(p.x + 12, p.y + 8, 28, -15, isMaternal2);
+  });
+
+  // 连接线表示四个子细胞
+  stageContent.appendChild(line(midX, midY - 130, midX, midY + 130, { stroke: '#00d9c0', 'stroke-width': 1, opacity: 0.15, 'stroke-dasharray': '3,4' }));
+  stageContent.appendChild(line(midX - 200, midY, midX + 200, midY, { stroke: '#00d9c0', 'stroke-width': 1, opacity: 0.15, 'stroke-dasharray': '3,4' }));
+}
+
+/* ===== UI 更新 ===== */
+function updateUI() {
+  const phase = PHASES[currentPhase];
+  document.getElementById('phaseBadge').textContent = phase.name;
+  document.getElementById('phaseName').textContent = phase.name;
+  document.getElementById('phaseNameEn').textContent = phase.en;
+  document.getElementById('phaseDesc').textContent = phase.desc;
+  document.getElementById('chromCount').textContent = phase.chrom;
+  document.getElementById('dnaCount').textContent = phase.dna;
+  document.getElementById('cellCount').textContent = phase.cell;
+
+  // 进度条
+  const progress = ((currentPhase + 1) / PHASES.length) * 100;
+  document.getElementById('progressFill').style.width = progress + '%';
+
+  // 时间线高亮
+  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.classList.remove('active', 'passed');
+    if (i === currentPhase) item.classList.add('active');
+    else if (i < currentPhase) item.classList.add('passed');
+  });
+
+  // 按钮状态
+  document.getElementById('prevBtn').disabled = currentPhase === 0;
+  document.getElementById('nextBtn').disabled = currentPhase === PHASES.length - 1;
+}
+
+function goToPhase(idx) {
+  currentPhase = Math.max(0, Math.min(PHASES.length - 1, idx));
+  renderPhase(currentPhase);
+  updateUI();
+}
+
+function nextPhase() {
+  if (currentPhase < PHASES.length - 1) {
+    goToPhase(currentPhase + 1);
+  } else {
+    stopPlay();
+  }
+}
+
+function prevPhase() {
+  if (currentPhase > 0) {
+    goToPhase(currentPhase - 1);
+  }
+}
+
+/* ===== 播放控制 ===== */
+function play() {
+  if (currentPhase === PHASES.length - 1) {
+    goToPhase(0);
+  }
+  isPlaying = true;
+  updatePlayButton();
+  const duration = 2500 / speed;
+  playTimer = setTimeout(() => {
+    if (isPlaying) {
+      if (currentPhase < PHASES.length - 1) {
+        nextPhase();
+        play();
+      } else {
+        stopPlay();
+      }
+    }
+  }, duration);
+}
+
+function stopPlay() {
+  isPlaying = false;
+  if (playTimer) {
+    clearTimeout(playTimer);
+    playTimer = null;
+  }
+  updatePlayButton();
+}
+
+function togglePlay() {
+  if (isPlaying) stopPlay();
+  else play();
+}
+
+function updatePlayButton() {
+  const icon = document.getElementById('playIcon');
+  const label = document.getElementById('playLabel');
+  if (isPlaying) {
+    icon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+    label.textContent = '暂停';
+  } else {
+    icon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    label.textContent = '播放';
+  }
+}
+
+/* ===== 时间线生成 ===== */
+function buildTimeline() {
+  const tl = document.getElementById('timeline');
+  PHASES.forEach((phase, i) => {
+    const item = document.createElement('div');
+    item.className = 'timeline-item';
+    item.textContent = phase.name;
+    item.addEventListener('click', () => {
+      stopPlay();
+      goToPhase(i);
+    });
+    tl.appendChild(item);
+  });
+
+  // 进度条标记
+  const markers = document.createElement('div');
+  markers.className = 'progress-markers';
+  for (let i = 1; i < PHASES.length; i++) {
+    const m = document.createElement('div');
+    m.className = 'progress-marker';
+    m.style.left = (i / PHASES.length * 100) + '%';
+    markers.appendChild(m);
+  }
+  document.getElementById('progressTrack').appendChild(markers);
+}
+
+/* ===== 事件绑定 ===== */
+document.getElementById('playBtn').addEventListener('click', togglePlay);
+document.getElementById('prevBtn').addEventListener('click', () => { stopPlay(); prevPhase(); });
+document.getElementById('nextBtn').addEventListener('click', () => { stopPlay(); nextPhase(); });
+
+document.getElementById('progressTrack').addEventListener('click', (e) => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const ratio = (e.clientX - rect.left) / rect.width;
+  const idx = Math.round(ratio * (PHASES.length - 1));
+  stopPlay();
+  goToPhase(idx);
+});
+
+document.querySelectorAll('.speed-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    speed = parseFloat(btn.dataset.speed);
+    if (isPlaying) {
+      stopPlay();
+      play();
+    }
+  });
+});
+
+// 键盘快捷键
+document.addEventListener('keydown', (e) => {
+  if (e.key === ' ') { e.preventDefault(); togglePlay(); }
+  else if (e.key === 'ArrowLeft') { stopPlay(); prevPhase(); }
+  else if (e.key === 'ArrowRight') { stopPlay(); nextPhase(); }
+});
+
+/* ===== 初始化 ===== */
+buildTimeline();
+renderPhase(0);
+updateUI();
+</script>
+
+</body>
+</html>
