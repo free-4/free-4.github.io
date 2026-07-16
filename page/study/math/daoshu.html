@@ -13,45 +13,45 @@
   <style>
     /* ============ 设计系统 ============ */
     :root {
-      --ink: #1a2238;
-      --ink-soft: #3d4a6b;
-      --ink-light: #6b7593;
+      --ink: #2d2419;
+      --ink-soft: #4a4036;
+      --ink-light: #7a6f62;
       --amber: #e8943b;
-      --amber-dark: #c97a1e;
+      --amber-dark: #b86d1a;
       --amber-light: #fdf4e6;
-      --teal: #2a9d8f;
-      --teal-dark: #1f7a6e;
-      --teal-light: #e6f4f2;
+      --teal: #5a8c3a;
+      --teal-dark: #456d2c;
+      --teal-light: #eef5e8;
       --coral: #e76f51;
       --coral-light: #fde8e2;
       --cream: #faf7f2;
       --white: #ffffff;
       --border: #e2ddd4;
       --border-strong: #c9c2b6;
-      --shadow-sm: 0 1px 3px rgba(26,34,56,0.06);
-      --shadow: 0 4px 16px rgba(26,34,56,0.08);
-      --shadow-lg: 0 12px 40px rgba(26,34,56,0.12);
+      --shadow-sm: 0 1px 3px rgba(45,36,25,0.06);
+      --shadow: 0 4px 16px rgba(45,36,25,0.08);
+      --shadow-lg: 0 12px 40px rgba(45,36,25,0.12);
       --radius: 14px;
       --radius-sm: 8px;
       --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     [data-theme="dark"] {
-      --ink: #e8e4dc;
-      --ink-soft: #b8b0a2;
+      --ink: #ede8de;
+      --ink-soft: #c0b8aa;
       --ink-light: #8a8275;
       --amber: #f0a85a;
       --amber-dark: #e8943b;
       --amber-light: #2a2318;
-      --teal: #3dbfae;
-      --teal-dark: #2a9d8f;
-      --teal-light: #152826;
+      --teal: #7ba85a;
+      --teal-dark: #5a8c3a;
+      --teal-light: #1f2a18;
       --coral: #f08a6e;
       --coral-light: #2a1a15;
-      --cream: #15181f;
-      --white: #1e222b;
-      --border: #2d3340;
-      --border-strong: #3d4453;
+      --cream: #14110d;
+      --white: #1e1b16;
+      --border: #2d2922;
+      --border-strong: #3d3830;
       --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
       --shadow: 0 4px 16px rgba(0,0,0,0.25);
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.35);
@@ -825,6 +825,174 @@
       border-top: 1px solid var(--border);
     }
 
+    /* ============ 增强动画 ============ */
+    @keyframes float-in {
+      0% { opacity: 0; transform: translateY(30px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes slide-in-left {
+      0% { opacity: 0; transform: translateX(-24px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(232,148,59,0.3); }
+      50% { box-shadow: 0 0 0 8px rgba(232,148,59,0); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    @keyframes count-up {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero 标题逐字浮现 */
+    .hero h1 {
+      animation: float-in 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    .hero p {
+      animation: float-in 0.8s 0.2s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+
+    /* 区块标签滑入 */
+    .section-label {
+      animation: slide-in-left 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+
+    /* 标题浮现 */
+    .reveal h2 {
+      animation: float-in 0.6s 0.1s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+    .reveal .section-sub {
+      animation: float-in 0.6s 0.2s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+
+    /* 卡片交错出现 */
+    .reveal .card,
+    .reveal .rule,
+    .reveal .tip,
+    .reveal .math-box,
+    .reveal .canvas-box,
+    .reveal .app-card {
+      animation: float-in 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+    .reveal .card:nth-child(2),
+    .reveal .rule:nth-child(2),
+    .reveal .tip:nth-child(2),
+    .reveal .app-card:nth-child(2) { animation-delay: 0.08s; }
+    .reveal .card:nth-child(3),
+    .reveal .rule:nth-child(3),
+    .reveal .tip:nth-child(3),
+    .reveal .app-card:nth-child(3) { animation-delay: 0.16s; }
+    .reveal .card:nth-child(4),
+    .reveal .rule:nth-child(4),
+    .reveal .app-card:nth-child(4) { animation-delay: 0.24s; }
+    .reveal .app-card:nth-child(5) { animation-delay: 0.32s; }
+    .reveal .app-card:nth-child(6) { animation-delay: 0.40s; }
+
+    /* 提示框图标脉冲 */
+    .tip-icon {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    /* 按钮 hover 微动效 */
+    .btn {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transition: left 0.5s;
+    }
+    .btn:hover::after { left: 100%; }
+
+    /* 导航药丸滑动指示器 */
+    .nav-pill {
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .nav-pill:hover:not(.active) {
+      transform: translateY(-1px);
+    }
+    .nav-pill.active {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    /* 应用卡片悬浮 */
+    .app-card {
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s;
+    }
+    .app-card:hover .app-icon {
+      transform: scale(1.1) rotate(-3deg);
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .app-icon {
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* 表格行 hover 动效 */
+    tr {
+      transition: background 0.2s;
+    }
+
+    /* 滑块拖动时放大 */
+    input[type="range"]::-webkit-slider-thumb {
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    input[type="range"]:active::-webkit-slider-thumb {
+      transform: scale(1.3);
+      box-shadow: 0 0 0 6px rgba(232,148,59,0.2);
+    }
+
+    /* 输入框聚焦动画 */
+    input[type="text"] {
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    /* 步骤出现动画 */
+    .step {
+      animation: slide-in-left 0.4s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+
+    /* 测验选项 hover */
+    .quiz-opt {
+      transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .quiz-opt:hover:not(:disabled) {
+      transform: translateX(4px);
+    }
+    .quiz-opt.selected {
+      animation: pulse-glow 1.5s ease-in-out infinite;
+    }
+
+    /* 计算结果出现 */
+    .calc-out {
+      transition: all 0.3s;
+    }
+
+    /* 回到顶部按钮出现 */
+    .back-top.show {
+      animation: float-in 0.3s ease forwards;
+    }
+
+    /* 进度条流动光效 */
+    .progress-bar {
+      background: linear-gradient(90deg, var(--amber) 0%, var(--coral) 50%, var(--amber) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+    }
+
     /* ============ Reveal ============ */
     .reveal {
       opacity: 0;
@@ -1235,9 +1403,9 @@
     <div class="canvas-box">
       <canvas id="calcCanvas"></canvas>
       <div class="controls">
-        <span class="badge badge-ink">蓝色 = 原函数</span>
-        <span class="badge badge-teal">绿色 = 导函数</span>
-      </div>
+          <span class="badge badge-ink">深色 = 原函数</span>
+          <span class="badge badge-teal">绿色 = 导函数</span>
+        </div>
     </div>
 
     <div class="tip tip-amber">
@@ -1445,10 +1613,11 @@
       c.textAlign = 'right';
       for (let y = Math.ceil(this.yMin); y <= this.yMax; y++) { if (y !== 0) c.fillText(y, this.toX(0) - 6, this.toY(y) + 4); }
     }
-    plot(fn, color, lw = 2.5) {
+    plot(fn, color, lw = 2.5, animProgress = 1) {
       const c = this.ctx; c.strokeStyle = color; c.lineWidth = lw; c.lineJoin = 'round'; c.beginPath();
       const steps = 400; let started = false;
-      for (let i = 0; i <= steps; i++) {
+      const endStep = Math.floor(steps * animProgress);
+      for (let i = 0; i <= endStep; i++) {
         const x = this.xMin + (i/steps) * (this.xMax - this.xMin); const y = fn(x);
         if (isFinite(y) && y > this.yMin - 3 && y < this.yMax + 3) {
           if (!started) { c.moveTo(this.toX(x), this.toY(y)); started = true; } else c.lineTo(this.toX(x), this.toY(y));
@@ -1461,6 +1630,41 @@
       c.fillStyle = color; c.strokeStyle = '#fff'; c.lineWidth = 2;
       c.beginPath(); c.arc(this.toX(x), this.toY(y), r, 0, Math.PI*2); c.fill(); c.stroke();
       if (label) { c.fillStyle = color; c.font = 'bold 13px sans-serif'; c.textAlign = 'left'; c.fillText(label, this.toX(x)+10, this.toY(y)-8); }
+    }
+    pointPulse(x, y, color, r = 6, t = 0, label = '') {
+      const c = this.ctx;
+      const pulseR = r + 4 + Math.sin(t * 0.06) * 3;
+      c.strokeStyle = color; c.globalAlpha = 0.3; c.lineWidth = 2;
+      c.beginPath(); c.arc(this.toX(x), this.toY(y), pulseR, 0, Math.PI*2); c.stroke();
+      c.globalAlpha = 1;
+      c.fillStyle = color; c.strokeStyle = '#fff'; c.lineWidth = 2;
+      c.beginPath(); c.arc(this.toX(x), this.toY(y), r, 0, Math.PI*2); c.fill(); c.stroke();
+      if (label) { c.fillStyle = color; c.font = 'bold 13px sans-serif'; c.textAlign = 'left'; c.fillText(label, this.toX(x)+10, this.toY(y)-8); }
+    }
+    movingPoint(x, y, color, r = 6, t = 0, label = '') {
+      const c = this.ctx;
+      const bounce = Math.sin(t * 0.08) * 1.5;
+      c.fillStyle = color; c.strokeStyle = '#fff'; c.lineWidth = 2;
+      c.beginPath(); c.arc(this.toX(x), this.toY(y) + bounce, r, 0, Math.PI*2); c.fill(); c.stroke();
+      // 拖尾效果
+      c.globalAlpha = 0.2; c.fillStyle = color;
+      c.beginPath(); c.arc(this.toX(x), this.toY(y) + bounce, r + 3, 0, Math.PI*2); c.fill();
+      c.globalAlpha = 1;
+      if (label) { c.fillStyle = color; c.font = 'bold 13px sans-serif'; c.textAlign = 'left'; c.fillText(label, this.toX(x)+10, this.toY(y)-8); }
+    }
+    arrow(x1, y1, x2, y2, color, lw = 2) {
+      const c = this.ctx;
+      const px = this.toX(x2), py = this.toY(y2);
+      const px1 = this.toX(x1), py1 = this.toY(y1);
+      const angle = Math.atan2(py - py1, px - px1);
+      const headLen = 10;
+      c.strokeStyle = color; c.fillStyle = color; c.lineWidth = lw;
+      c.beginPath(); c.moveTo(px1, py1); c.lineTo(px, py); c.stroke();
+      c.beginPath();
+      c.moveTo(px, py);
+      c.lineTo(px - headLen * Math.cos(angle - 0.4), py - headLen * Math.sin(angle - 0.4));
+      c.lineTo(px - headLen * Math.cos(angle + 0.4), py - headLen * Math.sin(angle + 0.4));
+      c.closePath(); c.fill();
     }
     lineExt(x1, y1, x2, y2, color, lw = 2, dash = [6,4]) {
       const dx = x2 - x1, dy = y2 - y1;
@@ -1478,7 +1682,7 @@
   }
 
   /* ============ 割线→切线 ============ */
-  let secMC, secDx = 2, secPlaying = false, secAnim, secDraw;
+  let secMC, secDx = 2, secPlaying = false, secAnim, secDraw, secT = 0;
 
   function initSecant() {
     const canvas = document.getElementById('secantCanvas');
@@ -1491,23 +1695,58 @@
       mc.plot(fn, mc.css('--ink-light'), 2);
       const yP = fn(xP); const dx = secDx; const xQ = xP + dx; const yQ = fn(xQ);
       const slope = dx < 0.001 ? 2*xP : (yQ - yP) / dx;
-      const lineColor = dx < 0.05 ? mc.css('--amber') : mc.css('--coral');
-      mc.lineExt(xP, yP, xQ, yQ, lineColor, 2.5, dx < 0.05 ? [] : [6,4]);
-      mc.point(xP, yP, mc.css('--ink'), 6, 'P');
-      if (dx > 0.02) mc.point(xQ, yQ, mc.css('--coral'), 6, 'Q');
-      if (dx > 0.1) {
-        const c = mc.ctx; c.strokeStyle = 'rgba(231,111,81,0.4)'; c.lineWidth = 1; c.setLineDash([3,3]);
-        c.beginPath(); c.moveTo(mc.toX(xQ), mc.toY(yP)); c.lineTo(mc.toX(xQ), mc.toY(yQ)); c.stroke(); c.setLineDash([]);
-        c.fillStyle = mc.css('--coral'); c.font = '12px sans-serif'; c.textAlign = 'center'; c.fillText('Δx', mc.toX((xP+xQ)/2), mc.toY(yP) - 6);
+      const isTangent = dx < 0.05;
+      const lineColor = isTangent ? mc.css('--amber') : mc.css('--coral');
+
+      // 割线/切线
+      mc.lineExt(xP, yP, xQ, yQ, lineColor, 2.5, isTangent ? [] : [6,4]);
+
+      // Q 点拖尾轨迹
+      if (dx > 0.05 && secPlaying) {
+        const c = mc.ctx;
+        for (let i = 1; i <= 5; i++) {
+          const trailDx = dx + i * 0.08;
+          const trailX = xP + trailDx;
+          const trailY = fn(trailX);
+          if (trailX <= 4) {
+            c.globalAlpha = 0.15 * (1 - i / 6);
+            c.fillStyle = mc.css('--coral');
+            c.beginPath(); c.arc(mc.toX(trailX), mc.toY(trailY), 4, 0, Math.PI*2); c.fill();
+          }
+        }
+        c.globalAlpha = 1;
       }
+
+      // P 点（固定，脉冲效果）
+      mc.pointPulse(xP, yP, mc.css('--ink'), 6, secT, 'P');
+
+      // Q 点（移动，带弹跳）
+      if (dx > 0.02) {
+        mc.movingPoint(xQ, yQ, mc.css('--coral'), 6, secT, 'Q');
+      }
+
+      // Δx 标注和箭头
+      if (dx > 0.1) {
+        const c = mc.ctx;
+        c.strokeStyle = 'rgba(231,111,81,0.4)'; c.lineWidth = 1; c.setLineDash([3,3]);
+        c.beginPath(); c.moveTo(mc.toX(xQ), mc.toY(yP)); c.lineTo(mc.toX(xQ), mc.toY(yQ)); c.stroke(); c.setLineDash([]);
+        c.fillStyle = mc.css('--coral'); c.font = 'bold 12px sans-serif'; c.textAlign = 'center';
+        c.fillText('Δx', mc.toX((xP+xQ)/2), mc.toY(yP) - 6);
+        // Δy 标注
+        c.fillText('Δy', mc.toX(xQ) + 14, mc.toY((yP+yQ)/2));
+      }
+
+      // 斜率显示动画
       document.getElementById('dxValue').textContent = dx.toFixed(3);
       document.getElementById('slopeValue').textContent = slope.toFixed(3);
-      document.getElementById('limitMessage').style.display = dx < 0.05 ? 'flex' : 'none';
+      document.getElementById('limitMessage').style.display = isTangent ? 'flex' : 'none';
+
+      secT++;
     }
 
     function animate() {
       if (!secPlaying) return;
-      secDx -= 0.015;
+      secDx -= 0.012;
       if (secDx <= 0) { secDx = 0; secPlaying = false; document.getElementById('secantPlayBtn').innerHTML = '<svg><use href="#i-refresh"/></svg>重新播放'; }
       document.getElementById('dxSlider').value = secDx;
       draw();
@@ -1516,7 +1755,7 @@
 
     document.getElementById('secantPlayBtn').addEventListener('click', () => {
       if (secDx <= 0.01) { secDx = 2; document.getElementById('dxSlider').value = 2; }
-      secPlaying = true;
+      secPlaying = true; secT = 0;
       document.getElementById('secantPlayBtn').innerHTML = '播放中...';
       animate();
     });
@@ -1525,11 +1764,17 @@
       secPlaying = false; secDx = parseFloat(e.target.value); draw();
     });
 
-    secDraw = draw; draw();
+    // 持续动画循环（即使不播放也有脉冲效果）
+    function loop() {
+      if (!secPlaying) draw();
+      requestAnimationFrame(loop);
+    }
+
+    secDraw = draw; draw(); loop();
   }
 
   /* ============ 切线探索 ============ */
-  let tanMC, tanX = 0, tanFunc = 'x2', tanDraw;
+  let tanMC, tanX = 0, tanFunc = 'x2', tanDraw, tanT = 0;
   const tanFuncs = {
     x2:  { f: x => x*x,           df: x => 2*x },
     x3:  { f: x => x*x*x,         df: x => 3*x*x },
@@ -1547,11 +1792,35 @@
       mc.clear(); mc.drawGrid();
       mc.plot(d.f, mc.css('--ink-light'), 2);
       const x = tanX; const y = d.f(x); const slope = d.df(x);
+
+      // 切线（延伸到画布边缘）
       mc.lineExt(x, y, x+1, y+slope, mc.css('--amber'), 2.5, []);
-      mc.point(x, y, mc.css('--amber'), 7, `(${x.toFixed(1)}, ${y.toFixed(1)})`);
+
+      // 切线方向箭头
+      const arrowX = x + (slope >= 0 ? 0.8 : -0.8);
+      const arrowY = y + slope * (arrowX - x);
+      mc.arrow(x, y, arrowX, arrowY, mc.css('--amber'), 2);
+
+      // 增减性指示
+      const c = mc.ctx;
+      if (Math.abs(slope) > 0.01) {
+        const dir = slope > 0 ? '↑ 上升' : '↓ 下降';
+        const dirColor = slope > 0 ? mc.css('--teal') : mc.css('--coral');
+        c.fillStyle = dirColor; c.font = 'bold 14px sans-serif'; c.textAlign = 'left';
+        c.fillText(dir, mc.toX(x) + 14, mc.toY(y) - 20);
+      } else {
+        c.fillStyle = mc.css('--amber-dark'); c.font = 'bold 14px sans-serif'; c.textAlign = 'left';
+        c.fillText('= 极值点', mc.toX(x) + 14, mc.toY(y) - 20);
+      }
+
+      // 切点（脉冲效果）
+      mc.pointPulse(x, y, mc.css('--amber'), 7, tanT, `(${x.toFixed(1)}, ${y.toFixed(1)})`);
+
       document.getElementById('tangentX').textContent = x.toFixed(2);
       document.getElementById('tangentSlope').textContent = slope.toFixed(2);
       document.getElementById('tangentY').textContent = y.toFixed(2);
+
+      tanT++;
     }
 
     document.getElementById('tangentSlider').addEventListener('input', (e) => { tanX = parseFloat(e.target.value); draw(); });
@@ -1561,7 +1830,10 @@
         btn.classList.add('active'); tanFunc = btn.dataset.func; draw();
       });
     });
-    tanDraw = draw; draw();
+
+    // 持续动画循环
+    function loop() { draw(); requestAnimationFrame(loop); }
+    tanDraw = draw; draw(); loop();
   }
 
   /* ============ 幂法则步骤 ============ */
@@ -1602,7 +1874,16 @@
 
   function updateExSteps() {
     const items = document.querySelectorAll('#exampleSteps .step');
-    items.forEach((el, i) => el.style.display = i <= curStep ? 'flex' : 'none');
+    items.forEach((el, i) => {
+      if (i <= curStep) {
+        el.style.display = 'flex';
+        el.style.animation = 'none';
+        el.offsetHeight; // reflow
+        el.style.animation = `slide-in-left 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards`;
+      } else {
+        el.style.display = 'none';
+      }
+    });
     document.getElementById('exStepInfo').textContent = `第 ${curStep+1} / ${items.length} 步`;
   }
 
@@ -1650,7 +1931,7 @@
     }).join(' ');
   }
 
-  let calcMC, calcDraw;
+  let calcMC, calcDraw, calcAnimProgress = 0, calcAnimRAF;
 
   function initCalc() {
     const canvas = document.getElementById('calcCanvas');
@@ -1666,11 +1947,31 @@
         const deriv = differentiate(terms);
         el.innerHTML = `$f(x) = ${formatPoly(terms)}$<br>$f'(x) = ${formatPoly(deriv)}$`;
         el.classList.remove('error'); renderMath();
-        const mc = calcMC; mc.clear(); mc.drawGrid();
+
+        // 动画绘制
         const f = x => terms.reduce((s, t) => s + t.a * Math.pow(x, t.n), 0);
         const df = x => deriv.length ? deriv.reduce((s, t) => s + t.a * Math.pow(x, t.n), 0) : 0;
-        mc.plot(f, mc.css('--ink'), 2.5);
-        mc.plot(df, mc.css('--teal'), 2.5);
+
+        cancelAnimationFrame(calcAnimRAF);
+        calcAnimProgress = 0;
+
+        function animDraw() {
+          const mc = calcMC; mc.clear(); mc.drawGrid();
+          mc.plot(f, mc.css('--ink'), 2.5, calcAnimProgress);
+          if (calcAnimProgress > 0.3) {
+            mc.plot(df, mc.css('--teal'), 2.5, (calcAnimProgress - 0.3) / 0.7);
+          }
+          calcAnimProgress += 0.04;
+          if (calcAnimProgress < 1) {
+            calcAnimRAF = requestAnimationFrame(animDraw);
+          } else {
+            // 最终绘制完整图 + 标注
+            mc.clear(); mc.drawGrid();
+            mc.plot(f, mc.css('--ink'), 2.5);
+            mc.plot(df, mc.css('--teal'), 2.5);
+          }
+        }
+        animDraw();
       } catch (e) {
         el.innerHTML = e.message + '。请检查输入格式，例如：3x^2 + 2x - 5';
         el.classList.add('error');
@@ -1683,7 +1984,7 @@
   }
 
   /* ============ 双图联动 ============ */
-  let pTopMC, pBotMC, plotX = 0, plotFunc = 'x2', plotDraw;
+  let pTopMC, pBotMC, plotX = 0, plotFunc = 'x2', plotDraw, plotT = 0;
   const plotFuncs = {
     x2:  { f: x => x*x,         df: x => 2*x },
     x3:  { f: x => x*x*x,       df: x => 3*x*x },
@@ -1698,11 +1999,25 @@
 
     function draw() {
       const d = plotFuncs[plotFunc]; const x = plotX; const y = d.f(x); const dy = d.df(x);
+
+      // 上图：原函数
       pTopMC.clear(); pTopMC.drawGrid(); pTopMC.plot(d.f, pTopMC.css('--ink'), 2.5); pTopMC.vline(x);
-      pTopMC.lineExt(x, y, x+0.5, y+dy*0.5, pTopMC.css('--amber'), 2, []); pTopMC.point(x, y, pTopMC.css('--amber'), 5);
+      pTopMC.lineExt(x, y, x+0.5, y+dy*0.5, pTopMC.css('--amber'), 2, []);
+      pTopMC.pointPulse(x, y, pTopMC.css('--amber'), 5, plotT);
+
+      // 下图：导函数
       pBotMC.clear(); pBotMC.drawGrid(); pBotMC.plot(d.df, pBotMC.css('--teal'), 2.5); pBotMC.vline(x);
-      pBotMC.point(x, dy, pBotMC.css('--teal'), 5);
+      pBotMC.pointPulse(x, dy, pBotMC.css('--teal'), 5, plotT);
+
+      // 零线标注（导函数过零时高亮）
+      if (Math.abs(dy) < 0.1) {
+        const c = pBotMC.ctx;
+        c.fillStyle = pBotMC.css('--amber'); c.font = 'bold 12px sans-serif'; c.textAlign = 'center';
+        c.fillText('过零点 = 极值', pBotMC.toX(x), pBotMC.toY(dy) - 14);
+      }
+
       document.getElementById('plotX').textContent = x.toFixed(2);
+      plotT++;
     }
 
     document.getElementById('plotSlider').addEventListener('input', e => { plotX = parseFloat(e.target.value); draw(); });
@@ -1712,7 +2027,10 @@
         btn.classList.add('active'); plotFunc = btn.dataset.pfunc; draw();
       });
     });
-    plotDraw = draw; draw();
+
+    // 持续动画循环
+    function loop() { draw(); requestAnimationFrame(loop); }
+    plotDraw = draw; draw(); loop();
   }
 
   /* ============ 测验 ============ */
@@ -1769,7 +2087,10 @@
       if (quizAnswers[qi] === q.answer) {
         score++; fb.className = 'quiz-fb show correct';
         fb.innerHTML = '<strong>正确！</strong> ' + q.explain;
-      } else { fb.className = 'quiz-fb show wrong'; fb.innerHTML = '<strong>错误。</strong> ' + q.explain; }
+        fb.style.animation = 'float-in 0.4s ease forwards';
+      } else { fb.className = 'quiz-fb show wrong'; fb.innerHTML = '<strong>错误。</strong> ' + q.explain;
+        fb.style.animation = 'float-in 0.4s ease forwards';
+      }
     });
     const scoreEl = document.getElementById('quizScore');
     let icon, text;
@@ -1777,7 +2098,9 @@
     else if (score >= 4) { icon = '<svg><use href="#i-thumbs-up"/></svg>'; text = '不错！'; }
     else { icon = '<svg><use href="#i-zap"/></svg>'; text = '继续加油！'; }
     scoreEl.innerHTML = icon + `得分：${score} / ${quizData.length} ${text}`;
-    scoreEl.classList.add('show'); renderMath();
+    scoreEl.classList.add('show');
+    scoreEl.style.animation = 'float-in 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards';
+    renderMath();
   });
 
   document.getElementById('quizResetBtn').addEventListener('click', () => {
