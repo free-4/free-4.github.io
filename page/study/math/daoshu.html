@@ -4,177 +4,481 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>导数 · 从零到精通</title>
-  <script src="https://shuoweb.com/common.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <style>
+    /* ============ 设计系统 ============ */
     :root {
-      --accent: #5856D6;
-      --success: #34C759;
-      --warning: #FF9500;
-      --error: #FF3B30;
-      --code-bg: rgba(0, 0, 0, 0.04);
-      --tangent: #FF9500;
-      --curve: var(--primary);
-      --deriv: #5856D6;
+      --ink: #1a2238;
+      --ink-soft: #3d4a6b;
+      --ink-light: #6b7593;
+      --amber: #e8943b;
+      --amber-dark: #c97a1e;
+      --amber-light: #fdf4e6;
+      --teal: #2a9d8f;
+      --teal-dark: #1f7a6e;
+      --teal-light: #e6f4f2;
+      --coral: #e76f51;
+      --coral-light: #fde8e2;
+      --cream: #faf7f2;
+      --white: #ffffff;
+      --border: #e2ddd4;
+      --border-strong: #c9c2b6;
+      --shadow-sm: 0 1px 3px rgba(26,34,56,0.06);
+      --shadow: 0 4px 16px rgba(26,34,56,0.08);
+      --shadow-lg: 0 12px 40px rgba(26,34,56,0.12);
+      --radius: 14px;
+      --radius-sm: 8px;
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* ===== SVG 图标 ===== */
-    .icon-svg {
-      width: 1em;
-      height: 1em;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      vertical-align: middle;
-      flex-shrink: 0;
-    }
-    .logo .icon-svg { width: 22px; height: 22px; }
-    .theme-btn .icon-svg { width: 15px; height: 15px; margin-right: 4px; }
-    .tip-icon { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; flex-shrink: 0; }
-    .tip-icon .icon-svg { width: 22px; height: 22px; }
-    .btn .icon-svg, button .icon-svg { width: 15px; height: 15px; margin-right: 5px; vertical-align: -2px; }
-    .back-top .icon-svg { width: 20px; height: 20px; margin: 0; }
-    .app-icon .icon-svg { width: 24px; height: 24px; }
-    .quiz-feedback .icon-svg { width: 16px; height: 16px; margin-right: 4px; vertical-align: -2px; }
-    .quiz-score .icon-svg { width: 20px; height: 20px; margin-right: 6px; vertical-align: -3px; }
-    .calc-output .icon-svg { width: 16px; height: 16px; margin-right: 4px; vertical-align: -2px; }
-
-    /* ===== 滚动进度条 ===== */
-    .scroll-progress {
-      position: fixed;
-      top: 0; left: 0;
-      height: 3px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      z-index: 999;
-      transition: width 0.1s ease;
+    [data-theme="dark"] {
+      --ink: #e8e4dc;
+      --ink-soft: #b8b0a2;
+      --ink-light: #8a8275;
+      --amber: #f0a85a;
+      --amber-dark: #e8943b;
+      --amber-light: #2a2318;
+      --teal: #3dbfae;
+      --teal-dark: #2a9d8f;
+      --teal-light: #152826;
+      --coral: #f08a6e;
+      --coral-light: #2a1a15;
+      --cream: #15181f;
+      --white: #1e222b;
+      --border: #2d3340;
+      --border-strong: #3d4453;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+      --shadow: 0 4px 16px rgba(0,0,0,0.25);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.35);
     }
 
-    /* ===== 导航栏 ===== */
-    .nav-bar {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      transition: background 0.3s, color 0.3s;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============ 排版 ============ */
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', 'Noto Serif SC', serif;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--amber-light);
+      color: var(--amber-dark);
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 0.88em;
+    }
+
+    /* ============ 顶部栏 ============ */
+    .topbar {
       position: sticky;
       top: 0;
-      z-index: 90;
-      display: flex;
-      gap: 8px;
-      padding: 10px 5%;
-      overflow-x: auto;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      white-space: nowrap;
-      scrollbar-width: none;
-      border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
-    .nav-bar::-webkit-scrollbar { display: none; }
-    .nav-item {
-      padding: 7px 16px;
-      border-radius: 20px;
-      font-size: 13px;
-      cursor: pointer;
-      background: var(--primary-light);
-      color: var(--primary);
-      flex-shrink: 0;
-      border: none;
-      font-family: inherit;
-      transition: var(--transition);
-      box-shadow: none;
-    }
-    .nav-item:hover {
-      background: var(--primary);
-      color: #fff !important;
-      transform: translateY(-1px);
-    }
-    .nav-item.active {
-      background: var(--primary);
-      color: #fff !important;
-      box-shadow: 0 4px 12px rgba(0,122,255,0.25);
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
     }
 
-    /* ===== 通用内容 ===== */
-    .lesson-section {
-      padding: 50px 20px 20px;
-      max-width: 900px;
+    .topbar-inner {
+      max-width: 960px;
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
     }
-    .lesson-section h2 {
-      font-size: clamp(22px, 4vw, 30px);
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Fraunces', serif;
       font-weight: 800;
-      margin: 0 0 8px 0;
-      color: var(--text-main);
+      font-size: 20px;
+      color: var(--ink);
+      text-decoration: none;
     }
-    .lesson-section .subtitle {
-      color: var(--text-sub);
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--ink);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-icon svg { width: 18px; height: 18px; }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ============ 按钮 ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .btn-primary:hover {
+      background: var(--ink-soft);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-amber {
+      background: var(--amber);
+      color: #fff;
+    }
+    .btn-amber:hover {
+      background: var(--amber-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(232,148,59,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--border-strong);
+    }
+    .btn-outline:hover {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink-soft);
+      padding: 8px 12px;
+    }
+    .btn-ghost:hover {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: var(--ink-soft);
+      transition: var(--transition);
+    }
+    .icon-btn:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: var(--cream);
+    }
+    .icon-btn svg { width: 18px; height: 18px; }
+
+    /* ============ 导航条 ============ */
+    .nav-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-strip::-webkit-scrollbar { display: none; }
+
+    .nav-strip-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      gap: 4px;
+      padding: 8px 24px;
+    }
+
+    .nav-pill {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: var(--ink-light);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .nav-pill:hover {
+      background: var(--cream);
+      color: var(--ink);
+    }
+    .nav-pill.active {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    /* ============ 布局 ============ */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--amber-dark);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: clamp(24px, 5vw, 32px);
+      margin-bottom: 6px;
+    }
+
+    .section-sub {
+      color: var(--ink-light);
       font-size: 15px;
       margin-bottom: 24px;
     }
-    .lesson-section p {
-      color: var(--text-main);
+
+    p {
+      margin: 14px 0;
       font-size: 15px;
-      line-height: 1.8;
-      margin: 12px 0;
+      color: var(--ink-soft);
     }
-    .lesson-section strong {
-      color: var(--primary);
+
+    p strong, strong {
+      color: var(--ink);
       font-weight: 700;
     }
 
-    /* ===== Canvas 包裹 ===== */
-    .canvas-wrapper {
-      background: var(--card-bg);
-      border: 1px solid rgba(255,255,255,0.4);
+    .hl-amber { color: var(--amber-dark); font-weight: 600; }
+    .hl-teal { color: var(--teal-dark); font-weight: 600; }
+    .hl-coral { color: var(--coral); font-weight: 600; }
+
+    /* ============ Hero ============ */
+    .hero {
+      text-align: center;
+      padding: 60px 24px 40px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 7vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 .accent {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 520px;
+      margin: 16px auto 0;
+      font-size: 16px;
+      color: var(--ink-light);
+    }
+
+    /* ============ 卡片 ============ */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 16px 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-tinted {
+      background: var(--amber-light);
+      border-color: transparent;
+    }
+    [data-theme="dark"] .card-tinted {
+      border-color: var(--border);
+    }
+
+    .card-teal {
+      background: var(--teal-light);
+      border-color: transparent;
+    }
+    [data-theme="dark"] .card-teal {
+      border-color: var(--border);
+    }
+
+    /* ============ 提示框 ============ */
+    .tip {
+      display: flex;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: var(--radius);
+      margin: 16px 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .tip-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tip-icon svg { width: 16px; height: 16px; }
+
+    .tip-amber {
+      background: var(--amber-light);
+    }
+    .tip-amber .tip-icon { background: var(--amber); color: #fff; }
+    .tip-amber strong { color: var(--amber-dark); }
+
+    .tip-teal {
+      background: var(--teal-light);
+    }
+    .tip-teal .tip-icon { background: var(--teal); color: #fff; }
+    .tip-teal strong { color: var(--teal-dark); }
+
+    .tip-coral {
+      background: var(--coral-light);
+    }
+    .tip-coral .tip-icon { background: var(--coral); color: #fff; }
+    .tip-coral strong { color: var(--coral); }
+
+    [data-theme="dark"] .tip-amber { color: var(--ink-soft); }
+    [data-theme="dark"] .tip-teal { color: var(--ink-soft); }
+    [data-theme="dark"] .tip-coral { color: var(--ink-soft); }
+
+    /* ============ 数学公式 ============ */
+    .math-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      margin: 16px 0;
+      text-align: center;
+      font-size: 1.1em;
+      overflow-x: auto;
+    }
+
+    .math-box.tinted {
+      background: var(--amber-light);
+      border-color: transparent;
+      border-left: 3px solid var(--amber);
+    }
+
+    /* ============ Canvas ============ */
+    .canvas-box {
+      background: var(--white);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 16px;
       margin: 16px 0;
-      box-shadow: var(--shadow) !important;
+      box-shadow: var(--shadow-sm);
     }
+
     canvas {
       display: block;
       width: 100%;
-      height: 320px;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
     }
-    canvas.tall { height: 380px; }
-    canvas.short { height: 220px; }
 
-    /* ===== 控件区域 ===== */
+    .canvas-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    /* ============ 控件 ============ */
     .controls {
-      display: flex !important;
+      display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 12px;
-      margin: 12px 0;
-      justify-content: flex-start !important;
+      margin-top: 12px;
     }
+
     .control-group {
-      display: flex !important;
+      display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       flex: 1;
-      min-width: 200px;
+      min-width: 180px;
     }
+
     .control-group label {
       font-size: 13px;
-      color: var(--text-sub);
+      font-weight: 500;
+      color: var(--ink-soft);
       white-space: nowrap;
     }
+
     input[type="range"] {
       -webkit-appearance: none;
       appearance: none;
-      width: 100%;
-      max-width: none;
+      flex: 1;
       height: 6px;
-      background: var(--primary-light);
+      background: var(--border);
       border-radius: 3px;
       outline: none;
-      padding: 0;
-      margin: 0;
-      box-shadow: none !important;
-      border: none;
       cursor: pointer;
     }
     input[type="range"]::-webkit-slider-thumb {
@@ -182,123 +486,67 @@
       appearance: none;
       width: 18px;
       height: 18px;
-      background: var(--primary);
+      background: var(--amber);
       border-radius: 50%;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,122,255,0.3);
-      border: 2px solid #fff;
+      border: 2px solid var(--white);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
     input[type="range"]::-moz-range-thumb {
       width: 18px;
       height: 18px;
-      background: var(--primary);
+      background: var(--amber);
       border-radius: 50%;
       cursor: pointer;
-      border: 2px solid #fff;
+      border: 2px solid var(--white);
     }
-    .info-badge {
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--white);
+      outline: none;
+      transition: var(--transition);
+    }
+    input[type="text"]:focus {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(232,148,59,0.15);
+    }
+
+    .badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      background: var(--primary-light);
-      color: var(--primary);
+      gap: 4px;
+      padding: 5px 12px;
       border-radius: 20px;
       font-size: 13px;
       font-weight: 600;
-      font-family: 'KaTeX_Main', monospace;
+      font-family: 'JetBrains Mono', monospace;
     }
-    .info-badge.orange { background: rgba(255,149,0,0.12); color: var(--warning); }
-    .info-badge.purple { background: rgba(88,86,214,0.12); color: var(--accent); }
+    .badge-amber { background: var(--amber-light); color: var(--amber-dark); }
+    .badge-teal { background: var(--teal-light); color: var(--teal-dark); }
+    .badge-coral { background: var(--coral-light); color: var(--coral); }
+    .badge-ink { background: var(--ink); color: var(--cream); }
 
-    /* ===== 数学公式展示 ===== */
-    .math-box {
-      background: var(--card-bg);
-      border-left: 3px solid var(--primary);
-      border-radius: 12px;
-      padding: 18px 24px;
-      margin: 16px 0;
-      text-align: center;
-      font-size: 1.15em;
-      box-shadow: var(--shadow) !important;
-      overflow-x: auto;
-    }
-    .math-box.highlight {
-      border-left-color: var(--warning);
-      background: rgba(255,149,0,0.05);
-    }
-
-    /* ===== 知识卡片 ===== */
-    .tip-card {
-      display: flex;
-      gap: 12px;
-      padding: 16px 20px;
-      background: var(--primary-light);
-      border-radius: 12px;
-      margin: 12px 0;
-      font-size: 14px;
-      line-height: 1.7;
-      box-shadow: none !important;
-    }
-    .tip-card .tip-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-    .tip-card.warn { background: rgba(255,149,0,0.1); }
-
-    /* ===== 法则卡片 ===== */
-    .rule-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: var(--radius);
-      padding: 24px;
-      margin: 16px 0;
-      box-shadow: var(--shadow) !important;
-      overflow: hidden;
-      position: relative;
-    }
-    .rule-card .rule-tag {
-      display: inline-block;
-      padding: 4px 12px;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .rule-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin: 0 0 12px 0;
-      color: var(--text-main);
-    }
-
-    /* ===== 步骤展示 ===== */
-    .step-container {
-      margin: 16px 0;
-    }
-    .step-item {
+    /* ============ 步骤 ============ */
+    .step {
       display: flex;
       gap: 14px;
-      padding: 14px 18px;
-      margin: 8px 0;
-      background: var(--card-bg);
-      border-radius: 12px;
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03) !important;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
     }
-    .step-item.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .step-number {
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
       width: 28px;
       height: 28px;
-      background: var(--primary);
-      color: #fff;
+      background: var(--ink);
+      color: var(--cream);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -306,266 +554,326 @@
       font-size: 13px;
       font-weight: 700;
       flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
     }
-    .step-content {
+
+    .step-body {
       flex: 1;
       font-size: 14px;
       line-height: 1.8;
-      color: var(--text-main);
+      color: var(--ink-soft);
+      padding-top: 2px;
     }
 
-    /* ===== 公式表 ===== */
-    .formula-table {
+    /* ============ 表格 ============ */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    table {
       width: 100%;
       border-collapse: collapse;
-      margin: 16px 0;
       font-size: 14px;
     }
-    .formula-table th {
-      background: var(--primary-light);
-      color: var(--primary);
+
+    th {
+      background: var(--ink);
+      color: var(--cream);
       padding: 12px 16px;
       text-align: left;
       font-weight: 600;
-      border-radius: 8px 8px 0 0;
-    }
-    .formula-table td {
-      padding: 10px 16px;
-      border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
-    .formula-table tr:hover td {
-      background: var(--primary-light);
+      font-size: 13px;
     }
 
-    /* ===== 计算器 ===== */
-    .calc-input-row {
-      display: flex !important;
-      gap: 10px;
-      align-items: center;
-      margin: 12px 0;
-      justify-content: flex-start !important;
+    td {
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-soft);
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--cream); }
+
+    /* ============ 标签按钮组 ============ */
+    .tabs {
+      display: flex;
       flex-wrap: wrap;
-    }
-    .calc-input {
-      flex: 1;
-      min-width: 200px;
-    }
-    .calc-output {
-      padding: 16px 20px;
-      background: var(--card-bg);
-      border-radius: 12px;
-      margin: 12px 0;
-      font-size: 1.1em;
-      text-align: center;
-      box-shadow: var(--shadow) !important;
-      min-height: 50px;
-    }
-    .calc-output.error {
-      border-left: 3px solid var(--error);
-      color: var(--error);
+      gap: 8px;
+      margin: 16px 0;
     }
 
-    /* ===== 测验 ===== */
-    .quiz-question {
-      background: var(--card-bg);
-      border: 1px solid rgba(255,255,255,0.4);
+    .tab {
+      padding: 8px 16px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--white);
+      color: var(--ink-soft);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .tab:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .tab.active {
+      background: var(--ink);
+      color: var(--cream);
+      border-color: var(--ink);
+    }
+
+    /* ============ 法则卡片 ============ */
+    .rule {
+      background: var(--white);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 24px;
       margin: 16px 0;
-      box-shadow: var(--shadow) !important;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
     }
-    .quiz-question h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin: 0 0 16px 0;
-      color: var(--text-main);
+
+    .rule::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--amber);
     }
-    .quiz-option {
+
+    .rule-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      background: var(--amber-light);
+      color: var(--amber-dark);
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .rule h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    /* ============ 测验 ============ */
+    .quiz-q {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 16px 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quiz-q h3 {
+      font-size: 15px;
+      margin-bottom: 14px;
+      color: var(--ink);
+    }
+
+    .quiz-q p.q-text {
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .quiz-opt {
       display: block;
       width: 100%;
-      padding: 12px 18px;
-      margin: 6px 0;
-      background: rgba(0,0,0,0.02);
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 14px;
-      color: var(--text-main);
-      border: 2px solid transparent;
-      transition: var(--transition);
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--ink-soft);
+      border-radius: var(--radius-sm);
       font-family: inherit;
-      box-shadow: none !important;
+      font-size: 14px;
       text-align: left;
+      cursor: pointer;
+      transition: var(--transition);
     }
-    .quiz-option:hover {
-      border-color: var(--primary);
-      background: var(--primary-light);
-      transform: translateX(4px);
+    .quiz-opt:hover {
+      border-color: var(--ink);
+      color: var(--ink);
     }
-    .quiz-option.correct {
-      background: rgba(52, 199, 89, 0.12);
-      border-color: var(--success);
-      color: var(--success);
+    .quiz-opt.selected {
+      border-color: var(--amber);
+      background: var(--amber-light);
+      color: var(--amber-dark);
     }
-    .quiz-option.wrong {
-      background: rgba(255, 59, 48, 0.12);
-      border-color: var(--error);
-      color: var(--error);
+    .quiz-opt.correct {
+      border-color: var(--teal);
+      background: var(--teal-light);
+      color: var(--teal-dark);
     }
-    .quiz-option:disabled {
-      cursor: default;
+    .quiz-opt.wrong {
+      border-color: var(--coral);
+      background: var(--coral-light);
+      color: var(--coral);
     }
-    .quiz-feedback {
+    .quiz-opt:disabled { cursor: default; }
+
+    .quiz-fb {
       margin-top: 10px;
-      padding: 10px 14px;
-      border-radius: 8px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
       font-size: 13px;
+      line-height: 1.7;
       display: none;
     }
-    .quiz-feedback.show { display: block; }
-    .quiz-feedback.correct {
-      background: rgba(52,199,89,0.1);
-      color: var(--success);
-    }
-    .quiz-feedback.wrong {
-      background: rgba(255,59,48,0.1);
-      color: var(--error);
-    }
+    .quiz-fb.show { display: block; }
+    .quiz-fb.correct { background: var(--teal-light); color: var(--teal-dark); }
+    .quiz-fb.wrong { background: var(--coral-light); color: var(--coral); }
+
     .quiz-score {
       text-align: center;
-      font-size: 22px;
-      font-weight: 800;
-      padding: 20px;
+      padding: 24px;
       margin: 16px 0;
-      background: var(--primary-light);
+      background: var(--ink);
+      color: var(--cream);
       border-radius: var(--radius);
-      color: var(--primary);
+      font-size: 20px;
+      font-weight: 700;
+      font-family: 'Fraunces', serif;
       display: none;
     }
     .quiz-score.show { display: block; }
+    .quiz-score svg { width: 24px; height: 24px; vertical-align: -4px; margin-right: 8px; }
 
-    /* ===== 应用卡片 ===== */
+    /* ============ 应用网格 ============ */
     .app-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
       margin: 16px 0;
     }
+
     .app-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(255,255,255,0.4);
+      background: var(--white);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow) !important;
+      padding: 20px;
       transition: var(--transition);
     }
     .app-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 32px -12px rgba(0,0,0,0.08) !important;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--border-strong);
     }
-    .app-card .app-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--primary-light);
+
+    .app-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
       margin-bottom: 12px;
     }
-    .app-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin: 0 0 8px 0;
-    }
-    .app-card p {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.7;
-      margin: 0;
-    }
+    .app-icon svg { width: 22px; height: 22px; }
 
-    /* ===== 回到顶部 ===== */
+    .app-icon.bg-amber { background: var(--amber-light); color: var(--amber-dark); }
+    .app-icon.bg-teal { background: var(--teal-light); color: var(--teal-dark); }
+    .app-icon.bg-coral { background: var(--coral-light); color: var(--coral); }
+    .app-icon.bg-ink { background: var(--ink); color: var(--cream); }
+
+    .app-card h3 { font-size: 15px; margin-bottom: 6px; }
+    .app-card p { font-size: 13px; margin: 0; color: var(--ink-light); }
+
+    /* ============ 回到顶部 ============ */
     .back-top {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
+      bottom: 24px;
+      right: 24px;
       width: 44px;
       height: 44px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
+      background: var(--ink);
+      color: var(--cream);
       border: none;
+      border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 16px rgba(0,122,255,0.3);
+      box-shadow: var(--shadow-lg);
       z-index: 80;
       opacity: 0;
       pointer-events: none;
       transition: var(--transition);
-      font-size: 20px;
-      padding: 0;
-      margin: 0;
     }
-    .back-top.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .back-top:hover {
-      transform: translateY(-3px) scale(1.05);
+    .back-top.show { opacity: 1; pointer-events: auto; }
+    .back-top:hover { transform: translateY(-3px); }
+    .back-top svg { width: 20px; height: 20px; }
+
+    /* ============ 页脚 ============ */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--ink-light);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
     }
 
-    /* ===== Reveal 动画 ===== */
+    /* ============ Reveal ============ */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+      transform: translateY(24px);
+      transition: opacity 0.6s, transform 0.6s;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============ 进度条 ============ */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--amber);
+      z-index: 200;
+      transition: width 0.1s;
     }
 
-    /* ===== 颜色高亮 ===== */
-    .hl-blue { color: var(--primary); font-weight: 600; }
-    .hl-orange { color: var(--warning); font-weight: 600; }
-    .hl-purple { color: var(--accent); font-weight: 600; }
-    .hl-green { color: var(--success); font-weight: 600; }
-
-    /* ===== 示例选择器 ===== */
-    .example-tabs {
-      display: flex !important;
-      gap: 8px;
+    /* ============ 计算器输出 ============ */
+    .calc-out {
+      padding: 18px 20px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
       margin: 12px 0;
-      flex-wrap: wrap;
-      justify-content: flex-start !important;
+      text-align: center;
+      font-size: 1.05em;
+      min-height: 50px;
     }
-    .example-tab {
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-size: 13px;
-      cursor: pointer;
-      background: var(--primary-light);
-      color: var(--primary);
-      border: none;
-      font-family: inherit;
-      box-shadow: none !important;
-      transition: var(--transition);
-    }
-    .example-tab.active {
-      background: var(--primary);
-      color: #fff !important;
+    .calc-out.error {
+      border-color: var(--coral);
+      background: var(--coral-light);
+      color: var(--coral);
     }
 
-    /* ===== 响应式 ===== */
+    /* ============ 移动端 ============ */
     @media (max-width: 600px) {
-      canvas { height: 260px; }
-      canvas.tall { height: 300px; }
-      .lesson-section { padding: 30px 16px 16px; }
-      .math-box { font-size: 1em; padding: 14px; }
+      .topbar-inner { padding: 12px 16px; }
+      .nav-strip-inner { padding: 8px 16px; }
+      .container { padding: 0 16px; }
+      .hero { padding: 40px 16px 30px; }
+      section { padding: 36px 0; }
+      .card, .rule, .quiz-q { padding: 18px; }
+      .controls { gap: 8px; }
       .control-group { min-width: 100%; }
+      .app-grid { grid-template-columns: 1fr; }
+      .brand { font-size: 17px; }
+      .brand-icon { width: 28px; height: 28px; }
     }
   </style>
 </head>
@@ -573,72 +881,90 @@
 
 <!-- SVG 图标库 -->
 <svg style="display:none;" aria-hidden="true">
-  <symbol id="i-triangle" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/><path d="M12 8v8"/><circle cx="12" cy="18" r="0.5" fill="currentColor"/></symbol>
-  <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="8.5" cy="10.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15.5" cy="10.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.2 0-1 .9-1.5 2-1.5h2.5A4 4 0 0 0 22 12c0-5.5-4.5-10-10-10z"/></symbol>
-  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 17v5"/><path d="M9 10.7V3h6v7.7l3 4.3H6l3-4.3z"/></symbol>
-  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></symbol>
-  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
-  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></symbol>
-  <symbol id="i-save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></symbol>
-  <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h0M10 10h0M14 10h0M18 10h0M6 14h0M18 14h0M9 14h6"/></symbol>
-  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="currentColor"/></symbol>
-  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.8-3.4L23 10"/><path d="M20.5 15a9 9 0 0 1-14.8 3.4L1 14"/></symbol>
-  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></symbol>
-  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></symbol>
-  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></symbol>
-  <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 17h14M3 17l2-7h14l2 7v3h-3v-2H6v2H3v-3z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></symbol>
-  <symbol id="i-trend-up" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
-  <symbol id="i-bar-chart" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></symbol>
-  <symbol id="i-trend-down" viewBox="0 0 24 24"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></symbol>
-  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2 2.8-2.8z"/></symbol>
-  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></symbol>
-  <symbol id="i-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></symbol>
-  <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 16.5 14 18.5 21 12 17 5.5 21 7.5 14 2 9.3 9 9 12 2"/></symbol>
-  <symbol id="i-thumbs-up" viewBox="0 0 24 24"><path d="M7 10v12M7 10l4-8c1 0 2 1 2 3v4h6.5a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18 22H7"/></symbol>
-  <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="i-sigma" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4H6l6 8-6 8h12"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.7V3h6v7.7l3 4.3H6l3-4.3z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></symbol>
+  <symbol id="i-keyboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h0M10 10h0M14 10h0M18 10h0M6 14h0M18 14h0M9 14h6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 4 20 12 6 20 6 4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.8-3.4L23 10"/><path d="M20.5 15a9 9 0 0 1-14.8 3.4L1 14"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M3 17l2-7h14l2 7v3h-3v-2H6v2H3v-3z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></symbol>
+  <symbol id="i-trend-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+  <symbol id="i-bar-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></symbol>
+  <symbol id="i-trend-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2 2.8-2.8z"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9.3 16.5 14 18.5 21 12 17 5.5 21 7.5 14 2 9.3 9 9 12 2"/></symbol>
+  <symbol id="i-thumbs-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12M7 10l4-8c1 0 2 1 2 3v4h6.5a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18 22H7"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
 </svg>
 
-<!-- 滚动进度条 -->
-<div class="scroll-progress" id="scrollProgress"></div>
+<div class="progress-bar" id="progressBar"></div>
 
-<!-- 章节导航 -->
-<nav class="nav-bar" id="navBar">
-  <button class="nav-item active" data-target="intro">什么是导数</button>
-  <button class="nav-item" data-target="limit">极限思想</button>
-  <button class="nav-item" data-target="geo">几何意义</button>
-  <button class="nav-item" data-target="basic">基本法则</button>
-  <button class="nav-item" data-target="advanced">进阶法则</button>
-  <button class="nav-item" data-target="formulas">公式表</button>
-  <button class="nav-item" data-target="examples">解题实战</button>
-  <button class="nav-item" data-target="calc">计算器</button>
-  <button class="nav-item" data-target="plots">图像关系</button>
-  <button class="nav-item" data-target="apps">应用</button>
-  <button class="nav-item" data-target="quiz">小测验</button>
-</nav>
+<!-- 顶部栏 -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="#" class="brand">
+      <span class="brand-icon" style="color:var(--cream);">
+        <svg><use href="#i-sigma"/></svg>
+      </span>
+      导数课堂
+    </a>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="切换主题">
+        <svg id="themeIcon"><use href="#i-moon"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="nav-strip">
+    <div class="nav-strip-inner" id="navStrip">
+      <button class="nav-pill active" data-target="intro">什么是导数</button>
+      <button class="nav-pill" data-target="limit">极限思想</button>
+      <button class="nav-pill" data-target="geo">几何意义</button>
+      <button class="nav-pill" data-target="basic">基本法则</button>
+      <button class="nav-pill" data-target="advanced">进阶法则</button>
+      <button class="nav-pill" data-target="formulas">公式表</button>
+      <button class="nav-pill" data-target="examples">解题实战</button>
+      <button class="nav-pill" data-target="calc">计算器</button>
+      <button class="nav-pill" data-target="plots">图像关系</button>
+      <button class="nav-pill" data-target="apps">应用</button>
+      <button class="nav-pill" data-target="quiz">小测验</button>
+    </div>
+  </div>
+</div>
 
 <!-- Hero -->
 <div class="hero">
-  <h1>导数 · 微积分的核心</h1>
-  <p>用动画讲清楚导数的<strong style="color:var(--primary)">本质</strong>、<strong style="color:var(--primary)">求法</strong>与<strong style="color:var(--primary)">应用</strong>，从直觉到解题，一步步带你学会</p>
+  <h1>导数 · <span class="accent">微积分的核心</span></h1>
+  <p>用动画讲清楚导数的<strong>本质</strong>、<strong>求法</strong>与<strong>应用</strong>，从直觉到解题，一步步带你学会</p>
 </div>
 
-<div id="content">
+<div class="container">
 
-  <!-- ====== Section 1: 什么是导数 ====== -->
-  <div class="lesson-section reveal" id="intro">
+  <!-- ====== 什么是导数 ====== -->
+  <section id="intro" class="reveal">
+    <span class="section-label">01 / 概念引入</span>
     <h2>什么是导数？</h2>
-    <div class="subtitle">从「瞬时速度」说起</div>
+    <p class="section-sub">从「瞬时速度」说起</p>
 
     <p>想象你在开车，仪表盘显示<strong>60 km/h</strong>。这个数字代表什么？它不是某一段路程的平均速度，而是<strong>此时此刻</strong>的瞬时速度。</p>
 
     <p>但「瞬时」是一个时间点，时间长度为零——路程除以零时间没有意义。那这个 60 km/h 是怎么来的？</p>
 
-    <div class="tip-card">
-      <span class="tip-icon"><svg class="icon-svg"><use href="#i-bulb"/></svg></span>
+    <div class="tip tip-amber">
+      <div class="tip-icon"><svg><use href="#i-bulb"/></svg></div>
       <div><strong>核心思想：</strong>取一段极短的时间 Δt，算平均速度 = Δ路程 / Δt。让 Δt 越来越小、趋近于零，平均速度就「逼近」一个极限值——这个极限就是<strong>瞬时速度</strong>。</div>
     </div>
 
@@ -648,111 +974,111 @@
       $$f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}$$
     </div>
 
-    <div class="tip-card warn">
-      <span class="tip-icon"><svg class="icon-svg"><use href="#i-pin"/></svg></span>
+    <div class="tip tip-teal">
+      <div class="tip-icon"><svg><use href="#i-pin"/></svg></div>
       <div>上面的公式读作：「f Prime of x 等于，当 Δx 趋近于 0 时，f(x+Δx) 减 f(x) 除以 Δx 的极限」。这个公式是<strong>一切导数的根基</strong>。</div>
     </div>
-  </div>
+  </section>
 
-  <!-- ====== Section 2: 极限思想 ====== -->
-  <div class="lesson-section reveal" id="limit">
+  <!-- ====== 极限思想 ====== -->
+  <section id="limit" class="reveal">
+    <span class="section-label">02 / 极限动画</span>
     <h2>极限思想 —— 从割线到切线</h2>
-    <div class="subtitle">看动画理解导数是怎么「逼」出来的</div>
+    <p class="section-sub">看动画理解导数是怎么「逼」出来的</p>
 
     <p>在曲线 $y = x^2$ 上取一个定点 $P$，再取另一个点 $Q$。连接 $P$、$Q$ 得到一条<strong>割线</strong>。让 $Q$ 沿着曲线不断靠近 $P$，割线的斜率会逐渐趋向一个固定值——当 $Q$ 与 $P$ 重合时，割线就变成了<strong>切线</strong>，切线的斜率就是导数。</p>
 
-    <div class="canvas-wrapper">
+    <div class="canvas-box">
       <canvas id="secantCanvas"></canvas>
       <div class="controls">
-        <button class="btn btn-scale" id="secantPlayBtn"><svg class="icon-svg"><use href="#i-play"/></svg>播放动画</button>
+        <button class="btn btn-amber" id="secantPlayBtn"><svg><use href="#i-play"/></svg>播放动画</button>
         <div class="control-group">
           <label>Δx =</label>
           <input type="range" id="dxSlider" min="0" max="2" step="0.01" value="2">
-          <span class="info-badge" id="dxValue">2.000</span>
+          <span class="badge badge-ink" id="dxValue">2.000</span>
         </div>
         <div class="control-group">
-          <label>割线斜率 →</label>
-          <span class="info-badge orange" id="slopeValue">3.000</span>
+          <label>割线斜率</label>
+          <span class="badge badge-amber" id="slopeValue">3.000</span>
         </div>
       </div>
-      <div class="tip-card" id="limitMessage" style="opacity:0; transition: opacity 0.5s;">
-        <span class="tip-icon"><svg class="icon-svg"><use href="#i-target"/></svg></span>
+      <div class="tip tip-teal" id="limitMessage" style="display:none; margin-top:12px;">
+        <div class="tip-icon"><svg><use href="#i-target"/></svg></div>
         <div>当 Δx → 0 时，割线变成了<strong>切线</strong>！切线斜率 = <strong>2.000</strong>，这就是 $f'(1) = 2 \times 1 = 2$。</div>
       </div>
     </div>
 
-    <p>看右边的斜率值：当 $\Delta x = 2$ 时割线斜率是 3，随着 $\Delta x$ 缩小，斜率越来越接近 <strong>2</strong>。这个 2 就是 $f(x)=x^2$ 在 $x=1$ 处的导数值。</p>
-
-    <div class="math-box highlight">
+    <div class="math-box tinted">
       $$\frac{f(1+\Delta x) - f(1)}{\Delta x} = \frac{(1+\Delta x)^2 - 1}{\Delta x} = \frac{2\Delta x + (\Delta x)^2}{\Delta x} = 2 + \Delta x \xrightarrow{\Delta x \to 0} 2$$
     </div>
 
     <p>可以看到，化简后斜率 $= 2 + \Delta x$，当 $\Delta x \to 0$ 时结果就是 <strong>2</strong>。这就是用极限定义求导的完整过程。</p>
-  </div>
+  </section>
 
-  <!-- ====== Section 3: 几何意义 ====== -->
-  <div class="lesson-section reveal" id="geo">
+  <!-- ====== 几何意义 ====== -->
+  <section id="geo" class="reveal">
+    <span class="section-label">03 / 交互探索</span>
     <h2>几何意义 —— 切线的斜率</h2>
-    <div class="subtitle">拖动滑块，看看每个点的切线长什么样</div>
+    <p class="section-sub">拖动滑块，看看每个点的切线长什么样</p>
 
     <p>导数 $f'(a)$ 的几何意义就是：函数图像在点 $(a, f(a))$ 处<strong>切线的斜率</strong>。拖动下面的滑块改变 $x$ 的位置，观察切线的变化。</p>
 
-    <div class="canvas-wrapper">
-      <canvas id="tangentCanvas" class="tall"></canvas>
+    <div class="canvas-box">
+      <canvas id="tangentCanvas"></canvas>
       <div class="controls">
         <div class="control-group">
           <label>x =</label>
           <input type="range" id="tangentSlider" min="-2.5" max="2.5" step="0.05" value="0">
-          <span class="info-badge" id="tangentX">0.00</span>
+          <span class="badge badge-ink" id="tangentX">0.00</span>
         </div>
-        <span class="info-badge orange">切线斜率 = <span id="tangentSlope">0.00</span></span>
-        <span class="info-badge purple">f(x) = <span id="tangentY">0.00</span></span>
+        <span class="badge badge-amber">斜率 <span id="tangentSlope">0.00</span></span>
+        <span class="badge badge-teal">f(x) <span id="tangentY">0.00</span></span>
       </div>
-      <div class="controls">
-        <label>选择函数：</label>
-        <button class="example-tab active" data-func="x2">$y=x^2$</button>
-        <button class="example-tab" data-func="x3">$y=x^3$</button>
-        <button class="example-tab" data-func="sin">$y=\sin(x)$</button>
-        <button class="example-tab" data-func="exp">$y=e^x$</button>
+      <div class="tabs" style="margin-top:12px;">
+        <button class="tab active" data-func="x2">$y=x^2$</button>
+        <button class="tab" data-func="x3">$y=x^3$</button>
+        <button class="tab" data-func="sin">$y=\sin x$</button>
+        <button class="tab" data-func="exp">$y=e^x$</button>
       </div>
     </div>
 
-    <div class="tip-card">
-      <span class="tip-icon"><svg class="icon-svg"><use href="#i-search"/></svg></span>
-      <div><strong>观察要点：</strong>① 切线斜率 > 0 时（蓝色），函数在<strong>上升</strong>；② 斜率 < 0 时，函数在<strong>下降</strong>；③ 斜率 = 0 时（水平切线），函数到达<strong>极值点</strong>（最高或最低）。这就是导数判断函数增减性的原理！</div>
+    <div class="tip tip-amber">
+      <div class="tip-icon"><svg><use href="#i-search"/></svg></div>
+      <div><strong>观察要点：</strong>① 切线斜率 &gt; 0 时，函数在<strong>上升</strong>；② 斜率 &lt; 0 时，函数在<strong>下降</strong>；③ 斜率 = 0 时（水平切线），函数到达<strong>极值点</strong>。这就是导数判断函数增减性的原理！</div>
     </div>
-  </div>
+  </section>
 
-  <!-- ====== Section 4: 基本法则 ====== -->
-  <div class="lesson-section reveal" id="basic">
+  <!-- ====== 基本法则 ====== -->
+  <section id="basic" class="reveal">
+    <span class="section-label">04 / 求导法则</span>
     <h2>基本求导法则</h2>
-    <div class="subtitle">掌握这几条，大部分多项式都能秒求导</div>
+    <p class="section-sub">掌握这几条，大部分多项式都能秒求导</p>
 
-    <div class="rule-card">
+    <div class="rule">
       <span class="rule-tag">法则 1</span>
       <h3>幂法则（Power Rule）—— 最常用</h3>
-      <p>这是求导最核心的法则。对 $x^n$，把指数 $n$ 放到前面当系数，指数减 1：</p>
+      <p>对 $x^n$，把指数 $n$ 放到前面当系数，指数减 1：</p>
       <div class="math-box">
         $$\frac{d}{dx}\left[x^n\right] = n \cdot x^{n-1}$$
       </div>
-      <div class="step-container" id="powerSteps">
-        <div class="step-item show">
-          <div class="step-number">1</div>
-          <div class="step-content">原函数：$f(x) = x^5$</div>
-        </div>
-        <div class="step-item show">
-          <div class="step-number">2</div>
-          <div class="step-content">把指数 <span class="hl-orange">5</span> 放到前面当系数：$f'(x) = \textcolor{orange}{5} \cdot x^{5-1}$</div>
-        </div>
-        <div class="step-item show">
-          <div class="step-number">3</div>
-          <div class="step-content">指数减 1：$f'(x) = 5x^{\textcolor{orange}{4}}$</div>
-        </div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">原函数：$f(x) = x^5$</div>
       </div>
-      <button class="btn btn-scale" id="powerReplayBtn"><svg class="icon-svg"><use href="#i-refresh"/></svg>重新播放</button>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">把指数 <span class="hl-amber">5</span> 放到前面当系数：$f'(x) = \textcolor{orange}{5} \cdot x^{5-1}$</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">指数减 1：$f'(x) = 5x^{\textcolor{orange}{4}}$</div>
+      </div>
+      <div class="controls" style="margin-top:12px;">
+        <button class="btn btn-outline" id="powerReplayBtn"><svg><use href="#i-refresh"/></svg>重新播放</button>
+      </div>
     </div>
 
-    <div class="rule-card">
+    <div class="rule">
       <span class="rule-tag">法则 2</span>
       <h3>常数法则</h3>
       <p>常数的导数为零（常数不变化，变化率 = 0）：</p>
@@ -762,7 +1088,7 @@
       <p>例如：$\frac{d}{dx}[7] = 0$，$\frac{d}{dx}[\pi] = 0$</p>
     </div>
 
-    <div class="rule-card">
+    <div class="rule">
       <span class="rule-tag">法则 3</span>
       <h3>常数倍法则</h3>
       <p>常数可以提到导数外面：</p>
@@ -772,7 +1098,7 @@
       <p>例如：$\frac{d}{dx}[3x^2] = 3 \cdot \frac{d}{dx}[x^2] = 3 \cdot 2x = 6x$</p>
     </div>
 
-    <div class="rule-card">
+    <div class="rule">
       <span class="rule-tag">法则 4</span>
       <h3>加减法则</h3>
       <p>加减法可以逐项求导：</p>
@@ -781,316 +1107,287 @@
       </div>
       <p>例如：$\frac{d}{dx}[x^3 + 2x^2 - 5x + 7] = 3x^2 + 4x - 5 + 0 = 3x^2 + 4x - 5$</p>
     </div>
-  </div>
+  </section>
 
-  <!-- ====== Section 5: 进阶法则 ====== -->
-  <div class="lesson-section reveal" id="advanced">
+  <!-- ====== 进阶法则 ====== -->
+  <section id="advanced" class="reveal">
+    <span class="section-label">05 / 进阶法则</span>
     <h2>进阶求导法则</h2>
-    <div class="subtitle">乘法、除法、复合函数怎么求导</div>
+    <p class="section-sub">乘法、除法、复合函数怎么求导</p>
 
-    <div class="rule-card">
+    <div class="rule">
       <span class="rule-tag">法则 5</span>
       <h3>乘法法则（Product Rule）</h3>
       <p>两个函数相乘，导数 = <strong>前导后不导 + 前不导后导</strong>：</p>
       <div class="math-box">
         $$[f(x) \cdot g(x)]' = f'(x) \cdot g(x) + f(x) \cdot g'(x)$$
       </div>
-      <div class="tip-card">
-        <span class="tip-icon"><svg class="icon-svg"><use href="#i-pencil"/></svg></span>
+      <div class="tip tip-amber" style="margin-bottom:0;">
+        <div class="tip-icon"><svg><use href="#i-pencil"/></svg></div>
         <div><strong>口诀：</strong>「左导右不导，左不导右导，两个相加」。例如 $[(x^2)(\sin x)]' = 2x\sin x + x^2\cos x$</div>
       </div>
     </div>
 
-    <div class="rule-card">
+    <div class="rule">
       <span class="rule-tag">法则 6</span>
       <h3>除法法则（Quotient Rule）</h3>
       <p>两个函数相除：</p>
       <div class="math-box">
         $$\left[\frac{f(x)}{g(x)}\right]' = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$$
       </div>
-      <div class="tip-card">
-        <span class="tip-icon"><svg class="icon-svg"><use href="#i-pencil"/></svg></span>
-        <div><strong>口诀：</strong>「上导下不导，减去，上不导下导，分母平方」。例如 $\left[\frac{x}{x+1}\right]' = \frac{1\cdot(x+1) - x\cdot 1}{(x+1)^2} = \frac{1}{(x+1)^2}$</div>
+      <div class="tip tip-amber" style="margin-bottom:0;">
+        <div class="tip-icon"><svg><use href="#i-pencil"/></svg></div>
+        <div><strong>口诀：</strong>「上导下不导，减去，上不导下导，分母平方」。例如 $\left[\frac{x}{x+1}\right]' = \frac{1}{(x+1)^2}$</div>
       </div>
     </div>
 
-    <div class="rule-card">
+    <div class="rule">
       <span class="rule-tag">法则 7</span>
       <h3>链式法则（Chain Rule）—— 复合函数</h3>
       <p>复合函数 $f(g(x))$ 的导数 = <strong>外层导 × 内层导</strong>：</p>
       <div class="math-box">
         $$\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$$
       </div>
-      <div class="step-container">
-        <div class="step-item show">
-          <div class="step-number">1</div>
-          <div class="step-content">例：求 $\frac{d}{dx}[\sin(x^2)]$</div>
-        </div>
-        <div class="step-item show">
-          <div class="step-number">2</div>
-          <div class="step-content">外层函数 $f(u) = \sin(u)$，内层 $u = g(x) = x^2$</div>
-        </div>
-        <div class="step-item show">
-          <div class="step-number">3</div>
-          <div class="step-content">外层导数 $f'(u) = \cos(u) = \cos(x^2)$</div>
-        </div>
-        <div class="step-item show">
-          <div class="step-number">4</div>
-          <div class="step-content">内层导数 $g'(x) = 2x$</div>
-        </div>
-        <div class="step-item show">
-          <div class="step-number">5</div>
-          <div class="step-content">相乘：$\cos(x^2) \cdot 2x = \textcolor{orange}{2x\cos(x^2)}$</div>
-        </div>
-      </div>
-      <div class="tip-card warn">
-        <span class="tip-icon"><svg class="icon-svg"><use href="#i-alert"/></svg></span>
+      <div class="step"><div class="step-num">1</div><div class="step-body">例：求 $\frac{d}{dx}[\sin(x^2)]$</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">外层 $f(u) = \sin(u)$，内层 $u = g(x) = x^2$</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">外层导数 $f'(u) = \cos(u) = \cos(x^2)$</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">内层导数 $g'(x) = 2x$</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body">相乘：$\cos(x^2) \cdot 2x = \textcolor{orange}{2x\cos(x^2)}$</div></div>
+      <div class="tip tip-coral" style="margin-top:12px; margin-bottom:0;">
+        <div class="tip-icon"><svg><use href="#i-alert"/></svg></div>
         <div><strong>易错提醒：</strong>链式法则最容易漏掉内层导数！记住：每层都要导，从外到内逐层求，最后全部乘起来。</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ====== Section 6: 公式表 ====== -->
-  <div class="lesson-section reveal" id="formulas">
+  <!-- ====== 公式表 ====== -->
+  <section id="formulas" class="reveal">
+    <span class="section-label">06 / 速查表</span>
     <h2>常用导数公式表</h2>
-    <div class="subtitle">收藏这张表，做题时随时查阅</div>
+    <p class="section-sub">收藏这张表，做题时随时查阅</p>
 
-    <table class="formula-table">
-      <thead>
-        <tr>
-          <th>函数 $f(x)$</th>
-          <th>导数 $f'(x)$</th>
-          <th>类型</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>$c$（常数）</td><td>$0$</td><td>常数</td></tr>
-        <tr><td>$x^n$</td><td>$nx^{n-1}$</td><td>幂函数</td></tr>
-        <tr><td>$\sin x$</td><td>$\cos x$</td><td>三角函数</td></tr>
-        <tr><td>$\cos x$</td><td>$-\sin x$</td><td>三角函数</td></tr>
-        <tr><td>$\tan x$</td><td>$\sec^2 x = \frac{1}{\cos^2 x}$</td><td>三角函数</td></tr>
-        <tr><td>$e^x$</td><td>$e^x$</td><td>指数函数</td></tr>
-        <tr><td>$a^x$</td><td>$a^x \ln a$</td><td>指数函数</td></tr>
-        <tr><td>$\ln x$</td><td>$\frac{1}{x}$</td><td>对数函数</td></tr>
-        <tr><td>$\log_a x$</td><td>$\frac{1}{x \ln a}$</td><td>对数函数</td></tr>
-        <tr><td>$\sqrt{x}$</td><td>$\frac{1}{2\sqrt{x}}$</td><td>幂函数</td></tr>
-        <tr><td>$\frac{1}{x}$</td><td>$-\frac{1}{x^2}$</td><td>幂函数</td></tr>
-      </tbody>
-    </table>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>函数 $f(x)$</th><th>导数 $f'(x)$</th><th>类型</th></tr></thead>
+        <tbody>
+          <tr><td>$c$（常数）</td><td>$0$</td><td>常数</td></tr>
+          <tr><td>$x^n$</td><td>$nx^{n-1}$</td><td>幂函数</td></tr>
+          <tr><td>$\sin x$</td><td>$\cos x$</td><td>三角函数</td></tr>
+          <tr><td>$\cos x$</td><td>$-\sin x$</td><td>三角函数</td></tr>
+          <tr><td>$\tan x$</td><td>$\sec^2 x$</td><td>三角函数</td></tr>
+          <tr><td>$e^x$</td><td>$e^x$</td><td>指数函数</td></tr>
+          <tr><td>$a^x$</td><td>$a^x \ln a$</td><td>指数函数</td></tr>
+          <tr><td>$\ln x$</td><td>$\frac{1}{x}$</td><td>对数函数</td></tr>
+          <tr><td>$\log_a x$</td><td>$\frac{1}{x \ln a}$</td><td>对数函数</td></tr>
+          <tr><td>$\sqrt{x}$</td><td>$\frac{1}{2\sqrt{x}}$</td><td>幂函数</td></tr>
+          <tr><td>$\frac{1}{x}$</td><td>$-\frac{1}{x^2}$</td><td>幂函数</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="tip-card">
-      <span class="tip-icon"><svg class="icon-svg"><use href="#i-save"/></svg></span>
+    <div class="tip tip-teal">
+      <div class="tip-icon"><svg><use href="#i-save"/></svg></div>
       <div><strong>记忆技巧：</strong>① $\sin$ 和 $\cos$ 的导数互相转换，但 $\cos$ 导数多个负号；② $e^x$ 的导数是它自己——最「自恋」的函数；③ $\ln x$ 的导数是 $\frac{1}{x}$，非常简洁。</div>
     </div>
-  </div>
+  </section>
 
-  <!-- ====== Section 7: 解题实战 ====== -->
-  <div class="lesson-section reveal" id="examples">
+  <!-- ====== 解题实战 ====== -->
+  <section id="examples" class="reveal">
+    <span class="section-label">07 / 解题实战</span>
     <h2>解题实战</h2>
-    <div class="subtitle">跟着步骤一步步来，每道题都能学会</div>
+    <p class="section-sub">跟着步骤一步步来，每道题都能学会</p>
 
-    <div class="example-tabs" id="exampleTabs">
-      <button class="example-tab active" data-ex="0">例1：多项式</button>
-      <button class="example-tab" data-ex="1">例2：乘法法则</button>
-      <button class="example-tab" data-ex="2">例3：链式法则</button>
-      <button class="example-tab" data-ex="3">例4：切线方程</button>
+    <div class="tabs" id="exampleTabs">
+      <button class="tab active" data-ex="0">例1：多项式</button>
+      <button class="tab" data-ex="1">例2：乘法法则</button>
+      <button class="tab" data-ex="2">例3：链式法则</button>
+      <button class="tab" data-ex="3">例4：切线方程</button>
     </div>
 
-    <div class="rule-card" id="exampleBox">
-      <h3 id="exampleTitle"></h3>
+    <div class="rule" id="exampleBox">
+      <h3 id="exampleTitle" style="margin-bottom:12px;"></h3>
       <div class="math-box" id="exampleProblem"></div>
-      <div class="step-container" id="exampleSteps"></div>
-      <div class="controls">
-        <button class="btn btn-scale" id="exPrevBtn"><svg class="icon-svg"><use href="#i-arrow-left"/></svg>上一步</button>
-        <button class="btn btn-scale" id="exNextBtn">下一步<svg class="icon-svg" style="margin-right:0; margin-left:5px;"><use href="#i-arrow-right"/></svg></button>
-        <button class="btn btn-border" id="exResetBtn"><svg class="icon-svg"><use href="#i-refresh"/></svg>重新开始</button>
+      <div id="exampleSteps"></div>
+      <div class="controls" style="margin-top:16px;">
+        <button class="btn btn-outline" id="exPrevBtn"><svg><use href="#i-arrow-left"/></svg>上一步</button>
+        <button class="btn btn-primary" id="exNextBtn">下一步<svg><use href="#i-arrow-right"/></svg></button>
+        <button class="btn btn-ghost" id="exResetBtn"><svg><use href="#i-refresh"/></svg>重新开始</button>
       </div>
-      <div class="info-badge" id="exStepInfo">第 0 / 0 步</div>
+      <div style="margin-top:8px;"><span class="badge badge-ink" id="exStepInfo">第 0 / 0 步</span></div>
     </div>
-  </div>
+  </section>
 
-  <!-- ====== Section 8: 计算器 ====== -->
-  <div class="lesson-section reveal" id="calc">
+  <!-- ====== 计算器 ====== -->
+  <section id="calc" class="reveal">
+    <span class="section-label">08 / 工具</span>
     <h2>导数计算器</h2>
-    <div class="subtitle">输入多项式，立刻得到导数，还能看图像</div>
+    <p class="section-sub">输入多项式，立刻得到导数，还能看图像</p>
 
     <p>输入一个多项式（例如 <code>3x^2 + 2x - 5</code>），点击求导，看看结果和图像：</p>
 
-    <div class="calc-input-row">
-      <input type="text" class="calc-input" id="calcInput" placeholder="例如：3x^2 + 2x - 5" value="3x^2 + 2x - 5">
-      <button class="btn btn-scale" id="calcBtn">求导！</button>
+    <div style="display:flex; gap:10px; margin:12px 0; flex-wrap:wrap;">
+      <input type="text" id="calcInput" placeholder="例如：3x^2 + 2x - 5" value="3x^2 + 2x - 5" style="flex:1; min-width:200px;">
+      <button class="btn btn-amber" id="calcBtn">求导</button>
     </div>
 
-    <div class="calc-output" id="calcResult">点击「求导」查看结果</div>
+    <div class="calc-out" id="calcResult">点击「求导」查看结果</div>
 
-    <div class="canvas-wrapper">
-      <canvas id="calcCanvas" class="short"></canvas>
+    <div class="canvas-box">
+      <canvas id="calcCanvas"></canvas>
       <div class="controls">
-        <span class="info-badge">蓝色 = 原函数</span>
-        <span class="info-badge purple">紫色 = 导函数</span>
+        <span class="badge badge-ink">蓝色 = 原函数</span>
+        <span class="badge badge-teal">绿色 = 导函数</span>
       </div>
     </div>
 
-    <div class="tip-card">
-      <span class="tip-icon"><svg class="icon-svg"><use href="#i-keyboard"/></svg></span>
+    <div class="tip tip-amber">
+      <div class="tip-icon"><svg><use href="#i-keyboard"/></svg></div>
       <div><strong>输入格式：</strong>支持 <code>3x^2</code>、<code>x^3</code>、<code>-5x</code>、<code>7</code> 等多项式项，用 + 和 - 连接。例如：<code>x^3 - 4x^2 + x + 6</code></div>
     </div>
-  </div>
+  </section>
 
-  <!-- ====== Section 9: 图像关系 ====== -->
-  <div class="lesson-section reveal" id="plots">
+  <!-- ====== 图像关系 ====== -->
+  <section id="plots" class="reveal">
+    <span class="section-label">09 / 图像联动</span>
     <h2>函数与导数的图像关系</h2>
-    <div class="subtitle">原函数的「陡峭程度」= 导函数的「高低」</div>
+    <p class="section-sub">原函数的「陡峭程度」= 导函数的「高低」</p>
 
     <p>选择一个函数，上方画原函数 $f(x)$，下方画导函数 $f'(x)$。拖动滑块改变 $x$，看上下两图如何联动。</p>
 
-    <div class="canvas-wrapper">
-      <p style="font-size:13px; color:var(--text-sub); margin:0 0 4px;">原函数 $f(x)$：</p>
-      <canvas id="plotTop" class="short"></canvas>
-      <p style="font-size:13px; color:var(--text-sub); margin:8px 0 4px;">导函数 $f'(x)$：</p>
-      <canvas id="plotBottom" class="short"></canvas>
+    <div class="canvas-box">
+      <div class="canvas-label">原函数 f(x)</div>
+      <canvas id="plotTop"></canvas>
+      <div class="canvas-label" style="margin-top:10px;">导函数 f'(x)</div>
+      <canvas id="plotBottom"></canvas>
       <div class="controls">
         <div class="control-group">
           <label>x =</label>
           <input type="range" id="plotSlider" min="-3" max="3" step="0.05" value="0">
-          <span class="info-badge" id="plotX">0.00</span>
+          <span class="badge badge-ink" id="plotX">0.00</span>
         </div>
       </div>
-      <div class="controls">
-        <label>选择函数：</label>
-        <button class="example-tab active" data-pfunc="x2">$y=x^2$</button>
-        <button class="example-tab" data-pfunc="x3">$y=x^3$</button>
-        <button class="example-tab" data-pfunc="sin">$y=\sin(x)$</button>
+      <div class="tabs" style="margin-top:12px;">
+        <button class="tab active" data-pfunc="x2">$y=x^2$</button>
+        <button class="tab" data-pfunc="x3">$y=x^3$</button>
+        <button class="tab" data-pfunc="sin">$y=\sin x$</button>
       </div>
     </div>
 
-    <div class="tip-card">
-      <span class="tip-icon"><svg class="icon-svg"><use href="#i-link"/></svg></span>
-      <div><strong>关键联系：</strong>① 原函数<strong>上升</strong>时（切线斜率>0），导函数在 x 轴<strong>上方</strong>；② 原函数<strong>下降</strong>时，导函数在 x 轴<strong>下方</strong>；③ 原函数到达<strong>极值</strong>（顶点）时，导函数<strong>过零点</strong>。记住这个对应关系，画图不用愁！</div>
+    <div class="tip tip-teal">
+      <div class="tip-icon"><svg><use href="#i-link"/></svg></div>
+      <div><strong>关键联系：</strong>① 原函数<strong>上升</strong>时，导函数在 x 轴<strong>上方</strong>；② 原函数<strong>下降</strong>时，导函数在 x 轴<strong>下方</strong>；③ 原函数到达<strong>极值</strong>时，导函数<strong>过零点</strong>。</div>
     </div>
-  </div>
+  </section>
 
-  <!-- ====== Section 10: 应用 ====== -->
-  <div class="lesson-section reveal" id="apps">
+  <!-- ====== 应用 ====== -->
+  <section id="apps" class="reveal">
+    <span class="section-label">10 / 实际应用</span>
     <h2>导数有什么用？</h2>
-    <div class="subtitle">从物理到经济，导数无处不在</div>
+    <p class="section-sub">从物理到经济，导数无处不在</p>
 
     <div class="app-grid">
       <div class="app-card">
-        <div class="app-icon"><svg class="icon-svg"><use href="#i-car"/></svg></div>
+        <div class="app-icon bg-amber"><svg><use href="#i-car"/></svg></div>
         <h3>物理：速度与加速度</h3>
         <p>位移 $s(t)$ 的导数 = 瞬时速度 $v(t)$；速度的导数 = 加速度 $a(t)$。导数是运动学的基石。</p>
       </div>
       <div class="app-card">
-        <div class="app-icon"><svg class="icon-svg"><use href="#i-trend-up"/></svg></div>
-        <h3>优化：求最大最小值</h3>
+        <div class="app-icon bg-teal"><svg><use href="#i-trend-up"/></svg></div>
+        <h3>优化：求极值</h3>
         <p>令 $f'(x) = 0$ 找到极值点，再用二阶导数判断是极大还是极小。企业用它求利润最大化。</p>
       </div>
       <div class="app-card">
-        <div class="app-icon"><svg class="icon-svg"><use href="#i-bar-chart"/></svg></div>
+        <div class="app-icon bg-coral"><svg><use href="#i-bar-chart"/></svg></div>
         <h3>经济：边际分析</h3>
         <p>成本函数的导数 = 边际成本；收益函数的导数 = 边际收益。经济学离不开导数。</p>
       </div>
       <div class="app-card">
-        <div class="app-icon"><svg class="icon-svg"><use href="#i-trend-down"/></svg></div>
+        <div class="app-icon bg-ink"><svg><use href="#i-trend-down"/></svg></div>
         <h3>函数性质分析</h3>
-        <p>$f'(x)>0$ → 单调递增；$f'(x)<0$ → 单调递减；$f'(x)=0$ → 可能是极值点。</p>
+        <p>$f'(x)>0$ 单调递增；$f'(x)<0$ 单调递减；$f'(x)=0$ 可能是极值点。</p>
       </div>
       <div class="app-card">
-        <div class="app-icon"><svg class="icon-svg"><use href="#i-tool"/></svg></div>
+        <div class="app-icon bg-amber"><svg><use href="#i-tool"/></svg></div>
         <h3>工程：最优设计</h3>
         <p>用最少材料获得最大强度？导数帮你找到最优解。从桥梁设计到芯片制造都有应用。</p>
       </div>
       <div class="app-card">
-        <div class="app-icon"><svg class="icon-svg"><use href="#i-cpu"/></svg></div>
+        <div class="app-icon bg-teal"><svg><use href="#i-cpu"/></svg></div>
         <h3>AI：梯度下降</h3>
-        <p>机器学习的核心算法——梯度下降，就是沿着导数（梯度）的反方向一步步找到损失函数的最小值。</p>
+        <p>机器学习的核心算法——梯度下降，就是沿着导数的反方向找到损失函数的最小值。</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ====== Section 11: 小测验 ====== -->
-  <div class="lesson-section reveal" id="quiz">
+  <!-- ====== 小测验 ====== -->
+  <section id="quiz" class="reveal">
+    <span class="section-label">11 / 自测</span>
     <h2>小测验</h2>
-    <div class="subtitle">检验一下你的学习成果</div>
+    <p class="section-sub">检验一下你的学习成果</p>
 
     <div id="quizContainer"></div>
 
-    <div class="controls">
-      <button class="btn btn-scale" id="quizSubmitBtn">提交答案</button>
-      <button class="btn btn-border" id="quizResetBtn"><svg class="icon-svg"><use href="#i-refresh"/></svg>重新答题</button>
+    <div class="controls" style="margin-top:16px;">
+      <button class="btn btn-primary" id="quizSubmitBtn">提交答案</button>
+      <button class="btn btn-outline" id="quizResetBtn"><svg><use href="#i-refresh"/></svg>重新答题</button>
     </div>
 
     <div class="quiz-score" id="quizScore"></div>
-  </div>
+  </section>
 
 </div>
 
-<!-- 回到顶部 -->
-<button class="back-top" id="backTop"><svg class="icon-svg"><use href="#i-arrow-up"/></svg></button>
+<button class="back-top" id="backTop" aria-label="回到顶部"><svg><use href="#i-arrow-up"/></svg></button>
 
-<!-- 页脚 -->
 <footer>
-  <p>导数学习页面 · 适配 shuoweb.com/common.js 框架</p>
-  <p style="font-size:12px; opacity:0.7;">动画驱动学习 · 从直觉到解题 · 一步步学会导数</p>
+  <p>导数课堂 · 动画驱动学习 · 从直觉到解题</p>
 </footer>
 
 <script>
 (function() {
   'use strict';
 
-  /* ============================================================
-   *  主题切换 —— 适配 common.js 框架的主题按钮
-   * ============================================================ */
-  // common.js 框架会创建自己的 header 和主题按钮（id="themeText"）
-  // 监听 body class 变化，在主题切换时重绘 Canvas
-  const themeObserver = new MutationObserver(() => {
+  /* ============ 主题切换 ============ */
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  let darkMode = localStorage.getItem('derivDark') === 'true';
+  applyTheme();
+
+  function applyTheme() {
+    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+    themeIcon.innerHTML = `<use href="#${darkMode ? 'i-sun' : 'i-moon'}"/>`;
+  }
+
+  themeToggle.addEventListener('click', () => {
+    darkMode = !darkMode;
+    localStorage.setItem('derivDark', darkMode);
+    applyTheme();
     redrawAll();
   });
-  themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
-  /* ============================================================
-   *  滚动进度条 + 回到顶部
-   * ============================================================ */
-  const progress = document.getElementById('scrollProgress');
+  /* ============ 滚动 ============ */
+  const progressBar = document.getElementById('progressBar');
   const backTop = document.getElementById('backTop');
 
   window.addEventListener('scroll', () => {
     const h = document.documentElement;
     const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-    progress.style.width = scrolled + '%';
+    progressBar.style.width = scrolled + '%';
     backTop.classList.toggle('show', h.scrollTop > 400);
     updateActiveNav();
   });
 
-  backTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  /* ============================================================
-   *  导航：平滑滚动 + 高亮当前
-   * ============================================================ */
-  const navItems = document.querySelectorAll('.nav-item');
-  const sections = document.querySelectorAll('.lesson-section');
-  const navBar = document.getElementById('navBar');
+  /* ============ 导航 ============ */
+  const navPills = document.querySelectorAll('.nav-pill');
+  const sections = document.querySelectorAll('section');
 
-  // 动态设置导航栏位置，紧跟 common.js 框架的 header 下方
-  function adjustNavBarPosition() {
-    const frameworkHeader = document.querySelector('header');
-    if (frameworkHeader && navBar) {
-      const headerHeight = frameworkHeader.offsetHeight;
-      navBar.style.top = headerHeight + 'px';
-    }
-  }
-  setTimeout(adjustNavBarPosition, 100);
-  window.addEventListener('resize', adjustNavBarPosition);
-
-  navItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const target = document.getElementById(item.dataset.target);
+  navPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const target = document.getElementById(pill.dataset.target);
       if (target) {
-        const offset = 120;
-        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - 120;
         window.scrollTo({ top, behavior: 'smooth' });
       }
     });
@@ -1099,669 +1396,333 @@
   function updateActiveNav() {
     let current = '';
     sections.forEach(sec => {
-      const rect = sec.getBoundingClientRect();
-      if (rect.top < 200) current = sec.id;
+      if (sec.getBoundingClientRect().top < 200) current = sec.id;
     });
-    navItems.forEach(item => {
-      item.classList.toggle('active', item.dataset.target === current);
-    });
+    navPills.forEach(pill => pill.classList.toggle('active', pill.dataset.target === current));
   }
 
-  /* ============================================================
-   *  Reveal 动画
-   * ============================================================ */
+  /* ============ Reveal ============ */
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* ============================================================
-   *  MathCanvas 工具类
-   * ============================================================ */
-  class MathCanvas {
+  /* ============ Canvas 工具 ============ */
+  class MC {
     constructor(canvas, opts = {}) {
       this.canvas = canvas;
       this.ctx = canvas.getContext('2d');
-      this.xMin = opts.xMin ?? -5;
-      this.xMax = opts.xMax ?? 5;
-      this.yMin = opts.yMin ?? -5;
-      this.yMax = opts.yMax ?? 5;
-      this.padding = opts.padding ?? 36;
+      this.xMin = opts.xMin ?? -5; this.xMax = opts.xMax ?? 5;
+      this.yMin = opts.yMin ?? -5; this.yMax = opts.yMax ?? 5;
+      this.pad = opts.pad ?? 36;
       this.resize();
     }
-
     resize() {
       const rect = this.canvas.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
-      const h = rect.height || 300;
+      const h = rect.height || 280;
       this.canvas.width = rect.width * dpr;
       this.canvas.height = h * dpr;
-      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+      this.ctx.setTransform(1,0,0,1,0,0);
       this.ctx.scale(dpr, dpr);
-      this.width = rect.width;
-      this.height = h;
+      this.w = rect.width; this.h = h;
     }
-
-    toX(x) {
-      return this.padding + (x - this.xMin) / (this.xMax - this.xMin) * (this.width - 2 * this.padding);
-    }
-    toY(y) {
-      return this.height - this.padding - (y - this.yMin) / (this.yMax - this.yMin) * (this.height - 2 * this.padding);
-    }
-
-    clear() { this.ctx.clearRect(0, 0, this.width, this.height); }
-
-    cssVar(name) {
-      return getComputedStyle(document.body).getPropertyValue(name).trim();
-    }
-
+    toX(x) { return this.pad + (x - this.xMin) / (this.xMax - this.xMin) * (this.w - 2*this.pad); }
+    toY(y) { return this.h - this.pad - (y - this.yMin) / (this.yMax - this.yMin) * (this.h - 2*this.pad); }
+    clear() { this.ctx.clearRect(0, 0, this.w, this.h); }
+    css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
     drawGrid() {
-      const ctx = this.ctx;
-      ctx.strokeStyle = 'rgba(100,116,139,0.08)';
-      ctx.lineWidth = 1;
-      const range = this.xMax - this.xMin;
-      const step = range > 8 ? 1 : 0.5;
-      for (let x = Math.ceil(this.xMin / step) * step; x <= this.xMax; x += step) {
-        ctx.beginPath(); ctx.moveTo(this.toX(x), this.toY(this.yMin)); ctx.lineTo(this.toX(x), this.toY(this.yMax)); ctx.stroke();
-      }
-      for (let y = Math.ceil(this.yMin / step) * step; y <= this.yMax; y += step) {
-        ctx.beginPath(); ctx.moveTo(this.toX(this.xMin), this.toY(y)); ctx.lineTo(this.toX(this.xMax), this.toY(y)); ctx.stroke();
-      }
-      // 坐标轴
-      ctx.strokeStyle = 'rgba(100,116,139,0.35)';
-      ctx.lineWidth = 1.5;
-      if (this.yMin <= 0 && this.yMax >= 0) {
-        ctx.beginPath(); ctx.moveTo(this.toX(this.xMin), this.toY(0)); ctx.lineTo(this.toX(this.xMax), this.toY(0)); ctx.stroke();
-      }
-      if (this.xMin <= 0 && this.xMax >= 0) {
-        ctx.beginPath(); ctx.moveTo(this.toX(0), this.toY(this.yMin)); ctx.lineTo(this.toX(0), this.toY(this.yMax)); ctx.stroke();
-      }
-      // 刻度
-      ctx.fillStyle = 'rgba(100,116,139,0.5)';
-      ctx.font = '11px sans-serif';
-      ctx.textAlign = 'center';
-      for (let x = Math.ceil(this.xMin); x <= this.xMax; x++) {
-        if (x !== 0) ctx.fillText(x, this.toX(x), this.toY(0) + 14);
-      }
-      ctx.textAlign = 'right';
-      for (let y = Math.ceil(this.yMin); y <= this.yMax; y++) {
-        if (y !== 0) ctx.fillText(y, this.toX(0) - 6, this.toY(y) + 4);
-      }
+      const c = this.ctx;
+      c.strokeStyle = 'rgba(100,116,139,0.08)'; c.lineWidth = 1;
+      const step = (this.xMax - this.xMin) > 8 ? 1 : 0.5;
+      for (let x = Math.ceil(this.xMin/step)*step; x <= this.xMax; x += step) { c.beginPath(); c.moveTo(this.toX(x), this.toY(this.yMin)); c.lineTo(this.toX(x), this.toY(this.yMax)); c.stroke(); }
+      for (let y = Math.ceil(this.yMin/step)*step; y <= this.yMax; y += step) { c.beginPath(); c.moveTo(this.toX(this.xMin), this.toY(y)); c.lineTo(this.toX(this.xMax), this.toY(y)); c.stroke(); }
+      c.strokeStyle = 'rgba(100,116,139,0.3)'; c.lineWidth = 1.5;
+      if (this.yMin <= 0 && this.yMax >= 0) { c.beginPath(); c.moveTo(this.toX(this.xMin), this.toY(0)); c.lineTo(this.toX(this.xMax), this.toY(0)); c.stroke(); }
+      if (this.xMin <= 0 && this.xMax >= 0) { c.beginPath(); c.moveTo(this.toX(0), this.toY(this.yMin)); c.lineTo(this.toX(0), this.toY(this.yMax)); c.stroke(); }
+      c.fillStyle = 'rgba(100,116,139,0.5)'; c.font = '11px sans-serif'; c.textAlign = 'center';
+      for (let x = Math.ceil(this.xMin); x <= this.xMax; x++) { if (x !== 0) c.fillText(x, this.toX(x), this.toY(0) + 14); }
+      c.textAlign = 'right';
+      for (let y = Math.ceil(this.yMin); y <= this.yMax; y++) { if (y !== 0) c.fillText(y, this.toX(0) - 6, this.toY(y) + 4); }
     }
-
-    plotFunction(func, color, lw = 2.5) {
-      const ctx = this.ctx;
-      ctx.strokeStyle = color;
-      ctx.lineWidth = lw;
-      ctx.lineJoin = 'round';
-      ctx.beginPath();
-      const steps = 400;
-      let started = false;
+    plot(fn, color, lw = 2.5) {
+      const c = this.ctx; c.strokeStyle = color; c.lineWidth = lw; c.lineJoin = 'round'; c.beginPath();
+      const steps = 400; let started = false;
       for (let i = 0; i <= steps; i++) {
-        const x = this.xMin + (i / steps) * (this.xMax - this.xMin);
-        const y = func(x);
+        const x = this.xMin + (i/steps) * (this.xMax - this.xMin); const y = fn(x);
         if (isFinite(y) && y > this.yMin - 3 && y < this.yMax + 3) {
-          const cx = this.toX(x), cy = this.toY(y);
-          if (!started) { ctx.moveTo(cx, cy); started = true; }
-          else ctx.lineTo(cx, cy);
-        } else { started = false; }
+          if (!started) { c.moveTo(this.toX(x), this.toY(y)); started = true; } else c.lineTo(this.toX(x), this.toY(y));
+        } else started = false;
       }
-      ctx.stroke();
+      c.stroke();
     }
-
-    drawPoint(x, y, color, r = 6, label = '') {
-      const ctx = this.ctx;
-      ctx.fillStyle = color;
-      ctx.strokeStyle = '#fff';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(this.toX(x), this.toY(y), r, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-      if (label) {
-        ctx.fillStyle = color;
-        ctx.font = 'bold 13px sans-serif';
-        ctx.textAlign = 'left';
-        ctx.fillText(label, this.toX(x) + 10, this.toY(y) - 8);
-      }
+    point(x, y, color, r = 6, label = '') {
+      const c = this.ctx;
+      c.fillStyle = color; c.strokeStyle = '#fff'; c.lineWidth = 2;
+      c.beginPath(); c.arc(this.toX(x), this.toY(y), r, 0, Math.PI*2); c.fill(); c.stroke();
+      if (label) { c.fillStyle = color; c.font = 'bold 13px sans-serif'; c.textAlign = 'left'; c.fillText(label, this.toX(x)+10, this.toY(y)-8); }
     }
-
-    drawLineExt(x1, y1, x2, y2, color, lw = 2) {
+    lineExt(x1, y1, x2, y2, color, lw = 2, dash = [6,4]) {
       const dx = x2 - x1, dy = y2 - y1;
       if (Math.abs(dx) < 1e-9 && Math.abs(dy) < 1e-9) return;
       let tMin = -Infinity, tMax = Infinity;
-      if (Math.abs(dx) > 1e-9) {
-        const t1 = (this.xMin - x1) / dx, t2 = (this.xMax - x1) / dx;
-        tMin = Math.max(tMin, Math.min(t1, t2));
-        tMax = Math.min(tMax, Math.max(t1, t2));
-      }
-      if (Math.abs(dy) > 1e-9) {
-        const t1 = (this.yMin - y1) / dy, t2 = (this.yMax - y1) / dy;
-        tMin = Math.max(tMin, Math.min(t1, t2));
-        tMax = Math.min(tMax, Math.max(t1, t2));
-      }
-      const ctx = this.ctx;
-      ctx.strokeStyle = color;
-      ctx.lineWidth = lw;
-      ctx.setLineDash([6, 4]);
-      ctx.beginPath();
-      ctx.moveTo(this.toX(x1 + tMin * dx), this.toY(y1 + tMin * dy));
-      ctx.lineTo(this.toX(x1 + tMax * dx), this.toY(y1 + tMax * dy));
-      ctx.stroke();
-      ctx.setLineDash([]);
+      if (Math.abs(dx) > 1e-9) { const t1 = (this.xMin-x1)/dx, t2 = (this.xMax-x1)/dx; tMin = Math.max(tMin, Math.min(t1,t2)); tMax = Math.min(tMax, Math.max(t1,t2)); }
+      if (Math.abs(dy) > 1e-9) { const t1 = (this.yMin-y1)/dy, t2 = (this.yMax-y1)/dy; tMin = Math.max(tMin, Math.min(t1,t2)); tMax = Math.min(tMax, Math.max(t1,t2)); }
+      const c = this.ctx; c.strokeStyle = color; c.lineWidth = lw; c.setLineDash(dash);
+      c.beginPath(); c.moveTo(this.toX(x1+tMin*dx), this.toY(y1+tMin*dy)); c.lineTo(this.toX(x1+tMax*dx), this.toY(y1+tMax*dy)); c.stroke(); c.setLineDash([]);
     }
-
-    drawSolidLine(x1, y1, x2, y2, color, lw = 2) {
-      const ctx = this.ctx;
-      ctx.strokeStyle = color;
-      ctx.lineWidth = lw;
-      ctx.beginPath();
-      ctx.moveTo(this.toX(x1), this.toY(y1));
-      ctx.lineTo(this.toX(x2), this.toY(y2));
-      ctx.stroke();
-    }
-
-    drawVertical(x, color = 'rgba(88,86,214,0.3)') {
-      const ctx = this.ctx;
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 1.5;
-      ctx.setLineDash([4, 4]);
-      ctx.beginPath();
-      ctx.moveTo(this.toX(x), this.toY(this.yMin));
-      ctx.lineTo(this.toX(x), this.toY(this.yMax));
-      ctx.stroke();
-      ctx.setLineDash([]);
+    vline(x, color = 'rgba(42,157,143,0.3)') {
+      const c = this.ctx; c.strokeStyle = color; c.lineWidth = 1.5; c.setLineDash([4,4]);
+      c.beginPath(); c.moveTo(this.toX(x), this.toY(this.yMin)); c.lineTo(this.toX(x), this.toY(this.yMax)); c.stroke(); c.setLineDash([]);
     }
   }
 
-  /* ============================================================
-   *  动画1: 割线 → 切线
-   * ============================================================ */
-  let secantMC, secantAnim, secantDx = 2, secantPlaying = false;
+  /* ============ 割线→切线 ============ */
+  let secMC, secDx = 2, secPlaying = false, secAnim, secDraw;
 
   function initSecant() {
     const canvas = document.getElementById('secantCanvas');
-    secantMC = new MathCanvas(canvas, { xMin: -1, xMax: 4, yMin: -1, yMax: 8 });
-    const func = x => x * x;
-    const xP = 1;
+    canvas.style.height = '300px';
+    secMC = new MC(canvas, { xMin: -1, xMax: 4, yMin: -1, yMax: 8 });
+    const fn = x => x*x; const xP = 1;
 
     function draw() {
-      const mc = secantMC;
-      mc.clear();
-      mc.drawGrid();
-      mc.plotFunction(func, mc.cssVar('--text-sub'), 2);
-
-      const yP = func(xP);
-      const dx = secantDx;
-      const xQ = xP + dx;
-      const yQ = func(xQ);
-      const slope = dx < 0.001 ? 2 * xP : (yQ - yP) / dx;
-
-      // 割线 / 切线
-      const lineColor = dx < 0.05 ? mc.cssVar('--primary') : mc.cssVar('--tangent') || '#FF9500';
-      mc.drawLineExt(xP, yP, xQ, yQ, lineColor, 2.5);
-
-      // 点
-      mc.drawPoint(xP, yP, mc.cssVar('--primary'), 6, 'P');
-      if (dx > 0.02) {
-        mc.drawPoint(xQ, yQ, '#FF9500', 6, 'Q');
-      }
-
-      // Δx 标注
+      const mc = secMC; mc.clear(); mc.drawGrid();
+      mc.plot(fn, mc.css('--ink-light'), 2);
+      const yP = fn(xP); const dx = secDx; const xQ = xP + dx; const yQ = fn(xQ);
+      const slope = dx < 0.001 ? 2*xP : (yQ - yP) / dx;
+      const lineColor = dx < 0.05 ? mc.css('--amber') : mc.css('--coral');
+      mc.lineExt(xP, yP, xQ, yQ, lineColor, 2.5, dx < 0.05 ? [] : [6,4]);
+      mc.point(xP, yP, mc.css('--ink'), 6, 'P');
+      if (dx > 0.02) mc.point(xQ, yQ, mc.css('--coral'), 6, 'Q');
       if (dx > 0.1) {
-        const ctx = mc.ctx;
-        ctx.strokeStyle = 'rgba(255,149,0,0.4)';
-        ctx.lineWidth = 1;
-        ctx.setLineDash([3, 3]);
-        ctx.beginPath();
-        ctx.moveTo(mc.toX(xQ), mc.toY(yP));
-        ctx.lineTo(mc.toX(xQ), mc.toY(yQ));
-        ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.fillStyle = '#FF9500';
-        ctx.font = '12px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Δx', mc.toX((xP + xQ) / 2), mc.toY(yP) - 6);
+        const c = mc.ctx; c.strokeStyle = 'rgba(231,111,81,0.4)'; c.lineWidth = 1; c.setLineDash([3,3]);
+        c.beginPath(); c.moveTo(mc.toX(xQ), mc.toY(yP)); c.lineTo(mc.toX(xQ), mc.toY(yQ)); c.stroke(); c.setLineDash([]);
+        c.fillStyle = mc.css('--coral'); c.font = '12px sans-serif'; c.textAlign = 'center'; c.fillText('Δx', mc.toX((xP+xQ)/2), mc.toY(yP) - 6);
       }
-
       document.getElementById('dxValue').textContent = dx.toFixed(3);
       document.getElementById('slopeValue').textContent = slope.toFixed(3);
-
-      const msg = document.getElementById('limitMessage');
-      msg.style.opacity = dx < 0.05 ? '1' : '0';
+      document.getElementById('limitMessage').style.display = dx < 0.05 ? 'flex' : 'none';
     }
 
     function animate() {
-      if (!secantPlaying) return;
-      secantDx -= 0.015;
-      if (secantDx <= 0) {
-        secantDx = 0;
-        secantPlaying = false;
-        document.getElementById('secantPlayBtn').innerHTML = '<svg class="icon-svg"><use href="#i-refresh"/></svg>重新播放';
-      }
-      document.getElementById('dxSlider').value = secantDx;
+      if (!secPlaying) return;
+      secDx -= 0.015;
+      if (secDx <= 0) { secDx = 0; secPlaying = false; document.getElementById('secantPlayBtn').innerHTML = '<svg><use href="#i-refresh"/></svg>重新播放'; }
+      document.getElementById('dxSlider').value = secDx;
       draw();
-      if (secantPlaying) secantAnim = requestAnimationFrame(animate);
+      if (secPlaying) secAnim = requestAnimationFrame(animate);
     }
 
     document.getElementById('secantPlayBtn').addEventListener('click', () => {
-      if (secantDx <= 0.01) { secantDx = 2; document.getElementById('dxSlider').value = 2; }
-      secantPlaying = true;
+      if (secDx <= 0.01) { secDx = 2; document.getElementById('dxSlider').value = 2; }
+      secPlaying = true;
       document.getElementById('secantPlayBtn').innerHTML = '播放中...';
       animate();
     });
 
     document.getElementById('dxSlider').addEventListener('input', (e) => {
-      secantPlaying = false;
-      secantDx = parseFloat(e.target.value);
-      draw();
+      secPlaying = false; secDx = parseFloat(e.target.value); draw();
     });
 
-    secantDraw = draw;
-    draw();
+    secDraw = draw; draw();
   }
-  let secantDraw;
 
-  /* ============================================================
-   *  动画2: 交互式切线探索
-   * ============================================================ */
-  let tangentMC, tangentX = 0, currentTangentFunc = 'x2';
-
-  const tangentFuncs = {
-    x2:  { f: x => x*x,           df: x => 2*x,         label: 'x²' },
-    x3:  { f: x => x*x*x,         df: x => 3*x*x,       label: 'x³' },
-    sin: { f: x => Math.sin(x),   df: x => Math.cos(x), label: 'sin(x)' },
-    exp: { f: x => Math.exp(x),   df: x => Math.exp(x), label: 'eˣ' },
+  /* ============ 切线探索 ============ */
+  let tanMC, tanX = 0, tanFunc = 'x2', tanDraw;
+  const tanFuncs = {
+    x2:  { f: x => x*x,           df: x => 2*x },
+    x3:  { f: x => x*x*x,         df: x => 3*x*x },
+    sin: { f: x => Math.sin(x),   df: x => Math.cos(x) },
+    exp: { f: x => Math.exp(x),   df: x => Math.exp(x) },
   };
 
   function initTangent() {
     const canvas = document.getElementById('tangentCanvas');
-    tangentMC = new MathCanvas(canvas, { xMin: -3, xMax: 3, yMin: -4, yMax: 6 });
+    canvas.style.height = '340px';
+    tanMC = new MC(canvas, { xMin: -3, xMax: 3, yMin: -4, yMax: 6 });
 
     function draw() {
-      const mc = tangentMC;
-      const data = tangentFuncs[currentTangentFunc];
-      mc.clear();
-      mc.drawGrid();
-      mc.plotFunction(data.f, mc.cssVar('--text-sub'), 2);
-
-      const x = tangentX;
-      const y = data.f(x);
-      const slope = data.df(x);
-
-      // 切线
-      const x2 = x + 1;
-      const y2 = y + slope;
-      mc.drawLineExt(x, y, x2, y2, mc.cssVar('--primary'), 2.5);
-
-      // 点
-      mc.drawPoint(x, y, mc.cssVar('--primary'), 7, `(${x.toFixed(1)}, ${y.toFixed(1)})`);
-
-      // 更新数值
+      const mc = tanMC; const d = tanFuncs[tanFunc];
+      mc.clear(); mc.drawGrid();
+      mc.plot(d.f, mc.css('--ink-light'), 2);
+      const x = tanX; const y = d.f(x); const slope = d.df(x);
+      mc.lineExt(x, y, x+1, y+slope, mc.css('--amber'), 2.5, []);
+      mc.point(x, y, mc.css('--amber'), 7, `(${x.toFixed(1)}, ${y.toFixed(1)})`);
       document.getElementById('tangentX').textContent = x.toFixed(2);
       document.getElementById('tangentSlope').textContent = slope.toFixed(2);
       document.getElementById('tangentY').textContent = y.toFixed(2);
     }
 
-    document.getElementById('tangentSlider').addEventListener('input', (e) => {
-      tangentX = parseFloat(e.target.value);
-      draw();
-    });
-
+    document.getElementById('tangentSlider').addEventListener('input', (e) => { tanX = parseFloat(e.target.value); draw(); });
     document.querySelectorAll('[data-func]').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('[data-func]').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentTangentFunc = btn.dataset.func;
-        draw();
+        btn.classList.add('active'); tanFunc = btn.dataset.func; draw();
       });
     });
-
-    tangentDraw = draw;
-    draw();
-  }
-  let tangentDraw;
-
-  /* ============================================================
-   *  幂法则步骤动画
-   * ============================================================ */
-  function initPowerSteps() {
-    const btn = document.getElementById('powerReplayBtn');
-    btn.addEventListener('click', () => {
-      const items = document.querySelectorAll('#powerSteps .step-item');
-      items.forEach(el => el.classList.remove('show'));
-      items.forEach((el, i) => {
-        setTimeout(() => el.classList.add('show'), i * 600);
-      });
-    });
+    tanDraw = draw; draw();
   }
 
-  /* ============================================================
-   *  解题实战
-   * ============================================================ */
+  /* ============ 幂法则步骤 ============ */
+  document.getElementById('powerReplayBtn').addEventListener('click', () => {
+    const items = document.querySelectorAll('#basic .step');
+    items.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateX(-12px)'; el.style.transition = 'all 0.4s'; });
+    items.forEach((el, i) => setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateX(0)'; }, i * 500 + 200));
+  });
+
+  /* ============ 解题实战 ============ */
   const examples = [
-    {
-      title: '例1：多项式求导',
-      problem: '求 $f(x) = x^3 - 4x^2 + x + 6$ 的导数 $f\'(x)$',
-      steps: [
-        '识别函数由四项组成：$x^3$、$-4x^2$、$x$、$6$',
-        '利用<strong>加减法则</strong>，逐项求导后相加',
-        '第一项：$\\frac{d}{dx}[x^3] = 3x^{3-1} = 3x^2$（幂法则：指数 3 放前面，指数减 1）',
-        '第二项：$\\frac{d}{dx}[-4x^2] = -4 \\cdot 2x = -8x$（常数倍提出，幂法则）',
-        '第三项：$\\frac{d}{dx}[x] = 1$（可以看作 $x^1$，幂法则：$1 \\cdot x^0 = 1$）',
-        '第四项：$\\frac{d}{dx}[6] = 0$（常数导数为零）',
-        '合并结果：$f\'(x) = \\textcolor{blue}{3x^2 - 8x + 1}$'
-      ]
-    },
-    {
-      title: '例2：乘法法则',
-      problem: '求 $f(x) = (x^2 + 1)(x - 3)$ 的导数',
-      steps: [
-        '设 $u = x^2 + 1$，$v = x - 3$，则 $f = u \\cdot v$',
-        '使用<strong>乘法法则</strong>：$f\' = u\'v + uv\'$',
-        '求 $u\'$：$u\' = \\frac{d}{dx}[x^2 + 1] = 2x$',
-        '求 $v\'$：$v\' = \\frac{d}{dx}[x - 3] = 1$',
-        '代入公式：$f\'(x) = 2x \\cdot (x-3) + (x^2+1) \\cdot 1$',
-        '展开：$= 2x^2 - 6x + x^2 + 1$',
-        '合并同类项：$f\'(x) = \\textcolor{blue}{3x^2 - 6x + 1}$'
-      ]
-    },
-    {
-      title: '例3：链式法则',
-      problem: '求 $f(x) = (3x + 1)^5$ 的导数',
-      steps: [
-        '这是复合函数，外层 $f(u) = u^5$，内层 $u = g(x) = 3x + 1$',
-        '使用<strong>链式法则</strong>：$\\frac{df}{dx} = f\'(g(x)) \\cdot g\'(x)$',
-        '求外层导数（把 $u$ 当整体）：$f\'(u) = 5u^4 = 5(3x+1)^4$',
-        '求内层导数：$g\'(x) = \\frac{d}{dx}[3x + 1] = 3$',
-        '相乘：$f\'(x) = 5(3x+1)^4 \\cdot 3$',
-        '整理系数：$f\'(x) = \\textcolor{blue}{15(3x+1)^4}$'
-      ]
-    },
-    {
-      title: '例4：求切线方程',
-      problem: '求曲线 $y = \\sqrt{x}$ 在 $x = 4$ 处的切线方程',
-      steps: [
-        '切线方程公式：$y - y_0 = f\'(x_0)(x - x_0)$，需要找切点 $(x_0, y_0)$ 和斜率 $f\'(x_0)$',
-        '找切点：$x_0 = 4$，$y_0 = f(4) = \\sqrt{4} = 2$，所以切点为 $(4, 2)$',
-        '求导数：$f(x) = \\sqrt{x} = x^{1/2}$，用幂法则：$f\'(x) = \\frac{1}{2}x^{-1/2} = \\frac{1}{2\\sqrt{x}}$',
-        '求斜率：$f\'(4) = \\frac{1}{2\\sqrt{4}} = \\frac{1}{4}$',
-        '代入切线方程：$y - 2 = \\frac{1}{4}(x - 4)$',
-        '整理：$y = \\frac{1}{4}x - 1 + 2$',
-        '最终结果：$y = \\textcolor{blue}{\\frac{1}{4}x + 2}$'
-      ]
-    }
+    { title: '例1：多项式求导', problem: '求 $f(x) = x^3 - 4x^2 + x + 6$ 的导数 $f\'(x)$',
+      steps: ['识别函数由四项组成：$x^3$、$-4x^2$、$x$、$6$','利用<strong>加减法则</strong>，逐项求导后相加','第一项：$\\frac{d}{dx}[x^3] = 3x^2$（幂法则）','第二项：$\\frac{d}{dx}[-4x^2] = -8x$','第三项：$\\frac{d}{dx}[x] = 1$','第四项：$\\frac{d}{dx}[6] = 0$','合并：$f\'(x) = \\textcolor{orange}{3x^2 - 8x + 1}$'] },
+    { title: '例2：乘法法则', problem: '求 $f(x) = (x^2 + 1)(x - 3)$ 的导数',
+      steps: ['设 $u = x^2 + 1$，$v = x - 3$，则 $f = u \\cdot v$','使用<strong>乘法法则</strong>：$f\' = u\'v + uv\'$','$u\' = 2x$，$v\' = 1$','代入：$f\'(x) = 2x(x-3) + (x^2+1)$','展开：$= 2x^2 - 6x + x^2 + 1$','合并：$f\'(x) = \\textcolor{orange}{3x^2 - 6x + 1}$'] },
+    { title: '例3：链式法则', problem: '求 $f(x) = (3x + 1)^5$ 的导数',
+      steps: ['外层 $f(u) = u^5$，内层 $u = 3x + 1$','使用<strong>链式法则</strong>：$f\' = f\'(g) \\cdot g\'$','外层导数：$5u^4 = 5(3x+1)^4$','内层导数：$3$','相乘：$5(3x+1)^4 \\cdot 3$','结果：$f\'(x) = \\textcolor{orange}{15(3x+1)^4}$'] },
+    { title: '例4：求切线方程', problem: '求曲线 $y = \\sqrt{x}$ 在 $x = 4$ 处的切线方程',
+      steps: ['切线方程：$y - y_0 = f\'(x_0)(x - x_0)$','切点：$x_0 = 4$，$y_0 = \\sqrt{4} = 2$，即 $(4, 2)$','求导数：$f(x) = x^{1/2}$，$f\'(x) = \\frac{1}{2\\sqrt{x}}$','斜率：$f\'(4) = \\frac{1}{4}$','代入：$y - 2 = \\frac{1}{4}(x - 4)$','整理：$y = \\frac{1}{4}x + 2$','结果：$y = \\textcolor{orange}{\\frac{1}{4}x + 2}$'] }
   ];
 
-  let currentEx = 0, currentStep = 0;
+  let curEx = 0, curStep = 0;
 
   function renderExample() {
-    const ex = examples[currentEx];
+    const ex = examples[curEx];
     document.getElementById('exampleTitle').textContent = ex.title;
-    const problemEl = document.getElementById('exampleProblem');
-    problemEl.innerHTML = ex.problem;
+    document.getElementById('exampleProblem').innerHTML = ex.problem;
     const stepsEl = document.getElementById('exampleSteps');
     stepsEl.innerHTML = '';
     for (let i = 0; i < ex.steps.length; i++) {
       const div = document.createElement('div');
-      div.className = 'step-item';
-      div.innerHTML = `<div class="step-number">${i + 1}</div><div class="step-content">${ex.steps[i]}</div>`;
+      div.className = 'step'; div.style.cssText = 'display:none;';
+      div.innerHTML = `<div class="step-num">${i+1}</div><div class="step-body">${ex.steps[i]}</div>`;
       stepsEl.appendChild(div);
     }
-    currentStep = 0;
-    updateExampleSteps();
-    renderMath();
+    curStep = 0; updateExSteps(); renderMath();
   }
 
-  function updateExampleSteps() {
-    const items = document.querySelectorAll('#exampleSteps .step-item');
-    items.forEach((el, i) => {
-      el.classList.toggle('show', i <= currentStep);
-    });
-    document.getElementById('exStepInfo').textContent = `第 ${currentStep + 1} / ${items.length} 步`;
+  function updateExSteps() {
+    const items = document.querySelectorAll('#exampleSteps .step');
+    items.forEach((el, i) => el.style.display = i <= curStep ? 'flex' : 'none');
+    document.getElementById('exStepInfo').textContent = `第 ${curStep+1} / ${items.length} 步`;
   }
 
-  function initExamples() {
-    document.querySelectorAll('#exampleTabs .example-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('#exampleTabs .example-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        currentEx = parseInt(tab.dataset.ex);
-        renderExample();
-      });
+  document.querySelectorAll('#exampleTabs .tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('#exampleTabs .tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active'); curEx = parseInt(tab.dataset.ex); renderExample();
     });
+  });
+  document.getElementById('exNextBtn').addEventListener('click', () => {
+    if (curStep < examples[curEx].steps.length - 1) { curStep++; updateExSteps(); }
+  });
+  document.getElementById('exPrevBtn').addEventListener('click', () => { if (curStep > 0) { curStep--; updateExSteps(); } });
+  document.getElementById('exResetBtn').addEventListener('click', () => { curStep = 0; updateExSteps(); });
 
-    document.getElementById('exNextBtn').addEventListener('click', () => {
-      const total = examples[currentEx].steps.length;
-      if (currentStep < total - 1) {
-        currentStep++;
-        updateExampleSteps();
-      }
-    });
-
-    document.getElementById('exPrevBtn').addEventListener('click', () => {
-      if (currentStep > 0) {
-        currentStep--;
-        updateExampleSteps();
-      }
-    });
-
-    document.getElementById('exResetBtn').addEventListener('click', () => {
-      currentStep = 0;
-      updateExampleSteps();
-    });
-
-    renderExample();
-  }
-
-  /* ============================================================
-   *  多项式求导计算器
-   * ============================================================ */
-  function parsePolynomial(str) {
+  /* ============ 计算器 ============ */
+  function parsePoly(str) {
     str = str.replace(/\s/g, '').replace(/\-/g, '+-').replace(/^\+/, '');
-    if (str === '') return [];
-    const parts = str.split('+').filter(p => p.length > 0);
-    const terms = [];
+    if (!str) return [];
+    const parts = str.split('+').filter(p => p); const terms = [];
     for (const p of parts) {
       let m;
-      if (m = p.match(/^(-?\d*\.?\d+)x\^(-?\d+)$/)) {
-        terms.push({ a: parseFloat(m[1]), n: parseInt(m[2]) });
-      } else if (m = p.match(/^(-?\d*\.?\d+)x$/)) {
-        terms.push({ a: parseFloat(m[1]), n: 1 });
-      } else if (m = p.match(/^x\^(-?\d+)$/)) {
-        terms.push({ a: 1, n: parseInt(m[1]) });
-      } else if (p === 'x') {
-        terms.push({ a: 1, n: 1 });
-      } else if (p === '-x') {
-        terms.push({ a: -1, n: 1 });
-      } else if (m = p.match(/^(-?\d+\.?\d*)$/)) {
-        terms.push({ a: parseFloat(m[1]), n: 0 });
-      } else {
-        throw new Error(`无法解析: "${p}"`);
-      }
+      if (m = p.match(/^(-?\d*\.?\d+)x\^(-?\d+)$/)) terms.push({ a: parseFloat(m[1]), n: parseInt(m[2]) });
+      else if (m = p.match(/^(-?\d*\.?\d+)x$/)) terms.push({ a: parseFloat(m[1]), n: 1 });
+      else if (m = p.match(/^x\^(-?\d+)$/)) terms.push({ a: 1, n: parseInt(m[1]) });
+      else if (p === 'x') terms.push({ a: 1, n: 1 });
+      else if (p === '-x') terms.push({ a: -1, n: 1 });
+      else if (m = p.match(/^(-?\d+\.?\d*)$/)) terms.push({ a: parseFloat(m[1]), n: 0 });
+      else throw new Error(`无法解析: "${p}"`);
     }
     return terms;
   }
 
-  function differentiate(terms) {
-    return terms.map(t => ({ a: t.a * t.n, n: t.n - 1 })).filter(t => Math.abs(t.a) > 1e-12);
-  }
-
-  function formatTerm(t) {
-    const a = Math.abs(t.a);
-    const sign = t.a < 0 ? '-' : '+';
-    let body;
-    if (t.n === 0) body = `${a}`;
-    else if (t.n === 1) body = a === 1 ? 'x' : `${a}x`;
-    else body = a === 1 ? `x^{${t.n}}` : `${a}x^{${t.n}}`;
-    return { sign, body };
-  }
+  function differentiate(terms) { return terms.map(t => ({ a: t.a * t.n, n: t.n - 1 })).filter(t => Math.abs(t.a) > 1e-12); }
 
   function formatPoly(terms) {
-    if (terms.length === 0) return '0';
-    const parts = [];
-    terms.forEach((t, i) => {
-      const ft = formatTerm(t);
-      if (i === 0) {
-        parts.push(t.a < 0 ? `-${ft.body}` : ft.body);
-      } else {
-        parts.push(`${ft.sign} ${ft.body}`);
-      }
-    });
-    return parts.join(' ');
+    if (!terms.length) return '0';
+    return terms.map((t, i) => {
+      const a = Math.abs(t.a); const sign = t.a < 0 ? '-' : '+';
+      let body;
+      if (t.n === 0) body = `${a}`;
+      else if (t.n === 1) body = a === 1 ? 'x' : `${a}x`;
+      else body = a === 1 ? `x^{${t.n}}` : `${a}x^{${t.n}}`;
+      return i === 0 ? (t.a < 0 ? `-${body}` : body) : `${sign} ${body}`;
+    }).join(' ');
   }
 
-  function formatPolyKaTeX(terms) {
-    if (terms.length === 0) return '0';
-    return formatPoly(terms);
-  }
+  let calcMC, calcDraw;
 
-  let calcMC;
-
-  function initCalculator() {
+  function initCalc() {
     const canvas = document.getElementById('calcCanvas');
-    calcMC = new MathCanvas(canvas, { xMin: -4, xMax: 4, yMin: -6, yMax: 10 });
+    canvas.style.height = '220px';
+    calcMC = new MC(canvas, { xMin: -4, xMax: 4, yMin: -6, yMax: 10 });
 
     function calculate() {
       const input = document.getElementById('calcInput').value.trim();
-      const resultEl = document.getElementById('calcResult');
+      const el = document.getElementById('calcResult');
       try {
-        const terms = parsePolynomial(input);
-        if (terms.length === 0) throw new Error('请输入有效的多项式');
+        const terms = parsePoly(input);
+        if (!terms.length) throw new Error('请输入有效的多项式');
         const deriv = differentiate(terms);
-        const origStr = formatPolyKaTeX(terms);
-        const derivStr = formatPolyKaTeX(deriv);
-        resultEl.innerHTML = `$f(x) = ${origStr}$<br>$f'(x) = ${derivStr}$`;
-        resultEl.classList.remove('error');
-        renderMath();
-
-        // 画图
-        const mc = calcMC;
-        mc.clear();
-        mc.drawGrid();
+        el.innerHTML = `$f(x) = ${formatPoly(terms)}$<br>$f'(x) = ${formatPoly(deriv)}$`;
+        el.classList.remove('error'); renderMath();
+        const mc = calcMC; mc.clear(); mc.drawGrid();
         const f = x => terms.reduce((s, t) => s + t.a * Math.pow(x, t.n), 0);
-        const df = x => deriv.length === 0 ? 0 : deriv.reduce((s, t) => s + t.a * Math.pow(x, t.n), 0);
-        mc.plotFunction(f, mc.cssVar('--primary'), 2.5);
-        mc.plotFunction(df, mc.cssVar('--deriv') || '#5856D6', 2.5);
+        const df = x => deriv.length ? deriv.reduce((s, t) => s + t.a * Math.pow(x, t.n), 0) : 0;
+        mc.plot(f, mc.css('--ink'), 2.5);
+        mc.plot(df, mc.css('--teal'), 2.5);
       } catch (e) {
-        resultEl.innerHTML = '<svg class="icon-svg" style="color:var(--error); width:18px; height:18px; margin-right:6px; vertical-align:-3px;"><use href="#i-x"/></svg>' + e.message + '。请检查输入格式，例如：3x^2 + 2x - 5';
-        resultEl.classList.add('error');
+        el.innerHTML = e.message + '。请检查输入格式，例如：3x^2 + 2x - 5';
+        el.classList.add('error');
       }
     }
 
     document.getElementById('calcBtn').addEventListener('click', calculate);
-    document.getElementById('calcInput').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') calculate();
-    });
-
-    calcDraw = calculate;
-    calculate();
+    document.getElementById('calcInput').addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    calcDraw = calculate; calculate();
   }
-  let calcDraw;
 
-  /* ============================================================
-   *  函数与导数双图像
-   * ============================================================ */
-  let plotTopMC, plotBotMC, plotX = 0, currentPlotFunc = 'x2';
-
+  /* ============ 双图联动 ============ */
+  let pTopMC, pBotMC, plotX = 0, plotFunc = 'x2', plotDraw;
   const plotFuncs = {
-    x2:  { f: x => x*x,         df: x => 2*x,       fStr: 'x^2',  dfStr: '2x' },
-    x3:  { f: x => x*x*x,       df: x => 3*x*x,     fStr: 'x^3',  dfStr: '3x^2' },
-    sin: { f: x => Math.sin(x), df: x => Math.cos(x), fStr: '\\sin(x)', dfStr: '\\cos(x)' },
+    x2:  { f: x => x*x,         df: x => 2*x },
+    x3:  { f: x => x*x*x,       df: x => 3*x*x },
+    sin: { f: x => Math.sin(x), df: x => Math.cos(x) },
   };
 
   function initPlots() {
-    plotTopMC = new MathCanvas(document.getElementById('plotTop'), { xMin: -3, xMax: 3, yMin: -2, yMax: 6 });
-    plotBotMC = new MathCanvas(document.getElementById('plotBottom'), { xMin: -3, xMax: 3, yMin: -4, yMax: 4 });
+    document.getElementById('plotTop').style.height = '180px';
+    document.getElementById('plotBottom').style.height = '180px';
+    pTopMC = new MC(document.getElementById('plotTop'), { xMin: -3, xMax: 3, yMin: -2, yMax: 6 });
+    pBotMC = new MC(document.getElementById('plotBottom'), { xMin: -3, xMax: 3, yMin: -4, yMax: 4 });
 
     function draw() {
-      const data = plotFuncs[currentPlotFunc];
-      const mc1 = plotTopMC, mc2 = plotBotMC;
-      const x = plotX;
-      const y = data.f(x);
-      const dy = data.df(x);
-
-      // 上图：原函数
-      mc1.clear();
-      mc1.drawGrid();
-      mc1.plotFunction(data.f, mc1.cssVar('--primary'), 2.5);
-      mc1.drawVertical(x);
-      // 切线
-      mc1.drawLineExt(x, y, x + 0.5, y + dy * 0.5, mc1.cssVar('--tangent') || '#FF9500', 2);
-      mc1.drawPoint(x, y, mc1.cssVar('--primary'), 6);
-
-      // 下图：导函数
-      mc2.clear();
-      mc2.drawGrid();
-      mc2.plotFunction(data.df, mc2.cssVar('--deriv') || '#5856D6', 2.5);
-      mc2.drawVertical(x);
-      mc2.drawPoint(x, dy, mc2.cssVar('--deriv') || '#5856D6', 6);
-
+      const d = plotFuncs[plotFunc]; const x = plotX; const y = d.f(x); const dy = d.df(x);
+      pTopMC.clear(); pTopMC.drawGrid(); pTopMC.plot(d.f, pTopMC.css('--ink'), 2.5); pTopMC.vline(x);
+      pTopMC.lineExt(x, y, x+0.5, y+dy*0.5, pTopMC.css('--amber'), 2, []); pTopMC.point(x, y, pTopMC.css('--amber'), 5);
+      pBotMC.clear(); pBotMC.drawGrid(); pBotMC.plot(d.df, pBotMC.css('--teal'), 2.5); pBotMC.vline(x);
+      pBotMC.point(x, dy, pBotMC.css('--teal'), 5);
       document.getElementById('plotX').textContent = x.toFixed(2);
     }
 
-    document.getElementById('plotSlider').addEventListener('input', (e) => {
-      plotX = parseFloat(e.target.value);
-      draw();
-    });
-
+    document.getElementById('plotSlider').addEventListener('input', e => { plotX = parseFloat(e.target.value); draw(); });
     document.querySelectorAll('[data-pfunc]').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('[data-pfunc]').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentPlotFunc = btn.dataset.pfunc;
-        draw();
+        btn.classList.add('active'); plotFunc = btn.dataset.pfunc; draw();
       });
     });
-
-    plotDraw = draw;
-    draw();
+    plotDraw = draw; draw();
   }
-  let plotDraw;
 
-  /* ============================================================
-   *  小测验
-   * ============================================================ */
+  /* ============ 测验 ============ */
   const quizData = [
-    {
-      q: '$f(x) = x^7$ 的导数是？',
-      options: ['$7x^6$', '$x^6$', '$7x^7$', '$x^8$'],
-      answer: 0,
-      explain: '幂法则：指数 7 放前面，指数减 1 变 6，所以 $f\'(x) = 7x^6$。'
-    },
-    {
-      q: '$f(x) = 4x^3 - 2x^2 + x - 7$ 的导数是？',
-      options: ['$12x^2 - 4x + 1$', '$12x^2 - 4x - 7$', '$4x^2 - 2x + 1$', '$12x^3 - 4x^2 + x$'],
-      answer: 0,
-      explain: '逐项求导：$12x^2 - 4x + 1 - 0 = 12x^2 - 4x + 1$。常数 -7 的导数为 0。'
-    },
-    {
-      q: '导数 $f\'(a)$ 的几何意义是什么？',
-      options: ['曲线围成的面积', '切线的斜率', '函数的最大值', '曲线的弧长'],
-      answer: 1,
-      explain: '导数 $f\'(a)$ 就是函数图像在点 $(a, f(a))$ 处切线的斜率。'
-    },
-    {
-      q: '$f(x) = \\sin(x)$ 的导数是？',
-      options: ['$\\cos(x)$', '$-\\cos(x)$', '$-\\sin(x)$', '$\\tan(x)$'],
-      answer: 0,
-      explain: '$\\sin(x)$ 的导数是 $\\cos(x)$，$\\cos(x)$ 的导数才是 $-\\sin(x)$，注意符号区别！'
-    },
-    {
-      q: '用链式法则求 $f(x) = (3x+1)^5$ 的导数',
-      options: ['$5(3x+1)^4$', '$15(3x+1)^4$', '$15x(3x+1)^4$', '$(3x+1)^4$'],
-      answer: 1,
-      explain: '外层导数 $5(3x+1)^4$，内层导数 3，相乘得 $5 \\times 3 \\times (3x+1)^4 = 15(3x+1)^4$。'
-    },
-    {
-      q: '曲线 $y = x^2$ 在点 $(1, 1)$ 处的切线方程是？',
-      options: ['$y = 2x - 1$', '$y = 2x + 1$', '$y = x + 1$', '$y = x - 1$'],
-      answer: 0,
-      explain: '$f\'(x) = 2x$，斜率 $f\'(1) = 2$。切线：$y - 1 = 2(x - 1) \\Rightarrow y = 2x - 1$。'
-    }
+    { q: '$f(x) = x^7$ 的导数是？', options: ['$7x^6$', '$x^6$', '$7x^7$', '$x^8$'], answer: 0, explain: '幂法则：指数 7 放前面，指数减 1 变 6，所以 $f\'(x) = 7x^6$。' },
+    { q: '$f(x) = 4x^3 - 2x^2 + x - 7$ 的导数是？', options: ['$12x^2 - 4x + 1$', '$12x^2 - 4x - 7$', '$4x^2 - 2x + 1$', '$12x^3 - 4x^2 + x$'], answer: 0, explain: '逐项求导：$12x^2 - 4x + 1 - 0$。常数 -7 的导数为 0。' },
+    { q: '导数 $f\'(a)$ 的几何意义是什么？', options: ['曲线围成的面积', '切线的斜率', '函数的最大值', '曲线的弧长'], answer: 1, explain: '导数 $f\'(a)$ 就是函数图像在点 $(a, f(a))$ 处切线的斜率。' },
+    { q: '$f(x) = \\sin(x)$ 的导数是？', options: ['$\\cos(x)$', '$-\\cos(x)$', '$-\\sin(x)$', '$\\tan(x)$'], answer: 0, explain: '$\\sin(x)$ 的导数是 $\\cos(x)$，注意 $\\cos(x)$ 的导数才是 $-\\sin(x)$。' },
+    { q: '用链式法则求 $f(x) = (3x+1)^5$ 的导数', options: ['$5(3x+1)^4$', '$15(3x+1)^4$', '$15x(3x+1)^4$', '$(3x+1)^4$'], answer: 1, explain: '外层导数 $5(3x+1)^4$，内层导数 3，相乘得 $15(3x+1)^4$。' },
+    { q: '曲线 $y = x^2$ 在点 $(1, 1)$ 处的切线方程是？', options: ['$y = 2x - 1$', '$y = 2x + 1$', '$y = x + 1$', '$y = x - 1$'], answer: 0, explain: '$f\'(x) = 2x$，斜率 $f\'(1) = 2$。切线：$y - 1 = 2(x - 1) \\Rightarrow y = 2x - 1$。' }
   ];
 
   let quizAnswers = new Array(quizData.length).fill(-1);
@@ -1772,138 +1733,82 @@
     container.innerHTML = '';
     quizData.forEach((q, qi) => {
       const div = document.createElement('div');
-      div.className = 'quiz-question';
-      div.innerHTML = `<h3>第 ${qi + 1} 题</h3><p style="margin:0 0 12px;">${q.q}</p>`;
-      const optionsDiv = document.createElement('div');
+      div.className = 'quiz-q';
+      div.innerHTML = `<h3>第 ${qi+1} 题</h3><p class="q-text">${q.q}</p>`;
+      const opts = document.createElement('div');
       q.options.forEach((opt, oi) => {
         const btn = document.createElement('button');
-        btn.className = 'quiz-option';
-        btn.innerHTML = `${String.fromCharCode(65 + oi)}. ${opt}`;
-        btn.dataset.qi = qi;
-        btn.dataset.oi = oi;
+        btn.className = 'quiz-opt'; btn.innerHTML = `${String.fromCharCode(65+oi)}. ${opt}`;
         btn.addEventListener('click', () => {
           if (quizSubmitted) return;
           quizAnswers[qi] = oi;
-          optionsDiv.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('correct', 'wrong'));
+          opts.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
           btn.classList.add('selected');
         });
-        optionsDiv.appendChild(btn);
+        opts.appendChild(btn);
       });
-      div.appendChild(optionsDiv);
-
+      div.appendChild(opts);
       const fb = document.createElement('div');
-      fb.className = 'quiz-feedback';
-      fb.id = `feedback-${qi}`;
+      fb.className = 'quiz-fb'; fb.id = `fb-${qi}`;
       div.appendChild(fb);
-
       container.appendChild(div);
     });
     renderMath();
   }
 
-  function initQuiz() {
-    renderQuiz();
-
-    document.getElementById('quizSubmitBtn').addEventListener('click', () => {
-      quizSubmitted = true;
-      let score = 0;
-      quizData.forEach((q, qi) => {
-        const options = document.querySelectorAll(`.quiz-option[data-qi="${qi}"]`);
-        const fb = document.getElementById(`feedback-${qi}`);
-        options.forEach((btn, oi) => {
-          btn.disabled = true;
-          if (oi === q.answer) btn.classList.add('correct');
-          if (quizAnswers[qi] === oi && oi !== q.answer) btn.classList.add('wrong');
-        });
-        if (quizAnswers[qi] === q.answer) {
-          score++;
-          fb.className = 'quiz-feedback show correct';
-          fb.innerHTML = '<svg class="icon-svg" style="color:var(--success);"><use href="#i-check"/></svg> 正确！' + q.explain;
-        } else {
-          fb.className = 'quiz-feedback show wrong';
-          fb.innerHTML = '<svg class="icon-svg" style="color:var(--error);"><use href="#i-x"/></svg> 错误。' + q.explain;
-        }
+  document.getElementById('quizSubmitBtn').addEventListener('click', () => {
+    quizSubmitted = true; let score = 0;
+    quizData.forEach((q, qi) => {
+      const opts = document.querySelectorAll(`.quiz-q:nth-child(${qi+1}) .quiz-opt`);
+      const fb = document.getElementById(`fb-${qi}`);
+      opts.forEach((btn, oi) => {
+        btn.disabled = true;
+        if (oi === q.answer) btn.classList.add('correct');
+        if (quizAnswers[qi] === oi && oi !== q.answer) btn.classList.add('wrong');
       });
-      const scoreEl = document.getElementById('quizScore');
-      let scoreIcon, scoreText;
-      if (score === quizData.length) {
-        scoreIcon = '<svg class="icon-svg"><use href="#i-star"/></svg>';
-        scoreText = '完美！';
-      } else if (score >= 4) {
-        scoreIcon = '<svg class="icon-svg"><use href="#i-thumbs-up"/></svg>';
-        scoreText = '不错！';
-      } else {
-        scoreIcon = '<svg class="icon-svg"><use href="#i-zap"/></svg>';
-        scoreText = '继续加油！';
-      }
-      scoreEl.innerHTML = scoreIcon + `得分：${score} / ${quizData.length} ${scoreText}`;
-      scoreEl.classList.add('show');
-      renderMath();
+      if (quizAnswers[qi] === q.answer) {
+        score++; fb.className = 'quiz-fb show correct';
+        fb.innerHTML = '<strong>正确！</strong> ' + q.explain;
+      } else { fb.className = 'quiz-fb show wrong'; fb.innerHTML = '<strong>错误。</strong> ' + q.explain; }
     });
-
-    document.getElementById('quizResetBtn').addEventListener('click', () => {
-      quizSubmitted = false;
-      quizAnswers = new Array(quizData.length).fill(-1);
-      document.getElementById('quizScore').classList.remove('show');
-      renderQuiz();
-    });
-  }
-
-  /* ============================================================
-   *  重绘所有 Canvas（主题切换时）
-   * ============================================================ */
-  function redrawAll() {
-    [secantMC, tangentMC, plotTopMC, plotBotMC].forEach(mc => {
-      if (mc) mc.resize();
-    });
-    if (calcMC) calcMC.resize();
-    if (secantDraw) secantDraw();
-    if (tangentDraw) tangentDraw();
-    if (calcDraw) calcDraw();
-    if (plotDraw) plotDraw();
-  }
-
-  window.addEventListener('resize', () => {
-    setTimeout(redrawAll, 100);
+    const scoreEl = document.getElementById('quizScore');
+    let icon, text;
+    if (score === quizData.length) { icon = '<svg><use href="#i-star"/></svg>'; text = '完美！'; }
+    else if (score >= 4) { icon = '<svg><use href="#i-thumbs-up"/></svg>'; text = '不错！'; }
+    else { icon = '<svg><use href="#i-zap"/></svg>'; text = '继续加油！'; }
+    scoreEl.innerHTML = icon + `得分：${score} / ${quizData.length} ${text}`;
+    scoreEl.classList.add('show'); renderMath();
   });
 
-  /* ============================================================
-   *  KaTeX 渲染
-   * ============================================================ */
+  document.getElementById('quizResetBtn').addEventListener('click', () => {
+    quizSubmitted = false; quizAnswers = new Array(quizData.length).fill(-1);
+    document.getElementById('quizScore').classList.remove('show'); renderQuiz();
+  });
+
+  /* ============ 重绘 ============ */
+  function redrawAll() {
+    [secMC, tanMC, pTopMC, pBotMC, calcMC].forEach(mc => { if (mc) mc.resize(); });
+    if (secDraw) secDraw(); if (tanDraw) tanDraw(); if (calcDraw) calcDraw(); if (plotDraw) plotDraw();
+  }
+  let resizeTimer;
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(redrawAll, 150); });
+
+  /* ============ KaTeX ============ */
   function renderMath() {
     if (typeof renderMathInElement !== 'undefined') {
       renderMathInElement(document.body, {
-        delimiters: [
-          { left: '$$', right: '$$', display: true },
-          { left: '$', right: '$', display: false }
-        ],
-        throwOnError: false,
-        strict: false
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        throwOnError: false, strict: false
       });
-    } else {
-      setTimeout(renderMath, 150);
-    }
+    } else setTimeout(renderMath, 150);
   }
 
-  /* ============================================================
-   *  初始化
-   * ============================================================ */
+  /* ============ 初始化 ============ */
   function init() {
-    initSecant();
-    initTangent();
-    initPowerSteps();
-    initExamples();
-    initCalculator();
-    initPlots();
-    initQuiz();
-    renderMath();
+    initSecant(); initTangent(); renderExample(); initCalc(); initPlots(); renderQuiz(); renderMath();
   }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 </script>
 </body>
