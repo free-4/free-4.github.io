@@ -11,7 +11,8 @@ const SITE_DATA = [
             { title: "生物必修二", url: "https://shuoweb.com/page/study/biology_b2_3.html", icon: "study" },
             { title: "化学选修二", url: "https://shuoweb.com/page/study/chemistry_x2_2.html", icon: "study" },
             { title: "高考志愿查询", url: "https://shuoweb.com/page/gaokao/", icon: "study" },
-            { title: "生物减数分裂", url: "https://shuoweb.com/page/study/biology/jianshu", icon: "study" }
+            { title: "生物减数分裂", url: "https://shuoweb.com/page/study/biology/jianshu", icon: "study" },
+            { title: "导数学习", url: "https://shuoweb.com/page/study/math/daoshu", icon: "study" }
         ]
     }
 ];
