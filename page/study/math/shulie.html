@@ -142,8 +142,8 @@
     .math-box { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: var(--radius-sm); padding: 20px 24px; margin: 16px 0; text-align: center; font-size: 1.1em; overflow-x: auto; }
     .math-box.tinted { background: var(--amber-light); border-color: transparent; border-left: 3px solid var(--amber); }
 
-    .canvas-box { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin: 16px 0; box-shadow: var(--shadow-sm); }
-    canvas { display: block; width: 100%; border-radius: var(--radius-sm); }
+    .canvas-box { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin: 16px 0; box-shadow: var(--shadow-sm); overflow-x: auto; }
+    canvas { display: block; width: 100%; min-width: 300px; border-radius: var(--radius-sm); }
     .canvas-label { font-size: 12px; font-weight: 600; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
 
     .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; }
@@ -168,6 +168,7 @@
     .step:last-child { border-bottom: none; }
     .step-num { width: 28px; height: 28px; background: var(--ink); color: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
     .step-body { flex: 1; font-size: 14px; line-height: 1.8; color: var(--ink-soft); padding-top: 2px; }
+    .hl-result { color: var(--amber-dark); }
 
     .table-wrap { overflow-x: auto; margin: 16px 0; border-radius: var(--radius); border: 1px solid var(--border); }
     table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -264,6 +265,16 @@
       .app-grid { grid-template-columns: 1fr; }
       .brand { font-size: 17px; }
       .brand-icon { width: 28px; height: 28px; }
+      .canvas-box { padding: 12px; }
+      canvas { min-width: 280px; }
+      .term-grid { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); gap: 6px; }
+      .term-cell { padding: 8px 4px; font-size: 13px; }
+      .tabs { flex-wrap: wrap; }
+      .tab { flex: 1 1 calc(50% - 4px); min-width: 0; font-size: 12px; padding: 8px 10px; }
+      .step { gap: 10px; padding: 12px 0; }
+      .step-num { width: 24px; height: 24px; font-size: 12px; }
+      .step-body { font-size: 13px; line-height: 1.7; }
+      .math-box { padding: 12px; font-size: 14px; overflow-x: auto; }
     }
   </style>
 </head>
@@ -380,7 +391,6 @@
     <div class="canvas-box">
       <canvas id="arithCanvas"></canvas>
       <div class="controls">
-        <button class="btn btn-amber" id="arithPlayBtn"><svg><use href="#i-play"/></svg>播放动画</button>
         <div class="control-group">
           <label>首项 a₁ =</label>
           <input type="range" id="arithA1" min="1" max="10" step="1" value="2">
@@ -434,7 +444,6 @@
     <div class="canvas-box">
       <canvas id="geoCanvas"></canvas>
       <div class="controls">
-        <button class="btn btn-amber" id="geoPlayBtn"><svg><use href="#i-play"/></svg>播放动画</button>
         <div class="control-group">
           <label>首项 a₁ =</label>
           <input type="range" id="geoA1" min="1" max="5" step="1" value="1">
@@ -590,7 +599,7 @@
       </div>
       <div class="step"><div class="step-num">1</div><div class="step-body">例：求 $\frac{1}{1\times2} + \frac{1}{2\times3} + \cdots + \frac{1}{n(n+1)}$</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-body">裂项：$= \left(1 - \frac{1}{2}\right) + \left(\frac{1}{2} - \frac{1}{3}\right) + \cdots + \left(\frac{1}{n} - \frac{1}{n+1}\right)$</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-body">相消：$= 1 - \frac{1}{n+1} = \textcolor{orange}{\frac{n}{n+1}}$</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">相消：$= 1 - \frac{1}{n+1} =$ <strong class="hl-result">$\frac{n}{n+1}$</strong></div></div>
       <div class="tip tip-amber" style="margin-top:12px; margin-bottom:0;">
         <div class="tip-icon"><svg><use href="#i-pencil"/></svg></div>
         <div><strong>常见裂项：</strong>① $\frac{1}{n(n+k)} = \frac{1}{k}\left(\frac{1}{n} - \frac{1}{n+k}\right)$；② $\frac{1}{\sqrt{n}+\sqrt{n+1}} = \sqrt{n+1} - \sqrt{n}$</div>
@@ -644,7 +653,7 @@
       <p>例：$a_1 = 1$，$a_{n+1} = a_n + \frac{1}{n(n+1)}$，求 $a_n$。</p>
       <div class="step"><div class="step-num">1</div><div class="step-body">$a_n - a_{n-1} = \frac{1}{(n-1)n} = \frac{1}{n-1} - \frac{1}{n}$</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-body">累加：$a_n = a_1 + \sum_{k=1}^{n-1}\left(\frac{1}{k} - \frac{1}{k+1}\right)$</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-body">裂项相消：$= 1 + \left(1 - \frac{1}{n}\right) = \textcolor{orange}{2 - \frac{1}{n}}$</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">裂项相消：$= 1 + \left(1 - \frac{1}{n}\right) =$ <strong class="hl-result">$2 - \frac{1}{n}$</strong></div></div>
     </div>
 
     <div class="rule">
@@ -653,7 +662,7 @@
       <p>例：$a_1 = 1$，$a_{n+1} = \frac{n+1}{n} a_n$，求 $a_n$。</p>
       <div class="step"><div class="step-num">1</div><div class="step-body">$\frac{a_{n+1}}{a_n} = \frac{n+1}{n}$</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-body">累乘：$a_n = a_1 \cdot \prod_{k=1}^{n-1} \frac{k+1}{k} = 1 \cdot \frac{2}{1} \cdot \frac{3}{2} \cdots \frac{n}{n-1}$</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-body">约分：$= \textcolor{orange}{n}$</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">约分：$=$ <strong class="hl-result">$n$</strong></div></div>
     </div>
 
     <div class="rule">
@@ -663,7 +672,7 @@
       <div class="step"><div class="step-num">1</div><div class="step-body">例：$a_1 = 2$，$a_{n+1} = 2a_n + 1$</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-body">设 $a_{n+1} + c = 2(a_n + c)$，展开得 $a_{n+1} = 2a_n + c$，所以 $c = 1$</div></div>
       <div class="step"><div class="step-num">3</div><div class="step-body">$\{a_n + 1\}$ 是等比数列，首项 $a_1 + 1 = 3$，公比 $2$</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-body">$a_n + 1 = 3 \cdot 2^{n-1}$，所以 $a_n = \textcolor{orange}{3 \cdot 2^{n-1} - 1}$</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">$a_n + 1 = 3 \cdot 2^{n-1}$，所以 $a_n =$ <strong class="hl-result">$3 \cdot 2^{n-1} - 1$</strong></div></div>
     </div>
 
     <div class="tip tip-teal">
@@ -685,7 +694,7 @@
       <div class="controls">
         <div class="control-group">
           <label>项数 n =</label>
-          <input type="range" id="expN" min="3" max="20" step="1" value="8">
+          <input type="range" id="expN" min="3" max="12" step="1" value="8">
           <span class="badge badge-ink" id="expNVal">8</span>
         </div>
         <span class="badge badge-amber">S<sub>n</sub> = <span id="expSum">0</span></span>
@@ -824,14 +833,15 @@
       this.canvas = canvas; this.ctx = canvas.getContext('2d');
       this.xMin = opts.xMin ?? -1; this.xMax = opts.xMax ?? 10;
       this.yMin = opts.yMin ?? -1; this.yMax = opts.yMax ?? 10;
-      this.pad = opts.pad ?? 40; this.resize();
+      this.pad = opts.pad ?? 36; this.resize();
     }
     resize() {
       const rect = this.canvas.getBoundingClientRect(); const dpr = window.devicePixelRatio || 1;
       const h = rect.height || 280;
-      this.canvas.width = rect.width * dpr; this.canvas.height = h * dpr;
+      const w = Math.max(rect.width, 300);
+      this.canvas.width = w * dpr; this.canvas.height = h * dpr;
       this.ctx.setTransform(1,0,0,1,0,0); this.ctx.scale(dpr, dpr);
-      this.w = rect.width; this.h = h;
+      this.w = w; this.h = h;
     }
     toX(x) { return this.pad + (x - this.xMin) / (this.xMax - this.xMin) * (this.w - 2*this.pad); }
     toY(y) { return this.h - this.pad - (y - this.yMin) / (this.yMax - this.yMin) * (this.h - 2*this.pad); }
@@ -839,16 +849,22 @@
     css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
     drawGrid() {
       const c = this.ctx;
-      c.strokeStyle = 'rgba(122,111,98,0.1)'; c.lineWidth = 1;
+      const xRange = this.xMax - this.xMin;
+      const yRange = this.yMax - this.yMin;
+      const narrow = this.w < 380;
+      // 自适应步长：窄屏或范围大时跳过部分标签
+      const xStep = xRange > 15 ? (narrow ? 4 : 2) : (narrow ? 2 : 1);
+      const yStep = yRange > 50 ? (narrow ? 10 : 5) : yRange > 20 ? (narrow ? 5 : 2) : 1;
+      c.strokeStyle = 'rgba(122,111,98,0.08)'; c.lineWidth = 1;
       for (let x = Math.ceil(this.xMin); x <= this.xMax; x++) { c.beginPath(); c.moveTo(this.toX(x), this.toY(this.yMin)); c.lineTo(this.toX(x), this.toY(this.yMax)); c.stroke(); }
       for (let y = Math.ceil(this.yMin); y <= this.yMax; y++) { c.beginPath(); c.moveTo(this.toX(this.xMin), this.toY(y)); c.lineTo(this.toX(this.xMax), this.toY(y)); c.stroke(); }
       c.strokeStyle = 'rgba(122,111,98,0.3)'; c.lineWidth = 1.5;
       if (this.yMin <= 0 && this.yMax >= 0) { c.beginPath(); c.moveTo(this.toX(this.xMin), this.toY(0)); c.lineTo(this.toX(this.xMax), this.toY(0)); c.stroke(); }
       if (this.xMin <= 0 && this.xMax >= 0) { c.beginPath(); c.moveTo(this.toX(0), this.toY(this.yMin)); c.lineTo(this.toX(0), this.toY(this.yMax)); c.stroke(); }
       c.fillStyle = 'rgba(122,111,98,0.6)'; c.font = '11px sans-serif'; c.textAlign = 'center';
-      for (let x = Math.ceil(this.xMin); x <= this.xMax; x++) { if (x !== 0) c.fillText(x, this.toX(x), this.toY(0) + 16); }
+      for (let x = Math.ceil(this.xMin); x <= this.xMax; x++) { if (x !== 0 && (x - Math.ceil(this.xMin)) % xStep === 0) c.fillText(x, this.toX(x), this.toY(0) + 16); }
       c.textAlign = 'right';
-      for (let y = Math.ceil(this.yMin); y <= this.yMax; y++) { if (y !== 0) c.fillText(y, this.toX(0) - 8, this.toY(y) + 4); }
+      for (let y = Math.ceil(this.yMin); y <= this.yMax; y++) { if (y !== 0 && (y - Math.ceil(this.yMin)) % yStep === 0) c.fillText(y, this.toX(0) - 8, this.toY(y) + 4); }
     }
     bar(x, y, w, color, alpha = 1) {
       const c = this.ctx;
@@ -865,15 +881,10 @@
     dot(x, y, color, r = 7, label = '') {
       const c = this.ctx; c.fillStyle = color; c.strokeStyle = '#fff'; c.lineWidth = 2;
       c.beginPath(); c.arc(this.toX(x), this.toY(y), r, 0, Math.PI*2); c.fill(); c.stroke();
-      if (label) { c.fillStyle = color; c.font = 'bold 12px sans-serif'; c.textAlign = 'center'; c.fillText(label, this.toX(x), this.toY(y) - 14); }
-    }
-    dotPulse(x, y, color, r = 7, t = 0, label = '') {
-      const c = this.ctx;
-      const pulseR = r + 4 + Math.sin(t * 0.06) * 3;
-      c.strokeStyle = color; c.globalAlpha = 0.3; c.lineWidth = 2;
-      c.beginPath(); c.arc(this.toX(x), this.toY(y), pulseR, 0, Math.PI*2); c.stroke();
-      c.globalAlpha = 1;
-      this.dot(x, y, color, r, label);
+      if (label) {
+        c.fillStyle = color; c.font = 'bold 12px sans-serif'; c.textAlign = 'center';
+        c.fillText(label, this.toX(x), this.toY(y) - 14);
+      }
     }
     line(x1, y1, x2, y2, color, lw = 2, dash = []) {
       const c = this.ctx; c.strokeStyle = color; c.lineWidth = lw; c.setLineDash(dash);
@@ -881,84 +892,82 @@
     }
   }
 
-  /* ============ 等差数列动画 ============ */
-  let arithMC, arithA1 = 2, arithD = 3, arithPlaying = false, arithT = 0, arithDraw;
+  /* ============ 等差数列 ============ */
+  let arithMC, arithA1 = 2, arithD = 3;
 
   function initArith() {
     const canvas = document.getElementById('arithCanvas');
     canvas.style.height = '260px';
-    arithMC = new MC(canvas, { xMin: 0, xMax: 11, yMin: 0, yMax: 40 });
+    arithMC = new MC(canvas, { xMin: 0, xMax: 9, yMin: 0, yMax: 40 });
 
     function getTerms(n) { const terms = []; for (let i = 1; i <= n; i++) terms.push(arithA1 + (i-1)*arithD); return terms; }
 
     function draw() {
-      const mc = arithMC; mc.clear(); mc.drawGrid();
-      const terms = getTerms(10);
-      // 画散点 + 连线
-      mc.line(1, terms[0], 10, terms[9], mc.css('--amber'), 2, [5,3]);
+      const mc = arithMC; mc.clear();
+      const terms = getTerms(8);
+      mc.yMax = Math.max(terms[7] * 1.2, 10);
+      mc.drawGrid();
+      mc.line(1, terms[0], 8, terms[7], mc.css('--amber'), 2, [5,3]);
+      const narrow = mc.w < 380;
       terms.forEach((v, i) => {
-        const isCurrent = arithPlaying && i === Math.floor(arithT / 8) % 10;
-        mc.dotPulse(i+1, v, mc.css('--amber'), 6, arithT, `${v}`);
+        const showLabel = !narrow || i % 2 === 0;
+        mc.dot(i+1, v, mc.css('--amber'), 6, showLabel ? `${v}` : '');
       });
-      // 项值显示
       const termsEl = document.getElementById('arithTerms');
       termsEl.innerHTML = terms.slice(0, 6).map((v, i) => `<div class="term-cell" style="animation-delay:${i*0.05}s"><div class="term-label">a${i+1}</div>${v}</div>`).join('');
       document.getElementById('arithA1Val').textContent = arithA1;
       document.getElementById('arithDVal').textContent = arithD.toFixed(1);
-      arithT++;
     }
 
-    document.getElementById('arithPlayBtn').addEventListener('click', () => {
-      arithPlaying = !arithPlaying;
-      document.getElementById('arithPlayBtn').innerHTML = arithPlaying ? '播放中...' : '<svg><use href="#i-play"/></svg>播放动画';
-    });
     document.getElementById('arithA1').addEventListener('input', e => { arithA1 = parseInt(e.target.value); draw(); });
     document.getElementById('arithD').addEventListener('input', e => { arithD = parseFloat(e.target.value); draw(); });
-
-    function loop() { draw(); requestAnimationFrame(loop); }
-    arithDraw = draw; draw(); loop();
+    arithMC._draw = draw;
+    draw();
   }
 
-  /* ============ 等比数列动画 ============ */
-  let geoMC, geoA1 = 1, geoQ = 2, geoT = 0, geoDraw;
+  /* ============ 等比数列 ============ */
+  let geoMC, geoA1 = 1, geoQ = 2;
 
   function initGeo() {
     const canvas = document.getElementById('geoCanvas');
     canvas.style.height = '260px';
-    geoMC = new MC(canvas, { xMin: 0, xMax: 11, yMin: 0, yMax: 600 });
+    geoMC = new MC(canvas, { xMin: 0, xMax: 9, yMin: 0, yMax: 600 });
 
     function getTerms(n) { const terms = []; for (let i = 1; i <= n; i++) terms.push(geoA1 * Math.pow(geoQ, i-1)); return terms; }
 
     function draw() {
-      const mc = geoMC; mc.clear(); mc.drawGrid();
-      const terms = getTerms(10);
-      // 连线（曲线效果）
-      mc.line(1, terms[0], 10, Math.min(terms[9], 590), mc.css('--coral'), 2, [5,3]);
+      const mc = geoMC; mc.clear();
+      const terms = getTerms(8);
+      const capped = terms.map(v => Math.min(v, 590));
+      mc.yMax = Math.max(capped[7] * 1.2, 10);
+      mc.drawGrid();
+      mc.line(1, capped[0], 8, capped[7], mc.css('--coral'), 2, [5,3]);
+      const narrow = mc.w < 380;
       terms.forEach((v, i) => {
         const y = Math.min(v, 590);
-        mc.dotPulse(i+1, y, mc.css('--coral'), 6, geoT, v < 600 ? `${v}` : `${v.toExponential(0)}`);
+        const label = v < 600 ? `${v}` : `${v.toExponential(0)}`;
+        const showLabel = !narrow || i % 2 === 0;
+        mc.dot(i+1, y, mc.css('--coral'), 6, showLabel ? label : '');
       });
       const termsEl = document.getElementById('geoTerms');
       termsEl.innerHTML = terms.slice(0, 6).map((v, i) => `<div class="term-cell" style="animation-delay:${i*0.05}s"><div class="term-label">a${i+1}</div>${v < 10000 ? v : v.toExponential(1)}</div>`).join('');
       document.getElementById('geoA1Val').textContent = geoA1;
       document.getElementById('geoQVal').textContent = geoQ.toFixed(1);
-      geoT++;
     }
 
     document.getElementById('geoA1').addEventListener('input', e => { geoA1 = parseInt(e.target.value); draw(); });
     document.getElementById('geoQ').addEventListener('input', e => { geoQ = parseFloat(e.target.value); draw(); });
-
-    function loop() { draw(); requestAnimationFrame(loop); }
-    geoDraw = draw; draw(); loop();
+    geoMC._draw = draw;
+    draw();
   }
 
   /* ============ 求和可视化 ============ */
-  let sumMC, sumN = 6, sumType = 'arith', sumT = 0, sumDraw;
+  let sumMC, sumN = 6, sumType = 'arith';
 
   function initSum() {
     const canvas = document.getElementById('sumCanvas');
     canvas.style.height = '280px';
-    sumMC = new MC(canvas, { xMin: 0, xMax: 13, yMin: 0, yMax: 50 });
+    sumMC = new MC(canvas, { xMin: 0, xMax: 14, yMin: 0, yMax: 50 });
 
     function getTerm(n) {
       if (sumType === 'arith') return n;
@@ -968,31 +977,28 @@
     }
 
     function draw() {
-      const mc = sumMC; mc.clear(); mc.drawGrid();
+      const mc = sumMC; mc.clear();
       let total = 0;
       const maxVal = getTerm(sumN);
-      // 动态调整 yMax
-      mc.yMax = Math.max(maxVal * 1.2, 10);
+      mc.yMax = Math.max(maxVal * 1.25, 10);
+      mc.drawGrid();
 
       const color = sumType === 'arith' ? mc.css('--amber') : sumType === 'geo' ? mc.css('--coral') : mc.css('--teal');
-      const colorLight = sumType === 'arith' ? mc.css('--amber-light') : sumType === 'geo' ? mc.css('--coral-light') : mc.css('--teal-light');
 
       for (let i = 1; i <= sumN; i++) {
         const val = getTerm(i);
         total += val;
-        const alpha = i <= sumN ? 1 : 0.3;
-        mc.bar(i, val, 0.7, color, alpha);
-        mc.barValue(i, val, `${val}`, color);
+        mc.bar(i, val, 0.7, color, 1);
+        // 只在柱子不太窄时显示数值
+        if (sumN <= 8 || i % 2 === 1) mc.barValue(i, val, `${val}`, color);
       }
 
-      // 求和标注
       const c = mc.ctx;
       c.fillStyle = mc.css('--ink'); c.font = 'bold 14px sans-serif'; c.textAlign = 'center';
       c.fillText(`S${sumN} = ${total}`, mc.toX(sumN/2 + 0.5), mc.toY(mc.yMax) - 8);
 
       document.getElementById('sumNVal').textContent = sumN;
       document.getElementById('sumResult').textContent = total;
-      sumT++;
     }
 
     document.getElementById('sumN').addEventListener('input', e => { sumN = parseInt(e.target.value); draw(); });
@@ -1002,18 +1008,17 @@
         btn.classList.add('active'); sumType = btn.dataset.type; draw();
       });
     });
-
-    function loop() { draw(); requestAnimationFrame(loop); }
-    sumDraw = draw; draw(); loop();
+    sumMC._draw = draw;
+    draw();
   }
 
   /* ============ 数列绘图器 ============ */
-  let expMC, expN = 8, expType = 'arith', expT = 0, expDraw;
+  let expMC, expN = 8, expType = 'arith';
 
   function initExplorer() {
     const canvas = document.getElementById('expCanvas');
     canvas.style.height = '300px';
-    expMC = new MC(canvas, { xMin: 0, xMax: 22, yMin: 0, yMax: 100 });
+    expMC = new MC(canvas, { xMin: 0, xMax: 14, yMin: 0, yMax: 100 });
 
     function getTerm(n) {
       if (expType === 'arith') return 2 + (n-1) * 3;
@@ -1024,28 +1029,26 @@
     }
 
     function draw() {
-      const mc = expMC; mc.clear(); mc.drawGrid();
+      const mc = expMC; mc.clear();
       const terms = []; let maxVal = 0;
       for (let i = 1; i <= expN; i++) { const v = getTerm(i); terms.push(v); maxVal = Math.max(maxVal, v); }
+      mc.xMax = Math.max(expN + 1, 8);
       mc.yMax = Math.max(maxVal * 1.15, 10);
+      mc.drawGrid();
 
       const color = mc.css('--amber');
-      const tealColor = mc.css('--teal');
-
-      // 连线
       if (terms.length > 1) mc.line(1, terms[0], expN, terms[expN-1], mc.css('--ink-light'), 1.5, [4,3]);
 
-      // 散点 + 脉冲
+      // 自适应标签：点数多时跳过部分标签
+      const labelStep = expN > 10 ? 2 : 1;
       terms.forEach((v, i) => {
-        mc.dotPulse(i+1, v, color, 6, expT, `${v}`);
+        mc.dot(i+1, v, color, 6, i % labelStep === 0 ? `${v}` : '');
       });
 
-      // 前n项和
       let sum = terms.reduce((a, b) => a + b, 0);
       document.getElementById('expNVal').textContent = expN;
       document.getElementById('expSum').textContent = sum;
       document.getElementById('expAn').textContent = terms[expN-1];
-      expT++;
     }
 
     document.getElementById('expN').addEventListener('input', e => { expN = parseInt(e.target.value); draw(); });
@@ -1055,9 +1058,8 @@
         btn.classList.add('active'); expType = btn.dataset.etype; draw();
       });
     });
-
-    function loop() { draw(); requestAnimationFrame(loop); }
-    expDraw = draw; draw(); loop();
+    expMC._draw = draw;
+    draw();
   }
 
   /* ============ 测验 ============ */
@@ -1131,8 +1133,11 @@
 
   /* ============ 重绘 ============ */
   function redrawAll() {
-    [arithMC, geoMC, sumMC, expMC].forEach(mc => { if (mc) mc.resize(); });
-    if (arithDraw) arithDraw(); if (geoDraw) geoDraw(); if (sumDraw) sumDraw(); if (expDraw) expDraw();
+    [arithMC, geoMC, sumMC, expMC].forEach(mc => { if (mc) { mc.resize(); } });
+    if (arithMC) arithMC._draw && arithMC._draw();
+    if (geoMC) geoMC._draw && geoMC._draw();
+    if (sumMC) sumMC._draw && sumMC._draw();
+    if (expMC) expMC._draw && expMC._draw();
   }
   let resizeTimer;
   window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(redrawAll, 150); });
