@@ -40,7 +40,8 @@ const SITE_DATA = [
         name: "友情链接",
         icon: "code",
         items: [
-            { title: "旧版网站", url: "https://pages.shuoweb.com/", icon: "link" }
+            { title: "旧版网站", url: "https://pages.shuoweb.com/", icon: "link" },
+            { title: "嘟站", url: "https://嘟.com/", icon: "link" }
         ]
     }
 ];
