@@ -32,7 +32,7 @@ const SITE_DATA = [
         items: [
             { title: "政治倾向测试", url: "https://shuoweb.com/page/html/zz/", icon: "study" },
             { title: "MBTI测试", url: "https://shuoweb.com/page/html/mbti", icon: "gift" },
-            { title: "关于我", url: "https://shuoweb.com/page/me", icon: "home" },
+            { title: "我的博客", url: "https://嘟.com/blog/", icon: "home" },
             { title: "设置", url: "#setting", icon: "settings" }
         ]
     },
