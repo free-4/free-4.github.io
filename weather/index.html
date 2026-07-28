@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#5aa7e6">
+<title>天气预报15日</title>
+<style>
+  /* Nunito 本地字体（离线内置，无需联网访问 Google Fonts） */
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/nunito-400.ttf) format('truetype')}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/nunito-600.ttf) format('truetype')}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/nunito-700.ttf) format('truetype')}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/nunito-800.ttf) format('truetype')}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/nunito-900.ttf) format('truetype')}
+  :root{
+    --sky-1:#6fb1ec; --sky-2:#8fc6f0; --sky-3:#b6ddf7;
+    --bg-1:#e9f4fe; --bg-2:#d4e9fb;
+    --card:#ffffff;
+    --ink:#16364f; --ink-soft:#5d7b93; --ink-faint:#9bb3c7;
+    --line:#eaf1f8;
+    --primary:#3b8fd9; --primary-d:#2f7bc0;
+    --max:#ff8a4c; --max-d:#f1662b;
+    --min:#4aa3e6; --min-d:#2f87cf;
+    --aqi-good:#46c47c; --aqi-ok:#f6b26b;
+    --danger:#ef5350; --danger-d:#d32f2f;
+    --radius:26px;
+    --shadow:0 14px 34px -16px rgba(45,98,140,.32);
+    --shadow-sm:0 6px 16px -8px rgba(45,98,140,.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{min-height:100%}
+  body{
+    font-family:"Nunito",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(120% 60% at 50% -10%, #cfe9fb 0%, rgba(207,233,251,0) 60%),
+      linear-gradient(160deg,var(--bg-1),var(--bg-2));
+    background-attachment:fixed;
+    min-height:100%;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    display:flex;justify-content:center;
+    padding:max(14px,env(safe-area-inset-top)) 14px max(28px,env(safe-area-inset-bottom));
+  }
+  .app{
+    width:100%;max-width:460px;
+    display:flex;flex-direction:column;gap:14px;
+    animation:rise .6s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .app>*{flex-shrink:0}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  /* ===== City Bar ===== */
+  .city-bar{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 0}
+  .city-bar::-webkit-scrollbar{display:none}
+  .city-chip{flex:none;display:flex;align-items:center;gap:5px;background:#fff;border:2px solid transparent;border-radius:20px;padding:8px 16px;font-size:13px;font-weight:800;color:var(--ink-soft);box-shadow:var(--shadow-sm);cursor:pointer;transition:all .2s;white-space:nowrap}
+  .city-chip:active{transform:scale(.95)}
+  .city-chip.active{background:var(--primary);color:#fff;border-color:var(--primary-d)}
+  .city-chip svg{width:14px;height:14px;flex:none}
+  .city-add{flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;background:#fff;border:2px dashed var(--primary);border-radius:20px;color:var(--primary);box-shadow:var(--shadow-sm);cursor:pointer;flex-shrink:0}
+  .city-add:active{transform:scale(.95)}
+
+  /* ===== City Modal ===== */
+  .city-modal{position:fixed;inset:0;z-index:60;background:rgba(22,54,79,.4);backdrop-filter:blur(4px);display:flex;flex-direction:column;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .3s}
+  .city-modal.show{opacity:1;pointer-events:auto}
+  .city-modal-content{background:#fff;border-radius:28px 28px 0 0;max-height:85vh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);padding:20px 16px max(20px,env(safe-area-inset-bottom))}
+  .city-modal.show .city-modal-content{transform:translateY(0)}
+  .city-modal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .city-modal-h .t{font-size:17px;font-weight:900;color:var(--ink)}
+  .city-modal-h .close{width:32px;height:32px;border-radius:50%;border:none;background:var(--line);color:var(--ink-soft);font-size:18px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .city-search-box{position:relative;margin-bottom:12px}
+  .city-search-box svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--ink-faint)}
+  .city-search-box input{width:100%;border:2px solid var(--line);border-radius:16px;padding:11px 14px 11px 40px;font-family:inherit;font-size:14px;font-weight:700;color:var(--ink);outline:none;transition:border-color .2s;box-sizing:border-box}
+  .city-search-box input:focus{border-color:var(--primary)}
+  .city-tab-row{display:flex;gap:8px;margin-bottom:12px}
+  .city-tab{flex:1;text-align:center;padding:9px;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;background:var(--line);color:var(--ink-soft);transition:all .2s}
+  .city-tab.active{background:var(--primary);color:#fff}
+  .city-list-wrap{overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:200px}
+  .city-list-wrap::-webkit-scrollbar{width:4px}
+  .city-list-wrap::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+  .city-item{display:flex;align-items:center;justify-content:space-between;padding:13px 4px;border-bottom:1px solid var(--line)}
+  .city-item:last-child{border-bottom:none}
+  .city-item:active{background:var(--bg-1)}
+  .city-item .n{font-size:15px;font-weight:800;color:var(--ink)}
+  .city-item .add-btn{font-size:12px;font-weight:900;color:#fff;background:var(--primary);border:none;border-radius:12px;padding:7px 16px;cursor:pointer;font-family:inherit}
+  .city-item .add-btn.added{background:var(--line);color:var(--ink-faint)}
+  .city-item .add-btn:disabled{cursor:default}
+  .city-item .del-btn{font-size:12px;font-weight:900;color:#fff;background:var(--danger-d);border:none;border-radius:12px;padding:7px 16px;cursor:pointer;font-family:inherit;box-shadow:0 2px 6px -2px rgba(211,47,47,.5)}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;overflow:hidden;
+    border-radius:var(--radius);
+    background:linear-gradient(150deg,var(--sky-1) 0%,var(--sky-2) 55%,var(--sky-3) 100%);
+    color:#fff;padding:20px 20px 22px;
+    box-shadow:var(--shadow);
+  }
+  .hero .deco{position:absolute;pointer-events:none;opacity:.5}
+  .hero .deco.c1{top:-22px;right:-10px;width:120px}
+  .hero .deco.c2{bottom:-26px;left:-14px;width:150px;opacity:.34}
+  .hero .deco.c3{top:46px;right:74px;width:60px;opacity:.4}
+  .loc{position:relative;display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px;letter-spacing:.02em;opacity:.96}
+  .loc .pin{width:18px;height:18px;flex:none;filter:drop-shadow(0 1px 1px rgba(0,0,0,.12))}
+  .city-line{position:relative;display:flex;align-items:baseline;gap:8px;margin-top:7px;flex-wrap:wrap}
+  .city{font-size:32px;font-weight:900;letter-spacing:.01em;line-height:1;text-shadow:0 2px 8px rgba(20,70,120,.25)}
+  .region{font-size:13px;font-weight:700;opacity:.9}
+  .ip-tag{position:relative;display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(255,255,255,.22);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.3);padding:5px 11px;border-radius:30px;font-size:11.5px;font-weight:700;letter-spacing:.02em}
+  .ip-tag .dot{width:6px;height:6px;border-radius:50%;background:#bff0a0;box-shadow:0 0 0 3px rgba(191,240,160,.3)}
+  .now{position:relative;margin-top:18px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+  .now-left{display:flex;flex-direction:column}
+  .now-text{font-size:16px;font-weight:800;opacity:.95}
+  .now-temp{display:flex;align-items:flex-start;gap:2px;margin-top:2px}
+  .now-temp .big{font-size:64px;font-weight:900;line-height:.86;letter-spacing:-.02em}
+  .now-temp .deg{font-size:26px;font-weight:800;margin-top:6px}
+  .now-hilo{display:flex;gap:10px;margin-top:8px;font-size:13px;font-weight:800}
+  .now-hilo .hi{color:#fff2d6}
+  .now-hilo .lo{color:#d8efff}
+  .now-icon{width:104px;height:104px;flex:none;filter:drop-shadow(0 8px 14px rgba(20,70,120,.22))}
+  .tip{position:relative;margin-top:16px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.28);border-radius:16px;padding:9px 12px;font-size:12.5px;font-weight:700;line-height:1.35}
+  .tip svg{width:17px;height:17px;flex:none}
+  .tip.hide{display:none}
+  /* 日出日落条 */
+  .sun-bar{position:relative;margin-top:14px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:10px 16px}
+  .sun-item{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800}
+  .sun-item svg{width:18px;height:18px;flex:none;opacity:.9}
+  .sun-item .sv{font-weight:900;font-size:14px}
+  .sun-arc{flex:1;height:24px;margin:0 12px;position:relative;overflow:hidden}
+  .sun-arc svg{position:absolute;left:0;top:0;width:100%;height:100%}
+
+  /* ===== Stats ===== */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+  .stat{background:var(--card);border-radius:18px;padding:12px 6px 11px;text-align:center;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:center;gap:5px}
+  .stat svg{width:22px;height:22px}
+  .stat .v{font-size:16px;font-weight:900;line-height:1;color:var(--ink)}
+  .stat .v small{font-size:10px;font-weight:700;color:var(--ink-soft)}
+  .stat .l{font-size:10.5px;font-weight:700;color:var(--ink-soft)}
+
+  /* ===== Cards ===== */
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:18px 16px 16px}
+  .card-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .card-h .t{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:900}
+  .card-h .t svg{width:18px;height:18px;color:var(--primary)}
+  .card-h .sub{font-size:11px;font-weight:700;color:var(--ink-faint)}
+
+  /* ===== Chart ===== */
+  .chart-wrap{margin:0 -6px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .chart-wrap::-webkit-scrollbar{display:none}
+  .chart-scroll{position:relative}
+  .chart-legend{display:flex;gap:14px;font-size:11.5px;font-weight:700;color:var(--ink-soft);margin-bottom:8px;padding-left:4px}
+  .chart-legend span{display:inline-flex;align-items:center;gap:5px}
+  .chart-legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .l-max{background:var(--max)} .l-min{background:var(--min)}
+  svg.chart{display:block}
+  .chart .grid{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4}
+  .chart .area{fill:url(#areaGrad)}
+  .chart .line{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;pathLength:1;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.2s .15s cubic-bezier(.4,0,.2,1) forwards}
+  .chart .line.max{stroke:var(--max)} .chart .line.min{stroke:var(--min)}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .chart .dot{stroke:#fff;stroke-width:2.2}
+  .chart .dot.max{fill:var(--max)} .chart .dot.min{fill:var(--min)}
+  .chart .tlabel{font-family:"Nunito",sans-serif;font-weight:800;font-size:11px;text-anchor:middle}
+  .chart .tlabel.max{fill:var(--max-d)} .chart .tlabel.min{fill:var(--min-d)}
+  .chart .wk{font-size:11px;font-weight:800;fill:var(--ink);text-anchor:middle}
+  .chart .wk.today{fill:var(--primary-d)}
+  .chart .dt{font-size:10px;font-weight:700;fill:var(--ink-faint);text-anchor:middle}
+  .chart .badge{font-size:8.5px;font-weight:800;fill:#fff;text-anchor:middle}
+  .chart .today-col{fill:var(--primary);opacity:.06}
+
+  /* ===== Hourly ===== */
+  .hourly-wrap{margin:0 -6px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .hourly-wrap::-webkit-scrollbar{display:none}
+  .hourly-scroll{position:relative;padding-top:4px}
+  .hourly-curve{display:block;margin-bottom:-8px}
+  .hourly-curve .hline{fill:none;stroke:var(--primary);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .hourly-curve .harea{fill:rgba(59,143,217,.08)}
+  .hourly-curve .hdot{fill:var(--primary);stroke:#fff;stroke-width:1.8}
+  .hourly-curve .htemp{font-family:"Nunito",sans-serif;font-size:11px;font-weight:900;text-anchor:middle;fill:var(--primary-d)}
+  .hourly-row{display:flex;gap:0;min-width:max-content}
+  .hcell{width:56px;flex:none;display:flex;flex-direction:column;align-items:center;gap:5px;padding:0 2px}
+  .hcell .htime{font-size:11px;font-weight:800;color:var(--ink-soft);white-space:nowrap}
+  .hcell.now .htime{color:var(--primary-d);font-weight:900}
+  .hcell .hdate{font-size:9.5px;font-weight:700;color:var(--ink-faint);height:12px}
+  .hcell .hicon{width:30px;height:30px}
+  .hcell .hrain{font-size:9.5px;font-weight:800;color:var(--min-d);display:flex;align-items:center;gap:2px;height:12px}
+  .hcell .hrain svg{width:9px;height:9px}
+  .hcell .hwt{font-size:9.5px;font-weight:700;color:var(--ink-faint);max-width:54px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* ===== List ===== */
+  .list{display:flex;flex-direction:column}
+  .row{display:flex;align-items:center;gap:11px;padding:12px 4px;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:none}
+  .row.today{background:linear-gradient(90deg,rgba(59,143,217,.08),rgba(59,143,217,0));border-radius:14px;padding-left:8px;margin:0 -4px}
+  .r-icon{width:34px;height:34px;flex:none}
+  .r-date{flex:none;width:62px}
+  .r-date .wk{font-size:13.5px;font-weight:900;color:var(--ink)}
+  .r-date .wk.today{color:var(--primary-d)}
+  .r-date .dt{font-size:11px;font-weight:700;color:var(--ink-faint);margin-top:1px}
+  .r-mid{flex:1;min-width:0}
+  .r-mid .wt{font-size:13px;font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .r-mid .meta{font-size:10.5px;font-weight:700;color:var(--ink-soft);margin-top:2px;display:flex;gap:7px;align-items:center}
+  .r-mid .meta .sep{width:3px;height:3px;border-radius:50%;background:var(--ink-faint);opacity:.7}
+  .r-bar{flex:none;width:74px}
+  .r-bar .track{height:5px;border-radius:5px;background:var(--line);position:relative;overflow:hidden}
+  .r-bar .fill{position:absolute;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--min),var(--max))}
+  .r-bar .nums{display:flex;justify-content:space-between;font-size:11.5px;font-weight:900;margin-top:4px}
+  .r-bar .nums .lo{color:var(--min-d)} .r-bar .nums .hi{color:var(--max-d)}
+  .badge-mini{display:inline-block;background:var(--primary);color:#fff;font-size:9px;font-weight:800;padding:1px 6px;border-radius:8px;margin-left:5px;vertical-align:1px}
+
+  .aqi{flex:none;font-size:10px;font-weight:800;padding:2px 7px;border-radius:8px;color:#fff}
+  .aqi.l1{background:var(--aqi-good)} .aqi.l2{background:var(--aqi-ok)} .aqi.l3{background:#ef7d57} .aqi.l4{background:#e0566b}
+
+  .footer{text-align:center;font-size:11px;font-weight:700;color:var(--ink-faint);padding:4px 0 2px;line-height:1.6}
+
+  /* ===== Loader / Error ===== */
+  .overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:linear-gradient(160deg,var(--bg-1),var(--bg-2));z-index:50;transition:opacity .4s}
+  .overlay.hide{opacity:0;pointer-events:none}
+  .loader-sun{width:62px;height:62px;animation:spin 2.4s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .overlay p{font-size:14px;font-weight:800;color:var(--ink-soft)}
+  .err-box{text-align:center;max-width:300px}
+  .err-box h3{font-size:16px;font-weight:900;margin-bottom:6px}
+  .err-box p{font-size:12.5px;font-weight:700;line-height:1.5;margin-bottom:14px}
+  .retry{border:none;cursor:pointer;background:var(--primary);color:#fff;font-family:inherit;font-weight:800;font-size:13px;padding:10px 22px;border-radius:16px;box-shadow:var(--shadow-sm)}
+  .retry:active{transform:scale(.96)}
+
+  @media (max-width:360px){
+    .city{font-size:28px} .now-temp .big{font-size:56px}
+    .stats{grid-template-columns:repeat(4,1fr);gap:7px}
+    .stat{padding:10px 3px}
+  }
+</style>
+</head>
+<body>
+  <div class="app" id="app" style="visibility:hidden">
+    <!-- 离线提示 -->
+    <div id="offlineHint" style="display:none;align-items:center;gap:7px;background:rgba(239,83,80,.12);border:1px solid rgba(239,83,80,.3);color:#c62828;border-radius:14px;padding:9px 14px;font-size:12.5px;font-weight:800">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12" y2="20"/></svg>
+      <span>网络不可用，当前显示缓存数据</span>
+    </div>
+    <!-- 城市切换栏 -->
+    <div class="city-bar" id="cityBar"></div>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <svg class="deco c1" viewBox="0 0 120 70" fill="#ffffff"><path d="M28 56a16 16 0 0 1 .5-31.9A22 22 0 0 1 70 20a14 14 0 0 1 6 27H30a14 14 0 0 1-2 .1z" opacity=".9"/><path d="M86 60a11 11 0 0 1 .4-21.9A15 15 0 0 1 114 40a10 10 0 0 1-2 19.6H88z" opacity=".7"/></svg>
+      <svg class="deco c2" viewBox="0 0 150 80" fill="#ffffff"><path d="M34 64a19 19 0 0 1 .6-38A26 26 0 0 1 84 22a17 17 0 0 1 7 33H38a17 17 0 0 1-4 .1z"/></svg>
+      <svg class="deco c3" viewBox="0 0 80 50" fill="#ffffff"><path d="M20 40a11 11 0 0 1 .4-22A15 15 0 0 1 48 14a10 10 0 0 1 4 19.5H22z" opacity=".8"/></svg>
+      <div class="loc">
+        <svg class="pin" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        <span>当前定位</span>
+      </div>
+      <div class="city-line">
+        <span class="city" id="city">—</span>
+        <span class="region" id="region">—</span>
+      </div>
+      <div class="ip-tag"><span class="dot"></span><span>IP&nbsp;<span id="ip">—</span></span></div>
+      <div class="now">
+        <div class="now-left">
+          <span class="now-text" id="nowText">—</span>
+          <div class="now-temp"><span class="big" id="nowBig">--</span><span class="deg">°</span></div>
+          <div class="now-hilo"><span class="hi" id="nowHi">↑--°</span><span class="lo" id="nowLo">↓--°</span></div>
+        </div>
+        <div class="now-icon" id="nowIcon"></div>
+      </div>
+      <div class="tip hide" id="tip">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2zm-2 19a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1h-4z"/></svg>
+        <span id="tipText"></span>
+      </div>
+      <!-- 日出日落 -->
+      <div class="sun-bar" id="sunBar" style="display:none">
+        <div class="sun-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="8 6 12 2 16 6"/></svg>
+          <span>日出 <span class="sv" id="sunRise">--:--</span></span>
+        </div>
+        <div class="sun-arc">
+          <svg viewBox="0 0 100 24" preserveAspectRatio="none"><path d="M5 22 Q50 -8 95 22" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
+        </div>
+        <div class="sun-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="9" x2="12" y2="2"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="16 5 12 9 8 5"/></svg>
+          <span>日落 <span class="sv" id="sunSet">--:--</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats" id="stats"></section>
+
+    <!-- Hourly 逐小时 -->
+    <section class="card" id="hourlyCard" style="display:none">
+      <div class="card-h">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>逐小时预报</span></div>
+        <div class="sub" id="hourlySub">未来24小时</div>
+      </div>
+      <div class="hourly-wrap"><div class="hourly-scroll" id="hourlyScroll"></div></div>
+    </section>
+
+    <!-- Chart -->
+    <section class="card">
+      <div class="card-h">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-7 4 5"/></svg><span>15日天气趋势</span></div>
+        <div class="sub" id="chartSub">最高 / 最低</div>
+      </div>
+      <div class="chart-legend"><span><i class="l-max"></i>最高温</span><span><i class="l-min"></i>最低温</span></div>
+      <div class="chart-wrap"><div class="chart-scroll" id="chartScroll"></div></div>
+    </section>
+
+    <!-- List -->
+    <section class="card">
+      <div class="card-h"><div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span>逐日预报</span></div><div class="sub">白天 / 夜间</div></div>
+      <div class="list" id="list"></div>
+    </section>
+
+    <!-- 台风入口 -->
+    <a href="typhoon.html" style="text-decoration:none">
+      <section class="card" style="display:flex;align-items:center;gap:14px;padding:16px;cursor:pointer">
+        <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(150deg,#3b8fd9,#5aa7e6);display:flex;align-items:center;justify-content:center;flex:none;box-shadow:var(--shadow-sm)">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="1.5" fill="#fff" stroke="none"/></svg>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:15px;font-weight:900;color:var(--ink)">台风路径</div>
+          <div style="font-size:11.5px;font-weight:700;color:var(--ink-soft);margin-top:2px">查看活跃台风路径与预报</div>
+        </div>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--ink-faint)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </section>
+    </a>
+
+    <div class="footer">数据来源 ovo.shuoweb.com<br>更新于 <span id="updated">—</span></div>
+  </div>
+
+  <!-- 城市管理弹层 -->
+  <div class="city-modal" id="cityModal">
+    <div class="city-modal-content">
+      <div class="city-modal-h">
+        <span class="t">城市管理</span>
+        <button class="close" onclick="closeCityModal()">×</button>
+      </div>
+      <div class="city-tab-row">
+        <div class="city-tab active" id="tabAdd" onclick="switchCityTab('add')">添加城市</div>
+        <div class="city-tab" id="tabManage" onclick="switchCityTab('manage')">我的城市</div>
+      </div>
+      <div class="city-search-box" id="searchBox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="citySearch" placeholder="搜索城市名称" oninput="filterCities()">
+      </div>
+      <div class="city-list-wrap" id="cityListWrap"></div>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div class="overlay" id="overlay">
+    <svg class="loader-sun" viewBox="0 0 64 64">
+      <g stroke="#3b8fd9" stroke-width="3.4" stroke-linecap="round"><path d="M32 5v8M32 51v8M5 32h8M51 32h8M13 13l6 6M45 45l6 6M51 13l-6 6M19 45l-6 6"/></g>
+      <circle cx="32" cy="32" r="11" fill="#ffc44a"/>
+    </svg>
+    <p>正在获取天气…</p>
+  </div>
+
+<script>
+(function(){
+  "use strict";
+  const API = "https://ovo.shuoweb.com/weather/";
+  const HOURLY_API = "https://ovo.shuoweb.com/weather/?type=hourly";
+  const CACHE_MAIN_P = "qqweather_main_";
+  const CACHE_HOURLY_P = "qqweather_hourly_";
+  const CACHE_LOC = "qqweather_loc_cache";
+  const CACHE_CITIES = "qqweather_saved_cities";
+  const CACHE_ACTIVE = "qqweather_active_city";
+  var lastWeatherData = null;
+  var hourlyData = null;
+  var activeCity = null;
+  var savedCities = [];
+  var appReady = false;
+  var cityModalTab = 'add';
+
+  /* ---------- 内置城市数据库（含坐标） ---------- */
+  var CITY_DB = [
+    {n:"北京",lng:116.41,lat:39.90},{n:"上海",lng:121.47,lat:31.23},
+    {n:"广州",lng:113.26,lat:23.13},{n:"深圳",lng:114.06,lat:22.54},
+    {n:"杭州",lng:120.16,lat:30.27},{n:"南京",lng:118.80,lat:32.06},
+    {n:"成都",lng:104.07,lat:30.57},{n:"武汉",lng:114.31,lat:30.59},
+    {n:"重庆",lng:106.55,lat:29.56},{n:"西安",lng:108.94,lat:34.34},
+    {n:"天津",lng:117.19,lat:39.13},{n:"苏州",lng:120.59,lat:31.30},
+    {n:"长沙",lng:112.94,lat:28.23},{n:"郑州",lng:113.63,lat:34.75},
+    {n:"青岛",lng:120.38,lat:36.07},{n:"沈阳",lng:123.43,lat:41.81},
+    {n:"大连",lng:121.61,lat:38.91},{n:"哈尔滨",lng:126.53,lat:45.80},
+    {n:"长春",lng:125.32,lat:43.89},{n:"济南",lng:117.12,lat:36.65},
+    {n:"昆明",lng:102.83,lat:24.88},{n:"贵阳",lng:106.71,lat:26.58},
+    {n:"南宁",lng:108.37,lat:22.82},{n:"海口",lng:110.33,lat:20.03},
+    {n:"三亚",lng:109.51,lat:18.25},{n:"福州",lng:119.30,lat:26.07},
+    {n:"厦门",lng:118.09,lat:24.48},{n:"南昌",lng:115.86,lat:28.68},
+    {n:"合肥",lng:117.23,lat:31.82},{n:"太原",lng:112.55,lat:37.87},
+    {n:"石家庄",lng:114.51,lat:38.04},{n:"呼和浩特",lng:111.75,lat:40.84},
+    {n:"乌鲁木齐",lng:87.62,lat:43.83},{n:"兰州",lng:103.83,lat:36.06},
+    {n:"银川",lng:106.23,lat:38.49},{n:"西宁",lng:101.78,lat:36.62},
+    {n:"拉萨",lng:91.13,lat:29.66},{n:"无锡",lng:120.31,lat:31.49},
+    {n:"宁波",lng:121.55,lat:29.87},{n:"温州",lng:120.70,lat:27.99},
+    {n:"佛山",lng:113.12,lat:23.03},{n:"东莞",lng:113.75,lat:23.05},
+    {n:"珠海",lng:113.58,lat:22.27},{n:"中山",lng:113.38,lat:22.52},
+    {n:"惠州",lng:114.41,lat:23.08},{n:"汕头",lng:116.68,lat:23.35},
+    {n:"湛江",lng:110.36,lat:21.27},{n:"桂林",lng:110.29,lat:25.27},
+    {n:"北海",lng:109.12,lat:21.47},{n:"丽江",lng:100.23,lat:26.88},
+    {n:"洛阳",lng:112.45,lat:34.62},{n:"徐州",lng:117.28,lat:34.21},
+    {n:"常州",lng:119.97,lat:31.81},{n:"南通",lng:120.89,lat:31.98},
+    {n:"扬州",lng:119.42,lat:32.39},{n:"烟台",lng:121.45,lat:37.46},
+    {n:"威海",lng:122.12,lat:37.51},{n:"绵阳",lng:104.68,lat:31.47},
+    {n:"宜昌",lng:111.29,lat:30.69},{n:"岳阳",lng:113.13,lat:29.36},
+    {n:"赣州",lng:114.94,lat:25.83},{n:"泉州",lng:118.59,lat:24.91},
+    {n:"绍兴",lng:120.58,lat:30.03},{n:"金华",lng:119.65,lat:29.09},
+    {n:"台州",lng:121.43,lat:28.66},{n:"嘉兴",lng:120.76,lat:30.75},
+    {n:"保定",lng:115.46,lat:38.87},{n:"唐山",lng:118.18,lat:39.63},
+    {n:"邯郸",lng:114.54,lat:36.63},{n:"廊坊",lng:116.68,lat:39.54},
+    {n:"运城",lng:111.01,lat:35.02},{n:"临汾",lng:111.52,lat:36.09},
+    {n:"大同",lng:113.30,lat:40.09},{n:"包头",lng:109.84,lat:40.66},
+    {n:"鞍山",lng:122.99,lat:41.11},{n:"抚顺",lng:123.96,lat:41.88},
+    {n:"吉林",lng:126.55,lat:43.84},{n:"大庆",lng:125.10,lat:46.59},
+    {n:"齐齐哈尔",lng:123.92,lat:47.35},{n:"牡丹江",lng:129.53,lat:44.55},
+    {n:"遵义",lng:106.93,lat:27.73},{n:"曲靖",lng:103.80,lat:25.49},
+    {n:"玉溪",lng:102.55,lat:24.35},{n:"咸宁",lng:114.32,lat:29.84},
+    {n:"十堰",lng:110.80,lat:32.65},
+    {n:"湘潭",lng:112.94,lat:27.83},{n:"常德",lng:111.69,lat:29.04},
+    {n:"香港",lng:114.17,lat:22.32},{n:"澳门",lng:113.54,lat:22.20},
+    {n:"台北",lng:121.57,lat:25.03},{n:"高雄",lng:120.30,lat:22.63}
+  ];
+
+  /* ---------- SVG weather icons ---------- */
+  function cloud(fill, dy){
+    dy = dy||0;
+    return '<g fill="'+fill+'">'+
+      '<circle cx="22" cy="'+(42+dy)+'" r="9"/>'+
+      '<circle cx="33" cy="'+(36+dy)+'" r="12"/>'+
+      '<circle cx="44" cy="'+(42+dy)+'" r="9"/>'+
+      '<rect x="20" y="'+(42+dy)+'" width="26" height="9" rx="4.5"/></g>';
+  }
+  const ICONS = {
+    sunny:
+      '<circle cx="32" cy="32" r="11" fill="#ffc44a"/>'+
+      '<g stroke="#ffc44a" stroke-width="3.2" stroke-linecap="round" fill="none">'+
+      '<path d="M32 6v7"/><path d="M32 51v7"/><path d="M6 32h7"/><path d="M51 32h7"/>'+
+      '<path d="M13.7 13.7l4.6 4.6"/><path d="M45.7 45.7l4.6 4.6"/>'+
+      '<path d="M50.3 13.7l-4.6 4.6"/><path d="M18.3 45.7l-4.6 4.6"/></g>',
+    partlyCloudy:
+      '<circle cx="23" cy="23" r="9" fill="#ffc44a"/>'+
+      '<g stroke="#ffc44a" stroke-width="2.6" stroke-linecap="round" fill="none">'+
+      '<path d="M23 6v5"/><path d="M7 23h5"/><path d="M12 12l3.5 3.5"/></g>'+
+      cloud('#c3d3e6', 10)+cloud('#ffffff', 8),
+    cloudy:
+      cloud('#b7c8db', 3)+cloud('#ffffff', 0),
+    overcast:
+      cloud('#a9bccf', 4)+cloud('#cdd9e6', 0),
+    rain:
+      cloud('#b7c8db', -2)+cloud('#ffffff', -4)+
+      '<g stroke="#5aa7e6" stroke-width="3" stroke-linecap="round">'+
+      '<path d="M24 46l-2 7"/><path d="M33 48l-2 7"/><path d="M42 46l-2 7"/></g>',
+    thunder:
+      cloud('#9bb0c6', -2)+cloud('#e7edf3', -4)+
+      '<path d="M34 42l-9 13h6l-3 9 11-14h-6l3-8z" fill="#ffc44a" stroke="#f0a800" stroke-width="1.4" stroke-linejoin="round"/>',
+    snow:
+      cloud('#c3d3e6', -2)+cloud('#ffffff', -4)+
+      '<g fill="#7fc3ef">'+
+      '<circle cx="24" cy="51" r="2.4"/><circle cx="33" cy="55" r="2.4"/><circle cx="42" cy="51" r="2.4"/></g>',
+    fog:
+      cloud('#c3d3e6', -6)+cloud('#ffffff', -8)+
+      '<g stroke="#aebfd2" stroke-width="3" stroke-linecap="round">'+
+      '<path d="M16 52h32"/><path d="M14 59h30"/></g>'
+  };
+  function iconKey(text){
+    if(/雷/.test(text)) return 'thunder';
+    if(/雪/.test(text)) return 'snow';
+    if(/雨/.test(text)) return 'rain';
+    if(/雾|霾/.test(text)) return 'fog';
+    if(/阴/.test(text)) return 'overcast';
+    if(/多云/.test(text)) return 'partlyCloudy';
+    if(/晴/.test(text)) return 'sunny';
+    return 'cloudy';
+  }
+  function iconInner(key){ return ICONS[key] || ICONS.cloudy; }
+  function iconSVG(key, size, cls){
+    return '<svg class="'+(cls||'')+'" viewBox="0 0 64 64" width="'+size+'" height="'+size+'">'+iconInner(key)+'</svg>';
+  }
+
+  /* ---------- smooth cubic-bezier path ---------- */
+  function curveCmds(pts){
+    let d='';
+    for(let i=0;i<pts.length-1;i++){
+      const p0=pts[i-1]||pts[i], p1=pts[i], p2=pts[i+1], p3=pts[i+2]||p2;
+      const c1x=p1.x+(p2.x-p0.x)/6, c1y=p1.y+(p2.y-p0.y)/6;
+      const c2x=p2.x-(p3.x-p1.x)/6, c2y=p2.y-(p3.y-p1.y)/6;
+      d+=' C '+r(c1x)+' '+r(c1y)+', '+r(c2x)+' '+r(c2y)+', '+r(p2.x)+' '+r(p2.y);
+    }
+    return d;
+  }
+  function r(n){return Math.round(n*10)/10;}
+
+  /* ---------- render chart ---------- */
+  function renderChart(forecast){
+    const colW=60, padL=14, padR=14;
+    const n=forecast.length;
+    const W=padL+n*colW+padR;
+    const iconCY=30, plotTop=72, plotBottom=214, plotH=plotBottom-plotTop;
+    const wkY=244, dtY=261, badgeY=278;
+    const H=292;
+    let dMin=Math.min.apply(null,forecast.map(f=>f.temp_min));
+    let dMax=Math.max.apply(null,forecast.map(f=>f.temp_max));
+    let range=Math.max(dMax-dMin,8);
+    let pad=range*0.34;
+    let yMin=dMin-pad, yMax=dMax+pad;
+    const yOf=t=>plotBottom-(t-yMin)/(yMax-yMin)*plotH;
+    const xs=forecast.map((f,i)=>padL+colW/2+i*colW);
+    const maxPts=forecast.map((f,i)=>({x:xs[i],y:yOf(f.temp_max)}));
+    const minPts=forecast.map((f,i)=>({x:xs[i],y:yOf(f.temp_min)}));
+    const maxPath='M '+r(maxPts[0].x)+' '+r(maxPts[0].y)+curveCmds(maxPts);
+    const minPath='M '+r(minPts[0].x)+' '+r(minPts[0].y)+curveCmds(minPts);
+    const revMin=minPts.slice().reverse();
+    const areaPath=maxPath+' L '+r(revMin[0].x)+' '+r(revMin[0].y)+curveCmds(revMin)+' Z';
+    const gridVals=[];
+    const step=Math.max(1,Math.round(range/3));
+    for(let v=Math.ceil(yMin/step)*step; v<=dMax; v+=step){ gridVals.push(v); }
+    let grid='';
+    gridVals.forEach(v=>{ const y=yOf(v); grid+='<line class="grid" x1="6" x2="'+(W-6)+'" y1="'+r(y)+'" y2="'+r(y)+'"/>'; });
+    let cols='';
+    forecast.forEach((f,i)=>{
+      const x=xs[i];
+      const isToday=/今/.test(f.weekday);
+      if(isToday) cols+='<rect class="today-col" x="'+r(x-colW/2)+'" y="0" width="'+colW+'" height="'+H+'" rx="14"/>';
+      cols+='<g transform="translate('+r(x-15)+','+(iconCY-15)+') scale('+(30/64)+')">'+iconInner(iconKey(f.day.text))+'</g>';
+      cols+='<text class="tlabel max" x="'+r(x)+'" y="'+r(maxPts[i].y-12)+'">'+f.temp_max+'°</text>';
+      cols+='<circle class="dot max" cx="'+r(x)+'" cy="'+r(maxPts[i].y)+'" r="3.6"/>';
+      cols+='<text class="tlabel min" x="'+r(x)+'" y="'+r(minPts[i].y+18)+'">'+f.temp_min+'°</text>';
+      cols+='<circle class="dot min" cx="'+r(x)+'" cy="'+r(minPts[i].y)+'" r="3.6"/>';
+      cols+='<text class="wk'+(isToday?' today':'')+'" x="'+r(x)+'" y="'+wkY+'">'+f.weekday+'</text>';
+      cols+='<text class="dt" x="'+r(x)+'" y="'+dtY+'">'+f.date+'</text>';
+      if(f.special&&f.special.length){
+        cols+='<rect x="'+r(x-15)+'" y="'+(badgeY-8)+'" width="30" height="12" rx="6" fill="#3b8fd9"/>';
+        cols+='<text class="badge" x="'+r(x)+'" y="'+(badgeY+0.5)+'">'+f.special[0]+'</text>';
+      }
+    });
+    const svg =
+      '<svg class="chart" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'+
+      '<defs>'+
+        '<linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">'+
+          '<stop offset="0" stop-color="#ff8a4c" stop-opacity="0.20"/>'+
+          '<stop offset="1" stop-color="#4aa3e6" stop-opacity="0.10"/>'+
+        '</linearGradient>'+
+      '</defs>'+
+      grid+cols+
+      '<path class="area" d="'+areaPath+'"/>'+
+      '<path class="line min" d="'+minPath+'"/>'+
+      '<path class="line max" d="'+maxPath+'"/>'+
+      '</svg>';
+    document.getElementById('chartScroll').innerHTML=svg;
+    document.getElementById('chartSub').textContent=dMax+'° / '+dMin+'°';
+  }
+
+  /* ---------- render list ---------- */
+  function renderList(forecast){
+    const dMin=Math.min.apply(null,forecast.map(f=>f.temp_min));
+    const dMax=Math.max.apply(null,forecast.map(f=>f.temp_max));
+    const span=Math.max(dMax-dMin,1);
+    let html='';
+    forecast.forEach(f=>{
+      const isToday=/今/.test(f.weekday);
+      const key=iconKey(f.day.text);
+      const lo=(f.temp_min-dMin)/span*100;
+      const hi=(f.temp_max-dMin)/span*100;
+      const aqi=f.air_quality;
+      const wt=f.day.text + (f.night.text && f.night.text!==f.day.text ? '转'+f.night.text : '');
+      html+='<div class="row'+(isToday?' today':'')+'">'+
+        '<div class="r-icon">'+iconSVG(key,34)+'</div>'+
+        '<div class="r-date"><div class="wk'+(isToday?' today':'')+'">'+f.weekday+'</div><div class="dt">'+f.date+(f.special&&f.special.length?'<span class="badge-mini">'+f.special[0]+'</span>':'')+'</div></div>'+
+        '<div class="r-mid"><div class="wt">'+wt+'</div>'+
+          '<div class="meta"><span>'+f.wind.desc+' '+f.wind.power+'级</span><span class="sep"></span><span>'+aqi.text+' AQI '+aqi.index+'</span></div></div>'+
+        '<div class="r-bar"><div class="track"><div class="fill" style="left:'+lo+'%;width:'+(hi-lo)+'%"></div></div>'+
+          '<div class="nums"><span class="lo">'+f.temp_min+'°</span><span class="hi">'+f.temp_max+'°</span></div></div>'+
+      '</div>';
+    });
+    document.getElementById('list').innerHTML=html;
+  }
+
+  /* ---------- render stats ---------- */
+  function renderStats(today){
+    const aqi=today.air_quality;
+    const uvText = today.uv_index===0?'弱':today.uv_index<=2?'弱':today.uv_index<=5?'中':'强';
+    const precip = (today.precipitation.day+today.precipitation.night>0)? Math.round((today.precipitation.day+today.precipitation.night)/2)+'%':'无';
+    const items=[
+      {l:'空气质量', v:aqi.index+'<small>'+aqi.text+'</small>', svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#46c47c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l2-5 4 14 3-9 2 4h4"/></svg>'},
+      {l:'风力', v:today.wind.power+'<small>级</small>', svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#3b8fd9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 14h14a3 3 0 1 1-3 3"/><path d="M3 11h6"/></svg>'},
+      {l:'紫外线', v:uvText, svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#f0a800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>'},
+      {l:'降水概率', v:precip, svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#4aa3e6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6 6 11a6 6 0 0 1-12 0c0-5 6-11 6-11z"/></svg>'}
+    ];
+    let html='';
+    items.forEach(it=>{
+      html+='<div class="stat">'+it.svg+'<div class="v">'+it.v+'</div><div class="l">'+it.l+'</div></div>';
+    });
+    document.getElementById('stats').innerHTML=html;
+  }
+
+  /* ---------- render hero ---------- */
+  function renderHero(data){
+    lastWeatherData = data;
+    const loc=data.location;
+    document.getElementById('city').textContent=loc.city;
+    document.getElementById('region').textContent=loc.region+' · '+loc.country;
+    document.getElementById('ip').textContent=loc.ip;
+    const today=data.forecast[1]||data.forecast[0];
+    /* 优先用逐小时第一个条目的实时温度与天气 */
+    var nowTemp, nowWeather;
+    if(hourlyData && hourlyData.hours && hourlyData.hours.length){
+      nowTemp = hourlyData.hours[0].temp;
+      nowWeather = hourlyData.hours[0].weather;
+    } else {
+      nowTemp = today.temp_max;
+      nowWeather = today.day.text;
+    }
+    document.getElementById('nowText').textContent='现在 · '+nowWeather;
+    document.getElementById('nowBig').textContent=nowTemp;
+    document.getElementById('nowHi').textContent='↑'+today.temp_max+'°';
+    document.getElementById('nowLo').textContent='↓'+today.temp_min+'°';
+    document.getElementById('nowIcon').innerHTML=iconSVG(iconKey(nowWeather),104);
+    const tip=document.getElementById('tip');
+    if(today.tip){ tip.classList.remove('hide'); document.getElementById('tipText').textContent=today.tip; }
+    else { tip.classList.add('hide'); }
+    /* 日出日落 */
+    var sun = data.sun || today.sun;
+    if(sun && sun.rise && sun.set){
+      document.getElementById('sunBar').style.display='flex';
+      document.getElementById('sunRise').textContent = sun.rise.slice(11,16);
+      document.getElementById('sunSet').textContent = sun.set.slice(11,16);
+    } else {
+      document.getElementById('sunBar').style.display='none';
+    }
+    const d=new Date(data.updated_at);
+    document.getElementById('updated').textContent=d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+  }
+
+  /* ---------- hourly 逐小时 ---------- */
+  function buildHourlyUrl(){
+    var u = HOURLY_API;
+    var coords = getActiveCoords();
+    if(coords){ u = HOURLY_API + '&lng=' + coords.lng + '&lat=' + coords.lat; }
+    return u;
+  }
+
+  function renderHourly(data){
+    if(!data||data.code!==0||!data.hours||!data.hours.length){ return; }
+    hourlyData = data;
+    const hours=data.hours;
+    const card=document.getElementById('hourlyCard');
+    card.style.display='';
+    document.getElementById('hourlySub').textContent='未来'+hours.length+'小时';
+    const cellW=56, padL=10, padR=10;
+    const n=hours.length;
+    const W=padL+n*cellW+padR;
+    const temps=hours.map(h=>h.temp);
+    let tMin=Math.min.apply(null,temps), tMax=Math.max.apply(null,temps);
+    let range=Math.max(tMax-tMin,4);
+    let pad=range*0.3;
+    const yMin=tMin-pad, yMax=tMax+pad;
+    const curveTop=8, curveBottom=52, curveH=curveBottom-curveTop;
+    const yOf=t=>curveBottom-(t-yMin)/(yMax-yMin)*curveH;
+    const xs=hours.map((h,i)=>padL+cellW/2+i*cellW);
+    const pts=hours.map((h,i)=>({x:xs[i],y:yOf(h.temp)}));
+    let path='M '+r(pts[0].x)+' '+r(pts[0].y);
+    for(let i=0;i<pts.length-1;i++){
+      const p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||p2;
+      const c1x=p1.x+(p2.x-p0.x)/6,c1y=p1.y+(p2.y-p0.y)/6;
+      const c2x=p2.x-(p3.x-p1.x)/6,c2y=p2.y-(p3.y-p1.y)/6;
+      path+=' C '+r(c1x)+' '+r(c1y)+', '+r(c2x)+' '+r(c2y)+', '+r(p2.x)+' '+r(p2.y);
+    }
+    const areaPath=path+' L '+r(pts[n-1].x)+' '+curveBottom+' L '+r(pts[0].x)+' '+curveBottom+' Z';
+    let dots='', tempLabels='';
+    pts.forEach((p,i)=>{
+      dots+='<circle class="hdot" cx="'+r(p.x)+'" cy="'+r(p.y)+'" r="2.6"/>';
+      tempLabels+='<text class="htemp" x="'+r(p.x)+'" y="'+r(p.y-8)+'">'+hours[i].temp+'°</text>';
+    });
+    const svg='<svg class="hourly-curve" width="'+W+'" height="'+curveBottom+'" viewBox="0 0 '+W+' '+curveBottom+'">'+
+      '<path class="harea" d="'+areaPath+'"/>'+
+      '<path class="hline" d="'+path+'"/>'+
+      dots+tempLabels+'</svg>';
+    let lastDate='';
+    let cells='';
+    hours.forEach((h,i)=>{
+      const isNow=(i===0);
+      const t=new Date(h.timestamp);
+      const hh=t.getHours();
+      const md=(t.getMonth()+1)+'/'+t.getDate();
+      const isNewDay=(md!==lastDate);
+      lastDate=md;
+      const dateLabel=isNewDay?(t.getMonth()+1)+'/'+t.getDate():'';
+      const timeLabel=isNow?'现在':(hh+'时');
+      const rainProb=h.rain&&h.rain.probability;
+      const rainHtml=(rainProb&&rainProb>0)?('<span class="hrain"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3s6 7 6 12a6 6 0 0 1-12 0c0-5 6-12 6-12z"/></svg>'+rainProb+'%</span>'):'<span class="hrain"></span>';
+      cells+='<div class="hcell'+(isNow?' now':'')+'">'+
+        '<span class="hdate">'+dateLabel+'</span>'+
+        '<span class="htime">'+timeLabel+'</span>'+
+        '<span class="hicon">'+iconSVG(iconKey(h.weather),30)+'</span>'+
+        '<span class="hwt">'+h.weather+'</span>'+
+        rainHtml+
+        '</div>';
+    });
+    document.getElementById('hourlyScroll').innerHTML=svg+'<div class="hourly-row">'+cells+'</div>';
+    if(lastWeatherData){ renderHero(lastWeatherData); }
+  }
+
+  /* ---------- 缓存读写 ---------- */
+  function saveCache(key,data){
+    try { localStorage.setItem(key, JSON.stringify({t:Date.now(),d:data})); } catch(e){}
+  }
+  function readCache(key){
+    try { var raw=localStorage.getItem(key); if(!raw) return null; var o=JSON.parse(raw); return o&&o.d?o.d:null; } catch(e){ return null; }
+  }
+
+  /* ---------- 离线提示 ---------- */
+  function showOfflineHint(){
+    var el=document.getElementById('offlineHint');
+    if(el){ el.style.display='flex'; setTimeout(function(){ el.style.display='none'; },3500); }
+  }
+  function hideOfflineHint(){
+    var el=document.getElementById('offlineHint');
+    if(el){ el.style.display='none'; }
+  }
+
+  /* ---------- 城市坐标与工具 ---------- */
+  function getActiveCoords(){
+    if(activeCity){
+      var c = findCity(activeCity);
+      if(c) return {lng:c.lng, lat:c.lat};
+    }
+    try {
+      var gc = window.AndroidWeather && window.AndroidWeather.getCoords();
+      if (gc) { var go = JSON.parse(gc); if (go && go.lng && go.lat) return go; }
+    } catch (e) {}
+    var lc = readCache(CACHE_LOC);
+    if(lc && lc.lng && lc.lat) return {lng:lc.lng, lat:lc.lat};
+    return null;
+  }
+  function findCity(name){
+    for(var i=0;i<CITY_DB.length;i++){
+      if(CITY_DB[i].n===name) return CITY_DB[i];
+    }
+    return null;
+  }
+  function cityKey(){ return activeCity || 'loc'; }
+
+  /* ---------- 城市切换栏渲染 ---------- */
+  function renderCityBar(){
+    var bar = document.getElementById('cityBar');
+    var html = '';
+    var locName = '当前';
+    var lc = readCache(CACHE_LOC);
+    if(lc && lc.city) locName = lc.city;
+    html += '<div class="city-chip'+(activeCity===null?' active':'')+'" onclick="switchCity(null)">'+
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>'+
+      '<span>'+locName+'</span></div>';
+    savedCities.forEach(function(name){
+      html += '<div class="city-chip'+(activeCity===name?' active':'')+'" onclick="switchCity(\''+name+'\')"><span>'+name+'</span></div>';
+    });
+    html += '<div class="city-add" onclick="openCityModal()"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>';
+    bar.innerHTML = html;
+  }
+
+  /* ---------- 城市切换 ---------- */
+  window.switchCity = function(name){
+    activeCity = name;
+    saveCache(CACHE_ACTIVE, name);
+    hourlyData = null;
+    appReady = false;
+    document.getElementById('hourlyCard').style.display='none';
+    renderCityBar();
+    var has = loadFromCache();
+    load(); loadHourlyFresh();
+    if(!has){
+      document.getElementById('overlay').classList.remove('hide');
+      document.getElementById('app').style.visibility='hidden';
+    }
+  };
+
+  /* ---------- 城市管理弹窗 ---------- */
+  window.openCityModal = function(){
+    document.getElementById('cityModal').classList.add('show');
+    document.getElementById('citySearch').value='';
+    renderCityModal();
+  };
+  window.closeCityModal = function(){
+    document.getElementById('cityModal').classList.remove('show');
+  };
+  window.switchCityTab = function(tab){
+    cityModalTab = tab;
+    document.getElementById('tabAdd').classList.toggle('active', tab==='add');
+    document.getElementById('tabManage').classList.toggle('active', tab==='manage');
+    document.getElementById('searchBox').style.display = tab==='add' ? 'block' : 'none';
+    renderCityModal();
+  };
+  window.filterCities = function(){
+    renderCityModal();
+  };
+  window.addCity = function(name){
+    if(savedCities.indexOf(name)===-1){
+      savedCities.push(name);
+      saveCache(CACHE_CITIES, savedCities);
+    }
+    renderCityModal();
+    renderCityBar();
+  };
+  window.removeCity = function(name){
+    var idx = savedCities.indexOf(name);
+    if(idx!==-1){
+      savedCities.splice(idx,1);
+      saveCache(CACHE_CITIES, savedCities);
+    }
+    if(activeCity===name){
+      closeCityModal();
+      switchCity(null);
+      return;
+    }
+    renderCityModal();
+    renderCityBar();
+  };
+
+  function renderCityModal(){
+    var wrap = document.getElementById('cityListWrap');
+    if(cityModalTab==='add'){
+      var kw = (document.getElementById('citySearch').value||'').trim();
+      var list = CITY_DB.filter(function(c){
+        return !kw || c.n.indexOf(kw)!==-1;
+      });
+      var html = '';
+      list.forEach(function(c){
+        var added = savedCities.indexOf(c.n)!==-1;
+        html += '<div class="city-item"><div class="n">'+c.n+'</div>';
+        if(added){
+          html += '<button class="add-btn added" disabled>已添加</button>';
+        } else {
+          html += '<button class="add-btn" onclick="addCity(\''+c.n+'\')">添加</button>';
+        }
+        html += '</div>';
+      });
+      if(!list.length) html = '<div style="text-align:center;padding:30px;color:var(--ink-faint);font-size:13px;font-weight:700">未找到相关城市</div>';
+      wrap.innerHTML = html;
+    } else {
+      if(!savedCities.length){
+        wrap.innerHTML = '<div style="text-align:center;padding:30px;color:var(--ink-faint);font-size:13px;font-weight:700;line-height:1.8">还没有添加自定义城市<br>点击"添加城市"来添加</div>';
+        return;
+      }
+      var html = '';
+      savedCities.forEach(function(name){
+        html += '<div class="city-item"><div class="n">'+name+'</div>';
+        html += '<button class="del-btn" onclick="removeCity(\''+name+'\')">删除</button>';
+        html += '</div>';
+      });
+      wrap.innerHTML = html;
+    }
+  }
+
+  /* ---------- main ---------- */
+  function apply(data){
+    if(!data||data.code!==0||!data.forecast){ throw new Error('数据格式异常'); }
+    renderHero(data);
+    renderStats(data.forecast[1]||data.forecast[0]);
+    renderChart(data.forecast);
+    renderList(data.forecast);
+    document.getElementById('app').style.visibility='visible';
+    document.getElementById('overlay').classList.add('hide');
+  }
+  function showError(msg){
+    const ov=document.getElementById('overlay');
+    ov.innerHTML='<div class="err-box"><h3>天气获取失败</h3><p>'+(msg||'请检查网络后重试')+'</p><button class="retry" onclick="location.reload()">重新加载</button></div>';
+    ov.classList.remove('hide');
+  }
+  function buildUrl(){
+    var u = API;
+    var coords = getActiveCoords();
+    if(coords){ u = API + '?lng=' + coords.lng + '&lat=' + coords.lat; }
+    return u;
+  }
+
+  function loadFromCache(){
+    var key = cityKey();
+    var cm=readCache(CACHE_MAIN_P+key), ch=readCache(CACHE_HOURLY_P+key);
+    if(cm){
+      try { apply(cm); appReady=true; } catch(e){}
+    }
+    if(ch){
+      try { renderHourly(ch); } catch(e){}
+    }
+    return !!cm;
+  }
+
+  function load(){
+    var usedCoords = getActiveCoords();
+    fetch(buildUrl(),{headers:{'Accept':'application/json'}})
+      .then(r=>{ if(!r.ok) throw new Error('网络错误 ('+r.status+')'); return r.json(); })
+      .then(d=>{
+        apply(d);
+        saveCache(CACHE_MAIN_P+cityKey(), d);
+        if(!activeCity && d.location){
+          var locInfo = {city: d.location.city};
+          if(usedCoords){ locInfo.lng = usedCoords.lng; locInfo.lat = usedCoords.lat; }
+          saveCache(CACHE_LOC, locInfo);
+          renderCityBar();
+        }
+        hideOfflineHint();
+      })
+      .catch(e=>{
+        console.error(e);
+        if(appReady){ showOfflineHint(); }
+        else { showError(navigator.onLine===false?'当前无网络连接，请检查后重试':(e.message||'请求失败')); }
+      });
+  }
+
+  function loadHourlyFresh(){
+    fetch(buildHourlyUrl(),{headers:{'Accept':'application/json'}})
+      .then(r=>{ if(!r.ok) throw new Error('hourly error'); return r.json(); })
+      .then(d=>{ renderHourly(d); saveCache(CACHE_HOURLY_P+cityKey(), d); })
+      .catch(e=>{ console.error('hourly:',e); });
+  }
+
+  window.__reloadWeather = function(){
+    if(!activeCity){ load(); loadHourlyFresh(); }
+  };
+
+  /* ---------- 启动 ---------- */
+  savedCities = readCache(CACHE_CITIES) || [];
+  var ac = readCache(CACHE_ACTIVE);
+  activeCity = (typeof ac === 'string') ? ac : null;
+  renderCityBar();
+  loadFromCache();
+  load(); loadHourlyFresh();
+})();
+</script>
+</body>
+</html>
