@@ -2,13 +2,50 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>世界人口时钟</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>世界人口时钟 - 全球实时人口统计 | 今日出生死亡人数、各国人口排名</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%232f5be8' stroke-width='1.8'/%3E%3Cpath d='M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20' fill='none' stroke='%232f5be8' stroke-width='1.3'/%3E%3C/svg%3E">
+
+<!-- SEO -->
+<meta name="description" content="世界人口时钟：基于联合国《世界人口展望 2024》数据的全球实时人口统计工具。实时展示世界总人口、每秒出生与死亡人数、今日及本年度人口净增长，以及中国、印度、美国等 24 个主要国家的实时人口排名与增长趋势，数据每 200 毫秒动态更新。">
+<meta name="keywords" content="世界人口时钟,世界人口,实时人口,全球人口统计,世界人口排名,各国人口,中国人口,印度人口,人口增长率,出生率,死亡率,人口净增长,联合国人口数据,world population clock,world population live">
+<meta name="author" content="shuoweb">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#2f5be8">
+
+<!-- Open Graph / 社交分享 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="世界人口时钟">
+<meta property="og:title" content="世界人口时钟 - 全球实时人口统计">
+<meta property="og:description" content="实时追踪全球 81 亿人口变动：每秒出生 4.41 人、死亡 1.98 人，24 国实时人口排名与增长趋势，数据源自联合国《世界人口展望 2024》。">
+<meta property="og:locale" content="zh_CN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="世界人口时钟 - 全球实时人口统计">
+<meta name="twitter:description" content="实时追踪全球人口变动：今日出生、死亡、净增人数，24 国实时人口排名，基于联合国 2024 人口数据。">
+
+<!-- 结构化数据 (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "世界人口时钟",
+  "alternateName": "World Population Clock",
+  "description": "基于联合国《世界人口展望 2024》数据的全球实时人口统计工具，实时展示世界总人口、今日出生与死亡人数、人口净增长及 24 个主要国家的实时人口排名。",
+  "applicationCategory": "ReferenceApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "zh-CN",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+  "author": { "@type": "Organization", "name": "shuoweb", "url": "https://shuoweb.com" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --glass:        rgba(255,255,255,0.72);
-  --glass-strong: rgba(255,255,255,0.88);
   --glass-border: rgba(255,255,255,0.95);
   --glass-shadow: 0 8px 32px rgba(100,120,180,0.12), 0 1.5px 0 rgba(255,255,255,0.9) inset;
   --accent:  #2f5be8;
@@ -17,39 +54,78 @@
   --text:    #151c2e;
   --sub:     #6b7a9a;
   --divider: rgba(120,140,200,0.15);
+  --track:   rgba(100,120,180,0.12);
+  --bg:      #eef2f8;
+  --header-bg: rgba(238,242,248,0.82);
   --serif:   'Instrument Serif', Georgia, serif;
   --sans:    'Outfit', sans-serif;
 }
 
+[data-theme="dark"] {
+  --glass:        rgba(22,28,48,0.62);
+  --glass-border: rgba(255,255,255,0.09);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 1.5px 0 rgba(255,255,255,0.06) inset;
+  --accent:  #7c9aff;
+  --accent2: #ff7a7a;
+  --accent3: #3dd6a3;
+  --text:    #edf1fb;
+  --sub:     #8b96b5;
+  --divider: rgba(255,255,255,0.08);
+  --track:   rgba(255,255,255,0.10);
+  --bg:      #0a0e1a;
+  --header-bg: rgba(10,14,26,0.78);
+}
+
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+*:focus { outline:none; }
+a { text-decoration:none; color:inherit; -webkit-tap-highlight-color:transparent; }
+::selection { background: rgba(47,91,232,0.22); }
+
+html { scroll-behavior:smooth; }
 
 body {
   font-family: var(--sans);
-  background: #eef2f8;
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background .45s ease, color .45s ease;
+}
+
+/* 背景渐变光斑 */
+.bg-glow {
+  position: fixed; inset:0; z-index:-1; pointer-events:none;
   background-image:
     radial-gradient(ellipse 90% 60% at 15% 0%,  rgba(130,160,255,0.22) 0%, transparent 55%),
     radial-gradient(ellipse 70% 70% at 88% 90%, rgba(100,200,180,0.18) 0%, transparent 55%),
     radial-gradient(ellipse 55% 45% at 75% 12%, rgba(200,180,255,0.12) 0%, transparent 50%),
     radial-gradient(ellipse 60% 50% at 30% 85%, rgba(130,180,255,0.12) 0%, transparent 50%);
-  background-attachment: fixed;
-  min-height: 100vh;
-  color: var(--text);
-  overflow-x: hidden;
-  padding-bottom: 88px;
+  transition: opacity .45s ease;
 }
+[data-theme="dark"] .bg-glow { opacity:.55; }
+
+/* 漂浮光球 */
+.orb { position:fixed; z-index:-1; border-radius:50%; filter:blur(70px); pointer-events:none; opacity:.5; }
+.orb-1 { width:280px; height:280px; background:rgba(80,120,255,0.30); top:-80px; left:-90px; animation:drift1 22s ease-in-out infinite alternate; }
+.orb-2 { width:240px; height:240px; background:rgba(60,220,180,0.22); bottom:5%; right:-100px; animation:drift2 26s ease-in-out infinite alternate; }
+@keyframes drift1 { to { transform:translate(70px,50px) scale(1.15); } }
+@keyframes drift2 { to { transform:translate(-60px,-60px) scale(1.1); } }
 
 /* HEADER */
 header {
   position: sticky; top:0; z-index:200;
-  background: rgba(238,242,248,0.82);
+  background: var(--header-bg);
   backdrop-filter: blur(24px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
   border-bottom: 1px solid var(--divider);
-  padding: 14px 20px;
+  padding: 13px 18px;
   display: flex; align-items: center; justify-content: space-between;
+  transition: background .45s ease;
 }
-
+.header-left { display:flex; align-items:center; gap:9px; }
+.header-logo { width:22px; height:22px; flex-shrink:0; }
 .header-title { font-size:15px; font-weight:600; letter-spacing:0.01em; }
+.header-right { display:flex; align-items:center; gap:9px; }
 
 .live-badge {
   display:flex; align-items:center; gap:6px;
@@ -57,44 +133,64 @@ header {
   border: 1px solid rgba(47,91,232,0.18);
   border-radius:20px; padding:4px 10px;
 }
-
-.live-dot {
-  width:6px; height:6px; border-radius:50%;
-  background:var(--accent);
-  animation: blink 2s ease-in-out infinite;
-}
-
+.live-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); animation: blink 2s ease-in-out infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
-
 .live-text { font-size:11px; font-weight:500; color:var(--accent); letter-spacing:0.08em; }
 
-/* HERO */
-.hero {
-  padding: 32px 20px 0;
-  text-align:center;
-  animation: fadeUp 0.5s ease both;
+.theme-btn {
+  width:32px; height:32px; border-radius:50%;
+  border:1px solid var(--divider);
+  background: var(--glass);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition: transform .3s ease, background .45s ease;
 }
+.theme-btn:hover { transform:rotate(18deg) scale(1.08); }
+.theme-btn:active { transform:scale(0.92); }
+.theme-btn svg { width:17px; height:17px; }
+.icon-sun  { display:none; }
+.icon-moon { display:block; }
+[data-theme="dark"] .icon-sun  { display:block; }
+[data-theme="dark"] .icon-moon { display:none; }
 
+/* HERO */
+.hero { padding: 34px 20px 4px; text-align:center; animation: fadeUp .45s ease both; }
 .hero-eyebrow {
   font-size:11px; font-weight:500; letter-spacing:0.22em;
-  text-transform:uppercase; color:var(--sub); margin-bottom:10px;
+  text-transform:uppercase; color:var(--sub); margin-bottom:12px;
 }
-
 .hero-counter-wrap { display:inline-block; position:relative; }
-
 .hero-glow {
-  position:absolute; inset:-30px -20px;
-  background: radial-gradient(ellipse, rgba(47,91,232,0.10) 0%, transparent 70%);
+  position:absolute; inset:-34px -24px;
+  background: radial-gradient(ellipse, rgba(47,91,232,0.12) 0%, transparent 70%);
   border-radius:50%; pointer-events:none;
 }
 
+/* 翻滚数字 */
 .hero-counter {
   font-family: var(--serif);
-  font-size: clamp(36px,9.5vw,56px);
+  font-size: clamp(38px,10vw,58px);
   letter-spacing:-0.02em; color:var(--text); line-height:1;
+  white-space:nowrap;
 }
+.odo { display:inline-block; height:1em; width:0.58em; overflow:hidden; vertical-align:top; }
+.odo-strip { display:flex; flex-direction:column; transition: transform .45s cubic-bezier(.22,1,.36,1); will-change:transform; }
+.odo-strip i { display:block; height:1em; line-height:1em; font-style:normal; text-align:center; }
+.odo-comma { display:inline-block; width:0.3em; text-align:center; }
 
-.hero-caption { margin-top:10px; font-size:12px; color:var(--sub); }
+.hero-meta {
+  margin-top:12px; display:flex; align-items:center; justify-content:center;
+  gap:8px; flex-wrap:wrap;
+}
+.chip {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11px; font-weight:500; color:var(--sub);
+  background:var(--glass); border:1px solid var(--glass-border);
+  border-radius:20px; padding:5px 12px;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.chip b { color:var(--accent3); font-weight:600; }
+.chip svg { width:12px; height:12px; flex-shrink:0; }
+.hero-caption { margin-top:10px; font-size:11px; color:var(--sub); }
 
 /* GLASS CARD */
 .glass {
@@ -104,33 +200,44 @@ header {
   border: 1px solid var(--glass-border);
   border-radius:18px;
   box-shadow: var(--glass-shadow);
+  transition: background .45s ease, border-color .45s ease;
 }
 
 /* SECTION */
-.section { padding: 20px 16px 0; }
-
+.section { padding: 20px 16px 0; max-width:560px; margin:0 auto; }
 .section-label {
   font-size:10px; font-weight:600; letter-spacing:0.2em;
   text-transform:uppercase; color:var(--sub);
   margin-bottom:10px; padding-left:4px;
+  display:flex; align-items:center; justify-content:space-between;
 }
+.section-label .hint { letter-spacing:0.02em; text-transform:none; font-weight:400; }
 
 /* STAT ROW */
 .stat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
-
-.stat-card { border-radius:16px; padding:16px 12px; }
+.stat-card { border-radius:16px; padding:16px 12px; position:relative; overflow:hidden; }
+.stat-card.pulse::after {
+  content:''; position:absolute; inset:0; border-radius:16px;
+  background: radial-gradient(circle at 50% 100%, rgba(47,91,232,0.14), transparent 70%);
+  animation: pulseFade .9s ease both;
+}
+.stat-card.pulse-red::after {
+  content:''; position:absolute; inset:0; border-radius:16px;
+  background: radial-gradient(circle at 50% 100%, rgba(232,67,67,0.12), transparent 70%);
+  animation: pulseFade .9s ease both;
+}
+@keyframes pulseFade { from { opacity:1; } to { opacity:0; } }
 
 .stat-icon { width:28px; height:28px; margin-bottom:10px; }
-
 .stat-num {
   font-family:var(--serif);
   font-size: clamp(15px,4.2vw,21px);
   line-height:1; letter-spacing:-0.01em;
+  font-variant-numeric: tabular-nums;
 }
 .stat-num.blue  { color:var(--accent); }
 .stat-num.red   { color:var(--accent2); }
 .stat-num.green { color:var(--accent3); }
-
 .stat-lbl {
   font-size:10px; font-weight:500;
   color:var(--sub); margin-top:5px;
@@ -138,20 +245,13 @@ header {
 }
 
 /* PROGRESS */
-.progress-card { padding:16px; }
-
+.progress-card { margin-top:10px; padding:14px 16px; }
 .progress-row {
   display:flex; justify-content:space-between; align-items:center;
-  font-size:11px; font-weight:500; margin-bottom:7px; color:var(--sub);
+  font-size:11px; font-weight:500; margin-bottom:8px; color:var(--sub);
 }
-
-.progress-pct { color:var(--accent); }
-
-.progress-track {
-  height:5px; border-radius:3px;
-  background:rgba(100,120,180,0.12); overflow:hidden;
-}
-
+.progress-pct { color:var(--accent); font-variant-numeric:tabular-nums; }
+.progress-track { height:5px; border-radius:3px; background:var(--track); overflow:hidden; }
 .progress-fill {
   height:100%; border-radius:3px;
   background: linear-gradient(90deg, var(--accent), #6d8ef0);
@@ -159,302 +259,296 @@ header {
 }
 
 /* RATES GRID */
-.rates-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-}
-
+.rates-grid { display:grid; grid-template-columns:1fr 1fr; }
 .rate-item { padding:14px 16px; }
 .rate-item:nth-child(1) { border-right:1px solid var(--divider); border-bottom:1px solid var(--divider); }
 .rate-item:nth-child(2) { border-bottom:1px solid var(--divider); }
 .rate-item:nth-child(3) { border-right:1px solid var(--divider); }
-
 .rate-lbl { font-size:10px; font-weight:500; color:var(--sub); letter-spacing:0.08em; margin-bottom:5px; }
-.rate-val {
-  font-family:var(--serif); font-size:20px; letter-spacing:-0.01em; line-height:1;
-}
+.rate-val { font-family:var(--serif); font-size:20px; letter-spacing:-0.01em; line-height:1; font-variant-numeric:tabular-nums; }
 .rate-val.blue  { color:var(--accent); }
 .rate-val.red   { color:var(--accent2); }
 .rate-val.green { color:var(--accent3); }
 .rate-val.dark  { color:var(--text); }
 
 /* COUNTRY LIST */
-.country-item {
-  display:flex; align-items:center; gap:11px;
-  padding:13px 16px;
-}
-
+.country-item { display:flex; align-items:center; gap:11px; padding:13px 16px; animation: fadeUp .4s ease both; }
 .country-item + .country-item { border-top:1px solid var(--divider); }
-
-.c-rank { font-size:11px; font-weight:500; color:var(--sub); width:18px; text-align:right; flex-shrink:0; }
-
-.c-flag {
-  width:28px; height:20px; border-radius:3px;
-  flex-shrink:0; overflow:hidden;
-  box-shadow:0 1px 4px rgba(0,0,0,0.11);
-}
+.country-item.collapsed { display:none; }
+.c-rank { font-size:11px; font-weight:500; color:var(--sub); width:18px; text-align:right; flex-shrink:0; font-variant-numeric:tabular-nums; }
+.c-rank.top { color:var(--accent); font-weight:600; }
+.c-flag { width:28px; height:20px; border-radius:3px; flex-shrink:0; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.14); }
 .c-flag svg { display:block; width:100%; height:100%; }
-
 .c-info { flex:1; min-width:0; }
-
-.c-name {
-  font-size:13px; font-weight:500;
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-}
-
-.c-bar-track {
-  height:2px; background:rgba(100,120,180,0.12);
-  border-radius:2px; margin-top:5px; overflow:hidden;
-}
-
-.c-bar-fill {
-  height:100%; border-radius:2px;
-  background:linear-gradient(90deg, rgba(47,91,232,0.55), rgba(47,91,232,0.22));
-}
-
+.c-name { font-size:13px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.c-bar-track { height:2px; background:var(--track); border-radius:2px; margin-top:5px; overflow:hidden; }
+.c-bar-fill { height:100%; border-radius:2px; background:linear-gradient(90deg, rgba(47,91,232,0.55), rgba(47,91,232,0.22)); }
 .c-pop-col { text-align:right; flex-shrink:0; }
-
-.c-pop {
-  font-family:var(--serif); font-size:14px;
-  color:var(--text); letter-spacing:-0.01em;
-}
-
+.c-pop { font-family:var(--serif); font-size:14px; color:var(--text); letter-spacing:-0.01em; font-variant-numeric:tabular-nums; }
 .c-pct { font-size:10px; color:var(--sub); margin-top:1px; }
-
 .c-trend { width:16px; height:16px; flex-shrink:0; }
 
-/* YEAR GRID */
-.year-grid {
-  display:grid; grid-template-columns:1fr 1fr;
+.expand-btn {
+  width:100%; padding:13px 16px; border:none; background:transparent;
+  border-top:1px solid var(--divider); cursor:pointer;
+  font-family:var(--sans); font-size:12px; font-weight:500; color:var(--accent);
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  transition: background .25s ease;
 }
+.expand-btn:hover { background:rgba(47,91,232,0.05); }
+.expand-btn svg { width:14px; height:14px; transition: transform .3s ease; }
+.expand-btn.open svg { transform:rotate(180deg); }
 
+/* YEAR GRID */
+.year-grid { display:grid; grid-template-columns:1fr 1fr; }
 .year-item { padding:14px 16px; }
 .year-item:nth-child(1) { border-right:1px solid var(--divider); border-bottom:1px solid var(--divider); }
 .year-item:nth-child(2) { border-bottom:1px solid var(--divider); }
 .year-item:nth-child(3) { border-right:1px solid var(--divider); }
-
 .year-lbl { font-size:10px; font-weight:500; color:var(--sub); letter-spacing:0.08em; margin-bottom:5px; }
-.year-val {
-  font-family:var(--serif); font-size:17px; letter-spacing:-0.01em; line-height:1;
-}
+.year-val { font-family:var(--serif); font-size:17px; letter-spacing:-0.01em; line-height:1; font-variant-numeric:tabular-nums; }
 .year-val.blue  { color:var(--accent); }
 .year-val.red   { color:var(--accent2); }
 .year-val.green { color:var(--accent3); }
 
-/* BOTTOM BAR */
-.bottom-bar {
-  position:fixed; bottom:0; left:0; right:0; z-index:200;
-  background: rgba(238,242,248,0.90);
-  backdrop-filter: blur(24px) saturate(1.6);
-  -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  border-top:1px solid var(--divider);
-  padding:12px 20px 22px;
-  display:flex; align-items:center; justify-content:center; gap:0;
-}
+/* FOOTER */
+footer { max-width:560px; margin:26px auto 0; padding:0 16px 40px; animation: fadeUp .45s .5s ease both; }
+.footer-card { padding:20px 18px; text-align:center; }
 
-.bb-piece { text-align:center; padding:0 14px; }
-.bb-num { font-family:var(--serif); font-size:22px; letter-spacing:-0.01em; color:var(--text); line-height:1; }
-.bb-lbl { font-size:9px; font-weight:500; letter-spacing:0.12em; color:var(--sub); margin-top:2px; }
-.bb-sep { font-family:var(--serif); font-size:18px; color:var(--divider); padding-bottom:6px; align-self:flex-end; }
-.bb-divider { width:1px; height:36px; background:var(--divider); margin:0 4px; }
-.bb-date { text-align:left; }
+.visit-stats { display:flex; justify-content:center; gap:0; margin-bottom:16px; }
+.vs-item { padding:0 20px; }
+.vs-item + .vs-item { border-left:1px solid var(--divider); }
+.vs-num { font-family:var(--serif); font-size:20px; color:var(--text); letter-spacing:-0.01em; font-variant-numeric:tabular-nums; }
+.vs-lbl { font-size:10px; color:var(--sub); letter-spacing:0.08em; margin-top:3px; display:flex; align-items:center; justify-content:center; gap:4px; }
+.vs-lbl svg { width:11px; height:11px; }
+
+.footer-links-label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--sub); margin-bottom:10px; }
+.footer-links { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+.footer-link {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:12px; font-weight:500; color:var(--text);
+  background:rgba(47,91,232,0.06); border:1px solid rgba(47,91,232,0.14);
+  border-radius:20px; padding:7px 14px;
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.footer-link:hover { transform:translateY(-2px); background:rgba(47,91,232,0.12); box-shadow:0 6px 16px rgba(47,91,232,0.15); }
+.footer-link:active { transform:scale(0.96); }
+.footer-link svg { width:13px; height:13px; flex-shrink:0; }
+
+.footer-copy { margin-top:16px; font-size:10px; color:var(--sub); line-height:1.7; }
 
 /* ANIMATIONS */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(14px); }
-  to   { opacity:1; transform:translateY(0); }
-}
+@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+.sec-1 { animation: fadeUp .45s .10s ease both; }
+.sec-2 { animation: fadeUp .45s .18s ease both; }
+.sec-3 { animation: fadeUp .45s .26s ease both; }
+.sec-4 { animation: fadeUp .45s .34s ease both; }
 
-.hero  { animation: fadeUp 0.45s 0.00s ease both; }
-.sec-1 { animation: fadeUp 0.45s 0.10s ease both; }
-.sec-2 { animation: fadeUp 0.45s 0.18s ease both; }
-.sec-3 { animation: fadeUp 0.45s 0.26s ease both; }
-.sec-4 { animation: fadeUp 0.45s 0.34s ease both; }
-.sec-5 { animation: fadeUp 0.45s 0.42s ease both; }
+@media (max-width:380px) {
+  .hero-counter { font-size: clamp(32px,9.5vw,40px); }
+  .stat-card { padding:14px 10px; }
+}
 </style>
 </head>
 <body>
 
+<div class="bg-glow"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
 <!-- HEADER -->
 <header>
-  <div class="header-title">世界人口时钟</div>
-  <div class="live-badge">
-    <div class="live-dot"></div>
-    <span class="live-text">LIVE</span>
+  <div class="header-left">
+    <svg class="header-logo" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="var(--accent)" stroke-width="1.6"/>
+      <path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20" stroke="var(--accent)" stroke-width="1.2" opacity="0.7"/>
+    </svg>
+    <div class="header-title">世界人口时钟</div>
+  </div>
+  <div class="header-right">
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      <span class="live-text">LIVE</span>
+    </div>
+    <button class="theme-btn" id="theme-btn" aria-label="切换主题">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none">
+        <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z" stroke="var(--text)" stroke-width="1.7" stroke-linejoin="round"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="4.2" stroke="var(--text)" stroke-width="1.7"/>
+        <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3L19 19M19 5l-1.7 1.7M6.7 17.3L5 19" stroke="var(--text)" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+    </button>
   </div>
 </header>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">全球实时总人口</div>
+  <h1 class="hero-eyebrow">全球实时总人口 · 世界人口时钟</h1>
   <div class="hero-counter-wrap">
     <div class="hero-glow"></div>
     <div class="hero-counter" id="world-pop">—</div>
   </div>
-  <div class="hero-caption">基准：联合国 2024 · 每 200ms 更新</div>
+  <div class="hero-meta">
+    <span class="chip">
+      <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5V8l2.3 1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <span id="local-clock">--:--:--</span>
+    </span>
+    <span class="chip">每秒净增 <b>+2.42</b></span>
+  </div>
+  <div class="hero-caption">数据基准：联合国世界人口展望 2024 · 每 200ms 实时推算</div>
 </div>
 
-<!-- TODAY STATS -->
+<!-- TODAY -->
 <div class="section sec-1">
-  <div class="section-label">今日累计 · 自 UTC 零时起</div>
+  <div class="section-label"><span>今日累计</span><span class="hint">自 UTC 零时起</span></div>
   <div class="stat-row">
-
-    <div class="glass stat-card">
+    <div class="glass stat-card" id="card-births">
       <svg class="stat-icon" viewBox="0 0 28 28" fill="none">
         <circle cx="14" cy="14" r="13" fill="rgba(47,91,232,0.08)" stroke="rgba(47,91,232,0.2)" stroke-width="1"/>
         <path d="M14 8v12M9 13l5-5 5 5" stroke="#2f5be8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <div class="stat-num blue" id="today-births">—</div>
-      <div class="stat-lbl">今日<br>出生</div>
+      <div class="stat-lbl">今日出生</div>
     </div>
-
-    <div class="glass stat-card">
+    <div class="glass stat-card" id="card-deaths">
       <svg class="stat-icon" viewBox="0 0 28 28" fill="none">
         <circle cx="14" cy="14" r="13" fill="rgba(232,67,67,0.07)" stroke="rgba(232,67,67,0.2)" stroke-width="1"/>
         <path d="M14 20V8M9 15l5 5 5-5" stroke="#e84343" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <div class="stat-num red" id="today-deaths">—</div>
-      <div class="stat-lbl">今日<br>死亡</div>
+      <div class="stat-lbl">今日死亡</div>
     </div>
-
     <div class="glass stat-card">
       <svg class="stat-icon" viewBox="0 0 28 28" fill="none">
         <circle cx="14" cy="14" r="13" fill="rgba(26,170,124,0.07)" stroke="rgba(26,170,124,0.2)" stroke-width="1"/>
         <path d="M8 14h12M17 10l4 4-4 4" stroke="#1aaa7c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <div class="stat-num green" id="today-net">—</div>
-      <div class="stat-lbl">今日<br>净增</div>
+      <div class="stat-lbl">今日净增</div>
     </div>
-
   </div>
-</div>
-
-<!-- DAY PROGRESS -->
-<div class="section sec-2">
   <div class="glass progress-card">
     <div class="progress-row">
       <span>今日进度</span>
       <span class="progress-pct" id="day-pct">0%</span>
     </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="day-bar" style="width:0%"></div>
-    </div>
+    <div class="progress-track"><div class="progress-fill" id="day-bar" style="width:0%"></div></div>
   </div>
 </div>
 
 <!-- RATES -->
 <div class="section sec-2">
-  <div class="section-label">变动速率</div>
+  <div class="section-label"><span>变动速率</span></div>
   <div class="glass rates-grid">
-    <div class="rate-item">
-      <div class="rate-lbl">出生 / 秒</div>
-      <div class="rate-val blue">4.41</div>
-    </div>
-    <div class="rate-item">
-      <div class="rate-lbl">死亡 / 秒</div>
-      <div class="rate-val red">1.98</div>
-    </div>
-    <div class="rate-item">
-      <div class="rate-lbl">净增 / 秒</div>
-      <div class="rate-val green">+2.43</div>
-    </div>
-    <div class="rate-item">
-      <div class="rate-lbl">年增长率</div>
-      <div class="rate-val dark">0.87%</div>
-    </div>
+    <div class="rate-item"><div class="rate-lbl">出生 / 秒</div><div class="rate-val blue">4.41</div></div>
+    <div class="rate-item"><div class="rate-lbl">死亡 / 秒</div><div class="rate-val red">1.98</div></div>
+    <div class="rate-item"><div class="rate-lbl">净增 / 秒</div><div class="rate-val green">+2.43</div></div>
+    <div class="rate-item"><div class="rate-lbl">年增长率</div><div class="rate-val dark">0.87%</div></div>
   </div>
 </div>
 
 <!-- COUNTRIES -->
 <div class="section sec-3">
-  <div class="section-label">各国实时人口</div>
-  <div class="glass" id="country-list"></div>
+  <div class="section-label"><span>各国实时人口</span><span class="hint">共 24 国 · 按人口排序</span></div>
+  <div class="glass">
+    <div id="country-list"></div>
+    <button class="expand-btn" id="expand-btn">
+      <span id="expand-text">展开全部 24 国</span>
+      <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
 </div>
 
-<!-- YEAR STATS -->
+<!-- YEAR -->
 <div class="section sec-4">
-  <div class="section-label">本年度累计</div>
+  <div class="section-label"><span>本年度累计</span></div>
   <div class="glass year-grid">
-    <div class="year-item">
-      <div class="year-lbl">今年出生</div>
-      <div class="year-val blue" id="year-births">—</div>
-    </div>
-    <div class="year-item">
-      <div class="year-lbl">今年死亡</div>
-      <div class="year-val red" id="year-deaths">—</div>
-    </div>
-    <div class="year-item">
-      <div class="year-lbl">今年净增</div>
-      <div class="year-val green" id="year-net">—</div>
-    </div>
-    <div class="year-item">
-      <div class="year-lbl">全年出生预测</div>
-      <div class="year-val" style="font-size:14px;color:var(--sub);">1.39 亿</div>
-    </div>
+    <div class="year-item"><div class="year-lbl">今年出生</div><div class="year-val blue" id="year-births">—</div></div>
+    <div class="year-item"><div class="year-lbl">今年死亡</div><div class="year-val red" id="year-deaths">—</div></div>
+    <div class="year-item"><div class="year-lbl">今年净增</div><div class="year-val green" id="year-net">—</div></div>
+    <div class="year-item"><div class="year-lbl">全年出生预测</div><div class="year-val" style="font-size:14px;color:var(--sub);">1.39 亿</div></div>
   </div>
 </div>
 
-<div style="height:8px"></div>
-
-<!-- BOTTOM CLOCK BAR -->
-<div class="bottom-bar">
-  <div class="bb-piece">
-    <div class="bb-num" id="clk-h">00</div>
-    <div class="bb-lbl">时</div>
+<!-- FOOTER -->
+<footer>
+  <div class="glass footer-card">
+    <div class="visit-stats" id="visit-stats">
+      <div class="vs-item">
+        <div class="vs-num" id="site-pv">—</div>
+        <div class="vs-lbl">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8 12.1 12.5 8 12.5 1.5 8 1.5 8z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
+          总访问量
+        </div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num" id="site-uv">—</div>
+        <div class="vs-lbl">
+          <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="2.6" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 13.5c0-2.8 2.5-4.3 5.5-4.3s5.5 1.5 5.5 4.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          独立访客
+        </div>
+      </div>
+    </div>
+    <div class="footer-links-label">相关网站</div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://ovo.shuoweb.com" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="var(--accent)" stroke-width="1.3"/><path d="M1.5 8h13M8 1.5c2 2 2 11 0 13M8 1.5c-2 2-2 11 0 13" stroke="var(--accent)" stroke-width="1" opacity="0.7"/></svg>
+        ovo.shuoweb.com
+      </a>
+      <a class="footer-link" href="https://shuoweb.com" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="var(--accent)" stroke-width="1.3"/><path d="M1.5 8h13M8 1.5c2 2 2 11 0 13M8 1.5c-2 2-2 11 0 13" stroke="var(--accent)" stroke-width="1" opacity="0.7"/></svg>
+        shuoweb.com
+      </a>
+      <a class="footer-link" href="https://ovowe.cn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="var(--accent)" stroke-width="1.3"/><path d="M1.5 8h13M8 1.5c2 2 2 11 0 13M8 1.5c-2 2-2 11 0 13" stroke="var(--accent)" stroke-width="1" opacity="0.7"/></svg>
+        ovowe.cn
+      </a>
+    </div>
+    <div class="footer-copy">© 2026 世界人口时钟 · 数据来源：联合国《世界人口展望 2024》<br>本站数据为基于公开增长率的实时推算，仅供参考</div>
   </div>
-  <div class="bb-sep">:</div>
-  <div class="bb-piece">
-    <div class="bb-num" id="clk-m">00</div>
-    <div class="bb-lbl">分</div>
-  </div>
-  <div class="bb-sep">:</div>
-  <div class="bb-piece">
-    <div class="bb-num" id="clk-s">00</div>
-    <div class="bb-lbl">秒</div>
-  </div>
-  <div class="bb-divider"></div>
-  <div class="bb-piece bb-date">
-    <div class="bb-num" id="clk-date" style="font-size:13px;font-family:var(--sans);font-weight:500;color:var(--sub)">—</div>
-    <div class="bb-lbl">本地时间</div>
-  </div>
-</div>
+</footer>
 
 <script>
 /* ══════════════════════════════════════════════════
-   DATA SOURCES: UN World Population Prospects 2024
-   Base date: 2026-01-01 00:00:00 UTC
-   World pop:  8,162,000,000
-   Births/yr:  139,000,000  → 4.408/sec
-   Deaths/yr:   62,600,000  → 1.985/sec
-   Net/yr:      76,400,000  → 2.423/sec
+   数据源: UN World Population Prospects 2024
+   基准: 2026-01-01 00:00:00 UTC · 世界人口 81.62 亿
 ══════════════════════════════════════════════════ */
-
 const BASE_DATE = new Date('2026-01-01T00:00:00Z');
 const BASE_POP  = 8_162_000_000;
-const B_PS = 4.408;
-const D_PS = 1.985;
-const N_PS = B_PS - D_PS;
+const B_PS = 4.408, D_PS = 1.985, N_PS = B_PS - D_PS;
 
-/* [name, ISO2, basePop Jan-1-2026, netPerSec]
-   Individual growth rates from UN 2024 projections   */
+/* [名称, ISO2, 基准人口(2026-01-01), 净增/秒] */
 const COUNTRIES = [
-  ['印度',       'IN', 1_441_000_000,  0.411],  // +0.9%/yr
-  ['中国',       'CN', 1_408_000_000, -0.044],  // -0.1%/yr
-  ['美国',       'US',   341_000_000,  0.054],  // +0.5%/yr
-  ['印度尼西亚', 'ID',   283_000_000,  0.081],  // +0.9%/yr
-  ['巴基斯坦',   'PK',   251_000_000,  0.159],  // +2.0%/yr
-  ['尼日利亚',   'NG',   232_000_000,  0.177],  // +2.4%/yr
-  ['巴西',       'BR',   217_000_000,  0.034],  // +0.5%/yr
-  ['孟加拉国',   'BD',   174_000_000,  0.055],  // +1.0%/yr
-  ['俄罗斯',     'RU',   144_000_000, -0.009],  // -0.2%/yr
-  ['埃塞俄比亚', 'ET',   133_000_000,  0.106],  // +2.5%/yr
-  ['墨西哥',     'MX',   130_000_000,  0.054],  // +1.3%/yr
-  ['日本',       'JP',   123_000_000, -0.039],  // -1.0%/yr
+  ['印度',       'IN', 1_441_000_000,  0.411],
+  ['中国',       'CN', 1_408_000_000, -0.044],
+  ['美国',       'US',   341_000_000,  0.054],
+  ['印度尼西亚', 'ID',   283_000_000,  0.081],
+  ['巴基斯坦',   'PK',   251_000_000,  0.159],
+  ['尼日利亚',   'NG',   232_000_000,  0.177],
+  ['巴西',       'BR',   217_000_000,  0.034],
+  ['孟加拉国',   'BD',   174_000_000,  0.055],
+  ['俄罗斯',     'RU',   144_000_000, -0.009],
+  ['埃塞俄比亚', 'ET',   133_000_000,  0.106],
+  ['墨西哥',     'MX',   130_000_000,  0.054],
+  ['日本',       'JP',   123_000_000, -0.039],
+  ['埃及',       'EG',   116_000_000,  0.059],
+  ['菲律宾',     'PH',   116_000_000,  0.033],
+  ['刚果(金)',   'CD',   112_000_000,  0.114],
+  ['越南',       'VN',   101_000_000,  0.019],
+  ['伊朗',       'IR',    92_000_000,  0.026],
+  ['土耳其',     'TR',    87_000_000,  0.019],
+  ['德国',       'DE',    84_000_000, -0.003],
+  ['泰国',       'TH',    71_600_000, -0.002],
+  ['坦桑尼亚',   'TZ',    70_000_000,  0.064],
+  ['英国',       'GB',    69_000_000,  0.009],
+  ['法国',       'FR',    66_500_000,  0.004],
+  ['南非',       'ZA',    64_000_000,  0.020],
 ];
 
-/* Inline SVG flags — simplified geometric representation */
 const FLAGS = {
   IN:`<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#FF9933"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#138808"/><circle cx="15" cy="10" r="2.8" fill="none" stroke="#000080" stroke-width="0.7"/><line x1="15" y1="7.2" x2="15" y2="12.8" stroke="#000080" stroke-width="0.5"/><line x1="12.2" y1="10" x2="17.8" y2="10" stroke="#000080" stroke-width="0.5"/></svg>`,
-  CN:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2910"/><polygon points="5,2 6,5 9,5 6.5,6.8 7.5,10 5,8.2 2.5,10 3.5,6.8 1,5 4,5" fill="#FFDE00"/><polygon points="10,1.5 10.8,3.5 13,3.5 11.3,4.8 12,6.8 10,5.6 8,6.8 8.7,4.8 7,3.5 9.2,3.5" fill="#FFDE00" transform="scale(0.55) translate(10,2)"/></svg>`,
+  CN:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2910"/><polygon points="5,2 6,5 9,5 6.5,6.8 7.5,10 5,8.2 2.5,10 3.5,6.8 1,5 4,5" fill="#FFDE00"/><circle cx="11" cy="3" r="1" fill="#FFDE00"/><circle cx="13" cy="5.5" r="1" fill="#FFDE00"/><circle cx="13" cy="9" r="1" fill="#FFDE00"/><circle cx="11" cy="11" r="1" fill="#FFDE00"/></svg>`,
   US:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#B22234"/><rect y="1.54" width="30" height="1.54" fill="#fff"/><rect y="4.62" width="30" height="1.54" fill="#fff"/><rect y="7.69" width="30" height="1.54" fill="#fff"/><rect y="10.77" width="30" height="1.54" fill="#fff"/><rect y="13.85" width="30" height="1.54" fill="#fff"/><rect y="16.92" width="30" height="1.54" fill="#fff"/><rect width="12" height="10.77" fill="#3C3B6E"/></svg>`,
   ID:`<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#CE1126"/><rect y="10" width="30" height="10" fill="#fff"/></svg>`,
   PK:`<svg viewBox="0 0 30 20"><rect width="7" height="20" fill="#fff"/><rect x="7" width="23" height="20" fill="#01411C"/><circle cx="17" cy="10" r="4.5" fill="#fff"/><circle cx="18.5" cy="10" r="3.6" fill="#01411C"/></svg>`,
@@ -462,41 +556,78 @@ const FLAGS = {
   BR:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#009C3B"/><polygon points="15,1 29,10 15,19 1,10" fill="#FEDF00"/><circle cx="15" cy="10" r="4.8" fill="#002776"/><path d="M10.5,8.5 Q15,7 19.5,8.5" stroke="#fff" stroke-width="0.8" fill="none"/></svg>`,
   BD:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#006A4E"/><circle cx="14" cy="10" r="6.5" fill="#F42A41"/></svg>`,
   RU:`<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0033A0"/><rect y="13.33" width="30" height="6.67" fill="#CC0000"/></svg>`,
-  ET:`<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#078930"/><rect y="6.67" width="30" height="6.67" fill="#FCDD09"/><rect y="13.33" width="30" height="6.67" fill="#DA121A"/><circle cx="15" cy="10" r="4.5" fill="#0F47AF"/><polygon points="15,6.5 15.8,8.9 18.4,8.9 16.3,10.4 17.1,12.8 15,11.3 12.9,12.8 13.7,10.4 11.6,8.9 14.2,8.9" fill="#FCDD09" transform="scale(0.55) translate(12.7,6)"/></svg>`,
+  ET:`<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#078930"/><rect y="6.67" width="30" height="6.67" fill="#FCDD09"/><rect y="13.33" width="30" height="6.67" fill="#DA121A"/><circle cx="15" cy="10" r="4.5" fill="#0F47AF"/><polygon points="15,7.5 15.9,10 18.6,10 16.4,11.6 17.2,14.1 15,12.5 12.8,14.1 13.6,11.6 11.4,10 14.1,10" fill="#FCDD09"/></svg>`,
   MX:`<svg viewBox="0 0 30 20"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE1126"/><circle cx="15" cy="10" r="2.5" fill="#8B4513" opacity="0.5"/></svg>`,
   JP:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6.5" fill="#BC002D"/></svg>`,
+  PH:`<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#0038A8"/><rect y="10" width="30" height="10" fill="#CE1126"/><polygon points="0,0 12,10 0,20" fill="#fff"/><circle cx="4.5" cy="10" r="2.2" fill="#FCD116"/></svg>`,
+  EG:`<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#CE1126"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#000"/><circle cx="15" cy="10" r="1.8" fill="#C09300"/></svg>`,
+  CD:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#007FFF"/><polygon points="0,14 26,0 30,0 4,20 0,20" fill="#F7D618"/><polygon points="0,16 27.5,0 29.5,0 2,20 0,20" fill="#CE1026"/><polygon points="5,1.5 5.8,4 8.4,4 6.3,5.5 7.1,8 5,6.5 2.9,8 3.7,5.5 1.6,4 4.2,4" fill="#F7D618"/></svg>`,
+  VN:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#DA251D"/><polygon points="15,4 16.6,8.6 21.4,8.6 17.4,11.4 19,16 15,13.2 11,16 12.6,11.4 8.6,8.6 13.4,8.6" fill="#FFDE00"/></svg>`,
+  IR:`<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#239F40"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#DA0000"/><circle cx="15" cy="10" r="2" fill="#DA0000"/></svg>`,
+  TR:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#E30A17"/><circle cx="12" cy="10" r="5.5" fill="#fff"/><circle cx="13.6" cy="10" r="4.5" fill="#E30A17"/><polygon points="20,8 20.7,9.5 22.3,9.5 21.1,10.6 21.6,12.2 20,11.3 18.4,12.2 18.9,10.6 17.7,9.5 19.3,9.5" fill="#fff"/></svg>`,
+  DE:`<svg viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#000"/><rect y="6.67" width="30" height="6.67" fill="#DD0000"/><rect y="13.33" width="30" height="6.67" fill="#FFCE00"/></svg>`,
+  TH:`<svg viewBox="0 0 30 20"><rect width="30" height="3.34" fill="#A51931"/><rect y="3.34" width="30" height="3.33" fill="#F4F5F8"/><rect y="6.67" width="30" height="6.66" fill="#2D2A4A"/><rect y="13.33" width="30" height="3.33" fill="#F4F5F8"/><rect y="16.66" width="30" height="3.34" fill="#A51931"/></svg>`,
+  TZ:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#1EB53A"/><polygon points="30,0 30,20 0,20" fill="#00A3DD"/><path d="M-2,23 L33,-3" stroke="#FCD116" stroke-width="7" fill="none"/><path d="M-2,23 L33,-3" stroke="#000" stroke-width="4.2" fill="none"/></svg>`,
+  GB:`<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#012169"/><path d="M0,0 L30,20 M30,0 L0,20" stroke="#fff" stroke-width="4"/><path d="M0,0 L30,20 M30,0 L0,20" stroke="#C8102E" stroke-width="1.2"/><rect x="12.5" width="5" height="20" fill="#fff"/><rect y="7.5" width="30" height="5" fill="#fff"/><rect x="13.6" width="2.8" height="20" fill="#C8102E"/><rect y="8.6" width="30" height="2.8" fill="#C8102E"/></svg>`,
+  FR:`<svg viewBox="0 0 30 20"><rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/></svg>`,
+  ZA:`<svg viewBox="0 0 30 20"><rect width="30" height="10" fill="#E03C31"/><rect y="10" width="30" height="10" fill="#001489"/><path d="M0,0 L13,10 L0,20 M13,10 L30,10" stroke="#fff" stroke-width="7" fill="none"/><path d="M0,2.5 L11.5,10 L0,17.5 M11.5,10 L30,10" stroke="#007749" stroke-width="4" fill="none"/><polygon points="0,4.5 9,10 0,15.5" fill="#000" stroke="#F7E017" stroke-width="0.9"/></svg>`,
 };
 
-/* Helpers */
-function pad(n) { return String(n).padStart(2,'0'); }
-function fmt(n) { return Math.round(n).toLocaleString('zh-CN'); }
-
-function secsSince(date) { return (Date.now() - date.getTime()) / 1000; }
+/* ── 工具函数 ── */
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2,'0');
+const fmt = n => Math.round(n).toLocaleString('zh-CN');
+const secsSince = d => (Date.now() - d.getTime()) / 1000;
 
 function todaySecs() {
-  const now = new Date();
-  const midnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
-  return (Date.now() - midnight.getTime()) / 1000;
+  const n = new Date();
+  return (Date.now() - Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate())) / 1000;
 }
-
 function yearSecs() {
-  const now = new Date();
-  const jan1 = new Date(Date.UTC(now.getUTCFullYear(), 0, 1));
-  return (Date.now() - jan1.getTime()) / 1000;
+  const n = new Date();
+  return (Date.now() - Date.UTC(n.getUTCFullYear(), 0, 1)) / 1000;
 }
 
-/* Build country list */
+/* ── 翻滚数字计数器 ── */
+const DIGITS = '0123456789'.split('').map(d => `<i>${d}</i>`).join('');
+function setOdometer(el, str) {
+  if (el.dataset.len !== String(str.length)) {
+    el.innerHTML = [...str].map(ch =>
+      ch === ',' ? '<span class="odo-comma">,</span>'
+                 : `<span class="odo"><span class="odo-strip">${DIGITS}</span></span>`
+    ).join('');
+    el.dataset.len = str.length;
+  }
+  const odos = el.querySelectorAll('.odo-strip');
+  let di = 0;
+  for (const ch of str) {
+    if (ch !== ',') odos[di++].style.transform = `translateY(-${ch}em)`;
+  }
+}
+
+/* ── 主题切换 ── */
+const themeBtn = $('theme-btn');
+const savedTheme = localStorage.getItem('wpc-theme');
+if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';
+themeBtn.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('wpc-theme', next);
+});
+
+/* ── 国家列表 ── */
+const DEFAULT_SHOW = 10;
 function buildCountryList() {
   const maxPop = Math.max(...COUNTRIES.map(c => c[2]));
-  const html = COUNTRIES.map(([name, iso, basePop, net], i) => {
-    const pct   = ((basePop / BASE_POP) * 100).toFixed(2);
-    const barW  = ((basePop / maxPop) * 100).toFixed(1);
-    const up    = net >= 0;
+  $('country-list').innerHTML = COUNTRIES.map(([name, iso, basePop, net], i) => {
+    const pct = ((basePop / BASE_POP) * 100).toFixed(2);
+    const barW = ((basePop / maxPop) * 100).toFixed(1);
+    const up = net >= 0;
     const tColor = up ? '#1aaa7c' : '#e84343';
-    const tPath  = up ? 'M4 11L8 7L12 11' : 'M4 9L8 13L12 9';
-
-    return `<div class="country-item">
-      <div class="c-rank">${i+1}</div>
+    const tPath = up ? 'M4 11L8 7L12 11' : 'M4 9L8 13L12 9';
+    return `<div class="country-item${i >= DEFAULT_SHOW ? ' collapsed' : ''}" style="animation-delay:${i * 0.03}s">
+      <div class="c-rank${i < 3 ? ' top' : ''}">${i + 1}</div>
       <div class="c-flag">${FLAGS[iso] || ''}</div>
       <div class="c-info">
         <div class="c-name">${name}</div>
@@ -511,48 +642,75 @@ function buildCountryList() {
       </svg>
     </div>`;
   }).join('');
-
-  document.getElementById('country-list').innerHTML = html;
 }
 
-/* Tick */
+$('expand-btn').addEventListener('click', () => {
+  const btn = $('expand-btn');
+  const open = btn.classList.toggle('open');
+  document.querySelectorAll('.country-item.collapsed').forEach(el => {
+    el.style.display = open ? 'flex' : '';
+    if (open) el.style.display = 'flex';
+  });
+  $('expand-text').textContent = open ? '收起列表' : `展开全部 ${COUNTRIES.length} 国`;
+  if (!open) document.querySelector('.sec-3').scrollIntoView({ behavior:'smooth', block:'start' });
+});
+
+/* ── 数字跳动脉冲 ── */
+const prevVals = {};
+function setBump(numId, cardId, val, prefix = '') {
+  const el = $(numId);
+  const intVal = Math.round(val);
+  if (prevVals[numId] !== undefined && intVal > prevVals[numId] && cardId) {
+    const card = $(cardId);
+    const cls = cardId === 'card-deaths' ? 'pulse-red' : 'pulse';
+    card.classList.remove(cls); void card.offsetWidth; card.classList.add(cls);
+  }
+  prevVals[numId] = intVal;
+  el.textContent = prefix + fmt(val);
+}
+
+/* ── 主时钟 ── */
 function tick() {
-  const s  = secsSince(BASE_DATE);
-  const ts = todaySecs();
-  const ys = yearSecs();
+  const s = secsSince(BASE_DATE), ts = todaySecs(), ys = yearSecs();
   const now = new Date();
 
-  // World
-  document.getElementById('world-pop').textContent = fmt(BASE_POP + s * N_PS);
+  setOdometer($('world-pop'), fmt(BASE_POP + s * N_PS));
 
-  // Today
-  document.getElementById('today-births').textContent = fmt(ts * B_PS);
-  document.getElementById('today-deaths').textContent = fmt(ts * D_PS);
-  document.getElementById('today-net').textContent    = '+' + fmt(ts * N_PS);
+  setBump('today-births', 'card-births', ts * B_PS);
+  setBump('today-deaths', 'card-deaths', ts * D_PS);
+  setBump('today-net', null, ts * N_PS, '+');
 
-  // Progress
   const pct = ((ts / 86400) * 100).toFixed(1);
-  document.getElementById('day-pct').textContent  = pct + '%';
-  document.getElementById('day-bar').style.width  = pct + '%';
+  $('day-pct').textContent = pct + '%';
+  $('day-bar').style.width = pct + '%';
 
-  // Year
-  document.getElementById('year-births').textContent = fmt(ys * B_PS);
-  document.getElementById('year-deaths').textContent = fmt(ys * D_PS);
-  document.getElementById('year-net').textContent    = '+' + fmt(ys * N_PS);
+  $('year-births').textContent = fmt(ys * B_PS);
+  $('year-deaths').textContent = fmt(ys * D_PS);
+  $('year-net').textContent = '+' + fmt(ys * N_PS);
 
-  // Countries (real-time)
   COUNTRIES.forEach(([, iso, basePop, net]) => {
-    const el = document.getElementById('cp-' + iso);
+    const el = $('cp-' + iso);
     if (el) el.textContent = fmt(basePop + s * net);
   });
 
-  // Clock
-  document.getElementById('clk-h').textContent    = pad(now.getHours());
-  document.getElementById('clk-m').textContent    = pad(now.getMinutes());
-  document.getElementById('clk-s').textContent    = pad(now.getSeconds());
-  document.getElementById('clk-date').textContent =
-    `${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())}`;
+  $('local-clock').textContent =
+    `${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
 }
+
+/* ── 访问量统计 (Vercount) ── */
+fetch('https://events.vercount.one/api/v2/log', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ url: location.href })
+})
+  .then(r => r.json())
+  .then(({ data }) => {
+    if (data) {
+      $('site-pv').textContent = fmt(data.site_pv);
+      $('site-uv').textContent = fmt(data.site_uv);
+    }
+  })
+  .catch(() => { $('visit-stats').style.display = 'none'; });
 
 buildCountryList();
 tick();
