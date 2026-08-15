@@ -41,7 +41,8 @@ const SITE_DATA = [
         icon: "code",
         items: [
             { title: "旧版网站", url: "https://pages.shuoweb.com/", icon: "link" },
-            { title: "嘟站", url: "https://嘟.com/", icon: "link" }
+            { title: "嘟站", url: "https://嘟.com/", icon: "link" },
+            { title: "OVO站", url: "https://ovowe.cn/", icon: "link" }
         ]
     }
 ];
