@@ -255,7 +255,6 @@ header {
 .p-flag-slot .flag-alt { width:30px; height:21px; font-size:10px; }
 [data-theme="dark"] .flag { border-color:rgba(255,255,255,.16); }
 .cname-t { display:block; font-size:13.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.cname-e { display:none; }
 .pop { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:13.5px; font-weight:600; white-space:nowrap; }
 .share, .rate { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:12.5px; white-space:nowrap; }
 .share { color:var(--fg-2); }
@@ -411,6 +410,56 @@ footer { border-top:1px solid var(--rule); margin-top:34px; }
 }
 .links a:hover { background:var(--fg); color:var(--bg); border-color:var(--fg); }
 .foot-note { padding:16px 0 26px; border-top:1px solid var(--rule-2); font-size:11px; color:var(--fg-3); line-height:1.75; }
+
+/* ══════════ 广告位（顶部常驻条） ══════════ */
+/* 桌面端与移动端共用同一形态：导航栏正下方一条常驻横条。
+   默认展开单行，不随滚动、不吸顶、不可关闭。
+   广告位售出后只需替换 .ad-bar-mid 里的内容，外层容器保持不动。 */
+.ad-bar {
+  border-bottom:1px solid var(--rule);
+  background:var(--panel);
+}
+.ad-bar-in {
+  display:flex; align-items:center; gap:12px;
+  padding:9px 0; min-height:40px;
+}
+/* 左侧标签 */
+.ad-bar-tag {
+  flex:none; display:inline-flex; align-items:center; gap:6px;
+  font-size:11px; font-weight:700; letter-spacing:.02em; color:var(--fg);
+}
+.ad-bar-tag::before { content:''; width:3px; height:13px; background:var(--red); flex:none; }
+/* 中间文案区：广告主替换这里即可 */
+.ad-bar-mid {
+  flex:1; min-width:0;
+  display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 10px;
+  font-size:12px; color:var(--fg-2); line-height:1.5;
+}
+.ad-bar-mid b { color:var(--fg); font-weight:600; }
+.ad-bar-stats { display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 8px; }
+.ad-bar-stats .sep { color:var(--rule); }
+.ad-bar-stats .sum { font-weight:700; color:var(--fg); }
+.ad-bar-num {
+  font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:700; color:var(--fg);
+}
+/* 右侧邮箱按钮 */
+.ad-bar-cta {
+  flex:none; display:inline-flex; align-items:center; gap:7px;
+  padding:6px 11px; min-height:30px;
+  border:1px solid var(--fg); background:var(--fg); color:var(--bg);
+  font-size:11.5px; font-weight:600; text-decoration:none;
+  transition:background .15s, border-color .15s, color .15s;
+}
+.ad-bar-cta:hover { background:var(--red); border-color:var(--red); color:#fff; }
+.ad-bar-cta .ad-bar-mail { font-family:var(--mono); font-weight:500; }
+
+@media (max-width: 719px) {
+  .ad-bar-in { flex-wrap:wrap; gap:7px 10px; padding:9px 0 10px; }
+  .ad-bar-mid { flex:1 1 100%; order:2; font-size:11.5px; }
+  .ad-bar-tag { order:1; }
+  .ad-bar-cta { order:3; margin-left:auto; }
+}
+@media print { .ad-bar { display:none !important; } }
 
 /* ══════════ 动效 ══════════ */
 @media (prefers-reduced-motion: no-preference) {
@@ -568,6 +617,29 @@ footer { border-top:1px solid var(--rule); margin-top:34px; }
     </div>
   </div>
 </header>
+
+<!-- ══════════ 广告位（顶部常驻条） ══════════ -->
+<div class="ad-bar" role="complementary" aria-label="广告位出租 / Ad slot">
+  <div class="wrap ad-bar-in">
+    <span class="ad-bar-tag" data-i18n="adLabel">广告位出租</span>
+    <div class="ad-bar-mid">
+      <span data-i18n="adBarIntro">日均约 100 次独立展示，中英文用户各半，均为不重复访客。</span>
+      <span class="ad-bar-stats">
+        <span data-i18n="adReachZh">中文 50</span>
+        <span class="sep" aria-hidden="true">/</span>
+        <span data-i18n="adReachEn">英文 50</span>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="sum" data-i18n="adReachSum">日均 100</span>
+        <span class="sep" aria-hidden="true">/</span>
+        <span data-i18n="adTermsShort">价格待议</span>
+      </span>
+    </div>
+    <a class="ad-bar-cta" href="mailto:shuocc1@outlook.com?subject=%E5%B9%BF%E5%91%8A%E4%BD%8D%E6%8B%9B%E5%95%86%20%2F%20Ad%20Slot%20Inquiry">
+      <span data-i18n="adCtaShort">联系投放</span>
+      <span class="ad-bar-mail">shuocc1@outlook.com</span>
+    </a>
+  </div>
+</div>
 
 <main class="wrap">
 
@@ -729,6 +801,9 @@ footer { border-top:1px solid var(--rule); margin-top:34px; }
     <div class="note" data-i18n="note">计算方法：当前人口 = 基准人口 +（当前时刻 − 2026-01-01）× 每秒净增速率。全球基准 8,264,000,000 人，年出生约 1.337 亿、年死亡约 6,310 万，年增长率 0.84%。各国按其年增长率单独换算，因此能体现增长快慢的差异。数据来源：联合国《世界人口展望》2024 修订版 / UNFPA。所有数字均为估算值，非官方实时统计。速率按全年均匀分布处理，未计入季节性波动。</div>
   </section>
 
+  <!-- ══════════ 广告位（右侧常驻） ══════════ -->
+  
+
 </main>
 
 <div class="sr-only" role="status" aria-live="polite" id="live-region"></div>
@@ -846,6 +921,65 @@ var CDATA = [
 ];
 
 /* ══════════════════════════════════════════════════════════════
+   储备国家（默认不显示）
+   ────────────────────────────────────────────────────────────
+   共 30 国，覆盖非洲、亚洲、美洲、欧洲四个区域，人口量级从
+   1,880 万到 5,328 万，用于后续扩充榜单而不必再找数据。
+
+   启用方式：把下面的 RESERVE_ON 改成 true 即可，
+   这些国家会自动并入 CDATA，参与排名、搜索、区域筛选、
+   详情面板与实时名次计算，无需改动任何其它代码。
+
+   数据说明：h（1950–2020 各年代人口）、pop（2026）、land
+   （陆地面积）、tfr（总和生育率）、life（预期寿命）均取自
+   联合国《世界人口展望》2024 修订版（经 Worldometer 汇总）。
+   cbr / cdr 为按上述 tfr、life 派生的估算值，非直接观测值。
+══════════════════════════════════════════════════════════════ */
+var RESERVE_ON = false;
+
+var RESERVE = [
+ { iso:"SD", name:["苏丹","Sudan"],                          region:"africa",   land:1765048,   h:[6189910,8364489,11695771,17058905,22021481,27816745,35414399,46789231], pop:53282719, tfr:4.13, life:66.9, cbr:30.5, cdr:7.6 },
+ { iso:"UG", name:["乌干达","Uganda"],                       region:"africa",   land:199810,    h:[5750913,7640973,10321603,13275741,17569897,24000150,32390802,44457152], pop:52761469, tfr:3.97, life:68.9, cbr:29.0, cdr:7.7 },
+ { iso:"DZ", name:["阿尔及利亚","Algeria"],                  region:"africa",   land:2381740,   h:[9018426,11424922,13783719,18607174,25375810,30903893,36188236,44042091], pop:48028334, tfr:2.62, life:76.9, cbr:18.3, cdr:8.2 },
+ { iso:"IQ", name:["伊拉克","Iraq"],                         region:"asia",     land:434320,    h:[5653350,7022052,9735611,13591992,17581206,24424056,31045366,42116605], pop:48007437, tfr:3.13, life:72.6, cbr:22.6, cdr:7.9 },
+ { iso:"AR", name:["阿根廷","Argentina"],                    region:"america",  land:2736690,   h:[17018036,20386045,23878327,28011596,32755901,37213984,41288694,45191965], pop:46003734, tfr:1.51, life:77.8, cbr:10.9, cdr:8.2 },
+ { iso:"AF", name:["阿富汗","Afghanistan"],                  region:"asia",     land:652860,    h:[7776176,9035043,11290128,13169311,12045660,20130327,28284089,39068979], pop:45047069, tfr:4.56, life:66.8, cbr:33.3, cdr:7.6 },
+ { iso:"YE", name:["也门","Yemen"],                          region:"asia",     land:527970,    h:[4616780,5532301,7065279,9543358,13887862,19624141,26754387,36134863], pop:42961653, tfr:4.33, life:69.7, cbr:31.1, cdr:7.8 },
+ { iso:"CA", name:["加拿大","Canada"],                       region:"america",  land:9093510,   h:[13741747,17898790,21440022,24533776,27789443,30891803,34196899,38171902], pop:40467728, tfr:1.33, life:83.1, cbr:8.4, cdr:8.5 },
+ { iso:"AO", name:["安哥拉","Angola"],                       region:"africa",   land:1246700,   h:[4551869,5231654,5852788,8133872,11626360,16194869,23294825,33451132], pop:40215179, tfr:4.89, life:65.2, cbr:35.8, cdr:7.5 },
+ { iso:"UA", name:["乌克兰","Ukraine"],                      region:"europe",   land:579320,    h:[37310887,42824093,47261306,49955152,52054092,49556660,46456003,44680014], pop:39535849, tfr:1.16, life:75.0, cbr:9.4, cdr:8.1 },
+ { iso:"MA", name:["摩洛哥","Morocco"],                      region:"africa",   land:446300,    h:[8935450,11624933,15129449,19459943,24375551,28423435,32467016,36584208], pop:38762441, tfr:2.16, life:75.9, cbr:15.6, cdr:8.1 },
+ { iso:"PL", name:["波兰","Poland"],                         region:"europe",   land:306230,    h:[24780161,29575966,32542633,35576519,38055455,38258071,38095351,38171012], pop:37843188, tfr:1.31, life:79.2, cbr:9.3, cdr:8.3 },
+ { iso:"UZ", name:["乌兹别克斯坦","Uzbekistan"],             region:"asia",     land:425400,    h:[6239904,8209109,11762638,15619936,20464956,24787054,28385506,33586372], pop:37724223, tfr:3.42, life:72.8, cbr:24.5, cdr:8.0 },
+ { iso:"MZ", name:["莫桑比克","Mozambique"],                 region:"africa",   land:786380,    h:[5910225,6713695,8250506,11336221,13094537,18129653,22999235,30783688], pop:36639851, tfr:4.54, life:64.1, cbr:33.9, cdr:7.5 },
+ { iso:"MY", name:["马来西亚","Malaysia"],                   region:"asia",     land:328550,    h:[6098283,7956197,10178802,12983363,17833171,22967816,28655776,33889558], pop:36385115, tfr:1.52, life:77.2, cbr:11.1, cdr:8.2 },
+ { iso:"GH", name:["加纳","Ghana"],                          region:"africa",   land:227540,    h:[5080664,6961215,8925813,11941448,15394648,19637087,25474995,31887809], pop:35697557, tfr:3.26, life:66.1, cbr:25.1, cdr:7.6 },
+ { iso:"SA", name:["沙特阿拉伯","Saudi Arabia"],             region:"asia",     land:2149690,   h:[1703271,2435403,3562470,6047997,10640691,16177722,25157128,30991207], pop:35165787, tfr:2.27, life:79.4, cbr:15.4, cdr:8.3 },
+ { iso:"PE", name:["秘鲁","Peru"],                           region:"america",  land:1280000,   h:[7677414,10174127,13501237,17360949,22014771,26598331,29086019,32838579], pop:34922148, tfr:1.93, life:78.3, cbr:13.5, cdr:8.3 },
+ { iso:"MG", name:["马达加斯加","Madagascar"],               region:"africa",   land:581795,    h:[3956073,5111029,6672003,9006032,12055639,16516338,22183340,28953556], pop:33522052, tfr:3.78, life:64.3, cbr:28.9, cdr:7.5 },
+ { iso:"CM", name:["喀麦隆","Cameroon"],                     region:"africa",   land:472710,    h:[4330084,5159057,6449793,8512219,11331821,14912631,19668066,26210558], pop:30640817, tfr:4.12, life:64.5, cbr:31.1, cdr:7.5 },
+ { iso:"NP", name:["尼泊尔","Nepal"],                        region:"asia",     land:143350,    h:[8396603,10123658,12436190,15553105,19524573,24546509,27341952,28966574], pop:29629410, tfr:1.92, life:71.2, cbr:15.2, cdr:7.9 },
+ { iso:"NE", name:["尼日尔","Niger"],                        region:"africa",   land:1266700,   h:[2597810,3505050,4650275,6135971,8286059,11509630,16548835,23717613], pop:28814878, tfr:5.64, life:61.9, cbr:41.5, cdr:7.4 },
+ { iso:"SY", name:["叙利亚","Syria"],                        region:"asia",     land:183630,    h:[3612081,4673500,6380609,8957663,12579208,16637888,22482421,21049429], pop:26472497, tfr:2.62, life:73.4, cbr:19.2, cdr:8.0 },
+ { iso:"ML", name:["马里","Mali"],                           region:"africa",   land:1220190,   h:[4696911,5402550,6276472,7530515,9178830,11559290,15945198,21713836], pop:25932275, tfr:5.33, life:61.1, cbr:39.7, cdr:7.3 },
+ { iso:"BF", name:["布基纳法索","Burkina Faso"],             region:"africa",   land:273600,    h:[4213152,4778621,5610304,6947900,9159356,11925546,16176498,21478690], pop:24601700, tfr:3.92, life:61.6, cbr:30.5, cdr:7.3 },
+ { iso:"LK", name:["斯里兰卡","Sri Lanka"],                  region:"asia",     land:62710,     h:[7811047,9661389,12287110,14847974,16352458,19293054,20879089,22561807], pop:23348315, tfr:1.93, life:78.0, cbr:13.6, cdr:8.2 },
+ { iso:"ZM", name:["赞比亚","Zambia"],                       region:"africa",   land:743390,    h:[2321302,3153729,4321718,5802833,7786169,10017631,13965594,19059395], pop:22521915, tfr:3.91, life:66.9, cbr:29.1, cdr:7.6 },
+ { iso:"KZ", name:["哈萨克斯坦","Kazakhstan"],               region:"asia",     land:2699700,   h:[6787149,9429981,12419057,15152949,17154054,15501103,16836810,19482117], pop:21083626, tfr:2.92, life:74.8, cbr:20.7, cdr:8.1 },
+ { iso:"CL", name:["智利","Chile"],                          region:"america",  land:743532,    h:[6628577,8153350,9845344,11508550,13437176,15503635,17181464,19370624], pop:19945850, tfr:1.12, life:81.7, cbr:7.4, cdr:8.4 },
+ { iso:"RO", name:["罗马尼亚","Romania"],                    region:"europe",   land:230170,    h:[16397279,18313495,20011625,22154771,22939530,22046262,20432574,19392469], pop:18800605, tfr:1.71, life:76.4, cbr:12.6, cdr:8.2 },
+];
+
+/* 开关为 true 时把储备国家并入榜单（去重，避免 ISO 冲突） */
+if (RESERVE_ON) {
+  var have = {};
+  for (var ci = 0; ci < CDATA.length; ci++) have[CDATA[ci].iso] = 1;
+  for (var ri = 0; ri < RESERVE.length; ri++) {
+    if (!have[RESERVE[ri].iso]) CDATA.push(RESERVE[ri]);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
    国际化
 ══════════════════════════════════════════════════════════════ */
 var LKEY = 'wpc-lang';
@@ -864,7 +998,7 @@ var I18N = {
     t1:'各国实时人口', d1:'全球人口最多的 30 个国家。点击任意行查看详细面板：历年趋势、结构指标、里程碑与对比。点击表头可切换排序。',
     rAll:'全部', rAsia:'亚洲', rAfrica:'非洲', rEurope:'欧洲', rAmerica:'美洲',
     cName:'国家 / 地区', cPop:'人口', cShare:'占全球', cRate:'年变化',
-    more:'展开全部 30 国', less:'收起',
+    more:'展开全部 {n} 国', less:'收起',
     noResult:'没有匹配的国家',
     t2:'这些数字意味着什么', d2:'把抽象的总量换算成可感知的时间尺度。',
     uSec:'每秒', uMin:'每分钟', uHour:'每小时', uDay:'每天', uYear:'每年', uDouble:'人口翻倍', uYr:'年',
@@ -882,6 +1016,11 @@ var I18N = {
     a4:'页面数字每 <b>200 毫秒</b>刷新；底层基准随联合国新版《世界人口展望》更新，约两到三年一次。本页基准为 2026 年。可用于学习与教学，<b>严谨引用请直接使用联合国原始报告</b>。',
     note:'计算方法：当前人口 = 基准人口 +（当前时刻 − 2026-01-01）× 每秒净增速率。全球基准 8,264,000,000 人，年出生约 1.337 亿、年死亡约 6,310 万，年增长率 0.84%。各国按其年增长率单独换算，因此能体现增长快慢的差异。数据来源：联合国《世界人口展望》2024 修订版 / UNFPA。所有数字均为估算值，非官方实时统计。速率按全年均匀分布处理，未计入季节性波动。',
     pageViews:'本页访问次数', linksLabel:'同站其他工具',
+    /* 广告位 */
+    adLabel:'广告位出租',
+    adBarIntro:'日均约 100 次独立展示，中英文用户各半，均为不重复访客。',
+    adReachZh:'中文 50', adReachEn:'英文 50', adReachSum:'日均 100',
+    adTermsShort:'价格待议', adCtaShort:'联系投放',
     lkHistory:'历史上的今天', lkQuote:'每日一言', lkEnglish:'高中英语 6000 词',
     copyright:'© 2026 世界人口时钟 · 数据来源：联合国《世界人口展望》2024 修订版 / UNFPA',
     disclaimer:'本页所有数字均为基于公开统计速率的实时推算，非官方实时统计，仅供参考。',
@@ -889,7 +1028,7 @@ var I18N = {
     shareCta:'复制此国链接', shareDone:'链接已复制',
     /* 面板 */
     pTrend:'人口趋势 1950–2026', pStruct:'结构指标', pMs:'人口里程碑', pCmp:'与其他国家对比', pHist:'历年人口',
-    pRankOf:'全球第 {n} 位 · 共 30 国入榜', pShareOf:'占全球 {p}%',
+    pRankOf:'全球第 {n} 位 · 共 {m} 国入榜', pShareOf:'占全球 {p}%',
     sPop:'当前人口', sTfr:'总和生育率', sLife:'预期寿命', sDensity:'人口密度',
     sBirth:'每年出生', sDeath:'每年死亡', sNet:'每年净增', sUrban:'城镇人口占比',
     uPerKm:'人/km²', uChild:'个/女性', uAgeUnit:'岁', uPeople:'人',
@@ -908,10 +1047,10 @@ var I18N = {
     kNet:'Net / sec',     kNetSub:'134 per minute',
     kGrowth:'Growth rate', kGrowthSub:'~2% in the 1960s',
     tBirth:'Births today', tDeath:'Deaths today', tNet:'Net today', tYear:'Net this year',
-    t1:'Live population by country', d1:'The 30 most populous countries. Tap any row to open a detail panel with historical trends, structural indicators, milestones and comparisons. Click a column header to sort.',
+    t1:'Live population by country', d1:'The {n} most populous countries. Tap any row to open a detail panel with historical trends, structural indicators, milestones and comparisons. Click a column header to sort.',
     rAll:'All', rAsia:'Asia', rAfrica:'Africa', rEurope:'Europe', rAmerica:'Americas',
     cName:'Country / region', cPop:'Population', cShare:'World share', cRate:'Annual change',
-    more:'Show all 30 countries', less:'Collapse',
+    more:'Show all {n} countries', less:'Collapse',
     noResult:'No countries match your search',
     t2:'What these numbers mean', d2:'Translating the abstract total into a scale you can feel.',
     uSec:'Per second', uMin:'Per minute', uHour:'Per hour', uDay:'Per day', uYear:'Per year', uDouble:'Doubling time', uYr:'yrs',
@@ -929,13 +1068,18 @@ var I18N = {
     a4:'On-screen figures refresh every <b>200 ms</b>; the underlying baseline follows each new UN World Population Prospects revision, roughly every two to three years. This page uses the 2026 baseline. Free for learning and teaching, but <b>cite the original UN report for academic use</b>.',
     note:'Method: current population = baseline + (now \u2212 2026-01-01) \u00d7 net-per-second rate. Global baseline 8,264,000,000; about 133.7 million births and 63.1 million deaths a year; annual growth 0.84%. Each country is extrapolated using its own growth rate, which is why the pace differs. Source: UN World Population Prospects, 2024 Revision / UNFPA. All figures are estimates, not official live statistics. Rates are spread evenly across the year and ignore seasonal variation.',
     pageViews:'Page views', linksLabel:'Other tools on this site',
+    /* Ad slot */
+    adLabel:'Ad slot for rent',
+    adBarIntro:'About 100 unique impressions a day \u2014 half Chinese, half English readers, all counted once.',
+    adReachZh:'CN 50', adReachEn:'EN 50', adReachSum:'100 / day',
+    adTermsShort:'Price on request', adCtaShort:'Get in touch',
     lkHistory:'Today in history', lkQuote:'Word of the day', lkEnglish:'English 6000 words',
     copyright:'© 2026 World Population Clock · Source: UN World Population Prospects, 2024 Revision / UNFPA',
     disclaimer:'All figures on this page are live extrapolations based on public statistical rates. They are not official live statistics and are for reference only.',
     langBtn:'中文', copied:'Copied to clipboard', colActions:'Actions',
     shareCta:'Copy link to this country', shareDone:'Link copied',
     pTrend:'Population trend 1950\u20132026', pStruct:'Structural indicators', pMs:'Population milestones', pCmp:'Compared with other countries', pHist:'Historical population',
-    pRankOf:'Rank #{n} of 30 listed', pShareOf:'{p}% of world',
+    pRankOf:'Rank #{n} of {m} listed', pShareOf:'{p}% of world',
     sPop:'Population now', sTfr:'Fertility rate', sLife:'Life expectancy', sDensity:'Density',
     sBirth:'Births per year', sDeath:'Deaths per year', sNet:'Net growth per year', sUrban:'Urban share',
     uPerKm:'/km²', uChild:'per woman', uAgeUnit:'yrs', uPeople:'',
@@ -1028,21 +1172,38 @@ function view(){
     }
     return true;
   });
+  /* 排序一律基于「实时推算人口」而非静态基准值 pop，
+     否则显示的数字和排序依据会不一致（人口已交叉但名次不动）。
+     用同一时刻的快照 lv()，保证同一次渲染内比较基准一致。 */
+  var now = secsSince(BASE_MS);
+  var lv = function(c){ return c.pop + now * rps(c); };
   rows.sort(function(a,b){
-    if (sortKey === 'rank') return 0;
     if (sortKey === 'name') {
       var A = LANG === 'zh' ? a.name[0] : a.name[1], B = LANG === 'zh' ? b.name[0] : b.name[1];
       return A.localeCompare(B, LANG === 'zh' ? 'zh-CN' : 'en') * sortDir;
     }
-    if (sortKey === 'pop')   return (a.pop - b.pop) * sortDir;
-    if (sortKey === 'share') return (a.pop - b.pop) * sortDir;
+    if (sortKey === 'pop' || sortKey === 'share' || sortKey === 'rank') {
+      return (lv(a) - lv(b)) * (sortKey === 'rank' ? -1 : sortDir);
+    }
     if (sortKey === 'rate')  return (gRate(a) - gRate(b)) * sortDir;
     return 0;
   });
-  if (sortKey === 'rank') rows.sort(function(a,b){
-    return (CDATA.indexOf(a) - CDATA.indexOf(b)) * sortDir;
-  });
   return rows;
+}
+
+/* 实时名次表：按实时人口降序，返回 { iso: 名次 }
+   每次渲染重算，因此人口一旦交叉，名次立即跟随变化。 */
+function liveRanks(){
+  var now = secsSince(BASE_MS);
+  var arr = CDATA.map(function(c){ return { c: c, v: c.pop + now * rps(c) }; });
+  arr.sort(function(a,b){ return b.v - a.v; });
+  var map = {};
+  for (var i = 0; i < arr.length; i++) map[arr[i].c.iso] = i + 1;
+  return map;
+}
+function rankOf(iso){
+  var r = liveRanks();
+  return r[iso] || 0;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1053,26 +1214,31 @@ function renderTable(){
   var s = secsSince(BASE_MS);
   var worldNow = BASE_POP + s * N_PS;
   var list = isOpen ? rows : rows.slice(0, SHOW);
+  /* 名次与柱条长度都按实时人口计算，人口一交叉名次立刻跟随 */
+  var RK = liveRanks();
+  var liveMax = 0;
+  for (var z = 0; z < CDATA.length; z++) {
+    var v = CDATA[z].pop + s * rps(CDATA[z]);
+    if (v > liveMax) liveMax = v;
+  }
   var html = '', i;
 
   for (i = 0; i < list.length; i++) {
     var c = list[i];
-    var rank = CDATA.indexOf(c) + 1;
+    var rank = RK[c.iso] || 0;
     var live = c.pop + s * rps(c);
     var share = (live / worldNow * 100).toFixed(2);
     var gr = gRate(c);
     var up = gr >= 0;
     var nm  = LANG === 'zh' ? c.name[0] : c.name[1];
-    var sub = LANG === 'zh' ? c.name[1] : c.name[0];
     var shareTxt = LANG === 'zh' ? '占全球 ' + share + '%' : share + '% of world';
-    var barW = (c.pop / CDATA[0].pop * 100).toFixed(1);
+    var barW = (live / liveMax * 100).toFixed(1);
 
     html += '<tr class="row" data-iso="' + c.iso + '" tabindex="0" role="button" aria-label="' + nm + '">'
       + '<td><span class="rank' + (rank <= 3 ? ' top' : '') + '">' + pad(rank) + '</span></td>'
       + '<td><span class="cname">'
       +   '<span class="flag-slot">' + flagHTML(c.iso, 'flag', 21, 15) + '</span>'
-      +   '<span style="min-width:0"><span class="cname-t">' + nm + '</span>'
-      +   '<span class="cname-e">' + sub + '</span></span>'
+      +   '<span class="cname-t">' + nm + '</span></span>'
       + '</span></td>'
       + '<td><span class="pop" data-pop="' + c.iso + '">' + fmt(live) + '</span></td>'
       + '<td><span class="share">' + share + '%</span></td>'
@@ -1106,11 +1272,11 @@ function renderTable(){
   }
 
   /* 计数与展开按钮 */
-  $('ccount').textContent = rows.length + ' / ' + CDATA.length;
+  $('ccount').textContent = list.length + ' / ' + rows.length;
   var mb = $('more');
   if (rows.length > SHOW) {
     mb.hidden = false;
-    mb.textContent = isOpen ? txt('less') : txt('more');
+    mb.textContent = isOpen ? txt('less') : fill('more', { n: rows.length });
   } else {
     mb.hidden = true;
   }
@@ -1136,6 +1302,36 @@ function tickRows(){
     sh[j].textContent = p + '%';
     var rt = row.querySelector('.metacell');
     if (rt) rt.setAttribute('data-share', LANG === 'zh' ? '占全球 ' + p + '%' : p + '% of world');
+  }
+  /* 名次跟随人口变动：若与上次渲染不同则立即重排，让交叉实时可见 */
+  if (sortKey === 'rank' || sortKey === 'pop' || sortKey === 'share') {
+    var sig = rankSignature();
+    if (sig !== lastRankSig) { lastRankSig = sig; renderTable(); }
+  } else {
+    tickRanks();
+  }
+}
+/* 名次是否发生变化的指纹（按实时人口降序的 iso 串） */
+function rankSignature(){
+  var now = secsSince(BASE_MS);
+  var arr = CDATA.map(function(c){ return { iso: c.iso, v: c.pop + now * rps(c) }; });
+  arr.sort(function(a,b){ return b.v - a.v; });
+  var out = [];
+  for (var i = 0; i < arr.length; i++) out.push(arr[i].iso);
+  return out.join('');
+}
+var lastRankSig = '';
+/* 仅更新名次文本（不重排 DOM），用于按名称/增长率排序时名次仍在跳动 */
+function tickRanks(){
+  var RK = liveRanks();
+  var els = document.querySelectorAll('#ctbody tr.row .rank');
+  for (var i = 0; i < els.length; i++) {
+    var row = els[i].closest('tr');
+    var iso = row ? row.getAttribute('data-iso') : null;
+    if (!iso) continue;
+    var r = RK[iso] || 0;
+    els[i].textContent = pad(r);
+    els[i].classList.toggle('top', r <= 3);
   }
 }
 function byIso(iso){
@@ -1231,8 +1427,12 @@ function milestones(c){
 
 /* 与同区域国家对比（取该区域人口最接近的 4 个） */
 function compare(c){
+  var now = secsSince(BASE_MS);
+  var cls = c.pop + now * rps(c);
   var pool = CDATA.filter(function(x){ return x.iso !== c.iso; });
-  pool.sort(function(a,b){ return Math.abs(a.pop - c.pop) - Math.abs(b.pop - c.pop); });
+  pool.sort(function(a,b){
+    return Math.abs((a.pop + now * rps(a)) - cls) - Math.abs((b.pop + now * rps(b)) - cls);
+  });
   return pool.slice(0, 4);
 }
 
@@ -1240,7 +1440,7 @@ function renderPanel(c){
   var s = secsSince(BASE_MS);
   var live = c.pop + s * rps(c);
   var worldNow = BASE_POP + s * N_PS;
-  var rank = CDATA.indexOf(c) + 1;
+  var rank = rankOf(c.iso);   /* 实时名次，随人口变动 */
   var gr = gRate(c);
   var density = c.pop / c.land;
   var nm = LANG === 'zh' ? c.name[0] : c.name[1];
@@ -1251,7 +1451,7 @@ function renderPanel(c){
   $('p-t').textContent = nm;
   $('p-e').textContent = sub;
   $('p-live').textContent = fmt(live);
-  $('p-rank').innerHTML = fill('pRankOf', { n: rank }) + ' · ' + fill('pShareOf', { p: (live / worldNow * 100).toFixed(2) });
+  $('p-rank').innerHTML = fill('pRankOf', { n: rank, m: CDATA.length }) + ' · ' + fill('pShareOf', { p: (live / worldNow * 100).toFixed(2) });
 
   var h = '';
 
@@ -1466,7 +1666,7 @@ function applyLang(lang, persist){
   var nodes = document.querySelectorAll('[data-i18n]');
   for (var i = 0; i < nodes.length; i++) {
     var k = nodes[i].getAttribute('data-i18n');
-    if (d[k] !== undefined) nodes[i].innerHTML = d[k];
+    if (d[k] !== undefined) nodes[i].innerHTML = fill(k, { n: CDATA.length });
   }
   var sb = document.querySelector('.search');
   if (sb) sb.setAttribute('placeholder', lang === 'zh' ? '搜索国家…' : 'Search country…');
@@ -1526,7 +1726,28 @@ document.addEventListener('keydown', function(e){
 $('scrim').addEventListener('click', function(){ closePanel(); });
 $('p-close').addEventListener('click', function(){ closePanel(); });
 $('p-share').addEventListener('click', shareCountry);
-$('more').addEventListener('click', function(){ isOpen = !isOpen; renderTable(); });
+$('more').addEventListener('click', function(){
+  isOpen = !isOpen;
+  renderTable();
+  if (isOpen) {
+    /* 展开后把新增的行逐个淡入，避免一次蹦出 20 行显得突兀。
+       动画只用 opacity + transform，且尊重 prefers-reduced-motion。 */
+    var extra = document.querySelectorAll('#ctbody tr.row:not(.anim-in)');
+    for (var i = 0; i < extra.length; i++) {
+      (function(tr, idx){
+        if (tr.getAttribute('data-shown') === '1') return;
+        tr.setAttribute('data-shown', '1');
+        tr.style.opacity = '0';
+        tr.style.transform = 'translateY(-4px)';
+        setTimeout(function(){
+          tr.style.transition = 'opacity .32s ease, transform .32s ease';
+          tr.style.opacity = '1';
+          tr.style.transform = 'none';
+        }, idx * 22);
+      })(extra[i], i);
+    }
+  }
+});
 window.addEventListener('popstate', function(){
   var iso = readURL();
   if (iso && iso !== openIso) openPanel(iso, true);
@@ -1542,8 +1763,8 @@ for (var t = 0; t < ths.length; t++) {
       sortDir = -sortDir;
     } else {
       sortKey = k;
-      /* 人口、占比：默认从多到少；排名、名称、增长率：默认从低到高 */
-      sortDir = (k === 'pop' || k === 'share') ? -1 : 1;
+      /* 人口、占比、名次：默认从多到少（名次 1 在上）；名称、增长率：默认从低到高 */
+      sortDir = (k === 'pop' || k === 'share' || k === 'rank') ? -1 : 1;
     }
     isOpen = false;
     renderTable();
