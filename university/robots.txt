@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /university/
+Disallow: /university/data/
+Disallow: /university/assets/*.map
+Disallow: /*?*sort=
+Disallow: /*?*page=
+
+User-agent: Bingbot
+Allow: /university/
+Crawl-delay: 1
+
+User-agent: Googlebot
+Allow: /university/
+
+User-agent: Baiduspider
+Allow: /university/
+
+Sitemap: https://shuoweb.com/university/sitemap.xml

@@ -1,0 +1,47 @@
+{
+  "name": "选科要求查询系统 — 全国31省大学专业选考科目要求",
+  "short_name": "选科查询",
+  "description": "覆盖全国31个省（自治区、直辖市）2416所高校、84573条专业选考科目要求的新高考选科查询工具。支持按院校查专业选科要求、按选科组合反查可报专业覆盖率。",
+  "lang": "zh-CN",
+  "start_url": "/university/",
+  "scope": "/university/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "theme_color": "#E8000B",
+  "categories": ["education", "reference", "utilities"],
+  "icons": [
+    {
+      "src": "/university/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/university/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "院校专业查询",
+      "short_name": "院校查询",
+      "url": "/university/#school",
+      "description": "按院校查询专业选考科目要求"
+    },
+    {
+      "name": "选科组合反查",
+      "short_name": "选科反查",
+      "url": "/university/#reverse",
+      "description": "按选科组合反查可报考专业"
+    },
+    {
+      "name": "专业总览",
+      "short_name": "专业总览",
+      "url": "/university/#majors",
+      "description": "查看全国专业选科要求分布"
+    }
+  ]
+}
