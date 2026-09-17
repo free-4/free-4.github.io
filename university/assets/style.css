@@ -33,6 +33,12 @@
 
   --t-fast: 120ms cubic-bezier(.4,0,.2,1);
   --t-mid:  240ms cubic-bezier(.4,0,.2,1);
+
+  /* —— 反色块专用（对比抽屉 / tooltip 等）：始终「深底浅字」 —— */
+  --inv-bg:      #0A0A0A;
+  --inv-fg:      #FFFFFF;
+  --inv-fg-dim:  rgba(255,255,255,.62);
+  --inv-rule:    rgba(255,255,255,.16);
 }
 
 /* 暗色模式：瑞士风格的夜版，保持强对比 */
@@ -52,6 +58,12 @@
   --green:      #35C46F;
   --amber:      #E8A33D;
   --violet:     #A97BE0;
+
+  /* 深色主题下页面本身已是深底，反色块改为「浅底深字」才能区分开 */
+  --inv-bg:      #F2F2F0;
+  --inv-fg:      #0A0A0A;
+  --inv-fg-dim:  rgba(10,10,10,.62);
+  --inv-rule:    rgba(10,10,10,.16);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -74,6 +86,37 @@ body {
 }
 
 ::selection { background: var(--swiss-red); color: #fff; }
+::-moz-selection { background: var(--swiss-red); color: #fff; }
+
+/* 去掉移动端点击时系统默认的蓝色高亮块 */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* 去掉控件聚焦时浏览器默认的蓝色描边，统一换成瑞士红细线 */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--swiss-red);
+  outline-offset: 2px;
+}
+/* 鼠标点击按钮时不要出现虚线框（保留键盘可达性） */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+[role="tab"]:focus:not(:focus-visible) { outline: none; }
+
+/* 输入类控件：聚焦用边框变色而非外发光 */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border-color: var(--swiss-red);
+}
+
+/* 禁止长按选中导致的高亮（按钮、标签、选项卡） */
+button, [role="tab"], .tag, .chip, .seg, .prov-card, .uni-head {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+/* 正文与表格仍允许选中复制 */
+table, .land, p, .majors, .row { user-select: text; }
 
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; color: inherit; }
@@ -526,7 +569,8 @@ table.data td.num, table.data th.num { text-align: right; }
    —————————————————————————————————————————————— */
 .compare-dock {
   position: fixed; right: 0; bottom: 0; z-index: 200;
-  background: var(--ink); color: var(--paper);
+  /* 反色块：用专门的反色变量，保证深浅主题下文字都清晰可读 */
+  background: var(--inv-bg); color: var(--inv-fg);
   max-width: 420px; width: calc(100% - 32px);
   transform: translateY(calc(100% - 48px));
   transition: transform var(--t-mid);
@@ -545,15 +589,33 @@ table.data td.num, table.data th.num { text-align: right; }
 .dock-body { padding: 0 16px 20px; max-height: 55vh; overflow-y: auto; }
 .dock-item {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.15);
+  gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--inv-rule);
   font-size: .82rem;
 }
 .dock-item button {
-  background: none; border: none; color: rgba(255,255,255,.6);
+  background: none; border: none; color: var(--inv-fg-dim);
   cursor: pointer; font-size: 1.1rem; line-height: 1; padding: 2px 6px;
+  transition: var(--t-fast);
 }
 .dock-item button:hover { color: var(--swiss-red); }
-.dock-tip { font-size: .74rem; color: rgba(255,255,255,.55); padding: 12px 0; line-height: 1.6; }
+.dock-tip { font-size: .74rem; color: var(--inv-fg-dim); padding: 12px 0; line-height: 1.6; }
+.dock-caret { color: var(--inv-fg-dim); transition: var(--t-fast); }
+
+/* 抽屉内的按钮：必须跟随反色块配色，否则深色主题下会与背景撞色 */
+.compare-dock .btn {
+  background: transparent; color: var(--inv-fg);
+  border-color: var(--inv-fg-dim);
+}
+.compare-dock .btn:hover {
+  background: var(--inv-fg); color: var(--inv-bg); border-color: var(--inv-fg);
+}
+.compare-dock .btn-primary {
+  background: var(--swiss-red); color: #fff; border-color: var(--swiss-red);
+}
+.compare-dock .btn-primary:hover {
+  background: var(--swiss-red-d); border-color: var(--swiss-red-d); color: #fff;
+}
+
 
 /* ——————————————————————————————————————————————
    弹层
@@ -612,7 +674,7 @@ table.data td.num, table.data th.num { text-align: right; }
   display: flex; flex-direction: column; gap: 8px; pointer-events: none;
 }
 .toast {
-  background: var(--ink); color: var(--paper);
+  background: var(--inv-bg); color: var(--inv-fg);
   padding: 10px 16px; font-size: .82rem; font-weight: 600;
   border-left: 4px solid var(--swiss-red);
   animation: toastIn var(--t-mid); max-width: 320px;
@@ -661,6 +723,68 @@ table.data td.num, table.data th.num { text-align: right; }
   .modal { padding: 20px; }
   .compare-dock { max-width: 100%; width: 100%; }
   .major-table th { position: relative; }
+
+  /* —— 对比弹窗：让宽表在窄屏可横向滚动且不挤 —— */
+  .modal.wide { max-width: 100%; }
+  .modal {
+    max-height: 92vh;
+    padding: 18px 14px;
+    border-width: 1px;
+  }
+  .modal h3 { font-size: 1.1rem; }
+  .modal .modal-sub { font-size: .75rem; margin-bottom: 14px; }
+  .modal-close { width: 34px; height: 34px; }   /* 加大触控热区 */
+  .tbl-scroll { -webkit-overflow-scrolling: touch; }
+
+  /* 对比表：首列粘住，方便左右滑动时对照专业名 */
+  table.data { min-width: 520px; }
+  table.data th { padding: 9px 8px; font-size: .6rem; }
+  table.data td { padding: 8px; font-size: .8rem; }
+  table.data th:first-child,
+  table.data td:first-child {
+    position: sticky; left: 0; z-index: 2;
+    background: var(--paper);
+    box-shadow: 1px 0 0 var(--rule-soft);
+  }
+  table.data thead th:first-child { background: var(--paper-2); z-index: 3; }
+
+  /* 统计条在窄屏两列 */
+  .stat-line { grid-template-columns: repeat(2, 1fr); }
+
+  /* 抽屉按钮换行，避免挤出边界 */
+  .dock-body .row { flex-wrap: wrap; gap: 8px; }
+  .dock-body .row .btn { flex: 1 1 auto; justify-content: center; }
+
+  /* Toast 全宽，避免贴边截断 */
+  .toast-host { left: 12px; right: 12px; top: 64px; align-items: stretch; }
+  .toast { max-width: none; }
+}
+
+/* 更窄的手机（<520px）进一步压缩 */
+@media (max-width: 520px) {
+  .modal { padding: 14px 10px; border-width: 1px; }
+  .modal h3 { font-size: 1rem; }
+  table.data { min-width: 460px; }
+  table.data th, table.data td { padding: 7px 6px; font-size: .76rem; }
+  .stat-line { grid-template-columns: 1fr 1fr; }
+  .stat-cell { padding: 10px 8px; }
+  .stat-cell b { font-size: 1.15rem; }
+  .stat-cell span { font-size: .66rem; }
+  .req-badge, .tag { font-size: .62rem; padding: 2px 6px; }
+  .dock-head { font-size: .78rem; padding: 0 12px; }
+  .dock-body { padding: 0 12px 16px; }
+}
+
+/* 触屏设备：把偏小的点击目标放大到 ≥40px */
+@media (hover: none) and (pointer: coarse) {
+  .btn { min-height: 40px; padding: 10px 16px; }
+  .btn-sm { min-height: 36px; padding: 8px 12px; }
+  .seg button { min-height: 38px; }
+  .icon-btn { min-width: 40px; min-height: 40px; }
+  .dock-item button { min-width: 36px; min-height: 36px; }
+  .modal-close { min-width: 40px; min-height: 40px; }
+  /* 触屏没有 hover，取消依赖 hover 才可见的效果 */
+  .uni-body { display: block; }
 }
 
 @media print {

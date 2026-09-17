@@ -16,3 +16,4 @@ User-agent: Baiduspider
 Allow: /university/
 
 Sitemap: https://shuoweb.com/university/sitemap.xml
+Sitemap: https://shuoweb.com/university/sitemap-index.xml

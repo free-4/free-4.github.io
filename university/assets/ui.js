@@ -131,7 +131,7 @@
           </table>
         </div>
         <p style="margin-top:14px;font-size:.76rem;color:var(--ink-3)">
-          注：各校在同一省份的专业设置与选科要求可能存在差异，「—」表示该校在本省未开设此专业。
+          注：各省招生院校与专业设置存在差异，「—」表示该校在对应省份未开设此专业。
         </p>`;
       showModal('院校选科要求对比',
         `共 ${uniCols.length} 所院校 · 按专业名称对齐，共计 ${majors.length} 个专业`, html);
@@ -159,6 +159,23 @@
   }
   function fmt(n) { return (n || 0).toLocaleString('zh-CN'); }
   function pct(x) { return (x * 100).toFixed(1) + '%'; }
+
+  /* 主管部门标签。
+     上游数据把院校标为「外省地方院校 / 省属院校 / 中央部委学校」，
+     其中「外省地方院校」是安徽招生系统站在安徽视角给出的分类，
+     放到覆盖全国31省的站点里没有意义，直接不显示；
+     只保留「中央部委学校」这类真正有区分度的信息。 */
+  const HIDE_DEPT = /外省地方院校|省属院校|地方院校/;
+  function deptText(dept) {
+    const d = String(dept == null ? '' : dept).trim();
+    if (!d || HIDE_DEPT.test(d)) return '地方院校';
+    return d;
+  }
+  function deptTag(dept) {
+    const d = String(dept == null ? '' : dept).trim();
+    if (!d || HIDE_DEPT.test(d)) return '';
+    return `<span class="tag">${esc(d)}</span>`;
+  }
 
   /* ============ 视图路由 ============ */
   const Views = {
@@ -653,7 +670,7 @@
             </div>
             <div class="uni-tags">
               <span class="tag ${u.level === '本科' ? 'blue' : ''}">${esc(u.level)}</span>
-              <span class="tag">${esc(u.dept || '—')}</span>
+              ${deptTag(u.dept)}
               <span class="tag">${esc(u.loc)}</span>
               ${unlimitedRate > 0.6 ? `<span class="tag green">不限选科 ${(unlimitedRate * 100).toFixed(0)}%</span>` : ''}
               ${u.allOK === true && State.mySubjects.length ? '<span class="tag green">全部可报</span>' : ''}
@@ -1190,11 +1207,11 @@
        </div>
        <div class="tbl-scroll">
          <table class="data">
-           <thead><tr><th>省份</th><th>层次</th><th>主管部门</th>
+           <thead><tr><th>省份</th><th>层次</th><th>办学性质</th>
              <th class="num">专业数</th><th style="min-width:140px">不限选科占比</th></tr></thead>
            <tbody>${out.map(x => `
              <tr><td><b>${esc(x.prov)}</b></td><td>${esc(x.level)}</td>
-               <td style="font-size:.8rem;color:var(--ink-3)">${esc(x.dept)}</td>
+               <td style="font-size:.8rem;color:var(--ink-3)">${esc(deptText(x.dept))}</td>
                <td class="num">${x.majors.length}</td>
                <td><div class="bar-cell"><div class="bar"><i class="g" style="width:${(x.rate * 100).toFixed(1)}%"></i></div></div></td>
              </tr>`).join('')}
