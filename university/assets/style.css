@@ -3,7 +3,11 @@
    设计原则：网格系统 · 无衬线字体 · 强对比 · 大量留白 · 客观中性 · 功能至上
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+/* 字体策略：全部使用系统字体栈，零外网请求。
+   - 西文/数字优先 Inter（本机已安装则用，否则回落到系统无衬线）
+   - 中文优先 PingFang SC / Microsoft YaHei / Noto Sans CJK，覆盖 macOS / Windows / Linux / Android
+   这样既保持瑞士风格的客观中性无衬线观感，又避免 Google Fonts 在国内被墙导致的
+   样式阻塞（FOIT/FOUT）与首屏延迟。 */
 
 :root {
   /* —— 基础色板：白 / 近黑 / 瑞士红 —— */
@@ -28,8 +32,13 @@
   --gut:        24px;
   --max-w:      1440px;
 
-  --f-sans: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --f-mono: 'SFMono-Regular', 'JetBrains Mono', Menlo, Consolas, monospace;
+  --f-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial,
+            -apple-system, BlinkMacSystemFont, 'Segoe UI',
+            'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei',
+            'Noto Sans CJK SC', 'Source Han Sans SC', 'WenQuanYi Micro Hei',
+            'Heiti SC', 'SimHei', sans-serif;
+  --f-mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', 'Cascadia Mono',
+            Menlo, Consolas, 'Liberation Mono', monospace;
 
   --t-fast: 120ms cubic-bezier(.4,0,.2,1);
   --t-mid:  240ms cubic-bezier(.4,0,.2,1);

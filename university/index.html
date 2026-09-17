@@ -46,10 +46,9 @@
 <link rel="manifest" href="/university/manifest.json">
 <link rel="sitemap" type="application/xml" href="/university/sitemap.xml">
 
-<!-- ============ 预连接 ============ -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ============ 资源加载（纯系统字体，无第三方字体请求） ============ -->
 <link rel="dns-prefetch" href="//shuoweb.com">
+<link rel="preload" href="/university/assets/style.css" as="style">
 <link rel="stylesheet" href="/university/assets/style.css">
 
 <!-- ============ 结构化数据 JSON-LD ============ -->
