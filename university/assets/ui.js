@@ -780,6 +780,7 @@
 
   function bindCards(host) {
     if (!host) return;
+    host.style.touchAction = 'manipulation';   // 禁双击缩放吞掉第二次点按（真机"收不起"元凶）
     // 恢复展开状态（重绘不丢失）
     $$('.uni', host).forEach(card => {
       if (_openCards.has(card.dataset.code)) {
@@ -799,6 +800,8 @@
     function moved(e) {
       const pd = host._pd;
       if (!pd || e.clientX == null) return false;
+      // 与最近一次按下不属于同一交互（键盘/编程触发的 click 无坐标，detail=0）→ 不算滚动
+      if (e.detail === 0 || performance.now() - pd.t > 1000) return false;
       const dx = e.clientX - pd.x, dy = e.clientY - pd.y;
       return (dx * dx + dy * dy) > 144;                    // >12px 视为滚动
     }
@@ -811,7 +814,7 @@
     }
 
     // 触屏：pointerup 兜底（轻触带小位移时 click 可能不触发）
-    host.onpointerdown = (e) => { host._pd = { x: e.clientX, y: e.clientY }; };
+    host.onpointerdown = (e) => { host._pd = { x: e.clientX, y: e.clientY, t: performance.now() }; };
     host.onpointerup = (e) => {
       if (e.pointerType === 'mouse') return;               // 鼠标走 click，避免双触发
       const head = headFromEvent(e);
@@ -1551,6 +1554,10 @@
     }
     goto('home', false);
   }
+
+  // 移动端手势加固：禁用"双击缩放"，防止快速连点时第二次 tap 被手势判定吞掉
+  // （点击头部快速连点"展开→收起"时，收不起来的真机元凶）。保留滚动与捏合缩放。
+  if (document.body) document.body.style.touchAction = 'manipulation';
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
