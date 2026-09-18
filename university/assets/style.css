@@ -792,8 +792,6 @@ table.data td.num, table.data th.num { text-align: right; }
   .icon-btn { min-width: 40px; min-height: 40px; }
   .dock-item button { min-width: 36px; min-height: 36px; }
   .modal-close { min-width: 40px; min-height: 40px; }
-  /* 触屏没有 hover，取消依赖 hover 才可见的效果 */
-  .uni-body { display: block; }
 }
 
 @media print {
