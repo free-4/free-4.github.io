@@ -210,22 +210,38 @@ const APP = (() => {
   }
 
   /* ---------------------------------------------------------------
-     选科要求解析
+     选科要求解析（带缓存：同一要求文本只解析一次）
+     返回值为共享只读对象，调用方不得修改
      --------------------------------------------------------------- */
+  const _reqCache = new Map();
   function parseReq(text) {
     const t = (text || '').trim();
+    let r = _reqCache.get(t);
+    if (r) return r;
     if (!t || t.indexOf('不提科目要求') >= 0) {
-      return { mode: 0, subs: [], kind: 'unlimited', label: '不限选科' };
+      r = { mode: 0, subs: [], kind: 'unlimited', label: '不限选科' };
+    } else {
+      const all = ['物理', '化学', '生物', '思想政治', '历史', '地理', '技术'];
+      const subs = all.filter(s => t.indexOf(s) >= 0);
+      let mode = subs.length;
+      if (t.indexOf('1门') >= 0) mode = 1;
+      else if (t.indexOf('2门') >= 0) mode = 2;
+      else if (t.indexOf('3门') >= 0) mode = 3;
+      r = {
+        mode, subs, kind: 'must-' + mode,
+        label: subs.map(s => s === '思想政治' ? '政治' : s).join('+') + ' 必选',
+      };
     }
-    const all = ['物理', '化学', '生物', '思想政治', '历史', '地理', '技术'];
-    const subs = all.filter(s => t.indexOf(s) >= 0);
-    let mode = subs.length;
-    if (t.indexOf('1门') >= 0) mode = 1;
-    else if (t.indexOf('2门') >= 0) mode = 2;
-    else if (t.indexOf('3门') >= 0) mode = 3;
-    let kind = 'must-' + mode;
-    const label = subs.map(s => s === '思想政治' ? '政治' : s).join('+') + ' 必选';
-    return { mode, subs, kind, label };
+    _reqCache.set(t, r);
+    return r;
+  }
+
+  /* 省份数据的要求字典预解析：按索引 O(1) 查表（每省仅几十条，瞬间完成） */
+  function parsedDict(provData) {
+    if (!provData.__parsed) {
+      provData.__parsed = (provData.要求字典 || []).map(parseReq);
+    }
+    return provData.__parsed;
   }
 
   /* 判断某专业要求是否被"我的选科"满足 */
@@ -241,13 +257,13 @@ const APP = (() => {
   /* 统计当前省份下、给定选科组合的可报情况 */
   function comboStats(provData, mine) {
     let total = 0, ok = 0, uniTotal = 0, uniOk = 0;
+    const parsed = parsedDict(provData);
     for (const u of provData.院校) {
       uniTotal++;
       let uOk = false;
       for (const m of u[5]) {
         total++;
-        const r = parseReq(provData.要求字典[m[1]]);
-        if (satisfies(r, mine)) { ok++; uOk = true; }
+        if (satisfies(parsed[m[1]], mine)) { ok++; uOk = true; }
       }
       if (uOk) uniOk++;
     }
@@ -263,6 +279,8 @@ const APP = (() => {
     const o = opts || {};
     const kw = (q || '').trim().toLowerCase();
     const out = [];
+    const parsed = parsedDict(provData);
+    const hasMine = !!(o.mine && o.mine.length);
     for (const u of provData.院校) {
       // 层次过滤
       if (o.level && o.level !== 'all' && u[4] !== o.level) continue;
@@ -270,14 +288,9 @@ const APP = (() => {
       const majors = [];
       for (const m of u[5]) {
         if (o.majorLevel && o.majorLevel !== 'all' && m[2] !== o.majorLevel) continue;
-        const r = parseReq(provData.要求字典[m[1]]);
-        if (o.onlyMine) {
-          if (o.mine && o.mine.length && !satisfies(r, o.mine)) continue;
-        }
-        majors.push([m[0], m[1], r]);
-      }
-      if (o.onlyMine && (!o.mine || !o.mine.length) && u[5].length) {
-        // 未选科时 onlyMine 无效，保留全部
+        const r = parsed[m[1]];
+        if (o.onlyMine && hasMine && !satisfies(r, o.mine)) continue;
+        majors.push([m[0], m[1], r, m[2]]);   // [名, 要求索引, 解析结果, 学历层次]
       }
       // 关键词：命中院校名 或 专业名
       let hit = !kw;
@@ -306,15 +319,16 @@ const APP = (() => {
     return out;
   }
 
-  /* 依据校名粗判层次（用于"层次优先"排序，仅作参考） */
-  const TIER_KEYWORDS = [
-    '清华大学|北京大学|复旦大学|上海交通大学|浙江大学|南京大学|中国科学技术大学|哈尔滨工业大学|西安交通大学|中国人民大学|同济大学|北京航空航天大学|北京理工大学|武汉大学|华中科技大学|中山大学|四川大学|东南大学|南开大学|天津大学|北京师范大学|厦门大学|山东大学|吉林大学|中南大学|湖南大学|重庆大学|兰州大学|东北大学|西北工业大学|中国农业大学|电子科技大学|华南理工大学|大连理工大学|北京邮电大学|上海财经大学|中央财经大学|对外经济贸易大学|中国政法大学|北京外国语大学|上海外国语大学|中央民族大学',
-    '211|双一流|中国|中央|国家',
-  ];
+  /* 依据校名粗判层次（用于"层次优先"排序，仅作参考；正则预编译，排序时零构建开销） */
+  const TIER_KEYWORDS =
+    '清华大学|北京大学|复旦大学|上海交通大学|浙江大学|南京大学|中国科学技术大学|哈尔滨工业大学|西安交通大学|中国人民大学|同济大学|北京航空航天大学|北京理工大学|武汉大学|华中科技大学|中山大学|四川大学|东南大学|南开大学|天津大学|北京师范大学|厦门大学|山东大学|吉林大学|中南大学|湖南大学|重庆大学|兰州大学|东北大学|西北工业大学|中国农业大学|电子科技大学|华南理工大学|大连理工大学|北京邮电大学|上海财经大学|中央财经大学|对外经济贸易大学|中国政法大学|北京外国语大学|上海外国语大学|中央民族大学';
+  const _tierTop = new RegExp(TIER_KEYWORDS);
+  const _tierDaxue = /大学$/;
+  const _tierXueyuan = /学院$/;
   function tierOf(name) {
-    if (new RegExp(TIER_KEYWORDS[0]).test(name)) return 0;
-    if (/大学$/.test(name)) return 3;
-    if (/学院$/.test(name)) return 4;
+    if (_tierTop.test(name)) return 0;
+    if (_tierDaxue.test(name)) return 3;
+    if (_tierXueyuan.test(name)) return 4;
     return 5;
   }
 
@@ -362,7 +376,7 @@ const APP = (() => {
   return {
     CFG, SUBJECTS, Cache, State,
     loadIndex, loadProvince, fetchJSON,
-    parseReq, satisfies, comboStats, filterSchools, searchMajors, searchUnis,
+    parseReq, parsedDict, satisfies, comboStats, filterSchools, searchMajors, searchUnis,
     init, tierOf,
   };
 })();

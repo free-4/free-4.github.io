@@ -413,6 +413,7 @@
 
     try {
       await APP.loadProvince(prov);
+      _openCards.clear();          // 切换省份后不恢复其他省份的展开状态
       $$('#provGrid .prov-card').forEach(c =>
         c.setAttribute('aria-pressed', String(c.dataset.prov === prov)));
       toast(`${prov} 已就绪 · ${State.provData.院校.length} 所院校` + (State.cacheHit ? '（缓存）' : ''));
@@ -611,22 +612,29 @@
     b.className = 'combo-badge ' + (n === 3 ? 'ok' : 'warn');
   }
 
+  /* 统计行：结果按「省份+选科」缓存，重绘时不再全量重算 */
+  let _statCache = { key: '', mTotal: 0, mOK: 0 };
   function renderSchoolStats(list) {
     const host = $('#statLine');
     if (!host) return;
     const d = State.provData;
-    let mTotal = 0, mOK = 0;
-    for (const u of d.院校) for (const m of u[5]) {
-      mTotal++;
-      if (State.mySubjects.length && APP.satisfies(APP.parseReq(d.要求字典[m[1]]), State.mySubjects)) mOK++;
+    const key = State.province + '|' + State.mySubjects.join(',');
+    if (_statCache.key !== key) {
+      const parsed = APP.parsedDict(d);
+      let mTotal = 0, mOK = 0;
+      for (const u of d.院校) for (const m of u[5]) {
+        mTotal++;
+        if (State.mySubjects.length && APP.satisfies(parsed[m[1]], State.mySubjects)) mOK++;
+      }
+      _statCache = { key, mTotal, mOK };
     }
     const shown = list.reduce((a, x) => a + x.majorCount, 0);
     host.innerHTML = `
       <div class="stat-cell"><b>${fmt(list.length)}</b><span>匹配院校</span></div>
       <div class="stat-cell"><b>${fmt(shown)}</b><span>匹配专业记录</span></div>
-      <div class="stat-cell"><b>${fmt(mTotal)}</b><span>全省专业记录</span></div>
+      <div class="stat-cell"><b>${fmt(_statCache.mTotal)}</b><span>全省专业记录</span></div>
       <div class="stat-cell ${State.mySubjects.length ? 'hl' : ''}">
-        <b>${State.mySubjects.length ? pct(mOK / (mTotal || 1)) : '—'}</b>
+        <b>${State.mySubjects.length ? pct(_statCache.mOK / (_statCache.mTotal || 1)) : '—'}</b>
         <span>我的可报比例</span>
       </div>`;
   }
@@ -654,10 +662,13 @@
     draw();
   }
 
+  /* ============ 院校卡片：头部渲染 + 按需填充身体 ============ */
+  /* 展开状态跨重绘保留（"加载更多"/筛选后不丢） */
+  const _openCards = new Set();
+
   function uniCard(u) {
     const unlimitedRate = u.majorCount ? u.unlimited / u.majorCount : 0;
     const kw = ($('#q') && $('#q').value || '').trim();
-    const majors = u.majors.slice(0, 200);
     return `
       <div class="uni" data-code="${esc(u.code)}">
         <div class="uni-head">
@@ -680,89 +691,168 @@
             <span class="caret"></span>
           </div>
         </div>
-        <div class="uni-body">
-          <div class="tbl-scroll" style="border:none">
-            <table class="major-table">
-              <thead><tr>
-                <th style="width:38px" class="num">#</th>
-                <th>专业名称</th>
-                <th>学历层次</th>
-                <th>选考科目要求</th>
-                ${State.mySubjects.length ? '<th style="width:80px">我能报</th>' : ''}
-              </tr></thead>
-              <tbody>
-                ${majors.map((m, i) => {
-                  const ok = State.mySubjects.length ? APP.satisfies(m[2], State.mySubjects) : null;
-                  return `<tr>
-                    <td class="num mono">${i + 1}</td>
-                    <td>${hl(m[0], kw)}</td>
-                    <td class="mono" style="font-size:.74rem;color:var(--ink-3)">${esc(m[2].mode === 0 && false ? '' : (m[2].rawLevel || ''))}${esc(levelOfMajor(u, m[0]))}</td>
-                    <td class="req"><span class="req-badge ${m[2].kind}">${esc(m[2].label)}</span></td>
-                    ${State.mySubjects.length ? `<td>${ok
-                      ? '<span class="tag green">可报</span>'
-                      : '<span class="tag" style="border-color:var(--rule-soft);color:var(--ink-4)">受限</span>'}</td>` : ''}
-                  </tr>`;
-                }).join('')}
-              </tbody>
-            </table>
-          </div>
-          ${u.majors.length > 200 ? `<p style="font-size:.74rem;color:var(--ink-3);margin-top:8px">仅显示前 200 个专业，共 ${u.majorCount} 个。请使用搜索缩小范围。</p>` : ''}
-          <div class="uni-actions">
-            <button class="btn btn-sm" data-act="copy" data-name="${esc(u.name)}">复制专业清单</button>
-            <button class="btn btn-sm" data-act="csv" data-name="${esc(u.name)}">导出 CSV</button>
-            <button class="btn btn-sm" data-act="cmp" data-name="${esc(u.name)}">加入对比</button>
-            <button class="btn btn-sm" data-act="link" data-name="${esc(u.name)}">可分享链接</button>
-          </div>
-        </div>
+        <div class="uni-body"></div>
       </div>`;
   }
 
-  function levelOfMajor(u, name) {
-    const m = u.majors.find(x => x[0] === name);
-    return '';
+  /* 展开时才渲染专业表格（未展开的卡片零 DOM 开销） */
+  function findUniByCode(code) {
+    return State.filtered.find(x => x.code === code) ||
+           State.provData.院校.find(x => x[0] === code);
   }
 
+  function fillCardBody(card) {
+    const body = $('.uni-body', card);
+    if (!body || body.dataset.loaded) return;
+    body.dataset.loaded = '1';
+    const code = card.dataset.code;
+    const u = findUniByCode(code);
+    if (!u) { body.innerHTML = '<p style="font-size:.8rem;color:var(--ink-3)">数据暂不可用</p>'; return; }
+    const kw = ($('#q') && $('#q').value || '').trim();
+    const list = u.majors ? u.majors : u[5].map(m => [m[0], m[1], APP.parsedDict(State.provData)[m[1]], m[2]]);
+    const majors = list.slice(0, 200);
+    body.innerHTML = `
+      <div class="tbl-scroll" style="border:none">
+        <table class="major-table">
+          <thead><tr>
+            <th style="width:38px" class="num">#</th>
+            <th>专业名称</th>
+            <th>学历层次</th>
+            <th>选考科目要求</th>
+            ${State.mySubjects.length ? '<th style="width:80px">我能报</th>' : ''}
+          </tr></thead>
+          <tbody>
+            ${majors.map((m, i) => {
+              const ok = State.mySubjects.length ? APP.satisfies(m[2], State.mySubjects) : null;
+              return `<tr>
+                <td class="num mono">${i + 1}</td>
+                <td>${hl(m[0], kw)}</td>
+                <td class="mono" style="font-size:.74rem;color:var(--ink-3)">${esc(m[3] || '')}</td>
+                <td class="req"><span class="req-badge ${m[2].kind}">${esc(m[2].label)}</span></td>
+                ${State.mySubjects.length ? `<td>${ok
+                  ? '<span class="tag green">可报</span>'
+                  : '<span class="tag" style="border-color:var(--rule-soft);color:var(--ink-4)">受限</span>'}</td>` : ''}
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+      ${list.length > 200 ? `<p style="font-size:.74rem;color:var(--ink-3);margin-top:8px">仅显示前 200 个专业，共 ${u.majorCount} 个。请使用搜索缩小范围。</p>` : ''}
+      <div class="uni-actions">
+        <button class="btn btn-sm" data-act="copy" data-name="${esc(u.name)}">复制专业清单</button>
+        <button class="btn btn-sm" data-act="csv" data-name="${esc(u.name)}">导出 CSV</button>
+        <button class="btn btn-sm" data-act="cmp" data-name="${esc(u.name)}">加入对比</button>
+        <button class="btn btn-sm" data-act="link" data-name="${esc(u.name)}">可分享链接</button>
+      </div>`;
+  }
+
+  /* 关键词高亮：正则按关键词缓存（原来每格都 new RegExp，一张大表上千次构建） */
+  let _hlKw = null, _hlRe = null;
   function hl(text, kw) {
     const t = esc(text);
     if (!kw) return t;
-    try {
-      return t.replace(new RegExp('(' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'),
-        '<mark style="background:var(--swiss-red);color:#fff;padding:0 2px">$1</mark>');
-    } catch (e) { return t; }
+    if (kw !== _hlKw) {
+      _hlKw = kw;
+      try { _hlRe = new RegExp('(' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'); }
+      catch (e) { _hlRe = null; }
+    }
+    if (!_hlRe) return t;
+    return t.replace(_hlRe,
+      '<mark style="background:var(--swiss-red);color:#fff;padding:0 2px">$1</mark>');
+  }
+
+  /* —— 展开 / 收起（修复：移动端轻触带位移时浏览器不合成 click 导致收不起来的 bug）
+        · 事件委托：渲染后无需逐卡绑定，"加载更多" 重绘后依旧生效
+        · pointerup + click 双通道：触屏轻触（即使带 1~3px 位移）也能可靠切换
+        · 位移超过 12px 视为滚动，不触发切换
+        · 展开状态跨重绘保留 ———— */
+  function toggleCard(card) {
+    if (!card) return;
+    const open = card.getAttribute('open-state') === 'open';
+    card.setAttribute('open-state', open ? '' : 'open');
+    const code = card.dataset.code;
+    if (code) {
+      if (open) _openCards.delete(code); else _openCards.add(code);
+      if (_openCards.size > 120) _openCards.delete(_openCards.values().next().value);
+    }
+    if (!open) fillCardBody(card);
   }
 
   function bindCards(host) {
+    if (!host) return;
+    // 恢复展开状态（重绘不丢失）
     $$('.uni', host).forEach(card => {
-      const head = $('.uni-head', card);
-      head.onclick = () => {
-        const open = card.getAttribute('open-state') === 'open';
-        card.setAttribute('open-state', open ? '' : 'open');
-      };
-      const code = card.dataset.code;
-      $$('[data-act]', card).forEach(b => {
-        b.onclick = async (ev) => {
-          ev.stopPropagation();
-          const u = State.filtered.find(x => x.code === code) ||
-                    State.provData.院校.find(x => x[0] === code);
-          const name = b.dataset.name;
-          const list = u.majors ? u.majors : u[5].map(m => [m[0], m[1], APP.parseReq(State.provData.要求字典[m[1]])]);
-          if (b.dataset.act === 'cmp') {
-            Compare.add({ code, name, prov: State.province });
-          } else if (b.dataset.act === 'copy') {
-            const txt = `${name}（${State.province}）专业选考科目要求\n` +
-              list.map((m, i) => `${i + 1}. ${m[0]} — ${m[2].label}`).join('\n') +
-              `\n\n数据来源：${CFG.siteHost}/university/`;
-            copyText(txt);
-          } else if (b.dataset.act === 'csv') {
-            exportCSV(name, list);
-          } else if (b.dataset.act === 'link') {
-            const url = location.origin + '/university/#school&p=' + encodeURIComponent(State.province) + '&u=' + encodeURIComponent(name);
-            copyText(url);
-            toast('链接已复制，可直接分享');
-          }
-        };
-      });
+      if (_openCards.has(card.dataset.code)) {
+        card.setAttribute('open-state', 'open');
+        fillCardBody(card);
+      }
     });
+
+    /* 在 head 上方判定：是"轻点卡片头部"还是"滚动误触" */
+    function headFromEvent(e) {
+      const el = e.target;
+      if (!el || !el.closest) return null;
+      if (el.closest('[data-act]')) return null;          // 操作按钮自行处理
+      const head = el.closest('.uni-head');
+      return (head && host.contains(head)) ? head : null;
+    }
+    function moved(e) {
+      const pd = host._pd;
+      if (!pd || e.clientX == null) return false;
+      const dx = e.clientX - pd.x, dy = e.clientY - pd.y;
+      return (dx * dx + dy * dy) > 144;                    // >12px 视为滚动
+    }
+    function switchCard(e) {
+      const head = headFromEvent(e);
+      if (!head) return;
+      if (moved(e)) return;
+      e.preventDefault();
+      toggleCard(head.closest('.uni'));
+    }
+
+    // 触屏：pointerup 兜底（轻触带小位移时 click 可能不触发）
+    host.onpointerdown = (e) => { host._pd = { x: e.clientX, y: e.clientY }; };
+    host.onpointerup = (e) => {
+      if (e.pointerType === 'mouse') return;               // 鼠标走 click，避免双触发
+      const head = headFromEvent(e);
+      if (!head || moved(e)) return;
+      host._supp = true;                                   // 抑制随后的合成 click
+      setTimeout(() => { host._supp = false; }, 500);
+      toggleCard(head.closest('.uni'));
+    };
+    // 鼠标 / 键盘 / 兜底 click（同一个委托里同时处理操作按钮）
+    host.onclick = (e) => {
+      const el = e.target;
+      const btn = el && el.closest ? el.closest('[data-act]') : null;
+      if (btn && host.contains(btn)) { handleUniAction(btn, host); return; }
+      if (host._supp) return;
+      const head = headFromEvent(e);
+      if (!head || moved(e)) return;
+      toggleCard(head.closest('.uni'));
+    };
+  }
+
+  function handleUniAction(btn, host) {
+    const card = btn.closest('.uni');
+    const code = card ? card.dataset.code : '';
+    const u = findUniByCode(code);
+    const name = btn.dataset.name;
+    const list = u ? (u.majors ? u.majors
+      : u[5].map(m => [m[0], m[1], APP.parsedDict(State.provData)[m[1]]])) : [];
+    if (btn.dataset.act === 'cmp') {
+      Compare.add({ code, name, prov: State.province });
+    } else if (btn.dataset.act === 'copy') {
+      const txt = `${name}（${State.province}）专业选考科目要求\n` +
+        list.map((m, i) => `${i + 1}. ${m[0]} — ${m[2].label}`).join('\n') +
+        `\n\n数据来源：${CFG.siteHost}/university/`;
+      copyText(txt);
+    } else if (btn.dataset.act === 'csv') {
+      exportCSV(name, list);
+    } else if (btn.dataset.act === 'link') {
+      const url = location.origin + '/university/#school&p=' + encodeURIComponent(State.province) + '&u=' + encodeURIComponent(name);
+      copyText(url);
+      toast('链接已复制，可直接分享');
+    }
   }
 
   function copyText(txt) {
