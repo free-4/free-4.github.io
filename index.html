@@ -1,24 +1,250 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="description" content="Shuoweb.com提供各种工具，趣味页面，欢迎来访">
-    <title>ShuoWeb - 秋秋的个人网站</title>
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <script src="./icon.js"></script>
-    <script src="./js/index_db.js"></script>
-    <link rel="icon" href="/favicon.ico">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="format-detection" content="telephone=no">
+
+<!-- ============ 核心 SEO ============ -->
+<title>选科要求查询系统 | 全国31省大学专业选考科目要求查询 - 新高考选科</title>
+<meta name="description" content="新高考选科要求查询系统，覆盖全国31个省（自治区、直辖市）2400+所高校、84000+条专业选考科目要求。支持按院校查专业选科要求、按选科组合反查可报专业覆盖率、专业全国选科分布统计。物理化学政治等12种选科组合专业覆盖率一键查询。">
+<meta name="keywords" content="选科要求查询,新高考选科,选考科目要求,大学专业选科要求,3+1+2选科,选科组合专业覆盖率,物理化学必选,高考选科,专业选科查询,2027选科要求,院校专业选科">
+<meta name="author" content="ShuoWeb">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<meta name="bingbot" content="index,follow">
+<meta name="revisit-after" content="7 days">
+<meta name="rating" content="general">
+<link rel="canonical" href="https://shuoweb.com/university/">
+
+<!-- ============ Open Graph (含必应/Facebook/微信) ============ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ShuoWeb 选科要求查询">
+<meta property="og:title" content="选科要求查询系统 | 全国31省大学专业选考科目要求查询">
+<meta property="og:description" content="覆盖全国31省2400+所高校、84000+条专业选考科目要求。按院校查专业选科、按选科组合反查可报专业覆盖率，数据本地缓存、极速加载。">
+<meta property="og:url" content="https://shuoweb.com/university/">
+<meta property="og:locale" content="zh_CN">
+
+<!-- ============ Twitter Card ============ -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="选科要求查询系统 | 全国31省大学专业选考科目要求查询">
+<meta name="twitter:description" content="覆盖全国31省2400+所高校、84000+条专业选考科目要求，支持选科组合覆盖率反查。">
+
+<!-- ============ 移动端 / PWA ============ -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="选科查询">
+<meta name="application-name" content="选科要求查询">
+<link rel="icon" href="/favicon.ico">
+<link rel="manifest" href="/university/manifest.json">
+<link rel="sitemap" type="application/xml" href="/university/sitemap.xml">
+
+<!-- ============ 资源加载：Google Fonts（Inter + JetBrains Mono） ============ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/university/assets/style.css" as="style">
+<link rel="stylesheet" href="/university/assets/style.css">
+
+<!-- ============ 结构化数据 JSON-LD ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://shuoweb.com/#website",
+      "url": "https://shuoweb.com/",
+      "name": "ShuoWeb",
+      "description": "Shuoweb.com提供各种工具，趣味页面，欢迎来访",
+      "inLanguage": "zh-CN",
+      "publisher": { "@id": "https://shuoweb.com/#org" }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://shuoweb.com/university/#app",
+      "name": "选科要求查询系统",
+      "alternateName": ["新高考选科查询", "选考科目要求查询", "大学专业选科要求查询"],
+      "url": "https://shuoweb.com/university/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web Browser",
+      "browserRequirements": "需要支持 JavaScript 的现代浏览器",
+      "inLanguage": "zh-CN",
+      "isAccessibleForFree": true,
+      "description": "覆盖全国31个省（自治区、直辖市）2400余所高校、84000余条专业选考科目要求的新高考选科查询工具。支持按院校查询专业选科要求、按选科组合反查可报考专业覆盖率、专业全国选科要求分布统计等功能。",
+      "featureList": [
+        "全国31省高校专业选考科目要求查询",
+        "按院校查看全部招生专业选科要求",
+        "12种选科组合专业覆盖率反查",
+        "专业全国选科要求分布统计",
+        "院校选科要求横向对比",
+        "本地缓存离线查询",
+        "专业清单 CSV 导出"
+      ],
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+      "publisher": { "@id": "https://shuoweb.com/#org" },
+      "about": {
+        "@type": "Thing",
+        "name": "新高考选考科目要求",
+        "description": "普通高校招生专业对高中学生选考科目的要求，包括必选科目和可选科目范围。"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://shuoweb.com/#org",
+      "name": "ShuoWeb",
+      "url": "https://shuoweb.com/",
+      "logo": "https://shuoweb.com/favicon.ico"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://shuoweb.com/university/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://shuoweb.com/" },
+        { "@type": "ListItem", "position": 2, "name": "选科要求查询", "item": "https://shuoweb.com/university/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://shuoweb.com/university/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "选科要求查询是什么？怎么用？",
+          "acceptedAnswer": { "@type": "Answer", "text": "选科要求查询是一款覆盖全国31个省份的新高考选科查询工具。使用步骤：第一步选择你的高考省份；第二步输入院校名称或专业名称进行检索；第三步在选科科目栏勾选你计划选考的3门科目，系统会自动计算你的选科组合在本省可报考的专业比例，并标注每个专业你是否能报。" }
+        },
+        {
+          "@type": "Question",
+          "name": "物理+化学组合的专业覆盖率有多高？",
+          "acceptedAnswer": { "@type": "Answer", "text": "根据全国84000余条专业选考科目要求的统计，物理+化学+X的选科组合专业覆盖率普遍在95%以上，明显高于其他组合。其中不限选科的专业约占65%，要求物理+化学的专业约占29%。相比之下，历史+政治+地理等纯文科组合的覆盖率通常在50%左右。" }
+        },
+        {
+          "@type": "Question",
+          "name": "不同省份的同一专业选科要求一样吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "不完全一样。选科要求是以招生省份为单位公布的，同一所高校的同一个专业在不同省份的选考科目要求可能存在差异。因此查询时应当以你所在的高考省份为准。本工具支持切换省份查看，并可在「院校对比」功能中横向比较不同院校对同一专业的要求差异。" }
+        },
+        {
+          "@type": "Question",
+          "name": "本科和高职（专科）的选科要求有何区别？",
+          "acceptedAnswer": { "@type": "Answer", "text": "本科专业的选科要求较为严格，理工农医类专业通常要求必选物理和化学。高职（专科）专业大部分不设选考科目要求，或仅要求单门科目。本工具在院校层次筛选中可以分别查看本科与高职（专科）的数据。" }
+        },
+        {
+          "@type": "Question",
+          "name": "这个工具的数据来源是什么？准确吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "数据来源于各省教育考试院公布的普通高校招生专业选考科目要求文件。本工具仅作整理与查询展示，供个人学习参考，不作为志愿填报的最终依据。实际招生专业和选科要求请以各省教育考试院和高校当年公布的官方文件为准。" }
+        },
+        {
+          "@type": "Question",
+          "name": "能否离线使用？需要重复下载数据吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "可以。系统采用本地缓存机制，你浏览过的省份数据会保存在浏览器本地（有效期7天），再次访问时直接读取缓存，无需重新下载。在「关于本工具」页面还可以一键预加载全部31个省份，之后即可完全离线查询。" }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
-<section class="hero">
-    <h1>ShuoWeb QiuQiu Page</h1>
-</section>
+<!-- ==================== 顶栏 ==================== -->
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/university/" aria-label="选科要求查询首页">
+      <span class="mark" aria-hidden="true"></span>
+      <span>选科要求查询</span>
+      <span class="sub">Swiss&nbsp;/&nbsp;Grid</span>
+    </a>
+    <nav class="topnav" id="topnav" role="tablist" aria-label="主导航">
+      <button role="tab" data-view="home" aria-selected="true">省份选择</button>
+      <button role="tab" data-view="school" aria-selected="false">院校专业</button>
+      <button role="tab" data-view="major-search" aria-selected="false">专业查询</button>
+      <button role="tab" data-view="reverse" aria-selected="false">选科反查</button>
+      <button role="tab" data-view="majors" aria-selected="false">专业总览</button>
+      <button role="tab" data-view="unis" aria-selected="false">院校库</button>
+      <button role="tab" data-view="about" aria-selected="false">关于</button>
+    </nav>
+    <button class="icon-btn" id="themeBtn" aria-label="切换深色模式"></button>
+  </div>
+</header>
 
-<div id="content"></div>
-<script src="./js/index_url.js"></script>
-<script src="./common.js"></script>
+<!-- ==================== 主体 ==================== -->
+<main id="view" role="main"></main>
 
+<!-- ==================== 页脚 ==================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>选科查询</h4>
+        <a href="/university/#school">院校专业选科要求</a>
+        <a href="/university/#reverse">选科组合覆盖率反查</a>
+        <a href="/university/#majors">专业全国选科分布</a>
+        <a href="/university/#unis">全国院校数据库</a>
+      </div>
+      <div>
+        <h4>常用功能</h4>
+        <a href="/university/#major-search">专业全能检索（支持拼音）</a>
+        <a href="/university/#school">按省份浏览院校</a>
+        <a href="/university/#about">数据来源与缓存管理</a>
+        <a href="/university/#reverse">12 种选科组合覆盖率</a>
+      </div>
+      <div>
+        <h4>热门组合</h4>
+        <a href="/university/#reverse">物理+化学+生物</a>
+        <a href="/university/#reverse">物理+化学+政治</a>
+        <a href="/university/#reverse">物理+化学+地理</a>
+        <a href="/university/#reverse">历史+政治+地理</a>
+      </div>
+      <div>
+        <h4>热门专业</h4>
+        <a href="/university/#majors">临床医学选科要求</a>
+        <a href="/university/#majors">计算机科学与技术</a>
+        <a href="/university/#majors">法学选科要求</a>
+        <a href="/university/#majors">汉语言文学选科要求</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>数据整理自各省教育考试院公开文件 · 仅供个人学习参考，不作为志愿填报最终依据</span>
+      <span>覆盖中国大陆 31 省（不含中国香港、中国澳门、中国台湾）</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== 对比抽屉 ==================== -->
+<aside class="compare-dock" id="dock" aria-label="院校对比清单">
+  <div class="dock-head" id="dockHead" role="button" tabindex="0" aria-expanded="false">
+    <span>院校对比清单</span>
+    <span class="count" id="dockCount">0</span>
+    <span class="spacer"></span>
+    <span style="font-size:.72rem;opacity:.65">点击展开</span>
+  </div>
+  <div class="dock-body" id="dockBody"></div>
+</aside>
+
+<!-- ==================== 弹层 ==================== -->
+<div class="modal-mask" id="modalMask" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
+    <h3 id="modalTitle"></h3>
+    <p class="modal-sub" id="modalSub"></p>
+    <div id="modalBodyInner"></div>
+  </div>
+</div>
+
+<!-- 首屏可见的 SEO 兜底内容（JS 加载后会被替换，但爬虫可读） -->
+<noscript>
+<div class="wrap" style="padding:40px 24px">
+<h1>选科要求查询系统 — 全国31省大学专业选考科目要求</h1>
+<p>新高考选科查询工具，覆盖全国31个省（自治区、直辖市）的普通高校招生专业选考科目要求，
+支持按院校查询专业选科要求、按选科组合反查可报考专业覆盖率、专业全国选科要求分布统计。
+请在浏览器中启用 JavaScript 以使用完整功能。</p>
+</div>
+</noscript>
+
+<script src="/university/assets/core.js?v=2"></script>
+<script src="/university/assets/search.js"></script>
+<script src="/university/assets/major-query.js"></script>
+<script src="/university/assets/ui.js?v=2"></script>
 </body>
 </html>
