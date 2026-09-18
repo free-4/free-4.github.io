@@ -7,6 +7,7 @@ const SITE_DATA = [
         icon: "fun",
         items: [
             { title: "历史上的今天", url: "https://shuoweb.com/page/html/today_history", icon: "history" },
+            { title: "大学选科全能查询", url: "https://shuoweb.com/university/", icon: "study" },
             { title: "每日一言", url: "https://shuoweb.com/page/html/day_yan.html", icon: "yan" },
             { title: "世界人口时钟", url: "https://shuoweb.com/page/html/people.html", icon: "user" },
             { title: "随机手机型号", url: "https://shuoweb.com/api/phone", icon: "phone" },
